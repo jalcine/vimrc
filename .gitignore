@@ -3,3 +3,6 @@ backups
 
 # Anything with a ~ is not worth saving.
 *~
+
+# You don't need to know my white list for NetRC.
+.netrwhist

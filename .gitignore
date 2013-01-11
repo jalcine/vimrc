@@ -6,3 +6,6 @@ backups
 
 # You don't need to know my white list for NetRC.
 .netrwhist
+
+# Don't keep a cache of the scripts at vim-scripts.org
+bundle/.vundle/script-names.vim-scripts.org.json

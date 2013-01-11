@@ -1,0 +1,5 @@
+# The last thing we need is people getting my backups.
+backups
+
+# Anything with a ~ is not worth saving.
+*~

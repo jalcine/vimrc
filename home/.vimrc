@@ -46,7 +46,9 @@ set nocompatible
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 
-" Bundles used in the system.
+" Font patching
+let g:Powerline_symbols = 'fancy'
+"Bundles used in the system.
 Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-rails'

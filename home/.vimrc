@@ -24,6 +24,8 @@ set showmatch                         " Match brackets."
 set encoding=utf-8                    " We ♥ UTF-8 stuff.
 set softtabstop=2                     " Gently remove space when hitting backspace."
 set hidden                            " Don't close tabs, instead hide them.
+set wrapmargin=2
+set textwidth=79
 set background=dark                   " I live life like Bruce Wayne, in the dark.
 colorscheme solarized
 let g:solarized_termcolors=256

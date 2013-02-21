@@ -10,6 +10,7 @@ filetype off                          " We'll check file types later.
 syntax on                             " Each language has its own syntax; respect it!
 colorscheme 256-grayvim 
 
+let mapleader=","                     " Let the leader be a comma!
 "set background=dark
 set tabstop=2                         " My tab are lean, mean and two spaces.
 set shiftwidth=2                      " Autoindent by two spaces automagically.
@@ -23,7 +24,7 @@ set hidden                            " Don't close tabs, instead hide them.
 set textwidth=78                      " Set the width of visible text.
 set formatoptions=tcrqwnj
 set foldmethod=syntax                 " Fold code according to syntax."
-set foldcolumn=2                     " Give the folding symbol 3 columns."
+set foldcolumn=4                      " Give the folding symbol 4 columns."
 set foldminlines=50                   " Don't fold anything less than 50 lines."
 set history=1000                      " The memory should be big, so keep a big history."
 set undolevels=1000                   " Be ready to undo that bug."
@@ -43,7 +44,6 @@ set gdefault                          " I'm human, so of course my regexs are /g
 set nolist
 set pastetoggle=<F2>
 set mouse=a
-set relativenumber
 set fileformats=unix
 set formatoptions+=1
 
@@ -59,12 +59,14 @@ nnoremap <silent> <leader>z :CommandT<CR>  " Come to me, Command-T!"
 nnoremap <silent> <leader>a :CommandTBuffer<CR> "Show me the currents."
 nnoremap <silent> <leader><F3> :tabp
 nnoremap <silent> <leader><F7> :tabn
+noremap <silent> <F7> :Autoformat<CR><CR>
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
 
 "" Toggle show/hide invisible chars
 nnoremap <leader>i :set list!<cr>
-
-"" Toggle line numbers
-nnoremap <leader>N :setlocal relativenumber!<cr>
 
 "" Set up Vundle.
 set rtp+=~/.vim/bundle/vundle
@@ -82,22 +84,26 @@ Bundle 'tpope/vim-coffee-script'
 Bundle 'JSON.vim'
 Bundle 'othree/html5.vim'
 Bundle 'ecomba/vim-ruby-refactoring'
+Bundle 'othree/html5.vim'
+Bundle 'ecomba/vim-ruby-refactoring'
+Bundle 'mileszs/apidock.vim'
+Bundle 'sjl/gundo.vim'
 Bundle 'mileszs/apidock.vim'
 Bundle 'sjl/gundo.vim'
 Bundle 'Indent-Guides'
 Bundle 'Valloric/YouCompleteMe'
+Bundle 'kchmck/vim-coffee-script'
 Bundle 'Align'
 Bundle 'jQuery'
 Bundle 'L9'
+Bundle 'jamessan/vim-gnupg'
 Bundle 'gmarik/github-search.vim'
 Bundle 'DfrankUtil'
 Bundle 'FuzzyFinder'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
-Bundle 'OmniCppComplete'
-Bundle 'msanders/snipmate.vim'
-Bundle 'Command-T'
+Bundle 'wincent/Command-T'
 Bundle 'cmake.vim'
 Bundle 'localrc.vim'
 Bundle 'YankRing.vim'
@@ -112,16 +118,19 @@ Bundle 'majutsushi/tagbar'
 Bundle 'alfredodeza/jacinto.vim'
 Bundle 'mattn/gist-vim'
 Bundle 'mattn/webapi-vim'
+Bundle 'Chiel92/vim-autoformat'
 
 " Activate plugin detection now.
 filetype plugin indent on
 filetype on
 
 "" Options for Syntastic!
-let g:syntastic_check_on_open=1
-let g:syntastic_enable_signs=1
-let g:syntastic_error_symbol='✗'
-let g:syntastic_warning_symbol='⚠'
-let g:syntastic_enable_ballons=1
-let g:syntastic_enable_highlighting=1
-
+" let g:syntastic_check_on_open=1
+" let g:syntastic_enable_signs=1
+" let g:syntastic_error_symbol='✗'
+" let g:syntastic_warning_symbol='⚠'
+" let g:syntastic_enable_ballons=1
+" let g:syntastic_enable_highlighting=1
+let g:CommandTMaxHeight=6
+let g:CommandTMatchWindowAtTop=1
+ 

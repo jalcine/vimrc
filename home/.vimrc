@@ -8,10 +8,9 @@ set nocompatible                      " Vi Improved!
 
 filetype off                          " We'll check file types later.
 syntax on                             " Each language has its own syntax; respect it!
-colorscheme 256-grayvim 
 
 let mapleader=","                     " Let the leader be a comma!
-"set background=dark
+set background=dark
 set tabstop=2                         " My tab are lean, mean and two spaces.
 set shiftwidth=2                      " Autoindent by two spaces automagically.
 set expandtab ts=2 sw=2 ai            " Expands tabs into spaces with some intelligence and two spaces.
@@ -21,6 +20,7 @@ set showmatch                         " Match brackets."
 set encoding=utf-8                    " We ♥ UTF-8 stuff.
 set softtabstop=2                     " Gently remove space when hitting backspace."
 set hidden                            " Don't close tabs, instead hide them.
+set wrap
 set textwidth=78                      " Set the width of visible text.
 set formatoptions=tcrqwnj
 set foldmethod=syntax                 " Fold code according to syntax."
@@ -44,6 +44,7 @@ set gdefault                          " I'm human, so of course my regexs are /g
 set nolist
 set pastetoggle=<F2>
 set mouse=a
+set spell spelllang=en_us
 set fileformats=unix
 set formatoptions+=1
 
@@ -76,11 +77,11 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-git'
 Bundle 'tpope/vim-bundler'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-cucumber'
-Bundle 'tpope/vim-coffee-script'
 Bundle 'JSON.vim'
 Bundle 'othree/html5.vim'
 Bundle 'ecomba/vim-ruby-refactoring'
@@ -101,6 +102,8 @@ Bundle 'gmarik/github-search.vim'
 Bundle 'DfrankUtil'
 Bundle 'FuzzyFinder'
 Bundle 'scrooloose/nerdcommenter'
+Bundle 'astashov/vim-ruby-debugger'
+Bundle 'jpalardy/vim-slime'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
 Bundle 'wincent/Command-T'
@@ -110,6 +113,7 @@ Bundle 'YankRing.vim'
 Bundle 'taglist.vim'
 Bundle 'tsaleh/vim-align'
 Bundle 'greplace.vim'
+Bundle 'Bogdanp/pyrepl.vim'
 Bundle 'tpope/vim-cucumber'
 Bundle 'pferdefleisch/sass.snippet'
 Bundle 'lepture/vim-css'

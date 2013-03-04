@@ -223,6 +223,10 @@ noremap <Left> <NOP>
 noremap <Right> <NOP>
 noremap <leader>g :GundoToggle<CR>
 noremap <leader>i :set list!<cr>
+vmap Q gq
+nmap Q gqap
+nnoremap j gj
+nnoremap k gk
 "}}}
 
 "{{{ Plug-ins

@@ -239,6 +239,8 @@ call vundle#rc()
 
 Bundle 'gmarik/vundle'
 Bundle 'benmills/vimux'
+Bundle 'YankRing.vim'
+Bundle 'tpope/vim-pastie'
 
 "{{{ VCS Tools
 Bundle 'tpope/vim-fugitive'

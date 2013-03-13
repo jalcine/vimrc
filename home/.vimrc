@@ -1,5 +1,4 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" 
+"" vim: tw=78 fdm=marker
 "" Vim configuration options.
 ""
 "" @author Jacky Alcine <me@jalcine.me>
@@ -11,24 +10,19 @@
 "" as I learn, I've taken the liberty of documenting and
 "" explaining the nature of my configuration.
 ""
-"" In order to ease  
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " We live in the future, don't worry about backwards
 " compatibility with Vi.
 set nocompatible
 
-" I have a suite of color schemes, but by default I stick
-" to zenburn, it's light on the eyes and work on most of
-" the brightness settings I use.
-colorscheme zenburn 
 
 " We turn off file-type detection for now, this is
 " required for using Vundle.
 filetype off
 
-" Enable syntax detection and highlighting.
-syntax on
+" We need modelines.
+set modeline
 
 " Set my user-defined action to the comma key.
 let mapleader=","
@@ -36,7 +30,7 @@ let mapleader=","
 "{{{ Configuration
 
 " We live in the future. Use UTF-8 encoding!
-set encoding=utf-8   
+set encoding=utf-8
 
 " Use visual bells instead of beeps. I use this
 " since it helps a lot with tmux to inform me
@@ -45,7 +39,6 @@ set visualbell
 
 " Disable bells for errors.
 set noerrorbells
-
 
 "{{{ Spacing
 
@@ -77,19 +70,20 @@ set smarttab
 
 "{{{ Layout
 
-" Presents a '$' at the end of the line.
-set list
+" I prefer a dark background.
+set background=dark
 
 "" Folding options
 
+" Fold on the syntax.
+set foldmethod=syntax
+
 " Sets the width of the folding margins.
-set foldcolumn=4
+set foldcolumn=2
 
 " Sets the minimum amount of lines needed to
 " automatically initialize folding.
 set foldminlines=80
-
-"" Layout
 
 " Set the title in the terminal.
 set title titlelen=120 titlestring="%t%(\ %M%)%(\ (%{expand(\"%:~:.:h\")})%)%(\ %a%)"
@@ -97,9 +91,8 @@ set title titlelen=120 titlestring="%t%(\ %M%)%(\ (%{expand(\"%:~:.:h\")})%)%(\ 
 " Turn on the ruler, we'd like to know our whereabouts.
 set ruler
 
-" Enable relative number counting. No need to get exact numbers,
-" you use 'hjkl', right?
-set relativenumber
+" We like a stable number count.
+set number 
 
 " Ensure the visibility of the statusline.
 " Required for vim-powerline.
@@ -178,7 +171,7 @@ set wrapmargin=5
 "   - M: don't put a space between 2 multi-byte characters.
 "   - 1: don't break a line after a one-letter word. Yeah, I know.
 "   - j: join comments lines when it makes sense.
-set formatoptions=tcrqwnj2lm1j
+set formatoptions=tcrqwnj2lvm1j
 
 " Files that we ignore.
 set wildignore=*.swp,*.pyc,*.bak,*.class
@@ -189,6 +182,10 @@ set sidescrolloff=0
 
 " We a UNIX user, baby.
 set fileformats=unix
+
+" Wrap my text at 78 characters, leaving two spaces
+" for 80-width terminal windows.
+set textwidth=78
 
 "}}}
 
@@ -223,10 +220,10 @@ noremap <Left> <NOP>
 noremap <Right> <NOP>
 noremap <leader>g :GundoToggle<CR>
 noremap <leader>i :set list!<cr>
-vmap Q gq
-nmap Q gqap
-nnoremap j gj
-nnoremap k gk
+noremap <leader>sn :TriggerSnippet<cr>
+nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+vnoremap <Space> zf
+map <silent> <F5> togglebg
 "}}}
 
 "{{{ Plug-ins
@@ -239,12 +236,11 @@ call vundle#rc()
 
 Bundle 'gmarik/vundle'
 Bundle 'benmills/vimux'
-Bundle 'YankRing.vim'
-Bundle 'tpope/vim-pastie'
 
 "{{{ VCS Tools
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-git'
+Bundle 'mhinz/vim-signify'
 "}}}
 
 "{{{ Ruby
@@ -276,6 +272,7 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
 Bundle 'wincent/Command-T'
+Bundle 'Valloric/YouCompleteMe'
 Bundle 'Chiel92/vim-autoformat'
 Bundle 'alfredodeza/pytest.vim'
 Bundle 'TaskList.vim'
@@ -284,8 +281,6 @@ Bundle 'Align'
 Bundle 'thinca/vim-localrc'
 
 "{{{ Snippets
-Bundle 'msanders/snipmate.vim'
-Bundle 'pferdefleisch/sass.snippet'
 
 " Using gists?
 Bundle 'mattn/gist-vim'
@@ -299,12 +294,30 @@ Bundle 'gmarik/github-search.vim'
 Bundle 'jamessan/vim-gnupg'
 "}}}
 
+" {{{ Appearance
+Bundle 'altercation/vim-colors-solarized'
+" }}}
+
+
 " Activate plugin detection now.
 filetype plugin indent on
 "}}}
 
 " Enable file-type detection.
 filetype on
+
+" Enable syntax highlighting now.
+syntax on
+
+" I have a suite of color schemes, but by default I stick
+" to obsidian, it's light on the eyes and work on most of
+" the brightness settings I use. Also, make the background
+" light, it's so much easier to read. I place this after
+" the Vundle loading because it'd be safe enough to turn on
+" syntax and file type highlighting.
+set background=light
+colorscheme obsidian 
+
 
 "{{{ Plugin Configuration
 
@@ -317,6 +330,9 @@ let g:syntastic_enable_ballons=1
 let g:syntastic_enable_highlighting=1
 "}}}
 
+"{{{ NERDCommenter
+"}}}
+
 "{{{ Command-T
 let g:CommandTMaxHeight=6
 let g:CommandTMatchWindowAtTop=1
@@ -324,6 +340,8 @@ let g:CommandTMatchWindowAtTop=1
 
 let g:github_search_path_format="~/Development/Projects/:project"
 let g:ycm_key_detailed_diagnostics = ""
+let g:solarized_termcolors=256
+let g:solarized_termtrans=1
 "}}}
 
 "{{{ virtualenv python support

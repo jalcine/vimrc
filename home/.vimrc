@@ -31,7 +31,7 @@ filetype off
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 
-Bundle 'jalcine/vundle'
+Bundle 'gmarik/vundle'
 Bundle 'benmills/vimux'
 
 "{{{ VCS Tools
@@ -76,7 +76,7 @@ Bundle 'jalcine/TaskList.vim'
 Bundle 'jalcine/tagbar'
 Bundle 'tpope/vim-surround'
 Bundle 'Align'
-Bundle 'jalcine/vim-localrc'
+Bundle 'jalcine/localrc.vim'
 Bundle 'hlissner/vim-multiedit'
 Bundle 'kien/ctrlp.vim'
 Bundle 'jalcine/vim-android'

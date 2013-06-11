@@ -29,6 +29,7 @@ filetype off
 
 "" Set up Vundle.
 set rtp+=~/.vim/bundle/vundle
+set rtp+=~/.vim/bundle/ultrasnips
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
@@ -50,6 +51,7 @@ Bundle 'ecomba/vim-ruby-refactoring'
 
 "{{{ Syntax
 Bundle 'tpope/vim-markdown'
+Bundle 'tpope/vim-haml'
 Bundle 'othree/html5.vim'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'jQuery'
@@ -60,13 +62,13 @@ Bundle 'alfredodeza/jacinto.vim'
 
 "{{{ Debugging + Testing
 Bundle 'sjl/gundo.vim'
-"Bundle 'jpalardy/vim-slime'
-"Bundle 'alfredodeza/pytest.vim'
+Bundle 'jpalardy/vim-slime'
+Bundle 'alfredodeza/pytest.vim'
 "}}}
 
 "{{{ IDE Tools
 Bundle 'Lokaltog/vim-powerline'
-" Bundle 'xolox/vim-session'
+"Bundle 'xolox/vim-session'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
@@ -83,19 +85,19 @@ Bundle 'jalcine/vim-android'
 
 "{{{ Snippets
 
-" Bundle 'SirVer/ultisnips'
-" Bundle 'honza/snipmate-snippets'
+Bundle 'SirVer/ultisnips'
+Bundle 'honza/snipmate-snippets'
 
 " Using gists?
-" Bundle 'mattn/gist-vim'
-" Bundle 'mattn/webapi-vim'
-" Bundle 'gmarik/github-search.vim'
+Bundle 'mattn/gist-vim'
+Bundle 'mattn/webapi-vim'
+Bundle 'gmarik/github-search.vim'
 "}}}
 
 "}}}
 
 "{{{ Security + Encryption
-" Bundle 'jamessan/vim-gnupg'
+Bundle 'jamessan/vim-gnupg'
 "}}}
 
 "}}}
@@ -258,7 +260,7 @@ set wrapmargin=5
 set formatoptions=tcrqwnj2lvm1j
 
 " Files that we ignore.
-set wildignore=*.swp,*.pyc,*.bak,*.class
+set wildignore=*.swp,*.pyc,*.bak,*.class,build/*,vendor/cache/*,vendor/bundle/*
 
 " DON'T SCROLL OFF. It's a space and time.
 set scrolloff=0
@@ -300,7 +302,6 @@ syntax on
 set background=light
 colorscheme molokai
 set cursorline
-set cursorcolumn
 set virtualedit=onemore
 set showmode
 set backspace=indent,eol,start
@@ -311,7 +312,7 @@ set backspace=indent,eol,start
 
 "{{{ Key bindings.
 nnoremap ; : 
-nmap <silent> <leader>ev :e ~/.vimrc<cr> 
+nmap <silent> <leader>ev :tabe ~/.vimrc<cr> 
 nmap <silent> <leader>sv :so ~/.vimrc<cr>
 nnoremap <silent> <C-l> :nohlsearch<CR><C-l>
 nnoremap <silent> <F10> :NERDTreeToggle<CR>
@@ -329,8 +330,8 @@ vnoremap <Space> zf
 nmap <leader>pt a<C-R>=strftime("%Y-%m-%d")<CR>
 imap <leader>pT <C-R>=strftime("%Y-%m-%d")<CR>
 noremap <silent> <C-k> :TagbarToggle<CR>
-noremap <silent> <C-H> :tabp<CR>
-noremap <silent> <C-L> :tabn<CR>
+noremap <silent> <C-N> :tabp<CR>
+noremap <silent> <C-M> :tabn<CR>
 nnoremap <leader>c :setlocal cursorline! cursorcolumn!<CR>
 "}}}
 
@@ -353,9 +354,15 @@ let g:syntastic_enable_ballons=1
 let g:syntastic_enable_highlighting=1
 "}}}
 
-"{{{ Command-T
-let g:CommandTMaxHeight=4
-let g:CommandTMatchWindowAtTop=1
+"{{{ CtrlP
+let g:ctrlp_switch_buffer="E"
+let g:ctrlp_working_path_mode="rc"
+let g:ctrlp_root_markers=[".localrc"]
+let g:ctrlp_custom_ignore = {
+  \ 'dir' : '\v[\/]build$'
+  \ }
+let g:ctrlp_open_new_file='t'
+let g:ctrlp_open_multiple_files='t'
 "}}}
 
 "{{{ Snippets
@@ -363,6 +370,7 @@ let g:snips_author=g:author
 let g:UltiSnipsExpandTrigger='<c-j>'
 let g:UltiSnipsJumpForwardTrigger='<c-j>'
 let g:UltiSnipsJumpBackwardTrigger='<c-k>'
+let g:UltiSnipsUsePythonVersion=2
 "}}}
 
 let g:VimuxHeight = "30"
@@ -373,7 +381,9 @@ let g:solarized_termcolors=256
 "}}}
 
 "{{{ Tag Definitions
-set tags+=~/.vim/tags/qt4.tags
-set tags+=~/.vim/tags/qt5.tags
+set tags+=~/.tags/qt4.tags
+set tags+=~/.tags/qt5.tags
+set tags+=~/.tags/boost.tags
+set tags+=$PWD/.git/tags
 "}}}
 

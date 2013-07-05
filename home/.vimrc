@@ -19,6 +19,8 @@
 " compatibility with Vi.
 set nocompatible
 
+set lazyredraw
+
 " We turn off file-type detection for now, this is
 " required for using Vundle.
 filetype off
@@ -29,77 +31,59 @@ filetype off
 
 "" Set up Vundle.
 set rtp+=~/.vim/bundle/vundle
-set rtp+=~/.vim/bundle/ultrasnips
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
 Bundle 'benmills/vimux'
-
-"{{{ VCS Tools
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-git'
-Bundle 'mhinz/vim-signify'
-"}}}
-
-"{{{ Ruby
 Bundle 'tpope/vim-bundler'
-Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-cucumber'
-Bundle 'mileszs/apidock.vim'
-Bundle 'ecomba/vim-ruby-refactoring'
-"}}}
-
-"{{{ Syntax
 Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-haml'
+Bundle 'mattn/zencoding-vim'
+Bundle 'Lokaltog/vim-easymotion'
 Bundle 'othree/html5.vim'
 Bundle 'kchmck/vim-coffee-script'
-Bundle 'jQuery'
-Bundle 'fs111/pydoc.vim'
-Bundle 'lepture/vim-css'
-Bundle 'alfredodeza/jacinto.vim'
-"}}}
-
-"{{{ Debugging + Testing
-Bundle 'sjl/gundo.vim'
-Bundle 'jpalardy/vim-slime'
-Bundle 'alfredodeza/pytest.vim'
-"}}}
-
-"{{{ IDE Tools
-Bundle 'Lokaltog/vim-powerline'
-"Bundle 'xolox/vim-session'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
 Bundle 'jistr/vim-nerdtree-tabs'
-Bundle 'Chiel92/vim-autoformat'
-Bundle 'jalcine/TaskList.vim'
-Bundle 'jalcine/tagbar'
 Bundle 'tpope/vim-surround'
-Bundle 'Align'
-Bundle 'jalcine/localrc.vim'
-Bundle 'hlissner/vim-multiedit'
-Bundle 'kien/ctrlp.vim'
-Bundle 'jalcine/vim-android'
-
-"{{{ Snippets
-
-Bundle 'SirVer/ultisnips'
-Bundle 'honza/snipmate-snippets'
-
-" Using gists?
 Bundle 'mattn/gist-vim'
-Bundle 'mattn/webapi-vim'
-Bundle 'gmarik/github-search.vim'
-"}}}
-
-"}}}
-
-"{{{ Security + Encryption
+Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'pangloss/vim-javascript'
+Bundle 'kien/ctrlp.vim'
+Bundle 'SirVer/ultisnips'
+Bundle 'tomasr/molokai'
+Bundle 'othree/html5.vim'
+Bundle 'kaichen/vim-snipmate-ruby-snippets'
+Bundle 'tisho/css-snippets-snipmate'
+Bundle 'hlissner/vim-multiedit'
 Bundle 'jamessan/vim-gnupg'
-"}}}
-
+Bundle 'bonsaiben/bootstrap-snippets'
+Bundle 'xolox/vim-misc'
+Bundle 'xolox/vim-session'
+Bundle 'mattn/webapi-vim'
+Bundle 'tpope/vim-speeddating'
+Bundle 'mikewest/vimroom'
+Bundle 'int3/vim-extradite'
+Bundle "daylerees/colour-schemes", { "rtp": "vim-themes/" }
+Bundle 'mmozuras/vim-github-comment'
+Bundle 'juvenn/mustache.vim'
+Bundle 'FredKSchott/CoVim'
+Bundle 'airblade/vim-gitgutter'
+Bundle 'bling/vim-bufferline'
+Bundle 'bling/vim-airline'
+Bundle 'vim-perl/vim-perl'
+Bundle 'flazz/vim-colorschemes'
+Bundle 'skammer/vim-css-color'
+Bundle 'junegunn/vim-github-dashboard'
+Bundle 'jalcine/TaskList.vim'
+Bundle 'jalcine/localrc.vim'
+Bundle 'jalcine/vim-android'
+Bundle 'jalcine/vim-snippets'
+Bundle 'jalcine/cmake.vim'
+Bundle 'jalcine/android-dev.vim'
 "}}}
 
 " Activate plugin detection now.
@@ -153,8 +137,11 @@ set smarttab
 
 " I place my tags all over the place. Bring them
 " to me!
-set tags+=.git/tags
-set tags+=~/.ctags/*.tags
+set tags+=$PWD/.git/tags
+set tags+=~/.tags/*.tags
+
+" Save your work in sessions.
+set sessionoptions=buffers,tabpages,winsize,curdir
 "}}}
 
 "{{{ Layout
@@ -260,7 +247,9 @@ set wrapmargin=5
 set formatoptions=tcrqwnj2lvm1j
 
 " Files that we ignore.
-set wildignore=*.swp,*.pyc,*.bak,*.class,build/*,vendor/cache/*,vendor/bundle/*
+set wildignore=*.swp,*.pyc,*.bak,*.class
+set wildignore+=build/*
+set wildignore+=vendor/cache/*
 
 " DON'T SCROLL OFF. It's a space and time.
 set scrolloff=0
@@ -299,11 +288,13 @@ syntax on
 " light, it's so much easier to read. I place this after
 " the Vundle loading because it'd be safe enough to turn on
 " syntax and file type highlighting.
-set background=light
+set background=dark
 colorscheme molokai
+
+" Show me the line I'm working on.
 set cursorline
-set virtualedit=onemore
-set showmode
+
+" Do this when I hit <Backspace>
 set backspace=indent,eol,start
 
 "}}}
@@ -315,7 +306,6 @@ nnoremap ; :
 nmap <silent> <leader>ev :tabe ~/.vimrc<cr> 
 nmap <silent> <leader>sv :so ~/.vimrc<cr>
 nnoremap <silent> <C-l> :nohlsearch<CR><C-l>
-nnoremap <silent> <F10> :NERDTreeToggle<CR>
 nnoremap <silent> <leader>j :setlocal nospell<CR>
 nnoremap <silent> <leader>J :setlocal spell<CR>
 noremap <silent> <F7> :Autoformat<CR><CR>
@@ -323,7 +313,6 @@ noremap <Up> <NOP>
 noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
-noremap <leader>g :GundoToggle<CR>
 noremap <leader>i :set list!<cr>
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
@@ -345,45 +334,43 @@ let g:site="jalcine.me"
 "}}}
 
 "{{{ Syntastic options
-let g:syntastic_check_on_open=1
 let g:syntastic_enable_signs=1
 let g:syntastic_echo_current_error=1
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
-let g:syntastic_enable_ballons=1
-let g:syntastic_enable_highlighting=1
+let g:syntastic_auto_jump=0
+let g:syntastic_quiet_warnings=1
+let g:syntastic_cpp_compiler="clang++"
+let g:syntastic_cpp_include_dirs=["$HOME/.local/include"]
+let g:syntastic_cpp_check_header=1
 "}}}
 
 "{{{ CtrlP
 let g:ctrlp_switch_buffer="E"
 let g:ctrlp_working_path_mode="rc"
 let g:ctrlp_root_markers=[".localrc"]
-let g:ctrlp_custom_ignore = {
-  \ 'dir' : '\v[\/]build$'
-  \ }
 let g:ctrlp_open_new_file='t'
 let g:ctrlp_open_multiple_files='t'
+let g:ctrlp_cmd='CtrlP'
 "}}}
+
+" {{{ vim-session
+let g:session_directory="~/.vim/sessions"
+let g:session_default_name="default"
+let g:session_autoload="no"
+let g:session_autosave="yes"
+let g:session_autosave_periodic="yes"
+let g:session_command_aliases=1
+" }}}
 
 "{{{ Snippets
-let g:snips_author=g:author
-let g:UltiSnipsExpandTrigger='<c-j>'
-let g:UltiSnipsJumpForwardTrigger='<c-j>'
-let g:UltiSnipsJumpBackwardTrigger='<c-k>'
-let g:UltiSnipsUsePythonVersion=2
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:Powerline_symbols='fancy'
 "}}}
 
-let g:VimuxHeight = "30"
-let g:github_search_path_format="~/Development/Projects/:project"
-let g:ycm_key_detailed_diagnostics = ""
-let g:solarized_termcolors=256
+let g:github_user="jalcine"
+let g:github_dashboard= { "username" : "jalcine", "emoji" : 1 }
 "}}}
 "}}}
-
-"{{{ Tag Definitions
-set tags+=~/.tags/qt4.tags
-set tags+=~/.tags/qt5.tags
-set tags+=~/.tags/boost.tags
-set tags+=$PWD/.git/tags
-"}}}
-

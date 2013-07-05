@@ -14,81 +14,17 @@
 "" The ./configure I use is the following:
 "" ./configure --with-local-dir=/home/jacky/.local --prefix=/home/jacky/.local --with-python-config-dir=/usr/lib/python2.7/config --with-python3-config-dir=/usr/lib/python3/config --with-features=big --with-compiledby="Jacky Alcine <me@jalcine.me>" --disable-gtktest  --enable-cscope --disable-darwin --enable-perlinterp --enable-pythoninterp --enable-rubyinterp --enable-tclinterp --enable-luainterp --enable-fontset --enable-multibyte --enable-xim --with-mouse
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+" Enable the use of Bash into the mix.
+let $BASH_ENV="~/.bashrc"
+set shell=/bin/bash
 " We live in the future, don't worry about backwards
 " compatibility with Vi.
 set nocompatible
 
 set lazyredraw
 
-" We turn off file-type detection for now, this is
-" required for using Vundle.
-filetype off
-
-"{{{ Plug-ins
-
-" I use Vundle as my plug-in management system.
-
-"" Set up Vundle.
-set rtp+=~/.vim/bundle/vundle
-call vundle#rc()
-
-Bundle 'gmarik/vundle'
-Bundle 'benmills/vimux'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-git'
-Bundle 'tpope/vim-bundler'
-Bundle 'tpope/vim-markdown'
-Bundle 'tpope/vim-haml'
-Bundle 'mattn/zencoding-vim'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'othree/html5.vim'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/syntastic'
-Bundle 'jistr/vim-nerdtree-tabs'
-Bundle 'tpope/vim-surround'
-Bundle 'mattn/gist-vim'
-Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'pangloss/vim-javascript'
-Bundle 'kien/ctrlp.vim'
-Bundle 'SirVer/ultisnips'
-Bundle 'tomasr/molokai'
-Bundle 'othree/html5.vim'
-Bundle 'kaichen/vim-snipmate-ruby-snippets'
-Bundle 'tisho/css-snippets-snipmate'
-Bundle 'hlissner/vim-multiedit'
-Bundle 'jamessan/vim-gnupg'
-Bundle 'bonsaiben/bootstrap-snippets'
-Bundle 'xolox/vim-misc'
-Bundle 'xolox/vim-session'
-Bundle 'mattn/webapi-vim'
-Bundle 'tpope/vim-speeddating'
-Bundle 'mikewest/vimroom'
-Bundle 'int3/vim-extradite'
-Bundle "daylerees/colour-schemes", { "rtp": "vim-themes/" }
-Bundle 'mmozuras/vim-github-comment'
-Bundle 'juvenn/mustache.vim'
-Bundle 'FredKSchott/CoVim'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'bling/vim-bufferline'
-Bundle 'bling/vim-airline'
-Bundle 'vim-perl/vim-perl'
-Bundle 'flazz/vim-colorschemes'
-Bundle 'skammer/vim-css-color'
-Bundle 'junegunn/vim-github-dashboard'
-Bundle 'jalcine/TaskList.vim'
-Bundle 'jalcine/localrc.vim'
-Bundle 'jalcine/vim-android'
-Bundle 'jalcine/vim-snippets'
-Bundle 'jalcine/cmake.vim'
-Bundle 'jalcine/android-dev.vim'
-"}}}
-
-" Activate plugin detection now.
-filetype plugin indent on
-"}}}
+" Import plugins.
+source ~/.vim/plugins.vim
 
 " We need modelines.
 set modeline
@@ -215,6 +151,44 @@ set history=125
 set history=1500
 "}}}
 
+"{{{ Dictionary Options
+set dictionary=/usr/share/dict/words
+set spellfile=~/.vim/dict.custom.utf8-8.add
+"}}}
+
+"{{{ Visual Cues
+" A problem that plagued me for months.
+set fillchars=diff:⣿,vert:│
+" A visual cue for line-wrapping.
+set showbreak=↪
+" Visual cues when in 'list' model.
+set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
+" Let me know what I just did.
+set showcmd
+" Speed things up in the console.
+set ttyfast
+
+augroup cline
+  au!
+  au WinLeave,InsertEnter * set nocursorline
+  au WinEnter,InsertLeave * set cursorline
+augroup END
+
+augroup line_return
+  au!
+  au BufReadPost *
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \     execute 'normal! g`"zvzz' |
+        \ endif
+augroup END
+
+"}}}
+
+"{{{ Completion
+set complete=.,w,b,u,t
+set completeopt=longest,menuone,preview
+"}}}
+
 "{{{ Formatting + Wrapping
 
 " Bind a key for pasting from the clipboard.
@@ -247,7 +221,10 @@ set wrapmargin=5
 set formatoptions=tcrqwnj2lvm1j
 
 " Files that we ignore.
-set wildignore=*.swp,*.pyc,*.bak,*.class
+set wildmode=list:longest
+set wildignore+=*.swp,*.pyc,*.bak,*.class,*.orig
+set wildignore+=.git,.hg,.bzr,.svn
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
 set wildignore+=build/*
 set wildignore+=vendor/cache/*
 
@@ -288,8 +265,8 @@ syntax on
 " light, it's so much easier to read. I place this after
 " the Vundle loading because it'd be safe enough to turn on
 " syntax and file type highlighting.
-set background=dark
-colorscheme molokai
+set background=light
+colorscheme badwolf
 
 " Show me the line I'm working on.
 set cursorline
@@ -303,6 +280,8 @@ set backspace=indent,eol,start
 
 "{{{ Key bindings.
 nnoremap ; : 
+noremap  <F1> <nop>
+inoremap <F1> <nop>
 nmap <silent> <leader>ev :tabe ~/.vimrc<cr> 
 nmap <silent> <leader>sv :so ~/.vimrc<cr>
 nnoremap <silent> <C-l> :nohlsearch<CR><C-l>
@@ -322,6 +301,7 @@ noremap <silent> <C-k> :TagbarToggle<CR>
 noremap <silent> <C-N> :tabp<CR>
 noremap <silent> <C-M> :tabn<CR>
 nnoremap <leader>c :setlocal cursorline! cursorcolumn!<CR>
+nnoremap <leader>f gg=G
 "}}}
 
 
@@ -341,14 +321,14 @@ let g:syntastic_warning_symbol='⚠'
 let g:syntastic_auto_jump=0
 let g:syntastic_quiet_warnings=1
 let g:syntastic_cpp_compiler="clang++"
-let g:syntastic_cpp_include_dirs=["$HOME/.local/include"]
+let g:syntastic_cpp_include_dirs=[ "$HOME/.local/include", "/usr/include/qt4", "/usr/include" ]
 let g:syntastic_cpp_check_header=1
 "}}}
 
 "{{{ CtrlP
 let g:ctrlp_switch_buffer="E"
 let g:ctrlp_working_path_mode="rc"
-let g:ctrlp_root_markers=[".localrc"]
+let g:ctrlp_root_markers=[".localrc", ".git", ".bzr", ".hg", ".svn"]
 let g:ctrlp_open_new_file='t'
 let g:ctrlp_open_multiple_files='t'
 let g:ctrlp_cmd='CtrlP'

@@ -32,7 +32,7 @@ set modeline
 " Set my user-defined action to the comma key.
 let mapleader=","
 
-"{{{ Configuration
+"{{{1 Configuration
 
 " We live in the future. Use UTF-8 encoding!
 set encoding=utf-8
@@ -45,7 +45,7 @@ set visualbell
 " Disable bells for errors.
 set noerrorbells
 
-"{{{ Spacing
+"{{{2 Spacing
 
 " I prefer to use two spaces to represent tabs.
 set tabstop=2
@@ -80,12 +80,12 @@ set tags+=$HOME/.tags/*.tags
 set sessionoptions=buffers,tabpages,winsize,curdir
 "}}}
 
-"{{{ Layout
+"{{{2 Layout
 
 "" Folding options
 
 " Fold on the syntax.
-set foldmethod=syntax
+set foldmethod=marker
 
 " Sets the width of the folding margins.
 set foldcolumn=2
@@ -101,7 +101,7 @@ set title titlelen=120 titlestring="%t%(\ %M%)%(\ (%{expand(\"%:~:.:h\")})%)%(\ 
 set ruler
 
 " We like a stable number count.
-set number 
+set number numberwidth=4
 
 " Ensure the visibility of the statusline.
 " Required for vim-powerline.
@@ -112,7 +112,7 @@ set t_Co=256
 
 "}}}
 
-"{{{ Searching
+"{{{2 Searching
 
 " Highlight matches found when searching.
 set hlsearch
@@ -128,7 +128,7 @@ set showmatch
 set gdefault                         
 "}}}
 
-"{{{ Recovery
+"{{{2 Recovery
 
 " Record whether changes were made to unsaved buffers. 
 set hidden
@@ -151,13 +151,13 @@ set history=125
 set history=1500
 "}}}
 
-"{{{ Dictionary Options
+"{{{2 Dictionary Options
 set spelllang=en
 set dictionary=/usr/share/dict/words
 set spellfile=~/.vim/dict.custom.utf8-8.add
 "}}}
 
-"{{{ Visual Cues
+"{{{2 Visual Cues
 " A problem that plagued me for months.
 set fillchars=diff:⣿,vert:│
 " A visual cue for line-wrapping.
@@ -185,12 +185,12 @@ augroup END
 
 "}}}
 
-"{{{ Completion
+"{{{2 Completion
 set complete=.,w,b,u,t
 set completeopt=longest,menuone,preview
 "}}}
 
-"{{{ Formatting + Wrapping
+"{{{2 Formatting + Wrapping
 
 " Bind a key for pasting from the clipboard.
 set pastetoggle=<F2>
@@ -243,7 +243,7 @@ set textwidth=78
 
 "}}}
 
-"{{{ Miscellaneous
+"{{{2 Miscellaneous
 
 " Define the registers used for copying + pasting + yanking.
 " I use the following registers:
@@ -268,7 +268,7 @@ syntax on
 " the Vundle loading because it'd be safe enough to turn on
 " syntax and file type highlighting.
 set background=light
-colorscheme badwolf
+colorscheme Tomorrow-Night
 
 " Show me the line I'm working on.
 set cursorline
@@ -278,10 +278,9 @@ set cursorcolumn
 set backspace=indent,eol,start
 
 "}}}
-
 "}}}
 
-"{{{ Key bindings.
+"{{{1 Key bindings.
 nnoremap ; : 
 noremap  <F1> <nop>
 inoremap <F1> <nop>
@@ -307,21 +306,19 @@ nnoremap <leader>f gg=G
 "}}}
 
 
-"{{{ Plugin Configuration
+"{{{1 Plugin Configuration
 
-"{{{ User Info
+"{{{2 User Info
 let g:author="Jacky Alcine"
 let g:email="me@jalcine.me"
 let g:site="jalcine.me"
-"}}}
 
-"{{{ Airline config
+"{{{2 Airline config
 let g:airline_theme="simple"
 let g:airline_modified_detection=1
 let g:airline_powerline_fonts=1
-"}}}
 
-"{{{ Syntastic options
+"{{{2 Syntastic options
 let g:syntastic_enable_signs=1
 let g:syntastic_echo_current_error=1
 let g:syntastic_error_symbol='✗'
@@ -331,39 +328,34 @@ let g:syntastic_quiet_warnings=1
 let g:syntastic_cpp_compiler="clang++"
 let g:syntastic_cpp_include_dirs=[ "$HOME/.local/include" ]
 let g:syntastic_cpp_check_header=1
-"}}}
 
-"{{{ CtrlP
+"{{{2 CtrlP
 let g:ctrlp_switch_buffer="E"
 let g:ctrlp_working_path_mode="rc"
 let g:ctrlp_root_markers=[".localrc", ".git", ".bzr", ".hg", ".svn"]
 let g:ctrlp_open_new_file='t'
 let g:ctrlp_open_multiple_files='t'
 let g:ctrlp_cmd='CtrlPMixed'
-"}}}
 
-" {{{ vim-session
+" {{{2 vim-session
 let g:session_directory="~/.vim/sessions"
 let g:session_default_name="default"
 let g:session_autoload="no"
 let g:session_autosave="yes"
 let g:session_autosave_periodic="yes"
 let g:session_command_aliases=1
-" }}}
 
-" {{{ Indent Guides
+"{{{2 Indent Guides
 let g:indent_guides_enable_on_vim_startup=1
-" }}}
 
-"{{{ Snippets
+"{{{2 Snippets
 let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsSnippetDirectories=["UltiSnips"]
-"}}}
 
-"{{{ GitHub configuration
+"{{{2 GitHub configuration
 let g:github_user="jalcine"
 let g:github_dashboard= { "username" : "jalcine", "emoji" : 1 }
 let g:github_search_path_format = "$HOME/Development/Projects"

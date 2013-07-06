@@ -74,7 +74,7 @@ set smarttab
 " I place my tags all over the place. Bring them
 " to me!
 set tags+=$PWD/.git/tags
-set tags+=~/.tags/*.tags
+set tags+=$HOME/.tags/*.tags
 
 " Save your work in sessions.
 set sessionoptions=buffers,tabpages,winsize,curdir
@@ -226,6 +226,7 @@ set wildignore+=*.swp,*.pyc,*.bak,*.class,*.orig
 set wildignore+=.git,.hg,.bzr,.svn
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
 set wildignore+=build/*
+set wildignore+=tmp/
 set wildignore+=vendor/cache/*
 
 " DON'T SCROLL OFF. It's a space and time.
@@ -307,10 +308,16 @@ nnoremap <leader>f gg=G
 
 "{{{ Plugin Configuration
 
-"{{{
+"{{{ User Info
 let g:author="Jacky Alcine"
 let g:email="me@jalcine.me"
 let g:site="jalcine.me"
+"}}}
+
+"{{{ Airline config
+let g:airline_theme="simple"
+let g:airline_modified_detection=1
+let g:airline_powerline_fonts=1
 "}}}
 
 "{{{ Syntastic options
@@ -321,7 +328,7 @@ let g:syntastic_warning_symbol='⚠'
 let g:syntastic_auto_jump=0
 let g:syntastic_quiet_warnings=1
 let g:syntastic_cpp_compiler="clang++"
-let g:syntastic_cpp_include_dirs=[ "$HOME/.local/include", "/usr/include/qt4", "/usr/include" ]
+let g:syntastic_cpp_include_dirs=[ "$HOME/.local/include" ]
 let g:syntastic_cpp_check_header=1
 "}}}
 
@@ -331,7 +338,7 @@ let g:ctrlp_working_path_mode="rc"
 let g:ctrlp_root_markers=[".localrc", ".git", ".bzr", ".hg", ".svn"]
 let g:ctrlp_open_new_file='t'
 let g:ctrlp_open_multiple_files='t'
-let g:ctrlp_cmd='CtrlP'
+let g:ctrlp_cmd='CtrlPMixed'
 "}}}
 
 " {{{ vim-session
@@ -344,13 +351,16 @@ let g:session_command_aliases=1
 " }}}
 
 "{{{ Snippets
+let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-let g:Powerline_symbols='fancy'
+let g:UltiSnipsSnippetDirectories=["UltiSnips"]
 "}}}
 
+"{{{ GitHub configuration
 let g:github_user="jalcine"
 let g:github_dashboard= { "username" : "jalcine", "emoji" : 1 }
+let g:github_search_path_format = "$HOME/Development/Projects"
 "}}}
 "}}}

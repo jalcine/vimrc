@@ -2,7 +2,6 @@
 " required for using Vundle.
 filetype off
 
-
 "{{{ Plug-ins
 
 " I use Vundle as my plug-in management system.
@@ -48,6 +47,7 @@ Bundle "daylerees/colour-schemes", { "rtp": "vim-themes/" }
 Bundle 'mmozuras/vim-github-comment'
 Bundle 'juvenn/mustache.vim'
 Bundle 'FredKSchott/CoVim'
+Bundle 'gmarik/github-search.vim'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'bling/vim-bufferline'
 Bundle 'bling/vim-airline'
@@ -55,6 +55,7 @@ Bundle 'vim-perl/vim-perl'
 Bundle 'flazz/vim-colorschemes'
 Bundle 'skammer/vim-css-color'
 Bundle 'junegunn/vim-github-dashboard'
+Bundle 'ervandew/supertab'
 Bundle 'jalcine/TaskList.vim'
 Bundle 'jalcine/localrc.vim'
 Bundle 'jalcine/vim-android'
@@ -66,5 +67,4 @@ Bundle 'jalcine/android-dev.vim'
 " Activate plugin detection now.
 filetype plugin indent on
 "}}}
-
 

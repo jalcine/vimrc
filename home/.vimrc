@@ -152,6 +152,7 @@ set history=1500
 "}}}
 
 "{{{ Dictionary Options
+set spelllang=en
 set dictionary=/usr/share/dict/words
 set spellfile=~/.vim/dict.custom.utf8-8.add
 "}}}
@@ -286,8 +287,7 @@ inoremap <F1> <nop>
 nmap <silent> <leader>ev :tabe ~/.vimrc<cr> 
 nmap <silent> <leader>sv :so ~/.vimrc<cr>
 nnoremap <silent> <C-l> :nohlsearch<CR><C-l>
-nnoremap <silent> <leader>j :setlocal nospell<CR>
-nnoremap <silent> <leader>J :setlocal spell<CR>
+nnoremap <silent> <leader>j :setlocal spell!<CR>
 noremap <silent> <F7> :Autoformat<CR><CR>
 noremap <Up> <NOP>
 noremap <Down> <NOP>

@@ -272,6 +272,7 @@ colorscheme badwolf
 
 " Show me the line I'm working on.
 set cursorline
+set cursorcolumn
 
 " Do this when I hit <Backspace>
 set backspace=indent,eol,start
@@ -348,6 +349,10 @@ let g:session_autoload="no"
 let g:session_autosave="yes"
 let g:session_autosave_periodic="yes"
 let g:session_command_aliases=1
+" }}}
+
+" {{{ Indent Guides
+let g:indent_guides_enable_on_vim_startup=1
 " }}}
 
 "{{{ Snippets

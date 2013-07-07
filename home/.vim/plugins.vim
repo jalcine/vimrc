@@ -66,3 +66,58 @@ Bundle 'jalcine/android-dev.vim'
 filetype plugin indent on
 "}}}
 
+"{{{1 Plugin Configuration
+
+"{{{2 User Info
+let g:author="Jacky Alcine"
+let g:email="me@jalcine.me"
+let g:site="jalcine.me"
+
+"{{{2 Airline config
+let g:airline_theme="simple"
+let g:airline_modified_detection=1
+let g:airline_powerline_fonts=1
+
+"{{{2 Syntastic options
+let g:syntastic_enable_signs=1
+let g:syntastic_echo_current_error=1
+let g:syntastic_error_symbol='✗'
+let g:syntastic_warning_symbol='⚠'
+let g:syntastic_auto_jump=0
+let g:syntastic_quiet_warnings=1
+let g:syntastic_cpp_compiler="clang++"
+let g:syntastic_cpp_include_dirs=[ "$HOME/.local/include" ]
+let g:syntastic_cpp_check_header=1
+
+"{{{2 CtrlP
+let g:ctrlp_switch_buffer="E"
+let g:ctrlp_working_path_mode="rc"
+let g:ctrlp_root_markers=[".localrc", ".git", ".bzr", ".hg", ".svn"]
+let g:ctrlp_open_new_file='t'
+let g:ctrlp_open_multiple_files='t'
+let g:ctrlp_cmd='CtrlPMixed'
+
+" {{{2 vim-session
+let g:session_directory="~/.vim/sessions"
+let g:session_default_name="default"
+let g:session_autoload="no"
+let g:session_autosave="yes"
+let g:session_autosave_periodic="yes"
+let g:session_command_aliases=1
+
+"{{{2 Indent Guides
+let g:indent_guides_enable_on_vim_startup=1
+
+"{{{2 Snippets
+let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsSnippetDirectories=["UltiSnips"]
+
+"{{{2 GitHub configuration
+let g:github_user="jalcine"
+let g:github_dashboard= { "username" : "jalcine", "emoji" : 1 }
+let g:github_search_path_format = "$HOME/Development/Projects"
+"}}}
+"}}}

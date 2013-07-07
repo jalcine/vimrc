@@ -13,14 +13,14 @@
 "" I use the latest development version of Vim from sources.
 "" The ./configure I use is the following:
 "" ./configure --with-local-dir=/home/jacky/.local --prefix=/home/jacky/.local --with-python-config-dir=/usr/lib/python2.7/config --with-python3-config-dir=/usr/lib/python3/config --with-features=big --with-compiledby="Jacky Alcine <me@jalcine.me>" --disable-gtktest  --enable-cscope --disable-darwin --enable-perlinterp --enable-pythoninterp --enable-rubyinterp --enable-tclinterp --enable-luainterp --enable-fontset --enable-multibyte --enable-xim --with-mouse
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Enable the use of Bash into the mix.
-let $BASH_ENV="~/.bashrc"
-set shell=/bin/bash
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " We live in the future, don't worry about backwards
 " compatibility with Vi.
 set nocompatible
 
+" Enable the use of Bash into the mix.
+let $BASH_ENV="$HOME/.bashrc"
+set shell=/bin/bash
 set lazyredraw
 
 " Import plugins.
@@ -268,7 +268,7 @@ syntax on
 " the Vundle loading because it'd be safe enough to turn on
 " syntax and file type highlighting.
 set background=light
-colorscheme Tomorrow-Night
+colorscheme Tomorrow-Night-Bright
 
 " Show me the line I'm working on.
 set cursorline
@@ -282,8 +282,6 @@ set backspace=indent,eol,start
 
 "{{{1 Key bindings.
 nnoremap ; : 
-noremap  <F1> <nop>
-inoremap <F1> <nop>
 nmap <silent> <leader>ev :tabe ~/.vimrc<cr> 
 nmap <silent> <leader>sv :so ~/.vimrc<cr>
 nnoremap <silent> <C-l> :nohlsearch<CR><C-l>
@@ -303,7 +301,12 @@ noremap <silent> <C-N> :tabp<CR>
 noremap <silent> <C-M> :tabn<CR>
 nnoremap <leader>c :setlocal cursorline! cursorcolumn!<CR>
 nnoremap <leader>f gg=G
+nmap <Leader>a= :Tabularize /=<CR>
+vmap <Leader>a= :Tabularize /=<CR>
+nmap <Leader>a: :Tabularize /:\zs<CR>
+vmap <Leader>a: :Tabularize /:\zs<CR>
+
 "}}}
 
-
-
+autocmd BufNewFile,BufRead *.txt setfiletype text
+autocmd BufWritePost .vimrc source $HOME/.vimrc

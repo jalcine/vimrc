@@ -17,6 +17,7 @@ Bundle 'tpope/vim-git'
 Bundle 'tpope/vim-bundler'
 Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-haml'
+Bundle 'tpope/vim-rbenv'
 Bundle 'mattn/zencoding-vim'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'othree/html5.vim'
@@ -38,7 +39,10 @@ Bundle 'hlissner/vim-multiedit'
 Bundle 'jamessan/vim-gnupg'
 Bundle 'xolox/vim-misc'
 Bundle 'xolox/vim-session'
+Bundle 'digitaltoad/vim-jade'
 Bundle 'mattn/webapi-vim'
+Bundle 'godlygeek/tabular'
+Bundle 'aaronbieber/quicktask'
 Bundle 'tpope/vim-speeddating'
 Bundle 'int3/vim-extradite'
 Bundle "daylerees/colour-schemes", { "rtp": "vim-themes/" }
@@ -76,7 +80,7 @@ let g:site="jalcine.me"
 "{{{2 Airline config
 let g:airline_theme="simple"
 let g:airline_modified_detection=1
-let g:airline_powerline_fonts=1
+let g:airline_powerline_fonts=0
 
 "{{{2 Syntastic options
 let g:syntastic_enable_signs=1

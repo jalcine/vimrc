@@ -1,6 +1,3 @@
 [submodule "home/.vim/bundle/vundle"]
 	path = home/.vim/bundle/vundle
 	url = ghub:gmarik/vundle
-[submodule "home/.vim/bundle/vim-colors-solarized"]
-	path = home/.vim/bundle/vim-colors-solarized
-	url = ghub:altercation/vim-colors-solarized

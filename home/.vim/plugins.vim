@@ -92,10 +92,10 @@ let g:syntastic_cpp_check_header=1
 "{{{2 CtrlP
 let g:ctrlp_switch_buffer="E"
 let g:ctrlp_working_path_mode="rc"
-let g:ctrlp_root_markers=[".localrc", ".git", ".bzr", ".hg", ".svn"]
+let g:ctrlp_root_markers=[".localrc.vim", ".git", ".bzr", ".hg", ".svn"]
 let g:ctrlp_open_new_file='t'
 let g:ctrlp_open_multiple_files='t'
-let g:ctrlp_cmd='CtrlPMixed'
+let g:ctrlp_cmd='CtrlP'
 
 " {{{2 vim-session
 let g:session_directory="~/.vim/sessions"
@@ -104,9 +104,6 @@ let g:session_autoload="no"
 let g:session_autosave="yes"
 let g:session_autosave_periodic="yes"
 let g:session_command_aliases=1
-
-"{{{2 Indent Guides
-let g:indent_guides_enable_on_vim_startup=1
 
 "{{{2 Snippets
 let g:UltiSnipsEditSplit="vertical"

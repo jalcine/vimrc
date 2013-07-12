@@ -4,70 +4,174 @@ filetype off
 
 "{{{ Plug-ins
 
-" I use Vundle as my plug-in management system.
-
-"" Set up Vundle.
+" For my personal extension development, I use Vundle. Use it.
 set rtp+=~/.vim/bundle/vundle
+
+" Invoke the swag!
 call vundle#rc()
 
+" Keep Vundle up to date.
+
+" {{{ Libraries
 Bundle 'gmarik/vundle'
-Bundle 'benmills/vimux'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-git'
-Bundle 'tpope/vim-bundler'
-Bundle 'tpope/vim-markdown'
-Bundle 'tpope/vim-haml'
-Bundle 'tpope/vim-rbenv'
-Bundle 'mattn/zencoding-vim'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'othree/html5.vim'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/syntastic'
-Bundle 'jistr/vim-nerdtree-tabs'
-Bundle 'tpope/vim-surround'
-Bundle 'mattn/gist-vim'
-Bundle 'pangloss/vim-javascript'
-Bundle 'kien/ctrlp.vim'
-Bundle 'SirVer/ultisnips'
-Bundle 'chriskempson/tomorrow-theme', { "rtp" : "vim/" }
-Bundle 'othree/html5.vim'
-Bundle 'kaichen/vim-snipmate-ruby-snippets'
-Bundle 'tisho/css-snippets-snipmate'
-Bundle 'hlissner/vim-multiedit'
-Bundle 'jamessan/vim-gnupg'
 Bundle 'xolox/vim-misc'
-Bundle 'xolox/vim-session'
-Bundle 'digitaltoad/vim-jade'
 Bundle 'mattn/webapi-vim'
-Bundle 'godlygeek/tabular'
-Bundle 'aaronbieber/quicktask'
-Bundle 'tpope/vim-speeddating'
-Bundle 'int3/vim-extradite'
-Bundle "daylerees/colour-schemes", { "rtp": "vim-themes/" }
-Bundle 'mmozuras/vim-github-comment'
-Bundle 'juvenn/mustache.vim'
+" }}}
+
+"{{{ Core function
+"  These plugins provide the root functionality of my Vim setup.
+"  I don't see me using Vim without these guys.
+
+" Provides a means of quick-n-easy pair programming. Just add water.
 Bundle 'FredKSchott/CoVim'
-Bundle 'gmarik/github-search.vim'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'bling/vim-bufferline'
+
+" Tmux keybindings into Vim.
+Bundle 'benmills/vimux'
+
+" Lightweight modular status-line.
 Bundle 'bling/vim-airline'
-Bundle 'vim-perl/vim-perl'
-Bundle 'flazz/vim-colorschemes'
-Bundle 'skammer/vim-css-color'
-Bundle 'junegunn/vim-github-dashboard'
-Bundle 'Valloric/YouCompleteMe'
+
+" List buffers efficiently.
+Bundle 'bling/vim-bufferline'
+
+" Improved session support.
+Bundle 'xolox/vim-session'
+
+" Tasks just like Eclipse, yo.
 Bundle 'jalcine/TaskList.vim'
+
+" Load local configuration.
 Bundle 'jalcine/localrc.vim'
-Bundle 'jalcine/vim-android'
+"}}}
+
+"{{{ Editing Extensbility
+
+" Tweak dates + times on-the-fly.
+Bundle 'tpope/vim-speeddating'
+
+" Tweaked text indentation for Vim.
+Bundle 'godlygeek/tabular'
+
+" Transparent GNUPG editing of files.
+Bundle 'jamessan/vim-gnupg'
+
+" Super-charged file navigation.
+Bundle 'scrooloose/nerdtree'
+
+" Make NERDTree into all of the TABS!
+Bundle 'jistr/vim-nerdtree-tabs'
+
+" Advanced commenting for Vim.
+Bundle 'scrooloose/nerdcommenter'
+
+" Advanced TODO support in Vim.
+Bundle 'aaronbieber/quicktask'
+
+" Kickass multiline editing.
+Bundle 'hlissner/vim-multiedit'
+"}}}
+
+"{{{ VCS
+" Let us know what happens in files.
+Bundle 'airblade/vim-gitgutter'
+
+" Added function for vim-fugitive
+Bundle 'int3/vim-extradite'
+
+" Oh so bad, you.
+Bundle 'tpope/vim-fugitive'
+
+" Formatting for Git files (.git/COMMIT_MSG and the like).
+Bundle 'tpope/vim-git'
+"}}}
+
+"{{{ Formatting
+" HAML (.haml) formatting support.
+Bundle 'tpope/vim-haml'
+
+" Markdown (.md, .markdown) formatting support.
+Bundle 'tpope/vim-markdown'
+
+" CoffeeScript fomatting support.
+Bundle 'kchmck/vim-coffee-script'
+
+" JavaScript formatting support.
+Bundle 'pangloss/vim-javascript'
+
+" JSON formatting support.
+Bundle 'helino/vim-json'
+
+" LESS formatting support.
+Bundle 'groenewege/vim-less'
+
+" JADE formatting support.
+Bundle 'digitaltoad/vim-jade'
+
+" Perl formatting support.
+Bundle 'vim-perl/vim-perl'
+
+" HTML5 formatting support.
+Bundle 'othree/html5.vim'
+
+" Background color for CSS/SCSS highlighting.
+Bundle 'skammer/vim-css-color'
+"}}}
+
+"{{{ Ruby
+" Get some Bundle handles.
+Bundle 'tpope/vim-bundler'
+
+" Handle some rbenv triggers.
+Bundle 'tpope/vim-rbenv'
+"}}}
+
+"{{{ GitHub TOOLS <3
+" From Vim to Gist.
+Bundle 'mattn/gist-vim'
+
+" Search for shit on GitHub.
+"Bundle 'gmarik/github-search.vim'
+
+" Check out activity and dashboards on GitHub.
+Bundle 'junegunn/vim-github-dashboard'
+
+" Add comments to code in GitHub.
+Bundle 'mmozuras/vim-github-comment'
+"}}}
+
+"{{{ Snippet and Completion Tools
+
+" Omni-potent autocompletion support.
+Bundle 'Valloric/YouCompleteMe'
+
+" Snippet manager.
+Bundle 'SirVer/ultisnips'
+
+" My personal fork + build of snippets.
 Bundle 'jalcine/vim-snippets'
-Bundle 'jalcine/cmake.vim'
-Bundle 'jalcine/android-dev.vim'
+
+" File and buffer search tool.
+Bundle 'kien/ctrlp.vim'
+"}}}
+
+"{{{ Coloring and UI
+" Awesome ass themes for Vim.
+Bundle "daylerees/colour-schemes", { "rtp": "vim-themes/" }
+
+" Massive list of color themes.
+Bundle 'flazz/vim-colorschemes'
+
+" Tomorrow Theme.
+Bundle 'chriskempson/tomorrow-theme', { "rtp" : "vim/" }
+"}}}
+
 "}}}
 
 " Activate plugin detection now.
 filetype plugin indent on
+
+" Let's enable some syntax highlighting as well.
+syntax on
 "}}}
 
 "{{{1 Plugin Configuration
@@ -76,6 +180,7 @@ filetype plugin indent on
 let g:author="Jacky Alcine"
 let g:email="me@jalcine.me"
 let g:site="jalcine.me"
+let g:username="jalcine"
 
 "{{{2 Airline config
 let g:airline_theme="simple"
@@ -89,9 +194,16 @@ let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
 let g:syntastic_auto_jump=0
 let g:syntastic_quiet_warnings=1
+
+" Define checkers
+
+" C++ specific options
 let g:syntastic_cpp_compiler="clang++"
 let g:syntastic_cpp_include_dirs=[ "$HOME/.local/include" ]
 let g:syntastic_cpp_check_header=1
+
+" Ruby specific options
+" let g:syntastic_ruby_exec = system("rbenv which ruby")
 
 "{{{2 CtrlP
 let g:ctrlp_switch_buffer="E"
@@ -117,8 +229,8 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsSnippetDirectories=["UltiSnips"]
 
 "{{{2 GitHub configuration
-let g:github_user="jalcine"
-let g:github_dashboard= { "username" : "jalcine", "emoji" : 1 }
+let g:github_user=g:username
+let g:github_dashboard= { "username" : g:username, "emoji" : 1 }
 let g:github_search_path_format = "$HOME/Development/Projects"
 "}}}
 "}}}

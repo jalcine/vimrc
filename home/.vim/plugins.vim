@@ -42,6 +42,9 @@ Bundle 'jalcine/TaskList.vim'
 
 " Load local configuration.
 Bundle 'jalcine/localrc.vim'
+
+" Incorporate CMake support.
+Bundle 'jalcine/cmake.vim'
 "}}}
 
 "{{{ Editing Extensbility

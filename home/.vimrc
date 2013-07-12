@@ -21,7 +21,6 @@ set nocompatible
 " Enable the use of Bash into the mix.
 let $BASH_ENV="$HOME/.bashrc"
 set shell=/bin/bash
-set lazyredraw
 
 " Import plugins.
 source ~/.vim/plugins.vim
@@ -31,8 +30,9 @@ set modeline
 
 " Set my user-defined action to the comma key.
 let mapleader=","
+let maplocalleader="\\"
 
-"{{{1 Configuration
+"{{{1 Immediate Configuration Options
 
 " We live in the future. Use UTF-8 encoding!
 set encoding=utf-8
@@ -42,8 +42,8 @@ set encoding=utf-8
 " to switch over to it.
 set visualbell
 
-" Disable bells for errors.
-set noerrorbells
+" Enable bells for errors.
+set errorbells
 
 "{{{2 Spacing
 
@@ -57,7 +57,7 @@ set shiftwidth=2
 " Set expandtab to the values used for tabstop
 " and shiftwidth to ensure that we enter only 
 " spaces, as well as enabling auto-indenting.
-set expandtab ts=2 sw=2 ai
+set expandtab ai
 
 " Ensure that indentation for newly inserted text
 " copies the style of that used already.
@@ -71,6 +71,34 @@ set softtabstop=2
 " We don't want any mix-ups here.
 set smarttab
 
+" Set a hard wrapping to 78 characters. Nothing should be
+" longer than that.
+set textwidth=78
+
+" We POSIX.
+set fileformats=unix
+
+" Ignore a lot of stuff.
+set wildmode=list:longest
+set wildignore+=*.swp,*.pyc,*.bak,*.class,*.orig
+set wildignore+=.git,.hg,.bzr,.svn
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg,*.svg
+set wildignore+=build/*,tmp/*,vendor/cache/*
+
+" Prevent scrolling off.
+set scrolloff=0
+set sidescrolloff=0
+
+" PASTE mo'fo!
+set pastetoggle=<F2>
+
+" Set a wrapping margin.
+set wrap
+set wrapmargin=2
+
+" Use the clicking thing, Luke.
+set mouse=a
+
 " I place my tags all over the place. Bring them
 " to me!
 set tags+=$PWD/.git/tags
@@ -82,17 +110,15 @@ set sessionoptions=buffers,tabpages,winsize,curdir
 
 "{{{2 Layout
 
-"" Folding options
-
 " Fold on the syntax.
-set foldmethod=marker
+set foldmethod=syntax
 
 " Sets the width of the folding margins.
-set foldcolumn=2
+set foldcolumn=1
 
 " Sets the minimum amount of lines needed to
 " automatically initialize folding.
-set foldminlines=80
+set foldminlines=8
 
 " Set the title in the terminal.
 set title titlelen=120 titlestring="%t%(\ %M%)%(\ (%{expand(\"%:~:.:h\")})%)%(\ %a%)"
@@ -109,6 +135,12 @@ set laststatus=2
 
 " Trust me, Vim, we're running in a 256-colored terminal.
 set t_Co=256
+
+" Make sure our background's dark.
+set background=light
+
+" Set our favorite color scheme.
+colorscheme Stark
 
 "}}}
 
@@ -171,108 +203,9 @@ set ttyfast
 
 augroup cline
   au!
-  au WinLeave,InsertEnter * set nocursorline
-  au WinEnter,InsertLeave * set cursorline
+  au WinLeave,InsertEnter * set cursorline cursorcolumn
+  au WinEnter,InsertLeave * set cursorline nocursorcolumn
 augroup END
-
-augroup line_return
-  au!
-  au BufReadPost *
-        \ if line("'\"") > 0 && line("'\"") <= line("$") |
-        \     execute 'normal! g`"zvzz' |
-        \ endif
-augroup END
-
-"}}}
-
-"{{{2 Completion
-set complete=.,w,b,u,t
-set completeopt=longest,menuone,preview
-"}}}
-
-"{{{2 Formatting + Wrapping
-
-" Bind a key for pasting from the clipboard.
-set pastetoggle=<F2>
-
-" Wrap up my text, don't have the luxury (or the want) of a
-" scrollbar.
-set wrap
-
-" Add a margin to the wrapped text to prevent having to STARE
-" at a dead wall (I had to do this since I'm in public places a lot)
-set wrapmargin=5
-
-" A sequence of characters that define the automatic formatting
-" style. I used the following:
-"
-"   - t: auto wrap the text according to 'textwidth'
-"   - c: auto wrap comments using according to 'textwidth'
-"   - r: automatically add a comment mark when hitting <Enter> 
-"        in Insert mode.
-"   - q: permit the formatting of comments with 'gq'.
-"   - w: trailing space? [paragraph] no space? [no paragraph].
-"   - n: recognize numbered lists when formatting.
-"   - 2: keep the formatting of the second line.
-"   - l: don't break long lines.
-"   - m: break on multi-byte characters.
-"   - M: don't put a space between 2 multi-byte characters.
-"   - 1: don't break a line after a one-letter word. Yeah, I know.
-"   - j: join comments lines when it makes sense.
-set formatoptions=tcrqwnj2lvm1j
-
-" Files that we ignore.
-set wildmode=list:longest
-set wildignore+=*.swp,*.pyc,*.bak,*.class,*.orig
-set wildignore+=.git,.hg,.bzr,.svn
-set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
-set wildignore+=build/*
-set wildignore+=tmp/
-set wildignore+=vendor/cache/*
-
-" DON'T SCROLL OFF. It's a space and time.
-set scrolloff=0
-set sidescrolloff=0
-
-" We a UNIX user, baby.
-set fileformats=unix
-
-" Wrap my text at 78 characters, leaving two spaces
-" for 80-width terminal windows.
-set textwidth=78
-
-"}}}
-
-"{{{2 Miscellaneous
-
-" Define the registers used for copying + pasting + yanking.
-" I use the following registers:
-"
-"   - unnamed:      save everything to '*'
-"   - unnamedplus:  save everything to '+'
-set clipboard=unnamedplus
-
-" Enable the mouse in every mode.
-set mouse=a
-
-" Enable file-type detection.
-filetype on
-
-" Enable syntax highlighting now.
-syntax on
-
-" I have a suite of color schemes, but by default I stick
-" to solarized; it's light on the eyes and work on most of
-" the brightness settings I use. Also, make the background
-" light, it's so much easier to read. I place this after
-" the Vundle loading because it'd be safe enough to turn on
-" syntax and file type highlighting.
-set background=light
-colorscheme Tomorrow-Night-Bright
-
-" Show me the line I'm working on.
-set cursorline
-set cursorcolumn
 
 " Do this when I hit <Backspace>
 set backspace=indent,eol,start
@@ -282,31 +215,28 @@ set backspace=indent,eol,start
 
 "{{{1 Key bindings.
 nnoremap ; : 
-nmap <silent> <leader>ev :tabe ~/.vimrc<cr> 
-nmap <silent> <leader>sv :so ~/.vimrc<cr>
 nnoremap <silent> <C-l> :nohlsearch<CR><C-l>
 nnoremap <silent> <leader>j :setlocal spell!<CR>
-noremap <silent> <F7> :Autoformat<CR><CR>
+imap <leader>pT <C-R>=strftime("%Y-%m-%d")<CR>
 noremap <Up> <NOP>
 noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
+nmap <silent> <leader>ev :tabe ~/.vimrc<cr> 
+nmap <Leader>a= :Tabularize /=<CR>
+nmap <silent> <leader>sv :so ~/.vimrc<cr>
+nmap <Leader>a: :Tabularize /:\zs<CR>
 noremap <leader>i :set list!<cr>
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
-nmap <leader>pt a<C-R>=strftime("%Y-%m-%d")<CR>
-imap <leader>pT <C-R>=strftime("%Y-%m-%d")<CR>
-noremap <silent> <C-k> :TagbarToggle<CR>
 noremap <silent> <C-N> :tabp<CR>
 noremap <silent> <C-M> :tabn<CR>
 nnoremap <leader>c :setlocal cursorline! cursorcolumn!<CR>
 nnoremap <leader>f gg=G
-nmap <Leader>a= :Tabularize /=<CR>
 vmap <Leader>a= :Tabularize /=<CR>
-nmap <Leader>a: :Tabularize /:\zs<CR>
 vmap <Leader>a: :Tabularize /:\zs<CR>
 
 "}}}
 
-autocmd BufNewFile,BufRead *.txt setfiletype text
+autocmd BufNewFile,BufRead *.txt set filetype=text
 autocmd BufWritePost .vimrc source $HOME/.vimrc

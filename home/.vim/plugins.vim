@@ -272,10 +272,4 @@ vmap <LocalLeader>ts "vy :call VimuxRepl()<CR>
 nmap <LocalLeader>ts vip<LocalLeader>ts<CR>
 "}}}
 
-"{{{2 Tagbar
-nnoremap <silent> <F3> :TagbarToggle<CR>
 "}}}
-
-"}}}
-
-au BufEnter * nested :call tagbar#autoopen(0)

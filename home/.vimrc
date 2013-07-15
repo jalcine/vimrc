@@ -85,9 +85,9 @@ set wildignore+=.git,.hg,.bzr,.svn
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg,*.svg
 set wildignore+=build/*,tmp/*,vendor/cache/*
 
-" Prevent scrolling off.
-set scrolloff=0
-set sidescrolloff=0
+" Keep the currently edited line in the middle of the window.
+set scrolloff=999
+set sidescrolloff=2
 
 " PASTE mo'fo!
 set pastetoggle=<F2>
@@ -106,6 +106,7 @@ set tags+=$HOME/.tags/*.tags
 
 " Save your work in sessions.
 set sessionoptions=buffers,tabpages,winsize,curdir
+set sessionoptions-=help,options,globals
 "}}}
 
 "{{{2 Layout
@@ -118,7 +119,7 @@ set foldcolumn=1
 
 " Sets the minimum amount of lines needed to
 " automatically initialize folding.
-set foldminlines=8
+set foldminlines=5
 
 " Set the title in the terminal.
 set title titlelen=120 titlestring="%t%(\ %M%)%(\ (%{expand(\"%:~:.:h\")})%)%(\ %a%)"
@@ -127,7 +128,7 @@ set title titlelen=120 titlestring="%t%(\ %M%)%(\ (%{expand(\"%:~:.:h\")})%)%(\ 
 set ruler
 
 " We like a stable number count.
-set number numberwidth=4
+set number numberwidth=2
 
 " Ensure the visibility of the statusline.
 " Required for vim-powerline.
@@ -137,12 +138,12 @@ set laststatus=2
 set t_Co=256
 
 " Make sure our background's dark.
-set background=light
+set background=dark
 
 " Set our favorite color scheme.
-colorscheme Stark
+colorscheme zenburn
 
-"}}}
+"}}} 
 
 "{{{2 Searching
 
@@ -203,9 +204,26 @@ set ttyfast
 
 augroup cline
   au!
-  au WinLeave,InsertEnter * set cursorline cursorcolumn
-  au WinEnter,InsertLeave * set cursorline nocursorcolumn
+  au WinLeave,InsertEnter * set cursorline cursorcolumn foldcolumn=0
+  au WinEnter,InsertLeave * set cursorline nocursorcolumn foldcolumn=1
 augroup END
+
+augroup linetoggle
+  autocmd!
+  autocmd WinEnter * set number
+  autocmd WinLeave * set nonumber
+augroup END
+
+" Make sure that GNU screen or tmux passes me my xkeys.
+" link: http://www.reddit.com/r/vim/comments/1a29vk/_/c8tze8p
+if &term == "screen"
+  execute "set t_kP=\e[5;*~"
+  execute "set t_kN=\e[6;*~"
+  execute "set <xUp>=\e[1;*A"
+  execute "set <xDown>=\e[1;*B"
+  execute "set <xRight>=\e[1;*C"
+  execute "set <xLeft>=\e[1;*D"
+endif
 
 " Do this when I hit <Backspace>
 set backspace=indent,eol,start
@@ -223,20 +241,16 @@ noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
 nmap <silent> <leader>ev :tabe ~/.vimrc<cr> 
-nmap <Leader>a= :Tabularize /=<CR>
 nmap <silent> <leader>sv :so ~/.vimrc<cr>
-nmap <Leader>a: :Tabularize /:\zs<CR>
 noremap <leader>i :set list!<cr>
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
 noremap <silent> <C-N> :tabp<CR>
 noremap <silent> <C-M> :tabn<CR>
 nnoremap <leader>c :setlocal cursorline! cursorcolumn!<CR>
-nnoremap <leader>f gg=G
-vmap <Leader>a= :Tabularize /=<CR>
-vmap <Leader>a: :Tabularize /:\zs<CR>
-
+noremap <leader>f gg=G
+cnoremap help vert help
 "}}}
 
-autocmd BufNewFile,BufRead *.txt set filetype=text
+" Update Vim's config when I edit the file.
 autocmd BufWritePost .vimrc source $HOME/.vimrc

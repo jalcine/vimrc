@@ -1,3 +1,4 @@
+" vim: set fdm=marker tw=78
 " We turn off file-type detection for now, this is
 " required for using Vundle.
 filetype off
@@ -31,9 +32,6 @@ Bundle 'benmills/vimux'
 " Lightweight modular status-line.
 Bundle 'bling/vim-airline'
 
-" List buffers efficiently.
-Bundle 'bling/vim-bufferline'
-
 " Improved session support.
 Bundle 'xolox/vim-session'
 
@@ -45,6 +43,9 @@ Bundle 'jalcine/localrc.vim'
 
 " Incorporate CMake support.
 Bundle 'jalcine/cmake.vim'
+
+" Zencoding (useful for PHP)
+Bundle "mattn/zencoding-vim"
 "}}}
 
 "{{{ Editing Extensbility
@@ -133,7 +134,7 @@ Bundle 'tpope/vim-rbenv'
 Bundle 'mattn/gist-vim'
 
 " Search for shit on GitHub.
-"Bundle 'gmarik/github-search.vim'
+Bundle 'gmarik/github-search.vim'
 
 " Check out activity and dashboards on GitHub.
 Bundle 'junegunn/vim-github-dashboard'
@@ -186,7 +187,7 @@ let g:site="jalcine.me"
 let g:username="jalcine"
 
 "{{{2 Airline config
-let g:airline_theme="simple"
+let g:airline_theme="powerlineish"
 let g:airline_modified_detection=1
 let g:airline_powerline_fonts=0
 
@@ -214,7 +215,8 @@ let g:ctrlp_working_path_mode="rc"
 let g:ctrlp_root_markers=[".localrc.vim", ".git", ".bzr", ".hg", ".svn"]
 let g:ctrlp_open_new_file='t'
 let g:ctrlp_open_multiple_files='t'
-let g:ctrlp_cmd='CtrlP'
+let g:ctrlp_cmd='CtrlPMixed'
+let g:ctrlp_extensions = [ 'tag', 'buffertag', 'quickfix', 'bookmarkdir', 'mixed', 'line', 'changes', 'undo']
 
 " {{{2 vim-session
 let g:session_directory="~/.vim/sessions"
@@ -236,4 +238,44 @@ let g:github_user=g:username
 let g:github_dashboard= { "username" : g:username, "emoji" : 1 }
 let g:github_search_path_format = "$HOME/Development/Projects"
 "}}}
+
+"{{{2 Vimux 
+let g:VimuxPromptString = "CMD? "
 "}}}
+
+"{{{2 tagbar
+let g:tagbar_compact=0
+let g:tagbar_show_visibility=0
+"}}}
+
+"}}}
+
+"{{{1 Plugin Mappings
+
+"{{{2 Tabularize
+vmap <Leader>a= :Tabularize /=<CR>
+vmap <Leader>a: :Tabularize /:\zs<CR>
+nmap <Leader>a= :Tabularize /=<CR>
+nmap <Leader>a: :Tabularize /:\zs<CR>
+"}}}
+
+"{{{2 Vimux
+nmap <Leader>to :VimuxOpenPane<CR>
+nmap <Leader>tp :VimuxPromptCommand<CR>
+
+function! VimuxRepl()
+  call VimuxSendText(@v)
+  call VimuxSendKeys("Enter")
+endfunction
+
+vmap <LocalLeader>ts "vy :call VimuxRepl()<CR>
+nmap <LocalLeader>ts vip<LocalLeader>ts<CR>
+"}}}
+
+"{{{2 Tagbar
+nnoremap <silent> <F3> :TagbarToggle<CR>
+"}}}
+
+"}}}
+
+au BufEnter * nested :call tagbar#autoopen(0)

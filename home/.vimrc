@@ -29,6 +29,9 @@ set modeline
 let mapleader=","
 let maplocalleader="\\"
 
+" Update Vim's config when I edit the file.
+autocmd BufWritePost .vimrc source $HOME/.vimrc
+
 "{{{1 Immediate Configuration Options
 
 " We live in the future. Use UTF-8 encoding!
@@ -242,6 +245,3 @@ nnoremap <leader>c :setlocal cursorline! cursorcolumn!<CR>
 noremap <leader>f gg=G
 cnoremap help vert help
 "}}}
-
-" Update Vim's config when I edit the file.
-autocmd BufWritePost .vimrc source $HOME/.vimrc

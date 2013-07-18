@@ -1,4 +1,4 @@
-" vim: set fdm=marker tw=78
+﻿" vim: set fdm=marker tw=78
 " We turn off file-type detection for now, this is
 " required for using Vundle.
 filetype off

@@ -22,9 +22,6 @@ set nocompatible
 let $BASH_ENV="$HOME/.bashrc"
 set shell=/bin/bash
 
-" Import plugins.
-source ~/.vim/plugins.vim
-
 " We need modelines.
 set modeline
 
@@ -136,12 +133,6 @@ set laststatus=2
 
 " Trust me, Vim, we're running in a 256-colored terminal.
 set t_Co=256
-
-" Make sure our background's dark.
-set background=dark
-
-" Set our favorite color scheme.
-colorscheme Tomorrow-Night
 
 "}}} 
 

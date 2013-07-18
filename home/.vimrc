@@ -141,7 +141,7 @@ set t_Co=256
 set background=dark
 
 " Set our favorite color scheme.
-colorscheme zenburn
+colorscheme Tomorrow-Night
 
 "}}} 
 

@@ -273,3 +273,6 @@ nmap <LocalLeader>ts vip<LocalLeader>ts<CR>
 "}}}
 
 "}}}
+
+set background=dark
+colorscheme Tomorrow-Night

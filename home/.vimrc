@@ -18,9 +18,14 @@
 " compatibility with Vi.
 set nocompatible
 
-" Enable the use of Bash into the mix.
+" Use my bash file.
 let $BASH_ENV="$HOME/.bashrc"
+
+" Enable the use of Bash into the mix.
 set shell=/bin/bash
+
+" Set some options for the shell.
+set shellcmdflag=-c
 
 " We need modelines.
 set modeline
@@ -57,7 +62,7 @@ set shiftwidth=2
 " Set expandtab to the values used for tabstop
 " and shiftwidth to ensure that we enter only 
 " spaces, as well as enabling auto-indenting.
-set expandtab ai
+set expandtab
 
 " Ensure that indentation for newly inserted text
 " copies the style of that used already.
@@ -135,7 +140,7 @@ set number numberwidth=2
 set laststatus=2
 
 " Trust me, Vim, we're running in a 256-colored terminal.
-set t_Co=256
+" set t_Co=256
 
 "}}} 
 
@@ -203,9 +208,9 @@ augroup cline
 augroup END
 
 augroup linetoggle
-  autocmd!
+  au!
   autocmd WinEnter * set number
-  autocmd WinLeave * set nonumber
+  autocmd WinLeave * set relativenumber
 augroup END
 
 " Make sure that GNU screen or tmux passes me my xkeys.
@@ -234,6 +239,7 @@ noremap <Up> <NOP>
 noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
+nnoremap <silent> <C-s> :w %
 nmap <silent> <leader>ev :tabe ~/.vimrc<cr> 
 nmap <silent> <leader>sv :so ~/.vimrc<cr>
 noremap <leader>i :set list!<cr>
@@ -245,3 +251,6 @@ nnoremap <leader>c :setlocal cursorline! cursorcolumn!<CR>
 noremap <leader>f gg=G
 cnoremap help vert help
 "}}}
+
+" Import plugins.
+source $HOME/.vim/plugin/vundle.vim

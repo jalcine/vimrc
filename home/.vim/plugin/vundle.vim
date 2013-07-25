@@ -56,7 +56,16 @@ if !exists("g:is_my_vundle_loaded_yet")
 
   " Incorporate CMake support.
   Bundle 'jalcine/cmake.vim'
-" Zencoding (useful for PHP) Bundle "mattn/zencoding-vim" "}}} "{{{ Editing Extensbility
+
+  " Incorporate Android support.
+  Bundle 'jalcine/android.vim'
+  
+  " Zencoding (useful for PHP)
+  Bundle "mattn/zencoding-vim"
+  
+  "}}} 
+ 
+  "{{{ Editing Extensbility
 
   " Tweak dates + times on-the-fly.
   Bundle 'tpope/vim-speeddating'
@@ -189,7 +198,7 @@ filetype plugin indent on
 " Let's enable some syntax highlighting as well.
 syntax enable
 " Define the color scheme to be this nice poppy one!
-colorscheme Monokai
+colorscheme Github
 
 "{{{1 Plugin Configuration
 
@@ -231,6 +240,10 @@ let g:ctrlp_open_multiple_files='t'
 let g:ctrlp_cmd='CtrlP'
 let g:ctrlp_extensions = [ 'tag', 'buffertag', 'quickfix', 'bookmarkdir', 'mixed', 'line', 'changes', 'undo']
 
+"{{{2 indentLine
+let g:indentLine_char="│"
+"}}}
+
 " {{{2 vim-session
 let g:session_directory="~/.vim/sessions"
 let g:session_default_name="default"
@@ -267,9 +280,7 @@ let g:tagbar_show_visibility=1
 
 "{{{2 Tabularize
 vmap <Leader>a= :Tabularize /=<CR>
-vmap <Leader>a: :Tabularize /:\zs<CR>
 nmap <Leader>a= :Tabularize /=<CR>
-nmap <Leader>a: :Tabularize /:\zs<CR>
 "}}}
 
 "{{{2 Vimux
@@ -278,7 +289,7 @@ nmap <Leader>tp :VimuxPromptCommand<CR>
 
 function! VimuxRepl()
   call VimuxSendText(@v)
-  call VimuxSendKeys("Enter")
+  call VimuxSendKeys("<Enter>")
 endfunction
 
 vmap <LocalLeader>ts "vy :call VimuxRepl()<CR>

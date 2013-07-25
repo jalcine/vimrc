@@ -62,7 +62,6 @@ set shiftwidth=2
 " Set expandtab to the values used for tabstop
 " and shiftwidth to ensure that we enter only 
 " spaces, as well as enabling auto-indenting.
-set expandtab
 
 " Ensure that indentation for newly inserted text
 " copies the style of that used already.
@@ -92,7 +91,7 @@ set wildignore+=build/*,tmp/*,vendor/cache/*
 
 " Keep the currently edited line in the middle of the window.
 set scrolloff=999
-set sidescrolloff=2
+set sidescrolloff=999
 
 " PASTE mo'fo!
 set pastetoggle=<F2>

@@ -1,204 +1,209 @@
-if !exists("g:is_my_vundle_loaded_yet")
-  " vim: set fdm=marker tw=78
-  " We turn off file-type detection for now, this is
-  " required for using Vundle.
-  filetype off
+" vim: set fdm=marker tw=78
 
-  "{{{ Plug-ins
-
-  " For my personal extension development, I use Vundle. Use it.
-  set rtp+=~/.vim/bundle/vundle
-
-  " Invoke the swag!
-  call vundle#rc()
-
-  " Keep Vundle up to date.
-
-  " {{{ Libraries
-  Bundle 'gmarik/vundle'
-  Bundle 'xolox/vim-misc'
-  Bundle 'mattn/webapi-vim'
-  " }}}
-
-  "{{{ Core function
-  "  These plugins provide the root functionality of my Vim setup.
-  "  I don't see me using Vim without these guys.
-
-  " Make GVim themes work ootb in CVim.
-  Bundle "godlygeek/csapprox"
-
-  " Add indentation lines.
-  Bundle "Yggdroot/indentLine"
-
-  " Provides a means of quick-n-easy pair programming. Just add water.
-  Bundle 'FredKSchott/CoVim'
-
-  " Tmux keybindings into Vim.
-  Bundle 'benmills/vimux'
-
-  " Lightweight modular status-line.
-  Bundle 'bling/vim-airline'
-
-  " Improved session support.
-  Bundle 'xolox/vim-session'
-
-  " Tasks just like Eclipse, yo.
-  Bundle 'jalcine/TaskList.vim'
-
-  " Load local configuration.
-  Bundle 'jalcine/localrc.vim'
-
-  " Show me the tags!
-  Bundle 'majutsushi/tagbar'
-
-  " Support for Markdown in Tagbar
-  Bundle 't4ku/marktag'
-
-  " Incorporate CMake support.
-  Bundle 'jalcine/cmake.vim'
-
-  " Incorporate Android support.
-  Bundle 'jalcine/android.vim'
-  
-  " Zencoding (useful for PHP)
-  Bundle "mattn/zencoding-vim"
-  
-  "}}} 
- 
-  "{{{ Editing Extensbility
-
-  " Tweak dates + times on-the-fly.
-  Bundle 'tpope/vim-speeddating'
-
-  " Tweaked text indentation for Vim.
-  Bundle 'godlygeek/tabular'
-
-  " Transparent GNUPG editing of files.
-  Bundle 'jamessan/vim-gnupg'
-
-  " Super-charged file navigation.
-  Bundle 'scrooloose/nerdtree'
-
-  " Make NERDTree into all of the TABS!
-  Bundle 'jistr/vim-nerdtree-tabs'
-
-  " Advanced commenting for Vim.
-  Bundle 'scrooloose/nerdcommenter'
-
-  " Advanced TODO support in Vim.
-  Bundle 'aaronbieber/quicktask'
-
-  " Kickass multiline editing.
-  Bundle 'hlissner/vim-multiedit'
-  "}}}
-
-  "{{{ VCS
-  " Let us know what happens in files.
-  Bundle 'airblade/vim-gitgutter'
-
-  " Added function for vim-fugitive
-  Bundle 'int3/vim-extradite'
-
-  " Oh so bad, you.
-  Bundle 'tpope/vim-fugitive'
-
-  " Formatting for Git files (.git/COMMIT_MSG and the like).
-  Bundle 'tpope/vim-git'
-  "}}}
-
-  "{{{ Formatting
-  " HAML (.haml) formatting support.
-  Bundle 'tpope/vim-haml'
-
-  " Markdown (.md, .markdown) formatting support.
-  Bundle 'tpope/vim-markdown'
-
-  " CoffeeScript fomatting support.
-  Bundle 'kchmck/vim-coffee-script'
-
-  " JavaScript formatting support.
-  Bundle 'pangloss/vim-javascript'
-
-  " JSON formatting support.
-  Bundle 'helino/vim-json'
-
-  " LESS formatting support.
-  Bundle 'groenewege/vim-less'
-
-  " JADE formatting support.
-  Bundle 'digitaltoad/vim-jade'
-
-  " Perl formatting support.
-  Bundle 'vim-perl/vim-perl'
-
-  " HTML5 formatting support.
-  Bundle 'othree/html5.vim'
-
-  " Background color for CSS/SCSS highlighting.
-  Bundle 'skammer/vim-css-color'
-  "}}}
-
-  "{{{ Ruby
-  " Get some Bundle handles.
-  Bundle 'tpope/vim-bundler'
-
-  " Handle some rbenv triggers.
-  Bundle 'tpope/vim-rbenv'
-  "}}}
-
-  "{{{ GitHub TOOLS <3
-  " From Vim to Gist.
-  Bundle 'mattn/gist-vim'
-
-  " Search for shit on GitHub.
-  Bundle 'gmarik/github-search.vim'
-
-  " Check out activity and dashboards on GitHub.
-  Bundle 'junegunn/vim-github-dashboard'
-
-  " Add comments to code in GitHub.
-  Bundle 'mmozuras/vim-github-comment'
-  "}}}
-
-  "{{{ Snippet and Completion Tools
-
-  " Omni-potent autocompletion support.
-  Bundle 'Valloric/YouCompleteMe'
-
-  " Snippet manager.
-  Bundle 'SirVer/ultisnips'
-
-  " My personal fork + build of snippets.
-  Bundle 'jalcine/vim-snippets'
-
-  " File and buffer search tool.
-  Bundle 'kien/ctrlp.vim'
-  "}}}
-
-  "{{{ Coloring and UI
-  " Awesome ass themes for Vim.
-  Bundle "daylerees/colour-schemes", { "rtp": "vim-themes/" }
-
-  " Massive list of color themes.
-  Bundle 'flazz/vim-colorschemes'
-
-  " Tomorrow Theme.
-  Bundle 'chriskempson/tomorrow-theme', { "rtp" : "vim/" }
-  "}}}
-
-  "}}}
-
-  let g:is_my_vundle_loaded_yet=1
-  "}}}
+if exists("g:is_my_vundle_loaded_yet")
+	finish
 endif
+
+let g:is_my_vundle_loaded_yet=1
+
+" We turn off file-type detection for now, this is
+" required for using Vundle.
+filetype off
+
+"{{{ Plug-ins
+
+" For my personal extension development, I use Vundle. Use it.
+set rtp+=~/.vim/bundle/vundle
+
+" Invoke the swag!
+call vundle#rc()
+
+" Keep Vundle up to date.
+" {{{ Libraries
+Bundle 'gmarik/vundle'
+Bundle 'xolox/vim-misc'
+Bundle 'mattn/webapi-vim'
+" }}}
+
+"{{{ Core function
+"  These plugins provide the root functionality of my Vim setup.
+"  I don't see me using Vim without these guys.
+
+" Make GVim themes work ootb in CVim.
+Bundle "godlygeek/csapprox"
+
+" Universal editor support
+Bundle "editorconfig/editorconfig-vim"
+
+" Add indentation lines.
+Bundle "Yggdroot/indentLine"
+
+" Provides a means of quick-n-easy pair programming. Just add water.
+Bundle 'FredKSchott/CoVim'
+
+" Tmux keybindings into Vim.
+Bundle 'benmills/vimux'
+
+" Lightweight modular status-line.
+Bundle 'bling/vim-airline'
+
+" Improved session support.
+Bundle 'xolox/vim-session'
+
+" Tasks just like Eclipse, yo.
+Bundle 'jalcine/TaskList.vim'
+
+" Load local configuration.
+Bundle 'jalcine/localrc.vim'
+
+" Show me the tags!
+Bundle 'majutsushi/tagbar'
+
+" Support for Markdown in Tagbar
+Bundle 't4ku/marktag'
+
+" Incorporate CMake support.
+Bundle 'jalcine/cmake.vim'
+
+" Incorporate Android support.
+Bundle 'jalcine/android.vim'
+"}}} 
+
+"{{{ Editing Extensbility
+
+" Tweak dates + times on-the-fly.
+Bundle 'tpope/vim-speeddating'
+
+" Tweaked text indentation for Vim.
+Bundle 'godlygeek/tabular'
+
+" Transparent GNUPG editing of files.
+Bundle 'jamessan/vim-gnupg'
+
+" Awesome jazz.
+Bundle "scrooloose/syntastic"
+
+" Super-charged file navigation.
+Bundle 'scrooloose/nerdtree'
+
+" Make NERDTree into all of the TABS!
+Bundle 'jistr/vim-nerdtree-tabs'
+
+" Advanced commenting for Vim.
+Bundle 'scrooloose/nerdcommenter'
+
+" Advanced TODO support in Vim.
+Bundle 'aaronbieber/quicktask'
+
+" Kickass multiline editing.
+Bundle 'hlissner/vim-multiedit'
+"}}}
+
+"{{{ VCS
+" Let us know what happens in files.
+Bundle 'mhinz/vim-signify'
+
+" Added function for vim-fugitive
+Bundle 'int3/vim-extradite'
+
+" Oh so bad, you.
+Bundle 'tpope/vim-fugitive'
+
+" Formatting for Git files (.git/COMMIT_MSG and the like).
+Bundle 'tpope/vim-git'
+"}}}
+
+"{{{ Formatting
+" HAML (.haml) formatting support.
+Bundle 'tpope/vim-haml'
+
+" Markdown (.md, .markdown) formatting support.
+Bundle 'tpope/vim-markdown'
+
+" CoffeeScript fomatting support.
+Bundle 'kchmck/vim-coffee-script'
+
+" JavaScript formatting support.
+Bundle 'pangloss/vim-javascript'
+
+" JSON formatting support.
+Bundle 'helino/vim-json'
+
+" LESS formatting support.
+Bundle 'groenewege/vim-less'
+
+" JADE formatting support.
+Bundle 'digitaltoad/vim-jade'
+
+" Perl formatting support.
+Bundle 'vim-perl/vim-perl'
+
+" HTML5 formatting support.
+Bundle 'othree/html5.vim'
+
+" Background color for CSS/SCSS highlighting.
+Bundle 'skammer/vim-css-color'
+"}}}
+
+"{{{ Ruby
+" Get some Bundle handles.
+Bundle 'tpope/vim-bundler'
+
+" Handle some rbenv triggers.
+Bundle 'tpope/vim-rbenv'
+"}}}
+
+"{{{ GitHub TOOLS <3
+" From Vim to Gist.
+Bundle 'mattn/gist-vim'
+
+" Search for shit on GitHub.
+Bundle 'gmarik/github-search.vim'
+
+" Check out activity and dashboards on GitHub.
+Bundle 'junegunn/vim-github-dashboard'
+
+" Add comments to code in GitHub.
+Bundle 'mmozuras/vim-github-comment'
+"}}}
+
+"{{{ Snippet and Completion Tools
+
+" Omni-potent autocompletion support.
+Bundle 'Valloric/YouCompleteMe'
+
+" Snippet manager.
+Bundle 'SirVer/ultisnips'
+
+" My personal fork + build of snippets.
+Bundle 'jalcine/vim-snippets'
+
+" File and buffer search tool.
+Bundle 'kien/ctrlp.vim'
+"}}}
+
+"{{{ Coloring and UI
+" Awesome ass themes for Vim.
+Bundle "daylerees/colour-schemes", { "rtp": "vim-themes" }
+
+" Massive list of color themes.
+Bundle 'flazz/vim-colorschemes'
+
+" Tomorrow Theme.
+Bundle 'chriskempson/tomorrow-theme', { "rtp" : "vim" }
+"}}}
+
+"}}}
+
+"}}}
 
 " Activate plugin detection now.
 filetype plugin indent on
 
 " Let's enable some syntax highlighting as well.
-syntax enable
+syntax on
 " Define the color scheme to be this nice poppy one!
-colorscheme Github
+colorscheme badwolf
 
 "{{{1 Plugin Configuration
 
@@ -207,6 +212,9 @@ let g:author="Jacky Alcine"
 let g:email="me@jalcine.me"
 let g:site="jalcine.me"
 let g:username="jalcine"
+
+"{{{2 CMake configuration
+let g:cmake_use_vimux=0
 
 "{{{2 Airline config
 let g:airline_theme="simple"
@@ -224,8 +232,8 @@ let g:syntastic_quiet_warnings=1
 " Define checkers
 
 " C++ specific options
-let g:syntastic_cpp_compiler="clang++"
-let g:syntastic_cpp_include_dirs=[ "$HOME/.local/include" ]
+let g:syntastic_cpp_compiler="gcc"
+let g:syntastic_cpp_include_dirs=[ "$HOME/.local/include", "/usr/include", "/usr/local/include" ]
 let g:syntastic_cpp_check_header=1
 
 " Ruby specific options
@@ -241,7 +249,8 @@ let g:ctrlp_cmd='CtrlP'
 let g:ctrlp_extensions = [ 'tag', 'buffertag', 'quickfix', 'bookmarkdir', 'mixed', 'line', 'changes', 'undo']
 
 "{{{2 indentLine
-let g:indentLine_char="│"
+let g:indentLine_char="┆"
+let g:indentLine_color_gui="#333333"
 "}}}
 
 " {{{2 vim-session
@@ -249,24 +258,32 @@ let g:session_directory="~/.vim/sessions"
 let g:session_default_name="default"
 let g:session_autoload="no"
 let g:session_autosave="yes"
-let g:session_autosave_periodic="yes"
+let g:session_autosave_periodic=2
 let g:session_command_aliases=1
 
 "{{{2 Snippets
 let g:UltiSnipsEditSplit="vertical"
-let g:UltiSnipsExpandTrigger="<ctrl-j>"
-let g:UltiSnipsJumpForwardTrigger="<ctrl-j>"
-let g:UltiSnipsJumpBackwardTrigger="<ctrl-k>"
+let g:UltiSnipsExpandTrigger="<c-'>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 let g:UltiSnipsSnippetDirectories=["UltiSnips"]
+
+"{{{2 Android
+let g:android_default_package_path = "me.jalcine"
+let g:android_default_project_path = "$HOME/Development/Projects"
+
 
 "{{{2 GitHub configuration
 let g:github_user=g:username
 let g:github_dashboard= { "username" : g:username, "emoji" : 1 }
 let g:github_search_path_format = "$HOME/Development/Projects"
+let g:github_comment_open_browser = 1
 "}}}
 
 "{{{2 Vimux 
 let g:VimuxPromptString = "CMD? "
+let g:VimuxUseNearesPane = 1
+let g:VimuxOrientation = "v"
 "}}}
 
 "{{{2 tagbar
@@ -279,21 +296,24 @@ let g:tagbar_show_visibility=1
 "{{{1 Plugin Mappings
 
 "{{{2 Tabularize
-vmap <Leader>a= :Tabularize /=<CR>
-nmap <Leader>a= :Tabularize /=<CR>
+vnoremap <Leader>a= :Tabularize /=<CR>
+nnoremap <Leader>a= :Tabularize /=<CR>
+vnoremap <Leader>a: :Tabularize /:<CR>
+nnoremap <Leader>a: :Tabularize /:<CR>
 "}}}
 
 "{{{2 Vimux
-nmap <Leader>to :VimuxOpenPane<CR>
-nmap <Leader>tp :VimuxPromptCommand<CR>
+nnoremap <Leader>to :VimuxOpenPane<CR>
+nnoremap <Leader>tp :VimuxPromptCommand<CR>
+nnoremap <Leader>tt :VimuxRunLastCommand<CR>
 
 function! VimuxRepl()
-  call VimuxSendText(@v)
-  call VimuxSendKeys("<Enter>")
+	call VimuxSendText(@v)
+	call VimuxSendKeys("<Enter>")
 endfunction
 
-vmap <LocalLeader>ts "vy :call VimuxRepl()<CR>
-nmap <LocalLeader>ts vip<LocalLeader>ts<CR>
+vnoremap <Leader>ts "vy :call VimuxRepl()<CR>
+nnoremap <Leader>ts vip<LocalLeader>ts<CR>
 "}}}
 
 "}}}

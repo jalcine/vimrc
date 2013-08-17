@@ -2,8 +2,8 @@
 "" Vim configuration options.
 ""
 "" @author Jacky Alcine <me@jalcine.me>
-"" @date   2013-03-03 18:24:30 UTC-05:00
-"" @vcs    git://github.com/jalcine/vimrc
+"" @date   2013-08-05 13:19:47 EDT 
+"" @vcs    https://github.com/jalcine/vimrc
 ""
 "" I take pride in my Vim configuration. Being that I'm
 "" an intermediate Vim user and I try to share as much
@@ -17,6 +17,10 @@
 " We live in the future, don't worry about backwards
 " compatibility with Vi.
 set nocompatible
+
+" We use UNIX. So act like UNIX.
+set encoding=utf-8 fileencoding=utf-8
+set fileformat=unix
 
 " Use my bash file.
 let $BASH_ENV="$HOME/.bashrc"
@@ -37,10 +41,10 @@ let maplocalleader="\\"
 " Update Vim's config when I edit the file.
 autocmd BufWritePost .vimrc source $HOME/.vimrc
 
-"{{{1 Immediate Configuration Options
+" Import plugins.
+source $HOME/.vim/plugin/vundle.vim
 
-" We live in the future. Use UTF-8 encoding!
-set encoding=utf-8
+"{{{1 Immediate Configuration Options
 
 " Use visual bells instead of beeps. I use this
 " since it helps a lot with tmux to inform me
@@ -49,6 +53,9 @@ set visualbell
 
 " Enable bells for errors.
 set errorbells
+
+" Gimme something to look at.
+set laststatus=2
 
 "{{{2 Spacing
 
@@ -62,6 +69,7 @@ set shiftwidth=2
 " Set expandtab to the values used for tabstop
 " and shiftwidth to ensure that we enter only 
 " spaces, as well as enabling auto-indenting.
+set expandtab
 
 " Ensure that indentation for newly inserted text
 " copies the style of that used already.
@@ -87,11 +95,7 @@ set wildmode=list:longest
 set wildignore+=*.swp,*.pyc,*.bak,*.class,*.orig
 set wildignore+=.git,.hg,.bzr,.svn
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg,*.svg
-set wildignore+=build/*,tmp/*,vendor/cache/*
-
-" Keep the currently edited line in the middle of the window.
-set scrolloff=999
-set sidescrolloff=999
+set wildignore+=*/build/*,*/tmp/*,*/vendor/cache/*
 
 " PASTE mo'fo!
 set pastetoggle=<F2>
@@ -105,7 +109,6 @@ set mouse=a
 
 " I place my tags all over the place. Bring them
 " to me!
-set tags+=$PWD/.git/tags
 set tags+=$HOME/.tags/*.tags
 
 " Save your work in sessions.
@@ -115,15 +118,18 @@ set sessionoptions-=help,options,globals
 
 "{{{2 Layout
 
+" We fold.
+set foldenable
+
 " Fold on the syntax.
-set foldmethod=syntax
+set foldmethod=indent
 
 " Sets the width of the folding margins.
-set foldcolumn=1
+set foldcolumn=2
 
 " Sets the minimum amount of lines needed to
 " automatically initialize folding.
-set foldminlines=5
+set foldminlines=30
 
 " Set the title in the terminal.
 set title titlelen=120 titlestring="%t%(\ %M%)%(\ (%{expand(\"%:~:.:h\")})%)%(\ %a%)"
@@ -132,16 +138,13 @@ set title titlelen=120 titlestring="%t%(\ %M%)%(\ (%{expand(\"%:~:.:h\")})%)%(\ 
 set ruler
 
 " We like a stable number count.
-set number numberwidth=2
-
-" Ensure the visibility of the statusline.
-" Required for vim-powerline.
-set laststatus=2
+set number numberwidth=1
 
 " Trust me, Vim, we're running in a 256-colored terminal.
-" set t_Co=256
 
 "}}} 
+
+set complete=.
 
 "{{{2 Searching
 
@@ -199,17 +202,20 @@ set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
 set showcmd
 " Speed things up in the console.
 set ttyfast
+" Show me the space!
+set list
 
 augroup cline
   au!
-  au WinLeave,InsertEnter * set cursorline cursorcolumn foldcolumn=0
-  au WinEnter,InsertLeave * set cursorline nocursorcolumn foldcolumn=1
+  au WinLeave,InsertEnter * set cursorline foldcolumn=0
+  au WinEnter,InsertLeave * set nocursorline foldcolumn=1
 augroup END
 
-augroup linetoggle
+augroup gimmetags
   au!
-  autocmd WinEnter * set number
-  autocmd WinLeave * set relativenumber
+  au FileReadPost  * call s:load_local_tags()<CR>
+  au FileWritePost * call s:load_local_tags()<CR>
+  au FileChangedShellPost * call s:load_local_tags()<CR>
 augroup END
 
 " Make sure that GNU screen or tmux passes me my xkeys.
@@ -230,26 +236,59 @@ set backspace=indent,eol,start
 "}}}
 
 "{{{1 Key bindings.
-nnoremap ; : 
-nnoremap <silent> <C-l> :nohlsearch<CR><C-l>
+" Key bindings are a developer's bread and butter. Over time, I remap and
+" remap my keys to make my life as easy as possible. I've separated my generic
+" mappings from my plug-in mappings intentionally, just for clarity.
+
+" One less key to press to enter the Vim shell.
+nnoremap ; :
+
+" Toggle the use of list characters.
+noremap <leader>i :set list!<cr>
+
+" Toggle the state of search highlighting locally.
+nnoremap <silent> <leader>l :setlocal hlsearch!<CR><C-l>
+
+" Toggle the state of spelling locally.
 nnoremap <silent> <leader>j :setlocal spell!<CR>
-imap <leader>pT <C-R>=strftime("%Y-%m-%d")<CR>
+
+" Toggle the visibility of cursor lines.
+nnoremap <leader>c :setlocal cursorline!<CR>
+nnoremap <leader>C :setlocal cursorcolumn!<CR>
+
+" Toggle the current fold.
+nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+
+" Inject the current date.
+inoremap <leader>pT <C-R>=strftime("%Y-%m-%d")<CR>
+
+" Inject the current time with the labelling of the time-zone.
+inoremap <leader>pY <C-R>=strftime("%H:%M:%S %Z")<CR>
+
+" Inject the current date and time
+inoremap <leader>pR <C-R>=strftime("%Y-%m-%d %H:%M:%S %Z")<CR>
+
+" Disable classic arrow-key navigation in Normal mode.
 noremap <Up> <NOP>
 noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
-nnoremap <silent> <C-s> :w %
-nmap <silent> <leader>ev :tabe ~/.vimrc<cr> 
-nmap <silent> <leader>sv :so ~/.vimrc<cr>
-noremap <leader>i :set list!<cr>
-nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
-vnoremap <Space> zf
-noremap <silent> <C-N> :tabp<CR>
-noremap <silent> <C-M> :tabn<CR>
-nnoremap <leader>c :setlocal cursorline! cursorcolumn!<CR>
-noremap <leader>f gg=G
-cnoremap help vert help
-"}}}
 
-" Import plugins.
-source $HOME/.vim/plugin/vundle.vim
+" Use Ctrl+S to save the contents of the current buffer. Reflex.
+nnoremap <silent> <C-s> :w
+
+" Edit and reload the master Vim configuration.
+nmap <silent> <leader>ev :tabnew ~/.vimrc<cr> 
+nmap <silent> <leader>sv :source ~/.vimrc<cr>
+
+" Jump between the current tabs.
+noremap <silent> <C-H> :tabp<CR>
+noremap <silent> <C-L> :tabn<CR>
+
+" Formats the current buffer.
+nnoremap <leader>f gg=G
+
+" Rewrite 'vhe' to 'vert help'.
+cnoremap vhe vert help
+
+"}}}

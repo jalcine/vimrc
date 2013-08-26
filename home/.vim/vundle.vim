@@ -1,7 +1,7 @@
 " vim: set fdm=marker tw=78
 
 if exists("g:is_my_vundle_loaded_yet")
-	finish
+  finish
 endif
 
 let g:is_my_vundle_loaded_yet=1
@@ -97,6 +97,13 @@ Bundle 'aaronbieber/quicktask'
 
 " Kickass multiline editing.
 Bundle 'hlissner/vim-multiedit'
+
+" A useful completer.
+Bundle "Valloric/YouCompleteMe"
+
+" Formatting tools.
+Bundle "einars/js-beautify"
+Bundle "Chiel92/vim-autoformat"
 "}}}
 
 "{{{ VCS
@@ -165,12 +172,11 @@ Bundle 'junegunn/vim-github-dashboard'
 
 " Add comments to code in GitHub.
 Bundle 'mmozuras/vim-github-comment'
+
+" 
 "}}}
 
 "{{{ Snippet and Completion Tools
-
-" Omni-potent autocompletion support.
-Bundle 'Valloric/YouCompleteMe'
 
 " Snippet manager.
 Bundle 'SirVer/ultisnips'
@@ -203,7 +209,7 @@ filetype plugin indent on
 " Let's enable some syntax highlighting as well.
 syntax on
 " Define the color scheme to be this nice poppy one!
-colorscheme badwolf
+colorscheme jellybeans
 
 "{{{1 Plugin Configuration
 
@@ -220,6 +226,25 @@ let g:cmake_use_vimux=0
 let g:airline_theme="simple"
 let g:airline_modified_detection=1
 let g:airline_powerline_fonts=1
+
+"{{{2 YouCompleteMe
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_global_ycm_extra_conf = "$HOME/.ycm_extra_conf.py"
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_semantic_triggers =  {
+      \   'c' : ['->', '.', '('],
+      \   'objc' : ['->', '.'],
+      \   'ocaml' : ['.', '#'],
+      \   'cpp,objcpp' : ['->', '.', '::', '('],
+      \   'perl' : ['->', '('],
+      \   'php' : ['->', '::', '('],
+      \   'cs,java,javascript,d,vim18:19:47 EDTthon,perl6,scala,vb,elixir,go' : ['.', '('],
+      \   'ruby' : ['.', '::', '('],
+      \   'lua' : ['.', ':'],
+      \   'erlang' : [':'],
+      \ }
 
 "{{{2 Syntastic options
 let g:syntastic_enable_signs=1
@@ -250,7 +275,6 @@ let g:ctrlp_extensions = [ 'tag', 'buffertag', 'quickfix', 'bookmarkdir', 'mixed
 
 "{{{2 indentLine
 let g:indentLine_char="┆"
-let g:indentLine_color_gui="#333333"
 "}}}
 
 " {{{2 vim-session
@@ -263,9 +287,9 @@ let g:session_command_aliases=1
 
 "{{{2 Snippets
 let g:UltiSnipsEditSplit="vertical"
-let g:UltiSnipsExpandTrigger="<c-'>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+let g:UltiSnipsExpandTrigger="<C-l>"
+let g:UltiSnipsJumpForwardTrigger="<C-j>"
+let g:UltiSnipsJumpBackwardTrigger="<C-k>"
 let g:UltiSnipsSnippetDirectories=["UltiSnips"]
 
 "{{{2 Android
@@ -287,13 +311,19 @@ let g:VimuxOrientation = "v"
 "}}}
 
 "{{{2 tagbar
+let g:tagbar_ctags_bin="/usr/bin/ctags"
 let g:tagbar_compact=1
 let g:tagbar_show_visibility=1
+let g:tagbar_ctagsargs=[]
+let g:tagbar_show_linenumbers=1
+let g:tagbar_sort=1
 "}}}
 
 "}}}
-
+"
 "{{{1 Plugin Mappings
+
+nnoremap <F3> :Autoformat<CR><CR>
 
 "{{{2 Tabularize
 vnoremap <Leader>a= :Tabularize /=<CR>
@@ -306,14 +336,15 @@ nnoremap <Leader>a: :Tabularize /:<CR>
 nnoremap <Leader>to :VimuxOpenPane<CR>
 nnoremap <Leader>tp :VimuxPromptCommand<CR>
 nnoremap <Leader>tt :VimuxRunLastCommand<CR>
-
-function! VimuxRepl()
-	call VimuxSendText(@v)
-	call VimuxSendKeys("<Enter>")
-endfunction
-
+nnoremap <Leader>tc :VimuxCloseRunner<CR>
 vnoremap <Leader>ts "vy :call VimuxRepl()<CR>
 nnoremap <Leader>ts vip<LocalLeader>ts<CR>
+
+function! VimuxRepl()
+  call VimuxSendText(@v)
+  call VimuxSendKeys("<Enter>")
+endfunction
+
 "}}}
 
 "}}}

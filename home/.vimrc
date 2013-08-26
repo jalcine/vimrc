@@ -20,7 +20,6 @@ set nocompatible
 
 " We use UNIX. So act like UNIX.
 set encoding=utf-8 fileencoding=utf-8
-set fileformat=unix
 
 " Use my bash file.
 let $BASH_ENV="$HOME/.bashrc"
@@ -42,7 +41,7 @@ let maplocalleader="\\"
 autocmd BufWritePost .vimrc source $HOME/.vimrc
 
 " Import plugins.
-source $HOME/.vim/plugin/vundle.vim
+source $HOME/.vim/vundle.vim
 
 "{{{1 Immediate Configuration Options
 
@@ -218,6 +217,13 @@ augroup gimmetags
   au FileChangedShellPost * call s:load_local_tags()<CR>
 augroup END
 
+function! s:load_local_tags()
+  set tags+=.tags
+  set tags+=.bzr/tags
+  set tags+=.git/tags
+  set tags+=build/tags
+endfunction
+
 " Make sure that GNU screen or tmux passes me my xkeys.
 " link: http://www.reddit.com/r/vim/comments/1a29vk/_/c8tze8p
 if &term == "screen"
@@ -247,7 +253,7 @@ nnoremap ; :
 noremap <leader>i :set list!<cr>
 
 " Toggle the state of search highlighting locally.
-nnoremap <silent> <leader>l :setlocal hlsearch!<CR><C-l>
+nnoremap <silent> <leader>l :setlocal hlsearch!<CR>
 
 " Toggle the state of spelling locally.
 nnoremap <silent> <leader>j :setlocal spell!<CR>
@@ -260,13 +266,13 @@ nnoremap <leader>C :setlocal cursorcolumn!<CR>
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 
 " Inject the current date.
-inoremap <leader>pT <C-R>=strftime("%Y-%m-%d")<CR>
+inoremap <leader>pt <C-R>=strftime("%Y-%m-%d")<CR>
 
 " Inject the current time with the labelling of the time-zone.
-inoremap <leader>pY <C-R>=strftime("%H:%M:%S %Z")<CR>
+inoremap <leader>py <C-R>=strftime("%H:%M:%S %Z")<CR>
 
 " Inject the current date and time
-inoremap <leader>pR <C-R>=strftime("%Y-%m-%d %H:%M:%S %Z")<CR>
+inoremap <leader>pt <C-R>=strftime("%Y-%m-%d %H:%M:%S %Z")<CR>
 
 " Disable classic arrow-key navigation in Normal mode.
 noremap <Up> <NOP>
@@ -287,6 +293,20 @@ noremap <silent> <C-L> :tabn<CR>
 
 " Formats the current buffer.
 nnoremap <leader>f gg=G
+
+" Bind make command.
+" Make this only happen for Makefile projects.
+nnoremap <leader>ba :make all<CR>
+nnoremap <leader>bc :make clean<CR>
+nnoremap <leader>bi :make install<CR>
+nnoremap <leader>bu :make uninstall<CR>
+
+" Travel over errors.
+nnoremap <leader>ce <ESC>:cn<CR>
+nnoremap <leader>cp <ESC>:cp<CR>
+nnoremap <leader>co <ESC>:cwindow<CR>
+nnoremap <leader>cf <ESC>:cfirst<CR>
+nnoremap <leader>cl <ESC>:clast<CR>
 
 " Rewrite 'vhe' to 'vert help'.
 cnoremap vhe vert help

@@ -209,7 +209,7 @@ filetype plugin indent on
 " Let's enable some syntax highlighting as well.
 syntax on
 " Define the color scheme to be this nice poppy one!
-colorscheme jellybeans
+colorscheme Tomorrow-Night-Eighties
 
 "{{{1 Plugin Configuration
 
@@ -223,7 +223,7 @@ let g:username="jalcine"
 let g:cmake_use_vimux=0
 
 "{{{2 Airline config
-let g:airline_theme="simple"
+let g:airline_theme="tomorrow"
 let g:airline_modified_detection=1
 let g:airline_powerline_fonts=1
 

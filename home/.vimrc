@@ -19,16 +19,13 @@
 set nocompatible
 
 " We use UNIX. So act like UNIX.
-set encoding=utf-8 fileencoding=utf-8
+set encoding=utf-8 fileencoding=utf-8 fileformats=unix
 
 " Use my bash file.
 let $BASH_ENV="$HOME/.bashrc"
 
 " Enable the use of Bash into the mix.
-set shell=/bin/bash
-
-" Set some options for the shell.
-set shellcmdflag=-c
+set shell=/bin/bash shellcmdflag=-c
 
 " We need modelines.
 set modeline
@@ -37,18 +34,12 @@ set modeline
 let mapleader=","
 let maplocalleader="\\"
 
-" Update Vim's config when I edit the file.
-autocmd BufWritePost .vimrc source $MYVIMRC
-
 "{{{1 Immediate Configuration Options
 
 " Use visual bells instead of beeps. I use this
 " since it helps a lot with tmux to inform me
-" to switch over to it.
-set visualbell
-
-" Enable bells for errors.
-set errorbells
+" to switch over to it. Also enable bells for errors.
+set visualbell errorbells
 
 " Gimme something to look at.
 set laststatus=2
@@ -56,35 +47,21 @@ set laststatus=2
 "{{{2 Spacing
 
 " I prefer to use two spaces to represent tabs.
-set tabstop=2
-
-" In order to maintain capability, set shiftwidth 
-" to the same value as tabstop.
-set shiftwidth=2
+set tabstop=2 softtabstop=2
 
 " Set expandtab to the values used for tabstop
 " and shiftwidth to ensure that we enter only 
 " spaces, as well as enabling auto-indenting.
-set expandtab
-
-" Ensure that indentation for newly inserted text
-" copies the style of that used already.
-set autoindent
-
-" Same as tabstop, setting this to 2 ensures that
-" the tab stop is the same while I'm editing.
-set softtabstop=2
-
-" Ensures that <Tab>s are converted into spaces.
+" Also ensures that <Tab>s are converted into spaces.
 " We don't want any mix-ups here.
-set smarttab
+set smarttab expandtab
 
 " Set a hard wrapping to 78 characters. Nothing should be
 " longer than that.
-set textwidth=78
+set textwidth=78 shiftwidth=2
 
-" We POSIX.
-set fileformats=unix
+" Automatically indent text.
+set autoindent
 
 " Ignore a lot of stuff.
 set wildmode=list:longest
@@ -125,7 +102,7 @@ set foldcolumn=2
 
 " Sets the minimum amount of lines needed to
 " automatically initialize folding.
-set foldminlines=30
+set foldminlines=15
 
 " Set the title in the terminal.
 set title titlelen=120 titlestring="%t%(\ %M%)%(\ (%{expand(\"%:~:.:h\")})%)%(\ %a%)"
@@ -134,13 +111,9 @@ set title titlelen=120 titlestring="%t%(\ %M%)%(\ (%{expand(\"%:~:.:h\")})%)%(\ 
 set ruler
 
 " We like a stable number count.
-set number numberwidth=1
-
-" Trust me, Vim, we're running in a 256-colored terminal.
+set number numberwidth=2
 
 "}}} 
-
-set complete=.
 
 "{{{2 Searching
 
@@ -188,23 +161,32 @@ set spellfile=~/.vim/dict.custom.utf8-8.add
 "}}}
 
 "{{{2 Visual Cues
-" A problem that plagued me for months.
+" A problem that plagued me for months, having visual cues for whitespacing
+" solves formatting problems a lot quicker. Also, we're using modern shells
+" (right?) so using UTF-8 characters for symbols should be a given.
+
 set fillchars=diff:⣿,vert:│
 " A visual cue for line-wrapping.
 set showbreak=↪
 " Visual cues when in 'list' model.
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
-" Let me know what I just did.
-set showcmd
-" Speed things up in the console.
-set ttyfast
-" Show me the space!
+" Show me these markings.
 set list
 
+" Update by redraw and not INS/DEL
+set ttyfast
+
+" Show me what I was doing.
+set showcmd
+
+" Update Vim's config when I edit $MYVIMRC.
+autocmd BufWritePost .vimrc source $MYVIMRC
+
+" Toggle the current cursor line whenever I swap windows.
 augroup cline
   au!
   au WinLeave,InsertEnter * set cursorline foldcolumn=0
-  au WinEnter,InsertLeave * set nocursorline foldcolumn=1
+  au WinEnter,InsertLeave * set nocursorline foldcolumn=2
 augroup END
 
 augroup gimmetags

@@ -104,6 +104,9 @@ Bundle "Valloric/YouCompleteMe"
 " Formatting tools.
 Bundle "einars/js-beautify"
 Bundle "Chiel92/vim-autoformat"
+
+" Advanced editing/refactoring support.
+Bundle "terryma/vim-multiple-cursors"
 "}}}
 
 "{{{ VCS

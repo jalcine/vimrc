@@ -38,7 +38,7 @@ let mapleader=","
 let maplocalleader="\\"
 
 " Update Vim's config when I edit the file.
-autocmd BufWritePost .vimrc source $HOME/.vimrc
+autocmd BufWritePost .vimrc source $MYVIMRC
 
 "{{{1 Immediate Configuration Options
 
@@ -307,5 +307,4 @@ nnoremap <leader>cl <ESC>:clast<CR>
 
 " Rewrite 'vhe' to 'vert help'.
 cnoremap vhe vert help
-
 "}}}

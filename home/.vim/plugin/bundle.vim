@@ -205,3 +205,8 @@ Bundle 'chriskempson/tomorrow-theme', { "rtp" : "vim" }
 
 " Activate plugin detection now.
 filetype plugin indent on
+
+" Let's enable some syntax highlighting as well.
+syntax on
+" Define the color scheme to be this nice poppy one!
+colorscheme Tomorrow-Night-Eighties

@@ -1,8 +1,3 @@
-" Let's enable some syntax highlighting as well.
-syntax on
-" Define the color scheme to be this nice poppy one!
-colorscheme Tomorrow-Night-Eighties
-
 "{{{1 Plugin Configuration
 
 "{{{2 User Info

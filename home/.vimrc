@@ -34,6 +34,11 @@ set modeline
 let mapleader=","
 let maplocalleader="\\"
 
+" Load plugins, its config and mappings.
+source ~/.vim/plugin/customconfig.vim
+source ~/.vim/plugin/bundle.vim
+source ~/.vim/plugin/custommappings.vim
+
 "{{{1 Immediate Configuration Options
 
 " Use visual bells instead of beeps. I use this

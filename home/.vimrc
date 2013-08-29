@@ -40,9 +40,6 @@ let maplocalleader="\\"
 " Update Vim's config when I edit the file.
 autocmd BufWritePost .vimrc source $HOME/.vimrc
 
-" Import plugins.
-source $HOME/.vim/vundle.vim
-
 "{{{1 Immediate Configuration Options
 
 " Use visual bells instead of beeps. I use this

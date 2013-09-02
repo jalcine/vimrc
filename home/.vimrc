@@ -153,10 +153,10 @@ set nobackup
 set noswapfile
 
 " Set the Vim command history size to a larger number.
-set history=125
+set history=1
 
 " Set the undo level to a little bit higher than default.
-set history=1500
+set history=2000
 "}}}
 
 "{{{2 Dictionary Options
@@ -184,8 +184,14 @@ set ttyfast
 " Show me what I was doing.
 set showcmd
 
+" Let me know where I am.
+set cursorline cursorcolumn
+
 " Update Vim's config when I edit $MYVIMRC.
-autocmd BufWritePost .vimrc source $MYVIMRC
+augroup autosourcevim
+  au!
+  au BufWritePost ~/.vimrc source $MYVIMRC | echomsg "[vim] Configuration sourced."
+augroup END
 
 " Toggle the current cursor line whenever I swap windows.
 augroup cline
@@ -202,15 +208,18 @@ augroup gimmetags
 augroup END
 
 function! s:load_local_tags()
-  set tags+=.tags
+  set tags+=./.tags,./TAGS,./tags
   set tags+=.bzr/tags
   set tags+=.git/tags
+  set tags+=.svn/tags
+  set tags+=.hg/tags
   set tags+=build/tags
+  echomsg "[ctags] Added VCS and potentially generated tag definition files."
 endfunction
 
 " Make sure that GNU screen or tmux passes me my xkeys.
 " link: http://www.reddit.com/r/vim/comments/1a29vk/_/c8tze8p
-if &term == "screen"
+if &term == "screen" || &term == "screen-256color"
   execute "set t_kP=\e[5;*~"
   execute "set t_kN=\e[6;*~"
   execute "set <xUp>=\e[1;*A"
@@ -219,7 +228,7 @@ if &term == "screen"
   execute "set <xLeft>=\e[1;*D"
 endif
 
-" Do this when I hit <Backspace>
+" Do this when I hit <Backspace>.
 set backspace=indent,eol,start
 
 "}}}
@@ -258,6 +267,9 @@ inoremap <leader>py <C-R>=strftime("%H:%M:%S %Z")<CR>
 " Inject the current date and time
 inoremap <leader>pt <C-R>=strftime("%Y-%m-%d %H:%M:%S %Z")<CR>
 
+" Toggle the light/dark state of Vim.
+nnoremap <leader>a :call toggle_color()<CR>
+
 " Disable classic arrow-key navigation in Normal mode.
 noremap <Up> <NOP>
 noremap <Down> <NOP>
@@ -268,8 +280,8 @@ noremap <Right> <NOP>
 nnoremap <silent> <C-s> :w
 
 " Edit and reload the master Vim configuration.
-nmap <silent> <leader>ev :tabnew ~/.vimrc<cr> 
-nmap <silent> <leader>sv :source ~/.vimrc<cr>
+nnoremap <silent> <leader>ev :tabnew $MYVIMRC<cr> 
+nnoremap <silent> <leader>sv :source $MYVIMRC<cr>
 
 " Jump between the current tabs.
 noremap <silent> <C-H> :tabp<CR>

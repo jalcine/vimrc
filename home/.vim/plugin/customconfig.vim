@@ -13,6 +13,7 @@ let g:cmake_use_vimux=0
 let g:airline_theme="tomorrow"
 let g:airline_modified_detection=1
 let g:airline_powerline_fonts=1
+let g:airline#extensions#whitespace#enabled=0
 
 "{{{2 YouCompleteMe
 let g:ycm_collect_identifiers_from_tags_files = 1
@@ -98,13 +99,8 @@ let g:VimuxOrientation = "v"
 "}}}
 
 "{{{2 tagbar
-let g:tagbar_ctags_bin="/usr/bin/ctags"
-let g:tagbar_compact=1
-let g:tagbar_show_visibility=1
-let g:tagbar_ctagsargs=[]
-let g:tagbar_show_linenumbers=1
-let g:tagbar_sort=1
 "}}}
 
 "}}}
-"
+
+

@@ -1,10 +1,10 @@
-" vim: set fdm=marker tw=78
+" vim: set fdm=marker tw=78 ft=vim
 
-if exists("g:is_my_vundle_loaded_yet")
+if exists("g:jalcine_plugins_loaded")
   finish
+else
+  let g:jalcine_plugins_loaded = 1
 endif
-
-let g:is_my_vundle_loaded_yet=1
 
 " We turn off file-type detection for now, this is
 " required for using Vundle.
@@ -176,7 +176,6 @@ Bundle 'junegunn/vim-github-dashboard'
 " Add comments to code in GitHub.
 Bundle 'mmozuras/vim-github-comment'
 
-" 
 "}}}
 
 "{{{ Snippet and Completion Tools
@@ -212,4 +211,4 @@ filetype plugin indent on
 " Let's enable some syntax highlighting as well.
 syntax on
 " Define the color scheme to be this nice poppy one!
-colorscheme Tomorrow-Night-Eighties
+colorscheme Tomorrow

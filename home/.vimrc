@@ -39,6 +39,13 @@ source ~/.vim/plugin/customconfig.vim
 source ~/.vim/plugin/bundle.vim
 source ~/.vim/plugin/custommappings.vim
 
+" Activate plugin detection now.
+filetype plugin indent on
+" Let's enable some syntax highlighting as well.
+syntax on
+" Set the colorscheme now.
+colorscheme molokai
+
 "{{{1 Immediate Configuration Options
 
 " Use visual bells instead of beeps. I use this
@@ -107,7 +114,7 @@ set foldcolumn=2
 
 " Sets the minimum amount of lines needed to
 " automatically initialize folding.
-set foldminlines=15
+set foldminlines=5
 
 " Set the title in the terminal.
 set title titlelen=120 titlestring="%t%(\ %M%)%(\ (%{expand(\"%:~:.:h\")})%)%(\ %a%)"
@@ -196,10 +203,11 @@ augroup END
 " Toggle the current cursor line whenever I swap windows.
 augroup cline
   au!
-  au WinLeave,InsertEnter * set cursorline foldcolumn=0
-  au WinEnter,InsertLeave * set nocursorline foldcolumn=2
+  au WinLeave,InsertEnter * set cursorline
+  au WinEnter,InsertLeave * set nocursorline
 augroup END
 
+" Automatically update tag linkages.
 augroup gimmetags
   au!
   au FileReadPost  * call s:load_local_tags()<CR>

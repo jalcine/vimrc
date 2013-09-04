@@ -10,10 +10,28 @@ let g:username="jalcine"
 let g:cmake_use_vimux=0
 
 "{{{2 Airline config
-let g:airline_theme="tomorrow"
+let g:airline_theme="jellybeans"
 let g:airline_modified_detection=1
 let g:airline_powerline_fonts=1
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#hunks#non_zero_only = 1
+let g:airline#extensions#branch#empty_message = '(none)'
 let g:airline#extensions#whitespace#enabled=0
+  let g:airline_mode_map = {
+      \ '__' : '-',
+      \ 'n'  : 'N',
+      \ 'i'  : 'I',
+      \ 'R'  : 'R',
+      \ 'c'  : 'C',
+      \ 'v'  : 'V',
+      \ 'V'  : 'V',
+      \ '' : 'V',
+      \ 's'  : 'S',
+      \ 'S'  : 'S',
+      \ '' : 'S',
+      \ }
+
 
 "{{{2 YouCompleteMe
 let g:ycm_collect_identifiers_from_tags_files = 1

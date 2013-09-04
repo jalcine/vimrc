@@ -44,7 +44,7 @@ filetype plugin indent on
 " Let's enable some syntax highlighting as well.
 syntax on
 " Set the colorscheme now.
-colorscheme molokai
+colorscheme jellybeans
 
 "{{{1 Immediate Configuration Options
 

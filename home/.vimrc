@@ -1,4 +1,4 @@
-"" vim: tw=78 fdm=marker
+"" vim: textwidth=78 foldmethod=marker
 "" Vim configuration options.
 ""
 "" @author Jacky Alcine <me@jalcine.me>
@@ -10,9 +10,9 @@
 "" as I learn, I've taken the liberty of documenting and
 "" explaining the nature of my configuration.
 ""
-"" I use the latest development version of Vim from sources.
-"" The ./configure I use is the following:
-"" ./configure --with-local-dir=/home/jacky/.local --prefix=/home/jacky/.local --with-python-config-dir=/usr/lib/python2.7/config --with-python3-config-dir=/usr/lib/python3/config --with-features=big --with-compiledby="Jacky Alcine <me@jalcine.me>" --disable-gtktest  --enable-cscope --disable-darwin --enable-perlinterp --enable-pythoninterp --enable-rubyinterp --enable-tclinterp --enable-luainterp --enable-fontset --enable-multibyte --enable-xim --with-mouse
+"" I use the latest development version of Vim from sources using a PPA in
+"" Ubuntu.
+""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 " We live in the future, don't worry about backwards
 " compatibility with Vi.
@@ -45,6 +45,8 @@ filetype plugin indent on
 syntax on
 " Set the colorscheme now.
 colorscheme jellybeans
+" Make it dark.
+set background=dark
 
 "{{{1 Immediate Configuration Options
 
@@ -55,6 +57,9 @@ set visualbell errorbells
 
 " Gimme something to look at.
 set laststatus=2
+
+" Show me the tab bar no matter what.
+set showtabline=2
 
 "{{{2 Spacing
 
@@ -68,29 +73,33 @@ set tabstop=2 softtabstop=2
 " We don't want any mix-ups here.
 set smarttab expandtab
 
-" Set a hard wrapping to 78 characters. Nothing should be
-" longer than that.
+" Set a hard wrapping to 78 characters. Nothing should be longer than that.
+" Trust me, living a few days in the console will teach you that.
 set textwidth=78 shiftwidth=2
 
 " Automatically indent text.
 set autoindent
 
+" Enable your wild side, take command completion completion up a notch.
+set wildmenu
+
+" Allow for an interesting view when opening the command line menu.
+set wildmode=longest:full wildignorecase
+
 " Ignore a lot of stuff.
-set wildmode=list:longest
 set wildignore+=*.swp,*.pyc,*.bak,*.class,*.orig
 set wildignore+=.git,.hg,.bzr,.svn
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg,*.svg
-set wildignore+=*/build/*,*/tmp/*,*/vendor/cache/*
+set wildignore+=build,tmp,vendor/cache,bin
 
 " PASTE mo'fo!
 set pastetoggle=<F2>
 
-" Set a wrapping margin.
-set wrap
-set wrapmargin=2
+" Wrap text around; keep what we need in sight.
+set wrap wrapmargin=1
 
 " Use the clicking thing, Luke.
-set mouse=a
+set mouse=a ttymouse=xterm
 
 " I place my tags all over the place. Bring them
 " to me!
@@ -115,6 +124,9 @@ set foldcolumn=2
 " Sets the minimum amount of lines needed to
 " automatically initialize folding.
 set foldminlines=5
+
+" Anything greater than this is automatically folded.
+set foldlevel=2
 
 " Set the title in the terminal.
 set title titlelen=120 titlestring="%t%(\ %M%)%(\ (%{expand(\"%:~:.:h\")})%)%(\ %a%)"
@@ -160,20 +172,34 @@ set nobackup
 set noswapfile
 
 " Set the Vim command history size to a larger number.
-set history=1
+set history=16384
 
 " Set the undo level to a little bit higher than default.
-set history=2000
+set undolevels=16384
 "}}}
 
-"{{{2 Dictionary Options
-set spelllang=en
-set dictionary=/usr/share/dict/words
+"{{{2 Spelling Options
+" Teach me howta spell, teach-teach me howta spell.
+set spell
+
+" English speaking, American born. So let's correct ourselves like one. Since
+" I'm learning French and know a bit of Spanish; we'll add those dictionaries
+" in as well.
+set spelllang=en_us
+
+" Help me figure how what to spell.
+set spellsuggest=best,5
+
+" Add a bunch of dictionaries.
+set dictionary+=/usr/share/dict/words,/usr/share/dict/american-english
+set dictionary+=/usr/share/dict/web2,/usr/share/dict/propernames.gz
+
+" Set a location to save my added words.
 set spellfile=~/.vim/dict.custom.utf8-8.add
 "}}}
 
 "{{{2 Visual Cues
-" A problem that plagued me for months, having visual cues for whitespacing
+" A problem that plagued me for months, having visual cues for white spacing
 " solves formatting problems a lot quicker. Also, we're using modern shells
 " (right?) so using UTF-8 characters for symbols should be a given.
 
@@ -186,7 +212,7 @@ set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
 set list
 
 " Update by redraw and not INS/DEL
-set ttyfast
+set ttyfast ttyscroll=10
 
 " Show me what I was doing.
 set showcmd
@@ -198,6 +224,12 @@ set cursorline cursorcolumn
 augroup autosourcevim
   au!
   au BufWritePost ~/.vimrc source $MYVIMRC | echomsg "[vim] Configuration sourced."
+augroup END
+
+augroup reformat
+  au!
+  au BufReadPost *.scss   setlocal ft=css.scss
+  au BufReadPost *.coffee setlocal ft=javascript.cofeescript
 augroup END
 
 " Toggle the current cursor line whenever I swap windows.
@@ -297,6 +329,10 @@ noremap <silent> <C-L> :tabn<CR>
 
 " Formats the current buffer.
 nnoremap <leader>f gg=G
+
+" Make it a bit easier to navigate in the wildmenu.
+cnoremap <Left> <Space><BS><Left>
+cnoremap <Right> <Space><BS><Right>
 
 " Bind make command.
 " Make this only happen for Makefile projects.

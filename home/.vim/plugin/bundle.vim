@@ -29,17 +29,23 @@ Bundle 'mattn/webapi-vim'
 "  These plugins provide the root functionality of my Vim setup.
 "  I don't see me using Vim without these guys.
 
+"Bundle "spolu/dwm.vim"
+"Bundle "Raimondi/delimitMate"
+"Bundle "tpope/vim-surround"
+"Bundle "tpope/vim-dispatch"
+"Bundle "mattn/emmet-vim"
+
 " Make GVim themes work ootb in CVim.
 Bundle "godlygeek/csapprox"
 
 " Universal editor support
-Bundle "editorconfig/editorconfig-vim"
+"Bundle "editorconfig/editorconfig-vim"
 
 " Add indentation lines.
 Bundle "Yggdroot/indentLine"
 
 " Provides a means of quick-n-easy pair programming. Just add water.
-Bundle 'FredKSchott/CoVim'
+"Bundle 'FredKSchott/CoVim'
 
 " Tmux keybindings into Vim.
 Bundle 'benmills/vimux'
@@ -51,7 +57,7 @@ Bundle 'bling/vim-airline'
 Bundle 'xolox/vim-session'
 
 " Tasks just like Eclipse, yo.
-Bundle 'jalcine/TaskList.vim'
+"Bundle 'jalcine/TaskList.vim'
 
 " Load local configuration.
 Bundle 'jalcine/localrc.vim'
@@ -66,7 +72,7 @@ Bundle 't4ku/marktag'
 Bundle 'jalcine/cmake.vim'
 
 " Incorporate Android support.
-Bundle 'jalcine/android.vim'
+" Bundle 'jalcine/android.vim'
 "}}} 
 
 "{{{ Editing Extensbility
@@ -78,7 +84,7 @@ Bundle 'tpope/vim-speeddating'
 Bundle 'godlygeek/tabular'
 
 " Transparent GNUPG editing of files.
-Bundle 'jamessan/vim-gnupg'
+"Bundle 'jamessan/vim-gnupg'
 
 " Awesome jazz.
 Bundle "scrooloose/syntastic"
@@ -87,22 +93,18 @@ Bundle "scrooloose/syntastic"
 Bundle 'scrooloose/nerdtree'
 
 " Make NERDTree into all of the TABS!
-Bundle 'jistr/vim-nerdtree-tabs'
+"Bundle 'jistr/vim-nerdtree-tabs'
 
 " Advanced commenting for Vim.
 Bundle 'scrooloose/nerdcommenter'
 
 " Advanced TODO support in Vim.
-Bundle 'aaronbieber/quicktask'
-
-" Kickass multiline editing.
-Bundle 'hlissner/vim-multiedit'
+"Bundle 'aaronbieber/quicktask'
 
 " A useful completer.
 Bundle "Valloric/YouCompleteMe"
 
 " Formatting tools.
-Bundle "einars/js-beautify"
 Bundle "Chiel92/vim-autoformat"
 
 " Advanced editing/refactoring support.
@@ -140,13 +142,13 @@ Bundle 'pangloss/vim-javascript'
 Bundle 'helino/vim-json'
 
 " LESS formatting support.
-Bundle 'groenewege/vim-less'
+"Bundle 'groenewege/vim-less'
 
 " JADE formatting support.
-Bundle 'digitaltoad/vim-jade'
+"Bundle 'digitaltoad/vim-jade'
 
 " Perl formatting support.
-Bundle 'vim-perl/vim-perl'
+"Bundle 'vim-perl/vim-perl'
 
 " HTML5 formatting support.
 Bundle 'othree/html5.vim'
@@ -184,7 +186,7 @@ Bundle 'mmozuras/vim-github-comment'
 Bundle 'SirVer/ultisnips'
 
 " My personal fork + build of snippets.
-Bundle 'jalcine/vim-snippets'
+"Bundle 'jalcine/vim-snippets'
 
 " File and buffer search tool.
 Bundle 'kien/ctrlp.vim'
@@ -192,7 +194,7 @@ Bundle 'kien/ctrlp.vim'
 
 "{{{ Coloring and UI
 " Awesome ass themes for Vim.
-Bundle "daylerees/colour-schemes", { "rtp": "vim-themes" }
+"Bundle "daylerees/colour-schemes", { "rtp": "vim-themes" }
 
 " Massive list of color themes.
 Bundle 'flazz/vim-colorschemes'
@@ -205,9 +207,4 @@ Bundle 'chriskempson/tomorrow-theme', { "rtp" : "vim" }
 
 "}}}
 
-" Activate plugin detection now.
-filetype plugin indent on
-" Let's enable some syntax highlighting as well.
-syntax on
-" Define the color scheme to be this nice poppy one!
-colorscheme Tomorrow
+

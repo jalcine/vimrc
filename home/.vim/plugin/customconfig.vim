@@ -81,15 +81,23 @@ let g:ctrlp_extensions = [ 'tag', 'buffertag', 'quickfix', 'bookmarkdir', 'mixed
 
 "{{{2 indentLine
 let g:indentLine_char="┆"
+let g:indentLine_first_char="│"
+let g:indentLine_showFirstIndentLevel=1
 "}}}
+
+"{{{2 CoVim
+let g:CoVim_default_name="CoVimming"
+let g:CoVim_default_port="9320"
 
 " {{{2 vim-session
 let g:session_directory="~/.vim/sessions"
 let g:session_default_name="default"
-let g:session_autoload="no"
+let g:session_autoload="prompt"
 let g:session_autosave="yes"
 let g:session_autosave_periodic=2
 let g:session_command_aliases=1
+let g:session_default_overwrite=1
+let g:session_default_to_last=1
 
 "{{{2 Snippets
 let g:UltiSnipsEditSplit="vertical"
@@ -112,7 +120,7 @@ let g:github_comment_open_browser = 1
 
 "{{{2 Vimux 
 let g:VimuxPromptString = "CMD? "
-let g:VimuxUseNearesPane = 1
+let g:VimuxUseNearestPane = 1
 let g:VimuxOrientation = "v"
 "}}}
 

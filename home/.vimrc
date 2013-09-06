@@ -34,19 +34,19 @@ set modeline
 let mapleader=","
 let maplocalleader="\\"
 
-" Load plugins, its config and mappings.
+" Load plug ins, its configuration and mappings.
 source ~/.vim/plugin/customconfig.vim
 source ~/.vim/plugin/bundle.vim
 source ~/.vim/plugin/custommappings.vim
 
-" Activate plugin detection now.
+" Activate plug in detection now.
 filetype plugin indent on
 " Let's enable some syntax highlighting as well.
 syntax on
 " Set the colorscheme now.
 colorscheme jellybeans
 " Make it dark.
-set background=dark
+set background=light
 
 "{{{1 Immediate Configuration Options
 

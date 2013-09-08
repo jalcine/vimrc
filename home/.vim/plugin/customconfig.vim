@@ -10,7 +10,7 @@ let g:username="jalcine"
 let g:cmake_use_vimux=0
 
 "{{{2 Airline config
-let g:airline_theme="jellybeans"
+let g:airline_theme="badwolf"
 let g:airline_modified_detection=1
 let g:airline_powerline_fonts=1
 let g:airline#extensions#branch#enabled = 1
@@ -18,20 +18,19 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#hunks#non_zero_only = 1
 let g:airline#extensions#branch#empty_message = '(none)'
 let g:airline#extensions#whitespace#enabled=0
-  let g:airline_mode_map = {
-      \ '__' : '-',
-      \ 'n'  : 'N',
-      \ 'i'  : 'I',
-      \ 'R'  : 'R',
-      \ 'c'  : 'C',
-      \ 'v'  : 'V',
-      \ 'V'  : 'V',
-      \ '' : 'V',
-      \ 's'  : 'S',
-      \ 'S'  : 'S',
-      \ '' : 'S',
-      \ }
-
+let g:airline_mode_map = {
+  \ '__' : '-',
+  \ 'n'  : 'NO',
+  \ 'i'  : 'IN',
+  \ 'R'  : 'RE',
+  \ 'c'  : 'C',
+  \ 'v'  : 'VI',
+  \ 'V'  : 'VL',
+  \ '' : 'VB',
+  \ 's'  : 'S',
+  \ 'S'  : 'S',
+  \ '' : 'S',
+  \ }
 
 "{{{2 YouCompleteMe
 let g:ycm_collect_identifiers_from_tags_files = 1
@@ -40,17 +39,17 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_global_ycm_extra_conf = "$HOME/.ycm_extra_conf.py"
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_semantic_triggers =  {
-      \   'c' : ['->', '.', '('],
-      \   'objc' : ['->', '.'],
-      \   'ocaml' : ['.', '#'],
-      \   'cpp,objcpp' : ['->', '.', '::', '('],
-      \   'perl' : ['->', '('],
-      \   'php' : ['->', '::', '('],
-      \   'cs,java,javascript,d,vim18:19:47 EDTthon,perl6,scala,vb,elixir,go' : ['.', '('],
-      \   'ruby' : ['.', '::', '('],
-      \   'lua' : ['.', ':'],
-      \   'erlang' : [':'],
-      \ }
+  \ 'c' : ['->', '.', '('],
+  \ 'objc' : ['->', '.'],
+  \ 'ocaml' : ['.', '#'],
+  \ 'cpp,objcpp' : ['->', '.', '::', '('],
+  \ 'perl' : ['->', '('],
+  \ 'php' : ['->', '::', '('],
+  \ 'cs,java,javascript,d,vim18:19:47 EDTthon,perl6,scala,vb,elixir,go' : ['.', '('],
+  \ 'ruby' : ['.', '::', '('],
+  \ 'lua' : ['.', ':'],
+  \ 'erlang' : [':'],
+  \ }
 
 "{{{2 Syntastic options
 let g:syntastic_enable_signs=1
@@ -92,7 +91,7 @@ let g:CoVim_default_port="9320"
 " {{{2 vim-session
 let g:session_directory="~/.vim/sessions"
 let g:session_default_name="default"
-let g:session_autoload="prompt"
+let g:session_autoload="no"
 let g:session_autosave="yes"
 let g:session_autosave_periodic=2
 let g:session_command_aliases=1
@@ -124,9 +123,4 @@ let g:VimuxUseNearestPane = 1
 let g:VimuxOrientation = "v"
 "}}}
 
-"{{{2 tagbar
 "}}}
-
-"}}}
-
-

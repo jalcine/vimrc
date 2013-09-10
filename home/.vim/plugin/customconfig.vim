@@ -13,12 +13,12 @@ let g:cmake_use_vimux=0
 let g:airline_theme="badwolf"
 let g:airline_modified_detection=1
 let g:airline_powerline_fonts=1
-let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#hunks#non_zero_only = 1
-let g:airline#extensions#branch#empty_message = '(none)'
+let g:airline#extensions#branch#enabled=1
+let g:airline#extensions#tabline#enabled=1
+let g:airline#extensions#hunks#non_zero_only=1
+let g:airline#extensions#branch#empty_message='(none)'
 let g:airline#extensions#whitespace#enabled=0
-let g:airline_mode_map = {
+let g:airline_mode_map={
   \ '__' : '-',
   \ 'n'  : 'NO',
   \ 'i'  : 'IN',
@@ -62,7 +62,7 @@ let g:syntastic_quiet_warnings=1
 " Define checkers
 
 " C++ specific options
-let g:syntastic_cpp_compiler="gcc"
+let g:syntastic_cpp_compiler="ycm"
 let g:syntastic_cpp_include_dirs=[ "$HOME/.local/include", "/usr/include", "/usr/local/include" ]
 let g:syntastic_cpp_check_header=1
 
@@ -76,7 +76,7 @@ let g:ctrlp_root_markers=[".localrc.vim", ".git", ".bzr", ".hg", ".svn"]
 let g:ctrlp_open_new_file='t'
 let g:ctrlp_open_multiple_files='t'
 let g:ctrlp_cmd='CtrlP'
-let g:ctrlp_extensions = [ 'tag', 'buffertag', 'quickfix', 'bookmarkdir', 'mixed', 'line', 'changes', 'undo']
+let g:ctrlp_extensions = [ 'line',  'tag', 'buffertag', 'quickfix', 'bookmarkdir', 'mixed', 'line', 'changes', 'undo']
 
 "{{{2 indentLine
 let g:indentLine_char="┆"
@@ -112,15 +112,15 @@ let g:android_default_project_path = "$HOME/Development/Projects"
 
 "{{{2 GitHub configuration
 let g:github_user=g:username
-let g:github_dashboard= { "username" : g:username, "emoji" : 1 }
-let g:github_search_path_format = "$HOME/Development/Projects"
-let g:github_comment_open_browser = 1
+let g:github_dashboard={ "username" : g:username, "emoji" : 1 }
+let g:github_search_path_format="$HOME/Development/Projects"
+let g:github_comment_open_browser=1
 "}}}
 
 "{{{2 Vimux 
-let g:VimuxPromptString = "CMD? "
-let g:VimuxUseNearestPane = 1
-let g:VimuxOrientation = "v"
+let g:VimuxPromptString="CMD? "
+let g:VimuxUseNearestPane=1
+let g:VimuxOrientation="v"
 "}}}
 
 "}}}

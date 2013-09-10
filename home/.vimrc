@@ -43,10 +43,10 @@ source ~/.vim/plugin/custommappings.vim
 filetype plugin indent on
 " Let's enable some syntax highlighting as well.
 syntax on
-" Set the colorscheme now.
-colorscheme jellybeans
+" Set the colorscheme.
+colorscheme badwolf
 " Make it dark.
-set background=light
+set background=dark
 
 "{{{1 Immediate Configuration Options
 

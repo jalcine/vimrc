@@ -10,7 +10,7 @@ let g:username="jalcine"
 let g:cmake_use_vimux=0
 
 "{{{2 Airline config
-let g:airline_theme="badwolf"
+let g:airline_theme="luna"
 let g:airline_modified_detection=1
 let g:airline_powerline_fonts=1
 let g:airline#extensions#branch#enabled=1
@@ -45,7 +45,7 @@ let g:ycm_semantic_triggers =  {
   \ 'cpp,objcpp' : ['->', '.', '::', '('],
   \ 'perl' : ['->', '('],
   \ 'php' : ['->', '::', '('],
-  \ 'cs,java,javascript,d,vim18:19:47 EDTthon,perl6,scala,vb,elixir,go' : ['.', '('],
+  \ 'cs,java,javascript,d,vim,python,perl6,scala,vb,elixir,go' : ['.', '('],
   \ 'ruby' : ['.', '::', '('],
   \ 'lua' : ['.', ':'],
   \ 'erlang' : [':'],
@@ -56,7 +56,7 @@ let g:syntastic_enable_signs=1
 let g:syntastic_echo_current_error=1
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
-let g:syntastic_auto_jump=0
+let g:syntastic_auto_jump=1
 let g:syntastic_quiet_warnings=1
 
 " Define checkers

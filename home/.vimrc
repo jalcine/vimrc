@@ -1,89 +1,89 @@
-"" vim: textwidth=78 foldmethod=marker
-"" Vim configuration options.
-""
-"" @author Jacky Alcine <me@jalcine.me>
-"" @date   2013-08-05 13:19:47 EDT 
-"" @vcs    https://github.com/jalcine/vimrc
-""
-"" I take pride in my Vim configuration. Being that I'm
-"" an intermediate Vim user and I try to share as much
-"" as I learn, I've taken the liberty of documenting and
-"" explaining the nature of my configuration.
-""
-"" I use the latest development version of Vim from sources using a PPA in
-"" Ubuntu.
-""
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" We live in the future, don't worry about backwards
-" compatibility with Vi.
-set nocompatible
+  "" vim: textwidth=78 foldmethod=marker
+  "" Vim configuration options.
+  ""
+  "" @author Jacky Alcine <me@jalcine.me>
+  "" @date   2013-08-05 13:19:47 EDT 
+  "" @vcs    https://github.com/jalcine/vimrc
+  ""
+  "" I take pride in my Vim configuration. Being that I'm
+  "" an intermediate Vim user and I try to share as much
+  "" as I learn, I've taken the liberty of documenting and
+  "" explaining the nature of my configuration.
+  ""
+  "" I use the latest development version of Vim from sources using a PPA in
+  "" Ubuntu.
+  ""
+  """"""""""""""""""""""""""""""""""""""""""""""""""""""""
+  " We live in the future, don't worry about backwards
+  " compatibility with Vi.
+  set nocompatible
 
-" We use UNIX. So act like UNIX.
-set encoding=utf-8 fileencoding=utf-8 fileformats=unix
+  " We use UNIX. So act like UNIX.
+  set encoding=utf-8 fileencoding=utf-8 fileformats=unix
 
-" Use my bash file.
-let $BASH_ENV="$HOME/.bashrc"
+  " Use my bash file.
+  let $BASH_ENV="$HOME/.bashrc"
 
-" Enable the use of Bash into the mix.
-set shell=/bin/bash shellcmdflag=-c
+  " Enable the use of Bash into the mix.
+  set shell=/bin/bash shellcmdflag=-c
 
-" We need modelines.
-set modeline
+  " We need modelines.
+  set modeline
 
-" Set my user-defined action to the comma key.
-let mapleader=","
-let maplocalleader="\\"
+  " Set my user-defined action to the comma key.
+  let mapleader=","
+  let maplocalleader="\\"
 
-" Load plug ins, its configuration and mappings.
-source ~/.vim/plugin/customconfig.vim
-source ~/.vim/plugin/bundle.vim
-source ~/.vim/plugin/custommappings.vim
+  " Load plug ins, its configuration and mappings.
+  source ~/.vim/plugin/customconfig.vim
+  source ~/.vim/plugin/bundle.vim
+  source ~/.vim/plugin/custommappings.vim
 
-" Activate plug in detection now.
-filetype plugin indent on
-" Let's enable some syntax highlighting as well.
-syntax on
-" Set the colorscheme.
-colorscheme badwolf
-" Make it dark.
-set background=dark
+  " Activate plug in detection now.
+  filetype plugin indent on
+  " Let's enable some syntax highlighting as well.
+  syntax on
+  " Set the colorscheme.
+  colorscheme ironman
+  " Make it dark.
+  set background=light
 
-"{{{1 Immediate Configuration Options
+  "{{{1 Immediate Configuration Options
 
-" Use visual bells instead of beeps. I use this
-" since it helps a lot with tmux to inform me
-" to switch over to it. Also enable bells for errors.
-set visualbell errorbells
+  " Use visual bells instead of beeps. I use this
+  " since it helps a lot with tmux to inform me
+  " to switch over to it. Also enable bells for errors.
+  set visualbell errorbells
 
-" Gimme something to look at.
-set laststatus=2
+  " Gimme something to look at.
+  set laststatus=2
 
-" Show me the tab bar no matter what.
-set showtabline=2
+  " Show me the tab bar no matter what.
+  set showtabline=2
 
-"{{{2 Spacing
+  "{{{2 Spacing
 
-" I prefer to use two spaces to represent tabs.
-set tabstop=2 softtabstop=2
+  " I prefer to use two spaces to represent tabs.
+  set tabstop=2 softtabstop=2
 
-" Set expandtab to the values used for tabstop
-" and shiftwidth to ensure that we enter only 
-" spaces, as well as enabling auto-indenting.
-" Also ensures that <Tab>s are converted into spaces.
-" We don't want any mix-ups here.
-set smarttab expandtab
+  " Set expandtab to the values used for tabstop
+  " and shiftwidth to ensure that we enter only 
+  " spaces, as well as enabling auto-indenting.
+  " Also ensures that <Tab>s are converted into spaces.
+  " We don't want any mix-ups here.
+  set smarttab expandtab
 
-" Set a hard wrapping to 78 characters. Nothing should be longer than that.
-" Trust me, living a few days in the console will teach you that.
-set textwidth=78 shiftwidth=2
+  " Set a hard wrapping to 78 characters. Nothing should be longer than that.
+  " Trust me, living a few days in the console will teach you that.
+  set textwidth=78 shiftwidth=2
 
-" Automatically indent text.
-set autoindent
+  " Automatically indent text.
+  set autoindent
 
-" Enable your wild side, take command completion completion up a notch.
-set wildmenu
+  " Enable your wild side, take command completion completion up a notch.
+  set wildmenu
 
-" Allow for an interesting view when opening the command line menu.
+  " Allow for an interesting view when opening the command line menu.
 set wildmode=longest:full wildignorecase
 
 " Ignore a lot of stuff.

@@ -44,7 +44,7 @@ filetype plugin indent on
 " Let's enable some syntax highlighting as well.
 syntax on
 " Set the colorscheme.
-colorscheme beauty256
+colorscheme DevC++
 " Make it dark.
 set background=light
 

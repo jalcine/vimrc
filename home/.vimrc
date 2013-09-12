@@ -44,7 +44,7 @@ filetype plugin indent on
 " Let's enable some syntax highlighting as well.
 syntax on
 " Set the colorscheme.
-colorscheme ironman
+colorscheme beauty256
 " Make it dark.
 set background=light
 

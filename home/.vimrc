@@ -226,10 +226,14 @@ augroup autosourcevim
   au BufWritePost ~/.vimrc source $MYVIMRC | echomsg "[vim] Configuration sourced."
 augroup END
 
-augroup reformat
+" Adds in some format detection for specific files.
+augroup moreformatdetect
   au!
   au BufReadPost *.scss   setlocal ft=css.scss
-  au BufReadPost *.coffee setlocal ft=javascript.cofeescript
+  au BufReadPost *.coffee setlocal ft=javascript.coffeescript
+  au BufReadPost Gemfile  setlocal ft=bundler.ruby
+  au BufReadPost Procfile setlocal ft=foreman.ruby
+  au BufReadPost *spec.rb setlocal ft=rspec.ruby
 augroup END
 
 " Toggle the current cursor line whenever I swap windows.
@@ -306,9 +310,6 @@ inoremap <leader>py <C-R>=strftime("%H:%M:%S %Z")<CR>
 
 " Inject the current date and time
 inoremap <leader>pt <C-R>=strftime("%Y-%m-%d %H:%M:%S %Z")<CR>
-
-" Toggle the light/dark state of Vim.
-nnoremap <leader>a :call toggle_color()<CR>
 
 " Disable classic arrow-key navigation in Normal mode.
 noremap <Up> <NOP>

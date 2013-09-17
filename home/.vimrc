@@ -44,9 +44,9 @@ filetype plugin indent on
 " Let's enable some syntax highlighting as well.
 syntax on
 " Set the colorscheme.
-colorscheme DevC++
+colorscheme jellybeans
 " Make it dark.
-set background=light
+set background=dark
 
 "{{{1 Immediate Configuration Options
 
@@ -179,9 +179,6 @@ set undolevels=16384
 "}}}
 
 "{{{2 Spelling Options
-" Teach me howta spell, teach-teach me howta spell.
-set spell
-
 " English speaking, American born. So let's correct ourselves like one. Since
 " I'm learning French and know a bit of Spanish; we'll add those dictionaries
 " in as well.
@@ -264,7 +261,7 @@ endfunction
 " Make sure that GNU screen or tmux passes me my xkeys.
 " link: http://www.reddit.com/r/vim/comments/1a29vk/_/c8tze8p
 if &term == "screen" || &term == "screen-256color"
-  execute "set t_kP=\e[5;*~"
+  execute "set t_kP=\e[5;*~c"
   execute "set t_kN=\e[6;*~"
   execute "set <xUp>=\e[1;*A"
   execute "set <xDown>=\e[1;*B"
@@ -274,6 +271,28 @@ endif
 
 " Do this when I hit <Backspace>.
 set backspace=indent,eol,start
+
+" Toggling color scheme.
+function! g:toggle_color()
+  if &background == "dark"
+    colorscheme Tomorrow
+    set background=light
+    call airline#switch_theme("tomorrow")
+  else
+    colorscheme jellybeans
+    set background=dark
+    call airline#switch_theme("jellybeans")
+  endif
+endfunction
+
+if $KONSOLE_PROFILE_NAME == "Light"
+  colorscheme Tomorrow
+  set background=light
+end
+if $KONSOLE_PROFILE_NAME == "Dark"
+  colorscheme jellybeans
+  set background=dark
+end
 
 "}}}
 "}}}
@@ -316,6 +335,9 @@ noremap <Up> <NOP>
 noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
+
+" Toggle colorscheme.
+nnoremap <silent> <leader>ds :call g:toggle_color()<CR>
 
 " Use Ctrl+S to save the contents of the current buffer. Reflex.
 nnoremap <silent> <C-s> :w

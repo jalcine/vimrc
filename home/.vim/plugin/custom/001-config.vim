@@ -10,45 +10,45 @@ let g:username="jalcine"
 let g:cmake_use_vimux=0
 
 "{{{2 Airline config
-let g:airline_theme="luna"
-let g:airline_modified_detection=1
+let g:airline_theme="zenburn"
+let g:airline_detect_modified=1
 let g:airline_powerline_fonts=1
 let g:airline#extensions#branch#enabled=1
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#hunks#non_zero_only=1
-let g:airline#extensions#branch#empty_message='(none)'
+let g:airline#extensions#branch#empty_message='(n)'
 let g:airline#extensions#whitespace#enabled=0
 let g:airline_mode_map={
   \ '__' : '-',
-  \ 'n'  : 'NO',
-  \ 'i'  : 'IN',
-  \ 'R'  : 'RE',
-  \ 'c'  : 'C',
-  \ 'v'  : 'VI',
-  \ 'V'  : 'VL',
-  \ '' : 'VB',
+  \ 'n'  : 'NORM',
+  \ 'i'  : 'INS',
+  \ 'R'  : 'REP',
+  \ 'c'  : 'COMMAND',
+  \ 'v'  : 'VIS',
+  \ 'V'  : 'VISLIN',
+  \ '' : 'VISBLK',
   \ 's'  : 'S',
   \ 'S'  : 'S',
   \ '' : 'S',
   \ }
 
 "{{{2 YouCompleteMe
-let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_collect_identifiers_from_tags_files=1
+let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_autoclose_preview_window_after_insertion=1
 let g:ycm_global_ycm_extra_conf = "$HOME/.ycm_extra_conf.py"
-let g:ycm_confirm_extra_conf = 0
+let g:ycm_confirm_extra_conf=0
 let g:ycm_semantic_triggers =  {
-  \ 'c' : ['->', '.', '('],
-  \ 'objc' : ['->', '.'],
-  \ 'ocaml' : ['.', '#'],
-  \ 'cpp,objcpp' : ['->', '.', '::', '('],
-  \ 'perl' : ['->', '('],
-  \ 'php' : ['->', '::', '('],
-  \ 'cs,java,javascript,d,vim,python,perl6,scala,vb,elixir,go' : ['.', '('],
-  \ 'ruby' : ['.', '::', '('],
-  \ 'lua' : ['.', ':'],
-  \ 'erlang' : [':'],
+  \ 'c'                                                        : [ '->', '.', '('],
+  \ 'objc'                                                     : [ '->', '.'],
+  \ 'ocaml'                                                    : [ '.', '#'],
+  \ 'cpp,objcpp'                                               : [ '->', '.', '::', '('],
+  \ 'perl'                                                     : [ '->', '(', '::'],
+  \ 'php'                                                      : [ '->', '::', '('],
+  \ 'cs,java,javascript,d,vim,python,perl6,scala,vb,elixir,go' : [ '.', '('],
+  \ 'ruby'                                                     : [ '.', '::', '('],
+  \ 'lua'                                                      : [ '.', ':'],
+  \ 'erlang'                                                   : [ ':'],
   \ }
 
 "{{{2 Syntastic options
@@ -56,7 +56,7 @@ let g:syntastic_enable_signs=1
 let g:syntastic_echo_current_error=1
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
-let g:syntastic_auto_jump=1
+let g:syntastic_auto_jump=0
 let g:syntastic_quiet_warnings=1
 
 " Define checkers
@@ -81,7 +81,7 @@ let g:ctrlp_extensions = [ 'line',  'tag', 'buffertag', 'quickfix', 'bookmarkdir
 "{{{2 indentLine
 let g:indentLine_char="┆"
 let g:indentLine_first_char="│"
-let g:indentLine_showFirstIndentLevel=1
+let g:indentLine_showFirstIndentLevel=0
 "}}}
 
 "{{{2 CoVim
@@ -122,5 +122,18 @@ let g:VimuxPromptString="CMD? "
 let g:VimuxUseNearestPane=1
 let g:VimuxOrientation="v"
 "}}}
+
+"{{{2 NERDTree
+let g:NERDTreeAutoCenter=1
+let g:NERDTreeHighlightCursorline=1
+let g:NERDTreeShowHidden=1
+let g:NERDTreeMinimalUI=1
+let g:NERDTreeDirArrows=1
+let g:NERDTreeCascadeOpenSingleChildDir=1
+let g:NERDTreeAutoDeleteBuffer=1
+"}}}
+
+let g:tagbar_compact=1
+let g:tagbar_autoshowtag=1
 
 "}}}

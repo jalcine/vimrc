@@ -1,8 +1,8 @@
-"" vim: textwidth=78 foldmethod=marker
+"" vim: tw=78 fdm=marker
 "" Vim configuration options.
 ""
-"" @author Jacky Alcine <me@jalcine.me>
-"" @date   2013-08-05 13:19:47 EDT 
+"" @author Jacky Alciné <me@jalcine.me>
+"" @date   2013-09-21 16:59:24 EDT
 "" @vcs    https://github.com/jalcine/vimrc
 ""
 "" I take pride in my Vim configuration. Being that I'm
@@ -11,7 +11,7 @@
 "" explaining the nature of my configuration.
 ""
 "" I use the latest development version of Vim from sources using a PPA in
-"" Ubuntu.
+"" Ubuntu; makes life a bit easier.
 ""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 " We live in the future, don't worry about backwards
@@ -34,19 +34,8 @@ set modeline
 let mapleader=","
 let maplocalleader="\\"
 
-" Load plug ins, its configuration and mappings.
-source ~/.vim/plugin/customconfig.vim
-source ~/.vim/plugin/bundle.vim
-source ~/.vim/plugin/custommappings.vim
-
-" Activate plug in detection now.
-filetype plugin indent on
-" Let's enable some syntax highlighting as well.
-syntax on
-" Set the colorscheme.
-colorscheme jellybeans
-" Make it dark.
-set background=dark
+" Use specific indentation files.
+filetype indent plugin on
 
 "{{{1 Immediate Configuration Options
 
@@ -107,8 +96,6 @@ set tags+=$HOME/.tags/*.tags
 
 " Save your work in sessions.
 set sessionoptions=buffers,tabpages,winsize,curdir
-set sessionoptions-=help,options,globals
-"}}}
 
 "{{{2 Layout
 
@@ -126,7 +113,7 @@ set foldcolumn=2
 set foldminlines=5
 
 " Anything greater than this is automatically folded.
-set foldlevel=2
+set foldlevel=3
 
 " Set the title in the terminal.
 set title titlelen=120 titlestring="%t%(\ %M%)%(\ (%{expand(\"%:~:.:h\")})%)%(\ %a%)"
@@ -136,8 +123,6 @@ set ruler
 
 " We like a stable number count.
 set number numberwidth=2
-
-"}}} 
 
 "{{{2 Searching
 
@@ -152,8 +137,7 @@ set incsearch
 set showmatch
 
 " We're being greedy by default.
-set gdefault                         
-"}}}
+set gdefault
 
 "{{{2 Recovery
 
@@ -176,7 +160,6 @@ set history=16384
 
 " Set the undo level to a little bit higher than default.
 set undolevels=16384
-"}}}
 
 "{{{2 Spelling Options
 " English speaking, American born. So let's correct ourselves like one. Since
@@ -193,18 +176,19 @@ set dictionary+=/usr/share/dict/web2,/usr/share/dict/propernames.gz
 
 " Set a location to save my added words.
 set spellfile=~/.vim/dict.custom.utf8-8.add
-"}}}
 
 "{{{2 Visual Cues
 " A problem that plagued me for months, having visual cues for white spacing
 " solves formatting problems a lot quicker. Also, we're using modern shells
 " (right?) so using UTF-8 characters for symbols should be a given.
-
 set fillchars=diff:⣿,vert:│
+
 " A visual cue for line-wrapping.
 set showbreak=↪
+
 " Visual cues when in 'list' model.
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
+
 " Show me these markings.
 set list
 
@@ -217,156 +201,8 @@ set showcmd
 " Let me know where I am.
 set cursorline cursorcolumn
 
-" Update Vim's config when I edit $MYVIMRC.
-augroup autosourcevim
-  au!
-  au BufWritePost ~/.vimrc source $MYVIMRC | echomsg "[vim] Configuration sourced."
-augroup END
-
-" Adds in some format detection for specific files.
-augroup moreformatdetect
-  au!
-  au BufReadPost *.scss   setlocal ft=css.scss
-  au BufReadPost *.coffee setlocal ft=javascript.coffeescript
-  au BufReadPost Gemfile  setlocal ft=bundler.ruby
-  au BufReadPost Procfile setlocal ft=foreman.ruby
-  au BufReadPost *spec.rb setlocal ft=rspec.ruby
-augroup END
-
-" Toggle the current cursor line whenever I swap windows.
-augroup cline
-  au!
-  au WinLeave,InsertEnter * set cursorline
-  au WinEnter,InsertLeave * set nocursorline
-augroup END
-
-" Automatically update tag linkages.
-augroup gimmetags
-  au!
-  au FileReadPost  * call s:load_local_tags()<CR>
-  au FileWritePost * call s:load_local_tags()<CR>
-  au FileChangedShellPost * call s:load_local_tags()<CR>
-augroup END
-
-function! s:load_local_tags()
-  set tags+=./.tags,./TAGS,./tags
-  set tags+=.bzr/tags
-  set tags+=.git/tags
-  set tags+=.svn/tags
-  set tags+=.hg/tags
-  set tags+=build/tags
-  echomsg "[ctags] Added VCS and potentially generated tag definition files."
-endfunction
-
-" Make sure that GNU screen or tmux passes me my xkeys.
-" link: http://www.reddit.com/r/vim/comments/1a29vk/_/c8tze8p
-if &term == "screen" || &term == "screen-256color"
-  execute "set t_kP=\e[5;*~c"
-  execute "set t_kN=\e[6;*~"
-  execute "set <xUp>=\e[1;*A"
-  execute "set <xDown>=\e[1;*B"
-  execute "set <xRight>=\e[1;*C"
-  execute "set <xLeft>=\e[1;*D"
-endif
-
 " Do this when I hit <Backspace>.
 set backspace=indent,eol,start
 
-" Toggling color scheme.
-function! g:toggle_color()
-  if &background == "dark"
-    colorscheme Tomorrow
-    set background=light
-    call airline#switch_theme("tomorrow")
-  else
-    colorscheme jellybeans
-    set background=dark
-    call airline#switch_theme("jellybeans")
-  endif
-endfunction
-
-if $KONSOLE_PROFILE_NAME == "Light"
-  colorscheme Tomorrow
-  set background=light
-end
-if $KONSOLE_PROFILE_NAME == "Dark"
-  colorscheme jellybeans
-  set background=dark
-end
-
-"}}}
-"}}}
-
-"{{{1 Key bindings.
-" Key bindings are a developer's bread and butter. Over time, I remap and
-" remap my keys to make my life as easy as possible. I've separated my generic
-" mappings from my plug-in mappings intentionally, just for clarity.
-
-" One less key to press to enter the Vim shell.
-nnoremap ; :
-
-" Toggle the use of list characters.
-noremap <leader>i :set list!<cr>
-
-" Toggle the state of search highlighting locally.
-nnoremap <silent> <leader>l :setlocal hlsearch!<CR>
-
-" Toggle the state of spelling locally.
-nnoremap <silent> <leader>j :setlocal spell!<CR>
-
-" Toggle the visibility of cursor lines.
-nnoremap <leader>c :setlocal cursorline!<CR>
-nnoremap <leader>C :setlocal cursorcolumn!<CR>
-
-" Toggle the current fold.
-nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
-
-" Inject the current date.
-inoremap <leader>pt <C-R>=strftime("%Y-%m-%d")<CR>
-
-" Inject the current time with the labelling of the time-zone.
-inoremap <leader>py <C-R>=strftime("%H:%M:%S %Z")<CR>
-
-" Inject the current date and time
-inoremap <leader>pt <C-R>=strftime("%Y-%m-%d %H:%M:%S %Z")<CR>
-
-" Disable classic arrow-key navigation in Normal mode.
-noremap <Up> <NOP>
-noremap <Down> <NOP>
-noremap <Left> <NOP>
-noremap <Right> <NOP>
-
-" Toggle colorscheme.
-nnoremap <silent> <leader>ds :call g:toggle_color()<CR>
-
-" Use Ctrl+S to save the contents of the current buffer. Reflex.
-nnoremap <silent> <C-s> :w
-
-" Edit and reload the master Vim configuration.
-nnoremap <silent> <leader>ev :tabnew $MYVIMRC<cr> 
-nnoremap <silent> <leader>sv :source $MYVIMRC<cr>
-
-" Jump between the current tabs.
-noremap <silent> <C-H> :tabp<CR>
-noremap <silent> <C-L> :tabn<CR>
-
-" Formats the current buffer.
-nnoremap <leader>f gg=G
-
-" Bind make command.
-" Make this only happen for Makefile projects.
-nnoremap <leader>ba :make all<CR>
-nnoremap <leader>bc :make clean<CR>
-nnoremap <leader>bi :make install<CR>
-nnoremap <leader>bu :make uninstall<CR>
-
-" Travel over errors.
-nnoremap <leader>ce <ESC>:cn<CR>
-nnoremap <leader>cp <ESC>:cp<CR>
-nnoremap <leader>co <ESC>:cwindow<CR>
-nnoremap <leader>cf <ESC>:cfirst<CR>
-nnoremap <leader>cl <ESC>:clast<CR>
-
-" Rewrite 'vhe' to 'vert help'.
-cnoremap vhe vert help
-"}}}
+source ~/.vim/plugin/custom/001-config.vim
+source ~/.vim/plugin/custom/010-plugins.vim

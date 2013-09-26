@@ -39,7 +39,7 @@ Bundle 'mattn/webapi-vim'
 Bundle 'godlygeek/csapprox'
 
 " Universal editor support
-"Bundle 'editorconfig/editorconfig-vim'
+Bundle 'editorconfig/editorconfig-vim'
 
 " Add indentation lines.
 Bundle 'Yggdroot/indentLine'
@@ -56,26 +56,22 @@ Bundle 'bling/vim-airline'
 " Improved session support.
 Bundle 'xolox/vim-session'
 
-" Tasks just like Eclipse, yo.
-"Bundle 'jalcine/TaskList.vim'
-
-" Load local configuration.
-Bundle 'jalcine/localrc.vim'
-
 " Show me the tags!
 Bundle 'majutsushi/tagbar'
 
 " Support for Markdown in Tagbar
 Bundle 't4ku/marktag'
 
-" Incorporate Android support.
 if $VIM_PLUGINS_DEV == 1
-  Bundle 'file:///home/jacky/Development/Projects/android.vim'
-  Bundle 'file:///home/jacky/Development/Projects/cmake.vim'
+  let l:my_plugins_prefix = 'file:///home/jacky/Development/Projects/'
 else
-  Bundle 'jalcine/android.vim'
-  Bundle 'jalcine/cmake.vim'
-endif
+  let l:my_plugins_prefix = 'jalcine/'
+end
+
+Bundle l:my_plugins_prefix . 'android.vim'
+Bundle l:my_plugins_prefix . 'cmake.vim'
+Bundle l:my_plugins_prefix . 'vim-snippets'
+Bundle l:my_plugins_prefix . 'localrc.vim'
 
 "{{{ Editing Extensbility
 
@@ -142,13 +138,13 @@ Bundle 'pangloss/vim-javascript'
 Bundle 'helino/vim-json'
 
 " LESS formatting support.
-"Bundle 'groenewege/vim-less'
+Bundle 'groenewege/vim-less'
 
 " JADE formatting support.
-"Bundle 'digitaltoad/vim-jade'
+Bundle 'digitaltoad/vim-jade'
 
 " Perl formatting support.
-"Bundle 'vim-perl/vim-perl'
+Bundle 'vim-perl/vim-perl'
 
 " HTML5 formatting support.
 Bundle 'othree/html5.vim'
@@ -180,9 +176,6 @@ Bundle 'mmozuras/vim-github-comment'
 
 " Snippet manager.
 Bundle 'SirVer/ultisnips'
-
-" My personal fork + build of snippets.
-Bundle 'jalcine/vim-snippets'
 
 " File and buffer search tool.
 Bundle 'kien/ctrlp.vim'

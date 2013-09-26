@@ -68,12 +68,14 @@ Bundle 'majutsushi/tagbar'
 " Support for Markdown in Tagbar
 Bundle 't4ku/marktag'
 
-" Incorporate CMake support.
-" Bundle 'jalcine/cmake.vim'
-Bundle 'file:///home/jacky/Development/Projects/cmake.vim'
-
 " Incorporate Android support.
-" Bundle 'jalcine/android.vim'
+if $VIM_PLUGINS_DEV == 1
+  Bundle 'file:///home/jacky/Development/Projects/android.vim'
+  Bundle 'file:///home/jacky/Development/Projects/cmake.vim'
+else
+  Bundle 'jalcine/android.vim'
+  Bundle 'jalcine/cmake.vim'
+endif
 
 "{{{ Editing Extensbility
 
@@ -180,14 +182,14 @@ Bundle 'mmozuras/vim-github-comment'
 Bundle 'SirVer/ultisnips'
 
 " My personal fork + build of snippets.
-"Bundle 'jalcine/vim-snippets'
+Bundle 'jalcine/vim-snippets'
 
 " File and buffer search tool.
 Bundle 'kien/ctrlp.vim'
 
 "{{{ Coloring and UI
 " Awesome ass themes for Vim.
-"Bundle "daylerees/colour-schemes", { 'rtp' : 'vim-themes' }
+Bundle "daylerees/colour-schemes", { 'rtp' : 'vim-themes' }
 
 " Massive list of color themes.
 Bundle 'flazz/vim-colorschemes'

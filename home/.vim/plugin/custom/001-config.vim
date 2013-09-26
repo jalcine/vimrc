@@ -8,9 +8,10 @@ let g:username="jalcine"
 
 "{{{2 CMake configuration
 let g:cmake_use_vimux=0
+let g:cmake_build_shared_libs=1
 
 "{{{2 Airline config
-let g:airline_theme="zenburn"
+let g:airline_theme="tomorrow"
 let g:airline_detect_modified=1
 let g:airline_powerline_fonts=1
 let g:airline#extensions#branch#enabled=1

@@ -193,10 +193,10 @@ set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
 set list
 
 " Update by redraw and not INS/DEL
-set ttyfast ttyscroll=10
+set ttyscroll=3 ttyfast
 
 " Show me what I was doing.
-set showcmd
+set showcmd showfulltag
 
 " Let me know where I am.
 set cursorline cursorcolumn

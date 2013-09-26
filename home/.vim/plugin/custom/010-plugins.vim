@@ -69,7 +69,8 @@ Bundle 'majutsushi/tagbar'
 Bundle 't4ku/marktag'
 
 " Incorporate CMake support.
-Bundle 'jalcine/cmake.vim'
+" Bundle 'jalcine/cmake.vim'
+Bundle 'file:///home/jacky/Development/Projects/cmake.vim'
 
 " Incorporate Android support.
 " Bundle 'jalcine/android.vim'

@@ -2,6 +2,7 @@
 augroup autosourcecfg
   au!
   au BufWritePost ~/.vimrc source $MYVIMRC | echomsg "[vim] Configuration sourced."
+  au BufWritePost *.local.vimrc source % | echomsg "[vim] Reloaded local Vim configuration."
   au BufWritePost *.tmux* echomsg system("tmux source-file ~./.tmux.conf; tmux display-message 'Conf reloaded.")
 augroup END
 
@@ -9,9 +10,8 @@ augroup END
 augroup moreformatdetect
   au!
   au BufReadPost *.scss    setlocal ft=css.scss
-  au BufReadPost *.sass    setlocal ft=css.sass
-  au BufReadPost *.coffee  setlocal ft=javascript.coffeescript
   au BufReadPost Gemfile   setlocal ft=bundler.ruby
+  au BufReadPost Guardfile setlocal ft=guard.ruby
   au BufReadPost Procfile  setlocal ft=foreman.ruby
   au BufReadPost *_spec.rb setlocal ft=rspec.ruby
 augroup END

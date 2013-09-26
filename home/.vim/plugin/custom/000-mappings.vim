@@ -52,6 +52,7 @@ nnoremap <leader>ba :make all<CR>
 nnoremap <leader>bc :make clean<CR>
 nnoremap <leader>bi :make install<CR>
 nnoremap <leader>bu :make uninstall<CR>
+nnoremap <leader>bt :make test<CR>
 
 " Travel over errors.
 nnoremap <leader>ce <ESC>:cn<CR>

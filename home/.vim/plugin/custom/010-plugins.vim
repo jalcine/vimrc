@@ -1,10 +1,19 @@
 " vim: set fdm=marker tw=78 ft=vim
 
-if exists("g:jalcine_plugins_loaded")
+if exists("g:jalcine_plugin_loaded")
   finish
 else
-  let g:jalcine_plugins_loaded = 1
+  let g:jalcine_plugin_loaded = 1
 endif
+
+"{{{ Personal plug-in dev
+let my_plugin_prefix = 'jalcine/'
+
+if $VIM_PLUGIN_DEV
+  let my_plugin_prefix = 'file:///home/jacky/Development/Projects/'
+else
+  let my_plugin_prefix = 'jalcine/'
+end
 
 " We turn off file-type detection for now, this is
 " required for using Vundle.
@@ -12,18 +21,21 @@ filetype off
 
 "{{{ Plug-ins
 
-" For my personal extension development, I use Vundle. Use it.
+" For plug-in management, I strongly recommend Vundle. It kicks Martian ass!
 set rtp+=~/.vim/bundle/vundle
 
 " Invoke the swag!
 call vundle#rc()
 
 " Some plugins I'm iffy about.
-"Bundle "spolu/dwm.vim"
-"Bundle "Raimondi/delimitMate"
-"Bundle "tpope/vim-surround"
-"Bundle "tpope/vim-dispatch"
-"Bundle "mattn/emmet-vim"
+if $VIM_PLUGIN_IFFY
+  Bundle "spolu/dwm.vim"
+  Bundle "Raimondi/delimitMate"
+  Bundle "tpope/vim-surround"
+  Bundle "tpope/vim-dispatch"
+  Bundle "mattn/emmet-vim"
+  Bundle 'FredKSchott/CoVim'
+endif
 
 " Keep Vundle up to date.
 " {{{ Libraries
@@ -44,9 +56,6 @@ Bundle 'editorconfig/editorconfig-vim'
 " Add indentation lines.
 Bundle 'Yggdroot/indentLine'
 
-" Provides a means of quick-n-easy pair programming. Just add water.
-"Bundle 'FredKSchott/CoVim'
-
 " tmux key-bindings into Vim.
 Bundle 'benmills/vimux'
 
@@ -62,16 +71,11 @@ Bundle 'majutsushi/tagbar'
 " Support for Markdown in Tagbar
 Bundle 't4ku/marktag'
 
-if $VIM_PLUGINS_DEV == 1
-  let l:my_plugins_prefix = 'file:///home/jacky/Development/Projects/'
-else
-  let l:my_plugins_prefix = 'jalcine/'
-end
-
-Bundle l:my_plugins_prefix . 'android.vim'
-Bundle l:my_plugins_prefix . 'cmake.vim'
-Bundle l:my_plugins_prefix . 'vim-snippets'
-Bundle l:my_plugins_prefix . 'localrc.vim'
+Bundle (my_plugin_prefix . 'android.vim')
+Bundle (my_plugin_prefix . 'cmake.vim')
+Bundle (my_plugin_prefix . 'vim-snippets')
+Bundle (my_plugin_prefix . 'localrc.vim')
+Bundle (my_plugin_prefix . 'tagbar')
 
 "{{{ Editing Extensbility
 
@@ -195,3 +199,5 @@ filetype plugin indent on
 
 " Re-confirm enabling of syntax.
 syntax on
+
+" Rock on!

@@ -66,8 +66,6 @@ let g:syntastic_warning_symbol='⚠'
 let g:syntastic_auto_jump=1
 let g:syntastic_quiet_warnings=1
 
-" Define checkers
-
 " C++ specific options
 let g:syntastic_cpp_compiler="ycm"
 let g:syntastic_cpp_check_header=1
@@ -77,7 +75,7 @@ let g:syntastic_cpp_include_dirs=[ "$HOME/.local/include",
   \ ]
 
 " Ruby specific options
-" let g:syntastic_ruby_exec = system("rbenv which ruby")
+let g:syntastic_ruby_exec = Rbenv("which ruby")
 
 "{{{2 CtrlP
 let g:ctrlp_switch_buffer="E"
@@ -143,7 +141,16 @@ let g:NERDTreeCascadeOpenSingleChildDir=1
 let g:NERDTreeAutoDeleteBuffer=1
 "}}}
 
+"{{{2 Tagbar
 let g:tagbar_compact=1
 let g:tagbar_autoshowtag=1
+
+"{{{2 Signify
+let g:signify_vcs_list = ['git','hg','svn','bzr']
+let g:signify_sign_overwrite = 0
+let g:signify_sign_add='✚'
+let g:signify_sign_change='✻'
+let g:signify_sign_delete='✖'
+let g:signify_sign_delete_first_line='✖'
 
 "}}}

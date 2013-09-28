@@ -75,7 +75,7 @@ let g:syntastic_cpp_include_dirs=[ "$HOME/.local/include",
   \ ]
 
 " Ruby specific options
-let g:syntastic_ruby_exec = Rbenv("which ruby")
+let g:syntastic_ruby_exec = system("rbenv which ruby")
 
 "{{{2 CtrlP
 let g:ctrlp_switch_buffer="E"

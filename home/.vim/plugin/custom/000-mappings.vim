@@ -63,3 +63,6 @@ nnoremap <leader>cl <ESC>:clast<CR>
 
 " Rewrite 'vhe' to 'vert help'.
 cnoremap vhe vert help
+
+" Let me write to sudo whenever possible.
+cnoremap sw% w !sudo te %

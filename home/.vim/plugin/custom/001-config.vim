@@ -7,8 +7,12 @@ let g:site="jalcine.me"
 let g:username="jalcine"
 
 "{{{2 CMake configuration
-let g:cmake_use_vimux=0
+let g:cmake_use_vimux=1
 let g:cmake_build_shared_libs=1
+let g:cmake_inject_flags={
+  \ 'syntastic': 1,
+  \ 'ycm':       1
+  \ }
 
 "{{{2 Airline config
 let g:airline_theme="tomorrow"
@@ -17,14 +21,14 @@ let g:airline_powerline_fonts=1
 let g:airline#extensions#branch#enabled=1
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#hunks#non_zero_only=1
-let g:airline#extensions#branch#empty_message='(n)'
+let g:airline#extensions#branch#empty_message='❌'
 let g:airline#extensions#whitespace#enabled=0
 let g:airline_mode_map={
   \ '__' : '-',
-  \ 'n'  : 'NORM',
-  \ 'i'  : 'INS',
-  \ 'R'  : 'REP',
-  \ 'c'  : 'COMMAND',
+  \ 'n'  : '✈', 
+  \ 'i'  : '✐',
+  \ 'R'  : '➰',
+  \ 'c'  : '➤',
   \ 'v'  : 'VIS',
   \ 'V'  : 'VISLIN',
   \ '' : 'VISBLK',
@@ -40,32 +44,37 @@ let g:ycm_autoclose_preview_window_after_insertion=1
 let g:ycm_global_ycm_extra_conf = "$HOME/.ycm_extra_conf.py"
 let g:ycm_confirm_extra_conf=0
 let g:ycm_semantic_triggers =  {
-  \ 'c'                                                        : [ '->', '.', '('],
-  \ 'objc'                                                     : [ '->', '.'],
-  \ 'ocaml'                                                    : [ '.', '#'],
-  \ 'cpp,objcpp'                                               : [ '->', '.', '::', '('],
-  \ 'perl'                                                     : [ '->', '(', '::'],
-  \ 'php'                                                      : [ '->', '::', '('],
+  \ 'c' : [ '->', '.', '('],
+  \ 'objc' : [ '->', '.'],
+  \ 'cpp,objcpp' : [ '->', '.', '::', '('],
+  \ 'perl' : [ '->', '(', '::'],
+  \ 'php' : [ '->', '::', '('],
   \ 'cs,java,javascript,d,vim,python,perl6,scala,vb,elixir,go' : [ '.', '('],
-  \ 'ruby'                                                     : [ '.', '::', '('],
-  \ 'lua'                                                      : [ '.', ':'],
-  \ 'erlang'                                                   : [ ':'],
+  \ 'ruby' : [ '.', '::', '('],
+  \ 'lua' : [ '.', ':'],
+  \ 'erlang' : [ ':'],
   \ }
 
 "{{{2 Syntastic options
 let g:syntastic_enable_signs=1
+let g:syntastic_enable_highlight=1
 let g:syntastic_echo_current_error=1
+let g:syntastic_auto_loc_list=1
+let g:syntastic_loc_list_length=5
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
-let g:syntastic_auto_jump=0
+let g:syntastic_auto_jump=1
 let g:syntastic_quiet_warnings=1
 
 " Define checkers
 
 " C++ specific options
 let g:syntastic_cpp_compiler="ycm"
-let g:syntastic_cpp_include_dirs=[ "$HOME/.local/include", "/usr/include", "/usr/local/include" ]
 let g:syntastic_cpp_check_header=1
+let g:syntastic_cpp_include_dirs=[ "$HOME/.local/include", 
+  \ "/usr/include",
+  \ "/usr/local/include"
+  \ ]
 
 " Ruby specific options
 " let g:syntastic_ruby_exec = system("rbenv which ruby")

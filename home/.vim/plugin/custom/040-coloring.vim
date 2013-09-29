@@ -1,24 +1,34 @@
-" Toggling color scheme.
-function! b:toggle_color()
-  if g:colors_name != "Tomorrow"
-    colorscheme Tomorrow
-  else
-    colorscheme Tomorrow-Night-Bright
-  endif
-endfunction
+let g:coloring = {
+      \ "Dark" : {
+      \   "colorscheme" : "Monokai",
+      \   "airline"     : "luna"
+      \   },
+      \ "Light" : {
+      \   "colorscheme" : "zenesque",
+      \   "airline"     : "zenburn"
+      \  }
+      \}
 
-" Change if Konsole is defining a theme.
-if $KONSOLE_PROFILE_NAME == "Light"
-  let g:colors_name="Tomorrow"
-end
-if $KONSOLE_PROFILE_NAME == "Dark"
-  let g:colors_name="Tomorrow-Night-Bright"
-end
+func! b:toggle_colors()
+  let zi = index(keys(g:coloring), g:coloring_current)
+  if (zi + 1) == len(keys(g:coloring))
+    let zi = 0
+  else
+    let zi += 1
+  endif
+
+  call s:apply_coloring(keys(g:coloring)[zi])
+endfunc
+
+func! s:apply_coloring(the_profile)
+  let color_opts = g:coloring[a:the_profile]
+  exec("colorscheme " . color_opts.colorscheme)
+  call airline#switch_theme(color_opts.airline)
+  let g:coloring_current = a:the_profile
+endfunc
 
 " Toggle colorscheme on mapping.
-nnoremap <silent> <leader>ds :call b:toggle_color()<CR>
+nnoremap <silent> <leader>ds :call b:toggle_colors()<CR>
 
-" Go dark by default.
-set background=light
-colorscheme Tomorrow-Night-Bright
-call airline#switch_theme("tomorrow")
+" Apply my coloring.
+call s:apply_coloring($KONSOLE_PROFILE_NAME)

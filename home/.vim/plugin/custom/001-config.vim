@@ -40,16 +40,16 @@ let g:airline_mode_map={
   \ }
 
 "{{{2 YouCompleteMe
-let g:ycm_collect_identifiers_from_tags_files=1
-let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_collect_identifiers_from_tags_files=0
+let g:ycm_autoclose_preview_window_after_completion=0
 let g:ycm_autoclose_preview_window_after_insertion=1
 let g:ycm_global_ycm_extra_conf = "$HOME/.ycm_extra_conf.py"
 let g:ycm_confirm_extra_conf=0
 let g:ycm_semantic_triggers =  {
-  \ 'c' : [ '->', '.', '('],
-  \ 'objc' : [ '->', '.'],
-  \ 'cpp,objcpp' : [ '->', '.', '::', '('],
-  \ 'perl' : [ '->', '(', '::'],
+  \ 'c' : [ '->', '.', '(', ','],
+  \ 'objc' : [ '->', '.', ','],
+  \ 'cpp,objcpp' : [ '->', '.', '::', '(',','],
+  \ 'perl' : [ '->', '(', '::', ','],
   \ 'php' : [ '->', '::', '('],
   \ 'cs,java,javascript,d,vim,python,perl6,scala,vb,elixir,go' : [ '.', '('],
   \ 'ruby' : [ '.', '::', '('],
@@ -59,10 +59,11 @@ let g:ycm_semantic_triggers =  {
 
 "{{{2 Syntastic options
 let g:syntastic_enable_signs=1
-let g:syntastic_enable_highlight=1
+let g:syntastic_aggregate_errors=1
+let g:syntastic_enable_highlight=0
 let g:syntastic_echo_current_error=1
 let g:syntastic_auto_loc_list=0
-let g:syntastic_loc_list_length=5
+let g:syntastic_loc_list_length=2
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
 let g:syntastic_auto_jump=0

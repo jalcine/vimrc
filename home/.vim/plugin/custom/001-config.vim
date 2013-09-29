@@ -59,23 +59,19 @@ let g:ycm_semantic_triggers =  {
 let g:syntastic_enable_signs=1
 let g:syntastic_enable_highlight=1
 let g:syntastic_echo_current_error=1
-let g:syntastic_auto_loc_list=1
+let g:syntastic_auto_loc_list=0
 let g:syntastic_loc_list_length=5
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
-let g:syntastic_auto_jump=1
+let g:syntastic_auto_jump=0
 let g:syntastic_quiet_warnings=1
-
-" C++ specific options
+let g:syntastic_ruby_exec = system("rbenv which ruby")
 let g:syntastic_cpp_compiler="ycm"
 let g:syntastic_cpp_check_header=1
 let g:syntastic_cpp_include_dirs=[ "$HOME/.local/include", 
   \ "/usr/include",
   \ "/usr/local/include"
   \ ]
-
-" Ruby specific options
-let g:syntastic_ruby_exec = system("rbenv which ruby")
 
 "{{{2 CtrlP
 let g:ctrlp_switch_buffer="E"
@@ -120,7 +116,11 @@ let g:android_default_project_path = "$HOME/Development/Projects"
 
 "{{{2 GitHub configuration
 let g:github_user=g:username
-let g:github_dashboard={ "username" : g:username, "emoji" : 1 }
+let g:github_dashboard={
+  \ "username" : g:github_user,
+  \ "emoji" : 1,
+  \ "position": "top"
+  \ }
 let g:github_search_path_format="$HOME/Development/Projects"
 let g:github_comment_open_browser=1
 "}}}

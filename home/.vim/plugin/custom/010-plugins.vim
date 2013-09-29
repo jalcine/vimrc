@@ -185,9 +185,6 @@ Bundle 'SirVer/ultisnips'
 Bundle 'kien/ctrlp.vim'
 
 "{{{ Coloring and UI
-" Awesome ass themes for Vim.
-Bundle "daylerees/colour-schemes", { 'rtp' : 'vim-themes' }
-
 " Massive list of color themes.
 Bundle 'flazz/vim-colorschemes'
 

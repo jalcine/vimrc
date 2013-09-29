@@ -147,7 +147,7 @@ let g:tagbar_autoshowtag=1
 
 "{{{2 Signify
 let g:signify_vcs_list = ['git','hg','svn','bzr']
-let g:signify_sign_overwrite = 0
+let g:signify_sign_overwrite=1
 let g:signify_sign_add='✚'
 let g:signify_sign_change='✻'
 let g:signify_sign_delete='✖'

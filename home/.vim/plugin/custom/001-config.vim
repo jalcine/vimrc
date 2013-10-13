@@ -17,20 +17,20 @@ let g:cmake_inject_flags={
 "{{{2 Airline config
 let g:airline_detect_modified=1
 let g:airline_powerline_fonts=1
-let g:airline#extensions#hunks#non_zero_only=0
+let g:airline#extensions#hunks#non_zero_only=1
 let g:airline#extensions#hunks#hunk_symbols=['✨', '✟', '✇']
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#tab_nr_type=1
 let g:airline#extensions#tabline#fnamemod=':t'
 let g:airline#extensions#branch#enabled=1
 let g:airline#extensions#branch#empty_message='❌'
-let g:airline#extensions#whitespace#enabled=0
+let g:airline#extensions#whitespace#enabled=1
 let g:airline_mode_map={
-  \ '__' : '-',
-  \ 'n'  : '✈', 
-  \ 'i'  : '✐',
-  \ 'R'  : '➰',
-  \ 'c'  : '➤',
+  \ '__' : ' - ',
+  \ 'n'  : '✈ ', 
+  \ 'i'  : '✐ ',
+  \ 'R'  : '➰ ',
+  \ 'c'  : '➤ ',
   \ 'v'  : 'VIS',
   \ 'V'  : 'VISLIN',
   \ '' : 'VISBLK',
@@ -41,7 +41,7 @@ let g:airline_mode_map={
 
 "{{{2 YouCompleteMe
 let g:ycm_collect_identifiers_from_tags_files=0
-let g:ycm_autoclose_preview_window_after_completion=0
+let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_autoclose_preview_window_after_insertion=1
 let g:ycm_global_ycm_extra_conf = "$HOME/.ycm_extra_conf.py"
 let g:ycm_confirm_extra_conf=0
@@ -83,7 +83,9 @@ let g:ctrlp_root_markers=[".localrc.vim", ".git", ".bzr", ".hg", ".svn"]
 let g:ctrlp_open_new_file='t'
 let g:ctrlp_open_multiple_files='t'
 let g:ctrlp_cmd='CtrlP'
-let g:ctrlp_extensions = [ 'line',  'tag', 'buffertag', 'quickfix', 'bookmarkdir', 'mixed', 'line', 'changes', 'undo']
+let g:ctrlp_extensions = [ 'line',  'tag', 'buffertag', 
+  \ 'quickfix', 'bookmarkdir', 'mixed', 
+  \ 'line', 'changes', 'undo']
 
 "{{{2 indentLine
 let g:indentLine_char="┆"
@@ -115,7 +117,6 @@ let g:UltiSnipsSnippetDirectories=["UltiSnips"]
 "{{{2 Android
 let g:android_default_package_path = "me.jalcine"
 let g:android_default_project_path = "$HOME/Development/Projects"
-
 
 "{{{2 GitHub configuration
 let g:github_user=g:username

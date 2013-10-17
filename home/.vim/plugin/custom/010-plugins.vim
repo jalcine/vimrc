@@ -59,8 +59,12 @@ Bundle 'Yggdroot/indentLine'
 " tmux key-bindings into Vim.
 Bundle 'benmills/vimux'
 
+" Colors! Colors EVERYWHERE!
+Bundle 'guns/xterm-color-table.vim'
+
 " Lightweight modular status-line.
 Bundle 'bling/vim-airline'
+Bundle 'zhaocai/linepower.vim'
 
 " Improved session support.
 Bundle 'xolox/vim-session'

@@ -204,5 +204,7 @@ set cursorline cursorcolumn
 " Do this when I hit <Backspace>.
 set backspace=indent,eol,start
 
+set shortmess+=I
+
 source ~/.vim/plugin/custom/001-config.vim
 source ~/.vim/plugin/custom/010-plugins.vim

@@ -6,10 +6,10 @@
 nnoremap ; :
 
 " Toggle the use of list characters.
-noremap <leader>i :set list!<cr>
+nnoremap <silent> <leader>l :set list!<cr>
 
 " Toggle the state of search highlighting locally.
-nnoremap <silent> <leader>l :setlocal hlsearch!<CR>
+nnoremap <silent> <leader>h :setlocal hlsearch!<CR>
 
 " Toggle the state of spelling locally.
 nnoremap <silent> <leader>j :setlocal spell!<CR>
@@ -31,10 +31,10 @@ inoremap <leader>py <C-R>=strftime("%H:%M:%S %Z")<CR>
 inoremap <leader>pt <C-R>=strftime("%Y-%m-%d %H:%M:%S %Z")<CR>
 
 " Disable classic arrow-key navigation in Normal mode.
-noremap <Up>     <NOP>
-noremap <Down>   <NOP>
-noremap <Left>   <NOP>
-noremap <Right>  <NOP>
+nnoremap <Up>     <NOP>
+nnoremap <Down>   <NOP>
+nnoremap <Left>   <NOP>
+nnoremap <Right>  <NOP>
 
 " Edit and reload the master Vim configuration.
 nnoremap <silent> <leader>ev :tabnew $MYVIMRC<cr> 

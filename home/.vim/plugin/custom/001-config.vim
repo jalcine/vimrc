@@ -16,7 +16,7 @@ let g:cmake_inject_flags={
 
 "{{{2 Airline config
 let g:airline_detect_modified=1
-let g:airline_powerline_fonts=1
+let g:airline_powerline_fonts=0
 let g:airline#extensions#hunks#non_zero_only=1
 let g:airline#extensions#hunks#hunk_symbols=['✨', '✟', '✇']
 let g:airline#extensions#tabline#enabled=1

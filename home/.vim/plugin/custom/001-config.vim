@@ -26,11 +26,11 @@ let g:airline#extensions#branch#enabled=1
 let g:airline#extensions#branch#empty_message='❌'
 let g:airline#extensions#whitespace#enabled=1
 let g:airline_mode_map={
-  \ '__' : ' - ',
-  \ 'n'  : '✈ ', 
-  \ 'i'  : '✐ ',
-  \ 'R'  : '➰ ',
-  \ 'c'  : '➤ ',
+  \ '__' : '-',
+  \ 'n'  : '✈', 
+  \ 'i'  : '✐',
+  \ 'R'  : '➰',
+  \ 'c'  : '➤',
   \ 'v'  : 'VIS',
   \ 'V'  : 'VISLIN',
   \ '' : 'VISBLK',

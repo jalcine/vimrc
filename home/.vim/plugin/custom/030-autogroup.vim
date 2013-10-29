@@ -6,16 +6,6 @@ augroup autosourcecfg
   au BufWritePost *.tmux* echomsg system("tmux source-file ~./.tmux.conf; tmux display-message 'Conf reloaded.")
 augroup END
 
-" Adds in some format detection for specific files.
-augroup moreformatdetect
-  au!
-  au BufReadPost *.scss    setlocal ft=css.scss
-  au BufReadPost Gemfile   setlocal ft=bundler.ruby
-  au BufReadPost Guardfile setlocal ft=guard.ruby
-  au BufReadPost Procfile  setlocal ft=foreman.ruby
-  au BufReadPost *_spec.rb setlocal ft=rspec.ruby
-augroup END
-
 " Toggle the current cursor line whenever I swap windows.
 augroup cline
   au!
@@ -23,4 +13,8 @@ augroup cline
   au WinEnter,InsertLeave * set nocursorline
 augroup END
 
-
+" Some files might need to be filetype'd properly.
+augroup fixfiletype
+  au!
+  au BufRead Guardfile setl filetype=guard.ruby
+augroup END

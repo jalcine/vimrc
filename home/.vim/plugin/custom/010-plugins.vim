@@ -30,8 +30,6 @@ call vundle#rc()
 " Some plugins I'm iffy about.
 if $VIM_PLUGIN_IFFY
   Bundle "spolu/dwm.vim"
-  Bundle "Raimondi/delimitMate"
-  Bundle "tpope/vim-surround"
   Bundle "tpope/vim-dispatch"
   Bundle "mattn/emmet-vim"
   Bundle 'FredKSchott/CoVim'
@@ -53,6 +51,17 @@ Bundle 'godlygeek/csapprox'
 " Universal editor support
 Bundle 'editorconfig/editorconfig-vim'
 
+Bundle 'moll/vim-node'
+
+" Make everything repeat.
+Bundle "tpope/vim-repeat"
+
+" Surround like a boss.
+Bundle "tpope/vim-surround"
+
+" Wrap up what I was doing.
+Bundle "Raimondi/delimitMate"
+
 " Add indentation lines.
 Bundle 'Yggdroot/indentLine'
 
@@ -64,7 +73,6 @@ Bundle 'guns/xterm-color-table.vim'
 
 " Lightweight modular status-line.
 Bundle 'bling/vim-airline'
-Bundle 'zhaocai/linepower.vim'
 
 " Improved session support.
 Bundle 'xolox/vim-session'
@@ -79,6 +87,7 @@ Bundle (my_plugin_prefix . 'android.vim')
 Bundle (my_plugin_prefix . 'cmake.vim')
 Bundle (my_plugin_prefix . 'vim-snippets')
 Bundle (my_plugin_prefix . 'localrc.vim')
+Bundle (my_plugin_prefix . 'vim-rdoc')
 Bundle (my_plugin_prefix . 'tagbar')
 
 "{{{ Editing Extensbility
@@ -160,12 +169,21 @@ Bundle 'othree/html5.vim'
 " Background color for CSS/SCSS highlighting.
 Bundle 'skammer/vim-css-color'
 
+" Database Management
+Bundle 'dbext.vim'
+
 "{{{ Ruby
 " Get some Bundle handles.
 Bundle 'tpope/vim-bundler'
 
 " Handle some rbenv triggers.
 Bundle 'tpope/vim-rbenv'
+
+" Rails. In VIM.
+Bundle 'tpope/vim-rails'
+
+" Rakeify yourself.
+Bundle 'tpope/vim-rake'
 
 "{{{ GitHub TOOLS <3
 " From Vim to Gist.
@@ -188,12 +206,21 @@ Bundle 'SirVer/ultisnips'
 " File and buffer search tool.
 Bundle 'kien/ctrlp.vim'
 
+" Abbreviatations like a boss.
+Bundle 'tpope/vim-abolish'
+
 "{{{ Coloring and UI
 " Massive list of color themes.
 Bundle 'flazz/vim-colorschemes'
 
 " Tomorrow Theme.
 Bundle 'chriskempson/tomorrow-theme', { 'rtp' : 'vim' }
+
+" Solarized color theme.
+Bundle 'altercation/solarized', { 'rtp' : 'vim-colors-solarized' }
+
+Bundle 'closetag.vim'
+Bundle 'justinmk/vim-syntax-extra'
 
 " Enable file formats from plug-ins.
 filetype plugin indent on

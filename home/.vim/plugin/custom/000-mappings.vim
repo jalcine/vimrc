@@ -48,11 +48,11 @@ noremap <silent> <C-L> :tabn<CR>
 nnoremap <leader>f gg=G
 
 " Bind make command.
-nnoremap <leader>ba :make all<CR>
-nnoremap <leader>bc :make clean<CR>
-nnoremap <leader>bi :make install<CR>
-nnoremap <leader>bu :make uninstall<CR>
-nnoremap <leader>bt :make test<CR>
+nnoremap <leader>ma :make all<CR>
+nnoremap <leader>mc :make clean<CR>
+nnoremap <leader>mi :make install<CR>
+nnoremap <leader>mu :make uninstall<CR>
+nnoremap <leader>mt :make test<CR>
 
 " Travel over errors.
 nnoremap <leader>ce <ESC>:cn<CR>

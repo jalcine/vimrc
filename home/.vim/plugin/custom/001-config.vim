@@ -14,9 +14,15 @@ let g:cmake_inject_flags={
   \ 'ycm':       1
   \ }
 
+" Sunflower
+let g:sunflower_lat='40.714353'
+let g:sunflower_long='-74.005973'
+let g:sunflower_colorscheme_day='zenesque'
+let g:sunflower_colorscheme_night='badwolf'
+
 "{{{2 Airline config
 let g:airline_detect_modified=1
-let g:airline_powerline_fonts=0
+let g:airline_powerline_fonts=1
 let g:airline#extensions#hunks#non_zero_only=1
 let g:airline#extensions#hunks#hunk_symbols=['✨', '✟', '✇']
 let g:airline#extensions#tabline#enabled=1
@@ -77,15 +83,22 @@ let g:syntastic_cpp_include_dirs=[ "$HOME/.local/include",
   \ ]
 
 "{{{2 CtrlP
-let g:ctrlp_switch_buffer="E"
-let g:ctrlp_working_path_mode="rc"
-let g:ctrlp_root_markers=[".localrc.vim", ".git", ".bzr", ".hg", ".svn"]
-let g:ctrlp_open_new_file='t'
-let g:ctrlp_open_multiple_files='t'
-let g:ctrlp_cmd='CtrlP'
-let g:ctrlp_extensions = [ 'line',  'tag', 'buffertag', 
-  \ 'quickfix', 'bookmarkdir', 'mixed', 
-  \ 'line', 'changes', 'undo']
+"let g:ctrlp_switch_buffer="E"
+"let g:ctrlp_working_path_mode="rc"
+"let g:ctrlp_root_markers=[".localrc.vim", ".git", ".bzr", ".hg", ".svn"]
+"let g:ctrlp_open_new_file='t'
+"let g:ctrlp_open_multiple_files='t'
+"let g:ctrlp_cmd='CtrlP'
+"let g:ctrlp_extensions = [ 'line',  'tag', 'buffertag', 
+  "\ 'quickfix', 'bookmarkdir', 'mixed', 
+  "\ 'line', 'changes', 'undo']
+
+let g:unite_enable_start_insert=1
+let g:unite_update_time=2
+let g:unite_split_rule="botright"
+let g:unite_force_overwrite_statusline=0
+let g:unite_winheight=5
+
 
 "{{{2 indentLine
 let g:indentLine_char="┆"

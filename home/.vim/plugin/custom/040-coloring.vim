@@ -1,11 +1,11 @@
 let g:coloring = {
-      \ "Dark" : {
-      \   "colorscheme" : "Tomorrow-Night-Bright",
-      \   "airline"     : "tomorrow"
+      \ 'Dark' : {
+      \   'colorscheme' : 'badwolf',
+      \   'airline'     : 'badwolf'
       \   },
-      \ "Light" : {
-      \   "colorscheme" : "Tomorrow",
-      \   "airline"     : "tomorrow"
+      \ 'Light' : {
+      \   'colorscheme' : 'github',
+      \   'airline'     : 'luna'
       \  }
       \}
 
@@ -22,7 +22,7 @@ endfunc
 
 func! s:apply_coloring(the_profile)
   let color_opts = g:coloring[a:the_profile]
-  exec("colorscheme " . color_opts.colorscheme)
+  exec('colorscheme ' . color_opts.colorscheme)
   call airline#switch_theme(color_opts.airline)
   let g:coloring_current = a:the_profile
 endfunc

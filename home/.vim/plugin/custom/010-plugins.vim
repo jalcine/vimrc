@@ -41,6 +41,9 @@ Bundle 'gmarik/vundle'
 Bundle 'xolox/vim-misc'
 Bundle 'mattn/webapi-vim'
 
+Bundle 'mechatroner/minimal_gdb'
+Bundle 'kayaalpg/vim-sunflower'
+
 "{{{ Core function
 "  These plugins provide the root functionality of my Vim setup.
 "  I don't see me using Vim without these guys.
@@ -163,6 +166,8 @@ Bundle 'digitaltoad/vim-jade'
 " Perl formatting support.
 Bundle 'vim-perl/vim-perl'
 
+Bundle 'danchoi/ri.vim'
+
 " HTML5 formatting support.
 Bundle 'othree/html5.vim'
 
@@ -185,6 +190,9 @@ Bundle 'tpope/vim-rails'
 " Rakeify yourself.
 Bundle 'tpope/vim-rake'
 
+" Debugz the Ruby
+Bundle 'astashov/vim-ruby-debugger'
+
 "{{{ GitHub TOOLS <3
 " From Vim to Gist.
 Bundle 'mattn/gist-vim'
@@ -203,8 +211,9 @@ Bundle 'mmozuras/vim-github-comment'
 " Snippet manager.
 Bundle 'SirVer/ultisnips'
 
-" File and buffer search tool.
-Bundle 'kien/ctrlp.vim'
+" Sterioids.
+Bundle 'Shougo/unite.vim'
+Bundle 'Shougo/vimproc.vim'
 
 " Abbreviatations like a boss.
 Bundle 'tpope/vim-abolish'

@@ -1,6 +1,7 @@
 "{{{1 Plugin Mappings
 
 nnoremap <F3> :Autoformat<CR><CR>
+nnoremap <C-P> :<C-u>Unite -buffer-name=files -start-insert buffer file_rec/async:!<cr>
 
 "{{{2 Tabularize
 vnoremap <Leader>a= :Tabularize /=<CR>
@@ -21,6 +22,13 @@ function! VimuxRepl()
   call VimuxSendText(@v)
   call VimuxSendKeys("<Enter>")
 endfunction
+
+call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
+      \ 'ignore_pattern', join([
+      \ '\.git/',
+      \ ], '\|'))
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#filters#sorter_default#use(['sorter_rank'])
 "}}}
 
 "}}}

@@ -18,3 +18,16 @@ augroup fixfiletype
   au!
   au BufRead Guardfile setl filetype=guard.ruby
 augroup END
+
+autocmd FileType unite call s:unite_settings()
+
+function! s:unite_settings()
+  imap <buffer> <C-j>   <Plug>(unite_select_next_line)
+  imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+  imap <buffer> <C-i>   <Plug>(unite_toggle_auto_preview)
+  imap <buffer> <F5>   <Plug>(unite_redraw)
+  imap <silent><buffer><expr> <C-x> unite#do_action('split')
+  imap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
+  imap <silent><buffer><expr> <C-t> unite#do_action('tabopen')
+  nmap <buffer> <ESC> <Plug>(unite_exit)
+endfunction

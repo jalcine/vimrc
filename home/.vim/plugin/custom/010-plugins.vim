@@ -27,6 +27,18 @@ set rtp+=~/.vim/bundle/vundle
 " Invoke the swag!
 call vundle#rc()
 
+"{{{ Coloring and UI
+" Massive list of color themes.
+Bundle 'flazz/vim-colorschemes'
+
+Bundle 'kballenegger/vim-autoreadwatch'
+
+" Tomorrow Theme.
+Bundle 'chriskempson/tomorrow-theme', { 'rtp' : 'vim' }
+
+" Solarized color theme.
+Bundle 'altercation/solarized', { 'rtp' : 'vim-colors-solarized' }
+
 " Some plugins I'm iffy about.
 if $VIM_PLUGIN_IFFY
   Bundle "spolu/dwm.vim"
@@ -42,7 +54,7 @@ Bundle 'xolox/vim-misc'
 Bundle 'mattn/webapi-vim'
 
 Bundle 'mechatroner/minimal_gdb'
-Bundle 'kayaalpg/vim-sunflower'
+Bundle 'vim-ruby/vim-ruby'
 
 "{{{ Core function
 "  These plugins provide the root functionality of my Vim setup.
@@ -218,15 +230,6 @@ Bundle 'Shougo/vimproc.vim'
 " Abbreviatations like a boss.
 Bundle 'tpope/vim-abolish'
 
-"{{{ Coloring and UI
-" Massive list of color themes.
-Bundle 'flazz/vim-colorschemes'
-
-" Tomorrow Theme.
-Bundle 'chriskempson/tomorrow-theme', { 'rtp' : 'vim' }
-
-" Solarized color theme.
-Bundle 'altercation/solarized', { 'rtp' : 'vim-colors-solarized' }
 
 Bundle 'closetag.vim'
 Bundle 'justinmk/vim-syntax-extra'

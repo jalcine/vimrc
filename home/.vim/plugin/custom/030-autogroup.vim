@@ -17,6 +17,8 @@ augroup END
 augroup fixfiletype
   au!
   au BufRead Guardfile setl filetype=guard.ruby
+  au BufRead *.css.scss setl filetype=css.scss
+  au BufRead *.css.sass setl filetype=css.sass
 augroup END
 
 autocmd FileType unite call s:unite_settings()

@@ -1,11 +1,11 @@
 let g:coloring = {
       \ 'Dark' : {
-      \   'colorscheme' : 'badwolf',
-      \   'airline'     : 'badwolf'
+      \   'colorscheme' : 'jellybeans',
+      \   'airline'     : 'jellybeans'
       \   },
       \ 'Light' : {
-      \   'colorscheme' : 'github',
-      \   'airline'     : 'luna'
+      \   'colorscheme' : 'Tomorrow',
+      \   'airline'     : 'tomorrow'
       \  }
       \}
 

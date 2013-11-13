@@ -17,23 +17,23 @@ let g:cmake_inject_flags={
 " Sunflower
 let g:sunflower_lat='40.714353'
 let g:sunflower_long='-74.005973'
-let g:sunflower_colorscheme_day='zenesque'
+let g:sunflower_colorscheme_day='github'
 let g:sunflower_colorscheme_night='badwolf'
 
 "{{{2 Airline config
 let g:airline_detect_modified=1
 let g:airline_powerline_fonts=1
 let g:airline#extensions#hunks#non_zero_only=1
-let g:airline#extensions#hunks#hunk_symbols=['✨', '✟', '✇']
+"let g:airline#extensions#hunks#hunk_symbols=['✨', '✟', '✇']
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#tab_nr_type=1
 let g:airline#extensions#tabline#fnamemod=':t'
 let g:airline#extensions#branch#enabled=1
 let g:airline#extensions#branch#empty_message='❌'
-let g:airline#extensions#whitespace#enabled=1
+let g:airline#extensions#whitespace#enabled=0
 let g:airline_mode_map={
   \ '__' : '-',
-  \ 'n'  : '✈', 
+  \ 'n'  : '✈' , 
   \ 'i'  : '✐',
   \ 'R'  : '➰',
   \ 'c'  : '➤',

@@ -24,11 +24,13 @@ nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 " Inject the current date.
 inoremap <leader>pt <C-R>=strftime("%Y-%m-%d")<CR>
 
-" Inject the current time with the labelling of the time-zone.
+" Inject the current time with the labeling of the time-zone.
 inoremap <leader>py <C-R>=strftime("%H:%M:%S %Z")<CR>
+cnoremap <leader>py <C-R>=strftime("%H:%M:%S %Z")<CR>
 
-" Inject the current date and time
+" Inject the current date and time (in Insert or Command mode).
 inoremap <leader>pt <C-R>=strftime("%Y-%m-%d %H:%M:%S %Z")<CR>
+cnoremap <leader>pt <C-R>=strftime("%Y-%m-%d %H:%M:%S %Z")<CR>
 
 " Disable classic arrow-key navigation in Normal mode.
 nnoremap <Up>     <NOP>

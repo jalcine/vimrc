@@ -14,17 +14,11 @@ let g:cmake_inject_flags={
   \ 'ycm':       1
   \ }
 
-" Sunflower
-let g:sunflower_lat='40.714353'
-let g:sunflower_long='-74.005973'
-let g:sunflower_colorscheme_day='github'
-let g:sunflower_colorscheme_night='badwolf'
-
 "{{{2 Airline config
 let g:airline_detect_modified=1
 let g:airline_powerline_fonts=1
 let g:airline#extensions#hunks#non_zero_only=1
-"let g:airline#extensions#hunks#hunk_symbols=['✨', '✟', '✇']
+let g:airline#extensions#hunks#hunk_symbols=['✨', '✟', '✇']
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#tab_nr_type=1
 let g:airline#extensions#tabline#fnamemod=':t'
@@ -46,7 +40,7 @@ let g:airline_mode_map={
   \ }
 
 "{{{2 YouCompleteMe
-let g:ycm_collect_identifiers_from_tags_files=0
+let g:ycm_collect_identifiers_from_tags_files=1
 let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_autoclose_preview_window_after_insertion=1
 let g:ycm_global_ycm_extra_conf = "$HOME/.ycm_extra_conf.py"
@@ -58,7 +52,7 @@ let g:ycm_semantic_triggers =  {
   \ 'perl' : [ '->', '(', '::', ','],
   \ 'php' : [ '->', '::', '('],
   \ 'cs,java,javascript,d,vim,python,perl6,scala,vb,elixir,go' : [ '.', '('],
-  \ 'ruby' : [ '.', '::', '('],
+  \ 'ruby' : [ '.', '::', '(', '{'],
   \ 'lua' : [ '.', ':'],
   \ 'erlang' : [ ':'],
   \ }
@@ -66,13 +60,13 @@ let g:ycm_semantic_triggers =  {
 "{{{2 Syntastic options
 let g:syntastic_enable_signs=1
 let g:syntastic_aggregate_errors=1
-let g:syntastic_enable_highlight=0
+let g:syntastic_enable_highlight=1
 let g:syntastic_echo_current_error=1
-let g:syntastic_auto_loc_list=0
+let g:syntastic_auto_loc_list=1
 let g:syntastic_loc_list_length=2
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
-let g:syntastic_auto_jump=0
+let g:syntastic_auto_jump=1
 let g:syntastic_quiet_warnings=1
 let g:syntastic_ruby_exec = system("rbenv which ruby")
 let g:syntastic_cpp_compiler="ycm"
@@ -96,14 +90,14 @@ let g:syntastic_cpp_include_dirs=[ "$HOME/.local/include",
 let g:unite_enable_start_insert=1
 let g:unite_update_time=2
 let g:unite_split_rule="botright"
-let g:unite_force_overwrite_statusline=0
-let g:unite_winheight=5
+let g:unite_force_overwrite_statusline=1
+let g:unite_winheight=3
 
 
 "{{{2 indentLine
 let g:indentLine_char="┆"
 let g:indentLine_first_char="│"
-let g:indentLine_showFirstIndentLevel=0
+let g:indentLine_showFirstIndentLevel=1
 "}}}
 
 "{{{2 CoVim
@@ -164,11 +158,11 @@ let g:tagbar_autoshowtag=1
 
 "{{{2 Signify
 let g:signify_vcs_list = ['git','hg','svn','bzr']
-let g:signify_sign_overwrite=0
+let g:signify_sign_overwrite=1
 let g:signify_sign_add='✚'
 let g:signify_sign_change='✻'
 let g:signify_sign_delete='✖'
 let g:signify_sign_delete_first_line='✖'
-let g:signify_cursorhold_normal=0
-let g:signify_cursorhold_insert=0
+let g:signify_cursorhold_normal=1
+let g:signify_cursorhold_insert=1
 "}}}

@@ -5,17 +5,15 @@
 "" @date   2013-09-21 16:59:24 EDT
 "" @vcs    https://github.com/jalcine/vimrc
 ""
-"" I take pride in my Vim configuration. Being that I'm
-"" an intermediate Vim user and I try to share as much
-"" as I learn, I've taken the liberty of documenting and
-"" explaining the nature of my configuration.
-""
-"" I use the latest development version of Vim from sources using a PPA in
-"" Ubuntu; makes life a bit easier.
-""
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" We live in the future, don't worry about backwards
-" compatibility with Vi.
+"" I take pride in my Vim configuration. Being that I'm an intermediate Vim 
+"" user and I try to share as much as I learn, I've taken the liberty of
+"" documenting and explaining the nature of my configuration. I use the
+"" latest development version of Vim from sources using a PPA in Ubuntu;
+"" makes life a bit easier. I only commented with my reasoning for using the
+"" options provided; if you needed help; you know how to find it.
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"{{{2 Immediate Options
+" We live in the future, don't worry about backwards compatibility with Vi.
 set nocompatible
 
 " We use UNIX. So act like UNIX.
@@ -36,8 +34,8 @@ let maplocalleader="\\"
 
 " Use specific indentation files.
 filetype indent plugin on
-
-"{{{1 Immediate Configuration Options
+"}}}
+"{{{2 Immediate Configuration Options
 
 " Use visual bells instead of beeps. I use this
 " since it helps a lot with tmux to inform me
@@ -49,7 +47,7 @@ set laststatus=2
 
 " Show me the tab bar no matter what.
 set showtabline=2
-
+"}}}
 "{{{2 Spacing
 
 " I prefer to use two spaces to represent tabs.
@@ -110,10 +108,10 @@ set foldcolumn=2
 
 " Sets the minimum amount of lines needed to
 " automatically initialize folding.
-set foldminlines=5
+set foldminlines=3
 
 " Anything greater than this is automatically folded.
-set foldlevel=3
+set foldlevel=1
 
 " Set the title in the terminal.
 set title titlelen=120 titlestring="%t%(\ %M%)%(\ (%{expand(\"%:~:.:h\")})%)%(\ %a%)"
@@ -182,7 +180,7 @@ set spellfile=~/.vim/dict.custom.utf8-8.add
 " solves formatting problems a lot quicker. Also, we're using modern shells
 " (right?) so using UTF-8 characters for symbols should be a given.
 set fillchars=diff:⣿,vert:│
-
+set guifont=Meslo\ LG\ S\ DZ\ 8
 " A visual cue for line-wrapping.
 set showbreak=↪
 
@@ -204,7 +202,10 @@ set cursorline cursorcolumn
 " Do this when I hit <Backspace>.
 set backspace=indent,eol,start
 
+" Don't talk too much.
 set shortmess+=I
+"" }}}
 
-source ~/.vim/plugin/custom/001-config.vim
-source ~/.vim/plugin/custom/010-plugins.vim
+" This is required in order to ensure proper plugin loading.
+source $HOME/.vim/plugin/custom/000-settings.vim
+source $HOME/.vim/plugin/custom/001-extensions.vim

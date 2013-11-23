@@ -62,7 +62,7 @@ let g:syntastic_enable_signs=1
 let g:syntastic_aggregate_errors=1
 let g:syntastic_enable_highlight=1
 let g:syntastic_echo_current_error=1
-let g:syntastic_auto_loc_list=1
+let g:syntastic_auto_loc_list=0
 let g:syntastic_loc_list_length=2
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
@@ -163,6 +163,6 @@ let g:signify_sign_add='✚'
 let g:signify_sign_change='✻'
 let g:signify_sign_delete='✖'
 let g:signify_sign_delete_first_line='✖'
-let g:signify_cursorhold_normal=1
-let g:signify_cursorhold_insert=1
+let g:signify_cursorhold_normal=0
+let g:signify_cursorhold_insert=0
 "}}}

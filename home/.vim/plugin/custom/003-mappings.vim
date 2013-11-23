@@ -26,21 +26,17 @@ inoremap <leader>pt <C-R>=strftime("%Y-%m-%d")<CR>
 
 " Inject the current time with the labeling of the time-zone.
 inoremap <leader>py <C-R>=strftime("%H:%M:%S %Z")<CR>
-cnoremap <leader>py <C-R>=strftime("%H:%M:%S %Z")<CR>
+cnoremap <leader>py <C-R>=strftime("%H.%M.%S_%Z")<CR>
 
 " Inject the current date and time (in Insert or Command mode).
 inoremap <leader>pt <C-R>=strftime("%Y-%m-%d %H:%M:%S %Z")<CR>
-cnoremap <leader>pt <C-R>=strftime("%Y-%m-%d %H:%M:%S %Z")<CR>
+cnoremap <leader>pt <C-R>=strftime("%Y%m%d%H%M%S")<CR>
 
 " Disable classic arrow-key navigation in Normal mode.
 nnoremap <Up>     <NOP>
 nnoremap <Down>   <NOP>
 nnoremap <Left>   <NOP>
 nnoremap <Right>  <NOP>
-
-" Edit and reload the master Vim configuration.
-nnoremap <silent> <leader>ev :tabnew $MYVIMRC<cr> 
-nnoremap <silent> <leader>sv :source $MYVIMRC<cr>
 
 " Jump between the current tabs.
 noremap <silent> <C-H> :tabp<CR>
@@ -68,3 +64,44 @@ cnoremap vhe vert help
 
 " Let me write to sudo whenever possible.
 cnoremap sw% w !sudo te %
+
+"{{{1 Plugin Mappings
+
+nnoremap <F3> :Autoformat<CR><CR>
+nnoremap <F8> :TagbarToggle<CR><CR>
+nnoremap <C-P> :<C-u>Unite -buffer-name=files -start-insert buffer file_rec/async:!<cr>
+
+"{{{2 Tabularize
+vnoremap <Leader>a: :Tabularize /:<CR>
+vnoremap <Leader>a= :Tabularize /=<CR>
+vnoremap <Leader>a{ :Tabularize /{<CR>
+nnoremap <Leader>a: :Tabularize /:<CR>
+nnoremap <Leader>a= :Tabularize /=<CR>
+nnoremap <Leader>a{ :Tabularize /{<CR>
+"}}}
+
+"{{{2 Vimux
+nnoremap <Leader>to :VimuxOpenPane<CR>
+nnoremap <Leader>tp :VimuxPromptCommand<CR>
+nnoremap <Leader>tt :VimuxRunLastCommand<CR>
+nnoremap <Leader>tc :VimuxCloseRunner<CR>
+vnoremap <Leader>ts "vy :call VimuxRepl()<CR>
+nnoremap <Leader>ts vip<LocalLeader>ts<CR>
+
+function! VimuxRepl()
+  call VimuxSendText(@v)
+  call VimuxSendKeys("<Enter>")
+endfunction
+
+call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
+      \ 'ignore_pattern', join([
+      \ '\.git/',
+      \ '\.bzr/',
+      \ '\.hg/',
+      \ '\tmp/'
+      \ ], '\|'))
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#filters#sorter_default#use(['sorter_rank'])
+"}}}
+
+"}}}

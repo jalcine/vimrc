@@ -33,6 +33,7 @@ Bundle 'chriskempson/tomorrow-theme', { 'rtp' : 'vim' }
 Bundle 'altercation/solarized', { 'rtp' : 'vim-colors-solarized' }
 Bundle 'tpope/vim-haml'
 Bundle 'spolu/dwm.vim'
+Bundle 'vim-php/tagbar-phpctags.vim'
 Bundle 'tpope/vim-dispatch'
 Bundle 'mattn/emmet-vim'
 Bundle 'bling/vim-airline'

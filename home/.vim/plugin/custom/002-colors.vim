@@ -4,7 +4,11 @@ let g:coloring = {
       \   'airline'     : 'jellybeans'
       \   },
       \ 'Light' : {
-      \   'colorscheme' : 'Tomorrow',
+      \   'colorscheme' : 'github',
+      \   'airline'     : 'luna'
+      \  },
+      \ 'Tomorrow' : {
+      \   'colorscheme' : 'Tomorrow-Night',
       \   'airline'     : 'tomorrow'
       \  }
       \}
@@ -28,7 +32,7 @@ func! s:apply_coloring(the_profile)
 endfunc
 
 " Toggle colorscheme on mapping.
-nnoremap <silent> <leader>ds :call b:toggle_colors()<CR>
+nnoremap <silent> <leader>ks :call b:toggle_colors()<CR>
 
 " Apply my coloring.
 call s:apply_coloring($KONSOLE_PROFILE_NAME)

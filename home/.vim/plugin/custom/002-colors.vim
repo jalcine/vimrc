@@ -10,6 +10,10 @@ let g:coloring = {
       \ 'Tomorrow' : {
       \   'colorscheme' : 'Tomorrow-Night',
       \   'airline'     : 'tomorrow'
+      \  },
+      \ 'BadWolf' : {
+      \   'colorscheme' : 'badwolf',
+      \   'airline'     : 'badwolf'
       \  }
       \}
 

@@ -160,6 +160,9 @@ set history=16384
 set undolevels=16384
 
 "{{{2 Spelling Options
+" Please check me.
+set spell
+
 " English speaking, American born. So let's correct ourselves like one. Since
 " I'm learning French and know a bit of Spanish; we'll add those dictionaries
 " in as well.
@@ -180,12 +183,12 @@ set spellfile=~/.vim/dict.custom.utf8-8.add
 " solves formatting problems a lot quicker. Also, we're using modern shells
 " (right?) so using UTF-8 characters for symbols should be a given.
 set fillchars=diff:⣿,vert:│
-set guifont=Meslo\ LG\ S\ DZ\ 8
+set guifont=monoOne\ 9
 " A visual cue for line-wrapping.
 set showbreak=↪
 
 " Visual cues when in 'list' model.
-set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
+set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮,trail:·,nbsp:×
 
 " Show me these markings.
 set list
@@ -209,3 +212,6 @@ set shortmess+=I
 " This is required in order to ensure proper plugin loading.
 source $HOME/.vim/plugin/custom/000-settings.vim
 source $HOME/.vim/plugin/custom/001-extensions.vim
+
+" Because we need dat syntax.
+syntax on

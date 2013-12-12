@@ -113,6 +113,11 @@ let g:session_autosave_periodic=2
 let g:session_command_aliases=1
 let g:session_default_overwrite=1
 let g:session_default_to_last=1
+let g:session_verbose_messages=0
+
+let g:eighties_enabled=1
+let g:eighties_minimum_width=78
+let g:eighties_extra_width=2
 
 "{{{2 Snippets
 let g:UltiSnipsEditSplit="vertical"

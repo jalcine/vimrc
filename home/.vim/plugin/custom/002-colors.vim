@@ -35,7 +35,7 @@ func! s:apply_coloring(the_profile)
   let g:coloring_current = a:the_profile
 endfunc
 
-" Toggle colorscheme on mapping.
+" Toggle the color scheme on mapping.
 nnoremap <silent> <leader>ks :call b:toggle_colors()<CR>
 
 " Apply my coloring.

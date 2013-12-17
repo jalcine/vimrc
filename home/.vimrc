@@ -14,7 +14,8 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "{{{2 Immediate Options
 " We live in the future, don't worry about backwards compatibility with Vi.
-set nocompatible
+" In fact, why bother set it? If $VIM is reading this, nocp is active!
+"set nocompatible
 
 " We use UNIX. So act like UNIX.
 set encoding=utf-8 fileencoding=utf-8 fileformats=unix
@@ -51,7 +52,7 @@ set showtabline=2
 "{{{2 Spacing
 
 " I prefer to use two spaces to represent tabs.
-set tabstop=2 softtabstop=2
+"set tabstop=2 softtabstop=2
 
 " Set expandtab to the values used for tabstop
 " and shiftwidth to ensure that we enter only 
@@ -134,8 +135,8 @@ set incsearch
 " Very useful when doing JavaScript or C++.
 set showmatch
 
-" We're being greedy by default.
-set gdefault
+" We aren't that greedy.
+set nogdefault
 
 "{{{2 Recovery
 
@@ -160,8 +161,8 @@ set history=16384
 set undolevels=16384
 
 "{{{2 Spelling Options
-" Please check me.
-set spell
+" I'll check when I want.
+set nospell
 
 " English speaking, American born. So let's correct ourselves like one. Since
 " I'm learning French and know a bit of Spanish; we'll add those dictionaries

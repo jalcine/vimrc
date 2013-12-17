@@ -119,6 +119,8 @@ let g:eighties_enabled=1
 let g:eighties_minimum_width=78
 let g:eighties_extra_width=2
 
+let g:voogle_map="<leader>gg"
+
 "{{{2 Snippets
 let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsExpandTrigger="<C-l>"

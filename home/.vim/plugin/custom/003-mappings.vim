@@ -89,6 +89,27 @@ nnoremap <Leader>tc :VimuxCloseRunner<CR>
 vnoremap <Leader>ts "vy :call VimuxRepl()<CR>
 nnoremap <Leader>ts vip<LocalLeader>ts<CR>
 
+nnoremap <leader>e   :E
+nnoremap <leader>emm :Emodel<space>
+nnoremap <leader>evv :Eview<space>
+nnoremap <leader>ecc :Econtroller<space>
+
+" Rails Only
+nnoremap <leader>eff :Efabricator<space>
+nnoremap <leader>ell :Elayout<space>
+nnoremap <leader>ela :Elayout<space>
+nnoremap <leader>elo :Elocale<space>
+nnoremap <leader>elb :Elib<space>
+nnoremap <leader>eee :Eenvironment<space>
+nnoremap <leader>ehh :Ehelper<space>
+nnoremap <leader>eii :Einitializer<space>
+nnoremap <leader>ejj :Ejavascript<space>
+nnoremap <leader>ess :Espec<space>
+nnoremap <leader>esm :Espec models/
+nnoremap <leader>esc :Espec controllers/
+nnoremap <leader>esv :Espec views/
+nnoremap <leader>esl :Espec lib/
+
 function! VimuxRepl()
   call VimuxSendText(@v)
   call VimuxSendKeys("<Enter>")

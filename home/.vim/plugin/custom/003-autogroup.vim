@@ -7,11 +7,11 @@ augroup autosourcecfg
 augroup END
 
 " Toggle the current cursor line whenever I swap windows.
-augroup cline
-  au!
-  au WinLeave,InsertEnter * set cursorline
-  au WinEnter,InsertLeave * set nocursorline
-augroup END
+"augroup cline
+  "au!
+  "au WinLeave,InsertEnter * set cursorline cursorcolumn
+  "au WinEnter,InsertLeave * set nocursorline nocursorcolumn
+"augroup END
 
 " Some files might need to be filetype'd properly.
 augroup fixfiletype

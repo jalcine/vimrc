@@ -201,7 +201,7 @@ set ttyscroll=3 ttyfast
 set showcmd showfulltag
 
 " Let me know where I am.
-set cursorline cursorcolumn
+set nocursorline nocursorcolumn
 
 " Do this when I hit <Backspace>.
 set backspace=indent,eol,start

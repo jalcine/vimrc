@@ -10,9 +10,9 @@ let g:username="jalcine"
 let g:cmake_use_vimux=1
 let g:cmake_build_shared_libs=1
 let g:cmake_inject_flags={
-      \ 'syntastic': 1,
-      \ 'ycm':       1
-      \ }
+  \ 'syntastic': 1,
+  \ 'ycm':       1
+  \ }
 
 "{{{2 Airline config
 let g:airline_detect_modified=1
@@ -46,13 +46,12 @@ let g:ycm_autoclose_preview_window_after_insertion=1
 let g:ycm_global_ycm_extra_conf = "$HOME/.ycm_extra_conf.py"
 let g:ycm_confirm_extra_conf=0
 let g:ycm_semantic_triggers =  {
-      \ 'c' : [ '->', '.', '(', ','],
-      \ 'objc' : [ '->', '.', ','],
-      \ 'cpp,objcpp' : [ '->', '.', '::', '(',','],
+      \ 'c' : [ '->', '.', '(', ',', '='],
+      \ 'cpp,objcpp' : [ '->', '.', '::', '(',',', '=', '+'],
       \ 'perl' : [ '->', '(', '::', ','],
-      \ 'php' : [ '->', '::', '('],
-      \ 'cs,java,javascript,d,vim,python,perl6,scala,vb,elixir,go' : [ '.', '('],
-      \ 'ruby' : [ '.', '::', '(', '{'],
+      \ 'php' : [ '->', '::', '(', '='],
+      \ 'cs,java,javascript,d,vim,python,perl6,scala,vb,elixir,go' : [ '.', '(', '='],
+      \ 'ruby' : [ '.', '::', '(', '{', '=', '+', '-', '/'],
       \ 'lua' : [ '.', ':'],
       \ 'erlang' : [ ':'],
       \ }

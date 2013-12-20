@@ -10,9 +10,9 @@ let g:username="jalcine"
 let g:cmake_use_vimux=1
 let g:cmake_build_shared_libs=1
 let g:cmake_inject_flags={
-  \ 'syntastic': 1,
-  \ 'ycm':       1
-  \ }
+      \ 'syntastic': 1,
+      \ 'ycm':       1
+      \ }
 
 "{{{2 Airline config
 let g:airline_detect_modified=1
@@ -26,18 +26,18 @@ let g:airline#extensions#branch#enabled=1
 let g:airline#extensions#branch#empty_message='❌'
 let g:airline#extensions#whitespace#enabled=0
 let g:airline_mode_map={
-  \ '__' : '-',
-  \ 'n'  : '✈' , 
-  \ 'i'  : '✐',
-  \ 'R'  : '➰',
-  \ 'c'  : '➤',
-  \ 'v'  : 'VIS',
-  \ 'V'  : 'VISLIN',
-  \ '' : 'VISBLK',
-  \ 's'  : 'S',
-  \ 'S'  : 'S',
-  \ '' : 'S',
-  \ }
+      \ '__' : '-',
+      \ 'n'  : '✈' , 
+      \ 'i'  : '✐',
+      \ 'R'  : '➰',
+      \ 'c'  : '➤',
+      \ 'v'  : 'VIS',
+      \ 'V'  : 'VISLIN',
+      \ '' : 'VISBLK',
+      \ 's'  : 'S',
+      \ 'S'  : 'S',
+      \ '' : 'S',
+      \ }
 
 "{{{2 YouCompleteMe
 let g:ycm_collect_identifiers_from_tags_files=1
@@ -46,16 +46,16 @@ let g:ycm_autoclose_preview_window_after_insertion=1
 let g:ycm_global_ycm_extra_conf = "$HOME/.ycm_extra_conf.py"
 let g:ycm_confirm_extra_conf=0
 let g:ycm_semantic_triggers =  {
-  \ 'c' : [ '->', '.', '(', ','],
-  \ 'objc' : [ '->', '.', ','],
-  \ 'cpp,objcpp' : [ '->', '.', '::', '(',','],
-  \ 'perl' : [ '->', '(', '::', ','],
-  \ 'php' : [ '->', '::', '('],
-  \ 'cs,java,javascript,d,vim,python,perl6,scala,vb,elixir,go' : [ '.', '('],
-  \ 'ruby' : [ '.', '::', '(', '{'],
-  \ 'lua' : [ '.', ':'],
-  \ 'erlang' : [ ':'],
-  \ }
+      \ 'c' : [ '->', '.', '(', ','],
+      \ 'objc' : [ '->', '.', ','],
+      \ 'cpp,objcpp' : [ '->', '.', '::', '(',','],
+      \ 'perl' : [ '->', '(', '::', ','],
+      \ 'php' : [ '->', '::', '('],
+      \ 'cs,java,javascript,d,vim,python,perl6,scala,vb,elixir,go' : [ '.', '('],
+      \ 'ruby' : [ '.', '::', '(', '{'],
+      \ 'lua' : [ '.', ':'],
+      \ 'erlang' : [ ':'],
+      \ }
 
 "{{{2 Syntastic options
 let g:syntastic_enable_signs=1
@@ -72,9 +72,9 @@ let g:syntastic_ruby_exec = system("rbenv which ruby")
 let g:syntastic_cpp_compiler="ycm"
 let g:syntastic_cpp_check_header=1
 let g:syntastic_cpp_include_dirs=[ "$HOME/.local/include", 
-  \ "/usr/include",
-  \ "/usr/local/include"
-  \ ]
+      \ "/usr/include",
+      \ "/usr/local/include"
+      \ ]
 
 "{{{2 CtrlP
 "let g:ctrlp_switch_buffer="E"
@@ -84,8 +84,8 @@ let g:syntastic_cpp_include_dirs=[ "$HOME/.local/include",
 "let g:ctrlp_open_multiple_files='t'
 "let g:ctrlp_cmd='CtrlP'
 "let g:ctrlp_extensions = [ 'line',  'tag', 'buffertag', 
-  "\ 'quickfix', 'bookmarkdir', 'mixed', 
-  "\ 'line', 'changes', 'undo']
+"\ 'quickfix', 'bookmarkdir', 'mixed', 
+"\ 'line', 'changes', 'undo']
 
 let g:unite_enable_start_insert=1
 let g:unite_update_time=1
@@ -133,10 +133,10 @@ let g:android_default_project_path = "$HOME/Development/Projects"
 "{{{2 GitHub configuration
 let g:github_user=g:username
 let g:github_dashboard={
-  \ "username" : g:github_user,
-  \ "emoji" : 1,
-  \ "position": "top"
-  \ }
+      \ "username" : g:github_user,
+      \ "emoji" : 1,
+      \ "position": "top"
+      \ }
 let g:github_search_path_format="$HOME/Development/Projects"
 let g:github_comment_open_browser=1
 "}}}
@@ -160,10 +160,19 @@ let g:NERDTreeAutoDeleteBuffer=1
 "{{{2 Tagbar
 let g:tagbar_compact=1
 let g:tagbar_autoshowtag=1
+let g:tagbar_type_css = {
+  \ 'ctagstype' : 'css',
+    \ 'kinds'     : [
+      \ 'c:classes',
+      \ 's:selectors',
+      \ 'i:identities'
+    \ ]
+  \ }
+}
 
 "{{{2 Signify
 let g:signify_vcs_list = ['git','hg','svn','bzr']
-let g:signify_sign_overwrite=1
+let g:signify_sign_overwrite=0
 let g:signify_sign_add='✚'
 let g:signify_sign_change='✻'
 let g:signify_sign_delete='✖'

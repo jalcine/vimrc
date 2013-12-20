@@ -92,6 +92,7 @@ let g:unite_update_time=2
 let g:unite_split_rule="botright"
 let g:unite_force_overwrite_statusline=1
 let g:unite_winheight=3
+let g:unite_
 
 
 "{{{2 indentLine

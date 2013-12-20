@@ -70,7 +70,7 @@ cnoremap sw% w !sudo te %
 nnoremap <F3> :Autoformat<CR><CR>
 nnoremap <F8> :TagbarToggle<CR><CR>
 nnoremap <F7> :NERDTreeToggle<CR><CR>
-nnoremap <C-P> :<C-u>Unite -buffer-name=files -start-insert buffer file_rec/async:!<cr>
+nnoremap <C-P> :<C-u>Unite -auto-preview -buffer-name=files -start-insert buffer file_rec/async:!<cr>
 
 "{{{2 Tabularize
 vnoremap <Leader>a: :Tabularize /:<CR>

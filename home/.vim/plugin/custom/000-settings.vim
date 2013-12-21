@@ -159,15 +159,6 @@ let g:NERDTreeAutoDeleteBuffer=1
 "{{{2 Tagbar
 let g:tagbar_compact=1
 let g:tagbar_autoshowtag=1
-let g:tagbar_type_css = {
-  \ 'ctagstype' : 'css',
-    \ 'kinds'     : [
-      \ 'c:classes',
-      \ 's:selectors',
-      \ 'i:identities'
-    \ ]
-  \ }
-\ }
 
 "{{{2 Signify
 let g:signify_vcs_list = ['git','hg','svn','bzr']

@@ -167,7 +167,7 @@ let g:tagbar_type_css = {
       \ 'i:identities'
     \ ]
   \ }
-}
+\ }
 
 "{{{2 Signify
 let g:signify_vcs_list = ['git','hg','svn','bzr']

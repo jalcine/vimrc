@@ -1,19 +1,19 @@
 let g:coloring = {
       \ 'Dark' : {
-      \   'colorscheme' : 'jellybeans',
-      \   'airline'     : 'jellybeans'
+      \   'colorscheme' : 'badwolf',
+      \   'airline'     : 'badwolf'
       \   },
       \ 'Light' : {
       \   'colorscheme' : 'github',
       \   'airline'     : 'luna'
       \  },
-      \ 'Tomorrow' : {
+      \ 'Dark2' : {
       \   'colorscheme' : 'Tomorrow-Night',
       \   'airline'     : 'tomorrow'
       \  },
-      \ 'BadWolf' : {
-      \   'colorscheme' : 'badwolf',
-      \   'airline'     : 'badwolf'
+      \ 'Dark3' : {
+      \   'colorscheme' : 'jellybeans',
+      \   'airline'     : 'jellybeans'
       \  }
       \}
 

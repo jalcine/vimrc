@@ -23,9 +23,6 @@ augroup fixfiletype
 augroup END
 
 autocmd FileType unite call s:unite_settings()
-autocmd BufReadPost * set noexpandtab | retab 2 | set expandtab
-autocmd BufWritePre * set expandtab | retab 2
-autocmd BufWritePost * set noexpandtab | retab 2 | set expandtab
 
 function! s:unite_settings()
   imap <buffer> <C-j>   <Plug>(unite_select_next_line)

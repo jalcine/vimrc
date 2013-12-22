@@ -216,5 +216,8 @@ source $HOME/.vim/plugin/custom/000-installing-vundle.vim
 source $HOME/.vim/plugin/custom/000-settings.vim
 source $HOME/.vim/plugin/custom/001-extensions.vim
 
-" Because we need dat syntax.
+" Because we need that syntax highlight and plug-ins, brah.
 syntax enable
+
+" I'd like to know what file I'm playing with.
+filetype on

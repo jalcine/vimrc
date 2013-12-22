@@ -119,7 +119,6 @@ Bundle 'zepto/unite-tmux'
 Bundle 'Shougo/vimproc.vim'
 Bundle 'tpope/vim-abolish'
 Bundle 'closetag.vim'
-Bundle 'tasklist.vim'
 Bundle 'justinmk/vim-syntax-extra'
 
 filetype plugin indent on

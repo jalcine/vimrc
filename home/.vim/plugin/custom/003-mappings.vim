@@ -70,7 +70,7 @@ cnoremap sw% w !sudo te %
 nnoremap <F3> :Autoformat<CR><CR>
 nnoremap <F7> :NERDTreeToggle<CR><CR>
 nnoremap <F8> :TagbarToggle<CR><CR>
-nnoremap <C-P> :<C-u>Unite -buffer-name=files -start-insert -immediately file_rec file_rec/async file_mru file buffer tag tag/file tag/include<cr>
+nnoremap <C-P> :<C-u>Unite -buffer-name=files -start-insert -immediately file_rec file_rec/async file_mru file buffer tag tag/file tag/include -ignore-pattern=\.git\|\.svn\|\.hg\|\.bzr\|tmp<cr>
 
 "{{{2 Tabularize
 vnoremap <Leader>a: :Tabularize /:<CR>
@@ -115,13 +115,6 @@ function! VimuxRepl()
   call VimuxSendKeys("<Enter>")
 endfunction
 
-call unite#custom_source('file_rec,file_rec/async!,file_mru,file,buffer,grep,menu,mapping,function',
-  \ 'ignore_pattern', join([
-  \ '\.git/',
-  \ '\.bzr/',
-  \ '\.hg/',
-  \ '\tmp/'
-  \ ], '\|'))
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
 "}}}

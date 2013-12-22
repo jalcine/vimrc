@@ -15,8 +15,8 @@ nnoremap <silent> <leader>h :setlocal hlsearch!<CR>
 nnoremap <silent> <leader>j :setlocal spell!<CR>
 
 " Toggle the visibility of cursor lines.
-nnoremap <leader>c :setlocal cursorline!<CR>
-nnoremap <leader>C :setlocal cursorcolumn!<CR>
+nnoremap <leader>cl :setlocal cursorline!<CR>
+nnoremap <leader>cc :setlocal cursorcolumn!<CR>
 
 " Toggle the current fold.
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
@@ -53,8 +53,8 @@ nnoremap <leader>mu :make uninstall<CR>
 nnoremap <leader>mt :make test<CR>
 
 " Travel over errors.
-nnoremap <leader>ce <ESC>:cn<CR>
-nnoremap <leader>cp <ESC>:cp<CR>
+nnoremap <leader>ce <ESC>:cnext<CR>
+nnoremap <leader>cp <ESC>:cprevious<CR>
 nnoremap <leader>co <ESC>:cwindow<CR>
 nnoremap <leader>cf <ESC>:cfirst<CR>
 nnoremap <leader>cl <ESC>:clast<CR>
@@ -68,9 +68,9 @@ cnoremap sw% w !sudo te %
 "{{{1 Plugin Mappings
 
 nnoremap <F3> :Autoformat<CR><CR>
-nnoremap <F8> :TagbarToggle<CR><CR>
 nnoremap <F7> :NERDTreeToggle<CR><CR>
-nnoremap <C-P> :<C-u>Unite -auto-preview -buffer-name=files -start-insert buffer file_rec/async:!<cr>
+nnoremap <F8> :TagbarToggle<CR><CR>
+nnoremap <C-P> :<C-u>Unite -buffer-name=files -start-insert -immediately file_rec file_rec/async file_mru file buffer tag tag/file tag/include<cr>
 
 "{{{2 Tabularize
 vnoremap <Leader>a: :Tabularize /:<CR>
@@ -115,13 +115,13 @@ function! VimuxRepl()
   call VimuxSendKeys("<Enter>")
 endfunction
 
-call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
-      \ 'ignore_pattern', join([
-      \ '\.git/',
-      \ '\.bzr/',
-      \ '\.hg/',
-      \ '\tmp/'
-      \ ], '\|'))
+call unite#custom_source('file_rec,file_rec/async!,file_mru,file,buffer,grep,menu,mapping,function',
+  \ 'ignore_pattern', join([
+  \ '\.git/',
+  \ '\.bzr/',
+  \ '\.hg/',
+  \ '\tmp/'
+  \ ], '\|'))
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
 "}}}

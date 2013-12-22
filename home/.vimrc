@@ -211,9 +211,10 @@ set shortmess+=I
 "" }}}
 
 " This is required in order to ensure proper plugin loading.
+" TODO: Ensure that the 'custom' plugin loads by itself.
 source $HOME/.vim/plugin/custom/000-installing-vundle.vim
 source $HOME/.vim/plugin/custom/000-settings.vim
 source $HOME/.vim/plugin/custom/001-extensions.vim
 
 " Because we need dat syntax.
-syntax on
+syntax enable

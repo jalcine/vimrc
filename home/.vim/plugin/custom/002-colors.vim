@@ -1,17 +1,17 @@
 let g:coloring = {
       \ 'Dark' : {
-      \   'colorscheme' : 'badwolf',
-      \   'airline'     : 'badwolf'
+      \   'colorscheme' : 'Tomorrow-Night',
+      \   'airline'     : 'tomorrow'
       \   },
       \ 'Light' : {
       \   'colorscheme' : 'github',
       \   'airline'     : 'luna'
       \  },
-      \ 'Dark2' : {
-      \   'colorscheme' : 'Tomorrow-Night',
-      \   'airline'     : 'tomorrow'
+      \ 'BadWolf' : {
+      \   'colorscheme' : 'badwolf',
+      \   'airline'     : 'badwolf'
       \  },
-      \ 'Dark3' : {
+      \ 'JellyBeans' : {
       \   'colorscheme' : 'jellybeans',
       \   'airline'     : 'jellybeans'
       \  }
@@ -33,6 +33,7 @@ func! s:apply_coloring(the_profile)
   exec('colorscheme ' . color_opts.colorscheme)
   call airline#switch_theme(color_opts.airline)
   let g:coloring_current = a:the_profile
+  echomsg 'Activated \'' . a:the_profile . '\'.'
 endfunc
 
 " Toggle the color scheme on mapping.

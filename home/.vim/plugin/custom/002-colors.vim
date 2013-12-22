@@ -33,7 +33,7 @@ func! s:apply_coloring(the_profile)
   exec('colorscheme ' . color_opts.colorscheme)
   call airline#switch_theme(color_opts.airline)
   let g:coloring_current = a:the_profile
-  echomsg 'Activated \'' . a:the_profile . '\'.'
+  echo 'Activated ' . a:the_profile . '.'
 endfunc
 
 " Toggle the color scheme on mapping.

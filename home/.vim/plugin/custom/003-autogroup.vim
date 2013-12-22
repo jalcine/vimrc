@@ -16,9 +16,9 @@ augroup END
 " Some files might need to be filetype'd properly.
 augroup fixfiletype
   au!
-  au BufRead Guardfile setl filetype=guard.ruby
-  au BufRead *.css.scss setl filetype=css.scss
-  au BufRead *.css.sass setl filetype=css.sass
+  au BufRead Guardfile setl filetype=ruby.guard
+  au BufRead *.css.scss setl filetype=scss.css
+  au BufRead *.css.sass setl filetype=sass.css
   au BufRead ~/.gitignore_global setl filetype=gitignore
 augroup END
 

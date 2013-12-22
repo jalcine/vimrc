@@ -70,7 +70,10 @@ cnoremap sw% w !sudo te %
 nnoremap <F3> :Autoformat<CR><CR>
 nnoremap <F7> :NERDTreeToggle<CR><CR>
 nnoremap <F8> :TagbarToggle<CR><CR>
-nnoremap <C-P> :<C-u>Unite -buffer-name=files -start-insert -immediately file_rec file_rec/async file_mru file buffer tag tag/file tag/include -ignore-pattern=\.git\|\.svn\|\.hg\|\.bzr\|tmp<cr>
+nnoremap <C-P> :<C-u>Unite -buffer-name=files -start-insert -sync
+      \ file_rec/async file_mru file buffer tag tag/file tag/include
+      \ webcolorname tmux tab jump mapping history/yank
+      \ git_modified launcher <cr>
 
 "{{{2 Tabularize
 vnoremap <Leader>a: :Tabularize /:<CR>

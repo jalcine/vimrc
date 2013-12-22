@@ -3,7 +3,7 @@ augroup autosourcecfg
   au!
   au BufWritePost ~/.vimrc source $MYVIMRC | echomsg "[vim] Configuration sourced."
   au BufWritePost *.local.vimrc source % | echomsg "[vim] Reloaded local Vim configuration."
-  au BufWritePost *.tmux* echomsg system("tmux source-file ~./.tmux.conf; tmux display-message 'Conf reloaded.")
+  au BufWritePost *.tmux* silent! tmux source-file ~/.tmux.conf; tmux display-message 'Conf reloaded.'
 augroup END
 
 " Toggle the current cursor line whenever I swap windows.
@@ -17,8 +17,6 @@ augroup END
 augroup fixfiletype
   au!
   au BufRead Guardfile setl filetype=ruby.guard
-  au BufRead *.css.scss setl filetype=scss.css
-  au BufRead *.css.sass setl filetype=sass.css
   au BufRead ~/.gitignore_global setl filetype=gitignore
 augroup END
 

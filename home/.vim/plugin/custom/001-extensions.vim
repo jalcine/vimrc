@@ -66,6 +66,8 @@ Bundle (my_plugin_prefix . 'cmake.vim')
 Bundle (my_plugin_prefix . 'vim-snippets')
 Bundle (my_plugin_prefix . 'localrc.vim')
 Bundle (my_plugin_prefix . 'vim-rdoc')
+Bundle (my_plugin_prefix . 'vim-tmux')
+Bundle (my_plugin_prefix . 'unite-tag')
 Bundle 'tpope/vim-speeddating'
 Bundle 'godlygeek/tabular'
 Bundle 'jamessan/vim-gnupg'
@@ -97,7 +99,7 @@ Bundle 'mutewinter/vim-css3-syntax'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'vim-perl/vim-perl'
 Bundle 'othree/html5.vim'
-Bundle 'skammer/vim-css-color'
+Bundle 'ap/vim-css-color'
 Bundle 'dbext.vim'
 Bundle 'rking/ag.vim'
 Bundle 'tpope/vim-bundler'

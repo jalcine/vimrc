@@ -70,10 +70,11 @@ cnoremap sw% w !sudo te %
 nnoremap <F3> :Autoformat<CR><CR>
 nnoremap <F7> :NERDTreeToggle<CR><CR>
 nnoremap <F8> :TagbarToggle<CR><CR>
-nnoremap <C-P> :<C-u>Unite -buffer-name=files -start-insert -sync
-      \ file_rec/async file_mru file buffer tag tag/file tag/include
-      \ webcolorname tmux tab jump mapping history/yank
-      \ git_modified launcher <cr>
+nnoremap <F5> :so ~/.vimrc | :runtime! ~/.vim/plugin/custom/*.vim
+nnoremap <C-.> :<C-u>Unite -buffer-name=files -start-insert -sync
+  \ file_rec/async file_mru buffer tag tag/file tag/include
+  \ webcolorname tmux tab jump mapping history/yank window
+  \ git_modified launcher <cr>
 
 "{{{2 Tabularize
 vnoremap <Leader>a: :Tabularize /:<CR>
@@ -118,8 +119,7 @@ function! VimuxRepl()
   call VimuxSendKeys("<Enter>")
 endfunction
 
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#filters#sorter_default#use(['sorter_rank'])
+
 "}}}
 
 "}}}

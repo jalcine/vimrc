@@ -9,6 +9,8 @@ let g:username="jalcine"
 "{{{2 CMake configuration
 let g:cmake_use_vimux=1
 let g:cmake_build_shared_libs=1
+let g:cmake_set_makeprg=1
+let g:cmake_use_vimux=1
 let g:cmake_inject_flags={
   \ 'syntastic': 1,
   \ 'ycm':       1
@@ -61,19 +63,21 @@ let g:syntastic_enable_signs=1
 let g:syntastic_aggregate_errors=1
 let g:syntastic_enable_highlight=1
 let g:syntastic_echo_current_error=1
-let g:syntastic_auto_loc_list=0
+let g:syntastic_auto_loc_list=1
 let g:syntastic_loc_list_length=2
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
-let g:syntastic_auto_jump=1
+let g:syntastic_auto_jump=0
 let g:syntastic_quiet_warnings=1
-let g:syntastic_ruby_exec = system("rbenv which ruby")
+let g:syntastic_ruby_exec=system("rbenv which ruby")
+let g:syntastic_sass_check_partials=1
+let g:syntastic_sass_sass_args="--trace"
 let g:syntastic_cpp_compiler="ycm"
 let g:syntastic_cpp_check_header=1
 let g:syntastic_cpp_include_dirs=[ "$HOME/.local/include", 
-      \ "/usr/include",
-      \ "/usr/local/include"
-      \ ]
+  \ '/usr/include',
+  \ '/usr/local/include'
+  \ ]
 
 "{{{2 CtrlP
 "let g:ctrlp_switch_buffer="E"

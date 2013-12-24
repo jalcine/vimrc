@@ -70,7 +70,7 @@ cnoremap sw% w !sudo te %
 nnoremap <F3> :Autoformat<CR><CR>
 nnoremap <F7> :NERDTreeToggle<CR><CR>
 nnoremap <F8> :TagbarToggle<CR><CR>
-nnoremap <F5> :so ~/.vimrc | :runtime! ~/.vim/plugin/custom/*.vim
+nnoremap <F5> :so ~/.vimrc<CR> | :runtime! ~/.vim/plugin/custom/*.vim<CR>
 nnoremap <C-.> :<C-u>Unite -buffer-name=files -start-insert -sync
   \ file_rec/async file_mru buffer tag tag/file tag/include
   \ webcolorname tmux tab jump mapping history/yank window

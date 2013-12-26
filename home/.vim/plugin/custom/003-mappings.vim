@@ -6,7 +6,7 @@
 nnoremap ; :
 
 " Toggle the use of list characters.
-nnoremap <silent> <leader>l :set list!<cr>
+nnoremap <silent> <leader>l :set list! | :IndentLinesToggle<cr>
 
 " Toggle the state of search highlighting locally.
 nnoremap <silent> <leader>h :setlocal hlsearch!<CR>
@@ -15,8 +15,7 @@ nnoremap <silent> <leader>h :setlocal hlsearch!<CR>
 nnoremap <silent> <leader>j :setlocal spell!<CR>
 
 " Toggle the visibility of cursor lines.
-nnoremap <leader>cl :setlocal cursorline!<CR>
-nnoremap <leader>cc :setlocal cursorcolumn!<CR>
+nnoremap <leader>cl :setlocal cursorline! cursorcolumn!<CR>
 
 " Toggle the current fold.
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
@@ -71,7 +70,7 @@ nnoremap <F3> :Autoformat<CR><CR>
 nnoremap <F7> :NERDTreeToggle<CR><CR>
 nnoremap <F8> :TagbarToggle<CR><CR>
 nnoremap <F5> :so ~/.vimrc<CR> | :runtime! ~/.vim/plugin/custom/*.vim<CR>
-nnoremap <C-.> :<C-u>Unite -buffer-name=files -start-insert -sync
+nnoremap <C-b> :<C-u>Unite -buffer-name=files -start-insert -sync
   \ file_rec/async file_mru buffer tag tag/file tag/include
   \ webcolorname tmux tab jump mapping history/yank window
   \ git_modified launcher <cr>

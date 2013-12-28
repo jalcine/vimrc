@@ -18,13 +18,16 @@
 "set nocompatible
 
 " We use UNIX. So act like UNIX.
-set encoding=utf-8 fileencoding=utf-8 fileformats=unix
+set encoding=utf-8
+set fileencoding=utf-8
+set fileformats=unix
 
 " Use my bash file.
 let $BASH_ENV="$HOME/.bashrc"
 
 " Enable the use of Bash into the mix.
-set shell=/bin/bash shellcmdflag=-c
+set shell=/bin/bash
+set shellcmdflag=-c
 
 " We need modelines.
 set modeline
@@ -33,15 +36,14 @@ set modeline
 let mapleader=","
 let maplocalleader="\\"
 
-" Use specific indentation files.
-filetype indent plugin on
 "}}}
 "{{{2 Immediate Configuration Options
 
 " Use visual bells instead of beeps. I use this
 " since it helps a lot with tmux to inform me
 " to switch over to it. Also enable bells for errors.
-set visualbell errorbells
+set visualbell
+set errorbells
 
 " Gimme something to look at.
 set laststatus=2
@@ -52,27 +54,30 @@ set showtabline=2
 "{{{2 Spacing
 
 " I prefer to use two spaces to represent tabs.
-"set tabstop=2 softtabstop=2
+set tabstop=2
+set softtabstop=2
 
 " Set expandtab to the values used for tabstop
 " and shiftwidth to ensure that we enter only 
 " spaces, as well as enabling auto-indenting.
 " Also ensures that <Tab>s are converted into spaces.
 " We don't want any mix-ups here.
-set smarttab expandtab
+set smarttab
+set expandtab
 
 " Set a hard wrapping to 78 characters. Nothing should be longer than that.
 " Trust me, living a few days in the console will teach you that.
-set textwidth=78 shiftwidth=2
+set textwidth=78
+set shiftwidth=2
 
 " Automatically indent text.
 set autoindent
 
-" Enable your wild side, take command completion completion up a notch.
+" Enable your wild side, take command completion completion up a notch.  Allow
+" for an interesting view when opening the command line menu.
+set wildmode=full
 set wildmenu
-
-" Allow for an interesting view when opening the command line menu.
-set wildmode=longest:full wildignorecase
+set wildignorecase
 
 " Ignore a lot of stuff.
 set wildignore+=*.swp,*.pyc,*.bak,*.class,*.orig
@@ -84,10 +89,12 @@ set wildignore+=build,tmp,vendor/cache,bin
 set pastetoggle=<F2>
 
 " Wrap text around; keep what we need in sight.
-set wrap wrapmargin=1
+set wrap
+set wrapmargin=1
 
 " Use the clicking thing, Luke.
-set mouse=a ttymouse=xterm
+set mouse=a
+set ttymouse=xterm
 
 " I place my tags all over the place. Bring them
 " to me!
@@ -102,26 +109,29 @@ set sessionoptions=buffers,tabpages,winsize,curdir
 set foldenable
 
 " Fold on the syntax.
-set foldmethod=indent
+set foldmethod=syntax
 
 " Sets the width of the folding margins.
-set foldcolumn=2
+set foldcolumn=1
 
 " Sets the minimum amount of lines needed to
 " automatically initialize folding.
-set foldminlines=3
+set foldminlines=5
 
 " Anything greater than this is automatically folded.
-set foldlevel=1
+set foldlevel=2
 
 " Set the title in the terminal.
-set title titlelen=120 titlestring="%t%(\ %M%)%(\ (%{expand(\"%:~:.:h\")})%)%(\ %a%)"
+set title
+set titlelen=120
+set titlestring="%t%(\ %M%)%(\ (%{expand(\"%:~:.:h\")})%)%(\ %a%)"
 
 " Turn on the ruler, we'd like to know our whereabouts.
 set ruler
 
 " We like a stable number count.
-set number numberwidth=2
+set number
+set numberwidth=4
 
 "{{{2 Searching
 
@@ -145,6 +155,7 @@ set hidden
 
 " Automatically save my changes.
 set autowriteall
+set autoread
 
 " Avoid using backup files. If you commit often into
 " version control, backup files shouldn't be a problem.
@@ -185,6 +196,7 @@ set spellfile=~/.vim/dict.custom.utf8-8.add
 " (right?) so using UTF-8 characters for symbols should be a given.
 set fillchars=diff:⣿,vert:│
 set guifont=monoOne\ 9
+
 " A visual cue for line-wrapping.
 set showbreak=↪
 
@@ -195,13 +207,16 @@ set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮,trail:·,nbsp:×
 set list
 
 " Update by redraw and not INS/DEL
-set ttyscroll=3 ttyfast
+set ttyscroll=3
+set ttyfast
 
 " Show me what I was doing.
-set showcmd showfulltag
+set showcmd
+set showfulltag
 
-" Let me know where I am.
-set nocursorline nocursorcolumn
+" Don't tell me where I'm at.
+set nocursorline
+set nocursorcolumn
 
 " Do this when I hit <Backspace>.
 set backspace=indent,eol,start
@@ -215,9 +230,3 @@ set shortmess+=I
 source $HOME/.vim/plugin/custom/000-installing-vundle.vim
 source $HOME/.vim/plugin/custom/000-settings.vim
 source $HOME/.vim/plugin/custom/001-extensions.vim
-
-" Because we need that syntax highlight and plug-ins, brah.
-syntax enable
-
-" I'd like to know what file I'm playing with.
-filetype on

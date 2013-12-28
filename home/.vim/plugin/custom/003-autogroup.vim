@@ -3,7 +3,7 @@ augroup autosourcecfg
   au!
   au BufWritePost ~/.vimrc source $MYVIMRC | echomsg "[vim] Configuration sourced."
   au BufWritePost *.local.vimrc source % | echomsg "[vim] Reloaded local Vim configuration."
-  au BufWritePost *.tmux* silent! tmux source-file ~/.tmux.conf; tmux display-message 'Conf reloaded.'
+  au BufWritePost *.tmux* silent! tmux source-file ~/.tmux.conf; tmux display-message 'Configuration reloaded from Vim..h
 augroup END
 
 " Toggle the current cursor line whenever I swap windows.
@@ -31,4 +31,5 @@ function! s:unite_settings()
   imap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
   imap <silent><buffer><expr> <C-t> unite#do_action('tabopen')
   nmap <buffer> <ESC> <Plug>(unite_exit)
+  imap <buffer> <ESC> <Plug>(unite_exit)
 endfunction

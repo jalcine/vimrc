@@ -1,21 +1,29 @@
 let g:coloring = {
-      \ 'Dark' : {
-      \   'colorscheme' : 'Tomorrow-Night',
-      \   'airline'     : 'tomorrow'
-      \   },
-      \ 'Light' : {
-      \   'colorscheme' : 'github',
-      \   'airline'     : 'luna'
-      \  },
-      \ 'BadWolf' : {
-      \   'colorscheme' : 'badwolf',
-      \   'airline'     : 'badwolf'
-      \  },
-      \ 'JellyBeans' : {
-      \   'colorscheme' : 'jellybeans',
-      \   'airline'     : 'jellybeans'
-      \  }
-      \}
+  \ 'Dark' : {
+  \   'colorscheme' : 'Tomorrow-Night',
+  \   'airline'     : 'tomorrow'
+  \  },
+  \ 'Light' : {
+  \   'colorscheme' : 'github',
+  \   'airline'     : 'luna'
+  \  },
+  \ 'Molokai' : {
+  \   'colorscheme' : 'molokai',
+  \   'airline'     : 'molokai'
+  \  },
+  \ 'BadWolf' : {
+  \   'colorscheme' : 'badwolf',
+  \   'airline'     : 'badwolf'
+  \  },
+  \ 'JellyBeans' : {
+  \   'colorscheme' : 'jellybeans',
+  \   'airline'     : 'jellybeans'
+  \  },
+  \ 'Kolor' : {
+  \   'colorscheme' : 'kolor',
+  \   'airline'     : 'kolor'
+  \ }
+  \ }
 
 func! b:toggle_colors()
   let zi = index(keys(g:coloring), g:coloring_current)
@@ -33,7 +41,6 @@ func! s:apply_coloring(the_profile)
   exec('colorscheme ' . color_opts.colorscheme)
   call airline#switch_theme(color_opts.airline)
   let g:coloring_current = a:the_profile
-  echo 'Activated ' . a:the_profile . '.'
 endfunc
 
 " Toggle the color scheme on mapping.

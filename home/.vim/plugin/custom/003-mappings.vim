@@ -6,7 +6,7 @@
 nnoremap ; :
 
 " Toggle the use of list characters.
-nnoremap <silent> <leader>l :set list! | :IndentLinesToggle<cr>
+nnoremap <silent> <leader>l :set list!<cr>
 
 " Toggle the state of search highlighting locally.
 nnoremap <silent> <leader>h :setlocal hlsearch!<CR>
@@ -37,10 +37,6 @@ nnoremap <Down>   <NOP>
 nnoremap <Left>   <NOP>
 nnoremap <Right>  <NOP>
 
-" Jump between the current tabs.
-noremap <silent> <C-H> :tabp<CR>
-noremap <silent> <C-L> :tabn<CR>
-
 " Formats the current buffer.
 nnoremap <leader>f gg=G
 
@@ -66,11 +62,9 @@ cnoremap sw% w !sudo te %
 
 "{{{1 Plugin Mappings
 
-nnoremap <F3> :Autoformat<CR><CR>
-nnoremap <F7> :NERDTreeToggle<CR><CR>
-nnoremap <F8> :TagbarToggle<CR><CR>
 nnoremap <F5> :so ~/.vimrc<CR> | :runtime! ~/.vim/plugin/custom/*.vim<CR>
-nnoremap <C-b> :<C-u>Unite -buffer-name=files -start-insert -sync
+nnoremap <F6> :TagbarToggle<CR><CR>
+nnoremap <F7> :<C-u>Unite -buffer-name=files -start-insert -sync
   \ file_rec/async file_mru buffer tag tag/file tag/include
   \ webcolorname tmux tab jump mapping history/yank window
   \ git_modified launcher <cr>

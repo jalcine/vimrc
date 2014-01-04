@@ -33,11 +33,12 @@ Bundle 'chriskempson/tomorrow-theme', { 'rtp' : 'vim' }
 Bundle 'altercation/solarized', { 'rtp' : 'vim-colors-solarized' }
 Bundle 'tpope/vim-haml'
 Bundle 'zenorocha/dracula-theme'
+Bundle 'astashov/vim-ruby-debugger'
 "Bundle 'vim-php/tagbar-phpctags.vim'
 Bundle 'tpope/vim-dispatch'
 "Bundle 'mattn/emmet-vim'
 Bundle 'tpope/vim-endwise'
-Bundle 'nanotech/jellybeans'
+"Bundle 'nanotech/jellybeans'
 Bundle 'bling/vim-airline'
 Bundle 'justincampbell/vim-eighties'
 "Bundle 'kballenegger/vim-autoreadwatch'

@@ -36,6 +36,10 @@ nnoremap <Up>     <NOP>
 nnoremap <Down>   <NOP>
 nnoremap <Left>   <NOP>
 nnoremap <Right>  <NOP>
+nnoremap <C-w><Up>     <NOP>
+nnoremap <C-w><Down>   <NOP>
+nnoremap <C-w><Left>   <NOP>
+nnoremap <C-w><Right>  <NOP>
 
 " Formats the current buffer.
 nnoremap <leader>f gg=G
@@ -64,7 +68,7 @@ cnoremap sw% w !sudo te %
 
 nnoremap <F5> :so ~/.vimrc<CR> | :runtime! ~/.vim/plugin/custom/*.vim<CR>
 nnoremap <F6> :TagbarToggle<CR><CR>
-nnoremap <F7> :<C-u>Unite -buffer-name=files -start-insert -sync
+nnoremap <leader>p :Unite -buffer-name=files -start-insert -sync
   \ file_rec/async file_mru buffer tag tag/file tag/include
   \ webcolorname tmux tab jump mapping history/yank window
   \ git_modified launcher <cr>

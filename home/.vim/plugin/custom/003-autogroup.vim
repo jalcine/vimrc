@@ -9,8 +9,8 @@ augroup END
 " Toggle the current cursor line whenever I swap windows.
 augroup cline
   au!
-  au WinLeave,InsertEnter * set cursorline cursorcolumn
-  au WinEnter,InsertLeave * set nocursorline nocursorcolumn
+  au WinEnter,InsertEnter * setlocal cursorline cursorcolumn
+  au WinLeave,InsertLeave * setlocal nocursorline nocursorcolumn
 augroup END
 
 " Some files might need to be filetype'd properly.
@@ -23,8 +23,8 @@ augroup END
 autocmd FileType unite call s:unite_settings()
 
 function! s:unite_settings()
-  imap <buffer> <C-j>   <Plug>(unite_select_next_line)
-  imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+  imap <buffer> <C-j>   <Plug>(unite_select_previous_line)
+  imap <buffer> <C-k>   <Plug>(unite_select_next_line)
   imap <buffer> <C-i>   <Plug>(unite_toggle_auto_preview)
   imap <buffer> <F5>   <Plug>(unite_redraw)
   imap <silent><buffer><expr> <C-x> unite#do_action('split')

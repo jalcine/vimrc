@@ -88,9 +88,8 @@ set wildignore+=build,tmp,vendor/cache,bin
 " PASTE mo'fo!
 set pastetoggle=<F2>
 
-" Wrap text around; keep what we need in sight.
-set wrap
-set wrapmargin=1
+" If I want to see it, I'll look at it.
+set nowrap
 
 " Use the clicking thing, Luke.
 set mouse=a
@@ -208,7 +207,7 @@ set list
 
 " Update by redraw and not INS/DEL
 set ttyscroll=3
-set ttyfast
+set nottyfast
 
 " Show me what I was doing.
 set showcmd

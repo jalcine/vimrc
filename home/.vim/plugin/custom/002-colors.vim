@@ -1,5 +1,5 @@
 let g:coloring = {
-  \ 'Dark' : {
+  \ 'Tomorrow' : {
   \   'colorscheme' : 'Tomorrow-Night',
   \   'airline'     : 'tomorrow'
   \  },
@@ -11,17 +11,21 @@ let g:coloring = {
   \   'colorscheme' : 'molokai',
   \   'airline'     : 'molokai'
   \  },
-  \ 'BadWolf' : {
+  \ 'Dark' : {
   \   'colorscheme' : 'badwolf',
   \   'airline'     : 'badwolf'
   \  },
+  \ 'Solarized' : {
+  \   'colorscheme' : 'solarized',
+  \   'airline'     : 'Solarized',
+  \ },
   \ 'JellyBeans' : {
   \   'colorscheme' : 'jellybeans',
   \   'airline'     : 'jellybeans'
   \  },
-  \ 'Kolor' : {
+  \ 'Shell' : {
   \   'colorscheme' : 'kolor',
-  \   'airline'     : 'kolor'
+  \   'airline'     : 'luna'
   \ }
   \ }
 
@@ -46,5 +50,12 @@ endfunc
 " Toggle the color scheme on mapping.
 nnoremap <silent> <leader>ks :call b:toggle_colors()<CR>
 
+" Set the default color scheme, in the event it's not defined.
+let g:coloring_current="Dark"
+
 " Apply my coloring.
-call s:apply_coloring($KONSOLE_PROFILE_NAME)
+if exists($KONSOLE_PROFILE_NAME)
+  call s:apply_coloring($KONSOLE_PROFILE_NAME)
+else
+  call s:apply_coloring(g:coloring_current)
+endif

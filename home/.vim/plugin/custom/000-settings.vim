@@ -47,6 +47,8 @@ let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_autoclose_preview_window_after_insertion=1
 let g:ycm_global_ycm_extra_conf = "$HOME/.ycm_extra_conf.py"
 let g:ycm_confirm_extra_conf=0
+let g:ycm_use_utlisnips_completer=1
+let g:ycm_add_preview_to_completeopt=1
 let g:ycm_semantic_triggers =  {
       \ 'c' : [ '->', '.', '(', ',', '='],
       \ 'cpp,objcpp' : [ '->', '.', '::', '(',',', '=', '+'],
@@ -94,6 +96,7 @@ let g:unite_enable_start_insert=1
 let g:unite_update_time=1
 let g:unite_force_overwrite_statusline=0
 let g:unite_winheight=5
+let g:unite_source_rec_async_command='ag --nocolor --nogroup --hidden -g ""'
 
 "{{{2 indentLine
 let g:indentLine_char="┆"
@@ -161,16 +164,18 @@ let g:NERDTreeAutoDeleteBuffer=1
 "}}}
 
 "{{{2 Tagbar
-let g:tagbar_compact=1
+let g:tagbar_compact=0
 let g:tagbar_autoshowtag=1
 
 "{{{2 Signify
 let g:signify_vcs_list = ['git','hg','svn','bzr']
 let g:signify_sign_overwrite=0
-let g:signify_sign_add='✚'
-let g:signify_sign_change='✻'
-let g:signify_sign_delete='✖'
-let g:signify_sign_delete_first_line='✖'
+"let g:signify_sign_add='✚'
+"let g:signify_sign_change='✻'
+"let g:signify_sign_delete='✖'
+"let g:signify_sign_delete_first_line='✖'
 let g:signify_cursorhold_normal=0
 let g:signify_cursorhold_insert=0
 "}}}
+
+let g:ruby_debugger_default_script='bin/rackup -p 3000'

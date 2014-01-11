@@ -71,7 +71,7 @@ nnoremap <F6> :TagbarToggle<CR><CR>
 nnoremap <leader>p :Unite -buffer-name=files -start-insert -sync
   \ file_rec/async file_mru buffer tag tag/file tag/include
   \ webcolorname tmux tab jump mapping history/yank window
-  \ git_modified launcher <cr>
+  \ git_modified launcher grep rails/bundle rails/gem<cr>
 
 "{{{2 Tabularize
 vnoremap <Leader>a: :Tabularize /:<CR>
@@ -87,7 +87,7 @@ nnoremap <Leader>to :VimuxOpenPane<CR>
 nnoremap <Leader>tp :VimuxPromptCommand<CR>
 nnoremap <Leader>tt :VimuxRunLastCommand<CR>
 nnoremap <Leader>tc :VimuxCloseRunner<CR>
-vnoremap <Leader>ts "vy :call VimuxRepl()<CR>
+vnoremap <Leader>ts "vy :call s:VimuxRepl()<CR>
 nnoremap <Leader>ts vip<LocalLeader>ts<CR>
 
 nnoremap <leader>e   :E
@@ -106,12 +106,12 @@ nnoremap <leader>ehh :Ehelper<space>
 nnoremap <leader>eii :Einitializer<space>
 nnoremap <leader>ejj :Ejavascript<space>
 nnoremap <leader>ess :Espec<space>
-nnoremap <leader>esm :Espec models/
-nnoremap <leader>esc :Espec controllers/
-nnoremap <leader>esv :Espec views/
-nnoremap <leader>esl :Espec lib/
+nnoremap <leader>esm :Espec models/<space>
+nnoremap <leader>esc :Espec controllers/<space>
+nnoremap <leader>esv :Espec views/<space>
+nnoremap <leader>esl :Espec lib/<space>
 
-function! VimuxRepl()
+function! s:VimuxRepl()
   call VimuxSendText(@v)
   call VimuxSendKeys("<Enter>")
 endfunction

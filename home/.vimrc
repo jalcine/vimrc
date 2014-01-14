@@ -2,7 +2,7 @@
 "" Vim configuration options.
 ""
 "" @author Jacky Alciné <me@jalcine.me>
-"" @date   2013-09-21 16:59:24 EDT
+"" @date   2014-01-14 10:45:36 EST
 "" @vcs    https://github.com/jalcine/vimrc
 ""
 "" I take pride in my Vim configuration. Being that I'm an intermediate Vim 

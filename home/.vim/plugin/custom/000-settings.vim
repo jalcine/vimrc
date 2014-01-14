@@ -95,8 +95,13 @@ let g:syntastic_cpp_include_dirs=[ "$HOME/.local/include",
 let g:unite_enable_start_insert=1
 let g:unite_update_time=1
 let g:unite_force_overwrite_statusline=0
-let g:unite_winheight=5
+let g:unite_winheight=9
+let g:unite_source_history_yank_enable=1
+"let g:unite_split_rule = 'topright'
 let g:unite_source_rec_async_command='ag --nocolor --nogroup --hidden -g ""'
+let g:unite_source_grep_command='ag'
+let g:unite_prompt='❫ '
+let g:unite_prompt='» '
 
 "{{{2 indentLine
 let g:indentLine_char="┆"

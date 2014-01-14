@@ -9,8 +9,8 @@ augroup END
 " Toggle the current cursor line whenever I swap windows.
 augroup cline
   au!
-  au WinEnter,InsertEnter * setlocal cursorline cursorcolumn
-  au WinLeave,InsertLeave * setlocal nocursorline nocursorcolumn
+  au InsertEnter * setlocal cursorline cursorcolumn
+  au InsertLeave * setlocal nocursorline nocursorcolumn
 augroup END
 
 " Some files might need to be filetype'd properly.

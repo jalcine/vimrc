@@ -68,10 +68,10 @@ cnoremap sw% w !sudo te %
 
 nnoremap <F5> :so ~/.vimrc<CR> | :runtime! ~/.vim/plugin/custom/*.vim<CR>
 nnoremap <F6> :TagbarToggle<CR><CR>
-nnoremap <leader>p :Unite -buffer-name=files -start-insert -sync
+nnoremap <leader>p :Unite -buffer-name=files -start-insert
   \ file_rec/async file_mru buffer tag tag/file tag/include
   \ webcolorname tmux tab jump mapping history/yank window
-  \ git_modified launcher grep rails/bundle rails/gem<cr>
+  \ git_modified launcher<cr>
 
 "{{{2 Tabularize
 vnoremap <Leader>a: :Tabularize /:<CR>

@@ -1,33 +1,37 @@
 let g:coloring = {
-  \ 'Tomorrow' : {
-  \   'colorscheme' : 'Tomorrow-Night',
-  \   'airline'     : 'tomorrow'
-  \  },
-  \ 'Light' : {
-  \   'colorscheme' : 'github',
-  \   'airline'     : 'luna'
-  \  },
-  \ 'Molokai' : {
-  \   'colorscheme' : 'molokai',
-  \   'airline'     : 'molokai'
-  \  },
-  \ 'Dark' : {
-  \   'colorscheme' : 'badwolf',
-  \   'airline'     : 'badwolf'
-  \  },
-  \ 'Solarized' : {
-  \   'colorscheme' : 'solarized',
-  \   'airline'     : 'Solarized',
-  \ },
-  \ 'JellyBeans' : {
-  \   'colorscheme' : 'jellybeans',
-  \   'airline'     : 'jellybeans'
-  \  },
-  \ 'Shell' : {
-  \   'colorscheme' : 'kolor',
-  \   'airline'     : 'luna'
-  \ }
-  \ }
+      \ 'Tomorrow' : {
+      \   'colorscheme' : 'Tomorrow-Night',
+      \   'airline'     : 'tomorrow'
+      \  },
+      \ 'Light' : {
+      \   'colorscheme' : 'github',
+      \   'airline'     : 'luna'
+      \  },
+      \ 'Herald' : {
+      \   'colorscheme' : 'herald',
+      \   'airline'     : 'luna'
+      \  },
+      \ 'Molokai' : {
+      \   'colorscheme' : 'molokai',
+      \   'airline'     : 'molokai'
+      \  },
+      \ 'Dark' : {
+      \   'colorscheme' : 'badwolf',
+      \   'airline'     : 'badwolf'
+      \  },
+      \ 'Solarized' : {
+      \   'colorscheme' : 'solarized',
+      \   'airline'     : 'Solarized',
+      \ },
+      \ 'JellyBeans' : {
+      \   'colorscheme' : 'jellybeans',
+      \   'airline'     : 'jellybeans'
+      \  },
+      \ 'Shell' : {
+      \   'colorscheme' : 'kolor',
+      \   'airline'     : 'luna'
+      \ }
+      \ }
 
 func! b:toggle_colors()
   let zi = index(keys(g:coloring), g:coloring_current)
@@ -51,7 +55,7 @@ endfunc
 nnoremap <silent> <leader>ks :call b:toggle_colors()<CR>
 
 " Set the default color scheme, in the event it's not defined.
-let g:coloring_current="Dark"
+let g:coloring_current="Herald"
 
 " Apply my coloring.
 if exists($KONSOLE_PROFILE_NAME)

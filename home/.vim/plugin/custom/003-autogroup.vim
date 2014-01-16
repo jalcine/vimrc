@@ -1,9 +1,9 @@
-" Update approriate files when I update them.
+" Update appropriate files when I update them.
 augroup autosourcecfg
   au!
-  au BufWritePost ~/.vimrc source $MYVIMRC | echomsg "[vim] Configuration sourced."
-  au BufWritePost *.local.vimrc source % | echomsg "[vim] Reloaded local Vim configuration."
-  au BufWritePost *.tmux* silent! tmux source-file ~/.tmux.conf; tmux display-message 'Configuration reloaded from Vim..h
+  au BufWritePost ~/.vimrc      call s:reload_config()
+  au BufWritePost *.local.vimrc call s:load_current_buffer()
+  au BufWritePost *.tmux*       call s:reload_tmux()
 augroup END
 
 " Toggle the current cursor line whenever I swap windows.
@@ -21,6 +21,21 @@ augroup fixfiletype
 augroup END
 
 autocmd FileType unite call s:unite_settings()
+
+function! s:reload_config()
+  source $MYVIMRC
+  echomsg "[vim] Configuration sourced."
+endfunction
+
+function! s:load_current_buffer()
+  source %
+  echomsg "[localrc] Loaded local Vim configuration."
+endfunction
+
+function! s:reload_tmux()
+  call system('tmux source-file ~/.tmux.conf')
+  call system("tmux display-message 'Configuration of tmux reloaded.'")
+endfunction
 
 function! s:unite_settings()
   imap <buffer> <C-j>   <Plug>(unite_select_previous_line)

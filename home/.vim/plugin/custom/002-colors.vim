@@ -1,6 +1,6 @@
 let g:coloring = {
       \ 'Tomorrow' : {
-      \   'colorscheme' : 'Tomorrow-Night',
+      \   'colorscheme' : 'Tomorrow-Night-Eighties',
       \   'airline'     : 'tomorrow'
       \  },
       \ 'Light' : {
@@ -55,7 +55,7 @@ endfunc
 nnoremap <silent> <leader>ks :call b:toggle_colors()<CR>
 
 " Set the default color scheme, in the event it's not defined.
-let g:coloring_current="Herald"
+let g:coloring_current="Tomorrow"
 
 " Apply my coloring.
 if exists($KONSOLE_PROFILE_NAME)

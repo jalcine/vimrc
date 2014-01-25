@@ -20,26 +20,26 @@ let g:cmake_inject_flags={
 let g:airline_detect_modified=1
 let g:airline_powerline_fonts=1
 let g:airline#extensions#hunks#non_zero_only=1
-let g:airline#extensions#hunks#hunk_symbols=['✨', '✟', '✇']
+"let g:airline#extensions#hunks#hunk_symbols=['✨', '✟', '✇']
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#tab_nr_type=1
-let g:airline#extensions#tabline#fnamemod=':t'
+let g:airline#extensions#tabline#fnamemod=':p:t'
 let g:airline#extensions#branch#enabled=1
-let g:airline#extensions#branch#empty_message='❌'
+"let g:airline#extensions#branch#empty_message=''
 let g:airline#extensions#whitespace#enabled=0
-let g:airline_mode_map={
-      \ '__' : '-',
-      \ 'n'  : '✈' , 
-      \ 'i'  : '✐',
-      \ 'R'  : '➰',
-      \ 'c'  : '➤',
-      \ 'v'  : 'VIS',
-      \ 'V'  : 'VISLIN',
-      \ '' : 'VISBLK',
-      \ 's'  : 'S',
-      \ 'S'  : 'S',
-      \ '' : 'S',
-      \ }
+"let g:airline_mode_map={
+      "\ '__' : '-',
+      "\ 'n'  : '✈' , 
+      "\ 'i'  : '✐',
+      "\ 'R'  : '➰',
+      "\ 'c'  : '➤',
+      "\ 'v'  : 'VIS',
+      "\ 'V'  : 'VISLIN',
+      "\ '' : 'VISBLK',
+      "\ 's'  : 'S',
+      "\ 'S'  : 'S',
+      "\ '' : 'S',
+      "\ }
 
 "{{{2 YouCompleteMe
 let g:ycm_collect_identifiers_from_tags_files=1
@@ -67,12 +67,12 @@ let g:syntastic_enable_highlight=1
 let g:syntastic_echo_current_error=1
 let g:syntastic_auto_loc_list=0
 let g:syntastic_loc_list_length=2
-"let g:syntastic_error_symbol='✗'
-"let g:syntastic_warning_symbol='⚠'
+let g:syntastic_error_symbol='✗'
+let g:syntastic_warning_symbol='⚠'
 let g:syntastic_auto_jump=0
-let g:syntastic_quiet_warnings=1
+let g:syntastic_quiet_messages={'level' : 'warnings'}
 let g:syntastic_ruby_exec=system("rbenv which ruby")
-let g:syntastic_sass_check_partials=1
+let g:syntastic_sass_check_partials=0
 let g:syntastic_sass_sass_args="--trace --check"
 let g:syntastic_cpp_compiler="ycm"
 let g:syntastic_cpp_check_header=1
@@ -99,9 +99,8 @@ let g:unite_winheight=9
 let g:unite_source_history_yank_enable=1
 "let g:unite_split_rule = 'topright'
 let g:unite_source_rec_async_command='ag --nocolor --nogroup --hidden -g ""'
-let g:unite_source_grep_command='ag'
+"let g:unite_source_grep_command='ag'
 let g:unite_prompt='❫ '
-let g:unite_prompt='» '
 
 "{{{2 indentLine
 let g:indentLine_char="┆"
@@ -172,9 +171,28 @@ let g:NERDTreeAutoDeleteBuffer=1
 let g:tagbar_compact=0
 let g:tagbar_autoshowtag=1
 
+if executable('coffeetags')
+  let g:tagbar_type_coffee = {
+    \ 'ctagsbin' : 'coffeetags',
+    \ 'ctagsargs' : '',
+      \ 'kinds' : [
+      \ 'f:functions',
+      \ 'o:object',
+    \ ],
+    \ 'sro' : ".",
+      \ 'kind2scope' : {
+        \ 'f' : 'object',
+        \ 'o' : 'object',
+      \ }
+    \ }
+endif
+
+
+let g:extradite_showhash=1
+
 "{{{2 Signify
 let g:signify_vcs_list = ['git','hg','svn','bzr']
-let g:signify_sign_overwrite=0
+let g:signify_sign_overwrite=1
 "let g:signify_sign_add='✚'
 "let g:signify_sign_change='✻'
 "let g:signify_sign_delete='✖'

@@ -70,8 +70,11 @@ nnoremap <F5> :so ~/.vimrc<CR> | :runtime! ~/.vim/plugin/custom/*.vim<CR>
 nnoremap <F6> :TagbarToggle<CR><CR>
 nnoremap <leader>p :Unite -buffer-name=files -start-insert
   \ file_rec/async file_mru buffer tag tag/file tag/include
-  \ webcolorname tmux tab jump mapping history/yank window
-  \ git_modified launcher<cr>
+  \ webcolorname tab jump mapping history/yank window
+  \ rails/bundle rails/bundled_gem rails/stylesheet rails/view
+  \ rails/javascript rails/config rails/controller rails/features
+  \ tmux/clients tmux/sessions tmux/panes tmux/windows tmux
+  \ git_modified git_untracked git_cached launcher<cr>
 
 "{{{2 Tabularize
 vnoremap <Leader>a: :Tabularize /:<CR>
@@ -90,7 +93,7 @@ nnoremap <Leader>tc :VimuxCloseRunner<CR>
 vnoremap <Leader>ts "vy :call s:VimuxRepl()<CR>
 nnoremap <Leader>ts vip<LocalLeader>ts<CR>
 
-nnoremap <leader>e   :E
+nnoremap <leader>e   :E<space>
 nnoremap <leader>emm :Emodel<space>
 nnoremap <leader>evv :Eview<space>
 nnoremap <leader>ecc :Econtroller<space>
@@ -115,7 +118,6 @@ function! s:VimuxRepl()
   call VimuxSendText(@v)
   call VimuxSendKeys("<Enter>")
 endfunction
-
 
 "}}}
 

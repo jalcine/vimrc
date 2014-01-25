@@ -115,11 +115,13 @@ nnoremap <leader>esv :Espec views/<space>
 nnoremap <leader>esl :Espec lib/<space>
 
 " Git helpers
-nnoremap <leader>gc  :Gcommit<space>
+nnoremap <leader>gc  :Git commit<space>
 nnoremap <leader>gco :Git checkout<space>
 nnoremap <leader>gp  :Git push<space>
 nnoremap <leader>gfa :Git fetch --all<CR>
 nnoremap <leader>gf  :Git fetch<space>
+nnoremap <leader>grm :Git rm %<CR>
+nnoremap <leader>grmc :Git rm --cached %<CR>
 
 function! s:VimuxRepl()
   call VimuxSendText(@v)

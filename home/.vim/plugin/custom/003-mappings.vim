@@ -122,6 +122,8 @@ nnoremap <leader>gfa :Git fetch --all<CR>
 nnoremap <leader>gf  :Git fetch<space>
 nnoremap <leader>grm :Git rm %<CR>
 nnoremap <leader>grmc :Git rm --cached %<CR>
+nnoremap <leader>gab :Git add %<cr>
+nnoremap <leadr>ga   :Git add<space>
 
 function! s:VimuxRepl()
   call VimuxSendText(@v)

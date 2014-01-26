@@ -1,7 +1,7 @@
 "{{{1 Plugin Configuration
 
 "{{{2 User Info
-let g:author="Jacky Alcine"
+let g:author="Jacky Alciné"
 let g:email="me@jalcine.me"
 let g:site="jalcine.me"
 let g:username="jalcine"
@@ -27,19 +27,19 @@ let g:airline#extensions#tabline#fnamemod=':p:t'
 let g:airline#extensions#branch#enabled=1
 "let g:airline#extensions#branch#empty_message=''
 let g:airline#extensions#whitespace#enabled=0
-"let g:airline_mode_map={
-      "\ '__' : '-',
-      "\ 'n'  : '✈' , 
-      "\ 'i'  : '✐',
-      "\ 'R'  : '➰',
-      "\ 'c'  : '➤',
-      "\ 'v'  : 'VIS',
-      "\ 'V'  : 'VISLIN',
-      "\ '' : 'VISBLK',
-      "\ 's'  : 'S',
-      "\ 'S'  : 'S',
-      "\ '' : 'S',
-      "\ }
+let g:airline_mode_map={
+  \ '__' : '-',
+  \ 'n'  : '✈' , 
+  \ 'i'  : '✐',
+  \ 'R'  : '➰',
+  \ 'c'  : '➤',
+  \ 'v'  : 'VIS',
+  \ 'V'  : 'VISLIN',
+  \ '' : 'VISBLK',
+  \ 's'  : 'S',
+  \ 'S'  : 'S',
+  \ '' : 'S',
+  \ }
 
 "{{{2 YouCompleteMe
 let g:ycm_collect_identifiers_from_tags_files=1
@@ -50,26 +50,26 @@ let g:ycm_confirm_extra_conf=0
 let g:ycm_use_utlisnips_completer=1
 let g:ycm_add_preview_to_completeopt=1
 let g:ycm_semantic_triggers =  {
-      \ 'c' : [ '->', '.', '(', ',', '='],
-      \ 'cpp,objcpp' : [ '->', '.', '::', '(',',', '=', '+'],
-      \ 'perl' : [ '->', '(', '::', ','],
-      \ 'php' : [ '->', '::', '(', '='],
-      \ 'cs,java,javascript,d,vim,python,perl6,scala,vb,elixir,go' : [ '.', '(', '='],
-      \ 'ruby' : [ '.', '::', '(', '{', '=', '+', '-', '/'],
-      \ 'lua' : [ '.', ':'],
-      \ 'erlang' : [ ':'],
-      \ }
+  \ 'c' : [ '->', '.', '(', ',', '='],
+  \ 'cpp,objcpp' : [ '->', '.', '::', '(',',', '=', '+'],
+  \ 'perl' : [ '->', '(', '::', ','],
+  \ 'php' : [ '->', '::', '(', '='],
+  \ 'cs,java,javascript,d,vim,python,perl6,scala,vb,elixir,go' : [ '.', '(', '=', '/', '+'],
+  \ 'ruby' : [ '.', '::', '(', '{', '=', '+', '-', '/'],
+  \ 'lua' : [ '.', ':'],
+  \ 'erlang' : [ ':'],
+  \ }
 
 "{{{2 Syntastic options
 let g:syntastic_enable_signs=1
 let g:syntastic_aggregate_errors=1
 let g:syntastic_enable_highlight=1
 let g:syntastic_echo_current_error=1
-let g:syntastic_auto_loc_list=0
+let g:syntastic_auto_loc_list=1
 let g:syntastic_loc_list_length=2
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
-let g:syntastic_auto_jump=0
+let g:syntastic_auto_jump=1
 let g:syntastic_quiet_messages={'level' : 'warnings'}
 let g:syntastic_ruby_exec=system("rbenv which ruby")
 let g:syntastic_sass_check_partials=0
@@ -97,7 +97,7 @@ let g:unite_update_time=1
 let g:unite_force_overwrite_statusline=0
 let g:unite_winheight=9
 let g:unite_source_history_yank_enable=1
-"let g:unite_split_rule = 'topright'
+let g:unite_split_rule = 'topright'
 let g:unite_source_rec_async_command='ag --nocolor --nogroup --hidden -g ""'
 "let g:unite_source_grep_command='ag'
 let g:unite_prompt='❫ '

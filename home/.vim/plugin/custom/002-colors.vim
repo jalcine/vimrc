@@ -1,6 +1,7 @@
+" This is the color matrix. Wake up, Neo.
 let g:coloring = {
       \ 'Tomorrow' : {
-      \   'colorscheme' : 'Tomorrow-Night-Eighties',
+      \   'colorscheme' : 'Tomorrow-Night-Bright',
       \   'airline'     : 'tomorrow'
       \  },
       \ 'Light' : {
@@ -52,12 +53,12 @@ func! s:apply_coloring(the_profile)
 endfunc
 
 " Toggle the color scheme on mapping.
+" TODO Move to mappings file.
 nnoremap <silent> <leader>ks :call b:toggle_colors()<CR>
 
 " Set the default color scheme, in the event it's not defined.
-let g:coloring_current="Tomorrow"
+let g:coloring_current="Herald"
 
-" Apply my coloring.
 if exists($KONSOLE_PROFILE_NAME)
   call s:apply_coloring($KONSOLE_PROFILE_NAME)
 else

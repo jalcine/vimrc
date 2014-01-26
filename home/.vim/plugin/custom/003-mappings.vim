@@ -15,7 +15,7 @@ nnoremap <silent> <leader>h :setlocal hlsearch!<CR>
 nnoremap <silent> <leader>j :setlocal spell!<CR>
 
 " Toggle the visibility of cursor lines.
-nnoremap <leader>cl :setlocal cursorline! cursorcolumn!<CR>
+nnoremap <silent> <leader>cl :setlocal cursorline! cursorcolumn!<CR>
 
 " Toggle the current fold.
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>

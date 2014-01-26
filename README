@@ -7,7 +7,15 @@ I use [homesick](https://github.com/technicalpickles/homesick) to manage my
 dotfiles and what not. This repository is set up for it. Feel free to use to
 your heart's content.
 
+If you've installed this out of the box with homeshick (or any Vim setup for
+that matter), it'll automatically set up Vundle and download all of the
+plug-ins.
+
 ## Contents
 This Vim setup is constantly tweaked to my comfort; taking advantage of my
 left-handed nature and makes the assumption that you're using all of the
-extensions provided by Vundle.
+extensions provided by Vundle. If you want to check out the plug-ins I've
+added, look at the [file listing][] them.
+
+
+[file_listing]: ./home/.vim/plugin/custom/001-extensions.vim

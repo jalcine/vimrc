@@ -70,8 +70,8 @@ set expandtab
 set textwidth=78
 set shiftwidth=2
 
-" Automatically indent text.
-set autoindent
+" Don't automatically indent text.
+set noautoindent
 
 " Enable your wild side, take command completion completion up a notch.  Allow
 " for an interesting view when opening the command line menu.
@@ -130,7 +130,7 @@ set ruler
 
 " We like a stable number count.
 set number
-set numberwidth=4
+set numberwidth=3
 
 "{{{2 Searching
 
@@ -217,11 +217,18 @@ set showfulltag
 set nocursorline
 set nocursorcolumn
 
+" Show me the overflow.
+call matchadd('ColorColumn', '\%81v', 100)
+
 " Do this when I hit <Backspace>.
 set backspace=indent,eol,start
 
 " Don't talk too much.
 set shortmess+=I
+
+" Timeout bai.
+set timeout ttimeout
+set timeoutlen=1500 ttimeoutlen=50
 "" }}}
 
 " This is required in order to ensure proper plugin loading.

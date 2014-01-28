@@ -97,7 +97,6 @@ let g:unite_update_time=1
 let g:unite_force_overwrite_statusline=0
 let g:unite_winheight=9
 let g:unite_source_history_yank_enable=1
-let g:unite_split_rule = 'topright'
 let g:unite_source_rec_async_command='ag --nocolor --nogroup --hidden -g ""'
 "let g:unite_source_grep_command='ag'
 let g:unite_prompt='❫ '
@@ -193,12 +192,15 @@ let g:extradite_showhash=1
 "{{{2 Signify
 let g:signify_vcs_list = ['git','hg','svn','bzr']
 let g:signify_sign_overwrite=1
-"let g:signify_sign_add='✚'
-"let g:signify_sign_change='✻'
-"let g:signify_sign_delete='✖'
-"let g:signify_sign_delete_first_line='✖'
+let g:signify_line_highlight=0
+let g:signify_update_on_focusgained=1
+let g:signify_disable_by_default=1
+let g:signify_sign_add='✚'
+let g:signify_sign_change='✻'
+let g:signify_sign_delete='✖'
+let g:signify_sign_delete_first_line='✖'
 let g:signify_cursorhold_normal=0
 let g:signify_cursorhold_insert=0
 "}}}
 
-let g:ruby_debugger_default_script='bin/rackup -p 3000'
+"let g:ruby_debugger_default_script='bin/rackup -p 3000'

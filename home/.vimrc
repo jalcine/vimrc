@@ -208,6 +208,7 @@ set list
 " Update by redraw and not INS/DEL
 set ttyscroll=3
 set nottyfast
+set lazyredraw
 
 " Show me what I was doing.
 set showcmd
@@ -227,12 +228,12 @@ set backspace=indent,eol,start
 set shortmess+=I
 
 " Timeout bai.
-set timeout ttimeout
-set timeoutlen=1500 ttimeoutlen=50
+set timeout
+set ttimeout
+set timeoutlen=1500
+set ttimeoutlen=50
 "" }}}
 
-" This is required in order to ensure proper plugin loading.
-" TODO: Ensure that the 'custom' plugin loads by itself.
 source $HOME/.vim/plugin/custom/000-installing-vundle.vim
 source $HOME/.vim/plugin/custom/000-settings.vim
 source $HOME/.vim/plugin/custom/001-extensions.vim

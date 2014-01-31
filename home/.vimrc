@@ -17,6 +17,10 @@
 " In fact, why bother set it? If $VIM is reading this, nocp is active!
 "set nocompatible
 
+" We dark.
+set background=dark
+colorscheme default
+
 " We use UNIX. So act like UNIX.
 set encoding=utf-8
 set fileencoding=utf-8
@@ -139,9 +143,8 @@ set titlestring="%t%(\ %M%)%(\ (%{expand(\"%:~:.:h\")})%)%(\ %a%)"
 " Turn on the ruler, we'd like to know our whereabouts.
 set ruler
 
-" We like a stable number count.
-set number
-set numberwidth=3
+" I stopped using a number line, since it's displayed in my status bar.
+set nonumber
 
 "{{{2 Searching
 
@@ -230,7 +233,7 @@ set nocursorline
 set nocursorcolumn
 
 " Show me the overflow.
-call matchadd('ColorColumn', '\%81v', 100)
+call matchadd('ColorColumn', '\%79v', 100)
 
 " Do this when I hit <Backspace>.
 set backspace=indent,eol,start
@@ -246,5 +249,4 @@ set ttimeoutlen=50
 set updatetime=4000
 "" }}}
 
-" Release the kraken!
 call jalcine#roll_out()

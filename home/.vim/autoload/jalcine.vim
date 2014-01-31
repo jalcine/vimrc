@@ -4,11 +4,11 @@
 " Last Modified: 2014-01-31 02:14:22 EST
 
 func! jalcine#roll_out()
-  runtime! $HOME/.vim/config/*.vim
-  call jalcine#mappings#apply('general')
-  call jalcine#plugins#setup()
   call jalcine#link_plxr()
-  call jalcine#colors#detect()
+  call jalcine#bind_konsole()
+  call jalcine#plugins#setup()
+  call jalcine#mappings#apply('general')
+  autocmd VimEnter * silent call jalcine#colors#detect()
 endfunc
 
 func! jalcine#link_plxr()
@@ -32,3 +32,4 @@ func! jalcine#bind_konsole()
   autocmd VimEnter * silent !konsoleprofile UseCustomCursorColor=1;BlinkingCursorEnabled=1
   autocmd VimLeave * silent !konsoleprofile CustomCursorColor=gray;BlinkingCursorEnabled=0
 endfunction
+

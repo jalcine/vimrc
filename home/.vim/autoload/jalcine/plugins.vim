@@ -22,7 +22,9 @@ function jalcine#plugins#prep()
     silent !git clone git://github.com/gmarik/vundle ~/.vim/bundle/vundle
     echo "[jalcine.vim] Installing plugins..."
     call jalcine#plugins#load()
-    :BundleInstall
+    silent :BundleInstall
+    silent !cd $HOME/.vim/bundle/YouCompleteMe && install.sh --clang-completer --omnisharp-completer
+    silent !cd $HOME/.vim/bundle/vimproc.vim && make
   endif
 endfunction
 

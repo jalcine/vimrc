@@ -7,7 +7,7 @@ function jalcine#plugins#setup()
   call jalcine#plugins#prep()
   call jalcine#plugins#set_options()
   call jalcine#plugins#load()
-  call jalcine#mappings#apply('plugins')
+  call jalcine#mappings#apply('plugin')
 endfunction
 
 function jalcine#plugins#prep()

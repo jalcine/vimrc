@@ -23,7 +23,7 @@ set fileencoding=utf-8
 set fileformats=unix
 
 " Use my bash file.
-let $BASH_ENV="$HOME/.bashrc"
+let $BASH_ENV="$HOME/.bash/config.sh"
 
 " Enable the use of Bash into the mix.
 set shell=/bin/bash
@@ -70,14 +70,17 @@ set expandtab
 set textwidth=78
 set shiftwidth=2
 
-" Don't automatically indent text.
-set noautoindent
+" Automatically indent text.
+set autoindent
 
 " Enable your wild side, take command completion completion up a notch.  Allow
 " for an interesting view when opening the command line menu.
 set wildmode=full
 set wildmenu
 set wildignorecase
+
+set completeopt=menuone,preview
+set cryptmethod=blowfish
 
 " Ignore a lot of stuff.
 set wildignore+=*.swp,*.pyc,*.bak,*.class,*.orig
@@ -98,6 +101,14 @@ set ttymouse=xterm
 " I place my tags all over the place. Bring them
 " to me!
 set tags+=$HOME/.tags/*.tags
+set tags+=$PWD/.tags
+set tags+=$PWD/TAGS,
+set tags+=$PWD/tags
+set tags+=$PWD/.bzr/tags
+set tags+=$PWD/.git/tags
+set tags+=$PWD/.svn/tags
+set tags+=$PWD/.hg/tags
+set tags+=$PWD/build/tags
 
 " Save your work in sessions.
 set sessionoptions=buffers,tabpages,winsize,curdir
@@ -232,8 +243,8 @@ set timeout
 set ttimeout
 set timeoutlen=1500
 set ttimeoutlen=50
+set updatetime=4000
 "" }}}
 
-source $HOME/.vim/plugin/custom/000-installing-vundle.vim
-source $HOME/.vim/plugin/custom/000-settings.vim
-source $HOME/.vim/plugin/custom/001-extensions.vim
+" Release the kraken!
+call jalcine#roll_out()

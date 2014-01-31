@@ -3,7 +3,7 @@
 " Description: Definitions of mappings in the application.
 " Last Modified: 2014-01-31 02:29:05 EST
 
-function jalcine#mappings#apply(level)
+function! jalcine#mappings#apply(level)
   if a:level == 'general'
     call jalcine#mappings#apply_general()
   elseif a:level == 'plugin'
@@ -11,22 +11,26 @@ function jalcine#mappings#apply(level)
   endif
 endfunction
 
-function jalcine#mappings#apply_plugin()
+function! jalcine#mappings#invoke_unite()
+  :Unite -buffer-name=files -start-insert
+    \ file_rec/async file_mru buffer tag tag/file tag/include
+    \ webcolorname tab jump mapping history/yank window
+    \ rails/bundle rails/bundled_gem rails/stylesheet rails/view
+    \ rails/javascript rails/config rails/controller rails/features
+    \ tmux/clients tmux/sessions tmux/panes tmux/windows tmux
+    \ git_modified git_untracked git_cached launcher
+endfunction
+
+function! jalcine#mappings#apply_plugin()
   " Rotate in the list of colors.
-  nnoremap <silent> <leader>ks :call jalcine#colors#rotate<CR>
+  nnoremap <silent> <leader>ks :call jalcine#colors#rotate()<CR>
 
   " Make it easy to get to things I'd use more than once.
   nnoremap <silent><F6> :TagbarToggle<CR>
   nnoremap <silent><F7> :NERDTreeToggle<CR>
 
   " INVOKE UNITE.
-  nnoremap <leader>p :Unite -buffer-name=files -start-insert
-        \ file_rec/async file_mru buffer tag tag/file tag/include
-        \ webcolorname tab jump mapping history/yank window
-        \ rails/bundle rails/bundled_gem rails/stylesheet rails/view
-        \ rails/javascript rails/config rails/controller rails/features
-        \ tmux/clients tmux/sessions tmux/panes tmux/windows tmux
-        \ git_modified git_untracked git_cached launcher<cr>
+  nnoremap <silent><leader>p :call jalcine#mappings#invoke_unite()<CR>
 
   "{{{ Tabularize
   vnoremap <leader>a: :Tabularize /:<CR>
@@ -46,14 +50,14 @@ function jalcine#mappings#apply_plugin()
   nnoremap <Leader>ts vip<LocalLeader>ts<CR>
 
   " Git helpers
-  nnoremap <leader>gc  :Git commit<space>
-  nnoremap <leader>gco :Git checkout<space>
-  nnoremap <leader>gp  :Git push<space>
-  nnoremap <leader>gfa :Git fetch --all<CR>
-  nnoremap <leader>gf  :Git fetch<space>
-  nnoremap <leader>grm :Git rm %<CR>
+  nnoremap <leader>gc   :Git commit<space>
+  nnoremap <leader>gco  :Git checkout<space>
+  nnoremap <leader>gp   :Git push<space>
+  nnoremap <leader>gfa  :Git fetch --all<CR>
+  nnoremap <leader>gf   :Git fetch<space>
+  nnoremap <leader>grm  :Git rm %<CR>
   nnoremap <leader>grmc :Git rm --cached %<CR>
-  nnoremap <leader>gab :Git add %<cr>
+  nnoremap <leader>gab  :Git add %<cr>
   nnoremap <leader>ga   :Git add<space>
 
 endfunction
@@ -63,7 +67,7 @@ function! s:VimuxRepl()
   call VimuxSendKeys("<Enter>")
 endfunction
 
-function jalcine#mappings#apply_general()
+function! jalcine#mappings#apply_general()
   " One less key to press to enter the Vim shell.
   nnoremap ; :
 
@@ -127,5 +131,6 @@ function jalcine#mappings#apply_general()
   cnoremap sw% w !sudo te %
 
   " Reload my sources.
-  nnoremap <F5> :so ~/.vimrc<CR> | :runtime! ~/.vim/plugin/custom/*.vim<CR>
+  nnoremap <F5> :so ~/.vimrc<CR> | :runtime! $HOME/.vim/autoload/jalcine.vim \
+      \ :!runtime $HOME/.vim/autoload/jalcine/*.vim<cr>
 endfun

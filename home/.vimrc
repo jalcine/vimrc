@@ -142,8 +142,8 @@ set titlestring="%t%(\ %M%)%(\ (%{expand(\"%:~:.:h\")})%)%(\ %a%)"
 " Turn on the ruler, we'd like to know our whereabouts.
 set ruler
 
-" I stopped using a number line, since it's displayed in my status bar.
-set nonumber
+" We need numbers, mayne!
+set number
 
 "{{{2 Searching
 

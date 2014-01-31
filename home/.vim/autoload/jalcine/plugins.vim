@@ -3,14 +3,14 @@
 " Description: Logic to control the use of plug-ins in Vim.
 " Last Modified: 2013-01-31 02:46:56 EST
 
-function jalcine#plugins#setup()
+function! jalcine#plugins#setup()
   call jalcine#plugins#prep()
   call jalcine#plugins#set_options()
   call jalcine#plugins#load()
   call jalcine#mappings#apply('plugin')
 endfunction
 
-function jalcine#plugins#prep()
+function! jalcine#plugins#prep()
   " Grabbed something: https://web.archive.org/web/20130127003932/http://www.erikzaadi.com/2012/03/19/auto-installing-vundle-from-your-vimrc/
   " Setting up Vundle - the vim plugin bundler
   let iCanHazVundle=1
@@ -28,7 +28,7 @@ function jalcine#plugins#prep()
   endif
 endfunction
 
-function jalcine#plugins#load()
+function! jalcine#plugins#load()
   if $VIM_PLUGIN_DEV
     let my_plugin_prefix = 'file:///home/jacky/Development/Projects/'
   else
@@ -147,19 +147,23 @@ function jalcine#plugins#load()
   Bundle 'justinmk/vim-syntax-extra'
   Bundle 'jamessan/vim-gnupg'
   Bundle 'xolox/vim-easytags'
+  Bundle 'tomasr/molokai'
+  Bundle 'jonathanfilip/vim-lucius'
+  Bundle 'jnurmine/Zenburn'
+  Bundle 'Lokaltog/vim-distinguished'
 
   filetype plugin indent on
   syntax enable
 endfunction
 
-function jalcine#plugins#set_options()
+function! jalcine#plugins#set_options()
   "{{{ User Info
   let g:author="Jacky Alciné"
   let g:email="me@jalcine.me"
   let g:site="jalcine.me"
   let g:username="jalcine"
 
-  let g:coloring_current="Tomorrow"
+  let g:coloring_current="Shell"
 
   "{{{ CMake configuration
   let g:cmake_use_vimux=1
@@ -250,7 +254,8 @@ function jalcine#plugins#set_options()
   let g:unite_enable_start_insert=1
   let g:unite_update_time=1
   let g:unite_force_overwrite_statusline=1
-  let g:unite_winheight=3
+  let g:unite_winheight=5
+  let g:unite_enable_short_sources_names=1
   let g:unite_source_history_yank_enable=1
   let g:unite_source_rec_max_cache_files=5000
   if executable('ag')
@@ -349,7 +354,7 @@ function jalcine#plugins#set_options()
         \ 'c:classes',
         \ 's:structs',
         \ 'u:unions',
-        \ 'f:functions',
+        \ 'f:function!s',
         \ 'm:members:0:0',
         \ 'v:variables:0:0',
         \ ],
@@ -360,7 +365,7 @@ function jalcine#plugins#set_options()
         \ 'ctagsbin' : 'coffeetags',
         \ 'ctagsargs' : '',
         \ 'kinds' : [
-        \ 'f:functions',
+        \ 'f:function!s',
         \ 'o:object',
         \ ],
         \ 'sro' : ".",
@@ -415,9 +420,13 @@ function jalcine#plugins#set_options()
         \   'colorscheme' : 'jellybeans',
         \   'airline'     : 'jellybeans'
         \  },
+        \ 'Lucius' : {
+        \   'colorscheme' : 'lucius',
+        \   'airline'     : 'lucius'
+        \ } ,
         \ 'Shell' : {
-        \   'colorscheme' : 'kolor',
-        \   'airline'     : 'luna'
+        \   'colorscheme' : 'obsidian',
+        \   'airline'     : 'ubaryd'
         \ }
         \ }
 endfunction

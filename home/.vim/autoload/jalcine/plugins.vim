@@ -3,10 +3,11 @@
 " Description: Logic to control the use of plug-ins in Vim.
 " Last Modified: 2013-01-31 02:46:56 EST
 
-function jalcine#plugins#apply()
-  jalcine#plugins#set_options()
-  jalcine#plugins#load()
-  jalcine#mappings#apply('plugins')
+function jalcine#plugins#setup()
+  call jalcine#plugins#prep()
+  call jalcine#plugins#set_options()
+  call jalcine#plugins#load()
+  call jalcine#mappings#apply('plugins')
 endfunction
 
 function jalcine#plugins#prep()
@@ -15,14 +16,13 @@ function jalcine#plugins#prep()
   let iCanHazVundle=1
   let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
   if !filereadable(vundle_readme)
-    echo "Installing Vundle.."
+    echo "[jalcine.vim] Vundle not found, installing..."
     echo ""
     silent !mkdir -p ~/.vim/bundle
     silent !git clone git://github.com/gmarik/vundle ~/.vim/bundle/vundle
-    echo "Installing Bundles, please ignore key map error messages"
-    echo ""
-    call vundle#installer
-    :BundleInstall!
+    echo "[jalcine.vim] Installing plugins..."
+    call jalcine#plugins#load()
+    :BundleInstall
   endif
 endfunction
 
@@ -380,4 +380,39 @@ function jalcine#plugins#set_options()
   let g:signify_cursorhold_normal=0
   let g:signify_cursorhold_insert=0
   "}}}
+
+  let g:coloring = {
+        \ 'Tomorrow' : {
+        \   'colorscheme' : 'Tomorrow-Night-Bright',
+        \   'airline'     : 'tomorrow'
+        \  },
+        \ 'Light' : {
+        \   'colorscheme' : 'github',
+        \   'airline'     : 'luna'
+        \  },
+        \ 'Herald' : {
+        \   'colorscheme' : 'herald',
+        \   'airline'     : 'luna'
+        \  },
+        \ 'Molokai' : {
+        \   'colorscheme' : 'molokai',
+        \   'airline'     : 'molokai'
+        \  },
+        \ 'Dark' : {
+        \   'colorscheme' : 'badwolf',
+        \   'airline'     : 'badwolf'
+        \  },
+        \ 'Solarized' : {
+        \   'colorscheme' : 'solarized',
+        \   'airline'     : 'Solarized',
+        \ },
+        \ 'JellyBeans' : {
+        \   'colorscheme' : 'jellybeans',
+        \   'airline'     : 'jellybeans'
+        \  },
+        \ 'Shell' : {
+        \   'colorscheme' : 'kolor',
+        \   'airline'     : 'luna'
+        \ }
+        \ }
 endfunction

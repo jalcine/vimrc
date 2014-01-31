@@ -26,7 +26,7 @@ function! jalcine#colors#detect()
   " Set the default color scheme, in the event it's not defined.
   if exists($KONSOLE_PROFILE_NAME)
     call jalcine#colors#apply($KONSOLE_PROFILE_NAME)
-  else
+  elseif exists('g:coloring_current')
     call jalcine#colors#apply(g:coloring_current)
   endif
 endfunction

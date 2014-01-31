@@ -5,9 +5,9 @@
 
 function jalcine#mappings#apply(level)
   if a:level == 'general'
-    jalcine#mappings#apply_general()
+    call jalcine#mappings#apply_general()
   elseif a:level == 'plugin'
-    jalcine#mappings#apply_plugin()
+    call jalcine#mappings#apply_plugin()
   endif
 endfunction
 

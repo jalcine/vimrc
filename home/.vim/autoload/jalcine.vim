@@ -3,14 +3,15 @@
 " Description: Entry point to my personal configuration.
 " Last Modified: 2014-01-31 02:14:22 EST
 
-function jalcine#roll_out()
-  jalcine#mappings#apply('general')
-  jalcine#plugins#setup()
-  jalcine#link_plxr()
-  jalcine#colors#detect()
-endfunction
+func! jalcine#roll_out()
+  runtime! $HOME/.vim/config/*.vim
+  call jalcine#mappings#apply('general')
+  call jalcine#plugins#setup()
+  call jalcine#link_plxr()
+  call jalcine#colors#detect()
+endfunc
 
-function jalcine#link_plxr()
+func! jalcine#link_plxr()
   " Make sure that GNU screen or tmux passes me my xkeys.
   " link: http://www.reddit.com/r/vim/comments/1a29vk/_/c8tze8p
   if &term == "screen" || &term == "screen-256color"
@@ -23,7 +24,7 @@ function jalcine#link_plxr()
   endif
 endfunction
 
-function jalcine#bind_konsole()
+func! jalcine#bind_konsole()
   " So Konsole has this awesome ability to allow you edit almost anything
   " about it from the shell without any gunky API! This helps me switch the
   " color scheme and other things.

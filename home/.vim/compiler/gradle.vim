@@ -19,4 +19,3 @@ CompilerSet errorformat=
     \%-G\\s%#,
     \%-GBUILD\ SUCCESSFUL,
     \%-GTotal\ \time:\ %.%#
-

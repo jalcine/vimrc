@@ -1,9 +1,8 @@
 "" vim: tw=78 fdm=marker
-"" Vim configuration options.
-""
-"" @author Jacky Alciné <me@jalcine.me>
-"" @date   2014-01-14 10:45:36 EST
-"" @vcs    https://github.com/jalcine/vimrc
+"" File: .vimrc
+"" Author: Jacky Alciné <me@jalcine.me>
+"" Description: The heart.
+"" Last Modified: 2014-01-31 06:43:55 EST
 ""
 "" I take pride in my Vim configuration. Being that I'm an intermediate Vim 
 "" user and I try to share as much as I learn, I've taken the liberty of

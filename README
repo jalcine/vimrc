@@ -1,4 +1,5 @@
-# .vimrc configuration
+# Vim configuration
+![Pic or it didn't happen](./snapshot.png)
 This repository holds my personal configuration for Vim. It has all of the
 colors, core bundles, and options needed to get it kicking and roaring with
 Vim.
@@ -14,8 +15,4 @@ plug-ins.
 ## Contents
 This Vim setup is constantly tweaked to my comfort; taking advantage of my
 left-handed nature and makes the assumption that you're using all of the
-extensions provided by Vundle. If you want to check out the plug-ins I've
-added, look at the [file listing][] them.
-
-
-[file_listing]: ./home/.vim/plugin/custom/001-extensions.vim
+extensions provided by Vundle.

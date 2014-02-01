@@ -5,10 +5,9 @@
 
 func! jalcine#roll_out()
   call jalcine#link_plxr()
-  call jalcine#bind_konsole()
   call jalcine#plugins#setup()
   call jalcine#mappings#apply('general')
-  autocmd VimEnter * silent call jalcine#colors#detect()
+  call jalcine#autogroups#set()
 endfunc
 
 func! jalcine#link_plxr()
@@ -23,13 +22,3 @@ func! jalcine#link_plxr()
     execute "set <xLeft>=\e[1;*D"
   endif
 endfunction
-
-func! jalcine#bind_konsole()
-  " So Konsole has this awesome ability to allow you edit almost anything
-  " about it from the shell without any gunky API! This helps me switch the
-  " color scheme and other things.
-  silent !konsoleprofile CustomCursorColor=red
-  autocmd VimEnter * silent !konsoleprofile UseCustomCursorColor=1;BlinkingCursorEnabled=1
-  autocmd VimLeave * silent !konsoleprofile CustomCursorColor=gray;BlinkingCursorEnabled=0
-endfunction
-

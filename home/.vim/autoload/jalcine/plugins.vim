@@ -68,7 +68,7 @@ function! jalcine#plugins#load()
   Bundle 'vim-ruby/vim-ruby'
   Bundle 'mklabs/vim-backbone'
   Bundle 'mklabs/grunt.vim'
-  Bundle 'godlygeek/csapprox'
+  "Bundle 'godlygeek/csapprox'
   Bundle 'editorconfig/editorconfig-vim'
   Bundle 'moll/vim-node'
   Bundle 'tpope/vim-repeat'
@@ -151,6 +151,7 @@ function! jalcine#plugins#load()
   Bundle 'jonathanfilip/vim-lucius'
   Bundle 'jnurmine/Zenburn'
   Bundle 'Lokaltog/vim-distinguished'
+  Bundle 'edkolev/tmuxline.vim'
 
   filetype plugin indent on
   syntax enable
@@ -423,6 +424,18 @@ function! jalcine#plugins#set_options()
         \ 'Lucius' : {
         \   'colorscheme' : 'lucius',
         \   'airline'     : 'lucius'
+        \ } ,
+        \ 'WhiteZen' : {
+        \   'colorscheme' : 'zenesque',
+        \   'airline'     : 'zenburn'
+        \ } ,
+        \ 'DarkZen' : {
+        \   'colorscheme' : 'darkzen',
+        \   'airline'     : 'zenburn'
+        \ } ,
+        \ 'Zenburn' : {
+        \   'colorscheme' : 'zenburn',
+        \   'airline'     : 'zenburn'
         \ } ,
         \ 'Shell' : {
         \   'colorscheme' : 'obsidian',

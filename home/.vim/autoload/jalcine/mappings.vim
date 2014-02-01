@@ -21,7 +21,19 @@ function! jalcine#mappings#invoke_unite()
     \ git_modified git_untracked git_cached launcher
 endfunction
 
+function! jalcine#mappings#define_for_unite()
+  imap <buffer>               <C-k>   <Plug>(unite_select_previous_line)
+  imap <buffer>               <C-j>   <Plug>(unite_select_next_line)
+  imap <buffer>               <C-i>   <Plug>(unite_toggle_auto_preview)
+  imap <silent><buffer><expr> <C-x>   unite#do_action('split')
+  imap <silent><buffer><expr> <C-v>   unite#do_action('vsplit')
+  imap <silent><buffer><expr> <C-t>   unite#do_action('tabopen')
+endfunction
+
 function! jalcine#mappings#apply_plugin()
+  " Reload the configuration.
+  nnoremap <F5> :call jalcine#autogroups#reload()<cr>
+
   " Rotate in the list of colors.
   nnoremap <silent> <leader>ks :call jalcine#colors#rotate()<CR>
 
@@ -129,8 +141,4 @@ function! jalcine#mappings#apply_general()
 
   " Let me write to sudo whenever possible.
   cnoremap sw% w !sudo te %
-
-  " Reload my sources.
-  nnoremap <F5> :so ~/.vimrc<CR> | :runtime! $HOME/.vim/autoload/jalcine.vim \
-      \ :!runtime $HOME/.vim/autoload/jalcine/*.vim<cr>
 endfun

@@ -12,13 +12,38 @@ function! jalcine#mappings#apply(level)
 endfunction
 
 function! jalcine#mappings#invoke_unite()
-  :Unite -buffer-name=files -start-insert
-    \ file_rec/async file_mru buffer tag tag/file tag/include
-    \ webcolorname tab jump mapping history/yank window
-    \ rails/bundle rails/bundled_gem rails/stylesheet rails/view
-    \ rails/javascript rails/config rails/controller rails/features
-    \ tmux/clients tmux/sessions tmux/panes tmux/windows tmux
-    \ git_modified git_untracked git_cached launcher
+  let sources=g:jalcine_unite_sources
+  let options=g:jalcine_unite_options
+
+  call unite#filters#matcher_default#use(['matcher_fuzzy'])
+  call unite#filters#sorter_default#use(['sorter_length'])
+
+  if exists('b:jalcine_unite_sources')
+    let sources = sources . " " . b:jalcine_unite_sources
+  endif
+
+  if exists('b:jalcine_unite_options')
+    let options = options . " " . b:jalcine_unite_options
+  endif
+
+  if exists('g:jalcine_unite_extra_sources')
+    let sources = sources . " " . b:jalcine_unite_extra_sources
+  endif
+
+  if exists('g:jalcine_unite_extra_options')
+    let options = options . " " . g:jalcine_unite_extra_options
+  endif
+
+  " Look for Rails.
+  if exists('g:jalcine_unite_rails') && g:jalcine_unite_rails == 1
+    let options = options . ' ' .
+      \ 'rails/bundle rails/bundled_gem rails/stylesheet rails/view ' .
+      \ 'rails/javascript rails/config rails/controller rails/features ' .
+      \ 'rails/config rails/db rails/feature rails/spec rails/log ' .
+      \ 'rails/heroku rails/view rails/stylesheet rails/schema rails/rake'
+  endif
+
+  exec(':Unite ' . options . ' ' . sources)
 endfunction
 
 function! jalcine#mappings#define_for_unite()

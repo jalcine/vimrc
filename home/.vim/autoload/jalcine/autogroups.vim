@@ -46,11 +46,18 @@ endfunction
 
 
 function! jalcine#autogroups#reload()
+  let cs = g:colors_name
+  echomsg "[jalcine.vim] Resourcing primary configuration..."
   source $MYVIMRC
-  :runtime! $HOME/.vim/autoload/jalcine.vim
-  :runtime! $HOME/.vim/autoload/jalcine/*.vim
-  echomsg "[jalcine.vim] Rolling out again..."
+  echomsg "[jalcine.vim] Resourcing jalcine.vim..."
+  source  $HOME/.vim/autoload/jalcine.vim
+  for file_path in glob('$HOME/.vim/autoload/jalcine/*.vim', 0, 1)
+    exec('source ' . file_path)
+  endfor
+
+  echomsg "[jalcine.vim] Rolling out once more, this might take a while."
   call jalcine#roll_out()
+  exec('colorscheme '. cs)
   echomsg "[jalcine.vim] Configuration sourced."
 endfunction
 

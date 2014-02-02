@@ -28,5 +28,7 @@ function! jalcine#colors#detect()
     call jalcine#colors#apply($KONSOLE_PROFILE_NAME)
   elseif exists('g:coloring_current')
     call jalcine#colors#apply(g:coloring_current)
+  else
+    call jalcine#colors#apply('Shell')
   endif
 endfunction

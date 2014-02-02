@@ -16,7 +16,8 @@
 " In fact, why bother set it? If $VIM is reading this, nocp is active!
 "set nocompatible
 
-" We dark.
+" We dark by default. This prevents a nasty flash when Vim starts because of
+" the way I handle my (dozens) colorschemes.
 set background=dark
 colorscheme default
 
@@ -25,12 +26,8 @@ set encoding=utf-8
 set fileencoding=utf-8
 set fileformats=unix
 
-" Use my bash file.
-let $BASH_ENV="$HOME/.bash/config.sh"
-
-" Enable the use of Bash into the mix.
+" Use Bash. At all costs.
 set shell=/bin/bash
-set shellcmdflag=-c
 
 " We need modelines.
 set modeline
@@ -76,8 +73,8 @@ set shiftwidth=2
 " Automatically indent text.
 set autoindent
 
-" Enable your wild side, take command completion completion up a notch.  Allow
-" for an interesting view when opening the command line menu.
+" Enable your wild side, take command completion completion up a notch.  
+" Allow for an interesting view when opening the command line menu.
 set wildmode=full
 set wildmenu
 set wildignorecase

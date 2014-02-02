@@ -17,14 +17,15 @@ function! jalcine#plugins#prep()
   let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
   if !filereadable(vundle_readme)
     echo "[jalcine.vim] Vundle not found, installing..."
-    echo ""
     silent !mkdir -p ~/.vim/bundle
     silent !git clone git://github.com/gmarik/vundle ~/.vim/bundle/vundle
     echo "[jalcine.vim] Installing plugins..."
     call jalcine#plugins#load()
     silent :BundleInstall
+    echo "[jalcine.vim] Building native extensions.."
     silent !cd $HOME/.vim/bundle/YouCompleteMe && install.sh --clang-completer --omnisharp-completer
     silent !cd $HOME/.vim/bundle/vimproc.vim && make
+    echo "[jalcine.vim] Thanks for flying Vim." 
   endif
 endfunction
 
@@ -154,7 +155,7 @@ function! jalcine#plugins#load()
   Bundle 'edkolev/tmuxline.vim'
 
   filetype plugin indent on
-  syntax enable
+  syntax on
 endfunction
 
 function! jalcine#plugins#set_options()
@@ -164,7 +165,12 @@ function! jalcine#plugins#set_options()
   let g:site="jalcine.me"
   let g:username="jalcine"
 
+  " Set the default coloring.
   let g:coloring_current="Shell"
+
+  "{{{ Snippets
+  let g:snips_author=g:author
+  "}}}
 
   "{{{ CMake configuration
   let g:cmake_use_vimux=1
@@ -260,10 +266,15 @@ function! jalcine#plugins#set_options()
   let g:unite_source_history_yank_enable=1
   let g:unite_source_rec_max_cache_files=5000
   if executable('ag')
-    let g:unite_source_rec_async_command='ag --nocolor --nogroup --ignore ".hg" --ignore ".svn" --ignore ".git" --ignore ".bzr" --hidden -g ""'
+    let g:unite_source_rec_async_command='ag --nocolor --nogroup --ignore ".hg"' .
+      \ '--ignore ".svn" --ignore ".git" --ignore ".bzr" --hidden -g ""'
   endif
-  "let g:unite_source_grep_command='ag'
-  "let g:unite_prompt='❫ '
+  let g:unite_prompt='❫ '
+  let g:jalcine_unite_options='-buffer-name=files -start-insert -silent'
+  let g:jalcine_unite_sources='file_rec/async file_mru buffer tag tag/file tag/include ' .
+    \ 'webcolorname tab jump mapping history/yank window ' .
+    \ 'tmux/clients tmux/sessions tmux/panes tmux/windows tmux ' .
+    \ 'git_modified git_untracked git_cached'
 
   "{{{ indentLine
   let g:indentLine_char="┆"
@@ -377,6 +388,20 @@ function! jalcine#plugins#set_options()
         \ }
 
   let g:extradite_showhash=1
+
+	let g:rails_projections = {
+	      \ "app/uploaders/*_uploader.rb": {
+	      \   "command": "uploader",
+	      \   "template":
+	      \     "class %SUploader < CarrierWave::Uploader::Base\nend",
+	      \   "test": [
+	      \     "test/unit/%s_uploader_test.rb",
+	      \     "spec/models/%s_uploader_spec.rb"
+	      \   ],
+	      \   "keywords": "process version"
+	      \ },
+	      \ "features/support/*.rb": {"command": "support"},
+	      \ "features/support/env.rb": {"command": "support"}}
 
   "{{{ Signify
   let g:signify_vcs_list = ['git','hg','svn','bzr']

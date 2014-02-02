@@ -11,7 +11,7 @@ function! jalcine#mappings#apply(level)
   endif
 endfunction
 
-function! jalcine#mappings#invoke_unite()
+function! jalcine#mappings#invoke_unite(scope)
   let sources=g:jalcine_unite_sources
   let options=g:jalcine_unite_options
 
@@ -35,12 +35,16 @@ function! jalcine#mappings#invoke_unite()
   endif
 
   " Look for Rails.
-  if exists('g:jalcine_unite_rails') && g:jalcine_unite_rails == 1
-    let options = options . ' ' .
+  if a:scope == 'rails'
+    let sources = ' ' .
       \ 'rails/bundle rails/bundled_gem rails/stylesheet rails/view ' .
       \ 'rails/javascript rails/config rails/controller rails/features ' .
-      \ 'rails/config rails/db rails/feature rails/spec rails/log ' .
+      \ 'rails/config rails/db rails/spec rails/log rails/route ' .
       \ 'rails/heroku rails/view rails/stylesheet rails/schema rails/rake'
+  elseif a:scope == 'tags'
+    let sources = 'tag tag/file tag/include'
+  elseif a:scope == 'files'
+    let sources = 'file_rec/async:! directory_rec/async:!'
   endif
 
   exec(':Unite ' . options . ' ' . sources)
@@ -67,7 +71,10 @@ function! jalcine#mappings#apply_plugin()
   nnoremap <silent><F7> :NERDTreeToggle<CR>
 
   " INVOKE UNITE.
-  nnoremap <silent><leader>p :call jalcine#mappings#invoke_unite()<CR>
+  nnoremap <silent><leader>p  :call jalcine#mappings#invoke_unite('general')<CR>
+  nnoremap <silent><leader>pr :call jalcine#mappings#invoke_unite('rails')<CR>
+  nnoremap <silent><leader>pt :call jalcine#mappings#invoke_unite('tags')<CR>
+  nnoremap <silent><leader>pf :call jalcine#mappings#invoke_unite('files')<CR>
 
   "{{{ Tabularize
   vnoremap <leader>a: :Tabularize /:<CR>

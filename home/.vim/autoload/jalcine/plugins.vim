@@ -69,7 +69,7 @@ function! jalcine#plugins#load()
   Bundle 'vim-ruby/vim-ruby'
   Bundle 'mklabs/vim-backbone'
   Bundle 'mklabs/grunt.vim'
-  "Bundle 'godlygeek/csapprox'
+  Bundle 'godlygeek/csapprox'
   Bundle 'editorconfig/editorconfig-vim'
   Bundle 'moll/vim-node'
   Bundle 'tpope/vim-repeat'
@@ -270,16 +270,17 @@ function! jalcine#plugins#set_options()
       \ '--ignore ".svn" --ignore ".git" --ignore ".bzr" --hidden -g ""'
   endif
   let g:unite_prompt='❫ '
-  let g:jalcine_unite_options='-buffer-name=files -start-insert -silent'
+  let g:jalcine_unite_options='-buffer-name=Unite -start-insert ' .
+    \ '-immediately -complete -unique -sync'
   let g:jalcine_unite_sources='file_rec/async file_mru buffer tag tag/file tag/include ' .
     \ 'webcolorname tab jump mapping history/yank window ' .
     \ 'tmux/clients tmux/sessions tmux/panes tmux/windows tmux ' .
     \ 'git_modified git_untracked git_cached'
 
   "{{{ indentLine
-  let g:indentLine_char="┆"
-  let g:indentLine_first_char="│"
-  let g:indentLine_showFirstIndentLevel=1
+  "let g:indentLine_char="┆"
+  "let g:indentLine_first_char="│"
+  "let g:indentLine_showFirstIndentLevel=1
   "}}}
 
   "{{{ CoVim
@@ -464,7 +465,7 @@ function! jalcine#plugins#set_options()
         \ } ,
         \ 'Shell' : {
         \   'colorscheme' : 'obsidian',
-        \   'airline'     : 'ubaryd'
+        \   'airline'     : 'laederon'
         \ }
         \ }
 endfunction

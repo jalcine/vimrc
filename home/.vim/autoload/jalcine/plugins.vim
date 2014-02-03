@@ -147,7 +147,6 @@ function! jalcine#plugins#load()
   Bundle 'closetag.vim'
   Bundle 'justinmk/vim-syntax-extra'
   Bundle 'jamessan/vim-gnupg'
-  Bundle 'xolox/vim-easytags'
   Bundle 'tomasr/molokai'
   Bundle 'jonathanfilip/vim-lucius'
   Bundle 'jnurmine/Zenburn'
@@ -166,7 +165,7 @@ function! jalcine#plugins#set_options()
   let g:username="jalcine"
 
   " Set the default coloring.
-  let g:coloring_current="Shell"
+  let g:coloring_current="Lucius"
 
   "{{{ Snippets
   let g:snips_author=g:author
@@ -266,13 +265,15 @@ function! jalcine#plugins#set_options()
   let g:unite_source_history_yank_enable=1
   let g:unite_source_rec_max_cache_files=5000
   if executable('ag')
-    let g:unite_source_rec_async_command='ag --nocolor --nogroup --ignore ".hg"' .
-      \ '--ignore ".svn" --ignore ".git" --ignore ".bzr" --hidden -g ""'
+    let g:unite_source_rec_async_command='ag --nocolor --nogroup --ignore ' .
+      \ '".hg" --ignore ".svn" --ignore ".git" --ignore ".bzr" ' .
+      \ '--hidden -g ""'
   endif
   let g:unite_prompt='❫ '
   let g:jalcine_unite_options='-buffer-name=Unite -start-insert ' .
-    \ '-immediately -complete -unique -sync'
-  let g:jalcine_unite_sources='file_rec/async file_mru buffer tag tag/file tag/include ' .
+    \ '-immediately -complete -unique'
+  let g:jalcine_unite_sources='file_rec/async:! file_mru:! buffer ' .
+    \ 'tag tag/file tag/include:! ' .
     \ 'webcolorname tab jump mapping history/yank window ' .
     \ 'tmux/clients tmux/sessions tmux/panes tmux/windows tmux ' .
     \ 'git_modified git_untracked git_cached'

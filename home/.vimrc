@@ -14,7 +14,7 @@
 "{{{2 Immediate Options
 " We live in the future, don't worry about backwards compatibility with Vi.
 " In fact, why bother set it? If $VIM is reading this, nocp is active!
-"set nocompatible
+set nocompatible
 
 " We dark by default. This prevents a nasty flash when Vim starts because of
 " the way I handle my (dozens) colorschemes.
@@ -56,6 +56,7 @@ set showtabline=2
 " I prefer to use two spaces to represent tabs.
 set tabstop=2
 set softtabstop=2
+set shellslash
 
 " Set expandtab to the values used for tabstop
 " and shiftwidth to ensure that we enter only 
@@ -79,7 +80,7 @@ set wildmode=full
 set wildmenu
 set wildignorecase
 
-set completeopt=menuone,preview
+set completeopt=longest,menuone
 set cryptmethod=blowfish
 
 " Ignore a lot of stuff.
@@ -92,7 +93,7 @@ set wildignore+=build,tmp,vendor/cache,bin
 set pastetoggle=<F2>
 
 " If I want to see it, I'll look at it.
-set nowrap
+set wrap
 
 " Use the clicking thing, Luke.
 set mouse=a
@@ -129,7 +130,7 @@ set foldcolumn=1
 set foldminlines=5
 
 " Anything greater than this is automatically folded.
-set foldlevel=2
+set foldlevel=1
 
 " Set the title in the terminal.
 set title

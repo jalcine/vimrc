@@ -16,16 +16,16 @@ function! jalcine#plugins#prep()
   let iCanHazVundle=1
   let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
   if !filereadable(vundle_readme)
-    echo "[jalcine.vim] Vundle not found, installing..."
+    echo "[jalcine.vim] Vundle not found, installing...\n"
     silent !mkdir -p ~/.vim/bundle
-    silent !git clone git://github.com/gmarik/vundle ~/.vim/bundle/vundle
-    echo "[jalcine.vim] Installing plugins..."
+    silent !git clone git://github.com/jalcine/vundle ~/.vim/bundle/vundle
+    echo "[jalcine.vim] Installing plugins...\n"
     call jalcine#plugins#load()
-    silent :BundleInstall
-    echo "[jalcine.vim] Building native extensions.."
-    silent !cd $HOME/.vim/bundle/YouCompleteMe && install.sh --clang-completer --omnisharp-completer
+    :BundleInstall!
+    echo "[jalcine.vim] Building native extensions..\n"
+    silent !cd $HOME/.vim/bundle/YouCompleteMe && ./install.sh --clang-completer --omnisharp-completer
     silent !cd $HOME/.vim/bundle/vimproc.vim && make
-    echo "[jalcine.vim] Thanks for flying Vim." 
+    echo "[jalcine.vim] Thanks for flying Vim, come again.\n"
   endif
 endfunction
 
@@ -36,10 +36,6 @@ function! jalcine#plugins#load()
     let my_plugin_prefix = 'jalcine/'
   end
 
-  " Disable anything pertaining to filetypes. We're flying in the dark now,
-  " (wo)men.
-  filetype off
-
   " Add in Vundle.
   set rtp+=~/.vim/bundle/vundle
 
@@ -47,6 +43,7 @@ function! jalcine#plugins#load()
   call vundle#rc()
 
   " Sound the horn.
+  Bundle 'jalcine/vundle'
   Bundle 'flazz/vim-colorschemes'
   Bundle 'chriskempson/tomorrow-theme', { 'rtp' : 'vim' }
   Bundle 'altercation/solarized', { 'rtp' : 'vim-colors-solarized' }
@@ -58,6 +55,8 @@ function! jalcine#plugins#load()
   Bundle 'tpope/vim-dispatch'
   Bundle 'tpope/vim-endwise'
   Bundle 'nanotech/jellybeans.vim'
+  Bundle 'jnwhiteh/vim-golang'
+  Bundle 'Blackrush/vim-gocode'
   Bundle 'bling/vim-airline'
   Bundle 'gmarik/vundle'
   Bundle 'marijnh/tern_for_vim'
@@ -82,7 +81,7 @@ function! jalcine#plugins#load()
   Bundle 'AndrewRadev/vim-eco'
   Bundle 't4ku/marktag'
   Bundle 'jlanzarotta/bufexplorer'
-  " Bundle (my_plugin_prefix . 'android.vim')
+  Bundle (my_plugin_prefix . 'android.vim')
   Bundle (my_plugin_prefix . 'cmake.vim')
   Bundle (my_plugin_prefix . 'vim-snippets')
   Bundle (my_plugin_prefix . 'localrc.vim')
@@ -136,23 +135,22 @@ function! jalcine#plugins#load()
   Bundle 'junegunn/vim-github-dashboard'
   Bundle 'mmozuras/vim-github-comment'
   Bundle 'SirVer/ultisnips'
+  Bundle 'Shougo/vimproc.vim'
   Bundle 'Shougo/unite.vim'
   Bundle 'tsukkee/unite-tag'
   Bundle 'basyura/unite-rails'
   Bundle 'yuku-t/unite-git'
   Bundle 'pasela/unite-webcolorname'
   Bundle 'zepto/unite-tmux'
-  Bundle 'Shougo/vimproc.vim'
   Bundle 'tpope/vim-abolish'
-  Bundle 'closetag.vim'
   Bundle 'justinmk/vim-syntax-extra'
   Bundle 'jamessan/vim-gnupg'
   Bundle 'tomasr/molokai'
   Bundle 'jonathanfilip/vim-lucius'
   Bundle 'jnurmine/Zenburn'
   Bundle 'Lokaltog/vim-distinguished'
-  Bundle 'edkolev/tmuxline.vim'
 
+  filetype off
   filetype plugin indent on
   syntax on
 endfunction
@@ -165,7 +163,10 @@ function! jalcine#plugins#set_options()
   let g:username="jalcine"
 
   " Set the default coloring.
-  let g:coloring_current="Lucius"
+  let g:coloring_current='Lucius'
+
+  " Some JS libs we use a lot.
+  let g:used_javascript_libs='underscore,backbone,jquery'
 
   "{{{ Snippets
   let g:snips_author=g:author
@@ -175,11 +176,10 @@ function! jalcine#plugins#set_options()
   let g:cmake_use_vimux=1
   let g:cmake_build_shared_libs=1
   let g:cmake_set_makeprg=1
-  let g:cmake_use_vimux=1
   let g:cmake_inject_flags={
-        \ 'syntastic': 1,
-        \ 'ycm':       1
-        \ }
+    \ 'syntastic': 1,
+    \ 'ycm':       1
+    \ }
 
   "{{{ Airline config
   let g:airline_detect_modified=1
@@ -270,7 +270,7 @@ function! jalcine#plugins#set_options()
       \ '--hidden -g ""'
   endif
   let g:unite_prompt='❫ '
-  let g:jalcine_unite_options='-buffer-name=Unite -start-insert ' .
+  let g:jalcine_unite_options='-buffer-name=Unite ' .
     \ '-immediately -complete -unique'
   let g:jalcine_unite_sources='file_rec/async:! file_mru:! buffer ' .
     \ 'tag tag/file tag/include:! ' .

@@ -32,3 +32,6 @@ function! jalcine#colors#detect()
     call jalcine#colors#apply('Shell')
   endif
 endfunction
+
+" Add a lil' command.
+command! -nargs=1 ApplyColoring :call jalcine#colors#apply("<args>")

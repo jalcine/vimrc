@@ -11,12 +11,12 @@ function! jalcine#mappings#apply(level)
   endif
 endfunction
 
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#filters#sorter_default#use(['sorter_length'])
+
 function! jalcine#mappings#invoke_unite(scope)
   let sources=g:jalcine_unite_sources
   let options=g:jalcine_unite_options
-
-  call unite#filters#matcher_default#use(['matcher_fuzzy'])
-  call unite#filters#sorter_default#use(['sorter_length'])
 
   if exists('b:jalcine_unite_sources')
     let sources = sources . " " . b:jalcine_unite_sources

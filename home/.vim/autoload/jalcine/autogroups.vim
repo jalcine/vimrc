@@ -14,11 +14,11 @@ function! jalcine#autogroups#set()
   augroup END
 
   " Toggle the current cursor line whenever I swap windows.
-  augroup cline
-    au!
-    au InsertEnter * setlocal cursorline cursorcolumn
-    au InsertLeave * setlocal nocursorline nocursorcolumn
-  augroup END
+  "augroup cline
+    "au!
+    "au InsertEnter * setlocal cursorline cursorcolumn
+    "au InsertLeave * setlocal nocursorline nocursorcolumn
+  "augroup END
 
   " Some files might need to be filetype'd properly.
   augroup fixfiletype
@@ -39,9 +39,12 @@ func! jalcine#autogroups#bind_konsole()
   " So Konsole has this awesome ability to allow you edit almost anything
   " about it from the shell without any gunky API! This helps me switch the
   " color scheme and other things.
-  silent !konsoleprofile CustomCursorColor=red
-  autocmd VimEnter * silent !konsoleprofile UseCustomCursorColor=1;BlinkingCursorEnabled=1
-  autocmd VimLeave * silent !konsoleprofile CustomCursorColor=gray;BlinkingCursorEnabled=0
+  augroup konsole
+    au!
+    silent !konsoleprofile CustomCursorColor=red
+    autocmd VimEnter * silent !konsoleprofile UseCustomCursorColor=1;BlinkingCursorEnabled=1
+    autocmd VimLeave * silent !konsoleprofile CustomCursorColor=gray;BlinkingCursorEnabled=0
+  augroup END
 endfunction
 
 

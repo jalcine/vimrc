@@ -9,7 +9,7 @@ function! jalcine#autogroups#set()
     au!
     au BufWritePost $MYVIMRC      call jalcine#autogroups#reload()
     au BufWritePost .local.vimrc  call s:load_current_buffer()
-    au BufReadPost  $HOME/*tmux*  setl ft=tmux
+    au BufReadPre  $HOME/*tmux*  setl ft=tmux
     au BufWritePost $HOME/*tmux*  call jalcine#autogroups#reload_tmux()
   augroup END
 
@@ -74,6 +74,7 @@ function! s:load_current_buffer()
 endfunction
 
 function! jalcine#autogroups#reload_tmux()
-  call system('tmux source-file '. expand('%'))
-  call system("tmux display-message '[jalcine.vim] Configuration of tmux reloaded using ". expand('%') . ".'")
+  call system('tmux source-file '. expand('%:p'))
+  call system("tmux display-message '[jalcine.vim] Configuration of tmux " .
+    \ "reloaded using ". expand('%:p') . ".'")
 endfunction

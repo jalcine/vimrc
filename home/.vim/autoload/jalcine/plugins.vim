@@ -149,6 +149,8 @@ function! jalcine#plugins#load()
   Bundle 'jonathanfilip/vim-lucius'
   Bundle 'jnurmine/Zenburn'
   Bundle 'Lokaltog/vim-distinguished'
+  Bundle 'jmcantrell/vim-virtualenv'
+  Bundle 'bling/vim-bufferline'
 
   filetype off
   filetype plugin indent on

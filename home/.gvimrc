@@ -1,4 +1,3 @@
-
 "" vim: tw=78 fdm=marker
 "" Vim configuration options.
 ""

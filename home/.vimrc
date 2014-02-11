@@ -33,8 +33,8 @@ set shell=/bin/bash
 set modeline
 
 " Set my user-defined action to the comma key.
-let mapleader=","
-let maplocalleader="\\"
+let mapleader=','
+let maplocalleader='\\'
 
 "}}}
 "{{{2 Immediate Configuration Options
@@ -191,7 +191,7 @@ set nospell
 set spelllang=en_us
 
 " Help me figure how what to spell.
-set spellsuggest=best,5
+set spellsuggest=best,3
 
 " Add a bunch of dictionaries.
 set dictionary+=/usr/share/dict/words,/usr/share/dict/american-english

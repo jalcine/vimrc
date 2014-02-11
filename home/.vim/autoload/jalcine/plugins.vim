@@ -110,7 +110,7 @@ function! jalcine#plugins#load()
   Bundle 'kchmck/vim-coffee-script'
   Bundle 'pangloss/vim-javascript'
   Bundle 'othree/javascript-libraries-syntax.vim'
-  Bundle 'helino/vim-json'
+  Bundle 'elzr/vim-json'
   Bundle 'groenewege/vim-less'
   Bundle 'indenthtml.vim'
   Bundle 'mutewinter/nginx.vim'
@@ -150,7 +150,7 @@ function! jalcine#plugins#load()
   Bundle 'jnurmine/Zenburn'
   Bundle 'Lokaltog/vim-distinguished'
   Bundle 'jmcantrell/vim-virtualenv'
-  Bundle 'bling/vim-bufferline'
+  Bundle 'derekwyatt/vim-scala'
 
   filetype off
   filetype plugin indent on
@@ -165,7 +165,7 @@ function! jalcine#plugins#set_options()
   let g:username="jalcine"
 
   " Set the default coloring.
-  let g:coloring_current='Lucius'
+  let g:coloring_current='Distinguished'
 
   " Some JS libs we use a lot.
   let g:used_javascript_libs='underscore,backbone,jquery'
@@ -186,7 +186,7 @@ function! jalcine#plugins#set_options()
   "{{{ Airline config
   let g:airline_detect_modified=1
   let g:airline_powerline_fonts=1
-  let g:airline#extensions#hunks#non_zero_only=1
+  let g:airline#extensions#hunks#non_zero_only=0
   let g:airline#extensions#hunks#hunk_symbols=['✨', '✟', '✇']
   let g:airline#extensions#tabline#enabled=1
   let g:airline#extensions#tabline#tab_nr_type=1
@@ -196,13 +196,13 @@ function! jalcine#plugins#set_options()
   let g:airline#extensions#whitespace#enabled=0
   let g:airline_mode_map={
         \ '__' : '-',
-        \ 'n'  : '✈' , 
-        \ 'i'  : '✐',
-        \ 'R'  : '➰',
-        \ 'c'  : '➤',
-        \ 'v'  : 'VIS',
-        \ 'V'  : 'VISLIN',
-        \ '' : 'VISBLK',
+        \ 'n'  : 'N' , 
+        \ 'i'  : 'I',
+        \ 'R'  : 'R',
+        \ 'c'  : 'C',
+        \ 'v'  : 'V',
+        \ 'V'  : 'VL',
+        \ '' : 'VB',
         \ 's'  : 'S',
         \ 'S'  : 'S',
         \ '' : 'S',
@@ -466,6 +466,10 @@ function! jalcine#plugins#set_options()
         \   'colorscheme' : 'zenburn',
         \   'airline'     : 'zenburn'
         \ } ,
+        \ 'Distinguished' : {
+        \   'colorscheme' : 'distinguished',
+        \   'airline'     : 'serene'
+        \ },
         \ 'Shell' : {
         \   'colorscheme' : 'obsidian',
         \   'airline'     : 'laederon'

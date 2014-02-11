@@ -19,6 +19,7 @@ func! jalcine#colors#apply(the_profile)
   let color_opts = g:coloring[a:the_profile]
   exec('colorscheme ' . color_opts.colorscheme)
   call airline#switch_theme(color_opts.airline)
+  hi Folded ctermbg=NONE
   let g:coloring_current = a:the_profile
 endfunc
 

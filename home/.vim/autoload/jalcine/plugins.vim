@@ -165,7 +165,7 @@ function! jalcine#plugins#set_options()
   let g:username="jalcine"
 
   " Set the default coloring.
-  let g:coloring_current='Distinguished'
+  let g:coloring_current='Tomorrow-Night'
 
   " Some JS libs we use a lot.
   let g:used_javascript_libs='underscore,backbone,jquery'

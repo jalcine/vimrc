@@ -17,22 +17,32 @@ endfunc
 
 func! jalcine#colors#apply(the_profile)
   let color_opts = g:coloring[a:the_profile]
-  exec('colorscheme ' . color_opts.colorscheme)
+  silent exec('colorscheme ' . color_opts.colorscheme)
   call airline#switch_theme(color_opts.airline)
+
+  " Do some work to the color themes to make it look nicer. Most themes don't
+  " do this.
   hi Folded ctermbg=NONE
+  hi Number ctermbg=NONE
+  hi SignColumn ctermbg=NONE
+  hi Error ctermfg=15 ctermbg=NONE
+  hi VertSplit ctermbg=NONE
   let g:coloring_current = a:the_profile
 endfunc
 
 function! jalcine#colors#detect()
   " Set the default color scheme, in the event it's not defined.
-  if exists($KONSOLE_PROFILE_NAME)
+  if has_key(g:coloring,$KONSOLE_PROFILE_NAME)
     call jalcine#colors#apply($KONSOLE_PROFILE_NAME)
-  elseif exists('g:coloring_current')
-    call jalcine#colors#apply(g:coloring_current)
   else
-    call jalcine#colors#apply('Shell')
+    call jalcine#colors#apply(g:coloring_current)
   endif
 endfunction
 
+function! jalcine#colors#complete(ArgLead, CmdLine, CursorPos)
+  return keys(g:coloring)
+endfunction
+
 " Add a lil' command.
-command! -nargs=1 ApplyColoring :call jalcine#colors#apply("<args>")
+command! -nargs=1 -complete=customlist,jalcine#colors#complete ApplyColoring
+  \ :call jalcine#colors#apply("<args>")

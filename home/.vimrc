@@ -1,25 +1,17 @@
-"" vim: tw=78 fdm=marker
 "" File: .vimrc
 "" Author: Jacky Alciné <me@jalcine.me>
 "" Description: The heart.
 "" Last Modified: 2014-01-31 06:43:55 EST
-""
-"" I take pride in my Vim configuration. Being that I'm an intermediate Vim 
-"" user and I try to share as much as I learn, I've taken the liberty of
-"" documenting and explaining the nature of my configuration. I use the
-"" latest development version of Vim from sources using a PPA in Ubuntu;
-"" makes life a bit easier. I only commented with my reasoning for using the
-"" options provided; if you needed help; you know how to find it.
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"{{{2 Immediate Options
+
+"{{{ Immediate Options
 " We live in the future, don't worry about backwards compatibility with Vi.
 " In fact, why bother set it? If $VIM is reading this, nocp is active!
-set nocompatible
+" set nocompatible
 
 " We dark by default. This prevents a nasty flash when Vim starts because of
 " the way I handle my (dozens) colorschemes.
 set background=dark
-colorscheme default
+colorscheme zellner
 
 " We use UNIX. So act like UNIX.
 set encoding=utf-8
@@ -37,7 +29,7 @@ let mapleader=','
 let maplocalleader='\\'
 
 "}}}
-"{{{2 Immediate Configuration Options
+"{{{ Immediate Configuration Options
 
 " Use visual bells instead of beeps. I use this
 " since it helps a lot with tmux to inform me
@@ -51,7 +43,7 @@ set laststatus=2
 " Show me the tab bar no matter what.
 set showtabline=2
 "}}}
-"{{{2 Spacing
+"{{{ Spacing
 
 " I prefer to use two spaces to represent tabs.
 set tabstop=2
@@ -114,7 +106,7 @@ set tags+=$PWD/build/tags
 " Save your work in sessions.
 set sessionoptions=buffers,tabpages,winsize,curdir
 
-"{{{2 Layout
+"{{{ Layout
 
 " We fold.
 set foldenable
@@ -127,23 +119,20 @@ set foldcolumn=1
 
 " Sets the minimum amount of lines needed to
 " automatically initialize folding.
-set foldminlines=5
-
-" Anything greater than this is automatically folded.
-set foldlevel=1
+set foldminlines=8
 
 " Set the title in the terminal.
 set title
 set titlelen=120
-set titlestring="%t%(\ %M%)%(\ (%{expand(\"%:~:.:h\")})%)%(\ %a%)"
+set titlestring="%t%(\ %M%)%(\ (%{expand(\"%:p:h\")})%)%(\ %a%)"
 
 " Turn on the ruler, we'd like to know our whereabouts.
 set ruler
 
 " We need numbers, mayne!
 set number
-
-"{{{2 Searching
+"}}}
+"{{{ Searching
 
 " Highlight matches found when searching.
 set hlsearch
@@ -152,13 +141,13 @@ set hlsearch
 set incsearch
 
 " Show matching and (briefly) jump to the other partner just shortly.
-" Very useful when doing JavaScript or C++.
+" Very useful when writing code in JavaScript or C++.
 set showmatch
 
 " We aren't that greedy.
 set nogdefault
 
-"{{{2 Recovery
+"{{{ Recovery
 
 " Record whether changes were made to unsaved buffers. 
 set hidden
@@ -181,7 +170,7 @@ set history=16384
 " Set the undo level to a little bit higher than default.
 set undolevels=16384
 
-"{{{2 Spelling Options
+"{{{ Spelling Options
 " I'll check when I want.
 set nospell
 
@@ -200,7 +189,7 @@ set dictionary+=/usr/share/dict/web2,/usr/share/dict/propernames.gz
 " Set a location to save my added words.
 set spellfile=~/.vim/dict.custom.utf8-8.add
 
-"{{{2 Visual Cues
+"{{{ Visual Cues
 " A problem that plagued me for months, having visual cues for white spacing
 " solves formatting problems a lot quicker. Also, we're using modern shells
 " (right?) so using UTF-8 characters for symbols should be a given.

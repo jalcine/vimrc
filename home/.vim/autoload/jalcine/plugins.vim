@@ -30,12 +30,6 @@ function! jalcine#plugins#prep()
 endfunction
 
 function! jalcine#plugins#load()
-  if $VIM_PLUGIN_DEV
-    let my_plugin_prefix = 'file:///home/jacky/Development/Projects/'
-  else
-    let my_plugin_prefix = 'jalcine/'
-  end
-
   " No more.
   filetype off
 
@@ -46,6 +40,14 @@ function! jalcine#plugins#load()
   call vundle#rc()
 
   " Sound the horn.
+  Bundle 'jalcine/android.vim'
+  Bundle 'jalcine/cmake.vim'
+  Bundle 'jalcine/vim-snippets'
+  Bundle 'jalcine/localrc.vim'
+  Bundle 'jalcine/vim-rdoc'
+  Bundle 'jalcine/vim-tmux'
+  Bundle 'jalcine/unite-tag'
+  Bundle 'jalcine/syntastic'
   Bundle 'jalcine/vundle'
   Bundle 'flazz/vim-colorschemes'
   Bundle 'chriskempson/tomorrow-theme', { 'rtp' : 'vim' }
@@ -146,14 +148,6 @@ function! jalcine#plugins#load()
   Bundle 'Lokaltog/vim-distinguished'
   Bundle 'jmcantrell/vim-virtualenv'
   Bundle 'derekwyatt/vim-scala'
-  Bundle (my_plugin_prefix . 'android.vim')
-  Bundle (my_plugin_prefix . 'cmake.vim')
-  Bundle (my_plugin_prefix . 'vim-snippets')
-  Bundle (my_plugin_prefix . 'localrc.vim')
-  Bundle (my_plugin_prefix . 'vim-rdoc')
-  Bundle (my_plugin_prefix . 'vim-tmux')
-  Bundle (my_plugin_prefix . 'unite-tag')
-  Bundle (my_plugin_prefix . 'syntastic')
 
   filetype plugin indent on
   syntax on

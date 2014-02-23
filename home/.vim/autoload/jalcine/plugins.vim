@@ -23,7 +23,7 @@ function! jalcine#plugins#prep()
     call jalcine#plugins#load()
     :BundleInstall!
     echo "[jalcine.vim] Building native extensions..\n"
-    silent !cd $HOME/.vim/bundle/YouCompleteMe && ./install.sh --clang-completer --omnisharp-completer
+    silent !cd $HOME/.vim/bundle/YouCompleteMe && ./install.sh --clang-completer --omnisharp-completer --system-libclang
     silent !cd $HOME/.vim/bundle/vimproc.vim && make
     echo "[jalcine.vim] Thanks for flying Vim, come again.\n"
   endif
@@ -174,6 +174,7 @@ function! jalcine#plugins#set_options()
   "{{{ Airline config
   let g:airline_detect_modified=1
   let g:airline_powerline_fonts=1
+  let g:airline_detect_iminsert=1
   let g:airline#extensions#hunks#non_zero_only=1
   let g:airline#extensions#tabline#enabled=1
   let g:airline#extensions#tabline#tab_nr_type=1
@@ -181,18 +182,34 @@ function! jalcine#plugins#set_options()
   let g:airline#extensions#branch#enabled=1
   let g:airline#extensions#branch#empty_message=''
   let g:airline#extensions#whitespace#enabled=0
+  let g:airline_exclude_preview=1
+  let g:airline_mode_map={
+      \ '__' : '-',
+      \ 'n'  : 'N',
+      \ 'i'  : 'I',
+      \ 'R'  : 'R',
+      \ 'c'  : 'C',
+      \ 'v'  : 'V',
+      \ 'V'  : 'V',
+      \ '' : 'V',
+      \ 's'  : 'S',
+      \ 'S'  : 'S',
+      \ '' : 'S'
+      \ }
 
   "{{{ YouCompleteMe
   let g:ycm_collect_identifiers_from_tags_files=1
-  let g:ycm_autoclose_preview_window_after_completion=1
-  let g:ycm_autoclose_preview_window_after_insertion=1
-  let g:ycm_global_ycm_extra_conf = '$HOME/.ycm_extra_conf.py'
+  let g:ycm_autoclose_preview_window_after_completion=0
+  let g:ycm_autoclose_preview_window_after_insertion=0
+  let g:ycm_global_ycm_extra_conf='$HOME/.ycm_extra_conf.py'
   let g:ycm_confirm_extra_conf=0
   let g:ycm_seed_identifiers_with_syntax=1
   let g:ycm_server_use_vim_stdout=0
   let g:ycm_use_utlisnips_completer=1
-  let g:ycm_add_preview_to_completeopt=1
-  let g:ycm_semantic_triggers =  {
+  let g:ycm_cache_omnifunc=0
+  let g:ycm_complete_in_strings=1
+  let g:ycm_add_preview_to_completeopt=0
+  let g:ycm_semantic_triggers= {
     \ 'c' : [ '->', '.', '(', ',', '='],
     \ 'cpp,objcpp' : [ '->', '.', '::', '(',',', '=', '+'],
     \ 'perl' : [ '->', '(', '::', ','],
@@ -237,7 +254,7 @@ function! jalcine#plugins#set_options()
       \ '--hidden -g ""'
   endif
   let g:unite_prompt='➤ '
-  let g:jalcine_unite_options='-buffer-name=VIM ' .
+  let g:jalcine_unite_options='-buffer-name=jalcine ' .
     \ '-immediately -complete -unique'
   let g:jalcine_unite_sources='file_rec/async:! file_mru:! buffer ' .
     \ 'tag tag/file tag/include:! ' .
@@ -280,8 +297,8 @@ function! jalcine#plugins#set_options()
   let g:UltiSnipsSnippetDirectories=["UltiSnips", "snippets"]
 
   "{{{ Android
-  let g:android_default_package_path = "me.jalcine"
-  let g:android_default_project_path = "$HOME/Development/Projects"
+  let g:android_default_package_path="me.jalcine"
+  let g:android_default_project_path="$HOME/Development/Projects"
 
   "{{{ GitHub configuration
   let g:github_user=g:username
@@ -313,7 +330,7 @@ function! jalcine#plugins#set_options()
   "{{{ Tagbar
   let g:tagbar_compact=1
   let g:tagbar_autoshowtag=1
-  let g:tagbar_type_markdown = {
+  let g:tagbar_type_markdown={
     \ 'ctagstype' : 'markdown',
     \ 'kinds' : [
       \ 'h:Heading_L1',
@@ -321,7 +338,7 @@ function! jalcine#plugins#set_options()
       \ 'k:Heading_L3'
       \ ]
     \ }
-  let g:tagbar_type_cpp = {
+  let g:tagbar_type_cpp={
     \ 'kinds' : [
       \ 'd:macros:1:0',
       \ 'p:prototypes:1:0',
@@ -337,7 +354,7 @@ function! jalcine#plugins#set_options()
       \ 'v:variables:0:0',
       \ ],
     \ }
-  let g:tagbar_type_coffee = {
+  let g:tagbar_type_coffee={
     \ 'ctagsbin' : 'coffeetags',
     \ 'ctagsargs' : '',
     \ 'kinds' : [
@@ -353,7 +370,7 @@ function! jalcine#plugins#set_options()
 
   let g:extradite_showhash=1
 
-  let g:rails_projections = {
+  let g:rails_projections={
     \ "app/uploaders/*_uploader.rb": {
     \   "command": "uploader",
     \   "template":
@@ -368,7 +385,7 @@ function! jalcine#plugins#set_options()
     \ "features/support/env.rb": {"command": "support"}}
 
   "{{{ Signify
-  let g:signify_vcs_list = ['git','hg','svn','bzr']
+  let g:signify_vcs_list=['git','hg','svn','bzr']
   let g:signify_sign_overwrite=1
   let g:signify_line_highlight=0
   let g:signify_update_on_focusgained=1
@@ -380,7 +397,7 @@ function! jalcine#plugins#set_options()
   let g:signify_cursorhold_insert=0
   "}}}
 
-  let g:coloring = {
+  let g:coloring={
     \ 'Tomorrow' : {
     \   'colorscheme' : 'Tomorrow-Night',
     \   'airline'     : 'tomorrow'

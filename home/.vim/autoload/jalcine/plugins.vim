@@ -210,14 +210,14 @@ function! jalcine#plugins#set_options()
   let g:ycm_complete_in_strings=1
   let g:ycm_add_preview_to_completeopt=0
   let g:ycm_semantic_triggers= {
-    \ 'c' : [ '->', '.', '(', ',', '='],
-    \ 'cpp,objcpp' : [ '->', '.', '::', '(',',', '=', '+'],
-    \ 'perl' : [ '->', '(', '::', ','],
-    \ 'php' : [ '->', '::', '(', '='],
+    \ 'c'                                                        : [ '->', '.', '(', ',', '='],
+    \ 'cpp,objcpp'                                               : [ '->', '.', '::', '(',',', '=', '+'],
+    \ 'perl'                                                     : [ '->', '(', '::', ','],
+    \ 'php'                                                      : [ '->', '::', '(', '='],
     \ 'cs,java,javascript,d,vim,python,perl6,scala,vb,elixir,go' : [ '.', '(', '=', '/', '+'],
-    \ 'ruby' : [ '.', '::', '(', '{', '=', '+', '-', '/'],
-    \ 'lua' : [ '.', ':'],
-    \ 'erlang' : [ ':'],
+    \ 'ruby'                                                     : [ '.', '::', '(', '{', '=', '+', '-', '/'],
+    \ 'lua'                                                      : [ '.', ':'],
+    \ 'erlang'                                                   : [ ':'],
     \ }
 
   "{{{ Syntastic options

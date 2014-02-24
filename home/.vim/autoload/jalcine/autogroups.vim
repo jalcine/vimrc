@@ -3,7 +3,7 @@
 " Description: My auto-groups and auto-commands for Vim.
 " Last Modified: February 01, 2014
 
-function! jalcine#autogroups#set()
+func! jalcine#autogroups#set()
   " Update appropriate files when I update them.
   augroup autosourcecfg
     au!
@@ -48,7 +48,7 @@ func! jalcine#autogroups#bind_konsole()
 endfunction
 
 
-function! jalcine#autogroups#reload()
+func! jalcine#autogroups#reload()
   let cs = g:colors_name
   echomsg "[jalcine.vim] Resourcing primary configuration..."
   source $MYVIMRC
@@ -64,7 +64,7 @@ function! jalcine#autogroups#reload()
   echomsg "[jalcine.vim] Configuration sourced."
 endfunction
 
-function! s:load_current_buffer()
+func! s:load_current_buffer()
   if &ft == 'vim'
     source %
     echomsg "[jalcine.vim] Loaded local Vim configuration."
@@ -73,7 +73,7 @@ function! s:load_current_buffer()
   endif
 endfunction
 
-function! jalcine#autogroups#reload_tmux()
+func! jalcine#autogroups#reload_tmux()
   call system('tmux source-file '. expand('%:p'))
   call system("tmux display-message '[jalcine.vim] Configuration of tmux " .
     \ "reloaded using ". expand('%:p') . ".'")

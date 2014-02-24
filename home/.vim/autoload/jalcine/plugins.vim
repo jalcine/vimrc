@@ -3,14 +3,14 @@
 " Description: Logic to control the use of plug-ins in Vim.
 " Last Modified: 2013-01-31 02:46:56 EST
 
-function! jalcine#plugins#setup()
+func! jalcine#plugins#setup()
   call jalcine#plugins#prep()
   call jalcine#plugins#load()
   call jalcine#plugins#set_options()
   call jalcine#mappings#apply('plugin')
 endfunction
 
-function! jalcine#plugins#prep()
+func! jalcine#plugins#prep()
   " Grabbed something: https://web.archive.org/web/20130127003932/http://www.erikzaadi.com/2012/03/19/auto-installing-vundle-from-your-vimrc/
   " Setting up Vundle - the vim plugin bundler
   let iCanHazVundle=1
@@ -29,7 +29,7 @@ function! jalcine#plugins#prep()
   endif
 endfunction
 
-function! jalcine#plugins#load()
+func! jalcine#plugins#load()
   " No more.
   filetype off
 
@@ -153,7 +153,7 @@ function! jalcine#plugins#load()
   syntax on
 endfunction
 
-function! jalcine#plugins#set_options()
+func! jalcine#plugins#set_options()
   "{{{ User Info
   let g:author='Jacky Alciné'
   let g:email='me@jalcine.me'
@@ -210,14 +210,13 @@ function! jalcine#plugins#set_options()
   let g:ycm_complete_in_strings=1
   let g:ycm_add_preview_to_completeopt=0
   let g:ycm_semantic_triggers= {
-    \ 'c'                                                        : [ '->', '.', '(', ',', '='],
-    \ 'cpp,objcpp'                                               : [ '->', '.', '::', '(',',', '=', '+'],
-    \ 'perl'                                                     : [ '->', '(', '::', ','],
-    \ 'php'                                                      : [ '->', '::', '(', '='],
-    \ 'cs,java,javascript,d,vim,python,perl6,scala,vb,elixir,go' : [ '.', '(', '=', '/', '+'],
-    \ 'ruby'                                                     : [ '.', '::', '(', '{', '=', '+', '-', '/'],
-    \ 'lua'                                                      : [ '.', ':'],
-    \ 'erlang'                                                   : [ ':'],
+    \ 'c'          : [ '->', '.', '(', ',', '='],
+    \ 'cpp,objcpp' : [ '->', '.', ':: ', '(',',', '=', '+'],
+    \ 'perl'       : [ '->', '(', ':: ', ','],
+    \ 'php'        : [ '->', '::', '(', '='],
+    \ 'ruby'       : [ '.', '::', '(', '{', '=', '+', '-', '/'],
+    \ 'lua'        : [ '.', ':'],
+    \ 'erlang'     : [ ':'],
     \ }
 
   "{{{ Syntastic options
@@ -338,22 +337,6 @@ function! jalcine#plugins#set_options()
       \ 'k:Heading_L3'
       \ ]
     \ }
-  let g:tagbar_type_cpp={
-    \ 'kinds' : [
-      \ 'd:macros:1:0',
-      \ 'p:prototypes:1:0',
-      \ 'g:enums',
-      \ 'e:enumerators:0:0',
-      \ 't:typedefs:0:0',
-      \ 'n:namespaces',
-      \ 'c:classes',
-      \ 's:structs',
-      \ 'u:unions',
-      \ 'f:function!s',
-      \ 'm:members:0:0',
-      \ 'v:variables:0:0',
-      \ ],
-    \ }
   let g:tagbar_type_coffee={
     \ 'ctagsbin' : 'coffeetags',
     \ 'ctagsargs' : '',
@@ -442,12 +425,16 @@ function! jalcine#plugins#set_options()
     \   'colorscheme' : 'badwolf',
     \   'airline'     : 'badwolf'
     \ },
+    \ 'Understanded' : {
+    \   'colorscheme' : 'understanded',
+    \   'airline'     : 'understanded'
+    \ },
     \ 'Obsidian' : {
     \   'colorscheme' : 'obsidian',
     \   'airline'     : 'laederon'
     \ },
     \ 'Defacto' : {
-    \  'colorscheme' : 'xoria256',
+    \  'colorscheme' : 'wuye',
     \  'airline'     : 'ubaryd'
     \ }
     \ }

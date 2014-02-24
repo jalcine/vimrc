@@ -3,7 +3,7 @@
 " Description: Definitions of mappings in the application.
 " Last Modified: 2014-01-31 02:29:05 EST
 
-function! jalcine#mappings#apply(level)
+func! jalcine#mappings#apply(level)
   if a:level == 'general'
     call jalcine#mappings#apply_general()
   elseif a:level == 'plugin'
@@ -14,7 +14,7 @@ endfunction
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_length'])
 
-function! jalcine#mappings#invoke_unite(scope)
+func! jalcine#mappings#invoke_unite(scope)
   let sources=g:jalcine_unite_sources
   let options=g:jalcine_unite_options
 
@@ -43,6 +43,8 @@ function! jalcine#mappings#invoke_unite(scope)
       \ 'rails/heroku rails/view rails/stylesheet rails/schema rails/rake'
   elseif a:scope == 'tags'
     let sources = 'tag tag/file tag/include'
+  elseif a:scope == 'tmux'
+    let sources = 'tmux/panes tmux/sessions tmux/windows'
   elseif a:scope == 'files'
     let sources = 'file_rec/async:! directory_rec/async:!'
   endif
@@ -50,7 +52,7 @@ function! jalcine#mappings#invoke_unite(scope)
   exec(':Unite ' . options . ' ' . sources)
 endfunction
 
-function! jalcine#mappings#define_for_unite()
+func! jalcine#mappings#define_for_unite()
   imap <buffer>               <C-k>   <Plug>(unite_select_previous_line)
   imap <buffer>               <C-j>   <Plug>(unite_select_next_line)
   imap <buffer>               <C-i>   <Plug>(unite_toggle_auto_preview)
@@ -59,7 +61,7 @@ function! jalcine#mappings#define_for_unite()
   imap <silent><buffer><expr> <C-t>   unite#do_action('tabopen')
 endfunction
 
-function! jalcine#mappings#apply_plugin()
+func! jalcine#mappings#apply_plugin()
   " Reload the configuration.
   nnoremap <F5> :call jalcine#autogroups#reload()<cr>
 
@@ -75,6 +77,7 @@ function! jalcine#mappings#apply_plugin()
   nnoremap <silent><leader>pr :call jalcine#mappings#invoke_unite('rails')<CR>
   nnoremap <silent><leader>pt :call jalcine#mappings#invoke_unite('tags')<CR>
   nnoremap <silent><leader>pf :call jalcine#mappings#invoke_unite('files')<CR>
+  nnoremap <silent><leader>px :call jalcine#mappings#invoke_unite('tmux')<CR>
 
   "{{{ Tabularize
   vnoremap <leader>a: :Tabularize /:<CR>
@@ -106,12 +109,12 @@ function! jalcine#mappings#apply_plugin()
 
 endfunction
 
-function! s:VimuxRepl()
+func! s:VimuxRepl()
   call VimuxSendText(@v)
   call VimuxSendKeys("<Enter>")
 endfunction
 
-function! jalcine#mappings#apply_general()
+func! jalcine#mappings#apply_general()
   " One less key to press to enter the Vim shell.
   nnoremap ; :
 

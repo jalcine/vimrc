@@ -163,7 +163,8 @@ func! jalcine#plugins#set_options()
   let g:used_javascript_libs='underscore,backbone,jquery'
   let g:snips_author=g:author
 
-  let g:cmake_use_vimux=0
+  let g:cmake_use_vimux=1
+  let g:cmake_use_dispatch=1
   let g:cmake_build_shared_libs=1
   let g:cmake_set_makeprg=1
   let g:cmake_inject_flags={
@@ -293,7 +294,7 @@ func! jalcine#plugins#set_options()
   let g:UltiSnipsExpandTrigger="<C-l>"
   let g:UltiSnipsJumpForwardTrigger="<C-j>"
   let g:UltiSnipsJumpBackwardTrigger="<C-k>"
-  let g:UltiSnipsSnippetDirectories=["UltiSnips", "snippets"]
+  "let g:UltiSnipsSnippetDirectories=["UltiSnips"]
 
   "{{{ Android
   let g:android_default_package_path="me.jalcine"
@@ -350,9 +351,7 @@ func! jalcine#plugins#set_options()
       \ 'o' : 'object',
       \ }
     \ }
-
   let g:extradite_showhash=1
-
   let g:rails_projections={
     \ "app/uploaders/*_uploader.rb": {
     \   "command": "uploader",
@@ -425,17 +424,17 @@ func! jalcine#plugins#set_options()
     \   'colorscheme' : 'badwolf',
     \   'airline'     : 'badwolf'
     \ },
-    \ 'Understanded' : {
-    \   'colorscheme' : 'understanded',
-    \   'airline'     : 'understanded'
+    \ 'Understated' : {
+    \   'colorscheme' : 'understated',
+    \   'airline'     : 'understated'
     \ },
     \ 'Obsidian' : {
     \   'colorscheme' : 'obsidian',
     \   'airline'     : 'laederon'
     \ },
     \ 'Defacto' : {
-    \  'colorscheme' : 'wuye',
-    \  'airline'     : 'ubaryd'
+    \  'colorscheme' : 'forneus',
+    \  'airline'     : 'murmur'
     \ }
     \ }
 endfunction

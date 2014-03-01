@@ -18,16 +18,16 @@ func! jalcine#colors#apply(the_profile)
   let color_opts = g:coloring[a:the_profile]
   silent exec('colorscheme ' . color_opts.colorscheme)
   call airline#switch_theme(color_opts.airline)
+  let g:coloring_current = a:the_profile
 
   " Do some work to the color themes to make it look nicer. Most themes don't
   " do this.
   hi Folded ctermbg=NONE
   hi Number ctermbg=NONE
   hi SignColumn ctermbg=NONE
-  hi Error ctermfg=15 ctermbg=NONE
   hi VertSplit ctermbg=NONE
   hi Comment ctermbg=NONE
-  let g:coloring_current = a:the_profile
+  hi LineNr ctermbg=NONE
 endfunc
 
 function! jalcine#colors#detect()
@@ -35,15 +35,15 @@ function! jalcine#colors#detect()
   if has_key(g:coloring,$KONSOLE_PROFILE_NAME)
     call jalcine#colors#apply($KONSOLE_PROFILE_NAME)
   else
-    call jalcine#colors#apply(coloring_current)
+    call jalcine#colors#apply(g:coloring_current)
   endif
 endfunction
 
 function! s:complete_colors(ArgLead, CmdLine, CursorPos)
   let l:keys = sort(keys(g:coloring))
-  echomsg a:ArgLead
-  echomsg a:CmdLine
-  call filter(l:keys, 'stridx(v:val,"' . a:ArgLead . '")')
+  if !empty(a:ArgLead)
+    call filter(l:keys, 'stridx(v:val,"' . a:CmdLine . '")')
+  endif
   return l:keys
 endfunction
 

@@ -119,7 +119,7 @@ set foldcolumn=1
 
 " Sets the minimum amount of lines needed to
 " automatically initialize folding.
-set foldminlines=8
+set foldminlines=3
 
 " Set the title in the terminal.
 set title

@@ -47,7 +47,6 @@ func! jalcine#autogroups#bind_konsole()
   augroup END
 endfunction
 
-
 func! jalcine#autogroups#reload()
   let cs = g:colors_name
   echomsg "[jalcine.vim] Resourcing primary configuration..."
@@ -55,6 +54,7 @@ func! jalcine#autogroups#reload()
   echomsg "[jalcine.vim] Resourcing jalcine.vim..."
   source  $HOME/.vim/autoload/jalcine.vim
   for file_path in glob('$HOME/.vim/autoload/jalcine/*.vim', 0, 1)
+    echomsg "[jalcine.vim] Resourcing '" . file_path . "'..."
     exec('source ' . file_path)
   endfor
 
@@ -62,7 +62,7 @@ func! jalcine#autogroups#reload()
   call jalcine#roll_out()
   exec('colorscheme '. cs)
   echomsg "[jalcine.vim] Configuration sourced."
-endfunction
+endfunc
 
 func! s:load_current_buffer()
   if &ft == 'vim'

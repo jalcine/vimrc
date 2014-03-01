@@ -3,6 +3,20 @@
 " Description: Definitions of mappings in the application.
 " Last Modified: 2014-01-31 02:29:05 EST
 
+func! s:VimuxRepl()
+  call VimuxSendText(@v)
+  call VimuxSendKeys("<Enter>")
+endfunction
+
+func! s:build_current_project()
+  if cmake#util#has_project()
+    call cmake#commands#build_current()
+  else
+    " TODO Add more kinds of projects in the future.
+    make()
+  endif
+endfunc
+
 func! jalcine#mappings#apply(level)
   if a:level == 'general'
     call jalcine#mappings#apply_general()
@@ -53,12 +67,12 @@ func! jalcine#mappings#invoke_unite(scope)
 endfunction
 
 func! jalcine#mappings#define_for_unite()
-  imap <buffer>               <C-k>   <Plug>(unite_select_previous_line)
-  imap <buffer>               <C-j>   <Plug>(unite_select_next_line)
-  imap <buffer>               <C-i>   <Plug>(unite_toggle_auto_preview)
-  imap <silent><buffer><expr> <C-x>   unite#do_action('split')
-  imap <silent><buffer><expr> <C-v>   unite#do_action('vsplit')
-  imap <silent><buffer><expr> <C-t>   unite#do_action('tabopen')
+  imap <buffer>                <C-k>   <Plug>(unite_select_previous_line)
+  imap <buffer>                <C-j>   <Plug>(unite_select_next_line)
+  imap <buffer>                <C-i>   <Plug>(unite_toggle_auto_preview)
+  imap <silent><buffer><expr>  <C-x>   :call unite#do_action('split')<CR>
+  imap <silent><buffer><expr>  <C-v>   :call unite#do_action('vsplit')<CR>
+  imap <silent><buffer><expr>  <C-t>   :call unite#do_action('tabopen')<CR>
 endfunction
 
 func! jalcine#mappings#apply_plugin()
@@ -71,6 +85,7 @@ func! jalcine#mappings#apply_plugin()
   " Make it easy to get to things I'd use more than once.
   nnoremap <silent><F6> :TagbarToggle<CR>
   nnoremap <silent><F7> :NERDTreeToggle<CR>
+  nnoremap <silent><F8> :call s:build_current_project()<CR>
 
   " INVOKE UNITE.
   nnoremap <silent><leader>p  :call jalcine#mappings#invoke_unite('general')<CR>
@@ -89,12 +104,14 @@ func! jalcine#mappings#apply_plugin()
   "}}}
 
   "{{{ Vimux
-  nnoremap <Leader>to :VimuxOpenPane<CR>
-  nnoremap <Leader>tp :VimuxPromptCommand<CR>
-  nnoremap <Leader>tt :VimuxRunLastCommand<CR>
-  nnoremap <Leader>tc :VimuxCloseRunner<CR>
-  vnoremap <Leader>ts "vy :call s:VimuxRepl()<CR>
-  nnoremap <Leader>ts vip<LocalLeader>ts<CR>
+  nnoremap <leader>to      :VimuxOpenPane<CR>
+  nnoremap <leader>tp      :VimuxPromptCommand<CR>
+  nnoremap <leader>tt      :VimuxRunLastCommand<CR>
+  nnoremap <leader>tc      :VimuxCloseRunner<CR>
+  vnoremap <leader>ts      "vy :call s:VimuxRepl()<CR>
+  nnoremap <leader>ts      vip<LocalLeader>ts<CR>
+  nnoremap <leader>t<Up>   :VimuxScrollUpInspect<CR>
+  nnoremap <leader>t<Down> :VimuxScrollDownInspect<CR>
 
   " Git helpers
   nnoremap <leader>gc   :Git commit<space>
@@ -106,12 +123,6 @@ func! jalcine#mappings#apply_plugin()
   nnoremap <leader>grmc :Git rm --cached %<CR>
   nnoremap <leader>gab  :Git add %<cr>
   nnoremap <leader>ga   :Git add<space>
-
-endfunction
-
-func! s:VimuxRepl()
-  call VimuxSendText(@v)
-  call VimuxSendKeys("<Enter>")
 endfunction
 
 func! jalcine#mappings#apply_general()
@@ -170,6 +181,7 @@ func! jalcine#mappings#apply_general()
   nnoremap <leader>co <ESC>:cwindow<CR>
   nnoremap <leader>cf <ESC>:cfirst<CR>
   nnoremap <leader>cl <ESC>:clast<CR>
+  nnoremap <leader>cx <ESC>:cclose<CR>
 
   " Rewrite 'vhe' to 'vert help'.
   cnoremap vhe vert help

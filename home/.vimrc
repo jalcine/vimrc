@@ -1,7 +1,6 @@
 "" File: .vimrc
 "" Author: Jacky Alciné <me@jalcine.me>
 "" Description: The heart.
-"" Last Modified: 2014-01-31 06:43:55 EST
 
 "{{{ Immediate Options
 " We live in the future, don't worry about backwards compatibility with Vi.

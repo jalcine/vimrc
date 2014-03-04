@@ -1,7 +1,6 @@
 " File: jalcine/plugins.vim
 " Author: Jacky Alciné <me@jalcine.me>
 " Description: Logic to control the use of plug-ins in Vim.
-" Last Modified: 2013-01-31 02:46:56 EST
 
 func! jalcine#plugins#setup()
   call jalcine#plugins#prep()
@@ -385,8 +384,8 @@ func! jalcine#plugins#set_options()
     \   'airline'     : 'tomorrow'
     \  },
     \ 'Light' : {
-    \   'colorscheme' : 'Tomorrow',
-    \   'airline'     : 'tomorrow'
+    \   'colorscheme' : 'mayansmoke',
+    \   'airline'     : 'light'
     \  },
     \ 'Herald' : {
     \   'colorscheme' : 'herald',
@@ -433,8 +432,8 @@ func! jalcine#plugins#set_options()
     \   'airline'     : 'laederon'
     \ },
     \ 'Defacto' : {
-    \  'colorscheme' : 'django',
-    \  'airline'     : 'serene'
+    \  'colorscheme' : 'navajo-night',
+    \  'airline'     : 'luna'
     \ }
     \ }
 endfunction

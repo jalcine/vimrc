@@ -379,7 +379,7 @@ func! jalcine#plugins#set_options()
   let g:signify_cursorhold_insert=0
   "}}}
 
-  let g:coloring={
+  let g:coloring = {
     \ 'Tomorrow' : {
     \   'colorscheme' : 'Tomorrow-Night',
     \   'airline'     : 'tomorrow'
@@ -433,8 +433,8 @@ func! jalcine#plugins#set_options()
     \   'airline'     : 'laederon'
     \ },
     \ 'Defacto' : {
-    \  'colorscheme' : 'forneus',
-    \  'airline'     : 'murmur'
+    \  'colorscheme' : 'django',
+    \  'airline'     : 'serene'
     \ }
     \ }
 endfunction

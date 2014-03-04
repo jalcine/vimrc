@@ -217,7 +217,7 @@ set lazyredraw
 set showcmd
 set showfulltag
 
-" Don't tell me where I'm at.
+" Don't tell me where I'm at; I know.
 set nocursorline
 set nocursorcolumn
 

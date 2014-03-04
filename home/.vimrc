@@ -117,9 +117,12 @@ set foldmethod=syntax
 " Sets the width of the folding margins.
 set foldcolumn=1
 
+" Start folding on the second floor.
+set foldlevel=2
+
 " Sets the minimum amount of lines needed to
 " automatically initialize folding.
-set foldminlines=3
+set foldminlines=5
 
 " Set the title in the terminal.
 set title

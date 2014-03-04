@@ -253,7 +253,7 @@ func! jalcine#plugins#set_options()
       \ '".hg" --ignore ".svn" --ignore ".git" --ignore ".bzr" ' .
       \ '--hidden -g ""'
   endif
-  let g:unite_prompt='➤ '
+  let g:unite_prompt=' '
   let g:jalcine_unite_options='-buffer-name=jalcine ' .
     \ '-immediately -complete -unique'
   let g:jalcine_unite_sources='file_rec/async:! file_mru:! buffer ' .
@@ -290,11 +290,11 @@ func! jalcine#plugins#set_options()
   let g:voogle_map="<leader>gg"
 
   "{{{ Snippets
-  let g:UltiSnipsEditSplit="vertical"
+  let g:UltiSnipsEditSplit="horizontal"
   let g:UltiSnipsExpandTrigger="<C-l>"
   let g:UltiSnipsJumpForwardTrigger="<C-j>"
   let g:UltiSnipsJumpBackwardTrigger="<C-k>"
-  "let g:UltiSnipsSnippetDirectories=["UltiSnips"]
+  let g:UltiSnipsSnippetDirectories=["UltiSnips"]
 
   "{{{ Android
   let g:android_default_package_path="me.jalcine"

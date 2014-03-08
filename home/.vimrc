@@ -20,6 +20,11 @@ set fileformats=unix
 " Use Bash. At all costs.
 set shell=/bin/bash
 
+" Set my path.
+set path=.
+set path+=/usr/include,/usr/local/include
+set path+=$HOME/.local/include
+
 " We need modelines.
 set modeline
 
@@ -92,15 +97,19 @@ set ttymouse=xterm
 
 " I place my tags all over the place. Bring them
 " to me!
-set tags+=$HOME/.tags/*.tags
-set tags+=$PWD/.tags
-set tags+=$PWD/TAGS,
-set tags+=$PWD/tags
-set tags+=$PWD/.bzr/tags
-set tags+=$PWD/.git/tags
-set tags+=$PWD/.svn/tags
-set tags+=$PWD/.hg/tags
-set tags+=$PWD/build/tags
+let tagfiles = expand('$HOME/.tags/**/*.tags', 0, 1)
+for atagfile in tagfiles
+  let &tags .= ',' . atagfile
+endfor
+
+set tags+=./.tags
+set tags+=./TAGS,
+set tags+=./tags
+set tags+=./.bzr/tags
+set tags+=./.git/tags
+set tags+=./.svn/tags
+set tags+=./.hg/tags
+set tags+=./build/tags
 
 " Save your work in sessions.
 set sessionoptions=buffers,tabpages,winsize,curdir
@@ -116,12 +125,11 @@ set foldmethod=syntax
 " Sets the width of the folding margins.
 set foldcolumn=1
 
-" Start folding on the second floor.
-set foldlevel=2
+" Fold all the time.
+set foldlevel=0
 
-" Sets the minimum amount of lines needed to
-" automatically initialize folding.
-set foldminlines=5
+" Show anything less than 3 lines.
+set foldminlines=3
 
 " Set the title in the terminal.
 set title
@@ -221,7 +229,7 @@ set nocursorline
 set nocursorcolumn
 
 " Show me the overflow.
-call matchadd('ColorColumn', '\%79v', 100)
+call matchadd('ColorColumn', '\%81v', 100)
 
 " Do this when I hit <Backspace>.
 set backspace=indent,eol,start

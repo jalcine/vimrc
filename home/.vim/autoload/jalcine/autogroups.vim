@@ -23,8 +23,9 @@ func! jalcine#autogroups#set()
   " Some files might need to be filetype'd properly.
   augroup fixfiletype
     au!
-    au BufReadPost Guardfile           setl ft=ruby.guard
-    au BufReadPost ~/.gitignore_global setl ft=gitignore
+    au BufReadPost Guardfile              setl ft=ruby.guard
+    au BufReadPost ~/.gitignore_global    setl ft=gitignore
+    au BufReadPost /usr/include/c++/*     setl ft=cpp
   augroup END
 
   autocmd FileType unite call jalcine#mappings#define_for_unite()

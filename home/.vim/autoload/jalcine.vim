@@ -4,13 +4,13 @@
 " Last Modified: 2014-01-31 02:14:22 EST
 
 func! jalcine#roll_out()
-  call jalcine#link_plxr()
+  call jalcine#link_multiplexer()
   call jalcine#plugins#setup()
   call jalcine#mappings#apply('general')
   call jalcine#autogroups#set()
 endfunc
 
-func! jalcine#link_plxr()
+func! jalcine#link_multiplexer()
   " Make sure that GNU screen or tmux passes me my xkeys.
   " link: http://www.reddit.com/r/vim/comments/1a29vk/_/c8tze8p
   if &term == "screen" || &term == "screen-256color"

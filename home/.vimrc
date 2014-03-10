@@ -76,7 +76,7 @@ set wildmode=full
 set wildmenu
 set wildignorecase
 
-set completeopt=longest,menuone
+set completeopt=longest,menuone,preview
 set cryptmethod=blowfish
 
 " Ignore a lot of stuff.
@@ -212,8 +212,8 @@ set showbreak=↪
 " Visual cues when in 'list' model.
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮,trail:·,nbsp:×
 
-" Show me these markings.
-set list
+" Show me these markings when I ask.
+set nolist
 
 " Update by redraw and not INS/DEL
 set ttyscroll=3
@@ -235,7 +235,7 @@ call matchadd('ColorColumn', '\%81v', 100)
 set backspace=indent,eol,start
 
 " Don't talk too much.
-set shortmess+=I
+"set shortmess+=I
 
 " Timeout bai.
 set timeout

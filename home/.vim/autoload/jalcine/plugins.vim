@@ -472,8 +472,8 @@ func! jalcine#plugins#set_options()
     \   'airline'     : 'laederon'
     \ },
     \ 'Defacto' : {
-    \  'colorscheme' : 'lucius',
-    \  'airline'     : 'lucius'
+    \  'colorscheme' : 'obsidian',
+    \  'airline'     : 'obsidian'
     \ }
     \ }
 endfunction

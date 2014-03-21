@@ -69,6 +69,7 @@ set shiftwidth=2
 
 " Automatically indent text.
 set autoindent
+set cindent
 
 " Enable your wild side, take command completion completion up a notch.  
 " Allow for an interesting view when opening the command line menu.

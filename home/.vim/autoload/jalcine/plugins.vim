@@ -171,7 +171,7 @@ function! jalcine#plugins#load()
   " {{{ Autocompletion
   Bundle 'shawncplus/phpcomplete.vim'
   Bundle 'marijnh/tern_for_vim'
-  Bundle 'Valloric/YouCompleteMe'
+  " Bundle 'Valloric/YouCompleteMe'
   " }}}
 
   " {{{ VCS
@@ -199,6 +199,9 @@ func! jalcine#plugins#set_options()
   let g:coloring_current='Tomorrow'
   let g:used_javascript_libs='underscore,backbone,jquery'
   let g:snips_author=g:author
+
+  let g:vimsyn_folding='afmpPrt'
+  let g:vimsyn_embed='mpPrt'
 
   let g:cmake_use_vimux=1
   let g:cmake_use_dispatch=1
@@ -472,8 +475,8 @@ func! jalcine#plugins#set_options()
     \   'airline'     : 'laederon'
     \ },
     \ 'Defacto' : {
-    \  'colorscheme' : 'obsidian',
-    \  'airline'     : 'obsidian'
+    \  'colorscheme' : 'jellybeans',
+    \  'airline'     : 'jellybeans'
     \ }
     \ }
 endfunction

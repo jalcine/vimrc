@@ -4,18 +4,18 @@
 " Description: Definitions of mappings in the application.
 " Last Modified: 2014-01-31 02:29:05 EST
 
-func! s:VimuxRepl()
+function! s:VimuxRepl()
   call VimuxSendText(@v)
   call VimuxSendKeys("<Enter>")
 endfunction
 
-func! s:build_current_project()
+function! s:build_current_project()
   if cmake#util#has_project()
     call cmake#commands#build_current()
   else
     make()
   endif
-endfunc
+endfunction
 
 func! jalcine#mappings#apply(level)
   if a:level == 'general'

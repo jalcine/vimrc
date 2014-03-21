@@ -60,7 +60,7 @@ func! jalcine#mappings#invoke_unite(scope)
   elseif a:scope == 'tmux'
     let sources = 'tmux/panes tmux/sessions tmux/windows'
   elseif a:scope == 'files'
-    let sources = 'file_rec/async:! directory_rec/async:!'
+    let sources = 'file_rec/async:!'
   endif
 
   exec(':Unite ' . options . ' ' . sources)

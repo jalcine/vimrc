@@ -58,8 +58,8 @@ function! jalcine#plugins#load()
   " }}}
 
   Bundle 'godlygeek/csapprox'
-  Bundle 'Rykka/colorv.vim'
-  Bundle 'guns/xterm-color-table.vim'
+  "Bundle 'Rykka/colorv.vim'
+  "Bundle 'guns/xterm-color-table.vim'
   " }}}
   
   " {{{ Utilities
@@ -87,11 +87,11 @@ function! jalcine#plugins#load()
   " {{{ "IDE"-like Utilities
   Bundle 'xolox/vim-session'
   Bundle 'tpope/vim-dispatch'
-  Bundle 'jlanzarotta/bufexplorer'
+  "Bundle 'jlanzarotta/bufexplorer'
   Bundle 'scrooloose/nerdtree'
-  Bundle 'jistr/vim-nerdtree-tabs'
+  "Bundle 'jistr/vim-nerdtree-tabs'
   Bundle 'scrooloose/nerdcommenter'
-  Bundle 'aaronbieber/quicktask'
+  "Bundle 'aaronbieber/quicktask'
   Bundle 'SirVer/ultisnips'
   Bundle 'scrooloose/syntastic'
   Bundle 'jalcine/vim-snippets'
@@ -114,18 +114,18 @@ function! jalcine#plugins#load()
   Bundle 'justinmk/vim-syntax-extra'
   Bundle 'jamessan/vim-gnupg'
   Bundle 'rdolgushin/gitignore.vim'
-  Bundle 'editorconfig/editorconfig-vim'
+  " Bundle 'editorconfig/editorconfig-vim'
 
   Bundle 'mklabs/vim-backbone'
-  Bundle 'mklabs/grunt.vim'
-  Bundle 'AndrewRadev/vim-eco'
+  "Bundle 'mklabs/grunt.vim'
+  "Bundle 'AndrewRadev/vim-eco'
   Bundle 'othree/javascript-libraries-syntax.vim'
   Bundle 'moll/vim-node'
   Bundle 'kchmck/vim-coffee-script'
   Bundle 'pangloss/vim-javascript'
   Bundle 'elzr/vim-json'
 
-  Bundle 'jnwhiteh/vim-golang'
+  "Bundle 'jnwhiteh/vim-golang'
 
   Bundle 'StanAngeloff/php.vim'
   Bundle 'rayburgemeestre/phpfolding.vim'
@@ -134,11 +134,11 @@ function! jalcine#plugins#load()
   Bundle 'othree/html5.vim'
   Bundle 'tpope/vim-haml'
   Bundle 'tpope/vim-markdown'
-  Bundle 'digitaltoad/vim-jade'
+  "Bundle 'digitaltoad/vim-jade'
 
   Bundle 'vim-ruby/vim-ruby'
-  Bundle 'ecomba/vim-ruby-refactoring'
-  Bundle 'astashov/vim-ruby-debugger'
+  "Bundle 'ecomba/vim-ruby-refactoring'
+  "Bundle 'astashov/vim-ruby-debugger'
   Bundle 'tpope/vim-bundler'
   Bundle 'tpope/vim-rbenv'
   Bundle 'tpope/vim-rails'
@@ -146,20 +146,20 @@ function! jalcine#plugins#load()
   Bundle 'jalcine/vim-rdoc'
 
 
-  Bundle 'groenewege/vim-less'
+  "Bundle 'groenewege/vim-less'
   Bundle 'mutewinter/vim-css3-syntax'
   Bundle 'ap/vim-css-color'
 
-  Bundle 'vim-perl/vim-perl'
+  "Bundle 'vim-perl/vim-perl'
 
-  Bundle 'klen/python-mode'
-  Bundle 'davidhalter/jedi-vim'
-  Bundle 'jmcantrell/vim-virtualenv'
+  "Bundle 'klen/python-mode'
+  "Bundle 'davidhalter/jedi-vim'
+  "Bundle 'jmcantrell/vim-virtualenv'
 
   Bundle 'mutewinter/nginx.vim'
   Bundle 'jalcine/vim-tmux'
 
-  Bundle 'derekwyatt/vim-scala'
+  "Bundle 'derekwyatt/vim-scala'
   " }}}
   
   " {{{ Tags
@@ -237,15 +237,15 @@ func! jalcine#plugins#set_options()
 
   "{{{ YouCompleteMe
   let g:ycm_collect_identifiers_from_tags_files=1
-  let g:ycm_autoclose_preview_window_after_completion=0
-  let g:ycm_autoclose_preview_window_after_insertion=0
+  let g:ycm_autoclose_preview_window_after_completion=1
+  let g:ycm_autoclose_preview_window_after_insertion=1
   let g:ycm_confirm_extra_conf=0
   let g:ycm_seed_identifiers_with_syntax=1
   let g:ycm_server_use_vim_stdout=0
   let g:ycm_use_utlisnips_completer=1
   let g:ycm_cache_omnifunc=1
-  let g:ycm_complete_in_strings=1
-  let g:ycm_add_preview_to_completeopt=0
+  let g:ycm_complete_in_strings=0
+  let g:ycm_add_preview_to_completeopt=1
   let g:ycm_semantic_triggers= {
     \ 'c'          : [ '->', '.', '(', ',', '='],
     \ 'cpp,objcpp' : [ '->', '.', ':: ', '(',',', '=', '+'],
@@ -257,30 +257,31 @@ func! jalcine#plugins#set_options()
     \ }
 
   "{{{ Syntastic options
-  let g:syntastic_enable_signs=1
-  let g:syntastic_aggregate_errors=1
-  let g:syntastic_enable_highlight=1
+  let g:syntastic_enable_signs=0
+  let g:syntastic_aggregate_errors=0
+  let g:syntastic_enable_highlight=0
   let g:syntastic_echo_current_error=1
-  let g:syntastic_auto_loc_list=1
+  let g:syntastic_auto_loc_list=2
   let g:syntastic_loc_list_length=3
   let g:syntastic_error_symbol='✗'
   let g:syntastic_warning_symbol='⚠'
   let g:syntastic_auto_jump=0
   let g:syntastic_quiet_messages={'level' : 'warnings'}
   let g:syntastic_ruby_exec=system('rbenv which ruby')
-  let g:syntastic_sass_check_partials=0
+  let g:syntastic_sass_check_partials=1
   let g:syntastic_sass_sass_args='--trace --check'
-  let g:syntastic_cpp_check_header=1
+  "let g:syntastic_cpp_checkers=['gcc']
+  let g:syntastic_cpp_check_header=0
   let g:syntastic_cpp_include_dirs=[ '$HOME/.local/include', 
     \ '/usr/include',
     \ '/usr/local/include'
     \ ]
 
   let g:unite_enable_start_insert=1
-  let g:unite_update_time=1
-  let g:unite_force_overwrite_statusline=1
+  let g:unite_update_time=5
+  let g:unite_force_overwrite_statusline=0
   let g:unite_winheight=5
-  let g:unite_enable_short_sources_names=1
+  let g:unite_enable_short_sources_names=0
   let g:unite_source_history_yank_enable=1
   let g:unite_source_rec_max_cache_files=5000
   if executable('ag')
@@ -289,8 +290,7 @@ func! jalcine#plugins#set_options()
       \ '--hidden -g ""'
   endif
   let g:unite_prompt=' '
-  let g:jalcine_unite_options='-buffer-name=jalcine ' .
-    \ '-immediately -complete -unique'
+  let g:jalcine_unite_options='-buffer-name=jalcine -complete'
   let g:jalcine_unite_sources='file_rec/async buffer ' .
     \ 'tag tag/file tag/include ' .
     \ 'webcolorname tab jump mapping history/yank window ' .
@@ -318,9 +318,9 @@ func! jalcine#plugins#set_options()
   let g:session_default_to_last=0
   let g:session_verbose_messages=0
 
-  let g:eighties_enabled=1
-  let g:eighties_minimum_width=78
-  let g:eighties_extra_width=2
+  "let g:eighties_enabled=1
+  "let g:eighties_minimum_width=78
+  "let g:eighties_extra_width=2
 
   let g:voogle_map="<leader>gg"
 

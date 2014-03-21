@@ -217,7 +217,7 @@ set nolist
 
 " Update by redraw and not INS/DEL
 set ttyscroll=3
-set nottyfast
+set ttyfast
 set lazyredraw
 
 " Show me what I was doing.
@@ -235,7 +235,7 @@ call matchadd('ColorColumn', '\%81v', 100)
 set backspace=indent,eol,start
 
 " Don't talk too much.
-"set shortmess+=I
+set shortmess+=I
 
 " Timeout bai.
 set timeout

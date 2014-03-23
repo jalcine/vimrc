@@ -1,6 +1,7 @@
-"" File: .vimrc
-"" Author: Jacky Alciné <me@jalcine.me>
-"" Description: The heart.
+" vim: set ft=vim fdm=marker tw=78
+" File: .vimrc
+" Author: Jacky Alciné <me@jalcine.me>
+" Description: The heart.
 
 "{{{ Immediate Options
 " We live in the future, don't worry about backwards compatibility with Vi.
@@ -212,9 +213,7 @@ set showbreak=↪
 
 " Visual cues when in 'list' model.
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮,trail:·,nbsp:×
-
-" Show me these markings when I ask.
-set nolist
+set list
 
 " Update by redraw and not INS/DEL
 set ttyscroll=3

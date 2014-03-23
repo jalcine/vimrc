@@ -1,8 +1,9 @@
-" vim: set fdm=marker
 " File: jalcine/plugins.vim
 " Author: Jacky Alciné <me@jalcine.me>
 " Description: Logic to control the use of plug-ins in Vim.
 
+" Function: jalcine#plugins#setup
+" Brief:    Wrapper function for this script.
 func! jalcine#plugins#setup()
   call jalcine#plugins#prep()
   call jalcine#plugins#load()
@@ -10,16 +11,22 @@ func! jalcine#plugins#setup()
   call jalcine#mappings#apply('plugin')
 endfunction
 
+" Function: jalcine#plugins#prep
+" Brief:    Checks prerequisities for my plug-in system.
 func! jalcine#plugins#prep()
+  " TODO: Add a check for ag.
+  " TODO: Add a check for git.
+  " Check for Vundle.
   let vundle_readme=expand('$HOME/.vim/bundle/vundle/README.md')
   if !filereadable(vundle_readme)
     call jalcine#plugins#install_vundle()
   endif
 endfunc
 
+" Function: jalcine#plugins#install_vundle
+" Brief:    Downloads, installs and configures Vundle. YAY!
+" URL: https://web.archive.org/web/20130127003932/http://www.erikzaadi.com/2012/03/19/auto-installing-vundle-from-your-vimrc/
 func jalcine#plugins#install_vundle()
-  " Grabbed something: https://web.archive.org/web/20130127003932/http://www.erikzaadi.com/2012/03/19/auto-installing-vundle-from-your-vimrc/
-  " Setting up Vundle - the vim plugin bundler
   let iCanHazVundle=1
   echo "[jalcine.vim] Vundle not found, installing...\n"
   silent !mkdir -p $HOME/.vim/bundle
@@ -33,9 +40,8 @@ func jalcine#plugins#install_vundle()
   echo "[jalcine.vim] Thanks for flying Vim, come again.\n"
 endfunction
 
-"
-" @function jalcine#plugins#load()
-" @brief    Loads the plugins I'd use into Vim.
+" Function: jalcine#plugins#load()
+" Brief:    Loads the plugins I'd use into Vim.
 function! jalcine#plugins#load()
   filetype off
   set rtp+=~/.vim/bundle/vundle
@@ -91,7 +97,7 @@ function! jalcine#plugins#load()
   Bundle 'scrooloose/nerdtree'
   "Bundle 'jistr/vim-nerdtree-tabs'
   Bundle 'scrooloose/nerdcommenter'
-  "Bundle 'aaronbieber/quicktask'
+  Bundle 'aaronbieber/quicktask'
   Bundle 'SirVer/ultisnips'
   Bundle 'scrooloose/syntastic'
   Bundle 'jalcine/vim-snippets'
@@ -145,7 +151,6 @@ function! jalcine#plugins#load()
   Bundle 'tpope/vim-rake'
   Bundle 'jalcine/vim-rdoc'
 
-
   "Bundle 'groenewege/vim-less'
   Bundle 'mutewinter/vim-css3-syntax'
   Bundle 'ap/vim-css-color'
@@ -171,7 +176,7 @@ function! jalcine#plugins#load()
   " {{{ Autocompletion
   Bundle 'shawncplus/phpcomplete.vim'
   Bundle 'marijnh/tern_for_vim'
-  " Bundle 'Valloric/YouCompleteMe'
+  Bundle 'Valloric/YouCompleteMe'
   " }}}
 
   " {{{ VCS
@@ -185,12 +190,13 @@ function! jalcine#plugins#load()
   Bundle 'junegunn/vim-github-dashboard'
   Bundle 'mmozuras/vim-github-comment'
   " }}}
-  
 
   filetype plugin indent on
   syntax on
 endfunction
 
+" Function: jalcine#plugins#set_options
+" Brief:    Set options for the plug-ins.
 func! jalcine#plugins#set_options()
   let g:author='Jacky Alciné'
   let g:email='me@jalcine.me'
@@ -200,8 +206,9 @@ func! jalcine#plugins#set_options()
   let g:used_javascript_libs='underscore,backbone,jquery'
   let g:snips_author=g:author
 
-  let g:vimsyn_folding='afmpPrt'
-  let g:vimsyn_embed='mpPrt'
+  " This allows Vim to fold its own script files.
+  let g:vimsyn_folding='afmprt'
+  let g:vimsyn_embed='mprt'
 
   let g:cmake_use_vimux=1
   let g:cmake_use_dispatch=1
@@ -475,8 +482,8 @@ func! jalcine#plugins#set_options()
     \   'airline'     : 'laederon'
     \ },
     \ 'Defacto' : {
-    \  'colorscheme' : 'jellybeans',
-    \  'airline'     : 'jellybeans'
+    \  'colorscheme' : 'distinguished',
+    \  'airline'     : 'distinguished'
     \ }
     \ }
 endfunction

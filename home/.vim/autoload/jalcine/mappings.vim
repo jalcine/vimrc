@@ -1,33 +1,29 @@
-" vim: set ft=vim fdm=indent
 " File: plugin/mappings.vim
 " Author: Jacky Alciné <me@jalcine.me>
 " Description: Definitions of mappings in the application.
-" Last Modified: 2014-01-31 02:29:05 EST
 
+" Function: s:VimuxRepl
+" Brief:    Uses Vimux to invoke a REPL setup.
 function! s:VimuxRepl()
   call VimuxSendText(@v)
   call VimuxSendKeys("<Enter>")
 endfunction
 
-function! s:build_current_project()
-  if cmake#util#has_project()
-    call cmake#commands#build_current()
-  else
-    make()
-  endif
-endfunction
-
+" Function: jalcine#mappings#apply(level)
+" Brief:    Wrapper function to apply mappings.
 func! jalcine#mappings#apply(level)
   if a:level == 'general'
     call jalcine#mappings#apply_general()
   elseif a:level == 'plugin'
     call jalcine#mappings#apply_plugin()
-  endif
+    call unite#filters#matcher_default#use(['matcher_fuzzy'])
+    call unite#filters#sorter_default#use(['sorter_length'])
+ endif
 endfunction
 
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#filters#sorter_default#use(['sorter_length'])
-
+" Functon:  jalcine#mappings#invoke_unite(scope)
+" Brief:    Invoke Unite according to the scope provided.
+" Valid scopes are 'rails', 'tags', 'tmux', and 'files'.
 func! jalcine#mappings#invoke_unite(scope)
   let sources=g:jalcine_unite_sources
   let options=g:jalcine_unite_options
@@ -66,6 +62,8 @@ func! jalcine#mappings#invoke_unite(scope)
   exec(':Unite ' . options . ' ' . sources)
 endfunction
 
+" Function: jalcine#mappings#define_for_unite()
+" Brief:    Defines mappings for Unite.
 func! jalcine#mappings#define_for_unite()
   imap <buffer>        <C-k>  <Plug>(unite_select_previous_line)
   imap <buffer>        <C-j>  <Plug>(unite_select_next_line)
@@ -77,17 +75,18 @@ func! jalcine#mappings#define_for_unite()
   imap <buffer><expr>  <C-t>  :call unite#do_action('tabopen')<CR>
 endfunction
 
+" Function: jalcine#mappings#apply_plugin()
+" Brief:    Defines mappings for plugins I'd use.
 func! jalcine#mappings#apply_plugin()
   " Reload the configuration.
-  nnoremap <F5> :call jalcine#autogroups#reload()<cr>
+  nnoremap <silent><F5> :call jalcine#autogroups#reload()<cr>
+
+  " Make it easy to get to things I'd use more than once.
+  nnoremap <silent><F6> :NERDTreeToggle<CR>
+  nnoremap <silent><F7> :TagbarToggle<CR>
 
   " Rotate in the list of colors.
   nnoremap <silent> <leader>ks :call jalcine#colors#rotate()<CR>
-
-  " Make it easy to get to things I'd use more than once.
-  nnoremap <silent><F6> :TagbarToggle<CR>
-  nnoremap <silent><F7> :NERDTreeToggle<CR>
-  nnoremap <silent><F8> :call s:build_current_project()<CR>
 
   " INVOKE UNITE.
   nnoremap <silent><leader>p  :call jalcine#mappings#invoke_unite('general')<CR>
@@ -110,10 +109,10 @@ func! jalcine#mappings#apply_plugin()
   nnoremap <leader>tp      :VimuxPromptCommand<CR>
   nnoremap <leader>tt      :VimuxRunLastCommand<CR>
   nnoremap <leader>tc      :VimuxCloseRunner<CR>
-  vnoremap <leader>ts      "vy :call s:VimuxRepl()<CR>
   nnoremap <leader>ts      vip<LocalLeader>ts<CR>
   nnoremap <leader>t<Up>   :VimuxScrollUpInspect<CR>
   nnoremap <leader>t<Down> :VimuxScrollDownInspect<CR>
+  vnoremap <leader>ts      "vy :call s:VimuxRepl()<CR>
 
   " Git helpers
   nnoremap <leader>gc   :Git commit<space>
@@ -127,7 +126,9 @@ func! jalcine#mappings#apply_plugin()
   nnoremap <leader>ga   :Git add<space>
 endfunction
 
-func! jalcine#mappings#apply_general()
+" Function: jalcine#mappings#apply_general()
+" Brief:    Defines mappings for vanilla Vim.
+function! jalcine#mappings#apply_general()
   " One less key to press to enter the Vim shell.
   nnoremap ; :
 
@@ -193,4 +194,4 @@ func! jalcine#mappings#apply_general()
 
   " Let me write to sudo whenever possible.
   cnoremap sw% w !sudo tee %
-endfun
+endfunction

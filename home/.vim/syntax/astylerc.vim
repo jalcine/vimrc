@@ -1,7 +1,6 @@
 " File: astylerc.vim
 " Author: Jacky Alciné
 " Description: Syntax file for async
-" Last Modified: March 03, 2014
 
 
 if exists("b:current_syntax")

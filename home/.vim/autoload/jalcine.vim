@@ -1,8 +1,9 @@
 " File: autoload/jalcine.vim
 " Author: Jacky Alciné <me@jalcine.me>
 " Description: Entry point to my personal configuration.
-" Last Modified: 2014-01-31 02:14:22 EST
 
+" Function: jalcine#roll_out()
+" Brief:    An Autobot-designed function.
 func! jalcine#roll_out()
   call jalcine#link_multiplexer()
   call jalcine#plugins#setup()
@@ -10,6 +11,8 @@ func! jalcine#roll_out()
   call jalcine#autogroups#set()
 endfunc
 
+" Function: jalcine#link_multiplexer()
+" Brief:    Options for a shell multiplexer.
 func! jalcine#link_multiplexer()
   " Make sure that GNU screen or tmux passes me my xkeys.
   " link: http://www.reddit.com/r/vim/comments/1a29vk/_/c8tze8p

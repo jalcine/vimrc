@@ -169,11 +169,11 @@ function! jalcine#mappings#apply_general()
   nnoremap <leader>f gg=G
 
   " Bind make command.
-  nnoremap <silent> <leader>ma :call s:build_current_project()<CR>
-  nnoremap <silent> <leader>mc :make clean<CR>
-  nnoremap <silent> <leader>mi :make install<CR>
-  nnoremap <silent> <leader>mu :make uninstall<CR>
-  nnoremap <silent> <leader>mt :make test<CR>
+  nnoremap <silent> <leader>ma :Make all<CR>
+  nnoremap <silent> <leader>mc :Make clean<CR>
+  nnoremap <silent> <leader>mi :Make install<CR>
+  nnoremap <silent> <leader>mu :Make uninstall<CR>
+  nnoremap <silent> <leader>mt :Make test<CR>
 
   " Travel over errors.
   nnoremap <silent> <leader>ce <ESC>:cnext<CR>

@@ -1,4 +1,3 @@
-" vim: set ft=vim fdm=marker tw=78
 " File: .vimrc
 " Author: Jacky Alciné <me@jalcine.me>
 " Description: The heart.
@@ -128,10 +127,10 @@ set foldmethod=syntax
 set foldcolumn=1
 
 " Fold all the time.
-set foldlevel=0
+set foldlevel=1
 
 " Show anything less than 3 lines.
-set foldminlines=3
+set foldminlines=8
 
 " Set the title in the terminal.
 set title

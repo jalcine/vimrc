@@ -55,6 +55,8 @@ func! jalcine#mappings#invoke_unite(scope)
     let sources = 'tag tag/include'
   elseif a:scope == 'tmux'
     let sources = 'tmux/panes tmux/sessions tmux/windows'
+  elseif a:scope == 'buffer'
+    let sources = 'buffer'
   elseif a:scope == 'files'
     let sources = 'file_rec/async:!'
   endif
@@ -94,6 +96,7 @@ func! jalcine#mappings#apply_plugin()
   nnoremap <silent><leader>pt :call jalcine#mappings#invoke_unite('tags')<CR>
   nnoremap <silent><leader>pf :call jalcine#mappings#invoke_unite('files')<CR>
   nnoremap <silent><leader>px :call jalcine#mappings#invoke_unite('tmux')<CR>
+  nnoremap <silent><leader>pb :call jalcine#mappings#invoke_unite('buffer')<CR>
 
   "{{{ Tabularize
   vnoremap <leader>a: :Tabularize /:<CR>

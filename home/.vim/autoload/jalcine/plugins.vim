@@ -176,7 +176,7 @@ function! jalcine#plugins#load()
   " {{{ Autocompletion
   Bundle 'shawncplus/phpcomplete.vim'
   Bundle 'marijnh/tern_for_vim'
-  Bundle 'Valloric/YouCompleteMe'
+  "Bundle 'Valloric/YouCompleteMe'
   " }}}
 
   " {{{ VCS
@@ -207,8 +207,8 @@ func! jalcine#plugins#set_options()
   let g:snips_author=g:author
 
   " This allows Vim to fold its own script files.
-  let g:vimsyn_folding='afmprt'
-  let g:vimsyn_embed='mprt'
+  let g:vimsyn_folding='afPr'
+  let g:vimsyn_embed='Pr'
 
   let g:cmake_use_vimux=1
   let g:cmake_use_dispatch=1
@@ -267,29 +267,20 @@ func! jalcine#plugins#set_options()
     \ }
 
   "{{{ Syntastic options
-  let g:syntastic_enable_signs=0
-  let g:syntastic_aggregate_errors=0
-  let g:syntastic_enable_highlight=0
+  let g:syntastic_enable_signs=1
+  let g:syntastic_aggregate_errors=1
+  let g:syntastic_enable_highlight=1
   let g:syntastic_echo_current_error=1
   let g:syntastic_auto_loc_list=2
   let g:syntastic_loc_list_length=3
-  let g:syntastic_error_symbol='✗'
-  let g:syntastic_warning_symbol='⚠'
   let g:syntastic_auto_jump=0
-  let g:syntastic_quiet_messages={'level' : 'warnings'}
-  let g:syntastic_ruby_exec=system('rbenv which ruby')
-  let g:syntastic_sass_check_partials=1
-  let g:syntastic_sass_sass_args='--trace --check'
-  "let g:syntastic_cpp_checkers=['gcc']
-  let g:syntastic_cpp_check_header=0
-  let g:syntastic_cpp_include_dirs=[ '$HOME/.local/include', 
-    \ '/usr/include',
-    \ '/usr/local/include'
-    \ ]
+  "let g:syntastic_quiet_messages={'level' : 'warnings'}
+  "let g:syntastic_ruby_exec=system('rbenv which ruby')
+  "let g:syntastic_sass_check_partials=1
 
   let g:unite_enable_start_insert=1
   let g:unite_update_time=5
-  let g:unite_force_overwrite_statusline=0
+  let g:unite_force_overwrite_statusline=1
   let g:unite_winheight=5
   let g:unite_enable_short_sources_names=0
   let g:unite_source_history_yank_enable=1
@@ -431,7 +422,7 @@ func! jalcine#plugins#set_options()
     \  },
     \ 'Light' : {
     \   'colorscheme' : 'mayansmoke',
-    \   'airline'     : 'light'
+    \   'airline'     : 'sol'
     \  },
     \ 'Herald' : {
     \   'colorscheme' : 'herald',
@@ -442,8 +433,8 @@ func! jalcine#plugins#set_options()
     \   'airline'     : 'molokai'
     \  },
     \ 'Dark' : {
-    \   'colorscheme' : 'Tomorrow-Night-Bright',
-    \   'airline'     : 'tomorrow'
+    \   'colorscheme' : 'distinguished',
+    \   'airline'     : ''
     \  },
     \ 'Solarized' : {
     \   'colorscheme' : 'solarized',
@@ -482,8 +473,8 @@ func! jalcine#plugins#set_options()
     \   'airline'     : 'laederon'
     \ },
     \ 'Defacto' : {
-    \  'colorscheme' : 'distinguished',
-    \  'airline'     : 'distinguished'
+    \  'colorscheme' : 'lucius',
+    \  'airline'     : 'lucius'
     \ }
     \ }
 endfunction

@@ -6,6 +6,7 @@
 " Brief:    An Autobot-designed function.
 func! jalcine#roll_out()
   call jalcine#link_multiplexer()
+  call jalcine#set_abbreviations()
   call jalcine#plugins#setup()
   call jalcine#mappings#apply('general')
   call jalcine#autogroups#set()
@@ -25,3 +26,12 @@ func! jalcine#link_multiplexer()
     execute "set <xLeft>=\e[1;*D"
   endif
 endfunction
+
+" Function: jalcine#set_abbreviations
+" Brief:    Sets some abbreviations for phraes I use quite a bit.
+func! jalcine#set_abbreviations()
+  iabbrev jUName "jalcine"
+  iabbrev jName  "Jacky Alciné"
+  iabbrev jEmail "me@jalcine.me"
+  iabbrev jSite  "http://jalcine.me"
+endfunc

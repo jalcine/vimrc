@@ -19,11 +19,7 @@ set fileformats=unix
 
 " Use Bash. At all costs.
 set shell=/bin/bash
-
-" Set my path.
-set path=.
-set path+=/usr/include,/usr/local/include
-set path+=$HOME/.local/include
+set path=.,=/usr/include,/usr/local/include
 
 " We need modelines.
 set modeline
@@ -117,8 +113,8 @@ set sessionoptions=buffers,tabpages,winsize,curdir
 
 "{{{ Layout
 
-" We fold.
-set foldenable
+" We fold when we need to.
+set nofoldenable
 
 " Fold on the syntax.
 set foldmethod=syntax
@@ -131,6 +127,7 @@ set foldlevel=1
 
 " Show anything less than 3 lines.
 set foldminlines=8
+set foldnestmax=5
 
 " Set the title in the terminal.
 set title
@@ -154,9 +151,8 @@ set incsearch
 " Show matching and (briefly) jump to the other partner just shortly.
 " Very useful when writing code in JavaScript or C++.
 set showmatch
-
-" We aren't that greedy.
 set nogdefault
+set regexpengine=1
 
 "{{{ Recovery
 

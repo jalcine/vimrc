@@ -16,7 +16,6 @@ endfunction
 func! jalcine#plugins#prep()
   " TODO: Add a check for ag.
   " TODO: Add a check for git.
-  " Check for Vundle.
   let vundle_readme=expand('$HOME/.vim/bundle/vundle/README.md')
   if !filereadable(vundle_readme)
     call jalcine#plugins#install_vundle()
@@ -46,95 +45,130 @@ function! jalcine#plugins#load()
   filetype off
   set rtp+=~/.vim/bundle/vundle
   call vundle#rc()
-
-  Bundle 'gmarik/vundle'
-  Bundle 'bling/vim-airline'
-
-  " {{{ Color Tools
-  " {{{ Color Schemes
-  Bundle 'flazz/vim-colorschemes'
-  Bundle 'chriskempson/tomorrow-theme', { 'rtp' : 'vim' }
-  Bundle 'altercation/solarized',       { 'rtp' : 'vim-colors-solarized' }
-  Bundle 'daylerees/colour-schemes',    { 'rtp' : 'vim-themes' }
-  Bundle 'nanotech/jellybeans.vim'
-  Bundle 'tomasr/molokai'
-  Bundle 'jonathanfilip/vim-lucius'
-  Bundle 'jnurmine/Zenburn'
-  Bundle 'Lokaltog/vim-distinguished'
-  " }}}
-
-  Bundle 'godlygeek/csapprox'
-  "Bundle 'Rykka/colorv.vim'
-  "Bundle 'guns/xterm-color-table.vim'
-  " }}}
   
-  " {{{ Utilities
+  " {{{ Utilities and Core
+  Bundle 'gmarik/vundle'
   Bundle 'xolox/vim-misc'
   Bundle 'mattn/webapi-vim'
-  Bundle 'tpope/vim-endwise'
-  Bundle 'tpope/vim-repeat'
-  Bundle 'tpope/vim-surround'
-  Bundle 'benmills/vimux'
+  Bundle 'bling/vim-airline'
+  Bundle 'xolox/vim-session'
+  Bundle 'Shougo/vimproc.vim'
+  Bundle 'editorconfig/editorconfig-vim'
+  Bundle 'aaronbieber/quicktask'
+  Bundle 'jalcine/localrc.vim'
+  " }}}
+
+  " {{{ Tags
+  Bundle 'majutsushi/tagbar'
+  Bundle 't4ku/marktag'
+  " }}}
+
+  " {{{ Version Control
+  Bundle 'int3/vim-extradite'
+  Bundle 'mhinz/vim-signify'
+  Bundle 'tpope/vim-fugitive'
+  Bundle 'tpope/vim-git'
+  " }}} 
+
+  " {{{ Autocompletion
   Bundle 'Raimondi/delimitMate'
-  Bundle 'jlanzarotta/bufexplorer'
+  Bundle 'tpope/vim-endwise'
   Bundle 'tpope/vim-speeddating'
+  Bundle 'tpope/vim-abolish'
+  Bundle 'Valloric/YouCompleteMe'
+  Bundle 'Chiel92/vim-autoformat'
+  Bundle 'marijnh/tern_for_vim'
+  " }}}
+
+  " {{{ Multiplexing and Control
+  Bundle 'benmills/vimux'
+  Bundle 'jalcine/vim-tmux'
+
+  Bundle 'tpope/vim-dispatch'
+  Bundle 'terryma/vim-multiple-cursors'
+  " }}}
+
+  " {{{ Color
+  Bundle 'godlygeek/csapprox'
+  Bundle 'Rykka/colorv.vim'
+  Bundle 'guns/xterm-color-table.vim'
+  " }}}
+
+  " {{{ Color Schemes
+  "Bundle 'flazz/vim-colorschemes'
+  "Bundle 'daylerees/colour-schemes',    { 'rtp' : 'vim-themes' }
+  "Bundle 'altercation/solarized',       { 'rtp' : 'vim-colors-solarized' }
+  Bundle 'chriskempson/tomorrow-theme', { 'rtp' : 'vim' }
+  Bundle 'nanotech/jellybeans.vim'
+  Bundle 'tomasr/molokai'
+  Bundle 'jnurmine/Zenburn'
+  Bundle 'Lokaltog/vim-distinguished'
+  Bundle 'jonathanfilip/vim-lucius'
+  " }}}
+
+  " {{{ Utilities
   Bundle 'godlygeek/tabular'
   Bundle 'jamessan/vim-gnupg'
-  Bundle 'Chiel92/vim-autoformat'
-  Bundle 'terryma/vim-multiple-cursors'
   Bundle 'g3orge/vim-voogle'
   Bundle 'tpope/vim-eunuch'
   Bundle 'dbext.vim'
   Bundle 'rking/ag.vim'
-  Bundle 'Shougo/vimproc.vim'
-  Bundle 'tpope/vim-abolish'
+  Bundle 'tpope/vim-repeat'
+  Bundle 'tpope/vim-surround'
   " }}}
 
   " {{{ "IDE"-like Utilities
-  Bundle 'xolox/vim-session'
-  Bundle 'tpope/vim-dispatch'
-  "Bundle 'jlanzarotta/bufexplorer'
   Bundle 'scrooloose/nerdtree'
-  "Bundle 'jistr/vim-nerdtree-tabs'
+  Bundle 'jistr/vim-nerdtree-tabs'
   Bundle 'scrooloose/nerdcommenter'
-  Bundle 'aaronbieber/quicktask'
+  Bundle 'jlanzarotta/bufexplorer'
   Bundle 'SirVer/ultisnips'
-  Bundle 'scrooloose/syntastic'
   Bundle 'jalcine/vim-snippets'
+  Bundle 'scrooloose/syntastic'
   Bundle 'jalcine/cmake.vim'
-  Bundle 'jalcine/localrc.vim'
   "Bundle 'jalcine/android.vim'
   " }}}
 
-  " {{{ Unite
+  " {{{ Unite & Friends
   Bundle 'Shougo/unite.vim'
-  Bundle 'tsukkee/unite-tag'
-  Bundle 'basyura/unite-rails'
   Bundle 'yuku-t/unite-git'
-  Bundle 'pasela/unite-webcolorname'
   Bundle 'zepto/unite-tmux'
   Bundle 'jalcine/unite-tag'
+  Bundle 'tsukkee/unite-tag'
+  Bundle 'basyura/unite-rails'
+  Bundle 'pasela/unite-webcolorname'
   " }}}
-  
+
   " {{{ Language and File Support 
   Bundle 'justinmk/vim-syntax-extra'
   Bundle 'jamessan/vim-gnupg'
+  " }}}
+
   Bundle 'rdolgushin/gitignore.vim'
-  " Bundle 'editorconfig/editorconfig-vim'
+  Bundle 'mattn/gist-vim'
+  Bundle 'gmarik/github-search.vim'
+  Bundle 'junegunn/vim-github-dashboard'
+  Bundle 'mmozuras/vim-github-comment'
+  Bundle 'jaxbot/github-issues.vim'
 
-  Bundle 'mklabs/vim-backbone'
-  "Bundle 'mklabs/grunt.vim'
-  "Bundle 'AndrewRadev/vim-eco'
-  Bundle 'othree/javascript-libraries-syntax.vim'
-  Bundle 'moll/vim-node'
-  Bundle 'kchmck/vim-coffee-script'
   Bundle 'pangloss/vim-javascript'
+  Bundle 'mklabs/vim-backbone'
+  Bundle 'AndrewRadev/vim-eco'
+  Bundle 'othree/javascript-libraries-syntax.vim'
   Bundle 'elzr/vim-json'
+  Bundle 'kchmck/vim-coffee-script'
 
-  "Bundle 'jnwhiteh/vim-golang'
+  Bundle 'moll/vim-node'
+  Bundle 'mklabs/grunt.vim'
+  Bundle 'groenewege/vim-less'
+
+  Bundle 'jnwhiteh/vim-golang'
 
   Bundle 'StanAngeloff/php.vim'
   Bundle 'rayburgemeestre/phpfolding.vim'
+  Bundle 'vim-php/tagbar-phpctags.vim'
+
+  Bundle 'shawncplus/phpcomplete.vim'
 
   Bundle 'indenthtml.vim'
   Bundle 'othree/html5.vim'
@@ -142,54 +176,26 @@ function! jalcine#plugins#load()
   Bundle 'tpope/vim-markdown'
   "Bundle 'digitaltoad/vim-jade'
 
+  Bundle 'mutewinter/vim-css3-syntax'
+  Bundle 'ap/vim-css-color'
+
   Bundle 'vim-ruby/vim-ruby'
-  "Bundle 'ecomba/vim-ruby-refactoring'
-  "Bundle 'astashov/vim-ruby-debugger'
+  Bundle 'ecomba/vim-ruby-refactoring'
+  Bundle 'astashov/vim-ruby-debugger'
   Bundle 'tpope/vim-bundler'
   Bundle 'tpope/vim-rbenv'
   Bundle 'tpope/vim-rails'
   Bundle 'tpope/vim-rake'
-  Bundle 'jalcine/vim-rdoc'
+  Bundle 'hallison/vim-rdoc'
 
-  "Bundle 'groenewege/vim-less'
-  Bundle 'mutewinter/vim-css3-syntax'
-  Bundle 'ap/vim-css-color'
-
-  "Bundle 'vim-perl/vim-perl'
-
-  "Bundle 'klen/python-mode'
-  "Bundle 'davidhalter/jedi-vim'
-  "Bundle 'jmcantrell/vim-virtualenv'
+  Bundle 'klen/python-mode'
+  Bundle 'davidhalter/jedi-vim'
+  Bundle 'jmcantrell/vim-virtualenv'
 
   Bundle 'mutewinter/nginx.vim'
-  Bundle 'jalcine/vim-tmux'
 
-  "Bundle 'derekwyatt/vim-scala'
-  " }}}
-  
-  " {{{ Tags
-  Bundle 'majutsushi/tagbar'
-  Bundle 'vim-php/tagbar-phpctags.vim'
-  Bundle 't4ku/marktag'
-  " }}}
-
-  " {{{ Autocompletion
-  Bundle 'shawncplus/phpcomplete.vim'
-  Bundle 'marijnh/tern_for_vim'
-  "Bundle 'Valloric/YouCompleteMe'
-  " }}}
-
-  " {{{ VCS
-  Bundle 'int3/vim-extradite'
-  Bundle 'tpope/vim-fugitive'
-  Bundle 'tpope/vim-git'
-  Bundle 'mhinz/vim-signify'
-
-  Bundle 'mattn/gist-vim'
-  Bundle 'gmarik/github-search.vim'
-  Bundle 'junegunn/vim-github-dashboard'
-  Bundle 'mmozuras/vim-github-comment'
-  " }}}
+  Bundle 'vim-perl/vim-perl'
+  Bundle 'derekwyatt/vim-scala'
 
   filetype plugin indent on
   syntax on
@@ -203,7 +209,8 @@ func! jalcine#plugins#set_options()
   let g:site='jalcine.me'
   let g:username='jalcine'
   let g:coloring_current='Tomorrow'
-  let g:used_javascript_libs='underscore,backbone,jquery'
+  let g:used_javascript_libs='underscore,backbone,jquery,jasmine'
+  let g:javascript_conceal=1
   let g:snips_author=g:author
 
   " This allows Vim to fold its own script files.
@@ -473,8 +480,8 @@ func! jalcine#plugins#set_options()
     \   'airline'     : 'laederon'
     \ },
     \ 'Defacto' : {
-    \  'colorscheme' : 'lucius',
-    \  'airline'     : 'lucius'
+    \  'colorscheme' : 'distinguished',
+    \  'airline'     : 'distinguished'
     \ }
     \ }
 endfunction

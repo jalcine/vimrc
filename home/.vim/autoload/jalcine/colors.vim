@@ -26,6 +26,7 @@ func! jalcine#colors#apply(the_profile)
   " Do some work to the color themes to make it look nicer. Most themes don't
   " do this.
   hi Folded     ctermbg=NONE
+  hi FoldColumn ctermbg=NONE
   hi Number     ctermbg=NONE
   hi SignColumn ctermbg=NONE
   hi VertSplit  ctermbg=NONE

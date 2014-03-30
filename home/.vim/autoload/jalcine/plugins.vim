@@ -95,9 +95,9 @@ function! jalcine#plugins#load()
   " }}}
 
   " {{{ Color Schemes
+  "Bundle 'altercation/solarized',       { 'rtp' : 'vim-colors-solarized' }
   "Bundle 'flazz/vim-colorschemes'
   "Bundle 'daylerees/colour-schemes',    { 'rtp' : 'vim-themes' }
-  "Bundle 'altercation/solarized',       { 'rtp' : 'vim-colors-solarized' }
   Bundle 'chriskempson/tomorrow-theme', { 'rtp' : 'vim' }
   Bundle 'nanotech/jellybeans.vim'
   Bundle 'tomasr/molokai'
@@ -480,8 +480,8 @@ func! jalcine#plugins#set_options()
     \   'airline'     : 'laederon'
     \ },
     \ 'Defacto' : {
-    \  'colorscheme' : 'distinguished',
-    \  'airline'     : 'distinguished'
+    \  'colorscheme' : 'badwolf',
+    \  'airline'     : 'badwolf'
     \ }
     \ }
 endfunction

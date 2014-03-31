@@ -45,7 +45,7 @@ function! jalcine#plugins#load()
   filetype off
   set rtp+=~/.vim/bundle/vundle
   call vundle#rc()
-  
+
   " {{{ Utilities and Core
   Bundle 'gmarik/vundle'
   Bundle 'xolox/vim-misc'
@@ -186,6 +186,7 @@ function! jalcine#plugins#load()
   Bundle 'tpope/vim-rbenv'
   Bundle 'tpope/vim-rails'
   Bundle 'tpope/vim-rake'
+  Bundle 'tpope/vim-projectile'
   Bundle 'hallison/vim-rdoc'
 
   Bundle 'klen/python-mode'
@@ -212,6 +213,7 @@ func! jalcine#plugins#set_options()
   let g:used_javascript_libs='underscore,backbone,jquery,jasmine'
   let g:javascript_conceal=1
   let g:snips_author=g:author
+  let g:jalcine_cursors=0
 
   " This allows Vim to fold its own script files.
   let g:vimsyn_folding='afPr'
@@ -480,8 +482,8 @@ func! jalcine#plugins#set_options()
     \   'airline'     : 'laederon'
     \ },
     \ 'Defacto' : {
-    \  'colorscheme' : 'badwolf',
-    \  'airline'     : 'badwolf'
+    \  'colorscheme' : 'jellybeans',
+    \  'airline'     : 'jellybens'
     \ }
     \ }
 endfunction

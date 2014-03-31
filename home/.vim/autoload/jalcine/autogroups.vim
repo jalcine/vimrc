@@ -24,12 +24,13 @@ func! jalcine#autogroups#set()
   augroup END
 
   " Toggle the current cursor line whenever I swap windows.
-  " TODO: Make this into a toggleable option.
-  augroup cline
-    au!
-    au InsertEnter * setlocal cursorline cursorcolumn
-    au InsertLeave * setlocal nocursorline nocursorcolumn
-  augroup END
+  if exists('g:jalcine_colors') && g:jalcine_cursors == 1
+    augroup cline
+      au!
+      au InsertEnter * setlocal cursorline cursorcolumn
+      au InsertLeave * setlocal nocursorline nocursorcolumn
+    augroup END
+  endif
 
   " Some files might need to be filetype'd properly.
   augroup fixfiletype

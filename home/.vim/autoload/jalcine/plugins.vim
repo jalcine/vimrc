@@ -98,6 +98,7 @@ function! jalcine#plugins#load()
   "Bundle 'altercation/solarized',       { 'rtp' : 'vim-colors-solarized' }
   "Bundle 'flazz/vim-colorschemes'
   "Bundle 'daylerees/colour-schemes',    { 'rtp' : 'vim-themes' }
+  "Bundle 'thinkpixellab/flatland', { 'rtp' : 'Vim'}
   Bundle 'chriskempson/tomorrow-theme', { 'rtp' : 'vim' }
   Bundle 'nanotech/jellybeans.vim'
   Bundle 'tomasr/molokai'
@@ -224,9 +225,9 @@ func! jalcine#plugins#set_options()
   let g:cmake_build_shared_libs=1
   let g:cmake_set_makeprg=1
   let g:cmake_inject_flags={
-    \ 'syntastic': 1,
-    \ 'ycm':       1
-    \ }
+        \ 'syntastic': 1,
+        \ 'ycm':       1
+        \ }
 
   "{{{ Airline config
   let g:airline_detect_modified=1
@@ -241,18 +242,18 @@ func! jalcine#plugins#set_options()
   let g:airline#extensions#whitespace#enabled=0
   let g:airline_exclude_preview=1
   let g:airline_mode_map={
-      \ '__' : '-',
-      \ 'n'  : 'N',
-      \ 'i'  : 'I',
-      \ 'R'  : 'R',
-      \ 'c'  : 'C',
-      \ 'v'  : 'V',
-      \ 'V'  : 'V',
-      \ '' : 'V',
-      \ 's'  : 'S',
-      \ 'S'  : 'S',
-      \ '' : 'S'
-      \ }
+        \ '__' : '-',
+        \ 'n'  : 'N',
+        \ 'i'  : 'I',
+        \ 'R'  : 'R',
+        \ 'c'  : 'C',
+        \ 'v'  : 'V',
+        \ 'V'  : 'V',
+        \ '' : 'V',
+        \ 's'  : 'S',
+        \ 'S'  : 'S',
+        \ '' : 'S'
+        \ }
 
   "{{{ YouCompleteMe
   let g:ycm_collect_identifiers_from_tags_files=1
@@ -266,14 +267,14 @@ func! jalcine#plugins#set_options()
   let g:ycm_complete_in_strings=0
   let g:ycm_add_preview_to_completeopt=1
   let g:ycm_semantic_triggers= {
-    \ 'c'          : [ '->', '.', '(', ',', '='],
-    \ 'cpp,objcpp' : [ '->', '.', ':: ', '(',',', '=', '+'],
-    \ 'perl'       : [ '->', '(', ':: ', ','],
-    \ 'php'        : [ '->', '::', '(', '='],
-    \ 'ruby'       : [ '.', '::', '(', '{', '=', '+', '-', '/'],
-    \ 'lua'        : [ '.', ':'],
-    \ 'erlang'     : [ ':'],
-    \ }
+        \ 'c'          : [ '->', '.', '(', ',', '='],
+        \ 'cpp,objcpp' : [ '->', '.', ':: ', '(',',', '=', '+'],
+        \ 'perl'       : [ '->', '(', ':: ', ','],
+        \ 'php'        : [ '->', '::', '(', '='],
+        \ 'ruby'       : [ '.', '::', '(', '{', '=', '+', '-', '/'],
+        \ 'lua'        : [ '.', ':'],
+        \ 'erlang'     : [ ':'],
+        \ }
 
   "{{{ Syntastic options
   let g:syntastic_enable_signs=1
@@ -295,17 +296,16 @@ func! jalcine#plugins#set_options()
   let g:unite_source_history_yank_enable=1
   let g:unite_source_rec_max_cache_files=5000
   if executable('ag')
-    let g:unite_source_rec_async_command='ag --nocolor --nogroup --ignore ' .
-      \ '".hg" --ignore ".svn" --ignore ".git" --ignore ".bzr" ' .
-      \ '--hidden -g ""'
+    let g:unite_source_rec_async_command='ag --nocolor --nogroup ' .
+          \ '--hidden -g ""'
   endif
   let g:unite_prompt=' '
   let g:jalcine_unite_options='-buffer-name=jalcine -complete'
   let g:jalcine_unite_sources='file_rec/async buffer ' .
-    \ 'tag tag/file tag/include ' .
-    \ 'webcolorname tab jump mapping history/yank window ' .
-    \ 'tmux/clients tmux/sessions tmux/panes tmux/windows tmux ' .
-    \ 'git_modified git_untracked git_cached'
+        \ 'tag tag/file tag/include ' .
+        \ 'webcolorname tab jump mapping history/yank window ' .
+        \ 'tmux/clients tmux/sessions tmux/panes tmux/windows tmux ' .
+        \ 'git_modified git_untracked git_cached'
 
   "{{{ indentLine
   "let g:indentLine_char="┆"
@@ -348,10 +348,10 @@ func! jalcine#plugins#set_options()
   "{{{ GitHub configuration
   let g:github_user=g:username
   let g:github_dashboard={
-    \ "username" : g:github_user,
-    \ "emoji" : 1,
-    \ "position": "top"
-    \ }
+        \ "username" : g:github_user,
+        \ "emoji" : 1,
+        \ "position": "top"
+        \ }
   let g:github_search_path_format="$HOME/Development/Projects"
   let g:github_comment_open_browser=1
   "}}}
@@ -376,40 +376,40 @@ func! jalcine#plugins#set_options()
   let g:tagbar_compact=1
   let g:tagbar_autoshowtag=1
   let g:tagbar_type_markdown={
-    \ 'ctagstype' : 'markdown',
-    \ 'kinds' : [
-      \ 'h:Heading_L1',
-      \ 'i:Heading_L2',
-      \ 'k:Heading_L3'
-      \ ]
-    \ }
+        \ 'ctagstype' : 'markdown',
+        \ 'kinds' : [
+        \ 'h:Heading_L1',
+        \ 'i:Heading_L2',
+        \ 'k:Heading_L3'
+        \ ]
+        \ }
   let g:tagbar_type_coffee={
-    \ 'ctagsbin' : 'coffeetags',
-    \ 'ctagsargs' : '',
-    \ 'kinds' : [
-      \ 'f:function!s',
-      \ 'o:object',
-      \ ],
-    \ 'sro' : ".",
-    \ 'kind2scope' : {
-      \ 'f' : 'object',
-      \ 'o' : 'object',
-      \ }
-    \ }
+        \ 'ctagsbin' : 'coffeetags',
+        \ 'ctagsargs' : '',
+        \ 'kinds' : [
+        \ 'f:function!s',
+        \ 'o:object',
+        \ ],
+        \ 'sro' : ".",
+        \ 'kind2scope' : {
+        \ 'f' : 'object',
+        \ 'o' : 'object',
+        \ }
+        \ }
   let g:extradite_showhash=1
   let g:rails_projections={
-    \ "app/uploaders/*_uploader.rb": {
-    \   "command": "uploader",
-    \   "template":
-    \     "class %SUploader < CarrierWave::Uploader::Base\nend",
-    \   "test": [
-    \     "test/unit/%s_uploader_test.rb",
-    \     "spec/models/%s_uploader_spec.rb"
-    \   ],
-    \   "keywords": "process version"
-    \ },
-    \ "features/support/*.rb": {"command": "support"},
-    \ "features/support/env.rb": {"command": "support"}}
+        \ "app/uploaders/*_uploader.rb": {
+        \   "command": "uploader",
+        \   "template":
+        \     "class %SUploader < CarrierWave::Uploader::Base\nend",
+        \   "test": [
+        \     "test/unit/%s_uploader_test.rb",
+        \     "spec/models/%s_uploader_spec.rb"
+        \   ],
+        \   "keywords": "process version"
+        \ },
+        \ "features/support/*.rb": {"command": "support"},
+        \ "features/support/env.rb": {"command": "support"}}
 
   "{{{ Signify
   let g:signify_vcs_list=['git','hg','svn','bzr']
@@ -425,65 +425,65 @@ func! jalcine#plugins#set_options()
   "}}}
 
   let g:coloring = {
-    \ 'Tomorrow' : {
-    \   'colorscheme' : 'Tomorrow-Night',
-    \   'airline'     : 'tomorrow'
-    \  },
-    \ 'Light' : {
-    \   'colorscheme' : 'mayansmoke',
-    \   'airline'     : 'sol'
-    \  },
-    \ 'Herald' : {
-    \   'colorscheme' : 'herald',
-    \   'airline'     : 'luna'
-    \  },
-    \ 'Molokai' : {
-    \   'colorscheme' : 'molokai',
-    \   'airline'     : 'molokai'
-    \  },
-    \ 'Dark' : {
-    \   'colorscheme' : 'distinguished',
-    \   'airline'     : ''
-    \  },
-    \ 'Solarized' : {
-    \   'colorscheme' : 'solarized',
-    \   'airline'     : 'Solarized',
-    \ },
-    \ 'JellyBeans' : {
-    \   'colorscheme' : 'jellybeans',
-    \   'airline'     : 'jellybeans'
-    \  },
-    \ 'Lucius' : {
-    \   'colorscheme' : 'lucius',
-    \   'airline'     : 'lucius'
-    \ } ,
-    \ 'Zenburn' : {
-    \   'colorscheme' : 'zenburn',
-    \   'airline'     : 'zenburn'
-    \ } ,
-    \ 'Distinguished' : {
-    \   'colorscheme' : 'distinguished',
-    \   'airline'     : 'serene'
-    \ },
-    \ 'Badwolf' : {
-    \   'colorscheme' : 'badwolf',
-    \   'airline'     : 'badwolf'
-    \ },
-    \ 'Understated' : {
-    \   'colorscheme' : 'understated',
-    \   'airline'     : 'understated'
-    \ },
-    \ 'Kolor' : {
-    \   'colorscheme' : 'kolor',
-    \   'airline'     : 'kolor'
-    \ },
-    \ 'Obsidian' : {
-    \   'colorscheme' : 'obsidian',
-    \   'airline'     : 'laederon'
-    \ },
-    \ 'Defacto' : {
-    \  'colorscheme' : 'jellybeans',
-    \  'airline'     : 'jellybens'
-    \ }
-    \ }
+        \ 'Tomorrow' : {
+        \   'colorscheme' : 'Tomorrow-Night',
+        \   'airline'     : 'tomorrow'
+        \  },
+        \ 'Light' : {
+        \   'colorscheme' : 'mayansmoke',
+        \   'airline'     : 'sol'
+        \  },
+        \ 'Herald' : {
+        \   'colorscheme' : 'herald',
+        \   'airline'     : 'luna'
+        \  },
+        \ 'Molokai' : {
+        \   'colorscheme' : 'molokai',
+        \   'airline'     : 'molokai'
+        \  },
+        \ 'Dark' : {
+        \   'colorscheme' : 'distinguished',
+        \   'airline'     : ''
+        \  },
+        \ 'Solarized' : {
+        \   'colorscheme' : 'solarized',
+        \   'airline'     : 'Solarized',
+        \ },
+        \ 'JellyBeans' : {
+        \   'colorscheme' : 'jellybeans',
+        \   'airline'     : 'jellybeans'
+        \  },
+        \ 'Lucius' : {
+        \   'colorscheme' : 'lucius',
+        \   'airline'     : 'lucius'
+        \ } ,
+        \ 'Zenburn' : {
+        \   'colorscheme' : 'zenburn',
+        \   'airline'     : 'zenburn'
+        \ } ,
+        \ 'Distinguished' : {
+        \   'colorscheme' : 'distinguished',
+        \   'airline'     : 'serene'
+        \ },
+        \ 'Badwolf' : {
+        \   'colorscheme' : 'badwolf',
+        \   'airline'     : 'badwolf'
+        \ },
+        \ 'Understated' : {
+        \   'colorscheme' : 'understated',
+        \   'airline'     : 'understated'
+        \ },
+        \ 'Kolor' : {
+        \   'colorscheme' : 'kolor',
+        \   'airline'     : 'kolor'
+        \ },
+        \ 'Obsidian' : {
+        \   'colorscheme' : 'obsidian',
+        \   'airline'     : 'laederon'
+        \ },
+        \ 'Defacto' : {
+        \  'colorscheme' : 'jellybeans',
+        \  'airline'     : 'jellybens'
+        \ }
+        \ }
 endfunction

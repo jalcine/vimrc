@@ -1,3 +1,4 @@
+" vim: set foldenable foldlevel=1 fdm=marker tw=78
 " File: .vimrc
 " Author: Jacky Alciné <me@jalcine.me>
 " Description: The heart.
@@ -5,7 +6,10 @@
 "{{{ Immediate Options
 " We live in the future, don't worry about backwards compatibility with Vi.
 " In fact, why bother set it? If $VIM is reading this, nocp is active!
-" set nocompatible
+set nocompatible
+
+" Don't talk too much.
+set shortmess+=I
 
 " We dark by default. This prevents a nasty flash when Vim starts because of
 " the way I handle my (dozens) colorschemes.
@@ -23,26 +27,56 @@ set path=.,$HOME/.local/include,/usr/local/include,/usr/include
 
 " We need modelines.
 set modeline
+set shellslash
+set cryptmethod=blowfish
 
 " Set my user-defined action to the comma key.
 let mapleader=','
 let maplocalleader='\\'
 
+" Save your work in sessions.
+set sessionoptions=buffers,tabpages,winsize,curdir
 "}}}
-"{{{ Immediate Configuration Options
+"{{{ Visual Controls
 set novisualbell
 set noerrorbells
+set ruler number
 
 " Gimme something to look at.
 set laststatus=2
 set showtabline=2
+
+" Use the clicking thing, Luke.
+set mouse=a
+set ttymouse=xterm
+
+" PASTE mo'fo!
+set pastetoggle=<F2>
+
+" Set the title in the terminal.
+set title
+set titlelen=120
+set titlestring="%t%(\ %M%)%(\ (%{expand(\"%:p:h\")})%)%(\ %a%)"
+
+" Update by redraw and not INS/DEL
+set ttyscroll=3
+set ttyfast
+set lazyredraw
+
+" Show me what I was doing.
+set showcmd
+set showfulltag
+
+" Show me the overflow.
+call matchadd('ColorColumn', '\%' . &textwidth . 'v', 100)
 "}}}
 "{{{ Spacing
+" Do this when I hit <Backspace>.
+set backspace=indent,eol,start
 
 " I prefer to use two spaces to represent tabs.
 set tabstop=2
 set softtabstop=2
-set shellslash
 
 " Set expandtab to the values used for tabstop
 " and shiftwidth to ensure that we enter only 
@@ -55,58 +89,36 @@ set expandtab
 " Set a hard wrapping to 78 characters. Nothing should be longer than that.
 " Trust me, living a few days in the console will teach you that.
 set textwidth=78
+set wrap
 set shiftwidth=2
 
 " Automatically indent text.
 set autoindent
 set cindent
-
+" }}}
+" {{{ Wild Side & Completion
 " Enable your wild side, take command completion completion up a notch.  
 " Allow for an interesting view when opening the command line menu.
 set wildmode=full
 set wildmenu
 set wildignorecase
-
 set completeopt=longest,menuone,preview
-set cryptmethod=blowfish
 
 " Ignore a lot of stuff.
 set wildignore+=*.swp,*.pyc,*.bak,*.class,*.orig
 set wildignore+=.git,.hg,.bzr,.svn
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg,*.svg
-set wildignore+=build,tmp,vendor/cache,bin
-
-" PASTE mo'fo!
-set pastetoggle=<F2>
-
-" If I want to see it, I'll look at it.
-set wrap
-
-" Use the clicking thing, Luke.
-set mouse=a
-set ttymouse=xterm
-
-" I place my tags all over the place. Bring them
-" to me!
+set wildignore+=build/*,tmp/*,vendor/cache/*,bin/*
+" }}}
+" {{{  Tags
+" Clean it out.
+set tags=./tags,./TAGS
 let tagfiles = expand('$HOME/.tags/**/*.tags', 0, 1)
 for atagfile in tagfiles
-  let &tags .= ',' . atagfile
+  let &tags .= ',' . fnamemodify(atagfile,':p:.')
 endfor
-
-set tags+=./.tags
-set tags+=./TAGS,
-set tags+=./tags
-set tags+=./.bzr/tags
-set tags+=./.git/tags
-set tags+=./.svn/tags
-set tags+=./.hg/tags
-set tags+=./build/tags
-
-" Save your work in sessions.
-set sessionoptions=buffers,tabpages,winsize,curdir
-
-"{{{ Layout
-
+" }}}
+"{{{ Folding 
 " We fold all ze time.
 set foldenable
 
@@ -122,18 +134,8 @@ set foldlevel=2
 " Show anything less than 3 lines.
 set foldminlines=5
 set foldnestmax=5
-
-" Set the title in the terminal.
-set title
-set titlelen=120
-set titlestring="%t%(\ %M%)%(\ (%{expand(\"%:p:h\")})%)%(\ %a%)"
-
-" Turn on the ruler, we'd like to know our whereabouts.
-set ruler
-set number
 "}}}
 "{{{ Searching
-
 " Highlight matches found when searching.
 set hlsearch
 
@@ -144,10 +146,10 @@ set incsearch
 " Very useful when writing code in JavaScript or C++.
 set showmatch
 set nogdefault
+set noignorecase
 set regexpengine=1
-
+"}}}
 "{{{ Recovery
-
 " Record whether changes were made to unsaved buffers. 
 set hidden
 
@@ -168,7 +170,7 @@ set history=16384
 
 " Set the undo level to a little bit higher than default.
 set undolevels=16384
-
+"}}}
 "{{{ Spelling Options
 " I'll check when I want.
 set nospell
@@ -187,49 +189,27 @@ set dictionary+=/usr/share/dict/web2,/usr/share/dict/propernames.gz
 
 " Set a location to save my added words.
 set spellfile=~/.vim/dict.custom.utf8-8.add
-
-"{{{ Visual Cues
+"}}}
+"{{{ Whitespacing and Fonts
 " A problem that plagued me for months, having visual cues for white spacing
 " solves formatting problems a lot quicker. Also, we're using modern shells
 " (right?) so using UTF-8 characters for symbols should be a given.
 set fillchars=diff:⣿,vert:│
-set guifont=monoOne\ 9
 
 " A visual cue for line-wrapping.
 set showbreak=↪
 
 " Visual cues when in 'list' model.
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮,trail:·,nbsp:×
-set nolist " Not off the back though.
-
-" Update by redraw and not INS/DEL
-set ttyscroll=3
-set ttyfast
-set lazyredraw
-
-" Show me what I was doing.
-set showcmd
-set showfulltag
-
-" Don't tell me where I'm at; I know.
-set nocursorline
-set nocursorcolumn
-
-" Show me the overflow.
-call matchadd('ColorColumn', '\%81v', 100)
-
-" Do this when I hit <Backspace>.
-set backspace=indent,eol,start
-
-" Don't talk too much.
-set shortmess+=I
-
+set nolist
+"}}}
+" {{{ Timeout
 " Timeout bai.
 set timeout
 set ttimeout
 set timeoutlen=1500
 set ttimeoutlen=50
 set updatetime=4000
-"" }}}
+" }}}
 
 call jalcine#roll_out()

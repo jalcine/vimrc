@@ -491,7 +491,7 @@ func! jalcine#plugins#set_options()
         \ },
         \ 'Defacto' : {
         \  'colorscheme' : 'jellybeans',
-        \  'airline'     : 'jellybens'
+        \  'airline'     : 'jellybeans'
         \ }
         \ }
 endfunction

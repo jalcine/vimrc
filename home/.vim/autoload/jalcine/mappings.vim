@@ -127,6 +127,7 @@ func! jalcine#mappings#apply_plugin()
   nnoremap <leader>grmc :Git rm --cached %<CR>
   nnoremap <leader>gab  :Git add %<cr>
   nnoremap <leader>ga   :Git add<space>
+  nnoremap <leader>gE   :Extradite<cr>
 endfunction
 
 " Function: jalcine#mappings#apply_general()

@@ -4,7 +4,7 @@
 
 " Function: jalcine#plugins#setup
 " Brief:    Wrapper function for this script.
-func! jalcine#plugins#setup()
+function! jalcine#plugins#setup()
   call jalcine#plugins#prep()
   call jalcine#plugins#load()
   call jalcine#plugins#set_options()
@@ -13,19 +13,19 @@ endfunction
 
 " Function: jalcine#plugins#prep
 " Brief:    Checks prerequisities for my plug-in system.
-func! jalcine#plugins#prep()
+function! jalcine#plugins#prep()
   " TODO: Add a check for ag.
   " TODO: Add a check for git.
   let vundle_readme=expand('$HOME/.vim/bundle/vundle/README.md')
   if !filereadable(vundle_readme)
     call jalcine#plugins#install_vundle()
   endif
-endfunc
+endfunction
 
 " Function: jalcine#plugins#install_vundle
 " Brief:    Downloads, installs and configures Vundle. YAY!
 " URL: https://web.archive.org/web/20130127003932/http://www.erikzaadi.com/2012/03/19/auto-installing-vundle-from-your-vimrc/
-func jalcine#plugins#install_vundle()
+function jalcine#plugins#install_vundle()
   let iCanHazVundle=1
   echo "[jalcine.vim] Vundle not found, installing...\n"
   silent !mkdir -p $HOME/.vim/bundle
@@ -55,7 +55,9 @@ function! jalcine#plugins#load()
   Bundle 'Shougo/vimproc.vim'
   Bundle 'editorconfig/editorconfig-vim'
   Bundle 'aaronbieber/quicktask'
+  Bundle 't9md/vim-choosewin'
   Bundle 'jalcine/localrc.vim'
+  Bundle 'buztard/vim-nomad'
   " }}}
 
   " {{{ Tags
@@ -68,7 +70,7 @@ function! jalcine#plugins#load()
   Bundle 'mhinz/vim-signify'
   Bundle 'tpope/vim-fugitive'
   Bundle 'tpope/vim-git'
-  " }}} 
+  " }}}
 
   " {{{ Autocompletion
   Bundle 'Raimondi/delimitMate'
@@ -158,6 +160,7 @@ function! jalcine#plugins#load()
   Bundle 'othree/javascript-libraries-syntax.vim'
   Bundle 'elzr/vim-json'
   Bundle 'kchmck/vim-coffee-script'
+  Bundle 'lucapette/vim-jquery-doc'
 
   Bundle 'moll/vim-node'
   Bundle 'mklabs/grunt.vim'
@@ -180,9 +183,10 @@ function! jalcine#plugins#load()
   Bundle 'mutewinter/vim-css3-syntax'
   Bundle 'ap/vim-css-color'
 
-  Bundle 'vim-ruby/vim-ruby'
+  "Bundle 'vim-ruby/vim-ruby'
   Bundle 'ecomba/vim-ruby-refactoring'
   Bundle 'astashov/vim-ruby-debugger'
+  Bundle 'lucapette/vim-ruby-doc'
   Bundle 'tpope/vim-bundler'
   Bundle 'tpope/vim-rbenv'
   Bundle 'tpope/vim-rails'
@@ -354,6 +358,8 @@ func! jalcine#plugins#set_options()
         \ }
   let g:github_search_path_format="$HOME/Development/Projects"
   let g:github_comment_open_browser=1
+  let g:github_upstream_issues=1
+  "let g:github_access_token=readfile('~/.github-issues-vim')[0]
   "}}}
 
   "{{{ Vimux 
@@ -396,7 +402,6 @@ func! jalcine#plugins#set_options()
         \ 'o' : 'object',
         \ }
         \ }
-  let g:extradite_showhash=1
   let g:rails_projections={
         \ "app/uploaders/*_uploader.rb": {
         \   "command": "uploader",
@@ -411,12 +416,15 @@ func! jalcine#plugins#set_options()
         \ "features/support/*.rb": {"command": "support"},
         \ "features/support/env.rb": {"command": "support"}}
 
+  let g:extradite_showhash=1
+  let g:extradite_resize=0
+
   "{{{ Signify
   let g:signify_vcs_list=['git','hg','svn','bzr']
   let g:signify_sign_overwrite=1
-  let g:signify_line_highlight=0
+  let g:signify_line_highlight=1
   let g:signify_update_on_focusgained=1
-  let g:signify_disable_by_default=0
+  let g:signify_disable_by_default=1
   let g:signify_sign_add='✚'
   let g:signify_sign_change='✻'
   let g:signify_sign_delete='✖'

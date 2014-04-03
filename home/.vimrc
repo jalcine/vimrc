@@ -19,7 +19,7 @@ set fileformats=unix
 
 " Use Bash. At all costs.
 set shell=/bin/bash
-set path=.,=/usr/include,/usr/local/include
+set path=.,$HOME/.local/include,/usr/local/include,/usr/include
 
 " We need modelines.
 set modeline
@@ -30,17 +30,11 @@ let maplocalleader='\\'
 
 "}}}
 "{{{ Immediate Configuration Options
-
-" Use visual bells instead of beeps. I use this
-" since it helps a lot with tmux to inform me
-" to switch over to it. Also enable bells for errors.
-set visualbell
-set errorbells
+set novisualbell
+set noerrorbells
 
 " Gimme something to look at.
 set laststatus=2
-
-" Show me the tab bar no matter what.
 set showtabline=2
 "}}}
 "{{{ Spacing
@@ -113,20 +107,20 @@ set sessionoptions=buffers,tabpages,winsize,curdir
 
 "{{{ Layout
 
-" We fold when we need to.
-set nofoldenable
+" We fold all ze time.
+set foldenable
 
 " Fold on the syntax.
 set foldmethod=syntax
 
 " Sets the width of the folding margins.
-set foldcolumn=1
+set foldcolumn=2
 
 " Fold all the time.
-set foldlevel=1
+set foldlevel=2
 
 " Show anything less than 3 lines.
-set foldminlines=8
+set foldminlines=5
 set foldnestmax=5
 
 " Set the title in the terminal.
@@ -136,8 +130,6 @@ set titlestring="%t%(\ %M%)%(\ (%{expand(\"%:p:h\")})%)%(\ %a%)"
 
 " Turn on the ruler, we'd like to know our whereabouts.
 set ruler
-
-" We need numbers, mayne!
 set number
 "}}}
 "{{{ Searching
@@ -208,7 +200,7 @@ set showbreak=↪
 
 " Visual cues when in 'list' model.
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮,trail:·,nbsp:×
-set list
+set nolist " Not off the back though.
 
 " Update by redraw and not INS/DEL
 set ttyscroll=3

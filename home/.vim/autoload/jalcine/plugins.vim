@@ -263,13 +263,16 @@ func! jalcine#plugins#set_options()
   let g:ycm_collect_identifiers_from_tags_files=1
   let g:ycm_autoclose_preview_window_after_completion=1
   let g:ycm_autoclose_preview_window_after_insertion=1
+  let g:ycm_filepath_completion_use_working_dir=1
   let g:ycm_confirm_extra_conf=0
   let g:ycm_seed_identifiers_with_syntax=1
   let g:ycm_server_use_vim_stdout=0
   let g:ycm_use_utlisnips_completer=1
-  let g:ycm_cache_omnifunc=1
+  let g:ycm_cache_omnifunc=0
   let g:ycm_complete_in_strings=0
   let g:ycm_add_preview_to_completeopt=1
+  let g:ycm_show_diagnostic_ui=1
+  let g:ycm_server_log_level='debug'
   let g:ycm_semantic_triggers= {
         \ 'c'          : [ '->', '.', '(', ',', '='],
         \ 'cpp,objcpp' : [ '->', '.', ':: ', '(',',', '=', '+'],
@@ -296,7 +299,7 @@ func! jalcine#plugins#set_options()
   let g:unite_update_time=5
   let g:unite_force_overwrite_statusline=1
   let g:unite_winheight=5
-  let g:unite_enable_short_sources_names=0
+  let g:unite_enable_short_sources_names=1
   let g:unite_source_history_yank_enable=1
   let g:unite_source_rec_max_cache_files=5000
   if executable('ag')
@@ -356,7 +359,7 @@ func! jalcine#plugins#set_options()
         \ "emoji" : 1,
         \ "position": "top"
         \ }
-  let g:github_search_path_format="$HOME/Development/Projects"
+  let g:github_search_path_format="$HOME/Development"
   let g:github_comment_open_browser=1
   let g:github_upstream_issues=1
   "let g:github_access_token=readfile('~/.github-issues-vim')[0]
@@ -420,7 +423,7 @@ func! jalcine#plugins#set_options()
   let g:extradite_resize=0
 
   "{{{ Signify
-  let g:signify_vcs_list=['git','hg','svn','bzr']
+  let g:signify_vcs_list=['git','hg']
   let g:signify_sign_overwrite=1
   let g:signify_line_highlight=1
   let g:signify_update_on_focusgained=1

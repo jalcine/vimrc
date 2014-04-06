@@ -30,8 +30,9 @@ endfunction
 " Function: jalcine#set_abbreviations
 " Brief:    Sets some abbreviations for phraes I use quite a bit.
 func! jalcine#set_abbreviations()
-  iabbrev jUName "jalcine"
-  iabbrev jName  "Jacky Alciné"
-  iabbrev jEmail "me@jalcine.me"
-  iabbrev jSite  "http://jalcine.me"
+  iabbrev jUName jalcine
+  iabbrev jName  Jacky Alciné
+  iabbrev jEmail me@jalcine.me
+  iabbrev jSite  http://jalcine.me
+  iabbrev email  e-mail
 endfunc

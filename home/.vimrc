@@ -102,7 +102,7 @@ set cindent
 set wildmode=full
 set wildmenu
 set wildignorecase
-set completeopt=longest,menuone,preview
+set completeopt=longest,menuone
 
 " Ignore a lot of stuff.
 set wildignore+=*.swp,*.pyc,*.bak,*.class,*.orig
@@ -129,10 +129,10 @@ set foldmethod=syntax
 set foldcolumn=2
 
 " Fold all the time.
-set foldlevel=2
+set foldlevel=1
 
 " Show anything less than 3 lines.
-set foldminlines=5
+set foldminlines=2
 set foldnestmax=5
 "}}}
 "{{{ Searching

@@ -102,20 +102,24 @@ func! jalcine#mappings#apply_plugin()
   vnoremap <leader>a: :Tabularize /:<CR>
   vnoremap <leader>a= :Tabularize /=<CR>
   vnoremap <leader>a{ :Tabularize /{<CR>
+  vnoremap <leader>a( :Tabularize /(<CR>
+  vnoremap <leader>a) :Tabularize /)<CR>
   nnoremap <leader>a: :Tabularize /:<CR>
   nnoremap <leader>a= :Tabularize /=<CR>
   nnoremap <leader>a{ :Tabularize /{<CR>
+  nnoremap <leader>a( :Tabularize /(<CR>
+  nnoremap <leader>a) :Tabularize /)<CR>
   "}}}
 
   "{{{ Vimux
-  nnoremap <leader>to      :VimuxOpenPane<CR>
-  nnoremap <leader>tp      :VimuxPromptCommand<CR>
-  nnoremap <leader>tt      :VimuxRunLastCommand<CR>
-  nnoremap <leader>tc      :VimuxCloseRunner<CR>
-  nnoremap <leader>ts      vip<LocalLeader>ts<CR>
-  nnoremap <leader>t<Up>   :VimuxScrollUpInspect<CR>
-  nnoremap <leader>t<Down> :VimuxScrollDownInspect<CR>
-  vnoremap <leader>ts      "vy :call s:VimuxRepl()<CR>
+  nnoremap <leader>vo      :VimuxOpenPane<CR>
+  nnoremap <leader>vp      :VimuxPromptCommand<CR>
+  nnoremap <leader>vt      :VimuxRunLastCommand<CR>
+  nnoremap <leader>vc      :VimuxCloseRunner<CR>
+  nnoremap <leader>vs      vip<LocalLeader>ts<CR>
+  nnoremap <leader>v<Up>   :VimuxScrollUpInspect<CR>
+  nnoremap <leader>v<Down> :VimuxScrollDownInspect<CR>
+  vnoremap <leader>vs      "vy :call s:VimuxRepl()<CR>
 
   " Git helpers
   nnoremap <leader>gc   :Git commit<space>

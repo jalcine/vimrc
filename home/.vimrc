@@ -102,7 +102,7 @@ set cindent
 set wildmode=full
 set wildmenu
 set wildignorecase
-set completeopt=longest,menuone,preview
+set completeopt=longest,menuone
 
 " Ignore a lot of stuff.
 set wildignore+=*.swp,*.pyc,*.bak,*.class,*.orig
@@ -129,10 +129,10 @@ set foldmethod=syntax
 set foldcolumn=2
 
 " Fold all the time.
-set foldlevel=2
+set foldlevel=1
 
 " Show anything less than 3 lines.
-set foldminlines=5
+set foldminlines=2
 set foldnestmax=5
 "}}}
 "{{{ Searching
@@ -186,6 +186,7 @@ set spellsuggest=best,3
 " Add a bunch of dictionaries.
 set dictionary+=/usr/share/dict/words,/usr/share/dict/american-english
 set dictionary+=/usr/share/dict/web2,/usr/share/dict/propernames.gz
+set dictionary+=/usr/share/dict/connectives.gz,/usr/share/dict/web2a.gz
 
 " Set a location to save my added words.
 set spellfile=~/.vim/dict.custom.utf8-8.add
@@ -203,13 +204,12 @@ set showbreak=↪
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮,trail:·,nbsp:×
 set nolist
 "}}}
-" {{{ Timeout
-" Timeout bai.
-set timeout
-set ttimeout
-set timeoutlen=1500
-set ttimeoutlen=50
-set updatetime=4000
+"
+" {{{ Timeouts
+set timeout ttimeout
+set timeoutlen=400
+set ttimeoutlen=500
+set updatetime=2000
 " }}}
 
 call jalcine#roll_out()

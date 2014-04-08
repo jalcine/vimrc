@@ -261,18 +261,18 @@ func! jalcine#plugins#set_options()
 
   "{{{ YouCompleteMe
   let g:ycm_collect_identifiers_from_tags_files=1
+  let g:ycm_seed_identifiers_with_syntax=1
+  let g:ycm_filepath_completion_use_working_dir=1
   let g:ycm_autoclose_preview_window_after_completion=1
   let g:ycm_autoclose_preview_window_after_insertion=1
-  let g:ycm_filepath_completion_use_working_dir=1
+  let g:ycm_add_preview_to_completeopt=0
   let g:ycm_confirm_extra_conf=0
-  let g:ycm_seed_identifiers_with_syntax=1
   let g:ycm_server_use_vim_stdout=0
   let g:ycm_use_utlisnips_completer=1
-  let g:ycm_cache_omnifunc=0
-  let g:ycm_complete_in_strings=0
-  let g:ycm_add_preview_to_completeopt=1
+  let g:ycm_cache_omnifunc=1
+  let g:ycm_complete_in_strings=1
   let g:ycm_show_diagnostic_ui=1
-  let g:ycm_server_log_level='debug'
+  "let g:ycm_server_log_level='debug'
   let g:ycm_semantic_triggers= {
         \ 'c'          : [ '->', '.', '(', ',', '='],
         \ 'cpp,objcpp' : [ '->', '.', ':: ', '(',',', '=', '+'],

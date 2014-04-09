@@ -56,6 +56,7 @@ func! jalcine#mappings#invoke_unite(scope)
   elseif a:scope == 'tmux'
     let sources = 'tmux/panes tmux/sessions tmux/windows'
   elseif a:scope == 'buffer'
+    let options = options . " -quick-match"
     let sources = 'buffer'
   elseif a:scope == 'files'
     let sources = 'file_rec/async:!'
@@ -177,6 +178,8 @@ function! jalcine#mappings#apply_general()
   nnoremap <leader>f gg=G
 
   " Bind make command.
+  nnoremap <silent> <leader>m  :Make<CR>
+  nnoremap <silent> <leader>m<space>  :Make<space>
   nnoremap <silent> <leader>ma :Make all<CR>
   nnoremap <silent> <leader>mc :Make clean<CR>
   nnoremap <silent> <leader>mi :Make install<CR>

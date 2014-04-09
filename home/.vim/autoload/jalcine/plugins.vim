@@ -218,7 +218,7 @@ func! jalcine#plugins#set_options()
   let g:used_javascript_libs='underscore,backbone,jquery,jasmine'
   let g:javascript_conceal=1
   let g:snips_author=g:author
-  let g:jalcine_cursors=0
+  let g:jalcine_cursors=1
 
   " This allows Vim to fold its own script files.
   let g:vimsyn_folding='afPr'
@@ -291,22 +291,21 @@ func! jalcine#plugins#set_options()
   let g:syntastic_auto_loc_list=2
   let g:syntastic_loc_list_length=3
   let g:syntastic_auto_jump=0
-  "let g:syntastic_quiet_messages={'level' : 'warnings'}
-  "let g:syntastic_ruby_exec=system('rbenv which ruby')
-  "let g:syntastic_sass_check_partials=1
+  let g:syntastic_quiet_messages={'level' : 'warnings'}
+  let g:syntastic_ruby_exec=system('rbenv which ruby')
+  let g:syntastic_sass_check_partials=1
 
-  let g:unite_enable_start_insert=1
-  let g:unite_update_time=5
-  let g:unite_force_overwrite_statusline=1
   let g:unite_winheight=5
+  let g:unite_update_time=500
+  let g:unite_enable_start_insert=0
   let g:unite_enable_short_sources_names=1
-  let g:unite_source_history_yank_enable=1
-  let g:unite_source_rec_max_cache_files=5000
+  let g:unite_force_overwrite_statusline=0
+  let g:unite_prompt = '» '
   if executable('ag')
+    let g:unite_source_grep_command='ag'
     let g:unite_source_rec_async_command='ag --nocolor --nogroup ' .
-          \ '--hidden -g ""'
+          \ '--hidden -g '
   endif
-  let g:unite_prompt=' '
   let g:jalcine_unite_options='-buffer-name=jalcine -complete'
   let g:jalcine_unite_sources='file_rec/async buffer ' .
         \ 'tag tag/file tag/include ' .

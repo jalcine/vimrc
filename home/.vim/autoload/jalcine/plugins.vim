@@ -268,19 +268,17 @@ func! jalcine#plugins#set_options()
   let g:ycm_add_preview_to_completeopt=0
   let g:ycm_confirm_extra_conf=0
   let g:ycm_server_use_vim_stdout=0
-  let g:ycm_use_utlisnips_completer=1
+  let g:ycm_use_ultisnips_completer=1
   let g:ycm_cache_omnifunc=1
   let g:ycm_complete_in_strings=1
   let g:ycm_show_diagnostic_ui=1
-  "let g:ycm_server_log_level='debug'
+  let g:ycm_server_log_level='debug'
   let g:ycm_semantic_triggers= {
         \ 'c'          : [ '->', '.', '(', ',', '='],
-        \ 'cpp,objcpp' : [ '->', '.', ':: ', '(',',', '=', '+'],
+        \ 'cpp,objcpp' : [ '->', '.', ':: ', '(',',', '=', '+', '-', '*'],
         \ 'perl'       : [ '->', '(', ':: ', ','],
         \ 'php'        : [ '->', '::', '(', '='],
         \ 'ruby'       : [ '.', '::', '(', '{', '=', '+', '-', '/'],
-        \ 'lua'        : [ '.', ':'],
-        \ 'erlang'     : [ ':'],
         \ }
 
   "{{{ Syntastic options
@@ -295,7 +293,7 @@ func! jalcine#plugins#set_options()
   let g:syntastic_ruby_exec=system('rbenv which ruby')
   let g:syntastic_sass_check_partials=1
 
-  let g:unite_winheight=5
+  let g:unite_winheight=8
   let g:unite_update_time=500
   let g:unite_enable_start_insert=0
   let g:unite_enable_short_sources_names=1
@@ -440,8 +438,8 @@ func! jalcine#plugins#set_options()
         \   'airline'     : 'tomorrow'
         \  },
         \ 'Light' : {
-        \   'colorscheme' : 'mayansmoke',
-        \   'airline'     : 'sol'
+        \   'colorscheme' : 'Tomorrow',
+        \   'airline'     : 'tomorrow'
         \  },
         \ 'Herald' : {
         \   'colorscheme' : 'herald',
@@ -453,7 +451,7 @@ func! jalcine#plugins#set_options()
         \  },
         \ 'Dark' : {
         \   'colorscheme' : 'distinguished',
-        \   'airline'     : ''
+        \   'airline'     : 'serene'
         \  },
         \ 'Solarized' : {
         \   'colorscheme' : 'solarized',

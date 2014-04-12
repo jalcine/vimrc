@@ -1,4 +1,4 @@
-" vim: set foldenable foldlevel=1 fdm=marker tw=78
+" vim: set fdm=marker tw=78
 " File: .vimrc
 " Author: Jacky Alciné <me@jalcine.me>
 " Description: The heart.
@@ -22,6 +22,7 @@ set fileencoding=utf-8
 set fileformats=unix
 
 " Use Bash. At all costs.
+" Also, update my path.
 set shell=/bin/bash
 set path=.,$HOME/.local/include,/usr/local/include,/usr/include
 
@@ -40,7 +41,8 @@ set sessionoptions=buffers,tabpages,winsize,curdir
 "{{{ Visual Controls
 set novisualbell
 set noerrorbells
-set ruler number
+set ruler relativenumber
+set numberwidth=2
 
 " Gimme something to look at.
 set laststatus=2
@@ -69,6 +71,9 @@ set showfulltag
 
 " Show me the overflow.
 call matchadd('ColorColumn', '\%' . &textwidth . 'v', 100)
+
+" Gimme the cursor.
+set cursorline cursorcolumn
 "}}}
 "{{{ Spacing
 " Do this when I hit <Backspace>.

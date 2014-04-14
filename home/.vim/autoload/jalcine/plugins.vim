@@ -129,7 +129,6 @@ function! jalcine#plugins#load()
   Bundle 'jalcine/vim-snippets'
   Bundle 'scrooloose/syntastic'
   Bundle 'jalcine/cmake.vim'
-  "Bundle 'jalcine/android.vim'
   " }}}
 
   " {{{ Unite & Friends
@@ -302,7 +301,7 @@ func! jalcine#plugins#set_options()
   if executable('ag')
     let g:unite_source_grep_command='ag'
     let g:unite_source_rec_async_command='ag --nocolor --nogroup ' .
-          \ '--hidden -g '
+          \ '--hidden -g ""'
   endif
   let g:jalcine_unite_options='-buffer-name=jalcine -complete'
   let g:jalcine_unite_sources='file_rec/async buffer ' .
@@ -490,8 +489,8 @@ func! jalcine#plugins#set_options()
         \   'airline'     : 'laederon'
         \ },
         \ 'Defacto' : {
-        \  'colorscheme' : 'jellybeans',
-        \  'airline'     : 'jellybeans'
+        \  'colorscheme' : 'badwolf',
+        \  'airline'     : 'badwolf'
         \ }
         \ }
 endfunction

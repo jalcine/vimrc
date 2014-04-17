@@ -60,6 +60,8 @@ func! jalcine#mappings#invoke_unite(scope)
     let sources = 'buffer'
   elseif a:scope == 'files'
     let sources = 'file_rec/async:!'
+  elseif a:scope == 'tasks'
+    let sources = 'grep:.:-s:\(TODO\|todo\|NOTE\|note\|FIXME\|fixme\)'
   endif
 
   exec(':Unite ' . options . ' ' . sources)
@@ -71,7 +73,7 @@ func! jalcine#mappings#define_for_unite()
   imap <buffer>        <C-k>  <Plug>(unite_select_previous_line)
   imap <buffer>        <C-j>  <Plug>(unite_select_next_line)
   imap <buffer>        <C-i>  <Plug>(unite_toggle_auto_preview)
-  imap <buffer>        <F5>   <Plug>(unite_redraw)
+  imap <buffer>        <C-d>  <Plug>(unite_redraw)
   imap <buffer>        <ESC>  <Plug>(unite_exit)
   imap <buffer><expr>  <C-x>  :call unite#do_action('split')<CR>
   imap <buffer><expr>  <C-v>  :call unite#do_action('vsplit')<CR>

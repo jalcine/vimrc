@@ -120,7 +120,7 @@ function! jalcine#plugins#load()
   Bundle 'tpope/vim-surround'
   " }}}
 
-  " {{{ "IDE"-like Utilities
+  " {{{ IDE-like Utilities
   Bundle 'scrooloose/nerdtree'
   Bundle 'jistr/vim-nerdtree-tabs'
   Bundle 'scrooloose/nerdcommenter'
@@ -144,7 +144,7 @@ function! jalcine#plugins#load()
   " {{{ Language and File Support 
   Bundle 'justinmk/vim-syntax-extra'
   Bundle 'jamessan/vim-gnupg'
-  " }}}
+  Bundle 'ekalinin/Dockerfile.Vim'
 
   Bundle 'rdolgushin/gitignore.vim'
   Bundle 'mattn/gist-vim'
@@ -160,10 +160,12 @@ function! jalcine#plugins#load()
   Bundle 'elzr/vim-json'
   Bundle 'kchmck/vim-coffee-script'
   Bundle 'lucapette/vim-jquery-doc'
+  Bundle 'halletj/jslint.vim'
 
   Bundle 'moll/vim-node'
   Bundle 'mklabs/grunt.vim'
   Bundle 'groenewege/vim-less'
+  Bundle 'ahayman/vim-nodejs-complete'
 
   Bundle 'jnwhiteh/vim-golang'
 
@@ -177,12 +179,12 @@ function! jalcine#plugins#load()
   Bundle 'othree/html5.vim'
   Bundle 'tpope/vim-haml'
   Bundle 'tpope/vim-markdown'
-  "Bundle 'digitaltoad/vim-jade'
+  Bundle 'digitaltoad/vim-jade'
 
   Bundle 'mutewinter/vim-css3-syntax'
   Bundle 'ap/vim-css-color'
 
-  "Bundle 'vim-ruby/vim-ruby'
+  Bundle 'vim-ruby/vim-ruby'
   Bundle 'ecomba/vim-ruby-refactoring'
   Bundle 'astashov/vim-ruby-debugger'
   Bundle 'lucapette/vim-ruby-doc'
@@ -198,6 +200,7 @@ function! jalcine#plugins#load()
   Bundle 'jmcantrell/vim-virtualenv'
 
   Bundle 'mutewinter/nginx.vim'
+  Bundle 'parkr/vim-jekyll'
 
   Bundle 'vim-perl/vim-perl'
   Bundle 'derekwyatt/vim-scala'
@@ -292,29 +295,24 @@ func! jalcine#plugins#set_options()
   let g:syntastic_ruby_exec=system('rbenv which ruby')
   let g:syntastic_sass_check_partials=1
 
-  let g:unite_winheight=8
+  let g:unite_winheight=10
   let g:unite_update_time=500
   let g:unite_enable_start_insert=0
   let g:unite_enable_short_sources_names=1
   let g:unite_force_overwrite_statusline=0
   let g:unite_prompt = '» '
-  if executable('ag')
-    let g:unite_source_grep_command='ag'
-    let g:unite_source_rec_async_command='ag --nocolor --nogroup ' .
-          \ '--hidden -g ""'
-  endif
-  let g:jalcine_unite_options='-buffer-name=jalcine -complete'
-  let g:jalcine_unite_sources='file_rec/async buffer ' .
+  let g:jalcine_unite_options='-complete -immediately'
+  let g:jalcine_unite_sources='file_rec/async:! buffer ' .
         \ 'tag tag/file tag/include ' .
         \ 'webcolorname tab jump mapping history/yank window ' .
         \ 'tmux/clients tmux/sessions tmux/panes tmux/windows tmux ' .
         \ 'git_modified git_untracked git_cached'
-
-  "{{{ indentLine
-  "let g:indentLine_char="┆"
-  "let g:indentLine_first_char="│"
-  "let g:indentLine_showFirstIndentLevel=1
-  "}}}
+  if executable('ag')
+    let g:unite_source_grep_command='ag'
+    let g:unite_source_grep_recursive_opts=''
+    let g:unite_source_grep_default_opts='--nocolor --nogroup ' .
+          \ '--column'
+  endif
 
   "{{{ CoVim
   let g:CoVim_default_name="CoVimming"
@@ -358,7 +356,7 @@ func! jalcine#plugins#set_options()
   let g:github_search_path_format="$HOME/Development"
   let g:github_comment_open_browser=1
   let g:github_upstream_issues=1
-  "let g:github_access_token=readfile('~/.github-issues-vim')[0]
+  let g:github_access_token=fnamemodify('~/.github-issues.vim',':p:~')
   "}}}
 
   "{{{ Vimux 
@@ -489,8 +487,8 @@ func! jalcine#plugins#set_options()
         \   'airline'     : 'laederon'
         \ },
         \ 'Defacto' : {
-        \  'colorscheme' : 'badwolf',
-        \  'airline'     : 'badwolf'
+        \  'colorscheme' : 'Tomorrow-Night-Bright',
+        \  'airline'     : 'tomorrow'
         \ }
         \ }
 endfunction

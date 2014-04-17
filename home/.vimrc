@@ -41,8 +41,9 @@ set sessionoptions=buffers,tabpages,winsize,curdir
 "{{{ Visual Controls
 set novisualbell
 set noerrorbells
-set ruler relativenumber
-set numberwidth=2
+set ruler
+set conceallevel=1
+set relativenumber numberwidth=2
 
 " Gimme something to look at.
 set laststatus=2
@@ -56,24 +57,23 @@ set ttymouse=xterm
 set pastetoggle=<F2>
 
 " Set the title in the terminal.
-set title
-set titlelen=120
+set title titlelen=120
 set titlestring="%t%(\ %M%)%(\ (%{expand(\"%:p:h\")})%)%(\ %a%)"
 
 " Update by redraw and not INS/DEL
-set ttyscroll=3
-set ttyfast
+set ttyscroll=3 ttyfast
 set lazyredraw
 
 " Show me what I was doing.
 set showcmd
-set showfulltag
+set noshowfulltag
+set showmatch
 
 " Show me the overflow.
 call matchadd('ColorColumn', '\%' . &textwidth . 'v', 100)
 
-" Gimme the cursor.
-set cursorline cursorcolumn
+" No need for the lines.
+set nocursorline nocursorcolumn
 "}}}
 "{{{ Spacing
 " Do this when I hit <Backspace>.
@@ -206,8 +206,8 @@ set fillchars=diff:⣿,vert:│
 set showbreak=↪
 
 " Visual cues when in 'list' model.
+set list
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮,trail:·,nbsp:×
-set nolist
 "}}}
 "
 " {{{ Timeouts

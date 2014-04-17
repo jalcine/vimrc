@@ -35,4 +35,18 @@ func! jalcine#set_abbreviations()
   iabbrev jEmail me@jalcine.me
   iabbrev jSite  http://jalcine.me
   iabbrev email  e-mail
+  iabbrev adn and
+  iabbrev soem some
+  iabbrev witdh width
+  iabbrev tehn then
+  iabbrev waht what
+  iabbrev Im I'm
+  iabbrev ot to
+  iabbrev havin having
+  iabbrev vim Vim
+  iabbrev hightlight highlight
+  iabbrev ypo typo
+  iabbrev ype type
+  iabbrev alot a lot
+  iabbrev aswell as well
 endfunc

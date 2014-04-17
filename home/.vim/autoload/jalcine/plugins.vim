@@ -120,7 +120,7 @@ function! jalcine#plugins#load()
   Bundle 'tpope/vim-surround'
   " }}}
 
-  " {{{ "IDE"-like Utilities
+  " {{{ IDE-like Utilities
   Bundle 'scrooloose/nerdtree'
   Bundle 'jistr/vim-nerdtree-tabs'
   Bundle 'scrooloose/nerdcommenter'
@@ -129,7 +129,6 @@ function! jalcine#plugins#load()
   Bundle 'jalcine/vim-snippets'
   Bundle 'scrooloose/syntastic'
   Bundle 'jalcine/cmake.vim'
-  "Bundle 'jalcine/android.vim'
   " }}}
 
   " {{{ Unite & Friends
@@ -145,7 +144,7 @@ function! jalcine#plugins#load()
   " {{{ Language and File Support 
   Bundle 'justinmk/vim-syntax-extra'
   Bundle 'jamessan/vim-gnupg'
-  " }}}
+  Bundle 'ekalinin/Dockerfile.Vim'
 
   Bundle 'rdolgushin/gitignore.vim'
   Bundle 'mattn/gist-vim'
@@ -161,10 +160,12 @@ function! jalcine#plugins#load()
   Bundle 'elzr/vim-json'
   Bundle 'kchmck/vim-coffee-script'
   Bundle 'lucapette/vim-jquery-doc'
+  Bundle 'halletj/jslint.vim'
 
   Bundle 'moll/vim-node'
   Bundle 'mklabs/grunt.vim'
   Bundle 'groenewege/vim-less'
+  Bundle 'ahayman/vim-nodejs-complete'
 
   Bundle 'jnwhiteh/vim-golang'
 
@@ -178,12 +179,12 @@ function! jalcine#plugins#load()
   Bundle 'othree/html5.vim'
   Bundle 'tpope/vim-haml'
   Bundle 'tpope/vim-markdown'
-  "Bundle 'digitaltoad/vim-jade'
+  Bundle 'digitaltoad/vim-jade'
 
   Bundle 'mutewinter/vim-css3-syntax'
   Bundle 'ap/vim-css-color'
 
-  "Bundle 'vim-ruby/vim-ruby'
+  Bundle 'vim-ruby/vim-ruby'
   Bundle 'ecomba/vim-ruby-refactoring'
   Bundle 'astashov/vim-ruby-debugger'
   Bundle 'lucapette/vim-ruby-doc'
@@ -199,6 +200,7 @@ function! jalcine#plugins#load()
   Bundle 'jmcantrell/vim-virtualenv'
 
   Bundle 'mutewinter/nginx.vim'
+  Bundle 'parkr/vim-jekyll'
 
   Bundle 'vim-perl/vim-perl'
   Bundle 'derekwyatt/vim-scala'
@@ -218,7 +220,7 @@ func! jalcine#plugins#set_options()
   let g:used_javascript_libs='underscore,backbone,jquery,jasmine'
   let g:javascript_conceal=1
   let g:snips_author=g:author
-  let g:jalcine_cursors=0
+  let g:jalcine_cursors=1
 
   " This allows Vim to fold its own script files.
   let g:vimsyn_folding='afPr'
@@ -268,19 +270,17 @@ func! jalcine#plugins#set_options()
   let g:ycm_add_preview_to_completeopt=0
   let g:ycm_confirm_extra_conf=0
   let g:ycm_server_use_vim_stdout=0
-  let g:ycm_use_utlisnips_completer=1
+  let g:ycm_use_ultisnips_completer=1
   let g:ycm_cache_omnifunc=1
   let g:ycm_complete_in_strings=1
   let g:ycm_show_diagnostic_ui=1
-  "let g:ycm_server_log_level='debug'
+  let g:ycm_server_log_level='debug'
   let g:ycm_semantic_triggers= {
         \ 'c'          : [ '->', '.', '(', ',', '='],
-        \ 'cpp,objcpp' : [ '->', '.', ':: ', '(',',', '=', '+'],
+        \ 'cpp,objcpp' : [ '->', '.', ':: ', '(',',', '=', '+', '-', '*'],
         \ 'perl'       : [ '->', '(', ':: ', ','],
         \ 'php'        : [ '->', '::', '(', '='],
         \ 'ruby'       : [ '.', '::', '(', '{', '=', '+', '-', '/'],
-        \ 'lua'        : [ '.', ':'],
-        \ 'erlang'     : [ ':'],
         \ }
 
   "{{{ Syntastic options
@@ -291,34 +291,28 @@ func! jalcine#plugins#set_options()
   let g:syntastic_auto_loc_list=2
   let g:syntastic_loc_list_length=3
   let g:syntastic_auto_jump=0
-  "let g:syntastic_quiet_messages={'level' : 'warnings'}
-  "let g:syntastic_ruby_exec=system('rbenv which ruby')
-  "let g:syntastic_sass_check_partials=1
+  let g:syntastic_quiet_messages={'level' : 'warnings'}
+  let g:syntastic_ruby_exec=system('rbenv which ruby')
+  let g:syntastic_sass_check_partials=1
 
-  let g:unite_enable_start_insert=1
-  let g:unite_update_time=5
-  let g:unite_force_overwrite_statusline=1
-  let g:unite_winheight=5
+  let g:unite_winheight=10
+  let g:unite_update_time=500
+  let g:unite_enable_start_insert=0
   let g:unite_enable_short_sources_names=1
-  let g:unite_source_history_yank_enable=1
-  let g:unite_source_rec_max_cache_files=5000
-  if executable('ag')
-    let g:unite_source_rec_async_command='ag --nocolor --nogroup ' .
-          \ '--hidden -g ""'
-  endif
-  let g:unite_prompt=' '
-  let g:jalcine_unite_options='-buffer-name=jalcine -complete'
-  let g:jalcine_unite_sources='file_rec/async buffer ' .
+  let g:unite_force_overwrite_statusline=0
+  let g:unite_prompt = '» '
+  let g:jalcine_unite_options='-complete -immediately'
+  let g:jalcine_unite_sources='file_rec/async:! buffer ' .
         \ 'tag tag/file tag/include ' .
         \ 'webcolorname tab jump mapping history/yank window ' .
         \ 'tmux/clients tmux/sessions tmux/panes tmux/windows tmux ' .
         \ 'git_modified git_untracked git_cached'
-
-  "{{{ indentLine
-  "let g:indentLine_char="┆"
-  "let g:indentLine_first_char="│"
-  "let g:indentLine_showFirstIndentLevel=1
-  "}}}
+  if executable('ag')
+    let g:unite_source_grep_command='ag'
+    let g:unite_source_grep_recursive_opts=''
+    let g:unite_source_grep_default_opts='--nocolor --nogroup ' .
+          \ '--column'
+  endif
 
   "{{{ CoVim
   let g:CoVim_default_name="CoVimming"
@@ -362,7 +356,7 @@ func! jalcine#plugins#set_options()
   let g:github_search_path_format="$HOME/Development"
   let g:github_comment_open_browser=1
   let g:github_upstream_issues=1
-  "let g:github_access_token=readfile('~/.github-issues-vim')[0]
+  let g:github_access_token=fnamemodify('~/.github-issues.vim',':p:~')
   "}}}
 
   "{{{ Vimux 
@@ -441,8 +435,8 @@ func! jalcine#plugins#set_options()
         \   'airline'     : 'tomorrow'
         \  },
         \ 'Light' : {
-        \   'colorscheme' : 'mayansmoke',
-        \   'airline'     : 'sol'
+        \   'colorscheme' : 'Tomorrow',
+        \   'airline'     : 'tomorrow'
         \  },
         \ 'Herald' : {
         \   'colorscheme' : 'herald',
@@ -454,7 +448,7 @@ func! jalcine#plugins#set_options()
         \  },
         \ 'Dark' : {
         \   'colorscheme' : 'distinguished',
-        \   'airline'     : ''
+        \   'airline'     : 'serene'
         \  },
         \ 'Solarized' : {
         \   'colorscheme' : 'solarized',
@@ -493,8 +487,8 @@ func! jalcine#plugins#set_options()
         \   'airline'     : 'laederon'
         \ },
         \ 'Defacto' : {
-        \  'colorscheme' : 'jellybeans',
-        \  'airline'     : 'jellybeans'
+        \  'colorscheme' : 'Tomorrow-Night-Bright',
+        \  'airline'     : 'tomorrow'
         \ }
         \ }
 endfunction

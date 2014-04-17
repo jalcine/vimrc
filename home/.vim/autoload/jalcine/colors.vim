@@ -21,6 +21,7 @@ func! jalcine#colors#apply(the_profile)
   let g:coloring_current = a:the_profile
   let color_opts = g:coloring[a:the_profile]
   silent exec('colorscheme ' . color_opts.colorscheme)
+  let &background="dark"
   call airline#switch_theme(color_opts.airline)
 
   " Do some work to the color themes to make it look nicer. Most themes don't

@@ -1,0 +1,21 @@
+###########################################################################
+# Qt Snippets for C++
+###########################################################################
+
+snippet qcl "QObject class"
+/**
+ * @brief ${1:`!p snip.rv = snip.basename or "QObjectSubClass"`}
+ */
+class ${1/(\w+).*/$1/} : public QObject
+{
+	Q_OBJECT;
+	Q_DISABLE_COPY ( ${1/(\w+).*/$1/} );
+
+	public:
+		explicit ${1/(\w+).*/$1/}(); ///< @brief Constructor.
+		virtual ~${1/(\w+).*/$1/}(); ///< @brief Destructor.
+
+}; // end ${1/(\w+).*/$1/}
+
+endsnippet
+# vim:ft=snippets:

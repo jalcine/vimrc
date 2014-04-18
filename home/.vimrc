@@ -228,9 +228,10 @@ Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-abolish'
 Plugin 'jalcine/vim-snippets'
 "Plugin 'jalcine/cmake.vim'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'godlygeek/tabular'
 Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdtree'
+Plugin 'godlygeek/tabular'
 Plugin 't4ku/marktag'
 " }}}
 
@@ -247,7 +248,7 @@ Plugin 'tpope/vim-git'
 Plugin 'mattn/gist-vim'
 Plugin 'junegunn/vim-github-dashboard'
 Plugin 'mmozuras/vim-github-comment'
-Plugin 'jaxbot/github-issues.vim'
+"Plugin 'jaxbot/github-issues.vim'
 " }}}
 
 " {{{ Language support

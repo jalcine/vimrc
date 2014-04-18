@@ -80,21 +80,28 @@ cnoremap sw% w !sudo tee %
 " }}}
 
 nnoremap <silent> <leader><space> :Goyo<CR>
+nnoremap <silent> <F4> :call mappings#toggle_bars()<CR>
 
 " {{{ Unite mappings
-func! s:call_unite(sources)
-  exec(':Unite -quick-match ' . sources)
+func! mappings#call_unite(sources)
+  exec(':Unite -quick-match ' . a:sources)
 endfunc
 
-func! s:call_unite_tasks()
-  call s:call_unite('grep:.:-s:\(TODO\|todo\|NOTE\|note\|FIXME\|fixme\)')
+func! mappings#call_unite_tasks()
+  call mappings#call_unite('grep:.:-s:\(TODO\|todo\|NOTE\|note\|FIXME\|fixme\)')
 endfunc
 
-nnoremap <silent> <leader>pf :call s:call_unite('file_rec/async:!')<cr>
-nnoremap <silent> <leader>pt :call s:call_unite_tasks()<cr>
-nnoremap <silent> <leader>pb :call s:call_unite('buffer')<cr>
-nnoremap <silent> <leader>pg :call s:call_unite('tag tag/include')<cr>
-nnoremap <silent> <leader>px :call s:call_unite('tmux/panes tmux/sessions ' .
+func! mappings#toggle_bars()
+  silent! :TagbarToggle
+  silent! :NERDTreeToggle
+  silent! :cwindow
+endfunc
+
+nnoremap <silent> <leader>pf :call mappings#call_unite('file_rec/async:!')<cr>
+nnoremap <silent> <leader>pt :call mappings#call_unite_tasks()<cr>
+nnoremap <silent> <leader>pb :call mappings#call_unite('buffer')<cr>
+nnoremap <silent> <leader>pg :call mappings#call_unite('tag tag/include')<cr>
+nnoremap <silent> <leader>px :call mappings#call_unite('tmux/panes tmux/sessions ' .
   \ 'tmux/windows')<cr>
 " }}}
 " {{{ Git helpers

@@ -8,13 +8,12 @@
 " In fact, why bother set it? If $VIM is reading this, nocp is active!
 set nocompatible
 
-" Don't talk too much.
+" Don't talk too much on start.
 set shortmess+=I
 
-" We dark by default. This prevents a nasty flash when Vim starts because of
-" the way I handle my (dozens) colorschemes.
-set background=dark
-colorscheme zellner
+" Define the colorscheme that'd be used. Can't lie; it's hard to pick *only*
+" one.
+colorscheme lucius
 
 " We use UNIX. So act like UNIX.
 set encoding=utf-8
@@ -31,9 +30,6 @@ set modeline
 set shellslash
 set cryptmethod=blowfish
 
-" Set my user-defined action to the comma key.
-let mapleader=','
-let maplocalleader='\\'
 
 " Save your work in sessions.
 set sessionoptions=buffers,tabpages,winsize,curdir
@@ -43,15 +39,15 @@ set novisualbell
 set noerrorbells
 set ruler
 set conceallevel=1
-set relativenumber numberwidth=2
+set relativenumber number numberwidth=2
 
 " Gimme something to look at.
 set laststatus=2
 set showtabline=2
 
-" Use the clicking thing, Luke.
-set mouse=a
-set ttymouse=xterm
+" Use the clicking thing, Luke (no).
+"set mouse=a
+"set ttymouse=xterm2
 
 " PASTE mo'fo!
 set pastetoggle=<F2>
@@ -80,29 +76,19 @@ set nocursorline nocursorcolumn
 set backspace=indent,eol,start
 
 " I prefer to use two spaces to represent tabs.
-set tabstop=2
-set softtabstop=2
-
-" Set expandtab to the values used for tabstop
-" and shiftwidth to ensure that we enter only 
-" spaces, as well as enabling auto-indenting.
-" Also ensures that <Tab>s are converted into spaces.
-" We don't want any mix-ups here.
-set smarttab
-set expandtab
+set tabstop=2 softtabstop=2
+set smarttab expandtab
 
 " Set a hard wrapping to 78 characters. Nothing should be longer than that.
 " Trust me, living a few days in the console will teach you that.
-set textwidth=78
-set wrap
+set textwidth=78 wrap
 set shiftwidth=2
 
-" Automatically indent text.
-set autoindent
-set cindent
+" TODO: Add something for indentation.
+
 " }}}
 " {{{ Wild Side & Completion
-" Enable your wild side, take command completion completion up a notch.  
+" Enable your wild side, take command completion completion up a notch.
 " Allow for an interesting view when opening the command line menu.
 set wildmode=full
 set wildmenu
@@ -123,7 +109,11 @@ for atagfile in tagfiles
   let &tags .= ',' . fnamemodify(atagfile,':p:.')
 endfor
 " }}}
-"{{{ Folding 
+"{{ Folding
+" Allow for Vim syntax folding.
+let g:vimsyn_folding='afPr'
+let g:vimsyn_embed='Pr'
+
 " We fold all ze time.
 set foldenable
 
@@ -142,39 +132,24 @@ set foldnestmax=5
 "}}}
 "{{{ Searching
 " Highlight matches found when searching.
-set hlsearch
-
-" Enable incremental searching. 
-set incsearch
+set hlsearch incsearch
 
 " Show matching and (briefly) jump to the other partner just shortly.
 " Very useful when writing code in JavaScript or C++.
 set showmatch
-set nogdefault
-set noignorecase
+set nogdefault noignorecase
 set regexpengine=1
 "}}}
 "{{{ Recovery
-" Record whether changes were made to unsaved buffers. 
+" Record whether changes were made to unsaved buffers.
 set hidden
-
-" Automatically save my changes.
-set autowriteall
-set autoread
 
 " Avoid using backup files. If you commit often into
 " version control, backup files shouldn't be a problem.
-set nobackup
-
-" Avoid using swap files. It's bad for memory and doesn't
-" work will with HUGE files.
-set noswapfile
+set nobackup noswapfile
 
 " Set the Vim command history size to a larger number.
-set history=16384
-
-" Set the undo level to a little bit higher than default.
-set undolevels=16384
+set history=16384 undolevels=16384
 "}}}
 "{{{ Spelling Options
 " I'll check when I want.
@@ -217,4 +192,77 @@ set ttimeoutlen=500
 set updatetime=2000
 " }}}
 
-call jalcine#roll_out()
+" {{{ Vundle setup
+"
+" Update 'rtp' and 'ft' to handle plugin loading.
+filetype off
+source ~/.vim/plugin/options.vim
+set rtp+=~/.vim/bundle/vundle
+call vundle#rc()
+
+" {{{ Plugin list
+" {{{ Core plugins
+Plugin 'gmarik/vundle'
+Plugin 'bling/vim-airline'
+Plugin 'thinca/vim-localrc'
+Plugin 'Shougo/vimproc.vim'
+Plugin 'xolox/vim-session'
+Plugin 'xolox/vim-misc'
+Plugin 'mhinz/vim-signify'
+Plugin 'int3/vim-extradite'
+Plugin 'majutsushi/tagbar'
+Plugin 'mattn/webapi-vim'
+" }}}
+
+" {{{ Utility plugins
+Bundle 'junegunn/goyo.vim'
+Plugin 'godlygeek/csapprox'
+Plugin 'guns/xterm-color-table.vim'
+Plugin 'Raimondi/delimitMate'
+Plugin 'SirVer/Ultisnips'
+Plugin 'tpope/vim-dispatch'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-endwise'
+Plugin 'tpope/vim-abolish'
+Plugin 'jalcine/vim-snippets'
+"Plugin 'jalcine/cmake.vim'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'godlygeek/tabular'
+Plugin 'scrooloose/syntastic'
+Plugin 't4ku/marktag'
+" }}}
+
+" {{{ Unite plugins
+Plugin 'Shougo/unite.vim'
+Plugin 'tsukkee/unite-tag'
+Plugin 'zepto/unite-tmux'
+Plugin 'yuku-t/unite-git'
+Plugin 'pasela/unite-webcolorname'
+" }}}
+
+" {{{ Version Control
+Plugin 'tpope/vim-git'
+Plugin 'mattn/gist-vim'
+Plugin 'junegunn/vim-github-dashboard'
+Plugin 'mmozuras/vim-github-comment'
+Plugin 'jaxbot/github-issues.vim'
+" }}}
+
+" {{{ Language support
+Plugin 'ap/vim-css-color'
+Plugin 'tpope/vim-markdown'
+Plugin 'moll/vim-node'
+Plugin 'ahayman/vim-nodejs-complete'
+Plugin 'marijnh/tern_for_vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mklabs/vim-backbone'
+Plugin 'othree/javascript-libraries-syntax.vim'
+Plugin 'elzr/vim-json'
+Plugin 'kchmck/vim-coffee-script'
+" }}}
+
+syntax enable
+filetype plugin indent on
+" }}}

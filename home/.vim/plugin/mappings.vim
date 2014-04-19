@@ -36,6 +36,9 @@ cnoremap <silent> <leader>py <C-R>=strftime("%H.%M.%S_%Z")<CR>
 inoremap <silent> <leader>pt <C-R>=strftime("%Y-%m-%d %H:%M:%S %Z")<CR>
 cnoremap <silent> <leader>pt <C-R>=strftime("%Y%m%d%H%M%S")<CR>
 
+" Strip trailing whitespace from the end of files.
+nnoremap <silent> <leader>sw :%s/\s$//g
+
 " Disable classic arrow-key navigation in Normal mode.
 nnoremap <Up>     <NOP>
 nnoremap <Down>   <NOP>

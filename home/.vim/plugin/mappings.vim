@@ -37,7 +37,7 @@ inoremap <silent> <leader>pt <C-R>=strftime("%Y-%m-%d %H:%M:%S %Z")<CR>
 cnoremap <silent> <leader>pt <C-R>=strftime("%Y%m%d%H%M%S")<CR>
 
 " Strip trailing whitespace from the end of files.
-nnoremap <silent> <leader>sw :%s/\s$//g
+nnoremap <silent> <leader>sw :%s/\s$//g<cr>
 
 " Disable classic arrow-key navigation in Normal mode.
 nnoremap <Up>     <NOP>
@@ -91,7 +91,8 @@ func! mappings#call_unite(sources)
 endfunc
 
 func! mappings#call_unite_tasks()
-  call mappings#call_unite('grep:.:-s:\(TODO\|todo\|NOTE\|note\|FIXME\|fixme\)')
+  call mappings#call_unite('grep:.:-s:\(TODO\|todo\|NOTE\|note\|' .
+        \ 'FIXME\|fixme\|BUG\bug)')
 endfunc
 
 func! mappings#toggle_bars()

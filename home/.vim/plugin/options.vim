@@ -20,11 +20,15 @@ let g:airline_mode_map={
 " }}}
 
 " {{{ Unite
+let g:unite_source_history_yank_enable=1
 let g:unite_winheight=10
+let g:unite_data_directory='~/.vim/cache/unite'
+let g:unite_source_rec_max_cache_files=5000
 let g:unite_enable_start_insert=0
 let g:unite_source_grep_command='ag'
 let g:unite_source_grep_recursive_opts=''
 let g:unite_source_grep_default_opts='--nocolor --nogroup --column'
+let g:unite_prompt='» '
 " }}}
 
 " {{{ Ultisnips

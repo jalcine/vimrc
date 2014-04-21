@@ -1,4 +1,3 @@
-" vim: set fdm=marker tw=78
 " File: .vimrc
 " Author: Jacky Alciné <me@jalcine.me>
 " Description: The heart.
@@ -10,10 +9,6 @@ set nocompatible
 
 " Don't talk too much on start.
 set shortmess+=I
-
-" Define the colorscheme that'd be used. Can't lie; it's hard to pick *only*
-" one.
-colorscheme lucius
 
 " We use UNIX. So act like UNIX.
 set encoding=utf-8
@@ -109,22 +104,16 @@ for atagfile in tagfiles
   let &tags .= ',' . fnamemodify(atagfile,':p:.')
 endfor
 " }}}
-"{{ Folding
+" {{{ Folding
 " Allow for Vim syntax folding.
-let g:vimsyn_folding='afPr'
+let g:vimsyn_folding='afpPr'
 let g:vimsyn_embed='Pr'
 
-" We fold all ze time.
-set foldenable
+" We fold all ze time, according to syntax.
+set foldenable foldmethod=syntax
 
-" Fold on the syntax.
-set foldmethod=syntax
-
-" Sets the width of the folding margins.
-set foldcolumn=2
-
-" Fold all the time.
-set foldlevel=1
+" Tiny fold column, all the time folding.
+set foldcolumn=1 foldlevel=1
 
 " Show anything less than 3 lines.
 set foldminlines=2
@@ -233,6 +222,7 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'godlygeek/tabular'
 Plugin 't4ku/marktag'
+Plugin 'terryma/vim-multiple-cursors'
 " }}}
 
 " {{{ Unite plugins
@@ -262,8 +252,31 @@ Plugin 'mklabs/vim-backbone'
 Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'elzr/vim-json'
 Plugin 'kchmck/vim-coffee-script'
+Plugin 'jalcine/cmake.vim'
+Plugin 'Valloric/YouCompleteMe'
 " }}}
 
 syntax enable
 filetype plugin indent on
+" }}}
+
+" {{{ Color scheming
+" Add a little helper to make color schemes nearly transparent when I use
+" them.
+augroup UpdateColorScheme
+  au!
+  au ColorScheme * :call s:make_transparent()
+augroup END
+
+func s:make_transparent()
+  hi Normal     ctermbg=NONE
+  hi FoldColumn ctermbg=NONE
+  hi SignColumn ctermbg=NONE
+  hi LineNr     ctermbg=NONE
+  hi VertSplit  ctermbg=NONE
+endfunc
+
+" Define the colorscheme that'd be used. Can't lie; it's hard to pick *only*
+" one. Also apply the color scheme for airline.
+colorscheme lucius
 " }}}

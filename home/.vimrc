@@ -23,8 +23,8 @@ set path=.,$HOME/.local/include,/usr/local/include,/usr/include
 " We need modelines.
 set modeline
 set shellslash
-set cryptmethod=blowfish
 
+if v:version >= 703 | set cryptmethod=blowfish | endif
 
 " Save your work in sessions.
 set sessionoptions=buffers,tabpages,winsize,curdir
@@ -33,8 +33,8 @@ set sessionoptions=buffers,tabpages,winsize,curdir
 set novisualbell
 set noerrorbells
 set ruler
-set conceallevel=1
-set relativenumber number numberwidth=2
+if has('conceal') | set conceallevel=1 | endif
+set number numberwidth=2
 
 " Gimme something to look at.
 set laststatus=2
@@ -61,10 +61,11 @@ set noshowfulltag
 set showmatch
 
 " Show me the overflow.
-call matchadd('ColorColumn', '\%' . &textwidth . 'v', 100)
+if has('syntax')
+  call matchadd('ColorColumn', '\%' . &textwidth . 'v', 100)
+  set nocursorline nocursorcolumn
+endif
 
-" No need for the lines.
-set nocursorline nocursorcolumn
 "}}}
 "{{{ Spacing
 " Do this when I hit <Backspace>.
@@ -87,7 +88,7 @@ set shiftwidth=2
 " Allow for an interesting view when opening the command line menu.
 set wildmode=full
 set wildmenu
-set wildignorecase
+if has('wildignore') | set wildignorecase | endif
 set completeopt=longest,menuone
 
 " Ignore a lot of stuff.
@@ -99,10 +100,13 @@ set wildignore+=build/*,tmp/*,vendor/cache/*,bin/*
 " {{{  Tags
 " Clean it out.
 set tags=./tags,./TAGS
-let tagfiles = expand('$HOME/.tags/**/*.tags', 0, 1)
-for atagfile in tagfiles
-  let &tags .= ',' . fnamemodify(atagfile,':p:.')
-endfor
+if isdirectory('~/.tags')
+  let tagfiles = expand('~/.tags/**/*.tags', 0, 1)
+  for atagfile in tagfiles
+    let &tags .= ',' . fnamemodify(atagfile,':p:.')
+  endfor
+endif
+
 " }}}
 " {{{ Folding
 " Allow for Vim syntax folding.
@@ -127,7 +131,6 @@ set hlsearch incsearch
 " Very useful when writing code in JavaScript or C++.
 set showmatch
 set nogdefault noignorecase
-set regexpengine=1
 "}}}
 "{{{ Recovery
 " Record whether changes were made to unsaved buffers.
@@ -261,21 +264,6 @@ filetype plugin indent on
 " }}}
 
 " {{{ Color scheming
-" Add a little helper to make color schemes nearly transparent when I use
-" them.
-augroup UpdateColorScheme
-  au!
-  au ColorScheme * :call s:make_transparent()
-augroup END
-
-func s:make_transparent()
-  hi Normal     ctermbg=NONE
-  hi FoldColumn ctermbg=NONE
-  hi SignColumn ctermbg=NONE
-  hi LineNr     ctermbg=NONE
-  hi VertSplit  ctermbg=NONE
-endfunc
-
 " Define the colorscheme that'd be used. Can't lie; it's hard to pick *only*
 " one. Also apply the color scheme for airline.
 colorscheme lucius

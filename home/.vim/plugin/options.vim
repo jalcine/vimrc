@@ -4,6 +4,10 @@ endif
 
 let g:jalcine_options=1
 
+" {{{ NERD{Tree,Commenter}
+let g:NERDCreateDefaultMappings=1
+" }}}
+
 " {{{ Airline
 let g:airline_detected_modified=1
 let g:airline_powerline_fonts=1
@@ -22,8 +26,8 @@ let g:airline_mode_map={
 " {{{ Unite
 let g:unite_source_history_yank_enable=1
 let g:unite_winheight=10
-let g:unite_data_directory='~/.vim/cache/unite'
-let g:unite_source_rec_max_cache_files=5000
+let g:unite_data_directory='~/.vim/cache-unite'
+let g:unite_source_rec_max_cache_files=500
 let g:unite_enable_start_insert=0
 let g:unite_source_grep_command='ag'
 let g:unite_source_grep_recursive_opts=''
@@ -58,3 +62,11 @@ let g:github_user='jalcine'
 
 let g:goyo_linenr=1
 let g:used_javascript_libs='jasmine,backbone,underscore,jquery'
+
+
+let g:CSApprox_hook_post = ['hi Normal  ctermbg=NONE',
+      \ 'hi FoldColumn ctermbg=NONE',
+      \ 'hi SignColumn ctermbg=NONE',
+      \ 'hi LineNr     ctermbg=NONE',
+      \ 'hi VertSplit  ctermbg=NONE',
+      \ ]

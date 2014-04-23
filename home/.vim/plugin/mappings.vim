@@ -13,6 +13,12 @@ let maplocalleader='\\'
 " One less hit to get to the command-line.
 nnoremap ; :
 
+" Disable classic arrow-key navigation in Normal mode.
+nnoremap <Up>     <Nop>
+nnoremap <Down>   <Nop>
+nnoremap <Left>   <Nop>
+nnoremap <Right>  <Nop>
+
 " Toggle the use of list characters.
 nnoremap <silent> <leader>l :set list!<cr>
 
@@ -38,16 +44,6 @@ cnoremap <silent> <leader>pt <C-R>=strftime("%Y%m%d%H%M%S")<CR>
 
 " Strip trailing whitespace from the end of files.
 nnoremap <silent> <leader>sw :%s/\s$//g<cr>
-
-" Disable classic arrow-key navigation in Normal mode.
-nnoremap <Up>     <NOP>
-nnoremap <Down>   <NOP>
-nnoremap <Left>   <NOP>
-nnoremap <Right>  <NOP>
-nnoremap <C-w><Up>     <NOP>
-nnoremap <C-w><Down>   <NOP>
-nnoremap <C-w><Left>   <NOP>
-nnoremap <C-w><Right>  <NOP>
 
 " Formats the current buffer.
 nnoremap <leader>f gg=G

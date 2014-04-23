@@ -88,7 +88,7 @@ set shiftwidth=2
 " Allow for an interesting view when opening the command line menu.
 set wildmode=full
 set wildmenu
-if has('wildignore') | set wildignorecase | endif
+if has('wildignore') && v:version >= 704 | set wildignorecase | endif
 set completeopt=longest,menuone
 
 " Ignore a lot of stuff.

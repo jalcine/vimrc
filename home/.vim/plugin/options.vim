@@ -9,9 +9,9 @@ let g:NERDCreateDefaultMappings=1
 " }}}
 
 " {{{ Airline
-let g:airline_detected_modified=1
+let g:airline_detected_modified=1 
 let g:airline_powerline_fonts=1
-let g:airline_detect_iminsert=1
+let g:airline_detect_iminsert=0
 let g:airline#extensions#hunks#non_zero_only=1
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#branch#enabled=1

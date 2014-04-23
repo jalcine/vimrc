@@ -61,7 +61,7 @@ set noshowfulltag
 set showmatch
 
 " Show me the overflow.
-if has('syntax')
+if has('syntax') && v:version >= 704
   call matchadd('ColorColumn', '\%' . &textwidth . 'v', 100)
   set nocursorline nocursorcolumn
 endif

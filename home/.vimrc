@@ -189,6 +189,9 @@ set updatetime=2000
 " Update 'rtp' and 'ft' to handle plugin loading.
 filetype off
 source ~/.vim/plugin/options.vim
+if filereadable('~/.vim/plugin/options.local.vim')
+  source ~/.vim/plugins/options.local.vim
+endif
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 

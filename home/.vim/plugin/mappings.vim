@@ -56,6 +56,7 @@ nnoremap <silent> <leader>mc :Make clean<CR>
 nnoremap <silent> <leader>mi :Make install<CR>
 nnoremap <silent> <leader>mu :Make uninstall<CR>
 nnoremap <silent> <leader>mt :Make test<CR>
+nnoremap <silent> <leader>mtb :call('Make',['test',expand('%')])<CR>
 
 " Travel over errors.
 nnoremap <silent> <leader>ce <ESC>:cnext<CR>

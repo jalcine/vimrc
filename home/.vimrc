@@ -52,8 +52,7 @@ set title titlelen=120
 set titlestring="%t%(\ %M%)%(\ (%{expand(\"%:p:h\")})%)%(\ %a%)"
 
 " Update by redraw and not INS/DEL
-set ttyscroll=3 ttyfast
-set lazyredraw
+set ttyscroll=10 ttyfast
 
 " Show me what I was doing.
 set showcmd
@@ -72,22 +71,25 @@ endif
 set backspace=indent,eol,start
 
 " I prefer to use two spaces to represent tabs.
-set tabstop=2 softtabstop=2
+set tabstop=2 softtabstop=2 shiftwidth=2
 set smarttab expandtab
 
 " Set a hard wrapping to 78 characters. Nothing should be longer than that.
 " Trust me, living a few days in the console will teach you that.
-set textwidth=78 wrap
-set shiftwidth=2
+set textwidth=79
+set wrap wrapmargin=1
 
-" TODO: Add something for indentation.
+" Using 'smartindent' is obselete; let ftindent plugins do their magic and
+" just format C-like files.
+set cindent
 
 " }}}
 " {{{ Wild Side & Completion
 " Enable your wild side, take command completion completion up a notch.
 " Allow for an interesting view when opening the command line menu.
-set wildmode=full
+set wildmode=list:longest
 set wildmenu
+set wildoptions=tagfile
 if has('wildignore') && v:version >= 704 | set wildignorecase | endif
 set completeopt=longest,menuone
 
@@ -129,7 +131,7 @@ set hlsearch incsearch
 
 " Show matching and (briefly) jump to the other partner just shortly.
 " Very useful when writing code in JavaScript or C++.
-set showmatch
+set showmatch wrapscan
 set nogdefault noignorecase
 "}}}
 "{{{ Recovery
@@ -173,15 +175,15 @@ set fillchars=diff:⣿,vert:│
 set showbreak=↪
 
 " Visual cues when in 'list' model.
-set list
-set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮,trail:·,nbsp:×
+set list listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮,trail:·,nbsp:×
+set sidescroll=5
 "}}}
 "
 " {{{ Timeouts
 set timeout ttimeout
 set timeoutlen=400
 set ttimeoutlen=500
-set updatetime=2000
+set updatetime=1500
 " }}}
 
 " {{{ Vundle setup

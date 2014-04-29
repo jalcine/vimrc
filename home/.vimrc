@@ -223,7 +223,7 @@ Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-abolish'
-Plugin 'jalcine/vim-snippets'
+Plugin 'honza/vim-snippets'
 "Plugin 'jalcine/cmake.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdcommenter'
@@ -263,6 +263,9 @@ Plugin 'elzr/vim-json'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'jalcine/cmake.vim'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'astashov/vim-ruby-debugger'
+Plugin 'ecomba/vim-ruby-refactoring'
 " }}}
 
 syntax enable

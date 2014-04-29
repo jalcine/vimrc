@@ -3,9 +3,15 @@ if exists('g:jalcine_options')
 endif
 
 let g:jalcine_options=1
+let g:snips_author="Jacky Alcine <me@jalcine.me>"
 
 " {{{ NERD{Tree,Commenter}
 let g:NERDCreateDefaultMappings=1
+" }}}
+
+" {{{ Tern
+let g:tern_show_argument_hints='on_hold'
+let g:tern_show_signature_in_pum=1
 " }}}
 
 " {{{ Airline
@@ -48,6 +54,10 @@ let g:tagbar_compact=0
 let g:tagbar_autoshowtag=1
 " }}}
 
+" {{{ YCM
+let g:ycm_confirm_extra_conf=0
+" }}}
+
 " {{{ vim-session
 let g:session_autoload="no"
 let g:session_autosave="no"
@@ -62,7 +72,6 @@ let g:github_user='jalcine'
 
 let g:goyo_linenr=1
 let g:used_javascript_libs='jasmine,backbone,underscore,jquery'
-
 
 let g:CSApprox_hook_post = ['hi Normal  ctermbg=NONE',
       \ 'hi FoldColumn ctermbg=NONE',

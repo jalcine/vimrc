@@ -9,24 +9,48 @@ let g:snips_author="Jacky Alcine <me@jalcine.me>"
 let g:NERDCreateDefaultMappings=1
 " }}}
 
+" {{{ Syntastic
+let g:syntastic_check_on_open=1
+let g:syntastic_check_on_wq=1
+let g:syntastic_aggregate_errors=1
+let g:syntastic_error_symbol='✗'
+let g:syntastic_warning_symbol='⚠'
+let g:synastic_enable_ballons=has('ballon_eval')
+let g:syntastic_always_populate_loc_list=1
+let g:syntastic_auto_jump=2
+let g:syntastic_auto_loc_list=2
+let g:syntastic_loc_list_height=5
+let g:syntastic_ignore_files = ['\m^/usr/include/']
+let g:syntastic_mode_map = {
+      \ 'mode': 'active',
+      \ 'active_filetypes': ['ruby', 'javascript', 'sass'],
+      \ 'passive_filetypes': ['cpp', 'html', 'perl']
+      \ }
+let g:syntastic_javascript_checkers=['jscs', 'jslint', 'jshint', 'eslint']
+let g:syntastic_ruby_checkers=['mri', 'rubylint']
+let g:syntasitc_perl_checkers=['perl']
+let g:syntastic_ruby_exec=substitute(system('which ruby'),'\n','','g')
+"let g:syntastic_javascript_eslint_conf=''
+" }}}
+
 " {{{ Tern
 let g:tern_show_argument_hints='on_hold'
 let g:tern_show_signature_in_pum=1
 " }}}
 
 " {{{ Airline
-let g:airline_detected_modified=1 
+let g:airline_detected_modified=1
 let g:airline_powerline_fonts=1
 let g:airline_detect_iminsert=0
 let g:airline#extensions#hunks#non_zero_only=1
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#branch#enabled=1
 let g:airline_mode_map={
-  \ '__' : '-',
-  \ 'n'  : 'NORM',
-  \ 'i'  : 'INSR',
-  \ 'R'  : 'RPLC'
-  \ }
+      \ '__' : '-',
+      \ 'n'  : 'NORM',
+      \ 'i'  : 'INSR',
+      \ 'R'  : 'RPLC'
+      \ }
 " }}}
 
 " {{{ Unite

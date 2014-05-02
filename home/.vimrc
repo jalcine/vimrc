@@ -87,11 +87,9 @@ set cindent
 " {{{ Wild Side & Completion
 " Enable your wild side, take command completion completion up a notch.
 " Allow for an interesting view when opening the command line menu.
-set wildmode=list:longest
-set wildmenu
+set wildmenu wildmode=longest:full
 set wildoptions=tagfile
 if has('wildignore') && v:version >= 704 | set wildignorecase | endif
-set completeopt=longest,menuone
 
 " Ignore a lot of stuff.
 set wildignore+=*.swp,*.pyc,*.bak,*.class,*.orig
@@ -175,25 +173,30 @@ set fillchars=diff:⣿,vert:│
 set showbreak=↪
 
 " Visual cues when in 'list' model.
-set list listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮,trail:·,nbsp:×
+set list listchars=tab:·\ ,eol:¬,extends:❯,precedes:❮,trail:·,nbsp:×
 set sidescroll=5
 "}}}
 "
 " {{{ Timeouts
 set timeout ttimeout
-set timeoutlen=400
-set ttimeoutlen=500
+set timeoutlen=400 ttimeoutlen=500
 set updatetime=1500
 " }}}
+"
+if filereadable('~/.vimrc.local') | source ~/.vimrc.local | endif
 
 " {{{ Vundle setup
 "
 " Update 'rtp' and 'ft' to handle plugin loading.
 filetype off
+
 source ~/.vim/plugin/options.vim
+
 if filereadable('~/.vim/plugin/options.local.vim')
   source ~/.vim/plugins/options.local.vim
 endif
+
+" Megaman, POWER UP!
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 
@@ -229,7 +232,7 @@ Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'godlygeek/tabular'
-Plugin 't4ku/marktag'
+"Plugin 't4ku/marktag'
 Plugin 'terryma/vim-multiple-cursors'
 " }}}
 
@@ -255,14 +258,13 @@ Plugin 'groenewege/vim-less'
 Plugin 'tpope/vim-markdown'
 Plugin 'moll/vim-node'
 Plugin 'ahayman/vim-nodejs-complete'
-Plugin 'marijnh/tern_for_vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mklabs/vim-backbone'
 Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'elzr/vim-json'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'jalcine/cmake.vim'
-Plugin 'Valloric/YouCompleteMe'
+"Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'astashov/vim-ruby-debugger'
 Plugin 'ecomba/vim-ruby-refactoring'

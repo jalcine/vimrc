@@ -1,5 +1,5 @@
 if exists('g:jalcine_options')
-  finish
+	finish
 endif
 
 let g:jalcine_options=1
@@ -22,10 +22,10 @@ let g:syntastic_auto_loc_list=2
 let g:syntastic_loc_list_height=5
 let g:syntastic_ignore_files = ['\m^/usr/include/']
 let g:syntastic_mode_map = {
-      \ 'mode': 'active',
-      \ 'active_filetypes': ['ruby', 'javascript', 'sass'],
-      \ 'passive_filetypes': ['cpp', 'html', 'perl']
-      \ }
+			\ 'mode': 'active',
+			\ 'active_filetypes': ['ruby', 'javascript', 'sass'],
+			\ 'passive_filetypes': ['cpp', 'html', 'perl']
+			\ }
 let g:syntastic_javascript_checkers=['jscs', 'jslint', 'jshint', 'eslint']
 let g:syntastic_ruby_checkers=['mri', 'rubylint']
 let g:syntasitc_perl_checkers=['perl']
@@ -46,11 +46,11 @@ let g:airline#extensions#hunks#non_zero_only=1
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#branch#enabled=1
 let g:airline_mode_map={
-      \ '__' : '-',
-      \ 'n'  : 'NORM',
-      \ 'i'  : 'INSR',
-      \ 'R'  : 'RPLC'
-      \ }
+			\ '__' : '-',
+			\ 'n'  : 'NORM',
+			\ 'i'  : 'INSR',
+			\ 'R'  : 'RPLC'
+			\ }
 " }}}
 
 " {{{ Unite
@@ -78,10 +78,6 @@ let g:tagbar_compact=0
 let g:tagbar_autoshowtag=1
 " }}}
 
-" {{{ YCM
-let g:ycm_confirm_extra_conf=0
-" }}}
-
 " {{{ vim-session
 let g:session_autoload="no"
 let g:session_autosave="no"
@@ -92,14 +88,24 @@ let g:session_directory="~/.vim/sessions"
 
 " {{{ Git, Github and VCS
 let g:github_user='jalcine'
+let g:github_dashboard = { 'username': g:github_user }
+let g:github_dashboard['position'] = 'bottom'
+let g:github_dashboard['emoji'] = 0
+let g:github_dashboard['emoji_map'] = {
+			\   'user_dashboard': 'blush',
+			\   'user_activity':  'smile',
+			\   'repo_activity':  'laughing',
+			\   'ForkEvent':      'fork_and_knife'
+			\ }
+
 " }}}
 
 let g:goyo_linenr=1
 let g:used_javascript_libs='jasmine,backbone,underscore,jquery'
 
 let g:CSApprox_hook_post = ['hi Normal  ctermbg=NONE',
-      \ 'hi FoldColumn ctermbg=NONE',
-      \ 'hi SignColumn ctermbg=NONE',
-      \ 'hi LineNr     ctermbg=NONE',
-      \ 'hi VertSplit  ctermbg=NONE',
-      \ ]
+			\ 'hi FoldColumn ctermbg=NONE',
+			\ 'hi SignColumn ctermbg=NONE',
+			\ 'hi LineNr     ctermbg=NONE',
+			\ 'hi VertSplit  ctermbg=NONE',
+			\ ]

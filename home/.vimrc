@@ -251,6 +251,7 @@ Plugin 'mmozuras/vim-github-comment'
 
 " {{{ Language support
 Plugin 'ap/vim-css-color'
+Plugin 'groenewege/vim-less'
 Plugin 'tpope/vim-markdown'
 Plugin 'moll/vim-node'
 Plugin 'ahayman/vim-nodejs-complete'

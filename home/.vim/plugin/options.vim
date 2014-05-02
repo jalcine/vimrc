@@ -26,10 +26,11 @@ let g:syntastic_mode_map = {
 			\ 'active_filetypes': ['ruby', 'javascript', 'sass'],
 			\ 'passive_filetypes': ['cpp', 'html', 'perl']
 			\ }
-let g:syntastic_javascript_checkers=['jscs', 'jslint', 'jshint', 'eslint']
+let g:syntastic_javascript_checkers=['jscs', 'jslint', 'jshint']
 let g:syntastic_ruby_checkers=['mri', 'rubylint']
 let g:syntasitc_perl_checkers=['perl']
 let g:syntastic_ruby_exec=substitute(system('which ruby'),'\n','','g')
+let g:syntastic_jshint_exe='jshint'
 "let g:syntastic_javascript_eslint_conf=''
 " }}}
 

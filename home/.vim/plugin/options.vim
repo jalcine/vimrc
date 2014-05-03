@@ -23,12 +23,19 @@ let g:syntastic_loc_list_height=5
 let g:syntastic_ignore_files = ['\m^/usr/include/']
 let g:syntastic_mode_map = {
 			\ 'mode': 'active',
-			\ 'active_filetypes': ['ruby', 'javascript', 'sass'],
-			\ 'passive_filetypes': ['cpp', 'html', 'perl']
+			\ 'active_filetypes': ['ruby', 'javascript', 'sass', 'haml', 'sh'],
+			\ 'passive_filetypes': ['cpp', 'html', 'perl', 'python']
 			\ }
 let g:syntastic_javascript_checkers=['jscs', 'jslint', 'jshint']
+let g:syntastic_json_checkers=['jsonlint', 'jsonval']
 let g:syntastic_ruby_checkers=['mri', 'rubylint']
 let g:syntasitc_perl_checkers=['perl']
+let g:syntastic_python_checkers=['pylint','pep8','python']
+let g:syntastic_cpp_checkers=['gcc','cppcheck','cpplint']
+let g:syntastic_c_checkers=['gcc','make','cppcheck']
+let g:syntastic_haml_checkers=['haml_lint', 'haml']
+let g:syntastic_sh_checkers=['sh','shellcheck','checkbashisms']
+let g:syntastic_vim_checkers=['vimlint']
 let g:syntastic_ruby_exec=substitute(system('which ruby'),'\n','','g')
 let g:syntastic_jshint_exe='jshint'
 "let g:syntastic_javascript_eslint_conf=''

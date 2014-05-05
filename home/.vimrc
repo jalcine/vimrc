@@ -10,7 +10,11 @@ set nocompatible
 set shortmess+=I
 
 " We use UNIX. So act like UNIX.
+<<<<<<< HEAD
 set encoding=utf-8 ambiwidth=double
+=======
+set encoding=utf-8 ambiwidth=single
+>>>>>>> Split it up, split it up.
 set fileencoding=utf-8
 set fileformats=unix
 
@@ -114,11 +118,10 @@ let g:vimsyn_embed='Pr'
 set foldenable foldmethod=syntax
 
 " Tiny fold column, all the time folding.
-set foldcolumn=1 foldlevel=1
+set foldcolumn=1 foldlevel=1 foldclose=all
 
 " Show anything less than 3 lines.
-set foldminlines=2
-set foldnestmax=5
+set foldminlines=2 foldnestmax=5 foldlevelstart=1
 "}}}
 "{{{ Searching
 " Highlight matches found when searching.
@@ -164,13 +167,13 @@ set spellfile=~/.vim/dict.custom.utf8-8.add
 " A problem that plagued me for months, having visual cues for white spacing
 " solves formatting problems a lot quicker. Also, we're using modern shells
 " (right?) so using UTF-8 characters for symbols should be a given.
-"set fillchars=diff:⣿,vert:│
+set fillchars=diff:⣿,vert:│,fold:-
 
 " A visual cue for line-wrapping.
 set showbreak=↪
 
 " Visual cues when in 'list' model.
-"'set list listchars=tab:·\ ,eol:¬,extends:❯,precedes:❮,trail:·,nbsp:×
+set list listchars+=tab:·\ ,eol:¬,extends:❯,precedes:❮,nbsp:×
 set sidescroll=5
 "}}}
 "
@@ -263,7 +266,8 @@ Plugin 'ecomba/vim-ruby-refactoring'
 " }}}
 
 syntax enable
-filetype plugin indent on
+filetype plugin on
+filetype indent on
 " }}}
 
 " {{{ Color scheming

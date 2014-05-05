@@ -1,5 +1,4 @@
-" File: .vimrc
-" Author: Jacky Alciné <me@jalcine.me>
+" File: .vimrc " Author: Jacky Alciné <me@jalcine.me>
 " Description: The heart.
 
 "{{{ Immediate Options
@@ -11,7 +10,7 @@ set nocompatible
 set shortmess+=I
 
 " We use UNIX. So act like UNIX.
-set encoding=utf-8
+set encoding=utf-8 ambiwidth=double
 set fileencoding=utf-8
 set fileformats=unix
 
@@ -34,15 +33,14 @@ set novisualbell
 set noerrorbells
 set ruler
 if has('conceal') | set conceallevel=1 | endif
-set number numberwidth=2
 
 " Gimme something to look at.
 set laststatus=2
 set showtabline=2
 
 " Use the clicking thing, Luke (no).
-"set mouse=a
-"set ttymouse=xterm2
+set mouse=a
+set ttymouse=xterm2
 
 " PASTE mo'fo!
 set pastetoggle=<F2>
@@ -77,7 +75,6 @@ set smarttab expandtab
 " Set a hard wrapping to 78 characters. Nothing should be longer than that.
 " Trust me, living a few days in the console will teach you that.
 set textwidth=79
-set wrap wrapmargin=1
 
 " Using 'smartindent' is obselete; let ftindent plugins do their magic and
 " just format C-like files.
@@ -167,13 +164,13 @@ set spellfile=~/.vim/dict.custom.utf8-8.add
 " A problem that plagued me for months, having visual cues for white spacing
 " solves formatting problems a lot quicker. Also, we're using modern shells
 " (right?) so using UTF-8 characters for symbols should be a given.
-set fillchars=diff:⣿,vert:│
+"set fillchars=diff:⣿,vert:│
 
 " A visual cue for line-wrapping.
 set showbreak=↪
 
 " Visual cues when in 'list' model.
-set list listchars=tab:·\ ,eol:¬,extends:❯,precedes:❮,trail:·,nbsp:×
+"'set list listchars=tab:·\ ,eol:¬,extends:❯,precedes:❮,trail:·,nbsp:×
 set sidescroll=5
 "}}}
 "

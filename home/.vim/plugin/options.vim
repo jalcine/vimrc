@@ -110,7 +110,6 @@ let g:github_dashboard['emoji_map'] = {
 
 let g:goyo_linenr=1
 let g:used_javascript_libs='jasmine,backbone,underscore,jquery'
-
 let g:CSApprox_hook_post = ['hi Normal  ctermbg=NONE',
 			\ 'hi FoldColumn ctermbg=NONE',
 			\ 'hi SignColumn ctermbg=NONE',

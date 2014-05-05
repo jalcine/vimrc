@@ -78,7 +78,7 @@ let g:UltiSnipsEditSplit="horizontal"
 let g:UltiSnipsExpandTrigger="<C-l>"
 let g:UltiSnipsJumpForwardTrigger="<C-j>"
 let g:UltiSnipsJumpBackwardTrigger="<C-k>"
-let g:UltiSnipsSnippetDirectories=["Ultisnips"]
+let g:UltiSnipsSnippetDirectories=["Ultisnips", "snippets"]
 " }}}
 
 " {{{ Tagbar

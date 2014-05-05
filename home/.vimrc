@@ -165,13 +165,13 @@ set spellfile=~/.vim/dict.custom.utf8-8.add
 " A problem that plagued me for months, having visual cues for white spacing
 " solves formatting problems a lot quicker. Also, we're using modern shells
 " (right?) so using UTF-8 characters for symbols should be a given.
-set fillchars=diff:⣿,vert:│
+"set fillchars=diff:⣿,vert:│
 
 " A visual cue for line-wrapping.
 set showbreak=↪
 
 " Visual cues when in 'list' model.
-set list listchars=tab:·\ ,eol:¬,extends:❯,precedes:❮,trail:·,nbsp:×
+"'set list listchars=tab:·\ ,eol:¬,extends:❯,precedes:❮,trail:·,nbsp:×
 set sidescroll=5
 "}}}
 "

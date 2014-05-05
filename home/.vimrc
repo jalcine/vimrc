@@ -34,7 +34,6 @@ set novisualbell
 set noerrorbells
 set ruler
 if has('conceal') | set conceallevel=1 | endif
-set number numberwidth=2
 
 " Gimme something to look at.
 set laststatus=2
@@ -77,7 +76,6 @@ set smarttab expandtab
 " Set a hard wrapping to 78 characters. Nothing should be longer than that.
 " Trust me, living a few days in the console will teach you that.
 set textwidth=79
-set wrap wrapmargin=1
 
 " Using 'smartindent' is obselete; let ftindent plugins do their magic and
 " just format C-like files.

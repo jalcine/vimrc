@@ -1,5 +1,4 @@
-" File: .vimrc
-" Author: Jacky Alciné <me@jalcine.me>
+" File: .vimrc " Author: Jacky Alciné <me@jalcine.me>
 " Description: The heart.
 
 "{{{ Immediate Options
@@ -40,8 +39,8 @@ set laststatus=2
 set showtabline=2
 
 " Use the clicking thing, Luke (no).
-"set mouse=a
-"set ttymouse=xterm2
+set mouse=a
+set ttymouse=xterm2
 
 " PASTE mo'fo!
 set pastetoggle=<F2>

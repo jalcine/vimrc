@@ -11,7 +11,7 @@ set nocompatible
 set shortmess+=I
 
 " We use UNIX. So act like UNIX.
-set encoding=utf-8
+set encoding=utf-8 ambiwidth=double
 set fileencoding=utf-8
 set fileformats=unix
 

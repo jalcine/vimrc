@@ -1,4 +1,6 @@
-" File: .vimrc " Author: Jacky Alciné <me@jalcine.me>
+" vim: set ft=vim
+" File: .vimrc
+" Author: Jacky Alciné <me@jalcine.me>
 " Description: The heart.
 
 "{{{ Immediate Options
@@ -10,11 +12,7 @@ set nocompatible
 set shortmess+=I
 
 " We use UNIX. So act like UNIX.
-<<<<<<< HEAD
 set encoding=utf-8 ambiwidth=double
-=======
-set encoding=utf-8 ambiwidth=single
->>>>>>> Split it up, split it up.
 set fileencoding=utf-8
 set fileformats=unix
 

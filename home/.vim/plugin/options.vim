@@ -23,8 +23,8 @@ let g:syntastic_loc_list_height=5
 let g:syntastic_ignore_files = ['\m^/usr/include/']
 let g:syntastic_mode_map = {
 			\ 'mode': 'active',
-			\ 'active_filetypes': ['ruby', 'javascript', 'sass', 'haml', 'sh'],
-			\ 'passive_filetypes': ['cpp', 'html', 'perl', 'python']
+			\ 'active_filetypes': ['ruby', 'javascript', 'sass', 'haml', 'sh', 'cpp' ],
+			\ 'passive_filetypes': ['html', 'perl', 'python']
 			\ }
 let g:syntastic_javascript_checkers=['jscs', 'jslint', 'jshint']
 let g:syntastic_json_checkers=['jsonlint', 'jsonval']
@@ -55,15 +55,15 @@ let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#branch#enabled=1
 let g:airline_mode_map={
 			\ '__' : '-',
-			\ 'n'  : 'NORM',
-			\ 'i'  : 'INSR',
-			\ 'R'  : 'RPLC'
+			\ 'n'  : 'N',
+			\ 'i'  : 'I',
+			\ 'R'  : 'R'
 			\ }
 " }}}
 
 " {{{ Unite
 let g:unite_source_history_yank_enable=1
-let g:unite_winheight=10
+let g:unite_winheight=4
 let g:unite_data_directory='~/.vim/cache-unite'
 let g:unite_source_rec_max_cache_files=500
 let g:unite_enable_start_insert=0
@@ -72,7 +72,7 @@ if executable('ag')
 	let g:unite_source_grep_recursive_opts=''
 	let g:unite_source_grep_default_opts='--nocolor --nogroup --column'
 endif
-let g:unite_prompt='» '
+let g:unite_prompt='UNITE » '
 " }}}
 
 " {{{ Ultisnips

@@ -10,14 +10,14 @@ let g:NERDCreateDefaultMappings=1
 " }}}
 
 " {{{ Syntastic
-let g:syntastic_check_on_open=1
+let g:syntastic_check_on_open=0
 let g:syntastic_check_on_wq=1
 let g:syntastic_aggregate_errors=1
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
 let g:synastic_enable_ballons=has('ballon_eval')
 let g:syntastic_always_populate_loc_list=1
-let g:syntastic_auto_jump=2
+let g:syntastic_auto_jump=0
 let g:syntastic_auto_loc_list=2
 let g:syntastic_loc_list_height=5
 let g:syntastic_ignore_files = ['\m^/usr/include/']

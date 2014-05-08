@@ -185,11 +185,12 @@ set updatetime=1500
 " {{{ Local Configuration
 if filereadable('~/.vimrc.local') | source ~/.vimrc.local | endif
 " }}}
-" {{{ Vundle setup
+" {{{ Vundle Setup
 "
 " Update 'rtp' and 'ft' to handle plugin loading.
 filetype off
 
+" Read in my options.
 source ~/.vim/plugin/options.vim
 
 if filereadable('~/.vim/plugin/options.local.vim')
@@ -200,8 +201,8 @@ endif
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 
-" {{{ Plugin list
-" {{{ Core plugins
+" {{{2 Plugin list
+" {{{3 Core plugins
 Plugin 'gmarik/vundle'
 Plugin 'bling/vim-airline'
 Plugin 'thinca/vim-localrc'
@@ -213,8 +214,7 @@ Plugin 'int3/vim-extradite'
 Plugin 'majutsushi/tagbar'
 Plugin 'mattn/webapi-vim'
 " }}}
-
-" {{{ Utility plugins
+" {{{3 Utility plugins
 Bundle 'junegunn/goyo.vim'
 Plugin 'guns/xterm-color-table.vim'
 Plugin 'Raimondi/delimitMate'
@@ -232,42 +232,21 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'godlygeek/tabular'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'Valloric/YouCompleteMe'
 " }}}
-
-" {{{ Unite plugins
+" {{{3 Unite plugins
 Plugin 'Shougo/unite.vim'
 Plugin 'tsukkee/unite-tag'
 Plugin 'zepto/unite-tmux'
 Plugin 'yuku-t/unite-git'
 Plugin 'pasela/unite-webcolorname'
 " }}}
-
-" {{{ Version Control
-Plugin 'tpope/vim-git'
-Plugin 'mattn/gist-vim'
-Plugin 'junegunn/vim-github-dashboard'
-Plugin 'mmozuras/vim-github-comment'
-" }}}
-
-" {{{ Language support
-Plugin 'ap/vim-css-color'
-Plugin 'groenewege/vim-less'
-Plugin 'tpope/vim-markdown'
-Plugin 'moll/vim-node'
-Plugin 'ahayman/vim-nodejs-complete'
-Plugin 'jelera/vim-javascript-syntax'
-Plugin 'elzr/vim-json'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'astashov/vim-ruby-debugger'
-Plugin 'ecomba/vim-ruby-refactoring'
-" }}}
-
+"}}}
+"
 syntax enable
 filetype plugin on
 filetype indent on
 " }}}
-
 " {{{ Color scheming
 " Define the colorscheme that'd be used. Can't lie; it's hard to pick *only*
 " one. Also apply the color scheme for airline.

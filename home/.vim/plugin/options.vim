@@ -15,7 +15,7 @@ let g:syntastic_check_on_wq=1
 let g:syntastic_aggregate_errors=1
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
-let g:synastic_enable_ballons=has('ballon_eval')
+let g:syntastic_enable_ballons=has('ballon_eval')
 let g:syntastic_always_populate_loc_list=1
 let g:syntastic_auto_jump=0
 let g:syntastic_auto_loc_list=2
@@ -38,7 +38,16 @@ let g:syntastic_sh_checkers=['sh','shellcheck','checkbashisms']
 let g:syntastic_vim_checkers=['vimlint']
 let g:syntastic_ruby_exec=substitute(system('which ruby'),'\n','','g')
 let g:syntastic_jshint_exe='jshint'
-"let g:syntastic_javascript_eslint_conf=''
+" }}}
+
+" {{{ Signify
+let g:signify_vcs_list=['git']
+let g:signify_disable_by_default=1
+if v:version >= 703 | let g:signify_sign_overwrite=1 | endif
+let g:signify_sign_add='+'
+let g:signify_sign_change='!'
+let g:signify_sign_delete='_'
+let g:signify_sign_delete_first_line='‾'
 " }}}
 
 " {{{ Tern

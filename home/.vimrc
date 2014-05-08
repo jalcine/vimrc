@@ -233,6 +233,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'godlygeek/tabular'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'Valloric/YouCompleteMe'
+Bundle 'dbakker/vim-lint'
 " }}}
 " {{{3 Unite plugins
 Plugin 'Shougo/unite.vim'

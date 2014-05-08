@@ -1,8 +1,10 @@
-" vim: set ft=vim
+" vim: ft=vim fdm=marker tw=78 fdl=0
 " File: .vimrc
 " Author: Jacky Alciné <me@jalcine.me>
 " Description: The heart.
 
+" This is my Vim setup. It's meant to be overriden since it ends up being
+" useful in dozens of people be it on a mobile device or in the cloud.
 "{{{ Immediate Options
 " We live in the future, don't worry about backwards compatibility with Vi.
 " In fact, why bother set it? If $VIM is reading this, nocp is active!
@@ -55,7 +57,7 @@ set titlestring="%t%(\ %M%)%(\ (%{expand(\"%:p:h\")})%)%(\ %a%)"
 set ttyscroll=10 ttyfast
 
 " Show me what I was doing.
-set showcmd
+if has('showcmd') | set showcmd | endif
 set noshowfulltag
 set showmatch
 
@@ -116,7 +118,7 @@ let g:vimsyn_embed='Pr'
 set foldenable foldmethod=syntax
 
 " Tiny fold column, all the time folding.
-set foldcolumn=1 foldlevel=1 foldclose=all
+set foldcolumn=1 foldlevel=1
 
 " Show anything less than 3 lines.
 set foldminlines=2 foldnestmax=5 foldlevelstart=1
@@ -134,7 +136,7 @@ set nogdefault noignorecase
 " Record whether changes were made to unsaved buffers.
 set hidden
 
-" Avoid using backup files. If you commit often into
+" Avoid using backup or swap files. If you commit often into
 " version control, backup files shouldn't be a problem.
 set nobackup noswapfile
 
@@ -165,24 +167,24 @@ set spellfile=~/.vim/dict.custom.utf8-8.add
 " A problem that plagued me for months, having visual cues for white spacing
 " solves formatting problems a lot quicker. Also, we're using modern shells
 " (right?) so using UTF-8 characters for symbols should be a given.
-set fillchars=diff:⣿,vert:│,fold:-
+set fillchars=diff:⣿,vert:│
+if has('folding') | set fillchars+=fold:- | endif
 
 " A visual cue for line-wrapping.
-set showbreak=↪
+if has('linebreak') | set showbreak=↪ | endif
 
 " Visual cues when in 'list' model.
 set list listchars+=tab:·\ ,eol:¬,extends:❯,precedes:❮,nbsp:×
 set sidescroll=5
 "}}}
-"
 " {{{ Timeouts
 set timeout ttimeout
 set timeoutlen=400 ttimeoutlen=500
 set updatetime=1500
 " }}}
-"
+" {{{ Local Configuration
 if filereadable('~/.vimrc.local') | source ~/.vimrc.local | endif
-
+" }}}
 " {{{ Vundle setup
 "
 " Update 'rtp' and 'ft' to handle plugin loading.
@@ -224,12 +226,11 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-abolish'
 Plugin 'honza/vim-snippets'
-"Plugin 'jalcine/cmake.vim'
+Plugin 'jalcine/cmake.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'godlygeek/tabular'
-"Plugin 't4ku/marktag'
 Plugin 'terryma/vim-multiple-cursors'
 " }}}
 
@@ -246,7 +247,6 @@ Plugin 'tpope/vim-git'
 Plugin 'mattn/gist-vim'
 Plugin 'junegunn/vim-github-dashboard'
 Plugin 'mmozuras/vim-github-comment'
-"Plugin 'jaxbot/github-issues.vim'
 " }}}
 
 " {{{ Language support
@@ -272,4 +272,7 @@ filetype indent on
 " Define the colorscheme that'd be used. Can't lie; it's hard to pick *only*
 " one. Also apply the color scheme for airline.
 colorscheme lucius
+hi Normal     ctermbg=NONE guibg=NONE
+hi FoldColumn ctermbg=NONE guibg=NONE
+hi VertSplit  ctermbg=NONE guibg=NONE
 " }}}

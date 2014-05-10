@@ -277,6 +277,8 @@ Bundle 'einars/js-beautify'
 Bundle 'moll/vim-node'
 Bundle 'myhere/vim-nodejs-complete'
 Bundle 'junegunn/vim-github-dashboard'
+Plugin 'elzr/vim-json'
+Plugin 'rodjek/vim-puppet'
 " }}}
 " {{{3 Unite plugins
 Plugin 'Shougo/unite.vim'

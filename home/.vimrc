@@ -1,6 +1,10 @@
-" File: .vimrc " Author: Jacky Alciné <me@jalcine.me>
+" vim: ft=vim fdm=marker tw=78 fdl=0
+" File: .vimrc
+" Author: Jacky Alciné <me@jalcine.me>
 " Description: The heart.
 
+" This is my Vim setup. It's meant to be overriden since it ends up being
+" useful in dozens of people be it on a mobile device or in the cloud.
 "{{{ Immediate Options
 " We live in the future, don't worry about backwards compatibility with Vi.
 " In fact, why bother set it? If $VIM is reading this, nocp is active!
@@ -10,7 +14,7 @@ set nocompatible
 set shortmess+=I
 
 " We use UNIX. So act like UNIX.
-set encoding=utf-8 ambiwidth=double
+set encoding=utf-8 ambiwidth=single
 set fileencoding=utf-8
 set fileformats=unix
 
@@ -53,7 +57,7 @@ set titlestring="%t%(\ %M%)%(\ (%{expand(\"%:p:h\")})%)%(\ %a%)"
 set ttyscroll=10 ttyfast
 
 " Show me what I was doing.
-set showcmd
+if has('showcmd') | set showcmd | endif
 set noshowfulltag
 set showmatch
 
@@ -117,8 +121,7 @@ set foldenable foldmethod=syntax
 set foldcolumn=1 foldlevel=1
 
 " Show anything less than 3 lines.
-set foldminlines=2
-set foldnestmax=5
+set foldminlines=2 foldnestmax=5 foldlevelstart=1
 "}}}
 "{{{ Searching
 " Highlight matches found when searching.
@@ -133,7 +136,7 @@ set nogdefault noignorecase
 " Record whether changes were made to unsaved buffers.
 set hidden
 
-" Avoid using backup files. If you commit often into
+" Avoid using backup or swap files. If you commit often into
 " version control, backup files shouldn't be a problem.
 set nobackup noswapfile
 
@@ -164,29 +167,30 @@ set spellfile=~/.vim/dict.custom.utf8-8.add
 " A problem that plagued me for months, having visual cues for white spacing
 " solves formatting problems a lot quicker. Also, we're using modern shells
 " (right?) so using UTF-8 characters for symbols should be a given.
-"set fillchars=diff:⣿,vert:│
+set fillchars=diff:⣿,vert:│
+if has('folding') | set fillchars+=fold:- | endif
 
 " A visual cue for line-wrapping.
-set showbreak=↪
+if has('linebreak') | set showbreak=↪ | endif
 
 " Visual cues when in 'list' model.
-"'set list listchars=tab:·\ ,eol:¬,extends:❯,precedes:❮,trail:·,nbsp:×
+set list listchars+=tab:·\ ,eol:¬,extends:❯,precedes:❮,nbsp:×
 set sidescroll=5
 "}}}
-"
 " {{{ Timeouts
 set timeout ttimeout
 set timeoutlen=400 ttimeoutlen=500
 set updatetime=1500
 " }}}
-"
+" {{{ Local Configuration
 if filereadable('~/.vimrc.local') | source ~/.vimrc.local | endif
-
-" {{{ Vundle setup
+" }}}
+" {{{ Vundle Setup
 "
 " Update 'rtp' and 'ft' to handle plugin loading.
 filetype off
 
+" Read in my options.
 source ~/.vim/plugin/options.vim
 
 if filereadable('~/.vim/plugin/options.local.vim')
@@ -197,8 +201,8 @@ endif
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 
-" {{{ Plugin list
-" {{{ Core plugins
+" {{{2 Plugin list
+" {{{3 Core plugins
 Plugin 'gmarik/vundle'
 Plugin 'bling/vim-airline'
 Plugin 'thinca/vim-localrc'
@@ -210,8 +214,7 @@ Plugin 'int3/vim-extradite'
 Plugin 'majutsushi/tagbar'
 Plugin 'mattn/webapi-vim'
 " }}}
-
-" {{{ Utility plugins
+" {{{3 Utility plugins
 Bundle 'junegunn/goyo.vim'
 Plugin 'guns/xterm-color-table.vim'
 Plugin 'Raimondi/delimitMate'
@@ -223,51 +226,33 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-abolish'
 Plugin 'honza/vim-snippets'
-"Plugin 'jalcine/cmake.vim'
+Plugin 'jalcine/cmake.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'godlygeek/tabular'
-"Plugin 't4ku/marktag'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'Valloric/YouCompleteMe'
+Bundle 'dbakker/vim-lint'
 " }}}
-
-" {{{ Unite plugins
+" {{{3 Unite plugins
 Plugin 'Shougo/unite.vim'
 Plugin 'tsukkee/unite-tag'
 Plugin 'zepto/unite-tmux'
 Plugin 'yuku-t/unite-git'
 Plugin 'pasela/unite-webcolorname'
 " }}}
-
-" {{{ Version Control
-Plugin 'tpope/vim-git'
-Plugin 'mattn/gist-vim'
-Plugin 'junegunn/vim-github-dashboard'
-Plugin 'mmozuras/vim-github-comment'
-"Plugin 'jaxbot/github-issues.vim'
-" }}}
-
-" {{{ Language support
-Plugin 'ap/vim-css-color'
-Plugin 'groenewege/vim-less'
-Plugin 'tpope/vim-markdown'
-Plugin 'moll/vim-node'
-Plugin 'ahayman/vim-nodejs-complete'
-Plugin 'jelera/vim-javascript-syntax'
-Plugin 'elzr/vim-json'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'astashov/vim-ruby-debugger'
-Plugin 'ecomba/vim-ruby-refactoring'
-" }}}
-
+"}}}
+"
 syntax enable
-filetype plugin indent on
+filetype plugin on
+filetype indent on
 " }}}
-
 " {{{ Color scheming
 " Define the colorscheme that'd be used. Can't lie; it's hard to pick *only*
 " one. Also apply the color scheme for airline.
 colorscheme lucius
+hi Normal     ctermbg=NONE guibg=NONE
+hi FoldColumn ctermbg=NONE guibg=NONE
+hi VertSplit  ctermbg=NONE guibg=NONE
 " }}}

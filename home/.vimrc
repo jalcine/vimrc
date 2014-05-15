@@ -167,14 +167,15 @@ set spellfile=~/.vim/dict.custom.utf8-8.add
 " A problem that plagued me for months, having visual cues for white spacing
 " solves formatting problems a lot quicker. Also, we're using modern shells
 " (right?) so using UTF-8 characters for symbols should be a given.
-set fillchars=diff:⣿,vert:│
+set fillchars+=diff:⣿
+set fillchars+=vert:│
 if has('folding') | set fillchars+=fold:- | endif
 
 " A visual cue for line-wrapping.
 if has('linebreak') | set showbreak=↪ | endif
 
 " Visual cues when in 'list' model.
-set list listchars+=tab:·\ ,eol:¬,extends:❯,precedes:❮,nbsp:×
+set list listchars+=eol:¬,extends:❯,precedes:❮,tab:\|\ 
 set sidescroll=5
 "}}}
 " {{{ Timeouts
@@ -234,6 +235,8 @@ Plugin 'godlygeek/tabular'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'Valloric/YouCompleteMe'
 Bundle 'dbakker/vim-lint'
+Bundle 'mattboehm/vim-accordion'
+Bundle 'jalcine/vim-swigjs'
 " }}}
 " {{{3 Unite plugins
 Plugin 'Shougo/unite.vim'

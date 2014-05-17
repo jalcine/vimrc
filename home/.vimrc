@@ -47,6 +47,7 @@ set sessionoptions=buffers,tabpages,winsize,curdir
 set novisualbell
 set noerrorbells
 set ruler
+set nonumber
 if has('conceal') | set conceallevel=1 | endif
 
 " Gimme something to look at.
@@ -248,6 +249,7 @@ Bundle 'junegunn/goyo.vim'
 Plugin 'guns/xterm-color-table.vim'
 Plugin 'Raimondi/delimitMate'
 Plugin 'SirVer/Ultisnips'
+Plugin 'Chiel92/vim-autoformat'
 Plugin 'tpope/vim-dispatch'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-repeat'

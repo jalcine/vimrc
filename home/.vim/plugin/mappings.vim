@@ -46,7 +46,7 @@ cnoremap <silent> <leader>pt <C-R>=strftime("%Y%m%d%H%M%S")<CR>
 nnoremap <silent> <leader>sw :%s/\s$//g<cr>
 
 " Formats the current buffer.
-nnoremap <leader>f gg=G
+nnoremap <leader>f :Autoformat<CR><CR>
 
 " Bind make command.
 nnoremap <silent> <leader>m  :Make<CR>

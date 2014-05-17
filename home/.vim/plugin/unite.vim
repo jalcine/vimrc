@@ -10,6 +10,7 @@ func! s:configure_unite_buffer()
   imap <buffer> <C-k>   <Plug>(unite_select_previous_line)<CR>
   imap <buffer> <C-p>   <Plug>(unite_auto_preview)<CR>
   imap <buffer> <F5>    <Plug>(unite_redraw)<CR>
+  imap <buffer> <ESC>   <Plug>(unite_exit)<CR>
   nmap <buffer> <F5>    <Plug>(unite_redraw)<CR>
   nmap <buffer> <ESC>   <Plug>(unite_exit)<CR>
   nmap <buffer> h       <Plug>(unite_quick_help)<CR>

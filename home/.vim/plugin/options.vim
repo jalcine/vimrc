@@ -10,25 +10,21 @@ let g:NERDCreateDefaultMappings=1
 " }}}
 
 " {{{ Syntastic
-let g:syntastic_check_on_open=0
+let g:syntastic_check_on_open=1
 let g:syntastic_check_on_wq=1
 let g:syntastic_aggregate_errors=1
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
 let g:syntastic_enable_ballons=has('ballon_eval')
 let g:syntastic_always_populate_loc_list=1
-let g:syntastic_auto_jump=0
-let g:syntastic_auto_loc_list=2
-let g:syntastic_loc_list_height=5
+let g:syntastic_auto_jump=2
+let g:syntastic_auto_loc_list=1
+let g:syntastic_loc_list_height=3
 let g:syntastic_ignore_files = ['\m^/usr/include/']
-let g:syntastic_mode_map = {
-			\ 'mode': 'active',
-			\ 'active_filetypes': ['ruby', 'javascript', 'sass', 'haml', 'sh', 'cpp' ],
-			\ 'passive_filetypes': ['html', 'perl', 'python']
-			\ }
-let g:syntastic_javascript_checkers=['jscs', 'jslint', 'jshint']
+let g:syntastic_mode_map = { 'mode': 'active' }
+let g:syntastic_javascript_checkers=['jscs', 'jslint', 'jshint', 'jsl']
 let g:syntastic_json_checkers=['jsonlint', 'jsonval']
-let g:syntastic_ruby_checkers=['mri', 'rubylint']
+let g:syntastic_ruby_checkers=['mri', 'rubylint', 'rubocop']
 let g:syntasitc_perl_checkers=['perl', 'perlcritic', 'podchecker']
 let g:syntastic_python_checkers=['pylint','pep8','python']
 let g:syntastic_cpp_checkers=['gcc','cppcheck','cpplint']
@@ -37,7 +33,6 @@ let g:syntastic_haml_checkers=['haml_lint', 'haml']
 let g:syntastic_sh_checkers=['sh','shellcheck','checkbashisms']
 let g:syntastic_vim_checkers=['vimlint']
 let g:syntastic_ruby_exec=substitute(system('which ruby'),'\n','','g')
-let g:syntastic_jshint_exe='jshint'
 " }}}
 
 " {{{ Signify
@@ -89,7 +84,7 @@ let g:UltiSnipsEditSplit="horizontal"
 let g:UltiSnipsExpandTrigger="<C-l>"
 let g:UltiSnipsJumpForwardTrigger="<C-j>"
 let g:UltiSnipsJumpBackwardTrigger="<C-k>"
-let g:UltiSnipsSnippetDirectories=["Ultisnips", "snippets"]
+let g:UltiSnipsSnippetDirectories=["Ultisnips"]
 " }}}
 
 " {{{ Tagbar

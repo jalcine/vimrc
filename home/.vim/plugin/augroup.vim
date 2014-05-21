@@ -3,5 +3,5 @@
 " Description: Augroups for jazz.
 " Last Modified: May 21, 2014
 
-au FileReadPre *cpanfile   set ft=cpan.perl
-au FileReadPre *pintofile  set ft=pinto.perl
+au BufReadPre *cpanfile   set ft=cpan.perl
+au BufReadPre *pintofile  set ft=pinto.perl

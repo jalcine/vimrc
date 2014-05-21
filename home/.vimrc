@@ -235,6 +235,7 @@ Plugin 'godlygeek/tabular'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'Valloric/YouCompleteMe'
 Bundle 'dbakker/vim-lint'
+Bundle 'elzr/vim-json'
 Bundle 'mattboehm/vim-accordion'
 Bundle 'jalcine/vim-swigjs'
 " }}}

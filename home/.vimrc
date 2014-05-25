@@ -256,6 +256,7 @@ filetype indent on
 " Define the colorscheme that'd be used. Can't lie; it's hard to pick *only*
 " one. Also apply the color scheme for airline.
 colorscheme lucius
+set background=dark
 hi Normal     ctermbg=NONE guibg=NONE
 hi FoldColumn ctermbg=NONE guibg=NONE
 hi VertSplit  ctermbg=NONE guibg=NONE

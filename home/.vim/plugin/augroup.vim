@@ -18,3 +18,4 @@ func! s:reload_tmux()
   call system('tmux send-keys r')
   redraw | echomsg "[tmux] Reloaded root configuration file." | redraw
 endfunc
+

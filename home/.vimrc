@@ -119,7 +119,7 @@ let g:vimsyn_embed='Pr'
 set foldenable foldmethod=syntax
 
 " Tiny fold column, all the time folding.
-set foldcolumn=1 foldlevel=1
+set foldcolumn=2 foldlevel=0
 
 " Show anything less than 3 lines.
 set foldminlines=2 foldnestmax=5 foldlevelstart=1
@@ -176,7 +176,11 @@ if has('folding') | set fillchars+=fold:- | endif
 if has('linebreak') | set showbreak=↪ | endif
 
 " Visual cues when in 'list' model.
-set list listchars+=eol:¬,extends:❯,precedes:❮,tab:\|\ 
+set list
+set listchars+=eol:¬
+set listchars+=extends:❯,precedes:❮
+set listchars+=tab:\|\ 
+
 set sidescroll=5
 "}}}
 " {{{ Timeouts

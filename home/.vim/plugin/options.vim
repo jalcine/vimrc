@@ -4,10 +4,10 @@ if exists('g:jalcine_options')
 endif
 
 let g:jalcine_options=1
-let g:snips_author="Jacky Alcine <me@jalcine.me>"
 
 " {{{ NERD{Tree,Commenter}
 let g:NERDCreateDefaultMappings=1
+let g:NERDCompactSexyComs=1
 " }}}
 " {{{ Syntastic
 let g:syntastic_check_on_open=1
@@ -20,8 +20,9 @@ let g:syntastic_always_populate_loc_list=1
 let g:syntastic_auto_jump=2
 let g:syntastic_auto_loc_list=1
 let g:syntastic_loc_list_height=3
-let g:syntastic_ignore_files = ['\m^/usr/include/']
+let g:syntastic_ignore_files = ['\m^/usr/include/', 'node_modules']
 let g:syntastic_mode_map = { 'mode': 'active' }
+" {{{ Checkers for Syntastic
 let g:syntastic_javascript_checkers=['jscs', 'jslint', 'jshint', 'jsl']
 let g:syntastic_json_checkers=['jsonlint', 'jsonval']
 let g:syntastic_ruby_checkers=['mri', 'rubylint', 'rubocop']
@@ -32,11 +33,12 @@ let g:syntastic_c_checkers=['gcc','make','cppcheck']
 let g:syntastic_haml_checkers=['haml_lint', 'haml']
 let g:syntastic_sh_checkers=['sh','shellcheck','checkbashisms']
 let g:syntastic_vim_checkers=['vimlint']
+" }}}
 let g:syntastic_ruby_exec=substitute(system('which ruby'),'\n','','g')
 " }}}
 " {{{ Signify
 let g:signify_vcs_list=['git']
-let g:signify_disable_by_default=1
+let g:signify_disable_by_default=0
 if v:version >= 703 | let g:signify_sign_overwrite=1 | endif
 let g:signify_sign_add='+'
 let g:signify_sign_change='!'
@@ -75,6 +77,7 @@ endif
 let g:unite_prompt='UNITE » '
 " }}}
 " {{{ Ultisnips
+let g:snips_author="Jacky Alcine <me@jalcine.me>"
 let g:UltiSnipsEditSplit="horizontal"
 let g:UltiSnipsExpandTrigger="<C-l>"
 let g:UltiSnipsJumpForwardTrigger="<C-j>"

@@ -255,6 +255,8 @@ filetype plugin on
 filetype indent on
 " }}}
 " {{{ Color scheming
+" 256 colors all dai.
+set t_Co=256
 " Define the colorscheme that'd be used. Can't lie; it's hard to pick *only*
 " one. Also apply the color scheme for airline.
 colorscheme pencil

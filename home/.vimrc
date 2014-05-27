@@ -79,6 +79,7 @@ set smarttab expandtab
 " Set a hard wrapping to 78 characters. Nothing should be longer than that.
 " Trust me, living a few days in the console will teach you that.
 set textwidth=79
+set nowrap
 
 " Using 'smartindent' is obselete; let ftindent plugins do their magic and
 " just format C-like files.

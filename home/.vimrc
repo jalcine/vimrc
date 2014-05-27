@@ -214,6 +214,7 @@ Plugin 'mhinz/vim-signify'
 Plugin 'int3/vim-extradite'
 Plugin 'majutsushi/tagbar'
 Plugin 'mattn/webapi-vim'
+Plugin 'reedes/vim-colors-pencil'
 " }}}
 " {{{3 Utility plugins
 Bundle 'junegunn/goyo.vim'
@@ -255,7 +256,8 @@ filetype indent on
 " {{{ Color scheming
 " Define the colorscheme that'd be used. Can't lie; it's hard to pick *only*
 " one. Also apply the color scheme for airline.
-colorscheme lucius
+colorscheme pencil
+set background=dark
 hi Normal     ctermbg=NONE guibg=NONE
 hi FoldColumn ctermbg=NONE guibg=NONE
 hi VertSplit  ctermbg=NONE guibg=NONE

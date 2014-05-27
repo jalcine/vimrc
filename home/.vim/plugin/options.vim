@@ -17,13 +17,13 @@ let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
 let g:syntastic_enable_ballons=has('ballon_eval')
 let g:syntastic_always_populate_loc_list=1
-let g:syntastic_auto_jump=2
+let g:syntastic_auto_jump=0
 let g:syntastic_auto_loc_list=1
 let g:syntastic_loc_list_height=3
 let g:syntastic_ignore_files = ['\m^/usr/include/', 'node_modules']
 let g:syntastic_mode_map = { 'mode': 'active' }
 " {{{ Checkers for Syntastic
-let g:syntastic_javascript_checkers=['jscs', 'jslint', 'jshint', 'jsl']
+let g:syntastic_javascript_checkers=['jslint', 'jshint', 'jscs']
 let g:syntastic_json_checkers=['jsonlint', 'jsonval']
 let g:syntastic_ruby_checkers=['mri', 'rubylint', 'rubocop']
 let g:syntasitc_perl_checkers=['perl', 'perlcritic', 'podchecker']

@@ -220,6 +220,7 @@ Plugin 'int3/vim-extradite'
 Plugin 'majutsushi/tagbar'
 Plugin 'mattn/webapi-vim'
 Plugin 'reedes/vim-colors-pencil'
+Plugin 'zaiste/tmux.vim'
 " }}}
 " {{{3 Utility plugins
 Bundle 'junegunn/goyo.vim'

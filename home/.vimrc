@@ -24,7 +24,7 @@ set fileformats=unix
 " Use Bash. At all costs.
 " Also, update my path.
 set shell=/bin/bash
-set path=.,$HOME/.local/include,/usr/local/include,/usr/include
+set path=.,/usr/local/include,/usr/include,$HOME/.local/include
 
 " We need modelines.
 set modeline

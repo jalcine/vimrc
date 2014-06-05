@@ -8,6 +8,11 @@
 " Not like a real cloud, like a server on the Internet that I couldn't
 " directly access.
 
+let s:os_name="Unknown"
+if executable('uname')
+  let s:os_name=substitute(system('uname'),'\n','','g')
+endif
+
 "{{{ Immediate Options
 " We live in the future, don't worry about backwards compatibility with Vi.
 " In fact, why bother set it? If $VIM is reading this, nocp is active!
@@ -174,8 +179,12 @@ set spellfile=~/.vim/dict.custom.utf8-8.add
 " (right?) so using UTF-8 characters for symbols should be a given.
 set fillchars+=diff:⣿
 set fillchars+=vert:│
-if has('folding') | set fillchars+=fold:— | endif
-"if has('folding') | set fillchars+=fold:- | endif
+if has('folding')
+  set fillchars+=fold:-
+  if s:os_name == "Linux"
+    set fillchars+=fold:―
+  endif
+endif
 
 " A visual cue for line-wrapping.
 if has('linebreak') | set showbreak=↪ | endif
@@ -184,7 +193,7 @@ if has('linebreak') | set showbreak=↪ | endif
 set list
 set listchars+=eol:¬
 set listchars+=extends:❯,precedes:❮
-set listchars+=tab:\|\ 
+set listchars+=tab:\|\
 
 set sidescroll=5
 "}}}

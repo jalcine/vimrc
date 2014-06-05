@@ -59,11 +59,12 @@ set ttymouse=xterm2
 set pastetoggle=<F2>
 
 " Set the title in the terminal.
-set title titlelen=120
-set titlestring="%t%(\ %M%)%(\ (%{expand(\"%:p:h\")})%)%(\ %a%)"
+set title
+set titlelen=120 titlestring="%t%(\ %M%)%(\ (%{expand(\"%:p:h\")})%)%(\ %a%)"
 
 " Update by redraw and not INS/DEL
-set ttyscroll=10 ttyfast
+set ttyscroll=100
+set ttyfast
 
 " Show me what I was doing.
 if has('showcmd') | set showcmd | endif
@@ -141,6 +142,8 @@ set hlsearch incsearch
 " Very useful when writing code in JavaScript or C++.
 set showmatch wrapscan
 set nogdefault noignorecase
+
+set regexpengine=1
 "}}}
 "{{{ Recovery
 " Record whether changes were made to unsaved buffers.
@@ -289,7 +292,5 @@ set t_Co=256
 " one. Also apply the color scheme for airline.
 colorscheme pencil
 set background=dark
-hi Normal     ctermbg=NONE guibg=NONE
-hi FoldColumn ctermbg=NONE guibg=NONE
-hi VertSplit  ctermbg=NONE guibg=NONE
+hi Normal ctermbg=NONE guibg=NONE
 " }}}

@@ -3,7 +3,9 @@ if exists('g:jalcine_options')
   finish
 endif
 
+" {{{ My Options
 let g:jalcine_options=1
+" }}}
 
 " {{{ NERD{Tree,Commenter}
 let g:NERDCreateDefaultMappings=1
@@ -108,9 +110,13 @@ let g:github_dashboard['emoji_map'] = {
       \ }
 
 " }}}
+" {{{ JavaScript options
+let g:javascript_enable_domhtmlcss=1
+let g:javascript_conceal=1
+" }}}
 
 let g:goyo_linenr=1
-let g:used_javascript_libs='jasmine,backbone,underscore,jquery'
+let g:used_javascript_libs='jasmine,backbone,jquery,lodash'
 "let g:CSApprox_hook_post = ['hi Normal  ctermbg=NONE',
 "\ 'hi FoldColumn ctermbg=NONE',
 "\ 'hi SignColumn ctermbg=NONE',

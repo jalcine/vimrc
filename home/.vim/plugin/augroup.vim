@@ -5,4 +5,4 @@
 
 au BufReadPre *cpanfile   set ft=cpan.perl
 au BufReadPre *pintofile  set ft=pinto.perl
-au BufReadPost *shutterstock-mason/**.(mh,mhtml) set ft=mason
+au FileType   javascript  call JavaScriptFold()

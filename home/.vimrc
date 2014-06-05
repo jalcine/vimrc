@@ -246,7 +246,7 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'godlygeek/tabular'
 Plugin 'terryma/vim-multiple-cursors'
-Plugin 'Valloric/YouCompleteMe'
+if v:version >= 703 | Plugin 'Valloric/YouCompleteMe' | endif
 Bundle 'dbakker/vim-lint'
 Bundle 'elzr/vim-json'
 Bundle 'mattboehm/vim-accordion'
@@ -257,6 +257,7 @@ Bundle 'maksimr/vim-jsbeautify'
 Bundle 'einars/js-beautify'
 Bundle 'moll/vim-node'
 Bundle 'myhere/vim-nodejs-complete'
+Bundle 'junegunn/vim-github-dashboard'
 " }}}
 " {{{3 Unite plugins
 Plugin 'Shougo/unite.vim'
@@ -268,8 +269,8 @@ Plugin 'pasela/unite-webcolorname'
 "}}}
 "
 syntax enable
-filetype plugin on
 filetype indent on
+filetype plugin on
 set omnifunc=syntaxcomplete#Complete
 " }}}
 " {{{ Color scheming

@@ -90,7 +90,7 @@ let g:tagbar_autoshowtag=1
 " }}}
 " {{{ vim-session
 let g:session_autoload="no"
-let g:session_autosave="no"
+let g:session_autosave="yes"
 let g:session_command_aliases=1
 let g:session_default_name="default"
 let g:session_directory="~/.vim/sessions"
@@ -99,7 +99,7 @@ let g:session_directory="~/.vim/sessions"
 let g:github_user='jalcine'
 let g:github_dashboard = { 'username': g:github_user }
 let g:github_dashboard['position'] = 'bottom'
-let g:github_dashboard['emoji'] = 0
+let g:github_dashboard['emoji'] = 1
 let g:github_dashboard['emoji_map'] = {
       \   'user_dashboard': 'blush',
       \   'user_activity':  'smile',

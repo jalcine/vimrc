@@ -196,7 +196,7 @@ if has('linebreak') | set showbreak=↪ | endif
 set list
 set listchars+=eol:¬
 set listchars+=extends:❯,precedes:❮
-set listchars+=tab:\|\
+set listchars+=tab:\|\ 
 
 set sidescroll=5
 "}}}

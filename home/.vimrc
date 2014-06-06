@@ -168,7 +168,7 @@ set dictionary+=/usr/share/dict/connectives.gz,/usr/share/dict/web2a.gz
 " Set a location to save my added words.
 set spellfile=~/.vim/dict.custom.utf8-8.add
 "}}}
-"{{{ Whitespacing and Fonts
+"{{{ Whitespacing and Characters
 " A problem that plagued me for months, having visual cues for white spacing
 " solves formatting problems a lot quicker. Also, we're using modern shells
 " (right?) so using UTF-8 characters for symbols should be a given.

@@ -3,7 +3,9 @@ if exists('g:jalcine_options')
   finish
 endif
 
+" {{{ My Options
 let g:jalcine_options=1
+" }}}
 
 " {{{ NERD{Tree,Commenter}
 let g:NERDCreateDefaultMappings=1
@@ -90,7 +92,7 @@ let g:tagbar_autoshowtag=1
 " }}}
 " {{{ vim-session
 let g:session_autoload="no"
-let g:session_autosave="no"
+let g:session_autosave="yes"
 let g:session_command_aliases=1
 let g:session_default_name="default"
 let g:session_directory="~/.vim/sessions"
@@ -99,7 +101,7 @@ let g:session_directory="~/.vim/sessions"
 let g:github_user='jalcine'
 let g:github_dashboard = { 'username': g:github_user }
 let g:github_dashboard['position'] = 'bottom'
-let g:github_dashboard['emoji'] = 0
+let g:github_dashboard['emoji'] = 1
 let g:github_dashboard['emoji_map'] = {
       \   'user_dashboard': 'blush',
       \   'user_activity':  'smile',
@@ -108,9 +110,13 @@ let g:github_dashboard['emoji_map'] = {
       \ }
 
 " }}}
+" {{{ JavaScript options
+let g:javascript_enable_domhtmlcss=1
+let g:javascript_conceal=1
+" }}}
 
 let g:goyo_linenr=1
-let g:used_javascript_libs='jasmine,backbone,underscore,jquery'
+let g:used_javascript_libs='jasmine,backbone,jquery,lodash'
 "let g:CSApprox_hook_post = ['hi Normal  ctermbg=NONE',
 "\ 'hi FoldColumn ctermbg=NONE',
 "\ 'hi SignColumn ctermbg=NONE',

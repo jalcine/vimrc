@@ -8,6 +8,11 @@
 " Not like a real cloud, like a server on the Internet that I couldn't
 " directly access.
 
+let s:os_name="Unknown"
+if executable('uname')
+  let s:os_name=substitute(system('uname'),'\n','','g')
+endif
+
 "{{{ Immediate Options
 " We live in the future, don't worry about backwards compatibility with Vi.
 " In fact, why bother set it? If $VIM is reading this, nocp is active!
@@ -54,11 +59,12 @@ set ttymouse=xterm2
 set pastetoggle=<F2>
 
 " Set the title in the terminal.
-set title titlelen=120
-set titlestring="%t%(\ %M%)%(\ (%{expand(\"%:p:h\")})%)%(\ %a%)"
+set title
+set titlelen=120 titlestring="%t%(\ %M%)%(\ (%{expand(\"%:p:h\")})%)%(\ %a%)"
 
 " Update by redraw and not INS/DEL
-set ttyscroll=10 ttyfast
+set ttyscroll=100
+set ttyfast
 
 " Show me what I was doing.
 if has('showcmd') | set showcmd | endif
@@ -136,6 +142,8 @@ set hlsearch incsearch
 " Very useful when writing code in JavaScript or C++.
 set showmatch wrapscan
 set nogdefault noignorecase
+
+set regexpengine=1
 "}}}
 "{{{ Recovery
 " Record whether changes were made to unsaved buffers.
@@ -174,8 +182,12 @@ set spellfile=~/.vim/dict.custom.utf8-8.add
 " (right?) so using UTF-8 characters for symbols should be a given.
 set fillchars+=diff:⣿
 set fillchars+=vert:│
-if has('folding') | set fillchars+=fold:— | endif
-"if has('folding') | set fillchars+=fold:- | endif
+if has('folding')
+  set fillchars+=fold:-
+  if s:os_name == "Linux"
+    set fillchars+=fold:―
+  endif
+endif
 
 " A visual cue for line-wrapping.
 if has('linebreak') | set showbreak=↪ | endif
@@ -184,7 +196,7 @@ if has('linebreak') | set showbreak=↪ | endif
 set list
 set listchars+=eol:¬
 set listchars+=extends:❯,precedes:❮
-set listchars+=tab:\|\ 
+set listchars+=tab:\|\
 
 set sidescroll=5
 "}}}
@@ -246,7 +258,7 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'godlygeek/tabular'
 Plugin 'terryma/vim-multiple-cursors'
-Plugin 'Valloric/YouCompleteMe'
+if v:version >= 703 | Plugin 'Valloric/YouCompleteMe' | endif
 Bundle 'dbakker/vim-lint'
 Bundle 'elzr/vim-json'
 Bundle 'mattboehm/vim-accordion'
@@ -257,6 +269,7 @@ Bundle 'maksimr/vim-jsbeautify'
 Bundle 'einars/js-beautify'
 Bundle 'moll/vim-node'
 Bundle 'myhere/vim-nodejs-complete'
+Bundle 'junegunn/vim-github-dashboard'
 " }}}
 " {{{3 Unite plugins
 Plugin 'Shougo/unite.vim'
@@ -268,8 +281,8 @@ Plugin 'pasela/unite-webcolorname'
 "}}}
 "
 syntax enable
-filetype plugin on
 filetype indent on
+filetype plugin on
 set omnifunc=syntaxcomplete#Complete
 " }}}
 " {{{ Color scheming
@@ -279,7 +292,5 @@ set t_Co=256
 " one. Also apply the color scheme for airline.
 colorscheme pencil
 set background=dark
-hi Normal     ctermbg=NONE guibg=NONE
-hi FoldColumn ctermbg=NONE guibg=NONE
-hi VertSplit  ctermbg=NONE guibg=NONE
+hi Normal ctermbg=NONE guibg=NONE
 " }}}

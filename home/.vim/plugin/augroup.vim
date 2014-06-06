@@ -5,3 +5,4 @@
 
 au BufReadPre *cpanfile   set ft=cpan.perl
 au BufReadPre *pintofile  set ft=pinto.perl
+au FileType   javascript  call JavaScriptFold()

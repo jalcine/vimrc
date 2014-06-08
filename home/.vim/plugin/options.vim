@@ -6,7 +6,6 @@ endif
 " {{{ My Options
 let g:jalcine_options=1
 " }}}
-
 " {{{ NERD{Tree,Commenter}
 let g:NERDCreateDefaultMappings=1
 let g:NERDCompactSexyComs=1
@@ -54,7 +53,7 @@ let g:tern_show_argument_hints='on_hold'
 let g:tern_show_signature_in_pum=1
 " }}}
 " {{{ Airline
-let g:airline_theme='pencil'
+let g:airline_theme='kalisi'
 let g:airline_detected_modified=1
 let g:airline_powerline_fonts=1
 let g:airline_detect_iminsert=0

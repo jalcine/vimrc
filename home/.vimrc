@@ -1,4 +1,4 @@
-" vim: ft=vim fdm=marker tw=78 fdl=0
+" vim: ft=vim fdm=marker tw=78 fdl=0:
 " File: .vimrc
 " Author: Jacky Alciné <me@jalcine.me>
 " Description: The heart.
@@ -8,6 +8,8 @@
 " Not like a real cloud, like a server on the Internet that I couldn't
 " directly access.
 
+" This 's:os_name' is meant to only be used here since I only try to get
+" OS-specific things ironed out here.
 let s:os_name="Unknown"
 if executable('uname')
   let s:os_name=substitute(system('uname'),'\n','','g')
@@ -60,15 +62,14 @@ set pastetoggle=<F2>
 
 " Set the title in the terminal.
 set title
-set titlelen=120 titlestring="%t%(\ %M%)%(\ (%{expand(\"%:p:h\")})%)%(\ %a%)"
+set titlelen=80
+set titlestring="%t%(\ %M%)%(\ (%{expand(\"%:.:h\")})%)"
 
 " Update by redraw and not INS/DEL
-set ttyscroll=100
-set ttyfast
+set ttyscroll=5
+set nottyfast
 
-" Show me what I was doing.
-if has('showcmd') | set showcmd | endif
-set noshowfulltag
+set noshowcmd noshowfulltag
 set showmatch
 
 " Show me the overflow.
@@ -90,6 +91,7 @@ set smarttab expandtab
 " Trust me, living a few days in the console will teach you that.
 set textwidth=79
 set nowrap
+
 
 " Using 'smartindent' is obselete; let ftindent plugins do their magic and
 " just format C-like files.
@@ -198,7 +200,8 @@ set listchars+=eol:¬
 set listchars+=extends:❯,precedes:❮
 set listchars+=tab:\|\ 
 
-set sidescroll=5
+" Keep some spacing.
+set sidescrolloff=1
 "}}}
 " {{{ Timeouts
 set timeout ttimeout
@@ -258,6 +261,10 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'godlygeek/tabular'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'reedes/vim-textobj-quote'
+Plugin 'reedes/vim-pencil'
+Plugin 'reedes/vim-litecorrect'
+Plugin 'reedes/vim-lexical'
 if v:version >= 703 | Plugin 'Valloric/YouCompleteMe' | endif
 Bundle 'dbakker/vim-lint'
 Bundle 'elzr/vim-json'
@@ -286,11 +293,8 @@ filetype plugin on
 set omnifunc=syntaxcomplete#Complete
 " }}}
 " {{{ Color scheming
-" 256 colors all dai.
 set t_Co=256
-" Define the colorscheme that'd be used. Can't lie; it's hard to pick *only*
-" one. Also apply the color scheme for airline.
-colorscheme pencil
 set background=dark
+colorscheme pencil
 hi Normal ctermbg=NONE guibg=NONE
 " }}}

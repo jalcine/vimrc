@@ -52,17 +52,25 @@ let g:tern_show_argument_hints='on_hold'
 let g:tern_show_signature_in_pum=1
 " }}}
 " {{{ Airline
+let g:airline_theme='pencil'
 let g:airline_detected_modified=1
 let g:airline_powerline_fonts=1
 let g:airline_detect_iminsert=0
 let g:airline#extensions#hunks#non_zero_only=1
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#branch#enabled=1
+let g:airline#extensions#whitespace#enabled = 1
+let g:airline#extensions#whitespace#mixed_indent_algo = 0
+let g:airline#extensions#whitespace#show_message = 1
+let g:airline#extensions#whitespace#trailing_format = 'trail[%s]'
+let g:airline#extensions#whitespace#mixed_indent_format = 'mix-indent[%s]'
 let g:airline_mode_map={
       \ '__' : '-',
       \ 'n'  : 'N',
       \ 'i'  : 'I',
-      \ 'R'  : 'R'
+      \ 'R'  : 'R',
+      \ 'v'  : 'V',
+      \ 'V'  : 'VB'
       \ }
 " }}}
 " {{{ Unite
@@ -114,12 +122,10 @@ let g:github_dashboard['emoji_map'] = {
 let g:javascript_enable_domhtmlcss=1
 let g:javascript_conceal=1
 " }}}
+" {{{ Colorscheme Specific 
+let g:pencil_neutral_headings=1
+let g:pencil_higher_contrast_ui=1
+" }}}
 
 let g:goyo_linenr=1
 let g:used_javascript_libs='jasmine,backbone,jquery,lodash'
-"let g:CSApprox_hook_post = ['hi Normal  ctermbg=NONE',
-"\ 'hi FoldColumn ctermbg=NONE',
-"\ 'hi SignColumn ctermbg=NONE',
-"\ 'hi LineNr     ctermbg=NONE',
-"\ 'hi VertSplit  ctermbg=NONE',
-"\ ]

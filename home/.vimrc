@@ -291,5 +291,8 @@ set t_Co=256
 " one. Also apply the color scheme for airline.
 colorscheme pencil
 set background=dark
-hi Normal ctermbg=NONE guibg=NONE
+hi Normal   ctermbg=NONE guibg=NONE
+hi Conceal  ctermbg=NONE guibg=NONE
+hi Folded   ctermbg=NONE guibg=NONE
+hi VertSpit ctermbg=NONE guibg=NONE
 " }}}

@@ -241,8 +241,7 @@ Plugin 'int3/vim-extradite'
 Plugin 'majutsushi/tagbar'
 Plugin 'mattn/webapi-vim'
 Plugin 'reedes/vim-colors-pencil'
-Plugin 'zaiste/tmux.vim'
-Plugin 'puppetlabs/puppet-syntax-vim'
+Plugin 'jalcine/vim-polyglot'
 " }}}
 " {{{3 Utility plugins
 Bundle 'junegunn/goyo.vim'
@@ -269,10 +268,10 @@ Plugin 'reedes/vim-litecorrect'
 Plugin 'reedes/vim-lexical'
 if v:version >= 703 | Plugin 'Valloric/YouCompleteMe' | endif
 Bundle 'dbakker/vim-lint'
-Bundle 'elzr/vim-json'
+"Bundle 'elzr/vim-json'
 Bundle 'mattboehm/vim-accordion'
-Bundle 'jalcine/vim-swigjs'
-Bundle 'jelera/vim-javascript-syntax'
+"Bundle 'jalcine/vim-swigjs'
+"Bundle 'jelera/vim-javascript-syntax'
 Bundle 'marijnh/tern_for_vim'
 Bundle 'maksimr/vim-jsbeautify'
 Bundle 'einars/js-beautify'
@@ -300,7 +299,8 @@ set omnifunc=syntaxcomplete#Complete
 set t_Co=256
 set background=dark
 colorscheme pencil
-hi Normal     ctermbg=NONE guibg=NONE
-hi FoldColumn ctermbg=NONE guibg=NONE
-hi VertSplit  ctermbg=NONE guibg=NONE
+hi Normal   ctermbg=NONE guibg=NONE
+hi Conceal  ctermbg=NONE guibg=NONE
+hi Folded   ctermbg=NONE guibg=NONE
+hi VertSpit ctermbg=NONE guibg=NONE
 " }}}

@@ -2,10 +2,7 @@
 if exists('g:jalcine_options')
   finish
 endif
-
-" {{{ My Options
 let g:jalcine_options=1
-" }}}
 " {{{ NERD{Tree,Commenter}
 let g:NERDCreateDefaultMappings=1
 let g:NERDCompactSexyComs=1
@@ -24,7 +21,7 @@ let g:syntastic_loc_list_height=3
 let g:syntastic_ignore_files = ['\m^/usr/include/', 'node_modules']
 let g:syntastic_mode_map = { 'mode': 'active' }
 " {{{ Checkers for Syntastic
-let g:syntastic_javascript_checkers=['jslint', 'jshint', 'jscs']
+let g:syntastic_javascript_checkers=['jshint', 'jscs']
 let g:syntastic_json_checkers=['jsonlint', 'jsonval']
 let g:syntastic_ruby_checkers=['mri', 'rubylint', 'rubocop']
 let g:syntastic_perl_checkers=['perl','perlcritic','podchecker']
@@ -55,7 +52,7 @@ let g:tern_show_signature_in_pum=1
 " {{{ Airline
 let g:airline_theme='kalisi'
 let g:airline_detected_modified=1
-let g:airline_powerline_fonts=1
+let g:airline_powerline_fonts=0
 let g:airline_detect_iminsert=0
 let g:airline#extensions#hunks#non_zero_only=1
 let g:airline#extensions#tabline#enabled=1
@@ -63,8 +60,8 @@ let g:airline#extensions#branch#enabled=1
 let g:airline#extensions#whitespace#enabled = 1
 let g:airline#extensions#whitespace#mixed_indent_algo = 0
 let g:airline#extensions#whitespace#show_message = 1
-let g:airline#extensions#whitespace#trailing_format = 'trail[%s]'
-let g:airline#extensions#whitespace#mixed_indent_format = 'mix-indent[%s]'
+let g:airline#extensions#whitespace#trailing_format = 'sp: [%s]'
+let g:airline#extensions#whitespace#mixed_indent_format = 'mi: [%s]'
 let g:airline_mode_map={
       \ '__' : '-',
       \ 'n'  : 'N',

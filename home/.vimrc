@@ -196,7 +196,7 @@ if has('linebreak') | set showbreak=↪ | endif
 set list
 set listchars+=eol:¬
 set listchars+=extends:❯,precedes:❮
-set listchars+=tab:\|\
+set listchars+=tab:\|\ 
 
 set sidescroll=5
 "}}}
@@ -237,8 +237,7 @@ Plugin 'int3/vim-extradite'
 Plugin 'majutsushi/tagbar'
 Plugin 'mattn/webapi-vim'
 Plugin 'reedes/vim-colors-pencil'
-Plugin 'zaiste/tmux.vim'
-Plugin 'puppetlabs/puppet-syntax-vim'
+Plugin 'jalcine/vim-polyglot'
 " }}}
 " {{{3 Utility plugins
 Bundle 'junegunn/goyo.vim'
@@ -260,10 +259,10 @@ Plugin 'godlygeek/tabular'
 Plugin 'terryma/vim-multiple-cursors'
 if v:version >= 703 | Plugin 'Valloric/YouCompleteMe' | endif
 Bundle 'dbakker/vim-lint'
-Bundle 'elzr/vim-json'
+"Bundle 'elzr/vim-json'
 Bundle 'mattboehm/vim-accordion'
-Bundle 'jalcine/vim-swigjs'
-Bundle 'jelera/vim-javascript-syntax'
+"Bundle 'jalcine/vim-swigjs'
+"Bundle 'jelera/vim-javascript-syntax'
 Bundle 'marijnh/tern_for_vim'
 Bundle 'maksimr/vim-jsbeautify'
 Bundle 'einars/js-beautify'

@@ -299,8 +299,8 @@ set omnifunc=syntaxcomplete#Complete
 set t_Co=256
 set background=dark
 colorscheme pencil
-hi Normal   ctermbg=NONE guibg=NONE
-hi Conceal  ctermbg=NONE guibg=NONE
-hi Folded   ctermbg=NONE guibg=NONE
-hi VertSpit ctermbg=NONE guibg=NONE
+hi Normal    ctermbg=NONE guibg=NONE
+hi Conceal   ctermbg=NONE guibg=NONE
+hi Folded    ctermbg=NONE guibg=NONE
+hi VertSplit ctermbg=NONE guibg=NONE
 " }}}

@@ -5,4 +5,4 @@
 
 au BufReadPre *cpanfile   set ft=cpan.perl
 au BufReadPre *pintofile  set ft=pinto.perl
-au FileType   javascript  call JavaScriptFold()
+au BufWritePost ~/.homesick/repos/dotfiles/home/.tmux* call system('tmux source-file ~/.tmux.conf')

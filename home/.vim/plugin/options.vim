@@ -2,7 +2,11 @@
 if exists('g:jalcine_options')
   finish
 endif
+
 let g:jalcine_options=1
+let g:goyo_linenr=1
+let g:used_javascript_libs='jasmine,backbone,jquery,lodash'
+
 " {{{ NERD{Tree,Commenter}
 let g:NERDCreateDefaultMappings=1
 let g:NERDCompactSexyComs=1
@@ -50,10 +54,10 @@ let g:tern_show_argument_hints='on_hold'
 let g:tern_show_signature_in_pum=1
 " }}}
 " {{{ Airline
-let g:airline_theme='kalisi'
+let g:airline_theme='serene'
 let g:airline_detected_modified=1
-let g:airline_powerline_fonts=0
-let g:airline_detect_iminsert=0
+let g:airline_powerline_fonts=1
+let g:airline_detect_iminsert=1
 let g:airline#extensions#hunks#non_zero_only=1
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#branch#enabled=1
@@ -124,6 +128,3 @@ let g:javascript_conceal=1
 let g:pencil_neutral_headings=1
 let g:pencil_higher_contrast_ui=1
 " }}}
-
-let g:goyo_linenr=1
-let g:used_javascript_libs='jasmine,backbone,jquery,lodash'

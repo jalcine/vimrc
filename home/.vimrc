@@ -1,7 +1,7 @@
-" vim: ft=vim fdm=marker tw=78 fdl=0:
-" File: .vimrc
-" Author: Jacky Alciné <me@jalcine.me>
-" Description: The heart.
+" File:          .vimrc
+" Author:        Jacky Alciné <me@jalcine.me>
+" Description:   The heart.
+" Last Modified: 2014-06-10 21:17:56 EDT
 
 " This is my Vim setup. It's meant to be overriden since it ends up being
 " useful in dozens of people be it on a mobile device or in the cloud.
@@ -47,7 +47,8 @@ set sessionoptions=buffers,tabpages,winsize,curdir
 set novisualbell
 set noerrorbells
 set ruler
-set nonumber
+set number numberwidth=1
+set relativenumber
 if has('conceal') | set conceallevel=1 | endif
 
 " Gimme something to look at.
@@ -63,8 +64,8 @@ set pastetoggle=<F2>
 
 " Set the title in the terminal.
 set title
-set titlelen=80
-set titlestring="%t%(\ %M%)%(\ (%{expand(\"%:.:h\")})%)"
+set titlelen=60
+set titlestring="%t%(\ %M%)%(\ (%{expand(\"%:.:h:8\")})%)"
 
 " Update by redraw and not INS/DEL
 set ttyscroll=5
@@ -99,7 +100,7 @@ set nowrap
 set cindent
 
 " }}}
-" {{{ Wild Side & Completion
+"{{{ Wild Side & Completion
 " Enable your wild side, take command completion completion up a notch.
 " Allow for an interesting view when opening the command line menu.
 set wildmenu wildmode=longest:full
@@ -112,7 +113,7 @@ set wildignore+=.git,.hg,.bzr,.svn
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg,*.svg
 set wildignore+=build/*,tmp/*,vendor/cache/*,bin/*
 " }}}
-" {{{  Tags
+"{{{  Tags
 " Clean it out.
 set tags=./tags,./TAGS
 if isdirectory('~/.tags')
@@ -123,7 +124,7 @@ if isdirectory('~/.tags')
 endif
 
 " }}}
-" {{{ Folding
+"{{{ Folding
 " Allow for Vim syntax folding.
 let g:vimsyn_folding='afpPr'
 let g:vimsyn_embed='Pr'
@@ -132,7 +133,7 @@ let g:vimsyn_embed='Pr'
 set foldenable foldmethod=syntax
 
 " Tiny fold column, all the time folding.
-set foldcolumn=2 foldlevel=0
+set foldcolumn=1 foldlevel=0
 
 " Show anything less than 3 lines.
 set foldminlines=2 foldnestmax=5 foldlevelstart=1
@@ -204,15 +205,15 @@ set listchars+=tab:\|\
 " Keep some spacing.
 set sidescrolloff=1
 "}}}
-" {{{ Timeouts
+"{{{ Timeouts
 set timeout ttimeout
 set timeoutlen=400 ttimeoutlen=500
 set updatetime=1500
-" }}}
-" {{{ Local Configuration
+"}}}
+"{{{ Local Configuration
 if filereadable('~/.vimrc.local') | source ~/.vimrc.local | endif
-" }}}
-" {{{ Vundle Setup
+"}}}
+"{{{ Vundle Setup
 "
 " Update 'rtp' and 'ft' to handle plugin loading.
 filetype off
@@ -228,8 +229,8 @@ endif
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 
-" {{{2 Plugin list
-" {{{3 Core plugins
+"{{{2 Plugin list
+"{{{3 Core plugins
 Plugin 'gmarik/vundle'
 Plugin 'bling/vim-airline'
 Plugin 'thinca/vim-localrc'
@@ -242,8 +243,8 @@ Plugin 'majutsushi/tagbar'
 Plugin 'mattn/webapi-vim'
 Plugin 'reedes/vim-colors-pencil'
 Plugin 'jalcine/vim-polyglot'
-" }}}
-" {{{3 Utility plugins
+"}}}
+"{{{3 Utility plugins
 Bundle 'junegunn/goyo.vim'
 Plugin 'guns/xterm-color-table.vim'
 Plugin 'Raimondi/delimitMate'
@@ -280,14 +281,14 @@ Bundle 'myhere/vim-nodejs-complete'
 Bundle 'junegunn/vim-github-dashboard'
 Plugin 'elzr/vim-json'
 Plugin 'rodjek/vim-puppet'
-" }}}
-" {{{3 Unite plugins
+"}}}
+"{{{3 Unite plugins
 Plugin 'Shougo/unite.vim'
 Plugin 'tsukkee/unite-tag'
 Plugin 'zepto/unite-tmux'
 Plugin 'yuku-t/unite-git'
 Plugin 'pasela/unite-webcolorname'
-" }}}
+"}}}
 "}}}
 "
 syntax enable
@@ -297,10 +298,14 @@ set omnifunc=syntaxcomplete#Complete
 " }}}
 " {{{ Color scheming
 set t_Co=256
-set background=dark
 colorscheme pencil
-hi Normal    ctermbg=NONE guibg=NONE
-hi Conceal   ctermbg=NONE guibg=NONE
-hi Folded    ctermbg=NONE guibg=NONE
-hi VertSplit ctermbg=NONE guibg=NONE
+set background=dark
+hi Normal        ctermbg=NONE guibg=NONE
+hi Conceal       ctermbg=NONE guibg=NONE
+hi Folded        ctermbg=NONE guibg=NONE
+hi VertSplit     ctermbg=NONE guibg=NONE
+hi LineNr        ctermbg=NONE guibg=NONE
+hi CurosrLineNr  ctermbg=NONE guibg=NONE
 " }}}
+
+" vim: set fdm=marker fdl=0:

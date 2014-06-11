@@ -65,7 +65,6 @@ set pastetoggle=<F2>
 " Set the title in the terminal.
 set title
 set titlelen=60
-set titlestring="%t%(\ %M%)%(\ (%{expand(\"%:.:h:8\")})%)"
 
 " Update by redraw and not INS/DEL
 set ttyscroll=5

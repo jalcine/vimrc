@@ -43,10 +43,10 @@ hi Float            ctermfg=74                                      cterm=none
 
 " == Identifiers ==
 " any variable name
-hi Identifier       guifg=#86c6b6                                   gui=none 
+hi Identifier       guifg=#86c6b6                                   gui=none
 hi Identifier       ctermfg=116                                     cterm=none
 " function, method, class
-hi Function         guifg=#86c6b6                                   gui=none 
+hi Function         guifg=#86c6b6                                   gui=none
 hi Function         ctermfg=116                                     cterm=none
 
 
@@ -295,10 +295,9 @@ hi VimwikiHeader2   guifg=#80c0d8                                   gui=bold
 hi VimwikiHeader2   ctermfg=110                                     cterm=none
 hi VimwikiHeader3   guifg=#b3d38c                                   gui=bold
 hi VimwikiHeader3   ctermfg=150                                     cterm=none
-hi VimwikiHeader4   guifg=#86c6b6                                   gui=bold 
+hi VimwikiHeader4   guifg=#86c6b6                                   gui=bold
 hi VimwikiHeader4   ctermfg=116                                     cterm=none
 hi VimwikiHeader5   guifg=#b0a0c0                                   gui=bold
 hi VimwikiHeader5   ctermfg=182                                     cterm=none
 hi VimwikiHeader6   guifg=#90d0a0                                   gui=bold
 hi VimwikiHeader6   ctermfg=115                                     cterm=none
-

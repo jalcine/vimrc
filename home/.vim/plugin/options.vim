@@ -2,9 +2,7 @@
 if exists('g:jalcine_options')
   finish
 endif
-
 let g:jalcine_options=1
-
 " {{{ NERD{Tree,Commenter}
 let g:NERDCreateDefaultMappings=1
 let g:NERDCompactSexyComs=1
@@ -17,16 +15,16 @@ let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
 let g:syntastic_enable_ballons=has('ballon_eval')
 let g:syntastic_always_populate_loc_list=1
-let g:syntastic_auto_jump=2
+let g:syntastic_auto_jump=0
 let g:syntastic_auto_loc_list=1
 let g:syntastic_loc_list_height=3
 let g:syntastic_ignore_files = ['\m^/usr/include/', 'node_modules']
 let g:syntastic_mode_map = { 'mode': 'active' }
 " {{{ Checkers for Syntastic
-let g:syntastic_javascript_checkers=['jscs', 'jslint', 'jshint', 'jsl']
+let g:syntastic_javascript_checkers=['jshint', 'jscs']
 let g:syntastic_json_checkers=['jsonlint', 'jsonval']
 let g:syntastic_ruby_checkers=['mri', 'rubylint', 'rubocop']
-let g:syntasitc_perl_checkers=['perl', 'perlcritic', 'podchecker']
+let g:syntastic_perl_checkers=['perl','perlcritic','podchecker']
 let g:syntastic_python_checkers=['pylint','pep8','python']
 let g:syntastic_cpp_checkers=['gcc','cppcheck','cpplint']
 let g:syntastic_c_checkers=['gcc','make','cppcheck']
@@ -35,6 +33,8 @@ let g:syntastic_sh_checkers=['sh','shellcheck','checkbashisms']
 let g:syntastic_vim_checkers=['vimlint']
 " }}}
 let g:syntastic_ruby_exec=substitute(system('which ruby'),'\n','','g')
+let g:syntastic_yaml_checkers=['jsyaml']
+let g:syntastic_jshint_exe='jshint'
 " }}}
 " {{{ Signify
 let g:signify_vcs_list=['git']
@@ -50,17 +50,25 @@ let g:tern_show_argument_hints='on_hold'
 let g:tern_show_signature_in_pum=1
 " }}}
 " {{{ Airline
+let g:airline_theme='kalisi'
 let g:airline_detected_modified=1
-let g:airline_powerline_fonts=1
+let g:airline_powerline_fonts=0
 let g:airline_detect_iminsert=0
 let g:airline#extensions#hunks#non_zero_only=1
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#branch#enabled=1
+let g:airline#extensions#whitespace#enabled = 1
+let g:airline#extensions#whitespace#mixed_indent_algo = 0
+let g:airline#extensions#whitespace#show_message = 1
+let g:airline#extensions#whitespace#trailing_format = 'sp: [%s]'
+let g:airline#extensions#whitespace#mixed_indent_format = 'mi: [%s]'
 let g:airline_mode_map={
       \ '__' : '-',
       \ 'n'  : 'N',
       \ 'i'  : 'I',
-      \ 'R'  : 'R'
+      \ 'R'  : 'R',
+      \ 'v'  : 'V',
+      \ 'V'  : 'VB'
       \ }
 " }}}
 " {{{ Unite
@@ -90,7 +98,7 @@ let g:tagbar_autoshowtag=1
 " }}}
 " {{{ vim-session
 let g:session_autoload="no"
-let g:session_autosave="no"
+let g:session_autosave="yes"
 let g:session_command_aliases=1
 let g:session_default_name="default"
 let g:session_directory="~/.vim/sessions"
@@ -99,7 +107,7 @@ let g:session_directory="~/.vim/sessions"
 let g:github_user='jalcine'
 let g:github_dashboard = { 'username': g:github_user }
 let g:github_dashboard['position'] = 'bottom'
-let g:github_dashboard['emoji'] = 0
+let g:github_dashboard['emoji'] = 1
 let g:github_dashboard['emoji_map'] = {
       \   'user_dashboard': 'blush',
       \   'user_activity':  'smile',
@@ -108,12 +116,14 @@ let g:github_dashboard['emoji_map'] = {
       \ }
 
 " }}}
+" {{{ JavaScript options
+let g:javascript_enable_domhtmlcss=1
+let g:javascript_conceal=1
+" }}}
+" {{{ Colorscheme Specific 
+let g:pencil_neutral_headings=1
+let g:pencil_higher_contrast_ui=1
+" }}}
 
 let g:goyo_linenr=1
-let g:used_javascript_libs='jasmine,backbone,underscore,jquery'
-"let g:CSApprox_hook_post = ['hi Normal  ctermbg=NONE',
-"\ 'hi FoldColumn ctermbg=NONE',
-"\ 'hi SignColumn ctermbg=NONE',
-"\ 'hi LineNr     ctermbg=NONE',
-"\ 'hi VertSplit  ctermbg=NONE',
-"\ ]
+let g:used_javascript_libs='jasmine,backbone,jquery,lodash'

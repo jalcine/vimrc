@@ -1,10 +1,20 @@
-" vim: ft=vim fdm=marker tw=78 fdl=0
+" vim: ft=vim fdm=marker tw=78 fdl=0:
 " File: .vimrc
 " Author: Jacky Alciné <me@jalcine.me>
 " Description: The heart.
 
 " This is my Vim setup. It's meant to be overriden since it ends up being
 " useful in dozens of people be it on a mobile device or in the cloud.
+" Not like a real cloud, like a server on the Internet that I couldn't
+" directly access.
+
+" This 's:os_name' is meant to only be used here since I only try to get
+" OS-specific things ironed out here.
+let s:os_name="Unknown"
+if executable('uname')
+  let s:os_name=substitute(system('uname'),'\n','','g')
+endif
+
 "{{{ Immediate Options
 " We live in the future, don't worry about backwards compatibility with Vi.
 " In fact, why bother set it? If $VIM is reading this, nocp is active!
@@ -21,12 +31,13 @@ set fileformats=unix
 " Use Bash. At all costs.
 " Also, update my path.
 set shell=/bin/bash
-set path=.,$HOME/.local/include,/usr/local/include,/usr/include
+set path=.,/usr/local/include,/usr/include,$HOME/.local/include
 
 " We need modelines.
 set modeline
 set shellslash
 
+" If we're running a cool version of Vim, then be cool.
 if v:version >= 703 | set cryptmethod=blowfish | endif
 
 " Save your work in sessions.
@@ -36,6 +47,7 @@ set sessionoptions=buffers,tabpages,winsize,curdir
 set novisualbell
 set noerrorbells
 set ruler
+set nonumber
 if has('conceal') | set conceallevel=1 | endif
 
 " Gimme something to look at.
@@ -50,15 +62,15 @@ set ttymouse=xterm2
 set pastetoggle=<F2>
 
 " Set the title in the terminal.
-set title titlelen=120
-set titlestring="%t%(\ %M%)%(\ (%{expand(\"%:p:h\")})%)%(\ %a%)"
+set title
+set titlelen=80
+set titlestring="%t%(\ %M%)%(\ (%{expand(\"%:.:h\")})%)"
 
 " Update by redraw and not INS/DEL
-set ttyscroll=10 ttyfast
+set ttyscroll=5
+set nottyfast
 
-" Show me what I was doing.
-if has('showcmd') | set showcmd | endif
-set noshowfulltag
+set noshowcmd noshowfulltag
 set showmatch
 
 " Show me the overflow.
@@ -80,6 +92,7 @@ set smarttab expandtab
 " Trust me, living a few days in the console will teach you that.
 set textwidth=79
 set nowrap
+
 
 " Using 'smartindent' is obselete; let ftindent plugins do their magic and
 " just format C-like files.
@@ -132,6 +145,8 @@ set hlsearch incsearch
 " Very useful when writing code in JavaScript or C++.
 set showmatch wrapscan
 set nogdefault noignorecase
+
+set regexpengine=1
 "}}}
 "{{{ Recovery
 " Record whether changes were made to unsaved buffers.
@@ -164,13 +179,18 @@ set dictionary+=/usr/share/dict/connectives.gz,/usr/share/dict/web2a.gz
 " Set a location to save my added words.
 set spellfile=~/.vim/dict.custom.utf8-8.add
 "}}}
-"{{{ Whitespacing and Fonts
+"{{{ Whitespacing and Characters
 " A problem that plagued me for months, having visual cues for white spacing
 " solves formatting problems a lot quicker. Also, we're using modern shells
 " (right?) so using UTF-8 characters for symbols should be a given.
 set fillchars+=diff:⣿
 set fillchars+=vert:│
-if has('folding') | set fillchars+=fold:- | endif
+if has('folding')
+  set fillchars+=fold:-
+  if s:os_name == "Linux"
+    set fillchars+=fold:―
+  endif
+endif
 
 " A visual cue for line-wrapping.
 if has('linebreak') | set showbreak=↪ | endif
@@ -181,7 +201,8 @@ set listchars+=eol:¬
 set listchars+=extends:❯,precedes:❮
 set listchars+=tab:\|\ 
 
-set sidescroll=5
+" Keep some spacing.
+set sidescrolloff=1
 "}}}
 " {{{ Timeouts
 set timeout ttimeout
@@ -220,12 +241,14 @@ Plugin 'int3/vim-extradite'
 Plugin 'majutsushi/tagbar'
 Plugin 'mattn/webapi-vim'
 Plugin 'reedes/vim-colors-pencil'
+Plugin 'jalcine/vim-polyglot'
 " }}}
 " {{{3 Utility plugins
 Bundle 'junegunn/goyo.vim'
 Plugin 'guns/xterm-color-table.vim'
 Plugin 'Raimondi/delimitMate'
 Plugin 'SirVer/Ultisnips'
+Plugin 'Chiel92/vim-autoformat'
 Plugin 'tpope/vim-dispatch'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-repeat'
@@ -239,11 +262,24 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'godlygeek/tabular'
 Plugin 'terryma/vim-multiple-cursors'
-Plugin 'Valloric/YouCompleteMe'
+Plugin 'reedes/vim-textobj-quote'
+Plugin 'reedes/vim-pencil'
+Plugin 'reedes/vim-litecorrect'
+Plugin 'reedes/vim-lexical'
+if v:version >= 703 | Plugin 'Valloric/YouCompleteMe' | endif
 Bundle 'dbakker/vim-lint'
-Bundle 'elzr/vim-json'
+"Bundle 'elzr/vim-json'
 Bundle 'mattboehm/vim-accordion'
-Bundle 'jalcine/vim-swigjs'
+"Bundle 'jalcine/vim-swigjs'
+"Bundle 'jelera/vim-javascript-syntax'
+Bundle 'marijnh/tern_for_vim'
+Bundle 'maksimr/vim-jsbeautify'
+Bundle 'einars/js-beautify'
+Bundle 'moll/vim-node'
+Bundle 'myhere/vim-nodejs-complete'
+Bundle 'junegunn/vim-github-dashboard'
+Plugin 'elzr/vim-json'
+Plugin 'rodjek/vim-puppet'
 " }}}
 " {{{3 Unite plugins
 Plugin 'Shougo/unite.vim'
@@ -255,17 +291,16 @@ Plugin 'pasela/unite-webcolorname'
 "}}}
 "
 syntax enable
-filetype plugin on
 filetype indent on
+filetype plugin on
+set omnifunc=syntaxcomplete#Complete
 " }}}
 " {{{ Color scheming
-" 256 colors all dai.
 set t_Co=256
-" Define the colorscheme that'd be used. Can't lie; it's hard to pick *only*
-" one. Also apply the color scheme for airline.
-colorscheme pencil
 set background=dark
-hi Normal     ctermbg=NONE guibg=NONE
-hi FoldColumn ctermbg=NONE guibg=NONE
-hi VertSplit  ctermbg=NONE guibg=NONE
+colorscheme pencil
+hi Normal    ctermbg=NONE guibg=NONE
+hi Conceal   ctermbg=NONE guibg=NONE
+hi Folded    ctermbg=NONE guibg=NONE
+hi VertSplit ctermbg=NONE guibg=NONE
 " }}}

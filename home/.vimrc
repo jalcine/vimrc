@@ -238,7 +238,7 @@ Plugin 'reedes/vim-colors-pencil'
 Plugin 'jalcine/vim-polyglot'
 "}}}
 "{{{3 Utility plugins
-Bundle 'junegunn/goyo.vim'
+Plugin 'junegunn/goyo.vim'
 Plugin 'guns/xterm-color-table.vim'
 Plugin 'Raimondi/delimitMate'
 Plugin 'SirVer/Ultisnips'
@@ -261,19 +261,19 @@ Plugin 'reedes/vim-pencil'
 Plugin 'reedes/vim-litecorrect'
 Plugin 'reedes/vim-lexical'
 if v:version >= 703 | Plugin 'Valloric/YouCompleteMe' | endif
-Bundle 'dbakker/vim-lint'
-"Bundle 'elzr/vim-json'
-Bundle 'mattboehm/vim-accordion'
-"Bundle 'jalcine/vim-swigjs'
-"Bundle 'jelera/vim-javascript-syntax'
-Bundle 'marijnh/tern_for_vim'
-Bundle 'maksimr/vim-jsbeautify'
-Bundle 'einars/js-beautify'
-Bundle 'moll/vim-node'
-Bundle 'myhere/vim-nodejs-complete'
-Bundle 'junegunn/vim-github-dashboard'
+Plugin 'dbakker/vim-lint'
+Plugin 'elzr/vim-json'
+Plugin 'mattboehm/vim-accordion'
+Plugin 'jalcine/vim-swigjs'
+Plugin 'marijnh/tern_for_vim'
+Plugin 'maksimr/vim-jsbeautify'
+Plugin 'einars/js-beautify'
+Plugin 'moll/vim-node'
+Plugin 'myhere/vim-nodejs-complete'
+Plugin 'junegunn/vim-github-dashboard'
 Plugin 'elzr/vim-json'
 Plugin 'rodjek/vim-puppet'
+Plugin 'ap/vim-css-color'
 "}}}
 "{{{3 Unite plugins
 Plugin 'Shougo/unite.vim'
@@ -285,8 +285,7 @@ Plugin 'pasela/unite-webcolorname'
 "}}}
 "
 syntax enable
-filetype indent on
-filetype plugin on
+filetype indent plugin on
 " }}}
 " {{{ Color scheming
 colorscheme pencil

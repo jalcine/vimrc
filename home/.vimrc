@@ -70,7 +70,8 @@ set titlelen=60
 set ttyscroll=5
 set nottyfast
 
-set noshowcmd noshowfulltag
+set showcmd
+set showfulltag
 set showmatch
 
 " Show me the overflow.

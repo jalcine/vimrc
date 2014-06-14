@@ -1,6 +1,6 @@
-" File:          .vimrc
-" Author:        Jacky Alciné <me@jalcine.me>
-" Description:   The heart.
+" File: .vimrc
+" Author: Jacky Alciné <me@jalcine.me>
+" Description: The heart.
 " Last Modified: 2014-06-10 21:17:56 EDT
 
 " This is my Vim setup. It's meant to be overriden since it ends up being
@@ -75,8 +75,7 @@ set showmatch
 
 " Show me the overflow.
 if has('syntax') && v:version >= 704
-  call matchadd('ColorColumn', '\%' . &textwidth . 'v', 100)
-  set nocursorline nocursorcolumn
+  call matchadd('ColorColumn', '\%' . &textwidth . 'v', 80)
 endif
 
 "}}}
@@ -150,10 +149,6 @@ set nogdefault noignorecase
 "{{{ Recovery
 " Record whether changes were made to unsaved buffers.
 set hidden
-
-" Avoid using backup or swap files. If you commit often into
-" version control, backup files shouldn't be a problem.
-set nobackup noswapfile
 
 " Set the Vim command history size to a larger number.
 set history=16384 undolevels=16384
@@ -296,15 +291,6 @@ filetype plugin on
 " {{{ Color scheming
 colorscheme pencil
 set background=dark
-hi Normal        ctermbg=NONE guibg=NONE
-hi Conceal       ctermbg=NONE guibg=NONE
-hi Folded        ctermbg=NONE guibg=NONE
-hi FoldColumn    ctermbg=NONE guibg=NONE
-hi SignColumn    ctermbg=NONE guibg=NONE
-hi VertSplit     ctermbg=NONE guibg=NONE
-hi LineNr        ctermbg=NONE guibg=NONE
-hi CurosrLineNr  ctermbg=NONE guibg=NONE
-
 " }}}
 
 " vim: set fdm=marker fdl=0:

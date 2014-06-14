@@ -97,7 +97,7 @@ let g:UltiSnipsJumpBackwardTrigger="<C-k>"
 let g:UltiSnipsSnippetDirectories=["Ultisnips"]
 " }}}
 " {{{ Tagbar
-let g:tagbar_compact=0
+let g:tagbar_compact=1
 let g:tagbar_autoshowtag=1
 " }}}
 " {{{ vim-session
@@ -125,6 +125,6 @@ let g:javascript_enable_domhtmlcss=1
 let g:javascript_conceal=1
 " }}}
 " {{{ Colorscheme Specific 
-let g:pencil_neutral_headings=1
-let g:pencil_higher_contrast_ui=1
+"let g:pencil_neutral_headings=0
+"let g:pencil_higher_contrast_ui=1
 " }}}

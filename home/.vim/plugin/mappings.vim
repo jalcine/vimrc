@@ -84,7 +84,7 @@ nnoremap <silent> <F4> :call mappings#toggle_bars()<CR>
 
 " {{{ Unite mappings
 func! mappings#call_unite(sources)
-  exec(':Unite -quick-match ' . a:sources)
+  exec(':Unite -short-source-names ' . a:sources)
 endfunc
 
 func! mappings#call_unite_tasks()
@@ -96,10 +96,12 @@ func! mappings#toggle_bars()
   silent! :TagbarToggle
   silent! :NERDTreeToggle
   silent! :cwindow
+  silent! :lwindow
 endfunc
 
-nnoremap <silent> <leader>pf :call mappings#call_unite('file_rec/async:!')<cr>
 nnoremap <silent> <leader>pt :call mappings#call_unite_tasks()<cr>
+nnoremap <silent> <leader>pf :call mappings#call_unite('file_rec/async:!')<cr>
+nnoremap <silent> <leader>pb :call mappings#call_unite('buffer')<cr>
 nnoremap <silent> <leader>pb :call mappings#call_unite('buffer')<cr>
 nnoremap <silent> <leader>pg :call mappings#call_unite('tag tag/include')<cr>
 nnoremap <silent> <leader>px :call mappings#call_unite('tmux/panes tmux/sessions ' .

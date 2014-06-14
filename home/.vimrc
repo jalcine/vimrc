@@ -48,7 +48,6 @@ set novisualbell
 set noerrorbells
 set ruler
 set number numberwidth=1
-set relativenumber
 if has('conceal') | set conceallevel=1 | endif
 
 " Gimme something to look at.
@@ -147,7 +146,6 @@ set hlsearch incsearch
 set showmatch wrapscan
 set nogdefault noignorecase
 
-set regexpengine=1
 "}}}
 "{{{ Recovery
 " Record whether changes were made to unsaved buffers.
@@ -294,18 +292,19 @@ Plugin 'pasela/unite-webcolorname'
 syntax enable
 filetype indent on
 filetype plugin on
-set omnifunc=syntaxcomplete#Complete
 " }}}
 " {{{ Color scheming
-set t_Co=256
 colorscheme pencil
 set background=dark
 hi Normal        ctermbg=NONE guibg=NONE
 hi Conceal       ctermbg=NONE guibg=NONE
 hi Folded        ctermbg=NONE guibg=NONE
+hi FoldColumn    ctermbg=NONE guibg=NONE
+hi SignColumn    ctermbg=NONE guibg=NONE
 hi VertSplit     ctermbg=NONE guibg=NONE
 hi LineNr        ctermbg=NONE guibg=NONE
 hi CurosrLineNr  ctermbg=NONE guibg=NONE
+
 " }}}
 
 " vim: set fdm=marker fdl=0:

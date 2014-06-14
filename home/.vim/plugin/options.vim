@@ -54,7 +54,7 @@ let g:tern_show_argument_hints='on_hold'
 let g:tern_show_signature_in_pum=1
 " }}}
 " {{{ Airline
-let g:airline_theme='pencil'
+let g:airline_theme='bubblegum'
 let g:airline_detected_modified=1
 let g:airline_powerline_fonts=1
 let g:airline_detect_iminsert=1
@@ -77,16 +77,16 @@ let g:airline_mode_map={
 " }}}
 " {{{ Unite
 let g:unite_source_history_yank_enable=1
-let g:unite_winheight=4
+let g:unite_winheight=6
 let g:unite_data_directory='~/.vim/cache-unite'
 let g:unite_source_rec_max_cache_files=500
-let g:unite_enable_start_insert=0
+let g:unite_enable_start_insert=1
+let g:unite_prompt='UNITE » '
 if executable('ag')
   let g:unite_source_grep_command='ag'
   let g:unite_source_grep_recursive_opts=''
   let g:unite_source_grep_default_opts='--nocolor --nogroup --column'
 endif
-let g:unite_prompt='UNITE » '
 " }}}
 " {{{ Ultisnips
 let g:snips_author="Jacky Alcine <me@jalcine.me>"

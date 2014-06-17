@@ -150,6 +150,9 @@ set nogdefault noignorecase
 " Record whether changes were made to unsaved buffers.
 set hidden
 
+" No annoying-ass swap files.
+set noswapfile
+
 " Set the Vim command history size to a larger number.
 set history=16384 undolevels=16384
 "}}}

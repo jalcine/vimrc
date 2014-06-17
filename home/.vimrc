@@ -277,6 +277,7 @@ Plugin 'junegunn/vim-github-dashboard'
 Plugin 'elzr/vim-json'
 Plugin 'rodjek/vim-puppet'
 Plugin 'ap/vim-css-color'
+Plugin 'junegunn/vader.vim'
 "}}}
 "{{{3 Unite plugins
 Plugin 'Shougo/unite.vim'

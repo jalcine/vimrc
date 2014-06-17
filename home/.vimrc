@@ -293,5 +293,3 @@ colorscheme pencil
 set background=dark
 hi VertSplit ctermbg=NONE guibg=NONE
 " }}}
-
-" vim: set fdm=marker fdl=0:

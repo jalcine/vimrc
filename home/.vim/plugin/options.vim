@@ -56,16 +56,16 @@ let g:tern_show_signature_in_pum=1
 " {{{ Airline
 let g:airline_theme='bubblegum'
 let g:airline_detected_modified=1
-let g:airline_powerline_fonts=1
-let g:airline_detect_iminsert=1
+let g:airline_powerline_fonts=0
+let g:airline_detect_iminsert=0
 let g:airline#extensions#hunks#non_zero_only=1
-let g:airline#extensions#tabline#enabled=1
+let g:airline#extensions#tabline#enabled=0
 let g:airline#extensions#branch#enabled=1
-let g:airline#extensions#whitespace#enabled = 0
-let g:airline#extensions#whitespace#mixed_indent_algo = 0
-let g:airline#extensions#whitespace#show_message = 1
-let g:airline#extensions#whitespace#trailing_format = 'sp: [%s]'
-let g:airline#extensions#whitespace#mixed_indent_format = 'mi: [%s]'
+let g:airline#extensions#whitespace#enabled=0
+let g:airline#extensions#whitespace#mixed_indent_algo=1
+let g:airline#extensions#whitespace#show_message=1
+let g:airline#extensions#whitespace#trailing_format='sp: [%s]'
+let g:airline#extensions#whitespace#mixed_indent_format='mi: [%s]'
 let g:airline_mode_map={
       \ '__' : '-',
       \ 'n'  : 'N',
@@ -125,6 +125,6 @@ let g:javascript_enable_domhtmlcss=1
 let g:javascript_conceal=1
 " }}}
 " {{{ Colorscheme Specific 
-"let g:pencil_neutral_headings=0
-"let g:pencil_higher_contrast_ui=1
+let g:pencil_neutral_headings=0
+let g:pencil_higher_contrast_ui=1
 " }}}

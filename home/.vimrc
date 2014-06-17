@@ -47,8 +47,8 @@ set sessionoptions=buffers,tabpages,winsize,curdir
 set novisualbell
 set noerrorbells
 set ruler
-set number numberwidth=1
-if has('conceal') | set conceallevel=1 | endif
+set nonumber
+if has('conceal') | set conceallevel=2 concealcursor=ncv | endif
 
 " Gimme something to look at.
 set laststatus=2

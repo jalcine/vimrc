@@ -39,6 +39,7 @@ let g:syntastic_vim_checkers=['vimlint']
 let g:syntastic_ruby_exec=substitute(system('which ruby'),'\n','','g')
 let g:syntastic_yaml_checkers=['jsyaml']
 let g:syntastic_jshint_exe='jshint'
+let g:syntastic_enable_perl_checker=1
 " }}}
 " {{{ Signify
 let g:signify_vcs_list=['git']

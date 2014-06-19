@@ -200,6 +200,9 @@ set listchars+=tab:\|\
 
 " Keep some spacing.
 set sidescrolloff=1
+
+" Connect the buffers when we scroll in diff
+set scrollbind
 "}}}
 "{{{ Timeouts
 set timeout ttimeout

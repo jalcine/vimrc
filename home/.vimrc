@@ -224,6 +224,10 @@ if filereadable('~/.vim/plugin/options.local.vim')
   source ~/.vim/plugins/options.local.vim
 endif
 
+if filereadable('~/.vim/plugin/vundle.vim')
+  source ~/.vim/plugins/vundle.vim
+endif
+
 " Megaman, POWER UP!
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()

@@ -200,39 +200,11 @@ set listchars+=tab:\|\
 
 " Keep some spacing.
 set sidescrolloff=1
-
-" Connect the buffers when we scroll in diff
-set scrollbind
 "}}}
 "{{{ Timeouts
 set timeout ttimeout
 set timeoutlen=400 ttimeoutlen=500
 set updatetime=1500
 "}}}
-"{{{ Local Configuration
+
 if filereadable('~/.vimrc.local') | source ~/.vimrc.local | endif
-"}}}
-"{{{ Vundle Setup
-"
-" Update 'rtp' and 'ft' to handle plugin loading.
-filetype off
-
-" Read in my options.
-source ~/.vim/plugin/options.vim
-
-if filereadable('~/.vim/plugin/options.local.vim')
-  source ~/.vim/plugin/options.local.vim
-endif
-
-if filereadable('~/.vim/plugin/vundle.vim')
-  source ~/.vim/plugin/vundle.vim
-endif
-
-" {{{ Color scheming
-colorscheme pencil
-set background=dark
-hi VertSplit ctermbg=NONE guibg=NONE
-hi FoldColumn ctermbg=NONE guibg=NONE
-hi LineNr ctermbg=NONE guibg=NONE
-hi SignColumn ctermbg=NONE guibg=NONE
-" }}}

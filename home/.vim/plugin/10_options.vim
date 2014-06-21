@@ -129,3 +129,7 @@ let g:javascript_conceal=1
 let g:pencil_neutral_headings=0
 let g:pencil_higher_contrast_ui=1
 " }}}
+
+if filereadable('~/.vim/plugin/options.local.vim')
+  source ~/.vim/plugin/options.local.vim
+endif

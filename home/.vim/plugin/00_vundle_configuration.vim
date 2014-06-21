@@ -4,6 +4,8 @@ else
   let g:jalcine_vundle=1
 endif
 
+filetype off
+
 " Megaman, POWER UP!
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()

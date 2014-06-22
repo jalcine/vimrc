@@ -2,7 +2,11 @@
 if exists('g:jalcine_options')
   finish
 endif
+
 let g:jalcine_options=1
+let g:goyo_linenr=1
+let g:used_javascript_libs='jasmine,backbone,jquery,lodash'
+
 " {{{ NERD{Tree,Commenter}
 let g:NERDCreateDefaultMappings=1
 let g:NERDCompactSexyComs=1
@@ -35,6 +39,7 @@ let g:syntastic_vim_checkers=['vimlint']
 let g:syntastic_ruby_exec=substitute(system('which ruby'),'\n','','g')
 let g:syntastic_yaml_checkers=['jsyaml']
 let g:syntastic_jshint_exe='jshint'
+let g:syntastic_enable_perl_checker=1
 " }}}
 " {{{ Signify
 let g:signify_vcs_list=['git']
@@ -50,18 +55,18 @@ let g:tern_show_argument_hints='on_hold'
 let g:tern_show_signature_in_pum=1
 " }}}
 " {{{ Airline
-let g:airline_theme='kalisi'
+let g:airline_theme='ubaryd'
 let g:airline_detected_modified=1
 let g:airline_powerline_fonts=0
 let g:airline_detect_iminsert=0
 let g:airline#extensions#hunks#non_zero_only=1
-let g:airline#extensions#tabline#enabled=1
+let g:airline#extensions#tabline#enabled=0
 let g:airline#extensions#branch#enabled=1
-let g:airline#extensions#whitespace#enabled = 1
-let g:airline#extensions#whitespace#mixed_indent_algo = 0
-let g:airline#extensions#whitespace#show_message = 1
-let g:airline#extensions#whitespace#trailing_format = 'sp: [%s]'
-let g:airline#extensions#whitespace#mixed_indent_format = 'mi: [%s]'
+let g:airline#extensions#whitespace#enabled=0
+let g:airline#extensions#whitespace#mixed_indent_algo=1
+let g:airline#extensions#whitespace#show_message=1
+let g:airline#extensions#whitespace#trailing_format='sp: [%s]'
+let g:airline#extensions#whitespace#mixed_indent_format='mi: [%s]'
 let g:airline_mode_map={
       \ '__' : '-',
       \ 'n'  : 'N',
@@ -73,16 +78,16 @@ let g:airline_mode_map={
 " }}}
 " {{{ Unite
 let g:unite_source_history_yank_enable=1
-let g:unite_winheight=4
+let g:unite_winheight=6
 let g:unite_data_directory='~/.vim/cache-unite'
 let g:unite_source_rec_max_cache_files=500
-let g:unite_enable_start_insert=0
+let g:unite_enable_start_insert=1
+let g:unite_prompt='UNITE » '
 if executable('ag')
   let g:unite_source_grep_command='ag'
   let g:unite_source_grep_recursive_opts=''
   let g:unite_source_grep_default_opts='--nocolor --nogroup --column'
 endif
-let g:unite_prompt='UNITE » '
 " }}}
 " {{{ Ultisnips
 let g:snips_author="Jacky Alcine <me@jalcine.me>"
@@ -93,7 +98,7 @@ let g:UltiSnipsJumpBackwardTrigger="<C-k>"
 let g:UltiSnipsSnippetDirectories=["Ultisnips"]
 " }}}
 " {{{ Tagbar
-let g:tagbar_compact=0
+let g:tagbar_compact=1
 let g:tagbar_autoshowtag=1
 " }}}
 " {{{ vim-session
@@ -121,9 +126,6 @@ let g:javascript_enable_domhtmlcss=1
 let g:javascript_conceal=1
 " }}}
 " {{{ Colorscheme Specific 
-let g:pencil_neutral_headings=1
+let g:pencil_neutral_headings=0
 let g:pencil_higher_contrast_ui=1
 " }}}
-
-let g:goyo_linenr=1
-let g:used_javascript_libs='jasmine,backbone,jquery,lodash'

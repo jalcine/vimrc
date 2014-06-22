@@ -14,10 +14,11 @@ let maplocalleader='\\'
 nnoremap ; :
 
 " Disable classic arrow-key navigation in Normal mode.
-nnoremap <Up>     <Nop>
-nnoremap <Down>   <Nop>
-nnoremap <Left>   <Nop>
-nnoremap <Right>  <Nop>
+" TODO: Move to personal configuration
+"nnoremap <Up>     <Nop>
+"nnoremap <Down>   <Nop>
+"nnoremap <Left>   <Nop>
+"nnoremap <Right>  <Nop>
 
 " Toggle the use of list characters.
 nnoremap <silent> <leader>l :set list!<cr>
@@ -31,7 +32,7 @@ nnoremap <silent> <leader>j :setlocal spell!<CR>
 " Toggle the current fold.
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 
-" Inject the current date.
+" {{{ Timing options
 inoremap <silent> <leader>pt <C-R>=strftime("%Y-%m-%d")<CR>
 
 " Inject the current time with the labeling of the time-zone.
@@ -41,6 +42,7 @@ cnoremap <silent> <leader>py <C-R>=strftime("%H.%M.%S_%Z")<CR>
 " Inject the current date and time (in Insert or Command mode).
 inoremap <silent> <leader>pt <C-R>=strftime("%Y-%m-%d %H:%M:%S %Z")<CR>
 cnoremap <silent> <leader>pt <C-R>=strftime("%Y%m%d%H%M%S")<CR>
+" }}}
 
 " Strip trailing whitespace from the end of files.
 nnoremap <silent> <leader>sw :%s/\s$//g<cr>
@@ -48,7 +50,7 @@ nnoremap <silent> <leader>sw :%s/\s$//g<cr>
 " Formats the current buffer.
 nnoremap <leader>f :Autoformat<CR><CR>
 
-" Bind make command.
+" {{{ Bind make command.
 nnoremap <silent> <leader>m  :Make<CR>
 nnoremap <silent> <leader>m<space>  :Make<space>
 nnoremap <silent> <leader>ma :Make all<CR>
@@ -57,8 +59,9 @@ nnoremap <silent> <leader>mi :Make install<CR>
 nnoremap <silent> <leader>mu :Make uninstall<CR>
 nnoremap <silent> <leader>mt :Make test<CR>
 nnoremap <silent> <leader>mtb :call('Make',['test',expand('%')])<CR>
+" }}}
 
-" Travel over errors.
+" {{{ Travel over errors.
 nnoremap <silent> <leader>ce <ESC>:cnext<CR>
 nnoremap <silent> <leader>cp <ESC>:cprevious<CR>
 nnoremap <silent> <leader>co <ESC>:cwindow<CR>
@@ -71,6 +74,7 @@ nnoremap <silent> <leader>lo <ESC>:lwindow<CR>
 nnoremap <silent> <leader>lf <ESC>:lfirst<CR>
 nnoremap <silent> <leader>ll <ESC>:llast<CR>
 nnoremap <silent> <leader>lx <ESC>:lclose<CR>
+" }}}
 
 " Rewrite 'vhe' to 'vert help'.
 cnoremap vhe vert help
@@ -84,7 +88,7 @@ nnoremap <silent> <F4> :call mappings#toggle_bars()<CR>
 
 " {{{ Unite mappings
 func! mappings#call_unite(sources)
-  exec(':Unite -quick-match ' . a:sources)
+  exec(':Unite -short-source-names ' . a:sources)
 endfunc
 
 func! mappings#call_unite_tasks()
@@ -96,10 +100,12 @@ func! mappings#toggle_bars()
   silent! :TagbarToggle
   silent! :NERDTreeToggle
   silent! :cwindow
+  silent! :lwindow
 endfunc
 
-nnoremap <silent> <leader>pf :call mappings#call_unite('file_rec/async:!')<cr>
 nnoremap <silent> <leader>pt :call mappings#call_unite_tasks()<cr>
+nnoremap <silent> <leader>pf :call mappings#call_unite('file_rec/async:!')<cr>
+nnoremap <silent> <leader>pb :call mappings#call_unite('buffer')<cr>
 nnoremap <silent> <leader>pb :call mappings#call_unite('buffer')<cr>
 nnoremap <silent> <leader>pg :call mappings#call_unite('tag tag/include')<cr>
 nnoremap <silent> <leader>px :call mappings#call_unite('tmux/panes tmux/sessions ' .

@@ -133,3 +133,4 @@ let g:pencil_higher_contrast_ui=1
 if filereadable('~/.vim/plugin/options.local.vim')
   source ~/.vim/plugin/options.local.vim
 endif
+"}}}

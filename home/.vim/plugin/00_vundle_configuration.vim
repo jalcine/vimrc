@@ -1,3 +1,8 @@
+" File:          plugin/00_vundle_configuration.vim
+" Author:        Jacky Alcine <me@jalcine.me>
+" Description:   Options for controlling and using Vundle, my plugin manager.
+" Last Modified: June 21, 2014
+
 if exists('g:jalcine_vundle')
   finish
 else
@@ -76,4 +81,3 @@ Plugin 'pasela/unite-webcolorname'
 syntax enable
 filetype indent plugin on
 " }}}
-

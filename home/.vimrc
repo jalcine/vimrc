@@ -47,6 +47,7 @@ set sessionoptions=buffers,tabpages,winsize,curdir
 set novisualbell
 set noerrorbells
 set ruler
+set number
 set nonumber
 if has('conceal') | set conceallevel=2 concealcursor=ncv | endif
 
@@ -208,3 +209,5 @@ set updatetime=1500
 "}}}
 
 if filereadable('~/.vimrc.local') | source ~/.vimrc.local | endif
+source ~/.vim/plugin/10_options.vim
+source ~/.vim/plugin/00_vundle_configuration.vim

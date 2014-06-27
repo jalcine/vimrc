@@ -87,29 +87,43 @@ nnoremap <silent> <leader><space> :Goyo<CR>
 nnoremap <silent> <F4> :call mappings#toggle_bars()<CR>
 
 " {{{ Unite mappings
-func! mappings#call_unite(sources)
+func! s:call_unite(sources)
   exec(':Unite -short-source-names ' . a:sources)
 endfunc
 
-func! mappings#call_unite_tasks()
+func! s:call_unite_tasks()
   call mappings#call_unite('grep:.:-s:\(TODO\|todo\|NOTE\|note\|' .
         \ 'FIXME\|fixme\|BUG\bug)')
 endfunc
 
-func! mappings#toggle_bars()
+func! s:toggle_bars()
   silent! :TagbarToggle
   silent! :NERDTreeToggle
   silent! :cwindow
   silent! :lwindow
 endfunc
 
-nnoremap <silent> <leader>pt :call mappings#call_unite_tasks()<cr>
-nnoremap <silent> <leader>pf :call mappings#call_unite('file_rec/async:!')<cr>
-nnoremap <silent> <leader>pb :call mappings#call_unite('buffer')<cr>
-nnoremap <silent> <leader>pb :call mappings#call_unite('buffer')<cr>
-nnoremap <silent> <leader>pg :call mappings#call_unite('tag tag/include')<cr>
-nnoremap <silent> <leader>px :call mappings#call_unite('tmux/panes tmux/sessions ' .
-  \ 'tmux/windows')<cr>
+func! s:call_unite_tmux()
+  call s:call_unite('tmux/panes tmux/sessions tmux/windows')
+endfunc
+
+func! s:call_unite_tags()
+  call s:call_unite('tag tag/include')
+endfunc
+
+func! s:call_unite_buffer()
+  call s:call_unite('buffer')
+endfunc
+
+func! s:call_unite_files()
+  return s:call_unite('file_rec/async:!')
+endfunc
+
+nnoremap <silent> <leader>pt :call <SID>call_unite_tasks()<cr>
+nnoremap <silent> <leader>pf :call <SID>call_unite_files()<cr>
+nnoremap <silent> <leader>pb :call <SID>call_unite_buffer()<cr>
+nnoremap <silent> <leader>pg :call <SID>call_unite_tags()<cr>
+nnoremap <silent> <leader>px :call <SID>call_unite_tmux()<cr>
 " }}}
 " {{{ Git helpers
 nnoremap <leader>gc   :Git commit<space>

@@ -23,7 +23,7 @@ let g:syntastic_auto_jump=0
 let g:syntastic_auto_loc_list=1
 let g:syntastic_loc_list_height=3
 let g:syntastic_ignore_files = ['\m^/usr/include/', 'node_modules']
-let g:syntastic_mode_map = { 'mode': 'active' }
+let g:syntastic_mode_map = { 'mode': 'passive' }
 " {{{ Checkers for Syntastic
 let g:syntastic_javascript_checkers=['jshint', 'jscs']
 let g:syntastic_json_checkers=['jsonlint', 'jsonval']

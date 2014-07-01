@@ -55,14 +55,14 @@ let g:tern_show_argument_hints='on_hold'
 let g:tern_show_signature_in_pum=1
 " }}}
 " {{{ Airline
-let g:airline_theme='ubaryd'
+let g:airline_theme='pencil'
 let g:airline_detected_modified=1
 let g:airline_powerline_fonts=0
 let g:airline_detect_iminsert=0
 let g:airline#extensions#hunks#non_zero_only=1
-let g:airline#extensions#tabline#enabled=0
+let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#branch#enabled=1
-let g:airline#extensions#whitespace#enabled=0
+let g:airline#extensions#whitespace#enabled=1
 let g:airline#extensions#whitespace#mixed_indent_algo=1
 let g:airline#extensions#whitespace#show_message=1
 let g:airline#extensions#whitespace#trailing_format='sp: [%s]'

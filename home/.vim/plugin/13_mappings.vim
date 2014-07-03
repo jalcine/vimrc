@@ -4,6 +4,9 @@
 " Description: Mappings I'd use.
 
 " {{{ Leaders and Accessibility
+" PASTE mo'fo!
+set pastetoggle=<F2>
+
 " Set my leader to the comma key.
 let mapleader=','
 

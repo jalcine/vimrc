@@ -58,9 +58,6 @@ set showtabline=2
 set mouse=a
 set ttymouse=xterm2
 
-" PASTE mo'fo!
-set pastetoggle=<F2>
-
 " Set the title in the terminal.
 set title
 set titlelen=60
@@ -154,7 +151,7 @@ set hidden
 set noswapfile
 
 " Set the Vim command history size to a larger number.
-set history=16384 undolevels=16384
+set history=9999 undolevels=9999
 "}}}
 "{{{ Spelling Options
 " I'll check when I want.

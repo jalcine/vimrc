@@ -13,3 +13,6 @@ iabbrev sstk shutterstock
 iabbrev ggl google
 iabbrev ghb github
 iabbrev lnx linux
+iabbrev existant existent
+iabbrev existance existence
+iabbrev inlcude include

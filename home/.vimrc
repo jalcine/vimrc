@@ -203,7 +203,8 @@ set timeout ttimeout
 set timeoutlen=400 ttimeoutlen=500
 set updatetime=1500
 "}}}
-
+"{{{ Locals
 if filereadable('~/.vimrc.local') | source ~/.vimrc.local | endif
 source ~/.vim/plugin/10_options.vim
 source ~/.vim/plugin/00_vundle_configuration.vim
+"}}}

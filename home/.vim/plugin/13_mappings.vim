@@ -96,7 +96,7 @@ nnoremap <silent> <F4> :call mappings#toggle_bars()<CR>
 
 " {{{ Unite mappings
 func! s:call_unite(sources)
-  exec(':Unite -short-source-names ' . a:sources)
+  exec(':Unite -short-source-names -direction=botright ' . a:sources)
 endfunc
 
 func! s:call_unite_tasks()
@@ -131,12 +131,22 @@ func! s:call_unite_local_grep()
   return s:call_unite('grep:$PWD:-R')
 endfunc
 
-nnoremap <silent> <leader>pb :call <SID>call_unite_buffer()<cr>
-nnoremap <silent> <leader>pf :call <SID>call_unite_files()<cr>
-nnoremap <silent> <leader>pg :call <SID>call_unite_local_grep()<cr>
-nnoremap <silent> <leader>pt :call <SID>call_unite_tags()<cr>
-nnoremap <silent> <leader>pt :call <SID>call_unite_tasks()<cr>
-nnoremap <silent> <leader>px :call <SID>call_unite_tmux()<cr>
+func! s:call_unite_resume()
+  return s:call_unite('resume')
+endfunc
+
+" Define a base mapping for Unite.
+nnoremap [unite] <nop>
+nmap <leader>p [unite]
+
+" Define the mappings.
+nnoremap <silent> [unite]b :call <SID>call_unite_buffer()<cr>
+nnoremap <silent> [unite]f :call <SID>call_unite_files()<cr>
+nnoremap <silent> [unite]g :call <SID>call_unite_local_grep()<cr>
+nnoremap <silent> [unite]t :call <SID>call_unite_tags()<cr>
+nnoremap <silent> [unite]t :call <SID>call_unite_tasks()<cr>
+nnoremap <silent> [unite]x :call <SID>call_unite_tmux()<cr>
+nnoremap <silent> [unite]r :call <SID>call_unite_resume()<cr>
 " }}}
 " {{{ Git helpers
 nnoremap <leader>ga   :Git add<space>

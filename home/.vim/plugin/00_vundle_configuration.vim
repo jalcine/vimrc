@@ -75,3 +75,8 @@ Plugin 'pasela/unite-webcolorname'
 syntax enable
 filetype indent plugin on
 " }}}
+
+if !filereadable('~/.vim/plugin/options.local.vim')
+  source ~/.vim/plugin/options.local.vim
+endif
+endif

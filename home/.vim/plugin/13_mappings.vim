@@ -137,7 +137,7 @@ endfunc
 
 " Define a base mapping for Unite.
 nnoremap [unite] <nop>
-nmap <leader>p [unite]
+nmap <leader>u [unite]
 
 " Define the mappings.
 nnoremap <silent> [unite]b :call <SID>call_unite_buffer()<cr>

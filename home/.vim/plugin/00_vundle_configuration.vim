@@ -52,7 +52,6 @@ Plugin 'reedes/vim-textobj-quote'
 if v:version >= 703 | Plugin 'Valloric/YouCompleteMe' | endif
 Plugin 'dbakker/vim-lint'
 Plugin 'elzr/vim-json'
-Plugin 'jalcine/vim-swigjs'
 Plugin 'marijnh/tern_for_vim'
 Plugin 'maksimr/vim-jsbeautify'
 Plugin 'einars/js-beautify'

@@ -13,13 +13,6 @@ let maplocalleader='\\'
 " One less hit to get to the command-line.
 nnoremap ; :
 
-" Disable classic arrow-key navigation in Normal mode.
-" TODO: Move to personal configuration
-"nnoremap <Up>     <Nop>
-"nnoremap <Down>   <Nop>
-"nnoremap <Left>   <Nop>
-"nnoremap <Right>  <Nop>
-
 " Toggle the use of list characters.
 nnoremap <silent> <leader>l :set list!<cr>
 
@@ -27,7 +20,7 @@ nnoremap <silent> <leader>l :set list!<cr>
 nnoremap <silent> <leader>h :setlocal hlsearch!<CR>
 
 " Toggle the state of spelling locally.
-nnoremap <silent> <leader>j :setlocal spell!<CR>
+nnoremap <silent> <leader>sp :setlocal spell!<CR>
 
 " Toggle the current fold.
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>

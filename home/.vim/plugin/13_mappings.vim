@@ -101,13 +101,6 @@ func! s:call_unite_tasks()
         \ 'FIXME\|fixme\|BUG\bug)')
 endfunc
 
-func! s:toggle_bars()
-  silent! :TagbarToggle
-  silent! :NERDTreeToggle
-  silent! :cwindow
-  silent! :lwindow
-endfunc
-
 func! s:call_unite_tmux()
   call s:call_unite('tmux/panes tmux/sessions tmux/windows')
 endfunc

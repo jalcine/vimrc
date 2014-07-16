@@ -3,7 +3,7 @@
 " Description: The heart.
 " Last Modified: 2014-06-10 21:17:56 EDT
 
-" This is my Vim setup. It's meant to be overriden since it ends up being
+" This is my Vim setup. It's meant to be overridden since it ends up being
 " useful in dozens of people be it on a mobile device or in the cloud.
 " Not like a real cloud, like a server on the Internet that I couldn't
 " directly access.
@@ -13,15 +13,16 @@
 let s:os_name="Unknown"
 if executable('uname')
   let s:os_name=substitute(system('uname'),'\n','','g')
+else
+  " Has to be Windows or something not *nix-ish.
+  " Why would you run Vim on Windows?
+  let s:os_name="Windoze"
 endif
 
 "{{{ Immediate Options
 " We live in the future, don't worry about backwards compatibility with Vi.
 " In fact, why bother set it? If $VIM is reading this, nocp is active!
 set nocompatible
-
-" Don't talk too much on start.
-set shortmess+=I
 
 " We use UNIX. So act like UNIX.
 set encoding=utf-8 ambiwidth=single
@@ -44,8 +45,8 @@ if v:version >= 703 | set cryptmethod=blowfish | endif
 set sessionoptions=buffers,tabpages,winsize,curdir
 "}}}
 "{{{ Visual Controls
-set novisualbell
-set noerrorbells
+set visualbell
+set errorbells
 set ruler
 set number
 if has('conceal') | set conceallevel=2 concealcursor=ncv | endif
@@ -93,7 +94,7 @@ set textwidth=79
 set nowrap
 
 
-" Using 'smartindent' is obselete; let ftindent plugins do their magic and
+" Using 'smartindent' is obsolete; let ftindent plugins do their magic and
 " just format C-like files.
 set cindent
 
@@ -146,7 +147,7 @@ set showmatch wrapscan
 set nogdefault noignorecase
 
 "}}}
-"{{{ Recovery
+{{{ Recovery
 " Record whether changes were made to unsaved buffers.
 set hidden
 
@@ -176,7 +177,7 @@ set dictionary+=/usr/share/dict/connectives.gz,/usr/share/dict/web2a.gz
 " Set a location to save my added words.
 set spellfile=~/.vim/dict.custom.utf8-8.add
 "}}}
-"{{{ Whitespacing and Characters
+"{{{ White spacing and Characters
 " A problem that plagued me for months, having visual cues for white spacing
 " solves formatting problems a lot quicker. Also, we're using modern shells
 " (right?) so using UTF-8 characters for symbols should be a given.

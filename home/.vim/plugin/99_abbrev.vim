@@ -3,6 +3,8 @@
 " Description:   Abbreviations I use a lot.
 " Last Modified: May 08, 2014
 
+" Shut up, I can't spell.
+
 iabbrev me_email me@jalcine.me
 iabbrev me_name Jacky Alciné
 iabbrev me_fname Jacky

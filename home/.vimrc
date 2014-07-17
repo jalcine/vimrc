@@ -144,7 +144,7 @@ set showmatch wrapscan
 set nogdefault noignorecase
 
 "}}}
-{{{ Recovery
+"{{{ Recovery
 " Record whether changes were made to unsaved buffers.
 set hidden
 

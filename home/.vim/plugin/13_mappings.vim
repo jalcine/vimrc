@@ -4,6 +4,9 @@
 " Description: Mappings I'd use.
 
 " {{{ Leaders and Accessibility
+" PASTE mo'fo!
+set pastetoggle=<F2>
+
 " Set my leader to the comma key.
 let mapleader=','
 
@@ -49,23 +52,23 @@ nnoremap <silent> <leader>m<space>  :Make<space>
 nnoremap <silent> <leader>ma :Make all<CR>
 nnoremap <silent> <leader>mc :Make clean<CR>
 nnoremap <silent> <leader>mi :Make install<CR>
-nnoremap <silent> <leader>mu :Make uninstall<CR>
 nnoremap <silent> <leader>mt :Make test<CR>
 nnoremap <silent> <leader>mtb :call('Make',['test',expand('%')])<CR>
+nnoremap <silent> <leader>mu :Make uninstall<CR>
 " }}}
 
 " {{{ Travel over errors.
 nnoremap <silent> <leader>ce <ESC>:cnext<CR>
-nnoremap <silent> <leader>cp <ESC>:cprevious<CR>
-nnoremap <silent> <leader>co <ESC>:cwindow<CR>
 nnoremap <silent> <leader>cf <ESC>:cfirst<CR>
 nnoremap <silent> <leader>cl <ESC>:clast<CR>
+nnoremap <silent> <leader>co <ESC>:cwindow<CR>
+nnoremap <silent> <leader>cp <ESC>:cprevious<CR>
 nnoremap <silent> <leader>cx <ESC>:cclose<CR>
 nnoremap <silent> <leader>le <ESC>:lnext<CR>
-nnoremap <silent> <leader>lp <ESC>:lprevious<CR>
-nnoremap <silent> <leader>lo <ESC>:lwindow<CR>
 nnoremap <silent> <leader>lf <ESC>:lfirst<CR>
 nnoremap <silent> <leader>ll <ESC>:llast<CR>
+nnoremap <silent> <leader>lo <ESC>:lwindow<CR>
+nnoremap <silent> <leader>lp <ESC>:lprevious<CR>
 nnoremap <silent> <leader>lx <ESC>:lclose<CR>
 " }}}
 
@@ -86,7 +89,7 @@ nnoremap <silent> <F4> :call mappings#toggle_bars()<CR>
 
 " {{{ Unite mappings
 func! s:call_unite(sources)
-  exec(':Unite -short-source-names ' . a:sources)
+  exec(':Unite -short-source-names -direction=botright ' . a:sources)
 endfunc
 
 func! s:call_unite_tasks()
@@ -110,33 +113,48 @@ func! s:call_unite_files()
   return s:call_unite('file_rec/async:!')
 endfunc
 
-nnoremap <silent> <leader>pt :call <SID>call_unite_tasks()<cr>
-nnoremap <silent> <leader>pf :call <SID>call_unite_files()<cr>
-nnoremap <silent> <leader>pb :call <SID>call_unite_buffer()<cr>
-nnoremap <silent> <leader>pg :call <SID>call_unite_tags()<cr>
-nnoremap <silent> <leader>px :call <SID>call_unite_tmux()<cr>
+func! s:call_unite_local_grep()
+  return s:call_unite('grep:$PWD:-R')
+endfunc
+
+func! s:call_unite_resume()
+  return s:call_unite('resume')
+endfunc
+
+" Define a base mapping for Unite.
+nnoremap [unite] <nop>
+nmap <leader>u [unite]
+
+" Define the mappings.
+nnoremap <silent> [unite]b :call <SID>call_unite_buffer()<cr>
+nnoremap <silent> [unite]f :call <SID>call_unite_files()<cr>
+nnoremap <silent> [unite]g :call <SID>call_unite_local_grep()<cr>
+nnoremap <silent> [unite]t :call <SID>call_unite_tags()<cr>
+nnoremap <silent> [unite]t :call <SID>call_unite_tasks()<cr>
+nnoremap <silent> [unite]x :call <SID>call_unite_tmux()<cr>
+nnoremap <silent> [unite]r :call <SID>call_unite_resume()<cr>
 " }}}
 " {{{ Git helpers
+nnoremap <leader>ga   :Git add<space>
+nnoremap <leader>gab  :Git add %<cr>
 nnoremap <leader>gc   :Git commit<space>
 nnoremap <leader>gco  :Git checkout<space>
-nnoremap <leader>gp   :Git push<space>
-nnoremap <leader>gfa  :Git fetch --all<CR>
 nnoremap <leader>gf   :Git fetch<space>
+nnoremap <leader>gfa  :Git fetch --all<CR>
+nnoremap <leader>gp   :Git push<space>
 nnoremap <leader>grm  :Git rm %<CR>
 nnoremap <leader>grmc :Git rm --cached %<CR>
-nnoremap <leader>gab  :Git add %<cr>
-nnoremap <leader>ga   :Git add<space>
 " }}}
 
 "{{{ Tabularize
-vnoremap <leader>a: :Tabularize /:<CR>
-vnoremap <leader>a= :Tabularize /=<CR>
-vnoremap <leader>a{ :Tabularize /{<CR>
-vnoremap <leader>a( :Tabularize /(<CR>
-vnoremap <leader>a) :Tabularize /)<CR>
+nnoremap <leader>a( :Tabularize /(<CR>
+nnoremap <leader>a) :Tabularize /)<CR>
 nnoremap <leader>a: :Tabularize /:<CR>
 nnoremap <leader>a= :Tabularize /=<CR>
 nnoremap <leader>a{ :Tabularize /{<CR>
-nnoremap <leader>a( :Tabularize /(<CR>
-nnoremap <leader>a) :Tabularize /)<CR>
+vnoremap <leader>a( :Tabularize /(<CR>
+vnoremap <leader>a) :Tabularize /)<CR>
+vnoremap <leader>a: :Tabularize /:<CR>
+vnoremap <leader>a= :Tabularize /=<CR>
+vnoremap <leader>a{ :Tabularize /{<CR>
 "}}}

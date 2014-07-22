@@ -35,7 +35,7 @@ Plugin 'junegunn/goyo.vim'
 Plugin 'guns/xterm-color-table.vim'
 Plugin 'Raimondi/delimitMate'
 Plugin 'SirVer/Ultisnips'
-Plugin 'Chiel92/vim-autoformat'
+if v:version >= 702 | Plugin 'Chiel92/vim-autoformat' | endif
 Plugin 'tpope/vim-dispatch'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-repeat'

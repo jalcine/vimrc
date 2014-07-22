@@ -1,5 +1,5 @@
 " {{{ Color scheming
-colorscheme Tomorrow-Night-Bright
+colorscheme Tomorrow-Night-Eighties
 set background=light
 hi VertSplit ctermbg=NONE guibg=NONE
 hi FoldColumn ctermbg=NONE guibg=NONE

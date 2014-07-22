@@ -70,6 +70,7 @@ Plugin 'tsukkee/unite-tag'
 Plugin 'zepto/unite-tmux'
 Plugin 'yuku-t/unite-git'
 Plugin 'pasela/unite-webcolorname'
+Plugin 'saihoooooooo/glowshi-ft.vim'
 "}}}
 "}}}
 "

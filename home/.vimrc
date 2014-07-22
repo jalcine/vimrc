@@ -25,7 +25,8 @@ endif
 set nocompatible
 
 " We use UNIX. So act like UNIX.
-set encoding=utf-8 ambiwidth=single
+set encoding=utf-8
+set ambiwidth=single
 set fileencoding=utf-8
 set fileformats=unix
 
@@ -89,10 +90,10 @@ set tabstop=2 softtabstop=2 shiftwidth=2
 set smarttab expandtab
 
 " Set a hard wrapping to 78 characters. Nothing should be longer than that.
-" Trust me, living a few days in the console will teach you that.
+" Trust me, living a few days in the console will teach you that. Unless you
+" don't use a multiplexer or use a terrible window manager like Quartz.
 set textwidth=79
 set nowrap
-
 
 " Using 'smartindent' is obsolete; let ftindent plugins do their magic and
 " just format C-like files.
@@ -203,11 +204,14 @@ set listchars+=tab:\|\
 set sidescrolloff=1
 "}}}
 "{{{ Timeouts
-set timeout ttimeout
-set timeoutlen=400 ttimeoutlen=500
+set timeout
+set ttimeout
+set timeoutlen=400
+set ttimeoutlen=500
 set updatetime=1500
 "}}}
 
 if filereadable('~/.vimrc.local') | source ~/.vimrc.local | endif
 source ~/.vim/plugin/10_options.vim
+if filereadable('~/.vim/plugin/options.local.vim') | source ~/.vim/plugin/options.local.vim | endif
 source ~/.vim/plugin/00_vundle_configuration.vim

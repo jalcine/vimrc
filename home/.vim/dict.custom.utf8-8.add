@@ -141,3 +141,8 @@ api
 vimrc
 ftindent
 UTF
+Serializable
+deserializing
+Serializer
+Util
+serializable

@@ -63,6 +63,7 @@ Plugin 'ap/vim-css-color'
 Plugin 'junegunn/vader.vim'
 Plugin 'perl-support.vim'
 Plugin 'ChrisKempson/Vim-Tomorrow-Theme'
+Plugin 'jalcine/cmake.vim'
 "}}}
 "{{{3 Unite plugins
 Plugin 'Shougo/unite.vim'

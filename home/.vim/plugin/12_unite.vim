@@ -3,9 +3,9 @@
 " Description: Calls and mappings for Unite.
 " Last Modified: June 13, 2014
 
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#filters#matcher_default#use(['matcher_regexp'])
+call unite#filters#sorter_default#use(['sorter_rank'])
 call unite#set_profile('files', 'smartcase', 1)
-call unite#custom#source('line,outline','matchers','matcher_fuzzy')
 
 autocmd FileType unite call s:configure_unite_buffer()
 

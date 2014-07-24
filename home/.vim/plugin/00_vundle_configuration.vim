@@ -21,6 +21,7 @@ Plugin 'gmarik/vundle'
 Plugin 'bling/vim-airline'
 Plugin 'thinca/vim-localrc'
 Plugin 'Shougo/vimproc.vim'
+Plugin 'Shougo/neomru.vim'
 Plugin 'xolox/vim-session'
 Plugin 'xolox/vim-misc'
 Plugin 'mhinz/vim-signify'
@@ -70,7 +71,6 @@ Plugin 'tsukkee/unite-tag'
 Plugin 'zepto/unite-tmux'
 Plugin 'yuku-t/unite-git'
 Plugin 'pasela/unite-webcolorname'
-Plugin 'saihoooooooo/glowshi-ft.vim'
 "}}}
 "}}}
 "

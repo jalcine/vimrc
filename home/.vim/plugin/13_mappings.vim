@@ -1,4 +1,4 @@
-" vim: set fdm=marker tw=78
+" vim: set fdm=marker tw=78:
 " File:        plugin/mappings.vim
 " Author:      Jacky Alciné <me@jalcine.me>
 " Description: Mappings I'd use.
@@ -89,7 +89,7 @@ nnoremap <silent> <F4> :call mappings#toggle_bars()<CR>
 
 " {{{ Unite mappings
 func! s:call_unite(sources)
-  exec(':Unite -short-source-names -direction=botright ' . a:sources)
+  exec(':Unite -direction=botright ' . a:sources)
 endfunc
 
 func! s:call_unite_tasks()
@@ -110,7 +110,7 @@ func! s:call_unite_buffer()
 endfunc
 
 func! s:call_unite_files()
-  return s:call_unite('file_rec/async:!')
+  return s:call_unite('file_rec/async:! file_mru')
 endfunc
 
 func! s:call_unite_local_grep()
@@ -134,6 +134,7 @@ nnoremap <silent> [unite]t :call <SID>call_unite_tasks()<cr>
 nnoremap <silent> [unite]x :call <SID>call_unite_tmux()<cr>
 nnoremap <silent> [unite]r :call <SID>call_unite_resume()<cr>
 " }}}
+
 " {{{ Git helpers
 nnoremap <leader>ga   :Git add<space>
 nnoremap <leader>gab  :Git add %<cr>

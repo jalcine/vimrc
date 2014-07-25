@@ -133,6 +133,9 @@ nnoremap <silent> [unite]t :call <SID>call_unite_tags()<cr>
 nnoremap <silent> [unite]t :call <SID>call_unite_tasks()<cr>
 nnoremap <silent> [unite]x :call <SID>call_unite_tmux()<cr>
 nnoremap <silent> [unite]r :call <SID>call_unite_resume()<cr>
+
+" For those who end up using my machine but think it has CtrlP.
+nnoremap <silent> <leader>p [unite]f
 " }}}
 
 " {{{ Git helpers

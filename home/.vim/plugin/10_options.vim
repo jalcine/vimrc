@@ -41,15 +41,6 @@ let g:syntastic_yaml_checkers=['jsyaml']
 let g:syntastic_jshint_exe='jshint'
 let g:syntastic_enable_perl_checker=1
 " }}}
-" {{{ Signify
-let g:signify_vcs_list=['git']
-let g:signify_disable_by_default=1
-if v:version >= 703 | let g:signify_sign_overwrite=1 | endif
-"let g:signify_sign_add='+'
-"let g:signify_sign_change='!'
-"let g:signify_sign_delete='_'
-"let g:signify_sign_delete_first_line='‾'
-" }}}
 " {{{ Tern
 let g:tern_show_argument_hints='on_hold'
 let g:tern_show_signature_in_pum=1

@@ -129,6 +129,13 @@ let g:javascript_conceal=1
 let g:pencil_neutral_headings=0
 let g:pencil_higher_contrast_ui=1
 " }}}
+" {{{ Perl Options
+let g:perl_fold=1
+let g:perl_fold_blocks=1
+let g:perl_nofold_subs=1
+let g:perl_fold_anonymous_subs=1
+let g:perl_nofold_packages=0
+" }}}
 
 if filereadable('~/.vim/plugin/options.local.vim')
   source ~/.vim/plugin/options.local.vim

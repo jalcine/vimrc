@@ -156,7 +156,8 @@ set hidden
 set noswapfile
 
 " Set the Vim command history size to a larger number.
-set history=16384 undolevels=16384
+set history=9999
+set undolevels=9999
 "}}}
 "{{{ Spelling Options
 " I'll check when I want.

@@ -89,7 +89,7 @@ nnoremap <silent> <F4> :call mappings#toggle_bars()<CR>
 
 " {{{ Unite mappings
 func! s:call_unite(sources)
-  exec(':Unite -no-split -start-insert -direction=botright ' . a:sources)
+  exec(':UniteWithCurrentDir -no-split -start-insert -direction=botright ' . a:sources)
 endfunc
 
 func! s:call_unite_tasks()
@@ -114,7 +114,7 @@ func! s:call_unite_files()
 endfunc
 
 func! s:call_unite_local_grep()
-  return s:call_unite('grep:$PWD:-R')
+  return s:call_unite('grep:.:-R')
 endfunc
 
 func! s:call_unite_resume()
@@ -133,6 +133,7 @@ nnoremap <silent> [unite]t :call <SID>call_unite_tags()<cr>
 nnoremap <silent> [unite]t :call <SID>call_unite_tasks()<cr>
 nnoremap <silent> [unite]x :call <SID>call_unite_tmux()<cr>
 nnoremap <silent> [unite]r :call <SID>call_unite_resume()<cr>
+nnoremap <silent> [unite]X :call <Plug>unite_disable_max_candidates()<CR>
 
 " For those who end up using my machine but think it has CtrlP.
 nnoremap <silent> <leader>p [unite]f

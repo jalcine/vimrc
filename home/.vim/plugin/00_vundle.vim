@@ -9,65 +9,64 @@ else
   let g:jalcine_vundle=1
 endif
 
-filetype off
+func! s:install_vundle()
+  call system('git clone git://github.com/gmarik/Vundle.vim ~/.vim/bundle/vundle')
+  set rtp+=~/.vim/bundle/vundle
+  call vundle#rc()
+endfunc
 
-call system('git clone git://github.com/gmarik/Vundle.vim ~/.vim/bundle/vundle')
-" Megaman, POWER UP!
-set rtp+=~/.vim/bundle/vundle
-call vundle#rc()
+func! s:init_plugins()
+  filetype off
+  Plugin 'gmarik/vundle'
+  Plugin 'bling/vim-airline'
+  Plugin 'thinca/vim-localrc'
+  Plugin 'Shougo/vimproc.vim'
+  Plugin 'xolox/vim-session'
+  Plugin 'xolox/vim-misc'
+  Plugin 'mhinz/vim-signify'
+  Plugin 'int3/vim-extradite'
+  Plugin 'majutsushi/tagbar'
+  Plugin 'mattn/webapi-vim'
+  Plugin 'reedes/vim-colors-pencil'
+  Plugin 'jalcine/vim-polyglot'
+  Plugin 'junegunn/goyo.vim'
+  Plugin 'Raimondi/delimitMate'
+  Plugin 'SirVer/Ultisnips'
+  Plugin 'tpope/vim-dispatch'
+  Plugin 'tpope/vim-fugitive'
+  Plugin 'tpope/vim-repeat'
+  Plugin 'tpope/vim-surround'
+  Plugin 'tpope/vim-endwise'
+  Plugin 'tpope/vim-abolish'
+  Plugin 'honza/vim-snippets'
+  Plugin 'scrooloose/syntastic'
+  Plugin 'scrooloose/nerdcommenter'
+  Plugin 'scrooloose/nerdtree'
+  Plugin 'godlygeek/tabular'
+  Plugin 'terryma/vim-multiple-cursors'
+  Plugin 'reedes/vim-textobj-quote'
+  Plugin 'dbakker/vim-lint'
+  Plugin 'junegunn/vim-github-dashboard'
+  Plugin 'ap/vim-css-color'
+  Plugin 'junegunn/vader.vim'
+  Plugin 'perl-support.vim'
+  Plugin 'Shougo/unite.vim'
+  Plugin 'ChrisKempson/Vim-Tomorrow-Theme'
+  Plugin 'jalcine/cmake.vim'
+  Plugin 'tsukkee/unite-tag'
+  Plugin 'zepto/unite-tmux'
+  Plugin 'yuku-t/unite-git'
+  Plugin 'pasela/unite-webcolorname'
+  if v:version >= 702 | Plugin 'Chiel92/vim-autoformat' | endif
+  if v:version >= 703 | Plugin 'Valloric/YouCompleteMe' | endif
 
-"{{{2 Plugin list
-"{{{3 Core plugins
-Plugin 'gmarik/vundle'
-Plugin 'bling/vim-airline'
-Plugin 'thinca/vim-localrc'
-Plugin 'Shougo/vimproc.vim'
-Plugin 'xolox/vim-session'
-Plugin 'xolox/vim-misc'
-Plugin 'mhinz/vim-signify'
-Plugin 'int3/vim-extradite'
-Plugin 'majutsushi/tagbar'
-Plugin 'mattn/webapi-vim'
-Plugin 'reedes/vim-colors-pencil'
-Plugin 'jalcine/vim-polyglot'
-"}}}
-"{{{3 Utility plugins
-Plugin 'junegunn/goyo.vim'
-Plugin 'Raimondi/delimitMate'
-Plugin 'SirVer/Ultisnips'
-if v:version >= 702 | Plugin 'Chiel92/vim-autoformat' | endif
-Plugin 'tpope/vim-dispatch'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-endwise'
-Plugin 'tpope/vim-abolish'
-Plugin 'honza/vim-snippets'
-Plugin 'scrooloose/syntastic'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'scrooloose/nerdtree'
-Plugin 'godlygeek/tabular'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'reedes/vim-textobj-quote'
-if v:version >= 703 | Plugin 'Valloric/YouCompleteMe' | endif
-Plugin 'dbakker/vim-lint'
-Plugin 'junegunn/vim-github-dashboard'
-Plugin 'ap/vim-css-color'
-"Plugin 'junegunn/vader.vim'
-Plugin 'perl-support.vim'
-Plugin 'ChrisKempson/Vim-Tomorrow-Theme'
-Plugin 'jalcine/cmake.vim'
-"}}}
-"{{{3 Unite plugins
-Plugin 'Shougo/unite.vim'
-Plugin 'tsukkee/unite-tag'
-Plugin 'zepto/unite-tmux'
-Plugin 'yuku-t/unite-git'
-Plugin 'pasela/unite-webcolorname'
-"}}}
-"}}}
-"
-syntax enable
-filetype indent plugin on
-execute 'PluginInstall'
-" }}}
+  syntax enable
+  filetype indent plugin on
+
+endfunc
+
+if !isdirectory('~/.vim/bundle/vundle')
+  call s:install_vundle()
+endif
+
+call s:init_plugins()

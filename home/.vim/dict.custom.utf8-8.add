@@ -146,3 +146,5 @@ deserializing
 Serializer
 Util
 serializable
+deserializable
+deserialize

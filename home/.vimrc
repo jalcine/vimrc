@@ -113,17 +113,7 @@ set wildignore+=.git,.hg,.bzr,.svn
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg,*.svg
 set wildignore+=build/*,tmp/*,vendor/cache/*,bin/*
 " }}}
-"{{{  Tags
-" Clean it out.
-set tags=./tags,./TAGS
-if isdirectory('~/.tags')
-  let tagfiles = expand('~/.tags/**/*.tags', 0, 1)
-  for atagfile in tagfiles
-    let &tags .= ',' . fnamemodify(atagfile,':p:.')
-  endfor
-endif
 
-" }}}
 "{{{ Folding
 " Allow for Vim syntax folding.
 let g:vimsyn_folding='afpPr'
@@ -215,4 +205,4 @@ set updatetime=1500
 if filereadable('~/.vimrc.local') | source ~/.vimrc.local | endif
 source ~/.vim/plugin/10_options.vim
 if filereadable('~/.vim/plugin/options.local.vim') | source ~/.vim/plugin/options.local.vim | endif
-source ~/.vim/plugin/00_vundle_configuration.vim
+source ~/.vim/plugin/00_vundle.vim

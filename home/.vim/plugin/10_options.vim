@@ -71,7 +71,7 @@ let g:airline_mode_map={
 let g:unite_source_history_yank_enable=1
 let g:unite_winheight=10
 let g:unite_data_directory='~/.vim/cache-unite'
-let g:unite_source_rec_max_cache_files=16384
+let g:unite_source_rec_max_cache_files=65536
 let g:unite_enable_start_insert=1
 let g:unite_prompt='» '
 if executable('ag')

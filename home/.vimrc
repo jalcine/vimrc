@@ -136,7 +136,7 @@ set foldenable foldmethod=syntax
 set foldcolumn=1 foldlevel=0
 
 " Show anything less than 3 lines.
-set foldminlines=2 foldnestmax=5 foldlevelstart=1
+set foldminlines=7 foldnestmax=5 foldlevelstart=1
 "}}}
 "{{{ Searching
 " Highlight matches found when searching.

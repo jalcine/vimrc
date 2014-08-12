@@ -64,6 +64,7 @@ Plugin 'junegunn/vader.vim'
 Plugin 'perl-support.vim'
 Plugin 'ChrisKempson/Vim-Tomorrow-Theme'
 Plugin 'jalcine/cmake.vim'
+Plugin 'jaxbot/semantic-highlight.vim'
 "}}}
 "{{{3 Unite plugins
 Plugin 'Shougo/unite.vim'

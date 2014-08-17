@@ -46,7 +46,7 @@ let g:tern_show_argument_hints='on_hold'
 let g:tern_show_signature_in_pum=1
 " }}}
 " {{{ Airline
-let g:airline_theme='badwolf'
+let g:airline_theme='molokai'
 let g:airline_detected_modified=1
 let g:airline_powerline_fonts=1
 let g:airline_detect_iminsert=1
@@ -119,6 +119,8 @@ let g:javascript_conceal=1
 " {{{ Colorscheme Specific 
 let g:pencil_neutral_headings=0
 let g:pencil_higher_contrast_ui=1
+let g:rehash256=1
+let g:molokai_original=1
 " }}}
 " {{{ Perl Options
 let g:perl_fold=1

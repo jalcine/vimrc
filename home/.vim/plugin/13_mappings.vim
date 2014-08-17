@@ -1,4 +1,4 @@
-" vim: set fdm=marker tw=78
+" vim: set fdm=marker tw=78:
 " File:        plugin/mappings.vim
 " Author:      Jacky Alciné <me@jalcine.me>
 " Description: Mappings I'd use.
@@ -110,11 +110,11 @@ func! s:call_unite_buffer()
 endfunc
 
 func! s:call_unite_files()
-  return s:call_unite('file_rec/async:!')
+  return s:call_unite('file_rec/async:! file_mru')
 endfunc
 
 func! s:call_unite_local_grep()
-  return s:call_unite('grep:$PWD:-R')
+  return s:call_unite('grep:.:-R')
 endfunc
 
 func! s:call_unite_resume()
@@ -133,7 +133,12 @@ nnoremap <silent> [unite]t :call <SID>call_unite_tags()<cr>
 nnoremap <silent> [unite]t :call <SID>call_unite_tasks()<cr>
 nnoremap <silent> [unite]x :call <SID>call_unite_tmux()<cr>
 nnoremap <silent> [unite]r :call <SID>call_unite_resume()<cr>
+nnoremap <silent> [unite]X :call <Plug>unite_disable_max_candidates()<CR>
+
+" For those who end up using my machine but think it has CtrlP.
+nnoremap <silent> <leader>p [unite]f
 " }}}
+
 " {{{ Git helpers
 nnoremap <leader>ga   :Git add<space>
 nnoremap <leader>gab  :Git add %<cr>

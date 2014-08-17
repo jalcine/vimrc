@@ -41,21 +41,12 @@ let g:syntastic_yaml_checkers=['jsyaml']
 let g:syntastic_jshint_exe='jshint'
 let g:syntastic_enable_perl_checker=1
 " }}}
-" {{{ Signify
-let g:signify_vcs_list=['git']
-let g:signify_disable_by_default=0
-if v:version >= 703 | let g:signify_sign_overwrite=1 | endif
-let g:signify_sign_add='+'
-let g:signify_sign_change='!'
-let g:signify_sign_delete='_'
-let g:signify_sign_delete_first_line='‾'
-" }}}
 " {{{ Tern
 let g:tern_show_argument_hints='on_hold'
 let g:tern_show_signature_in_pum=1
 " }}}
 " {{{ Airline
-let g:airline_theme='hybrid'
+let g:airline_theme='badwolf'
 let g:airline_detected_modified=1
 let g:airline_powerline_fonts=1
 let g:airline_detect_iminsert=1
@@ -80,7 +71,7 @@ let g:airline_mode_map={
 let g:unite_source_history_yank_enable=1
 let g:unite_winheight=10
 let g:unite_data_directory='~/.vim/cache-unite'
-let g:unite_source_rec_max_cache_files=500
+let g:unite_source_rec_max_cache_files=65536
 let g:unite_enable_start_insert=1
 let g:unite_prompt='» '
 if executable('ag')
@@ -128,6 +119,13 @@ let g:javascript_conceal=1
 " {{{ Colorscheme Specific 
 let g:pencil_neutral_headings=0
 let g:pencil_higher_contrast_ui=1
+" }}}
+" {{{ Perl Options
+let g:perl_fold=1
+let g:perl_fold_blocks=1
+let g:perl_nofold_subs=1
+let g:perl_fold_anonymous_subs=1
+let g:perl_nofold_packages=0
 " }}}
 
 if filereadable('~/.vim/plugin/options.local.vim')

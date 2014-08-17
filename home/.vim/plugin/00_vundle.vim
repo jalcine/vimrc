@@ -51,12 +51,15 @@ func! s:init_plugins()
   Plugin 'junegunn/vader.vim'
   Plugin 'perl-support.vim'
   Plugin 'Shougo/unite.vim'
+  Plugin 'Shougo/neomru.vim'
   Plugin 'ChrisKempson/Vim-Tomorrow-Theme'
   Plugin 'jalcine/cmake.vim'
   Plugin 'tsukkee/unite-tag'
   Plugin 'zepto/unite-tmux'
   Plugin 'yuku-t/unite-git'
   Plugin 'pasela/unite-webcolorname'
+  Plugin 'badwolf'
+  Plugin 'github-issues.vim'
   if v:version >= 702 | Plugin 'Chiel92/vim-autoformat' | endif
   if v:version >= 703 | Plugin 'Valloric/YouCompleteMe' | endif
 

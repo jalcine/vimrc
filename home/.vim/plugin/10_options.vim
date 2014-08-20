@@ -49,7 +49,7 @@ let g:tern_show_signature_in_pum=1
 " }}}
 
 " {{{ Airline
-let g:airline_theme='hybrid'
+let g:airline_theme='ubaryd'
 let g:airline_detected_modified=1
 let g:airline_powerline_fonts=1
 let g:airline_detect_iminsert=1

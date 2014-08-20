@@ -93,12 +93,13 @@ func! s:call_unite(sources)
 endfunc
 
 func! s:call_unite_tasks()
-  call mappings#call_unite('grep:.:-s:\(TODO\|todo\|NOTE\|note\|' .
+  call s:call_unite('grep:.:-s:\(TODO\|todo\|NOTE\|note\|' .
         \ 'FIXME\|fixme\|BUG\bug)')
 endfunc
 
 func! s:call_unite_tmux()
-  call s:call_unite('tmux/panes tmux/sessions tmux/windows')
+  call s:call_unite('tmux/panes tmux/sessions tmux/windows ' .
+        \ 'tmuxcomplete/lines')
 endfunc
 
 func! s:call_unite_tags()

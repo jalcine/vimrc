@@ -1,5 +1,5 @@
 " {{{ Color scheming
-colorscheme molokai
+colorscheme seoul256
 set background=dark
 hi VertSplit  ctermbg=NONE guibg=NONE
 hi FoldColumn ctermbg=NONE guibg=NONE

@@ -11,6 +11,7 @@ let g:used_javascript_libs='jasmine,backbone,jquery,lodash'
 let g:NERDCreateDefaultMappings=1
 let g:NERDCompactSexyComs=1
 " }}}
+
 " {{{ Syntastic
 let g:syntastic_check_on_open=1
 let g:syntastic_check_on_wq=1
@@ -41,12 +42,14 @@ let g:syntastic_yaml_checkers=['jsyaml']
 let g:syntastic_jshint_exe='jshint'
 let g:syntastic_enable_perl_checker=1
 " }}}
+
 " {{{ Tern
 let g:tern_show_argument_hints='on_hold'
 let g:tern_show_signature_in_pum=1
 " }}}
+
 " {{{ Airline
-let g:airline_theme='molokai'
+let g:airline_theme='hybrid'
 let g:airline_detected_modified=1
 let g:airline_powerline_fonts=1
 let g:airline_detect_iminsert=1
@@ -67,6 +70,7 @@ let g:airline_mode_map={
       \ 'V'  : 'VB'
       \ }
 " }}}
+
 " {{{ Unite
 let g:unite_source_history_yank_enable=1
 let g:unite_winheight=10
@@ -80,6 +84,7 @@ if executable('ag')
   let g:unite_source_grep_default_opts='--nocolor --nogroup --column'
 endif
 " }}}
+
 " {{{ Ultisnips
 let g:snips_author="Jacky Alcine <me@jalcine.me>"
 let g:UltiSnipsEditSplit="horizontal"
@@ -88,10 +93,12 @@ let g:UltiSnipsJumpForwardTrigger="<C-j>"
 let g:UltiSnipsJumpBackwardTrigger="<C-k>"
 let g:UltiSnipsSnippetDirectories=["Ultisnips"]
 " }}}
+
 " {{{ Tagbar
 let g:tagbar_compact=1
 let g:tagbar_autoshowtag=1
 " }}}
+
 " {{{ vim-session
 let g:session_autoload="no"
 let g:session_autosave="yes"
@@ -99,6 +106,7 @@ let g:session_command_aliases=1
 let g:session_default_name="default"
 let g:session_directory="~/.vim/sessions"
 " }}}
+
 " {{{ Git, Github and VCS
 let g:github_user='jalcine'
 let g:github_dashboard = { 'username': g:github_user }
@@ -112,16 +120,17 @@ let g:github_dashboard['emoji_map'] = {
       \ }
 
 " }}}
+
 " {{{ JavaScript options
 let g:javascript_enable_domhtmlcss=1
 let g:javascript_conceal=1
 " }}}
+
 " {{{ Colorscheme Specific 
-let g:pencil_neutral_headings=0
-let g:pencil_higher_contrast_ui=1
-let g:rehash256=1
-let g:molokai_original=1
+let g:pencil_neutral_headings=1
+let g:pencil_higher_contrast_ui=0
 " }}}
+
 " {{{ Perl Options
 let g:perl_fold=1
 let g:perl_fold_blocks=1

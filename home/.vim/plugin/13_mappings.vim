@@ -89,7 +89,7 @@ nnoremap <silent> <F4> :call mappings#toggle_bars()<CR>
 
 " {{{ Unite mappings
 func! s:call_unite(sources)
-  exec(':Unite -no-split -start-insert -direction=botright ' . a:sources)
+  exec(':Unite -no-split -direction=botright ' . a:sources)
 endfunc
 
 func! s:call_unite_tasks()

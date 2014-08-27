@@ -1,4 +1,0 @@
-[submodule "vundle"]
-  path = home/.vim/bundle/vundle
-  url = git://github.com/gmarik/Vundle.vim
-  branch = master

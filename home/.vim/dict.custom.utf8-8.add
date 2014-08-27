@@ -146,6 +146,9 @@ deserializing
 Serializer
 Util
 serializable
+deserializable
+deserialize
 CTRB
 TZ
 MQ
+dotfiles

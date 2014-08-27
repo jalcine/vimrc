@@ -133,9 +133,9 @@ let g:pencil_higher_contrast_ui=0
 
 " {{{ Perl Options
 let g:perl_fold=1
-let g:perl_fold_blocks=1
-let g:perl_nofold_subs=1
-let g:perl_fold_anonymous_subs=1
+let g:perl_fold_blocks=0
+let g:perl_nofold_subs=0
+let g:perl_fold_anonymous_subs=0
 let g:perl_nofold_packages=0
 " }}}
 

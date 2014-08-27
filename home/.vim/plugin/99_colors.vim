@@ -1,5 +1,6 @@
 " {{{ Color scheming
-colorscheme seoul256
+" colorscheme Tomorrow-Night
+" AirlineTheme tomorrow
 set background=dark
 hi VertSplit  ctermbg=NONE guibg=NONE
 hi FoldColumn ctermbg=NONE guibg=NONE

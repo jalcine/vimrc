@@ -202,7 +202,7 @@ set ttimeoutlen=500
 set updatetime=1500
 "}}}
 
-if filereadable('~/.vimrc.local') | source ~/.vimrc.local | endif
 source ~/.vim/plugin/10_options.vim
 if filereadable('~/.vim/plugin/options.local.vim') | source ~/.vim/plugin/options.local.vim | endif
 source ~/.vim/plugin/00_vundle.vim
+if filereadable('~/.vimrc.local') | source ~/.vimrc.local | endif

@@ -156,7 +156,7 @@ set hidden
 set noswapfile
 
 " Set the Vim command history size to a larger number.
-set history=16384 undolevels=16384
+set history=9999 undolevels=16384
 "}}}
 "{{{ Spelling Options
 " I'll check when I want.
@@ -211,7 +211,7 @@ set ttimeoutlen=500
 set updatetime=1500
 "}}}
 
-if filereadable('~/.vimrc.local') | source ~/.vimrc.local | endif
 source ~/.vim/plugin/10_options.vim
 if filereadable('~/.vim/plugin/options.local.vim') | source ~/.vim/plugin/options.local.vim | endif
 source ~/.vim/plugin/00_vundle_configuration.vim
+if filereadable('~/.vimrc.local') | source ~/.vimrc.local | endif

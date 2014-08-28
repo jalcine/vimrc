@@ -17,43 +17,61 @@ endfunc
 
 func! s:init_plugins()
   filetype off
+  " Libraries (sort of)
+  Plugin 'mattn/webapi-vim'
+  Plugin 'xolox/vim-misc'
+
+  " Utilities
+  Plugin 'gmarik/vundle'
   Plugin 'Shougo/neomru.vim'
   Plugin 'Shougo/unite.vim'
   Plugin 'Shougo/vimproc.vim'
-  Plugin 'SirVer/Ultisnips'
-  Plugin 'ap/vim-css-color'
+  Plugin 'tpope/vim-dispatch'
+  Plugin 'tpope/vim-endwise'
+  Plugin 'tpope/vim-repeat'
+  Plugin 'tpope/vim-surround'
   Plugin 'bling/vim-airline'
-  Plugin 'dbakker/vim-lint'
-  Plugin 'github-issues.vim'
-  Plugin 'gmarik/vundle'
-  Plugin 'godlygeek/tabular'
-  Plugin 'honza/vim-snippets'
-  Plugin 'int3/vim-extradite'
-  Plugin 'junegunn/seoul256.vim'
-  Plugin 'junegunn/vim-emoji'
-  Plugin 'junegunn/vim-github-dashboard'
-  Plugin 'majutsushi/tagbar'
-  Plugin 'mattn/webapi-vim'
-  Plugin 'pasela/unite-webcolorname'
-  Plugin 'perl-support.vim'
+  Plugin 'xolox/vim-session'
+
+  " Color
   Plugin 'reedes/vim-colors-pencil'
+
+  " Editor enhancements
+  Plugin 'SirVer/Ultisnips'
   Plugin 'scrooloose/nerdcommenter'
   Plugin 'scrooloose/nerdtree'
   Plugin 'scrooloose/syntastic'
-  Plugin 'sheerun/vim-polyglot'
+  Plugin 'majutsushi/tagbar'
+  Plugin 'godlygeek/tabular'
+  Plugin 'honza/vim-snippets'
   Plugin 'terryma/vim-multiple-cursors'
-  Plugin 'thinca/vim-localrc'
-  Plugin 'tpope/vim-dispatch'
-  Plugin 'tpope/vim-endwise'
-  Plugin 'tpope/vim-fugitive'
-  Plugin 'tpope/vim-repeat'
-  Plugin 'tpope/vim-surround'
-  Plugin 'tsukkee/unite-tag'
   Plugin 'wellle/tmux-complete.vim'
-  Plugin 'xolox/vim-misc'
-  Plugin 'xolox/vim-session'
+ 
+  " File support 
+  Plugin 'dbakker/vim-lint'
+  Plugin 'perl-support.vim'
+  Plugin 'sheerun/vim-polyglot'
+
+  " Web dev
+  Plugin 'ap/vim-css-color'
+
+  " Extra
+  Plugin 'junegunn/vim-emoji'
+
+  " Git and friends
+  Plugin 'tpope/vim-fugitive'
+  Plugin 'junegunn/vim-github-dashboard'
+  Plugin 'int3/vim-extradite'
+  Plugin 'jaxbot/github-issues.vim'
+
+  Plugin 'thinca/vim-localrc'
+
+  " Unite jazz
+  Plugin 'tsukkee/unite-tag'
   Plugin 'yuku-t/unite-git'
   Plugin 'zepto/unite-tmux'
+  Plugin 'pasela/unite-webcolorname'
+
   Plugin 'file:///~/Development/Projects/Vim/cmake.vim'
   if v:version >= 702 | Plugin 'Chiel92/vim-autoformat' | endif
   if v:version >= 703 | Plugin 'Valloric/YouCompleteMe' | endif

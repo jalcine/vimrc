@@ -49,7 +49,7 @@ let g:tern_show_signature_in_pum=1
 " }}}
 
 " {{{ Airline
-let g:airline_theme='hybrid'
+let g:airline_theme='ubaryd'
 let g:airline_detected_modified=1
 let g:airline_powerline_fonts=0
 let g:airline_detect_iminsert=1
@@ -137,6 +137,9 @@ let g:perl_fold_blocks=0
 let g:perl_nofold_subs=0
 let g:perl_fold_anonymous_subs=0
 let g:perl_nofold_packages=0
+let g:c_no_c99=1
+let g:c_comment_strings=1
+let g:c_space_errors=1
 " }}}
 
 if filereadable('~/.vim/plugin/options.local.vim')

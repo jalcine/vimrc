@@ -119,11 +119,11 @@ set wildignore+=build/*,tmp/*,vendor/cache/*,bin/*
 let g:vimsyn_folding='afpPr'
 let g:vimsyn_embed='Pr'
 
-" We fold all ze time, according to syntax.
-set foldenable foldmethod=syntax
+" We fold when we need to, according to syntax.
+set nofoldenable foldmethod=syntax
 
-" Tiny fold column, all the time folding.
-set foldcolumn=1 foldlevel=0
+" No fold column, all the time folding.
+set foldcolumn=0 foldlevel=0
 
 " Show anything less than 3 lines.
 set foldminlines=7 foldnestmax=5 foldlevelstart=1
@@ -188,8 +188,11 @@ if has('linebreak') | set showbreak=↪ | endif
 " Visual cues when in 'list' model.
 set list
 set listchars+=eol:¬
-set listchars+=extends:❯,precedes:❮
-set listchars+=tab:\|\ 
+set listchars+=extends:❯
+set listchars+=precedes:❮
+set listchars+=tab:▷⋅
+set listchars+=trail:⋅
+set listchars+=nbsp:⋅
 
 " Keep some spacing.
 set sidescrolloff=1

@@ -111,7 +111,7 @@ func! s:call_unite_buffer()
 endfunc
 
 func! s:call_unite_files()
-  return s:call_unite('file_rec/async:! file_mru')
+  return s:call_unite('file_rec/async:!:$PWD file_mru:!:$PWD')
 endfunc
 
 func! s:call_unite_local_grep()

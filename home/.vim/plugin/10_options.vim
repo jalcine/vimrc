@@ -137,6 +137,9 @@ let g:perl_fold_blocks=0
 let g:perl_nofold_subs=0
 let g:perl_fold_anonymous_subs=0
 let g:perl_nofold_packages=0
+let g:c_no_c99=1
+let g:c_comment_strings=1
+let g:c_space_errors=1
 " }}}
 
 if filereadable('~/.vim/plugin/options.local.vim')

@@ -10,7 +10,6 @@ else
 endif
 
 func! s:install_vundle()
-  echomsg "[jalcine] Installing Vundle..."
   call system('git clone git://github.com/gmarik/Vundle.vim ~/.vim/bundle/vundle')
   set rtp+=~/.vim/bundle/vundle
   call vundle#rc()

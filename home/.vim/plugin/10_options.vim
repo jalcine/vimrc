@@ -49,7 +49,7 @@ let g:tern_show_signature_in_pum=1
 " }}}
 
 " {{{ Airline
-let g:airline_theme='ubaryd'
+let g:airline_theme='jellybeans'
 let g:airline_detected_modified=1
 let g:airline_powerline_fonts=0
 let g:airline_detect_iminsert=1
@@ -80,7 +80,7 @@ let g:unite_enable_start_insert=1
 let g:unite_prompt='» '
 if executable('ag')
   let g:unite_source_grep_command='ag'
-  let g:unite_source_grep_recursive_opts=''
+  let g:unite_source_grep_recursive_opts='--ignore build --ignore bin'
   let g:unite_source_grep_default_opts='--nocolor --nogroup --column'
 endif
 " }}}

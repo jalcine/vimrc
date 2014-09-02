@@ -1,5 +1,5 @@
 " {{{ Color scheming
-colorscheme pencil
+colorscheme jellybeans
 set background=dark
 hi VertSplit  ctermbg=NONE guibg=NONE
 hi FoldColumn ctermbg=NONE guibg=NONE

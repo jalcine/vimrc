@@ -190,9 +190,9 @@ set list
 set listchars+=eol:¬
 set listchars+=extends:❯
 set listchars+=precedes:❮
-set listchars+=tab:▷⋅
 set listchars+=trail:⋅
 set listchars+=nbsp:⋅
+set listchars+=tab:\|\ 
 
 " Keep some spacing.
 set sidescrolloff=1

@@ -34,7 +34,8 @@ func! s:init_plugins()
   Plugin 'xolox/vim-session'
 
   " Color
-  Plugin 'reedes/vim-colors-pencil'
+  Plugin 'nanotech/jellybeans.vim'
+  Plugin 'summerfruit256.vim'
 
   " Editor enhancements
   Plugin 'SirVer/Ultisnips'
@@ -50,10 +51,10 @@ func! s:init_plugins()
   " File support 
   Plugin 'dbakker/vim-lint'
   Plugin 'perl-support.vim'
-  Plugin 'sheerun/vim-polyglot'
 
   " Web dev
   Plugin 'ap/vim-css-color'
+  Plugin 'parkr/vim-jekyll'
 
   " Extra
   Plugin 'junegunn/vim-emoji'
@@ -72,7 +73,6 @@ func! s:init_plugins()
   Plugin 'zepto/unite-tmux'
   Plugin 'pasela/unite-webcolorname'
 
-  Plugin 'file:///~/Development/Projects/Vim/cmake.vim'
   if v:version >= 702 | Plugin 'Chiel92/vim-autoformat' | endif
   if v:version >= 703 | Plugin 'Valloric/YouCompleteMe' | endif
 

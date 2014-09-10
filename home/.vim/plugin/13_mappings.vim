@@ -84,9 +84,6 @@ cnoremap vhe vert help
 cnoremap sw% w !sudo tee %
 " }}}
 
-nnoremap <silent> <leader><space> :Goyo<CR>
-nnoremap <silent> <F4> :call mappings#toggle_bars()<CR>
-
 " {{{ Unite mappings
 func! s:call_unite(sources)
   exec(':Unite -no-split -direction=botright -unique -truncate -sync ' . a:sources)

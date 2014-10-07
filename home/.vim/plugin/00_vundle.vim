@@ -37,6 +37,7 @@ func! s:init_plugins()
   Plugin 'badwolf'
 
   " Editor enhancements
+  Plugin 'editorconfig-vim'
   Plugin 'SirVer/Ultisnips'
   Plugin 'scrooloose/nerdcommenter'
   Plugin 'scrooloose/nerdtree'

@@ -34,8 +34,7 @@ func! s:init_plugins()
   Plugin 'xolox/vim-session'
 
   " Color
-  Plugin 'nanotech/jellybeans.vim'
-  Plugin 'summerfruit256.vim'
+  Plugin 'badwolf'
 
   " Editor enhancements
   Plugin 'SirVer/Ultisnips'

@@ -120,7 +120,7 @@ let g:vimsyn_folding='afpPr'
 let g:vimsyn_embed='Pr'
 
 " We fold when we need to, according to syntax.
-set nofoldenable foldmethod=syntax
+set foldenable foldmethod=syntax
 
 " No fold column, all the time folding.
 set foldcolumn=0 foldlevel=0

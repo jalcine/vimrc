@@ -129,6 +129,7 @@ set foldminlines=4
 set foldnestmax=5
 set foldlevelstart=1
 "}}}
+
 "{{{ Searching
 " Highlight matches found when searching.
 set hlsearch incsearch

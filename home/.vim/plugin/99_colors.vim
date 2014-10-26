@@ -6,9 +6,5 @@
 " We always use 256 colors.
 set t_Co=256
 
-"let g:bas16colorspace=256
-
-" {{{ Loading and tweaking of colorscheme
 colorscheme jellybeans
 hi FoldColumn ctermbg=black
-" }}}

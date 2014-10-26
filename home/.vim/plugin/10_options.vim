@@ -52,7 +52,7 @@ let g:syntastic_enable_perl_checker=1
 " {{{ Airline
 let g:airline_theme='laederon'
 let g:airline_detected_modified=1
-let g:airline_powerline_fonts=1
+let g:airline_powerline_fonts=0
 let g:airline_detect_iminsert=1
 let g:airline#extensions#hunks#non_zero_only=1
 let g:airline#extensions#tabline#enabled=1
@@ -128,34 +128,27 @@ let g:javascript_enable_domhtmlcss=1
 let g:javascript_conceal=1
 " }}}
 
-let g:load_doxygen_syntax=1
-let g:doxygen_enhanced_color=1
-let g:c_no_c99=1
-let g:c_space_errors=1
-let g:c_gnu=1
-let g:c_curly_errors=1
-
-let g:perl_include_pod=1
-let g:perl_sync_dist=50
-let g:perl_fold=1
-let g:perl_fold_blocks=1
-
+" {{{ Colorscheme Specific 
 let g:ruby_fold=1
 let g:sh_fold_enabled=7
 
-" {{{ Colorscheme Specific
-let g:pencil_neutral_headings=1
-let g:pencil_higher_contrast_ui=0
-" }}}
-
 " {{{ Perl Options
 let g:perl_fold=1
-let g:perl_fold_blocks=0
-let g:perl_nofold_subs=0
 let g:perl_fold_anonymous_subs=0
+let g:perl_fold_blocks=1
+let g:perl_include_pod=1
 let g:perl_nofold_packages=0
-let g:c_no_c99=1
+let g:perl_nofold_subs=0
+let g:perl_sync_dist=50
+" }}}
+
+" {{{ C/C++ specifics
+let g:load_doxygen_syntax=1
+let g:doxygen_enhanced_color=1
 let g:c_comment_strings=1
+let g:c_curly_errors=1
+let g:c_gnu=0
+let g:c_no_c99=1
 let g:c_space_errors=1
 " }}}
 

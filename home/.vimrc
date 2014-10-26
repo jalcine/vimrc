@@ -1,7 +1,7 @@
 " File: .vimrc
 " Author: Jacky Alciné <me@jalcine.me>
 " Description: The heart.
-" Last Modified: 2014-06-10 21:17:56 EDT
+" Last Modified: 2014-10-25 20:33:06 EDT
 
 " This is my Vim setup. It's meant to be overridden since it ends up being
 " useful in dozens of people be it on a mobile device or in the cloud.
@@ -124,11 +124,12 @@ let g:vimsyn_embed='Pr'
 set foldenable foldmethod=syntax
 
 " No fold column, all the time folding.
-set foldcolumn=0 foldlevel=0
+set foldcolumn=1 foldlevel=0
 
 " Show anything less than 3 lines.
-set foldminlines=7 foldnestmax=5 foldlevelstart=1
+set foldminlines=5 foldnestmax=5 foldlevelstart=1
 "}}}
+
 "{{{ Searching
 " Highlight matches found when searching.
 set hlsearch incsearch
@@ -163,9 +164,12 @@ set spelllang=en_us
 set spellsuggest=best,3
 
 " Add a bunch of dictionaries.
-set dictionary+=/usr/share/dict/words,/usr/share/dict/american-english
-set dictionary+=/usr/share/dict/web2,/usr/share/dict/propernames.gz
-set dictionary+=/usr/share/dict/connectives.gz,/usr/share/dict/web2a.gz
+set dictionary+=/usr/share/dict/words,
+set dictionary+=/usr/share/dict/american-english
+set dictionary+=/usr/share/dict/web2,
+set dictionary+=/usr/share/dict/propernames.gz
+set dictionary+=/usr/share/dict/connectives.gz
+set dictionary+=/usr/share/dict/web2a.gz
 
 " Set a location to save my added words.
 set spellfile=~/.vim/dict.custom.utf8-8.add
@@ -207,6 +211,6 @@ set updatetime=1500
 "}}}
 
 source ~/.vim/plugin/10_options.vim
-if filereadable('~/.vim/plugin/options.local.vim') | source ~/.vim/plugin/options.local.vim | endif
+if filereadable('~/.vim/options.local.vim') | source ~/.vim/options.local.vim | endif
 source ~/.vim/plugin/00_vundle.vim
 if filereadable('~/.vimrc.local') | source ~/.vimrc.local | endif

@@ -35,6 +35,7 @@ func! s:init_plugins()
   Plugin 'xolox/vim-publish'
   Plugin 'xolox/vim-easytags'
   Plugin 'xolox/vim-notes'
+  Plugin 'sheerun/vim-polyglot'
 
   " Color
   Plugin 'badwolf'

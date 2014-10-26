@@ -51,7 +51,7 @@ let g:tern_show_signature_in_pum=1
 " {{{ Airline
 let g:airline_theme='badwolf'
 let g:airline_detected_modified=1
-let g:airline_powerline_fonts=1
+let g:airline_powerline_fonts=0
 let g:airline_detect_iminsert=1
 let g:airline#extensions#hunks#non_zero_only=1
 let g:airline#extensions#tabline#enabled=1
@@ -125,6 +125,21 @@ let g:github_dashboard['emoji_map'] = {
 let g:javascript_enable_domhtmlcss=1
 let g:javascript_conceal=1
 " }}}
+
+let g:load_doxygen_syntax=1
+let g:doxygen_enhanced_color=1
+let g:c_no_c99=1
+let g:c_space_errors=1
+let g:c_gnu=1
+let g:c_curly_errors=1
+
+let g:perl_include_pod=1
+let g:perl_sync_dist=50
+let g:perl_fold=1
+let g:perl_fold_blocks=1
+
+let g:ruby_fold=1
+let g:sh_fold_enabled=7
 
 " {{{ Colorscheme Specific 
 let g:pencil_neutral_headings=1

@@ -1,7 +1,8 @@
+" vim: set fdm=marker foldenable foldlevel=0 :
 " File: .vimrc
 " Author: Jacky Alciné <me@jalcine.me>
 " Description: The heart.
-" Last Modified: 2014-10-25 20:33:06 EDT
+" Last Modified: 2014-10-26 14:42:46 EDT
 
 " This is my Vim setup. It's meant to be overridden since it ends up being
 " useful in dozens of people be it on a mobile device or in the cloud.
@@ -50,7 +51,7 @@ set sessionoptions=buffers,tabpages,winsize,curdir
 set visualbell
 set errorbells
 set ruler
-set number
+"set number
 if has('conceal') | set conceallevel=2 concealcursor=ncv | endif
 
 " Gimme something to look at.
@@ -114,7 +115,6 @@ set wildignore+=.git,.hg,.bzr,.svn
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg,*.svg
 set wildignore+=build/*,tmp/*,vendor/cache/*,bin/*
 " }}}
-
 "{{{ Folding
 " Allow for Vim syntax folding.
 let g:vimsyn_folding='afpPr'
@@ -122,14 +122,9 @@ let g:vimsyn_embed='Pr'
 
 " We fold when we need to, according to syntax.
 set foldenable foldmethod=syntax
-
-" No fold column, all the time folding.
-set foldcolumn=1 foldlevel=0
-
-" Show anything less than 3 lines.
+set foldcolumn=1 foldlevel=1
 set foldminlines=5 foldnestmax=5 foldlevelstart=1
 "}}}
-
 "{{{ Searching
 " Highlight matches found when searching.
 set hlsearch incsearch

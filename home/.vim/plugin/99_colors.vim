@@ -13,5 +13,4 @@ hi Folded ctermbg=NONE
 hi NonText ctermbg=NONE
 hi Normal ctermbg=NONE
 hi VertSplit ctermbg=NONE
-hi Todo ctermfg=5
 " }}}

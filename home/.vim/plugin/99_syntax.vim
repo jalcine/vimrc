@@ -5,3 +5,7 @@
 
 " TODO: Add more words to the TODO matching setup.
 let s:hilite_words=['NOTE', 'IDEA']
+
+for word in s:hilite_words
+  syn keyword ToDo NOTE IDEA
+endfor

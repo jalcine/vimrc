@@ -12,8 +12,8 @@ class ${1/(\w+).*/$1/} : public QObject
 	Q_DISABLE_COPY ( ${1/(\w+).*/$1/} );
 
 	public:
-		explicit ${1/(\w+).*/$1/}(); ///< @brief Constructor.
-		virtual ~${1/(\w+).*/$1/}(); ///< @brief Destructor.
+	explicit ${1/(\w+).*/$1/}(); ///< @brief Constructor.
+	virtual ~${1/(\w+).*/$1/}(); ///< @brief Destructor.
 
 }; // end ${1/(\w+).*/$1/}
 

@@ -38,7 +38,7 @@ func! s:init_plugins()
   Plugin 'sheerun/vim-polyglot'
 
   " Color
-  Plugin 'badwolf'
+  Plugin 'jellybeans.vim'
 
   " Editor enhancements
   Plugin 'editorconfig/editorconfig-vim'

@@ -6,18 +6,12 @@
 " We always use 256 colors.
 set t_Co=256
 
-" {{{ Options for Colorscheme
-let g:badwolf_darkgutter=1
-let g:badwolf_tabline=1
-let g:badwolf_css_props_highlight=1
-let g:badwolf_html_link_underline=1
-" }}}
-
 " {{{ Loading and tweaking of colorscheme
-colorscheme badwolf
-hi Normal  ctermbg=NONE
-hi NonText ctermbg=NONE
-hi Folded  ctermbg=None
-hi LineNr  ctermbg=NONE
+colorscheme jellybeans
 hi FoldColumn ctermbg=NONE
+hi Folded ctermbg=NONE
+hi NonText ctermbg=NONE
+hi Normal ctermbg=NONE
+hi VertSplit ctermbg=NONE
+hi Todo ctermfg=5
 " }}}

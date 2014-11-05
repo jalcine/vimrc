@@ -50,9 +50,9 @@ let g:syntastic_enable_perl_checker=1
 " }}}
 
 " {{{ Airline
-let g:airline_theme='laederon'
+let g:airline_theme='raven'
 let g:airline_detected_modified=1
-let g:airline_powerline_fonts=0
+let g:airline_powerline_fonts=1
 let g:airline_detect_iminsert=1
 let g:airline#extensions#hunks#non_zero_only=1
 let g:airline#extensions#tabline#enabled=1

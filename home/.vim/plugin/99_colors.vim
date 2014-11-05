@@ -6,5 +6,12 @@
 " We always use 256 colors.
 set t_Co=256
 
+" {{{ Loading and tweaking of colorscheme
 colorscheme jellybeans
-hi FoldColumn ctermbg=black
+hi FoldColumn ctermbg=NONE
+hi Folded ctermbg=NONE
+hi NonText ctermbg=NONE
+hi Normal ctermbg=NONE
+hi VertSplit ctermbg=NONE
+hi Todo ctermfg=5
+" }}}

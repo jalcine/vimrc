@@ -6,6 +6,7 @@ endif
 let g:jalcine_options=1
 let g:goyo_linenr=1
 let g:used_javascript_libs='jasmine,backbone,jquery,lodash'
+let g:vundle_lazy_load=1
 
 " {{{ NERD{Tree,Commenter}
 let g:NERDCreateDefaultMappings=1
@@ -44,7 +45,7 @@ let g:syntastic_enable_perl_checker=1
 " }}}
 
 " {{{ Airline
-let g:airline_theme='raven'
+let g:airline_theme='laederon'
 let g:airline_detected_modified=1
 let g:airline_powerline_fonts=1
 let g:airline_detect_iminsert=1

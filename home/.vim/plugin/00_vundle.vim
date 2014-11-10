@@ -32,6 +32,9 @@ func! s:init_plugins()
   Plugin 'tpope/vim-surround'
   Plugin 'bling/vim-airline'
   Plugin 'xolox/vim-session'
+  Plugin 'xolox/vim-publish'
+  Plugin 'xolox/vim-easytags'
+  Plugin 'xolox/vim-notes'
 
   " Color
   Plugin 'badwolf'

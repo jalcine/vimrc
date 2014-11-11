@@ -36,6 +36,7 @@ func! s:init_plugins()
   Plugin 'xolox/vim-easytags'
   Plugin 'xolox/vim-notes'
   Plugin 'sheerun/vim-polyglot'
+  Plugin 'jalcine/cmake.vim'
 
   " Color
   Plugin 'jellybeans.vim'
@@ -79,6 +80,11 @@ func! s:init_plugins()
 
   if v:version > 702 | Plugin 'Chiel92/vim-autoformat' | endif
   if v:version >= 703 | Plugin 'Valloric/YouCompleteMe' | endif
+
+  Plugin 'file:///home/jalcine/Development/Projects/Vim/cmake.vim', { 'name' : 'cmake.vim-bleeding' }
+  if filereadable('~/.vim/vundle.local.vim') | source ~/.vim/vundle.local.vim | endif
+
+  call vundle#end()
 
   syntax enable
   filetype indent plugin on

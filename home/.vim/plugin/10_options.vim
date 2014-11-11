@@ -13,6 +13,11 @@ let g:NERDCreateDefaultMappings=1
 let g:NERDCompactSexyComs=1
 " }}}
 
+let g:cmake_exec = {
+      \ 'async': 'dispatch',
+      \ 'sync': 'dispatch',
+      \ }
+
 " {{{ Syntastic
 let g:syntastic_check_on_open=1
 let g:syntastic_check_on_wq=1

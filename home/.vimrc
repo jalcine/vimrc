@@ -121,9 +121,13 @@ let g:vimsyn_folding='afpPr'
 let g:vimsyn_embed='Pr'
 
 " We fold when we need to, according to syntax.
-set foldenable foldmethod=syntax
-set foldcolumn=1 foldlevel=1
-set foldminlines=5 foldnestmax=5 foldlevelstart=1
+set foldenable
+set foldmethod=syntax
+set foldcolumn=1
+set foldlevel=2
+set foldminlines=4
+set foldnestmax=5
+set foldlevelstart=1
 "}}}
 "{{{ Searching
 " Highlight matches found when searching.

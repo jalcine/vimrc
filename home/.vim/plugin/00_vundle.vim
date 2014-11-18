@@ -53,7 +53,7 @@ func! s:init_plugins()
   Plugin 'terryma/vim-multiple-cursors'
   Plugin 'wellle/tmux-complete.vim'
  
-  " File support 
+  " File support
   Plugin 'dbakker/vim-lint'
   Plugin 'perl-support.vim'
 
@@ -69,6 +69,8 @@ func! s:init_plugins()
   Plugin 'junegunn/vim-github-dashboard'
   Plugin 'int3/vim-extradite'
   Plugin 'jaxbot/github-issues.vim'
+  Plugin 'mmozuras/vim-github-comment'
+  Plugin 'gmarik/github-search.vim'
 
   Plugin 'thinca/vim-localrc'
 

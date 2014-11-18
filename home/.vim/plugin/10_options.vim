@@ -30,9 +30,9 @@ let g:syntastic_auto_jump=0
 let g:syntastic_auto_loc_list=1
 let g:syntastic_loc_list_height=3
 let g:syntastic_ignore_files = ['\m^/usr/include/', 'node_modules']
-let g:syntastic_mode_map = { 'mode': 'passive' }
+let g:syntastic_mode_map = { 'mode': 'active' }
 " {{{ Checkers for Syntastic
-let g:syntastic_javascript_checkers=['jshint', 'jscs']
+let g:syntastic_javascript_checkers=['jslint', 'jscs']
 let g:syntastic_json_checkers=['jsonlint', 'jsonval']
 let g:syntastic_ruby_checkers=['mri', 'rubylint', 'rubocop']
 let g:syntastic_perl_checkers=['perl','perlcritic','podchecker']
@@ -60,25 +60,26 @@ let g:airline#extensions#branch#enabled=1
 let g:airline#extensions#whitespace#enabled=1
 let g:airline#extensions#whitespace#mixed_indent_algo=1
 let g:airline#extensions#whitespace#show_message=1
-let g:airline#extensions#whitespace#trailing_format='sp: [%s]'
-let g:airline#extensions#whitespace#mixed_indent_format='mi: [%s]'
+let g:airline#extensions#whitespace#trailing_format='s [%s]'
+let g:airline#extensions#whitespace#mixed_indent_format='i [%s]'
 let g:airline_mode_map={
       \ '__' : '-',
       \ 'n'  : 'N',
       \ 'i'  : 'I',
       \ 'R'  : 'R',
       \ 'v'  : 'V',
-      \ 'V'  : 'VB'
+      \ 'V'  : 'B'
       \ }
 " }}}
 
 " {{{ Unite
 let g:unite_source_history_yank_enable=1
-let g:unite_winheight=10
+let g:unite_winheight=5
 let g:unite_data_directory='~/.vim/cache-unite'
-let g:unite_source_rec_max_cache_files=65536
+let g:unite_source_rec_max_cache_files=10*10*10
 let g:unite_enable_start_insert=1
 let g:unite_prompt='» '
+" TODO: Add level for 'ack'.
 if executable('ag')
   let g:unite_source_grep_command='ag'
   let g:unite_source_grep_recursive_opts='--ignore build --ignore bin'
@@ -96,8 +97,8 @@ let g:UltiSnipsSnippetDirectories=["Ultisnips"]
 " }}}
 
 " {{{ Tagbar
-let g:tagbar_compact=1
-let g:tagbar_autoshowtag=1
+let g:tagbar_compact=0
+let g:tagbar_autoshowtag=0
 " }}}
 
 " {{{ vim-session
@@ -110,6 +111,7 @@ let g:session_directory="~/.vim/sessions"
 
 " {{{ Git, Github and VCS
 let g:github_user='jalcine'
+let g:github_comment_open_browser = 1
 let g:github_dashboard = { 'username': g:github_user }
 let g:github_dashboard['position'] = 'bottom'
 let g:github_dashboard['emoji'] = 1
@@ -119,7 +121,6 @@ let g:github_dashboard['emoji_map'] = {
       \   'repo_activity':  'laughing',
       \   'ForkEvent':      'fork_and_knife'
       \ }
-
 " }}}
 
 " {{{ JavaScript options

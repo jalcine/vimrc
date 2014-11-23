@@ -36,7 +36,6 @@ func! s:init_plugins()
   Plugin 'xolox/vim-easytags'
   Plugin 'xolox/vim-notes'
   Plugin 'sheerun/vim-polyglot'
-  Plugin 'jalcine/cmake.vim'
 
   " Color
   Plugin 'jellybeans.vim'
@@ -52,7 +51,9 @@ func! s:init_plugins()
   Plugin 'honza/vim-snippets'
   Plugin 'terryma/vim-multiple-cursors'
   Plugin 'wellle/tmux-complete.vim'
- 
+  Plugin 'syngan/vim-vimlint'
+  Plugin 'tmux-plugins/vim-tmux'
+
   " File support
   Plugin 'dbakker/vim-lint'
   Plugin 'perl-support.vim'
@@ -71,7 +72,7 @@ func! s:init_plugins()
   Plugin 'jaxbot/github-issues.vim'
   Plugin 'mmozuras/vim-github-comment'
   Plugin 'gmarik/github-search.vim'
-
+  Plugin 'mattn/gist-vim'
   Plugin 'thinca/vim-localrc'
 
   " Unite jazz
@@ -83,8 +84,9 @@ func! s:init_plugins()
   if v:version > 702 | Plugin 'Chiel92/vim-autoformat' | endif
   if v:version >= 703 | Plugin 'Valloric/YouCompleteMe' | endif
 
-  Plugin 'file:///home/jalcine/Development/Projects/Vim/cmake.vim', { 'name' : 'cmake.vim-bleeding' }
-  if filereadable('~/.vim/vundle.local.vim') | source ~/.vim/vundle.local.vim | endif
+  if filereadable('~/.vim/vundle.local.vim')
+    source ~/.vim/vundle.local.vim
+  endif
 
   call vundle#end()
 

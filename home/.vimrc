@@ -51,7 +51,7 @@ set sessionoptions=buffers,tabpages,winsize,curdir
 set visualbell
 set errorbells
 set ruler
-"set number
+set relativenumber
 if has('conceal') | set conceallevel=2 concealcursor=ncv | endif
 
 " Gimme something to look at.
@@ -127,7 +127,7 @@ set foldcolumn=1
 set foldlevel=2
 set foldminlines=4
 set foldnestmax=5
-set foldlevelstart=1
+set foldlevelstart=2
 "}}}
 
 "{{{ Searching

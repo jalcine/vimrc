@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+vim +PluginClean +qall
+vim +PluginInstall +qall
+vim +PluginUpdate +qall

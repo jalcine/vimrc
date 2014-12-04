@@ -38,7 +38,7 @@ func! s:init_plugins()
   Plugin 'sheerun/vim-polyglot'
 
   " Color
-  Plugin 'jellybeans.vim'
+  Plugin 'tomasr/molokai'
 
   " Editor enhancements
   Plugin 'editorconfig/editorconfig-vim'
@@ -53,10 +53,15 @@ func! s:init_plugins()
   Plugin 'wellle/tmux-complete.vim'
   Plugin 'syngan/vim-vimlint'
   Plugin 'tmux-plugins/vim-tmux'
+  Plugin 'tfnico/vim-gradle'
+  Plugin 'fatih/vim-go'
+  Plugin 'pangloss/vim-javascript'
+  Plugin 'mhinz/vim-signify'
 
   " File support
   Plugin 'dbakker/vim-lint'
   Plugin 'perl-support.vim'
+  Plugin 'vim-perl/vim-perl'
 
   " Web dev
   Plugin 'ap/vim-css-color'
@@ -64,6 +69,8 @@ func! s:init_plugins()
 
   " Extra
   Plugin 'junegunn/vim-emoji'
+  Plugin 'Yggdroot/indentLine'
+  Plugin 'kshenoy/vim-signature'
 
   " Git and friends
   Plugin 'tpope/vim-fugitive'
@@ -74,6 +81,7 @@ func! s:init_plugins()
   Plugin 'gmarik/github-search.vim'
   Plugin 'mattn/gist-vim'
   Plugin 'thinca/vim-localrc'
+  Plugin 'mhinz/vim-startify'
 
   " Unite jazz
   Plugin 'tsukkee/unite-tag'
@@ -84,7 +92,7 @@ func! s:init_plugins()
   if v:version > 702 | Plugin 'Chiel92/vim-autoformat' | endif
   if v:version >= 703 | Plugin 'Valloric/YouCompleteMe' | endif
 
-  if filereadable('~/.vim/vundle.local.vim')
+  if filereadable(expand('~/.vim/vundle.local.vim'))
     source ~/.vim/vundle.local.vim
   endif
 

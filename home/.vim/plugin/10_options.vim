@@ -34,7 +34,7 @@ let g:syntastic_mode_map = { 'mode': 'active' }
 " {{{ Checkers for Syntastic
 let g:syntastic_javascript_checkers=['jslint', 'jscs']
 let g:syntastic_json_checkers=['jsonlint', 'jsonval']
-let g:syntastic_ruby_checkers=['mri', 'rubylint', 'rubocop']
+let g:syntastic_ruby_checkers=['mri', 'rubocop']
 let g:syntastic_perl_checkers=['perl','perlcritic','podchecker']
 let g:syntastic_python_checkers=['pylint','pep8','python']
 let g:syntastic_cpp_checkers=['gcc','cppcheck','cpplint']
@@ -50,7 +50,7 @@ let g:syntastic_enable_perl_checker=1
 " }}}
 
 " {{{ Airline
-let g:airline_theme='raven'
+let g:airline_theme='base16'
 let g:airline_detected_modified=1
 let g:airline_powerline_fonts=1
 let g:airline_detect_iminsert=1
@@ -128,6 +128,13 @@ let g:github_dashboard['emoji_map'] = {
 " {{{ JavaScript options
 let g:javascript_enable_domhtmlcss=1
 let g:javascript_conceal=1
+let g:javascript_conceal_function   = "ƒ"
+let g:javascript_conceal_null       = "ø"
+let g:javascript_conceal_this       = "@"
+let g:javascript_conceal_return     = "⇚"
+let g:javascript_conceal_undefined  = "¿"
+let g:javascript_conceal_NaN        = "ℕ"
+let g:javascript_conceal_prototype  = "¶"
 " }}}
 
 " {{{ Colorscheme Specific 

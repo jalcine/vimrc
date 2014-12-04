@@ -51,7 +51,7 @@ set sessionoptions=buffers,tabpages,winsize,curdir
 set visualbell
 set errorbells
 set ruler
-set relativenumber
+set relativenumber number
 if has('conceal') | set conceallevel=2 concealcursor=ncv | endif
 
 " Gimme something to look at.
@@ -123,9 +123,9 @@ let g:vimsyn_embed='Pr'
 " We fold when we need to, according to syntax.
 set foldenable
 set foldmethod=syntax
-set foldcolumn=1
+set foldcolumn=0
 set foldlevel=2
-set foldminlines=4
+set foldminlines=2
 set foldnestmax=5
 set foldlevelstart=2
 "}}}

@@ -40,6 +40,7 @@ let g:syntastic_python_checkers=['pylint','pep8','python']
 let g:syntastic_cpp_checkers=['gcc','cppcheck','cpplint']
 let g:syntastic_c_checkers=['gcc','make','cppcheck']
 let g:syntastic_haml_checkers=['haml_lint', 'haml']
+let g:syntastic_html_checkers=['w3', 'jshint']
 let g:syntastic_sh_checkers=['sh','shellcheck','checkbashisms']
 let g:syntastic_vim_checkers=['vimlint']
 " }}}
@@ -50,7 +51,7 @@ let g:syntastic_enable_perl_checker=1
 " }}}
 
 " {{{ Airline
-let g:airline_theme='base16'
+let g:airline_theme='raven'
 let g:airline_detected_modified=1
 let g:airline_powerline_fonts=1
 let g:airline_detect_iminsert=1
@@ -160,6 +161,12 @@ let g:c_gnu=0
 let g:c_no_c99=1
 let g:c_space_errors=1
 " }}}
+
+let g:easytags_async=1
+"let g:easytags_syntax_keyword = 'always'
+let g:easytags_dynamic_files = 1
+let g:easytags_include_members = 1
+let g:easytags_suppress_report = 1
 
 if filereadable('~/.vim/plugin/options.local.vim')
   source ~/.vim/plugin/options.local.vim

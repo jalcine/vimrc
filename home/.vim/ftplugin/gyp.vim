@@ -1,1 +1,1 @@
-set ft=gyp.json
+set ft=json

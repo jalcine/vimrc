@@ -51,7 +51,7 @@ set sessionoptions=buffers,tabpages,winsize,curdir
 set visualbell
 set errorbells
 set ruler
-set relativenumber number
+set number
 if has('conceal') | set conceallevel=2 concealcursor=ncv | endif
 
 " Gimme something to look at.
@@ -179,12 +179,7 @@ set spellfile=~/.vim/dict.custom.utf8-8.add
 " (right?) so using UTF-8 characters for symbols should be a given.
 set fillchars+=diff:⣿
 set fillchars+=vert:│
-if has('folding')
-  set fillchars+=fold:-
-  if s:os_name == "Linux"
-    set fillchars+=fold:―
-  endif
-endif
+set fillchars+=fold:-
 
 " A visual cue for line-wrapping.
 if has('linebreak') | set showbreak=↪ | endif

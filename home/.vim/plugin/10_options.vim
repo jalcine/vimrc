@@ -14,9 +14,10 @@ let g:NERDCompactSexyComs=1
 " }}}
 
 let g:cmake_exec = {
-      \ 'async': 'dispatch',
-      \ 'sync': 'dispatch',
-      \ }
+  \ 'async': 'dispatch',
+  \ 'sync': 'dispatch',
+  \ }
+let g:cmake_extensions = ['syntastic']
 
 " {{{ Syntastic
 let g:syntastic_check_on_open=1
@@ -98,6 +99,7 @@ let g:UltiSnipsSnippetDirectories=["Ultisnips"]
 " }}}
 
 let g:NERDTreeMinimalUI=0
+let g:ycm_show_diagnostics_ui=0
 
 " {{{ Tagbar
 let g:tagbar_compact=0
@@ -114,6 +116,7 @@ let g:session_directory="~/.vim/sessions"
 
 " {{{ Git, Github and VCS
 let g:github_user='jalcine'
+let g:github_search_path_format='$HOME/Development/Projects/:project'
 let g:github_comment_open_browser = 1
 let g:github_dashboard = { 'username': g:github_user }
 let g:github_dashboard['position'] = 'bottom'

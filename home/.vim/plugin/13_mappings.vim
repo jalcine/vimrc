@@ -86,7 +86,7 @@ cnoremap sw% w !sudo tee %
 
 " {{{ Unite mappings
 func! s:call_unite(sources)
-  exec(':Unite -no-split -direction=botright -unique -truncate -sync ' . a:sources)
+  exec(':Unite -no-split -unique -truncate -sync ' . a:sources)
 endfunc
 
 func! s:call_unite_tasks()
@@ -108,7 +108,7 @@ func! s:call_unite_buffer()
 endfunc
 
 func! s:call_unite_files()
-  return s:call_unite('file_rec/async:!:$PWD file_rec/git:!')
+  return s:call_unite('file_rec:$PWD')
 endfunc
 
 func! s:call_unite_local_grep()

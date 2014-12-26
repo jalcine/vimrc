@@ -38,6 +38,10 @@ cnoremap <silent> <leader>py <C-R>=strftime("%H.%M.%S_%Z")<CR>
 " Inject the current date and time (in Insert or Command mode).
 inoremap <silent> <leader>pt <C-R>=strftime("%Y-%m-%d %H:%M:%S %Z")<CR>
 cnoremap <silent> <leader>pt <C-R>=strftime("%Y%m%d%H%M%S")<CR>
+
+" Inject the current date and time (in Insert or Command mode).
+inoremap <silent> <leader>pd <C-R>=strftime("%Y-%m-%d")<CR>
+cnoremap <silent> <leader>pd <C-R>=strftime("%Y-%m-%d")<CR>
 " }}}
 
 " Strip trailing whitespace from the end of files.

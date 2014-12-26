@@ -124,8 +124,8 @@ let g:vimsyn_embed='Pr'
 set foldenable
 set foldmethod=syntax
 set foldcolumn=0
-set foldlevel=2
-set foldminlines=2
+set foldlevel=3
+set foldminlines=5
 set foldnestmax=5
 set foldlevelstart=2
 "}}}

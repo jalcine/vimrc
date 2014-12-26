@@ -52,7 +52,7 @@ let g:syntastic_c_clang_check_sort=1
 " }}}
 
 " {{{ Airline
-let g:airline_theme='hybrid'
+let g:airline_theme='jellybeans'
 let g:airline_detected_modified=1
 let g:airline_powerline_fonts=1
 let g:airline_detect_iminsert=1
@@ -129,6 +129,7 @@ let g:session_directory="~/.vim/sessions"
 
 " {{{ Git, Github and VCS
 let g:github_user='jalcine'
+let g:github_upstream_issues=1
 let g:github_search_path_format='$HOME/Development/Projects/:project'
 let g:github_comment_open_browser = 1
 let g:github_dashboard = { 'username': g:github_user }

@@ -23,7 +23,7 @@ func! s:init_plugins()
   Plugin 'Shougo/vimproc.vim'
   Plugin 'SirVer/Ultisnips'
   Plugin 'Yggdroot/indentLine'
-  Plugin 'ap/vim-css-color'
+  Plugin 'gorodinskiy/vim-coloresque'
   Plugin 'bling/vim-airline'
   Plugin 'dbakker/vim-lint'
   Plugin 'editorconfig/editorconfig-vim'

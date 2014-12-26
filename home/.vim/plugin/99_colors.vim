@@ -7,8 +7,8 @@
 set t_Co=256
 
 " {{{ Loading and tweaking of colorscheme
-colorscheme flatcolor
-"hi Folded ctermbg=NONE
+colorscheme jellyx
+hi Folded ctermbg=NONE
 "hi NonText ctermbg=NONE
 "hi Normal ctermbg=NONE
 "hi VertSplit ctermbg=NONE

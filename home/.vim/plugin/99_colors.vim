@@ -7,11 +7,13 @@
 set t_Co=256
 
 " {{{ Loading and tweaking of colorscheme
-colorscheme jellyx
+colorscheme molokai
 hi Folded ctermbg=NONE
-"hi NonText ctermbg=NONE
+hi NonText ctermbg=NONE
 "hi Normal ctermbg=NONE
-"hi VertSplit ctermbg=NONE
-"hi Todo ctermfg=5
-"hi Conceal ctermbg=NONE
+hi VertSplit ctermbg=NONE
+hi Todo ctermfg=5
+hi Conceal ctermbg=NONE
+hi LineNr ctermbg=NONE
+hi SignColumn ctermbg=NONE
 " }}}

@@ -41,7 +41,6 @@ func! s:init_plugins()
   Plugin 'majutsushi/tagbar'
   Plugin 'mattn/gist-vim'
   Plugin 'mattn/webapi-vim'
-  Plugin 'mhinz/vim-signify'
   Plugin 'mhinz/vim-startify'
   Plugin 'mileszs/ack.vim'
   Plugin 'mmozuras/vim-github-comment'

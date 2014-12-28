@@ -19,3 +19,4 @@ iabbrev sesssion session
 iabbrev existant existent
 iabbrev existance existence
 iabbrev inlcude include
+iabbrev afaik as far as I know

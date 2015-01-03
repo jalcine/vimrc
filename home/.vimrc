@@ -1,9 +1,9 @@
 " vim: set fdm=marker foldenable foldlevel=0 :
-" File: .vimrc
-" Author: Jacky Alciné <me@jalcine.me>
-" Description: The heart.
-" Last Modified: 2014-10-26 14:42:46 EDT
-
+" File:          .vimrc
+" Author:        Jacky Alciné <me@jalcine.me>
+" Description:   The heart.
+" Last Modified: 2015-01-03 15:51:04 EST
+"
 " This is my Vim setup. It's meant to be overridden since it ends up being
 " useful in dozens of people be it on a mobile device or in the cloud.
 " Not like a real cloud, like a server on the Internet that I couldn't

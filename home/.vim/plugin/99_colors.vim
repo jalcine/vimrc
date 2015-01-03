@@ -14,6 +14,6 @@ hi NonText ctermbg=NONE
 hi VertSplit ctermbg=NONE
 hi Todo ctermfg=5
 hi Conceal ctermbg=NONE
-hi LineNr ctermbg=NONE
+hi LineNr ctermbg=NONE ctermfg=242
 hi SignColumn ctermbg=NONE
 " }}}

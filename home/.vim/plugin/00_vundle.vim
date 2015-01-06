@@ -57,7 +57,6 @@ func! s:init_plugins()
   Plugin 'tfnico/vim-gradle'
   Plugin 'thinca/vim-localrc'
   Plugin 'tmux-plugins/vim-tmux'
-  Plugin 'tomasr/molokai'
   Plugin 'tpope/vim-dispatch'
   Plugin 'tpope/vim-endwise'
   Plugin 'tpope/vim-fugitive'
@@ -75,6 +74,7 @@ func! s:init_plugins()
   Plugin 'zepto/unite-tmux'
   Plugin 'rayburgemeestre/phpfolding.vim'
   Plugin 'shawncplus/phpcomplete.vim'
+  Plugin 'badwolf'
 
   if v:version > 702 | Plugin 'Chiel92/vim-autoformat' | endif
   if v:version >= 703 | Plugin 'Valloric/YouCompleteMe' | endif

@@ -18,7 +18,7 @@ let g:cmake_extensions = ['syntastic', 'ycm']
 " }}}
 
 " {{{ Syntastic
-let g:syntastic_check_on_open=1
+let g:syntastic_check_on_open=0
 let g:syntastic_check_on_wq=1
 let g:syntastic_aggregate_errors=1
 let g:syntastic_error_symbol='✗'
@@ -28,8 +28,8 @@ let g:syntastic_always_populate_loc_list=1
 let g:syntastic_auto_jump=0
 let g:syntastic_auto_loc_list=1
 let g:syntastic_loc_list_height=3
-let g:syntastic_ignore_files = ['\m^/usr/include/', 'node_modules']
-let g:syntastic_mode_map = { 'mode': 'active' }
+let g:syntastic_ignore_files = ['\m^/usr/', 'node_modules']
+let g:syntastic_mode_map = { 'mode': 'passive' }
 " {{{ Checkers for Syntastic
 let g:syntastic_javascript_checkers=['jshint', 'jscs']
 let g:syntastic_json_checkers=['jsonlint', 'jsonval']
@@ -39,12 +39,12 @@ let g:syntastic_python_checkers=['pylint','pep8','python']
 let g:syntastic_cpp_checkers=['gcc','cppcheck','cpplint']
 let g:syntastic_c_checkers=['gcc','make','cppcheck']
 let g:syntastic_haml_checkers=['haml_lint', 'haml']
-let g:syntastic_html_checkers=['w3', 'jshint']
+let g:syntastic_html_checkers=['jshint']
+let g:syntastic_yaml_checkers=['jsyaml']
 let g:syntastic_sh_checkers=['sh','shellcheck','checkbashisms']
 let g:syntastic_vim_checkers=['vimlint']
 " }}}
 let g:syntastic_ruby_exec=substitute(system('which ruby'),'\n','','g')
-let g:syntastic_yaml_checkers=['jsyaml']
 let g:syntastic_jshint_exe=substitute(system('which jshint'),'\n','','g')
 let g:syntastic_enable_perl_checker=1
 let g:syntastic_c_clang_tidy_sort=1
@@ -104,14 +104,6 @@ let g:used_javascript_libs='jasmine,backbone,jquery,lodash'
 let g:vundle_lazy_load=1
 let g:ycm_show_diagnostics_ui=0
 let g:ackprg='ag'
-let g:startify_session_dir='~/.vim/sessions'
-let g:startify_list_order=['sessions','files','dir']
-let g:startify_bookmarks=['~/.vimrc', '~/.dotfiles']
-if executable('cowsay') && executable('fortune')
-  let g:startify_custom_header =
-    \ map(split(system('fortune | cowsay'), '\n'), '"   ". v:val') + ['','']
-endif
-
 " }}}
 
 " {{{ Tagbar

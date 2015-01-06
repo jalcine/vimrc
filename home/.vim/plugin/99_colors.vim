@@ -7,7 +7,7 @@
 set t_Co=256
 
 " {{{ Loading and tweaking of colorscheme
-colorscheme molokai
+colorscheme badwolf
 hi Folded ctermbg=NONE
 hi NonText ctermbg=NONE
 "hi Normal ctermbg=NONE

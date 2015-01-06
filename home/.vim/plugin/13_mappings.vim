@@ -34,10 +34,12 @@ inoremap <silent> <leader>pt <C-R>=strftime("%Y-%m-%d")<CR>
 " Inject the current time with the labeling of the time-zone.
 inoremap <silent> <leader>py <C-R>=strftime("%H:%M:%S %Z")<CR>
 cnoremap <silent> <leader>py <C-R>=strftime("%H.%M.%S_%Z")<CR>
+cnoremap <silent> <leader>pY <C-R>=strftime("%H.%M.%S")<CR>
 
 " Inject the current date and time (in Insert or Command mode).
 inoremap <silent> <leader>pt <C-R>=strftime("%Y-%m-%d %H:%M:%S %Z")<CR>
 cnoremap <silent> <leader>pt <C-R>=strftime("%Y%m%d%H%M%S")<CR>
+cnoremap <silent> <leader>pT <C-R>=strftime("%Y-%m-%d_%H%M%S")<CR>
 
 " Inject the current date and time (in Insert or Command mode).
 inoremap <silent> <leader>pd <C-R>=strftime("%Y-%m-%d")<CR>
@@ -90,17 +92,17 @@ cnoremap sw% w !sudo tee %
 
 " {{{ Unite mappings
 func! s:call_unite(sources)
-  exec(':Unite -no-split -unique -truncate -sync ' . a:sources)
+  exec(':Unite -truncate ' . a:sources)
 endfunc
 
 func! s:call_unite_tasks()
   call s:call_unite('grep:.:-s:\(TODO\|todo\|NOTE\|note\|' .
-        \ 'FIXME\|fixme\|BUG\|bug)')
+    \ 'FIXME\|fixme\|BUG\|bug)')
 endfunc
 
 func! s:call_unite_tmux()
   call s:call_unite('tmux/panes tmux/sessions tmux/windows ' .
-        \ 'tmuxcomplete/lines')
+    \ 'tmuxcomplete/lines')
 endfunc
 
 func! s:call_unite_tags()
@@ -142,26 +144,30 @@ nnoremap <silent> <leader>p [unite]f
 " }}}
 
 " {{{ Git helpers
-nnoremap <leader>ga   :Git add<space>
-nnoremap <leader>gab  :Git add %<cr>
-nnoremap <leader>gc   :Git commit<space>
-nnoremap <leader>gco  :Git checkout<space>
-nnoremap <leader>gf   :Git fetch<space>
-nnoremap <leader>gfa  :Git fetch --all<CR>
-nnoremap <leader>gp   :Git push<space>
-nnoremap <leader>grm  :Git rm %<CR>
-nnoremap <leader>grmc :Git rm --cached %<CR>
+nnoremap [git] <nop>
+nmap <leader>g [git]
+nnoremap <silent> [git]a   :Git add<space>
+nnoremap <silent> [git]ab  :Git add %<cr>
+nnoremap <silent> [git]c   :Git commit<space>
+nnoremap <silent> [git]co  :Git checkout<space>
+nnoremap <silent> [git]f   :Git fetch<space>
+nnoremap <silent> [git]fa  :Git fetch --all<CR>
+nnoremap <silent> [git]p   :Git push<space>
+nnoremap <silent> [git]rm  :Git rm %<CR>
+nnoremap <silent> [git]rmc :Git rm --cached %<CR>
 " }}}
 
 "{{{ Tabularize
-nnoremap <leader>a( :Tabularize /(<CR>
-nnoremap <leader>a) :Tabularize /)<CR>
-nnoremap <leader>a: :Tabularize /:<CR>
-nnoremap <leader>a= :Tabularize /=<CR>
-nnoremap <leader>a{ :Tabularize /{<CR>
-vnoremap <leader>a( :Tabularize /(<CR>
-vnoremap <leader>a) :Tabularize /)<CR>
-vnoremap <leader>a: :Tabularize /:<CR>
-vnoremap <leader>a= :Tabularize /=<CR>
-vnoremap <leader>a{ :Tabularize /{<CR>
+nnoremap [tabular] <nop>
+nmap <leader>a [tabular]
+nnoremap <silent> [tabular]( :Tabularize /(<CR>
+nnoremap <silent> [tabular]) :Tabularize /)<CR>
+nnoremap <silent> [tabular]: :Tabularize /:<CR>
+nnoremap <silent> [tabular]= :Tabularize /=<CR>
+nnoremap <silent> [tabular]{ :Tabularize /{<CR>
+xnoremap <silent> [tabular]( :Tabularize /(<CR>
+xnoremap <silent> [tabular]) :Tabularize /)<CR>
+xnoremap <silent> [tabular]: :Tabularize /:<CR>
+xnoremap <silent> [tabular]= :Tabularize /=<CR>
+xnoremap <silent> [tabular]{ :Tabularize /{<CR>
 "}}}

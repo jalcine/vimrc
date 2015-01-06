@@ -52,7 +52,7 @@ let g:syntastic_c_clang_check_sort=1
 " }}}
 
 " {{{ Airline
-let g:airline_theme='jellybeans'
+let g:airline_theme='raven'
 let g:airline_detected_modified=1
 let g:airline_powerline_fonts=1
 let g:airline_detect_iminsert=1
@@ -147,7 +147,7 @@ let g:javascript_conceal_NaN        = "ℕ"
 let g:javascript_conceal_prototype  = "¶"
 " }}}
 
-" {{{ Colorscheme Specific 
+" {{{ Colorscheme Specific
 let g:ruby_fold=1
 let g:sh_fold_enabled=7
 

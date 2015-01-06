@@ -40,12 +40,12 @@ set path=.,/usr/local/include,/usr/include,$HOME/.local/include
 set modeline
 set shellslash
 
-" TODO: Kill this, or move into a file we can use to load 7.3-specific stuff.
-" If we're running a cool version of Vim, then be cool.
-if v:version >= 703 | set cryptmethod=blowfish | endif
-
 " Save your work in sessions.
 set sessionoptions=buffers,tabpages,winsize,curdir
+
+" Change up the short messages in Vim.
+set shortmess+=TI
+set shortname
 "}}}
 "{{{ Visual Controls
 set visualbell

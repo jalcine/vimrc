@@ -108,7 +108,6 @@ Plug 'Shougo/deoplete.nvim'
 Plug 'jmcantrell/vim-virtualenv'
 Plug 'flazz/vim-colorschemes'
 Plug 'rizzatti/dash.vim'
-Plug 'lukaszkorecki/CoffeeTags'
 Plug 'rking/ag.vim'
 Plug 'rizzatti/dash.vim'
 Plug 'ryanoasis/vim-devicons'
@@ -507,6 +506,9 @@ let g:doxygen_enhanced_color = 1
 let g:load_doxygen_syntax = 1
 let g:c_no_comment_fold = 1
 
+let g:coffee_lint_options = ''
+let g:coffee_linter = 'coffeelint.rb'
+
 let g:test_strategy = 'neovim'
 
 " {{{ neomake options
@@ -520,6 +522,7 @@ let g:neomake_python_enabled_checkers = ['pyflakes', 'pylint', 'python', 'pep8',
 let g:neomake_sh_enabled_checkers = ['shellcheck']
 let g:neomake_ruby_enabled_checkers = ['rubocop', 'mri']
 let g:neomake_vim_enabled_checkers = ['vint']
+let g:neomake_coffeelint_enabled_checkers = ['coffeelint.rb']
 " }}}
 
 " {{{ vim-airline options
@@ -627,6 +630,9 @@ augroup jalcine
   " Enable Neomake to run on builds.
   autocmd! BufWritePost * Neomake
   autocmd! BufReadPost * Neomake
+
+  " CoffeeScript jazz.
+  autocmd BufNewFile,BufReadPost *.coffee setl foldmethod=indent shiftwidth=2 expandtab
 augroup END
 " }}}
 

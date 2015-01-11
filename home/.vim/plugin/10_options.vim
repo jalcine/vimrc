@@ -29,7 +29,7 @@ let g:syntastic_auto_jump=0
 let g:syntastic_auto_loc_list=1
 let g:syntastic_loc_list_height=3
 let g:syntastic_ignore_files = ['\m^/usr/', 'node_modules']
-let g:syntastic_mode_map = { 'mode': 'passive' }
+let g:syntastic_mode_map = { 'mode': 'active' }
 " {{{ Checkers for Syntastic
 let g:syntastic_javascript_checkers=['jshint', 'jscs']
 let g:syntastic_json_checkers=['jsonlint', 'jsonval']
@@ -49,6 +49,7 @@ let g:syntastic_jshint_exe=substitute(system('which jshint'),'\n','','g')
 let g:syntastic_enable_perl_checker=1
 let g:syntastic_c_clang_tidy_sort=1
 let g:syntastic_c_clang_check_sort=1
+let g:syntastic_c_remove_include_errors=1
 " }}}
 
 " {{{ Airline

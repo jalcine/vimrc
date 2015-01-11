@@ -51,7 +51,7 @@ set shortname
 set visualbell
 set errorbells
 set ruler
-set number
+set nonumber
 if has('conceal') | set conceallevel=2 concealcursor=ncv | endif
 
 " Gimme something to look at.

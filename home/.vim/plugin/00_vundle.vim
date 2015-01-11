@@ -72,9 +72,11 @@ func! s:init_plugins()
   Plugin 'xolox/vim-session'
   Plugin 'yuku-t/unite-git'
   Plugin 'zepto/unite-tmux'
-  Plugin 'rayburgemeestre/phpfolding.vim'
-  Plugin 'shawncplus/phpcomplete.vim'
-  Plugin 'badwolf'
+  "Plugin 'rayburgemeestre/phpfolding.vim'
+  "Plugin 'shawncplus/phpcomplete.vim'
+  Plugin 'heavenshell/vim-slack'
+  Plugin 'gorkunov/smartgf.vim'
+  Plugin 'idanarye/vim-vebugger'
 
   if v:version > 702 | Plugin 'Chiel92/vim-autoformat' | endif
   if v:version >= 703 | Plugin 'Valloric/YouCompleteMe' | endif

@@ -22,7 +22,6 @@ func! s:init_plugins()
   Plugin 'Shougo/unite.vim'
   Plugin 'Shougo/vimproc.vim'
   Plugin 'SirVer/Ultisnips'
-  Plugin 'Yggdroot/indentLine'
   Plugin 'gorodinskiy/vim-coloresque'
   Plugin 'bling/vim-airline'
   Plugin 'dbakker/vim-lint'
@@ -77,9 +76,12 @@ func! s:init_plugins()
   Plugin 'heavenshell/vim-slack'
   Plugin 'gorkunov/smartgf.vim'
   Plugin 'idanarye/vim-vebugger'
-
-  if v:version > 702 | Plugin 'Chiel92/vim-autoformat' | endif
-  if v:version >= 703 | Plugin 'Valloric/YouCompleteMe' | endif
+  Plugin 'tpope/vim-rsi'
+  Plugin 'Chiel92/vim-autoformat'
+  Plugin 'Valloric/YouCompleteMe'
+  Plugin 'Xuyuanp/nerdtree-git-plugin'
+  Plugin 'jszakmeister/vim-togglecursor'
+  Plugin 'ajh17/VimCompletesMe'
 
   if filereadable(expand('~/.vim/vundle.local.vim'))
     source ~/.vim/vundle.local.vim

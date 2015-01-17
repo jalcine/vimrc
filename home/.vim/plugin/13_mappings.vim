@@ -53,14 +53,15 @@ nnoremap <silent> <leader>sw :%s/\s$//g<cr>
 nnoremap <leader>f :Autoformat<CR><CR>
 
 " {{{ Bind make command.
-nnoremap <silent> <leader>m  :Make<CR>
-nnoremap <silent> <leader>m<space>  :Make<space>
-nnoremap <silent> <leader>ma :Make all<CR>
-nnoremap <silent> <leader>mc :Make clean<CR>
-nnoremap <silent> <leader>mi :Make install<CR>
-nnoremap <silent> <leader>mt :Make test<CR>
-nnoremap <silent> <leader>mtb :call('Make',['test',expand('%')])<CR>
-nnoremap <silent> <leader>mu :Make uninstall<CR>
+nnoremap [make] <nop>
+nmap <leader>m [make]
+nnoremap <silent> [make]<space>  :Make<space>
+nnoremap <silent> [make]a        :Make all<CR>
+nnoremap <silent> [make]c        :Make clean<CR>
+nnoremap <silent> [make]i        :Make install<CR>
+nnoremap <silent> [make]t        :Make test<CR>
+nnoremap <silent> [make]tb       :call('Make',['test',expand('%')])<CR>
+nnoremap <silent> [make]u        :Make uninstall<CR>
 " }}}
 
 " {{{ Travel over errors.

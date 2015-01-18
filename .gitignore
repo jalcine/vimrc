@@ -1,3 +1,4 @@
 home/.vim/options.local.vim
 home/.vimrc.local
 home/.vim/dict.custom.utf8-8.add.spl
+home/.vim/undo/*

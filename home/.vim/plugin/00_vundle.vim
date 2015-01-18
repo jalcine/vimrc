@@ -82,7 +82,6 @@ func! s:init_plugins()
   Plugin 'Xuyuanp/nerdtree-git-plugin'
   Plugin 'jszakmeister/vim-togglecursor'
   Plugin 'ajh17/VimCompletesMe'
-  Plugin 'chriskempson/base16-vim'
 
   if filereadable(expand('~/.vim/vundle.local.vim'))
     source ~/.vim/vundle.local.vim

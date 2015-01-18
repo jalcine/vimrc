@@ -3,6 +3,8 @@ if exists('g:jalcine_options')
   finish
 endif
 
+let base16colorspace=256
+
 " {{{ NERD{Tree,Commenter}
 let g:NERDCreateDefaultMappings=1
 let g:NERDTreeMinimalUI=0

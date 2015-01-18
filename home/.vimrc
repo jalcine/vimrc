@@ -46,6 +46,9 @@ set sessionoptions=buffers,tabpages,winsize,curdir
 " Change up the short messages in Vim.
 set shortmess+=TI
 set shortname
+
+" Save our undo changes.
+set undodir=expand('$HOME/.vim/undo')
 "}}}
 "{{{ Visual Controls
 set visualbell

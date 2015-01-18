@@ -34,7 +34,6 @@ func! s:init_plugins()
   Plugin 'int3/vim-extradite'
   Plugin 'jamescarr/snipmate-nodejs'
   Plugin 'jaxbot/github-issues.vim'
-  Plugin 'junegunn/vim-emoji'
   Plugin 'brettof86/vim-swigjs'
   Plugin 'junegunn/vim-github-dashboard'
   Plugin 'kshenoy/vim-signature'

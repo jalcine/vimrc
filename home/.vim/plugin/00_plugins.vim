@@ -1,23 +1,24 @@
-" File:          plugin/00_vundle_configuration.vim
+" File:          plugin/00_plugin.vim
 " Author:        Jacky Alcine <me@jalcine.me>
-" Description:   Options for controlling and using Vundle, my plugin manager.
-" Last Modified: June 21, 2014
+" Description:   Setting up the plugins I'd use.
+" Last Modified: 2015-01-23 18:50:27 EST
 
-if exists('g:jalcine_vundle')
-  finish
-else
-  let g:jalcine_vundle=1
-endif
+" TODO: Add check if this was sourced already.
 
-func! s:install_vundle()
-  call system('git clone git://github.com/gmarik/Vundle.vim ~/.vim/bundle/vundle')
-  set rtp+=~/.vim/bundle/vundle
-  call vundle#rc()
+func! s:install_plugin_manager()
+  if !isdirectory(expand('~/.vim/bundle/Vundle.vim'))
+    !git clone git://github.com/gmarik/Vundle.vim ~/.vim/bundle/Vundle.vim
+  endif
 endfunc
 
 func! s:init_plugins()
+  " Load Vundle into Vim.
   filetype off
-  " Libraries (sort of)
+  set rtp+=~/.vim/bundle/Vundle.vim
+  call vundle#begin()
+
+  " List plugins.
+  Plugin 'gmarik/Vundle.vim'
   Plugin 'Shougo/neomru.vim'
   Plugin 'Shougo/unite.vim'
   Plugin 'Shougo/vimproc.vim'
@@ -28,7 +29,7 @@ func! s:init_plugins()
   Plugin 'editorconfig/editorconfig-vim'
   Plugin 'fatih/vim-go'
   Plugin 'gmarik/github-search.vim'
-  Plugin 'gmarik/vundle'
+  Plugin 'gmarik/plugin'
   Plugin 'godlygeek/tabular'
   Plugin 'honza/vim-snippets'
   Plugin 'int3/vim-extradite'
@@ -70,8 +71,8 @@ func! s:init_plugins()
   Plugin 'xolox/vim-session'
   Plugin 'yuku-t/unite-git'
   Plugin 'zepto/unite-tmux'
-  "Plugin 'rayburgemeestre/phpfolding.vim'
-  "Plugin 'shawncplus/phpcomplete.vim'
+  Plugin 'rayburgemeestre/phpfolding.vim'
+  Plugin 'shawncplus/phpcomplete.vim'
   Plugin 'heavenshell/vim-slack'
   Plugin 'gorkunov/smartgf.vim'
   Plugin 'idanarye/vim-vebugger'
@@ -82,19 +83,15 @@ func! s:init_plugins()
   Plugin 'jszakmeister/vim-togglecursor'
   Plugin 'ajh17/VimCompletesMe'
 
-  if filereadable(expand('~/.vim/vundle.local.vim'))
-    source ~/.vim/vundle.local.vim
+  " Add any additional plugins I'd be using on this local machine.
+  if filereadable(expand('~/.vim/plugin.local.vim'))
+    source ~/.vim/plugin.local.vim
   endif
 
   call vundle#end()
-
+  filetype plugin indent on
   syntax enable
-  filetype indent plugin on
-
 endfunc
 
-if !isdirectory('~/.vim/bundle/vundle')
-  call s:install_vundle()
-endif
-
+call s:install_plugin_manager()
 call s:init_plugins()

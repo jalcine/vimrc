@@ -7,4 +7,4 @@
 runtime! ftplugin/c.vim
 
 " But, disable code folding. It sucks.
-set foldenable
+set nofoldenable

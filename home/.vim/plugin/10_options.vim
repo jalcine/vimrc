@@ -27,10 +27,10 @@ let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
 let g:syntastic_enable_ballons=has('ballon_eval')
 let g:syntastic_always_populate_loc_list=1
-let g:syntastic_auto_jump=0
+let g:syntastic_auto_jump=1
 let g:syntastic_auto_loc_list=1
 let g:syntastic_loc_list_height=3
-let g:syntastic_ignore_files = ['\m^/usr/', 'node_modules']
+let g:syntastic_ignore_files = ['^/usr/', 'node_modules']
 let g:syntastic_mode_map = { 'mode': 'active' }
 " {{{ Checkers for Syntastic
 let g:syntastic_javascript_checkers=['jshint', 'jscs']
@@ -38,7 +38,7 @@ let g:syntastic_json_checkers=['jsonlint', 'jsonval']
 let g:syntastic_ruby_checkers=['mri', 'rubocop']
 let g:syntastic_perl_checkers=['perl','perlcritic','podchecker']
 let g:syntastic_python_checkers=['pylint','pep8','python']
-let g:syntastic_cpp_checkers=['gcc','cppcheck','cpplint']
+let g:syntastic_cpp_checkers=['gcc','cppcheck','cpplint','ycm']
 let g:syntastic_c_checkers=['gcc','make','cppcheck']
 let g:syntastic_haml_checkers=['haml_lint', 'haml']
 let g:syntastic_html_checkers=['jshint']
@@ -103,13 +103,29 @@ let g:jalcine_options=1
 let g:goyo_linenr=1
 let g:used_javascript_libs='jasmine,backbone,jquery,lodash'
 let g:vundle_lazy_load=1
-let g:ycm_show_diagnostics_ui=0
+let g:ycm_show_diagnostics_ui=1
 let g:ackprg='ag'
 " }}}
 
 " {{{ Tagbar
 let g:tagbar_compact=0
 let g:tagbar_autoshowtag=0
+let g:tagbar_left=1
+let g:tagbar_sort=0
+let g:tagbar_type_markdown = {
+    \ 'ctagstype': 'markdown',
+    \ 'ctagsbin' : '/path/to/markdown2ctags.py',
+    \ 'ctagsargs' : '-f - --sort=yes',
+    \ 'kinds' : [
+        \ 's:sections',
+        \ 'i:images'
+    \ ],
+    \ 'sro' : '|',
+    \ 'kind2scope' : {
+        \ 's' : 'section',
+    \ },
+    \ 'sort': 0,
+\ }
 " }}}
 
 " {{{ vim-session
@@ -174,10 +190,10 @@ let g:c_space_errors=1
 " }}}
 
 let g:easytags_async=1
-"let g:easytags_syntax_keyword = 'always'
-let g:easytags_dynamic_files = 1
-let g:easytags_include_members = 1
-let g:easytags_suppress_report = 1
+let g:easytags_syntax_keyword='always'
+let g:easytags_dynamic_files=1
+let g:easytags_include_members=1
+let g:easytags_suppress_report=1
 
 if filereadable('~/.vim/plugin/options.local.vim')
   source ~/.vim/plugin/options.local.vim

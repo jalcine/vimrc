@@ -135,7 +135,7 @@ nnoremap <silent> [unite]b :call <SID>call_unite_buffer()<cr>
 nnoremap <silent> [unite]f :call <SID>call_unite_files()<cr>
 nnoremap <silent> [unite]g :call <SID>call_unite_local_grep()<cr>
 nnoremap <silent> [unite]t :call <SID>call_unite_tags()<cr>
-nnoremap <silent> [unite]t :call <SID>call_unite_tasks()<cr>
+nnoremap <silent> [unite]a :call <SID>call_unite_tasks()<cr>
 nnoremap <silent> [unite]x :call <SID>call_unite_tmux()<cr>
 nnoremap <silent> [unite]r :call <SID>call_unite_resume()<cr>
 nnoremap <silent> [unite]X :call <Plug>unite_disable_max_candidates()<CR>

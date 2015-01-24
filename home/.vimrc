@@ -209,5 +209,5 @@ set updatetime=1500
 
 source ~/.vim/plugin/10_options.vim
 if filereadable('~/.vim/options.local.vim') | source ~/.vim/options.local.vim | endif
-source ~/.vim/plugin/00_vundle.vim
+source ~/.vim/plugin/00_plugins.vim
 if filereadable('~/.vimrc.local') | source ~/.vimrc.local | endif

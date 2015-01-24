@@ -15,7 +15,8 @@ augroup jalcine
   " Perl-specific things
   au BufReadPre *cpanfile      set ft=perl
   au BufReadPre *pintofile     set ft=perl
+  au BufEnter * nested :call tagbar#autoopen(0)
 
   " Helps with editing tmux configuration files.
-  au BufWritePost ~/.homesick/repos/dotfiles/home/.tmux*.conf call s:reload_tmux()
+  au BufWritePost ~/.homesick/repos/tmuxrc/home/.tmux*.conf call s:reload_tmux()
 augroup END

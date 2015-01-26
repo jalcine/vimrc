@@ -29,7 +29,6 @@ func! s:init_plugins()
   Plugin 'editorconfig/editorconfig-vim'
   Plugin 'fatih/vim-go'
   Plugin 'gmarik/github-search.vim'
-  Plugin 'gmarik/plugin'
   Plugin 'godlygeek/tabular'
   Plugin 'honza/vim-snippets'
   Plugin 'int3/vim-extradite'
@@ -82,10 +81,13 @@ func! s:init_plugins()
   Plugin 'Xuyuanp/nerdtree-git-plugin'
   Plugin 'jszakmeister/vim-togglecursor'
   Plugin 'ajh17/VimCompletesMe'
+  Plugin 'TagHighlight'
+  Plugin 'taglist.vim'
+  Plugin 'Keithbsmiley/investigate.vim'
 
   " Add any additional plugins I'd be using on this local machine.
-  if filereadable(expand('~/.vim/plugin.local.vim'))
-    source ~/.vim/plugin.local.vim
+  if filereadable(expand('~/.vim/plugins.local.vim'))
+    source ~/.vim/plugins.local.vim
   endif
 
   call vundle#end()

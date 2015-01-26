@@ -95,7 +95,7 @@ let g:UltiSnipsEditSplit="horizontal"
 let g:UltiSnipsExpandTrigger="<C-l>"
 let g:UltiSnipsJumpForwardTrigger="<C-j>"
 let g:UltiSnipsJumpBackwardTrigger="<C-k>"
-let g:UltiSnipsSnippetDirectories=["Ultisnips"]
+let g:UltiSnipsSnippetDirectories=["Ultisnips","snippets"]
 " }}}
 
 " {{{ Other
@@ -103,18 +103,20 @@ let g:jalcine_options=1
 let g:goyo_linenr=1
 let g:used_javascript_libs='jasmine,backbone,jquery,lodash'
 let g:vundle_lazy_load=1
-let g:ycm_show_diagnostics_ui=1
+let g:ycm_show_diagnostics_ui=0
 let g:ackprg='ag'
+let g:investigate_custom_for_sh="^i:Man ^s"
 " }}}
 
 " {{{ Tagbar
 let g:tagbar_compact=0
 let g:tagbar_autoshowtag=0
+let g:tagbar_zoomwidth=20
 let g:tagbar_left=1
 let g:tagbar_sort=0
 let g:tagbar_type_markdown = {
     \ 'ctagstype': 'markdown',
-    \ 'ctagsbin' : '/path/to/markdown2ctags.py',
+    \ 'ctagsbin' : 'markdown2ctags',
     \ 'ctagsargs' : '-f - --sort=yes',
     \ 'kinds' : [
         \ 's:sections',

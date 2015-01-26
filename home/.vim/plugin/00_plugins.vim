@@ -84,6 +84,7 @@ func! s:init_plugins()
   Plugin 'TagHighlight'
   Plugin 'taglist.vim'
   Plugin 'Keithbsmiley/investigate.vim'
+  Plugin 'KabbAmine/zeavim.vim'
 
   " Add any additional plugins I'd be using on this local machine.
   if filereadable(expand('~/.vim/plugins.local.vim'))

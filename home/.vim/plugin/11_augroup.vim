@@ -18,7 +18,7 @@ augroup jalcine
   au BufReadPre *.h++       setlocal ft=cpp
 
   " Helps with editing tmux configuration files.
-  au BufWritePost ~/.homesick/repos/tmuxrc/home/.tmux*.conf call s:reload_tmux()
+  au BufWritePost *tmux*\.conf call s:reload_tmux()
 
   " Make sure we don't spell in certain windows.
   au QuickFixCmdPost * setlocal nospell

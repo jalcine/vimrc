@@ -12,10 +12,14 @@ endfunc
 augroup jalcine
   au!
 
-  " Perl-specific things
-  au BufReadPre *cpanfile      set ft=perl
-  au BufReadPre *pintofile     set ft=perl
+  " Funky files.
+  au BufReadPre *cpanfile   setlocal ft=perl
+  au BufReadPre *pintofile  setlocal ft=perl
+  au BufReadPre *.h++       setlocal ft=cpp
 
   " Helps with editing tmux configuration files.
   au BufWritePost ~/.homesick/repos/tmuxrc/home/.tmux*.conf call s:reload_tmux()
+
+  " Make sure we don't spell in certain windows.
+  au QuickFixCmdPost * setlocal nospell
 augroup END

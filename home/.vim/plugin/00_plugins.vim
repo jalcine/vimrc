@@ -85,6 +85,10 @@ func! s:init_plugins()
   Plugin 'taglist.vim'
   Plugin 'Keithbsmiley/investigate.vim'
   Plugin 'KabbAmine/zeavim.vim'
+  Plugin 'tpope/vim-rbenv'
+  Plugin 'chase/vim-ansible-yaml'
+  Plugin 'vim-ruby/vim-ruby'
+  Plugin 'rust-lang/rust.vim'
 
   " Add any additional plugins I'd be using on this local machine.
   if filereadable(expand('~/.vim/plugins.local.vim'))

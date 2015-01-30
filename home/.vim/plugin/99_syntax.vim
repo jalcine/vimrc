@@ -3,9 +3,6 @@
 " Description: Additions to syntax that I sorely need.
 " Last Modified: October 26, 2014
 
-" TODO: Add more words to the TODO matching setup.
-let s:hilite_words=['NOTE', 'IDEA']
+syn match myTodo contained "\<\(TODO\|FIXME\|NOTE\|BUG\|):"
 
-for word in s:hilite_words
-  syn keyword ToDo NOTE IDEA
-endfor
+hi def link myTodo Todo

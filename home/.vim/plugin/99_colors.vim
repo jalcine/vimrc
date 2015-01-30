@@ -8,14 +8,21 @@ set t_Co=256
 set background=dark
 
 " {{{ Loading and tweaking of colorscheme
-colorscheme jellyx
+colorscheme base16-harmonic16
+hi Constant ctermfg=4
+hi Number ctermfg=4
+hi Float ctermfg=4
+hi Boolean ctermfg=4
+hi link javascriptNumber Number
+hi link markdownError Error
+hi markdownUrl term=underline
 hi Folded ctermbg=NONE
-hi NonText ctermbg=NONE
+"hi NonText ctermbg=NONE
 "hi Normal ctermbg=NONE
-hi VertSplit ctermbg=NONE
-hi Todo ctermfg=5
-hi Conceal ctermbg=NONE
-hi LineNr ctermbg=NONE ctermfg=242
-hi SignColumn ctermbg=NONE
-hi StatusLine ctermbg=black ctermfg=white
+"hi VertSplit ctermbg=NONE
+"hi Todo ctermfg=5
+"hi Conceal ctermbg=NONE
+"hi LineNr ctermbg=NONE ctermfg=242
+"hi SignColumn ctermbg=NONE
+"hi StatusLine ctermbg=black ctermfg=white
 " }}}

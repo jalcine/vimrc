@@ -25,9 +25,6 @@ nnoremap <silent> <leader>h :setlocal hlsearch!<CR>
 " Toggle the state of spelling locally.
 nnoremap <silent> <leader>sp :setlocal spell!<CR>
 
-" Toggle the current fold.
-nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
-
 " {{{ Timing options
 inoremap <silent> <leader>pt <C-R>=strftime("%Y-%m-%d")<CR>
 
@@ -131,7 +128,7 @@ nnoremap [unite] <nop>
 nmap <leader>u [unite]
 
 " Define the mappings.
-nnoremap <silent> [unite]b :call <SID>call_unite_buffer()<cr>
+nnoremap <silent> [unite]<space> :call <SID>call_unite_buffer()<cr>
 nnoremap <silent> [unite]f :call <SID>call_unite_files()<cr>
 nnoremap <silent> [unite]g :call <SID>call_unite_local_grep()<cr>
 nnoremap <silent> [unite]t :call <SID>call_unite_tags()<cr>

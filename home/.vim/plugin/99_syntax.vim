@@ -4,5 +4,5 @@
 " Last Modified: October 26, 2014
 
 syn match myTodo contained "\<\(TODO\|FIXME\|NOTE\|BUG\):"
-
 hi def link myTodo Todo
+hi def link myTodo cTodo

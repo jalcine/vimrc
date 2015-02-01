@@ -89,7 +89,6 @@ func! s:init_plugins()
   Plugin 'chase/vim-ansible-yaml'
   Plugin 'vim-ruby/vim-ruby'
   Plugin 'rust-lang/rust.vim'
-  Plugin 'chriskempson/base16-vim'
 
   " Add any additional plugins I'd be using on this local machine.
   if filereadable(expand('~/.vim/plugins.local.vim'))

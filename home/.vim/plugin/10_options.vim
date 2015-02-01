@@ -3,7 +3,7 @@ if exists('g:jalcine_options')
   finish
 endif
 
-let base16colorspace=256
+"let base16colorspace=256
 let g:ansible_options = {'ignore_blank_lines': 0}
 
 " {{{ NERD{Tree,Commenter}
@@ -56,7 +56,7 @@ let g:syntastic_c_remove_include_errors=1
 " }}}
 
 " {{{ Airline
-let g:airline_theme='base16'
+let g:airline_theme='hybrid'
 let g:airline_detected_modified=1
 let g:airline_powerline_fonts=1
 let g:airline_detect_iminsert=1
@@ -96,7 +96,7 @@ let g:UltiSnipsEditSplit="horizontal"
 let g:UltiSnipsExpandTrigger="<C-l>"
 let g:UltiSnipsJumpForwardTrigger="<C-j>"
 let g:UltiSnipsJumpBackwardTrigger="<C-k>"
-let g:UltiSnipsSnippetDirectories=["Ultisnips","snippets"]
+let g:UltiSnipsSnippetDirectories=["Ultisnips"]
 " }}}
 
 " {{{ Other

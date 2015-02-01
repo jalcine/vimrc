@@ -5,7 +5,7 @@ This repository holds my personal configuration for Vim. It has all of the
 colors, core bundles, and options needed to get it kicking and roaring with
 Vim.
 
-I use [homesick][] to manage my dotfiles and what not. This repository is 
+I use [homesick][] to manage my dotfiles and what not. This repository is
 set up for it. Feel free to use to your heart's content.
 
 ## Contents

@@ -1,4 +1,4 @@
-" vim: set fdm=marker foldenable foldlevel=0 :
+" vim: set fdm=marker foldenable foldlevel=0 nospell:
 " File:          .vimrc
 " Author:        Jacky Alciné <me@jalcine.me>
 " Description:   The heart.

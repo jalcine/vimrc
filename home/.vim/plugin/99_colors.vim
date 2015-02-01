@@ -7,14 +7,15 @@
 " We always use 256 colors.
 let t_Co=256
 
-func! jalcine#colors#go_dark()
+func! s:go_dark()
   colorscheme distinguished
+  let g:airline_theme='hybrid'
 endfunc
 
-func! jalcine#colors#go_light()
+func! s:go_light()
   colorscheme laederon
+  let g:airline_theme='laederon'
 endfunc
 
 set background=light
-call jalcine#colors#go_light()
-
+call s:go_dark()

@@ -73,7 +73,6 @@ func! s:init_plugins()
   Plugin 'rayburgemeestre/phpfolding.vim'
   Plugin 'shawncplus/phpcomplete.vim'
   Plugin 'heavenshell/vim-slack'
-  Plugin 'gorkunov/smartgf.vim'
   Plugin 'idanarye/vim-vebugger'
   Plugin 'tpope/vim-rsi'
   Plugin 'Chiel92/vim-autoformat'

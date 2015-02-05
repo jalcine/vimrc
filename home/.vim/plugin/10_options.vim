@@ -1,3 +1,8 @@
+" File: plugin/10_options.vim
+" Author: Jacky Alcine <me@jalcine.me>
+" Description: Options for plugins.
+" Last Modified: February 02, 2015
+
 " vim: ft=vim fdm=marker tw=78 fdl=0
 if exists('g:jalcine_options')
   finish
@@ -141,7 +146,6 @@ let g:session_directory="~/.vim/sessions"
 
 " {{{ Git, Github and VCS
 let g:github_user='jalcine'
-let g:github_access_token=readfile(expand('~/.github_access_token'), '', '1')[0]
 let g:github_upstream_issues=1
 let g:github_search_path_format='$HOME/Development/Projects/:project'
 let g:github_comment_open_browser = 1

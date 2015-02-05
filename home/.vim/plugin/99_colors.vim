@@ -8,8 +8,8 @@
 let t_Co=256
 
 func! s:go_dark()
-  colorscheme distinguished
-  let g:airline_theme='hybrid'
+  colorscheme ubaryd
+  let g:airline_theme='ubaryd'
 endfunc
 
 func! s:go_light()
@@ -17,5 +17,5 @@ func! s:go_light()
   let g:airline_theme='laederon'
 endfunc
 
-set background=light
+set background=dark
 call s:go_dark()

@@ -126,11 +126,11 @@ let g:vimsyn_embed='Pr'
 " We fold when we need to, according to syntax.
 set foldenable
 set foldmethod=syntax
-set foldcolumn=0
-set foldlevel=3
-set foldminlines=5
+set foldcolumn=1
+set foldlevel=0
+set foldminlines=3
 set foldnestmax=5
-set foldlevelstart=2
+set foldlevelstart=1
 "}}}
 "{{{ Searching
 " Highlight matches found when searching.

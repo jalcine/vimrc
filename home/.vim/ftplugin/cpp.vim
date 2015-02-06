@@ -6,5 +6,4 @@
 " Load in options for C.
 runtime! ftplugin/c.vim
 
-" But, disable code folding. It sucks.
-set nofoldenable
+" TODO: Need to provide better code folding for C++ because GOD DAMMIT VIM.

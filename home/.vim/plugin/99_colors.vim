@@ -19,3 +19,4 @@ endfunc
 
 set background=dark
 call s:go_dark()
+hi Conceal ctermbg=NONE guibg=NONE

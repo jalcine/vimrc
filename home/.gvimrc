@@ -4,3 +4,4 @@
 " Last Modified: June 06, 2014
 
 set background=dark
+set guifont=monoOne\ 9

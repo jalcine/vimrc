@@ -82,7 +82,7 @@ set showmatch
 
 " Show me the overflow.
 if has('syntax') && v:version >= 704
-  call matchadd('ColorColumn', '\%' . &textwidth . 'v', 80)
+  call matchadd('ColorColumn', '\%' . &textwidth . 'v', 81)
 endif
 
 "}}}
@@ -97,7 +97,7 @@ set smarttab expandtab
 " Set a hard wrapping to 78 characters. Nothing should be longer than that.
 " Trust me, living a few days in the console will teach you that. Unless you
 " don't use a multiplexer or use a terrible window manager like Quartz.
-set textwidth=79
+set textwidth=80
 set nowrap
 
 " Using 'smartindent' is obsolete; let ftindent plugins do their magic and

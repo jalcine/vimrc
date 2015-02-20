@@ -66,6 +66,8 @@ func! s:init_plugins()
   Plugin 'xolox/vim-easytags'
   Plugin 'xolox/vim-misc'
   Plugin 'xolox/vim-notes'
+  Plugin 'xolox/vim-shell'
+  Plugin 'xolox/vim-lua-ftplugin'
   Plugin 'xolox/vim-publish'
   Plugin 'xolox/vim-session'
   Plugin 'yuku-t/unite-git'
@@ -88,6 +90,10 @@ func! s:init_plugins()
   Plugin 'chase/vim-ansible-yaml'
   Plugin 'vim-ruby/vim-ruby'
   Plugin 'rust-lang/rust.vim'
+  Plugin 'sjl/gundo.vim'
+  Plugin 'ryanss/vim-hackernews'
+  Plugin 'junegunn/vim-emoji'
+  Plugin 'guns/xterm-color-table.vim'
 
   " Add any additional plugins I'd be using on this local machine.
   if filereadable(expand('~/.vim/plugins.local.vim'))

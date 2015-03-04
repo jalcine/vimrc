@@ -117,6 +117,7 @@ set wildignore+=*.swp,*.pyc,*.bak,*.class,*.orig
 set wildignore+=.git,.hg,.bzr,.svn
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg,*.svg
 set wildignore+=build/*,tmp/*,vendor/cache/*,bin/*
+set wildignore+=.sass-cache/*
 " }}}
 "{{{ Folding
 " Allow for Vim syntax folding.

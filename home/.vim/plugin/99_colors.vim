@@ -7,16 +7,33 @@
 " We always use 256 colors.
 let t_Co=256
 
+func! s:modify_colors()
+  hi Conceal ctermbg=NONE guibg=NONE
+  hi FoldColumn ctermbg=NONE guibg=NONE
+  hi Folded ctermbg=NONE guibg=NONE
+  hi NonText ctermbg=NONE guibg=NONE
+  hi Todo ctermbg=NONE guibg=NONE
+endfunc
+
 func! s:go_dark()
   colorscheme ubaryd
+  set background=dark
+  let g:ubaryd_css_props_highlight=1
+  let g:ubaryd_html_link_underline=1
+  let g:ubaryd_darkgutter=1
   let g:airline_theme='ubaryd'
 endfunc
 
 func! s:go_light()
   colorscheme laederon
+  set background=light
   let g:airline_theme='laederon'
 endfunc
 
-set background=dark
-call s:go_dark()
-hi Conceal ctermbg=NONE guibg=NONE
+func! s:go_molokai()
+  colorscheme molokai
+  let g:airline_theme='simple'
+endfunc
+
+call s:go_molokai()
+call s:modify_colors()

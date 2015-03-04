@@ -201,8 +201,20 @@ let g:easytags_syntax_keyword='always'
 let g:easytags_dynamic_files=1
 let g:easytags_include_members=1
 let g:easytags_suppress_report=1
+let g:easytags_file=$HOME . '/.vim/easy_tags.ctags'
+let g:easytags_resolve_links = 1
+let g:easytags_suppress_ctags_warning = 1
+let g:easytags_languages = {
+\   'markdown': {
+\     'cmd': system('which markdown2ctags'),
+\       'args': [],
+\       'fileoutput_opt': '-f',
+\       'stdout_opt': '-f -',
+\       'recurse_flag': ''
+\   }
+\}
 
-if filereadable('~/.vim/plugin/options.local.vim')
-  source ~/.vim/plugin/options.local.vim
+if filereadable($HOME . '/.vim/plugin/options.local.vim')
+  source $HOME/.vim/plugin/options.local.vim
 endif
 "}}}

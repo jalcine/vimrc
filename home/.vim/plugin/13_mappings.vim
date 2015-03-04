@@ -77,8 +77,9 @@ nnoremap <silent> <leader>lx <ESC>:lclose<CR>
 " }}}
 
 " {{{ tmux mappings
-nnoremap <silent> <leader>tx <ESC>:TmuxSend<CR>
-nnoremap <silent> <leader>ts <ESC>:TmuxSend<CR>
+nnoremap [tmux] <nop>
+nmap <leader>t [tmux]
+nnoremap <silent> [tmux]s <ESC>:TmuxSend<CR>
 " }}}
 
 " Rewrite 'vhe' to 'vert help'.

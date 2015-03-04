@@ -6,3 +6,4 @@
 syn match myTodo contained "\<\(TODO\|FIXME\|NOTE\|BUG\):"
 hi def link myTodo Todo
 hi def link myTodo cTodo
+highlight notesDoubleQuoted gui=italic

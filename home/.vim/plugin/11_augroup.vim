@@ -16,6 +16,7 @@ augroup jalcine
   au BufReadPre *cpanfile   setlocal ft=perl
   au BufReadPre *pintofile  setlocal ft=perl
   au BufReadPre *.h++       setlocal ft=cpp
+  au BufReadPre /usr/include/c++/* setlocal ft=cpp
 
   " Helps with editing tmux configuration files.
   au BufWritePost *tmux*\.conf call s:reload_tmux()

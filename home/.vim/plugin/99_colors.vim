@@ -13,6 +13,10 @@ func! s:modify_colors()
   hi Folded ctermbg=NONE guibg=NONE
   hi NonText ctermbg=NONE guibg=NONE
   hi Todo ctermbg=NONE guibg=NONE
+  hi Normal ctermbg=NONE guibg=NONE
+  hi NonText ctermbg=NONE guibg=NONE
+  hi VertSplit ctermbg=NONE guibg=NONE
+  hi Split ctermbg=NONE guibg=NONE
 endfunc
 
 func! s:go_dark()
@@ -32,8 +36,10 @@ endfunc
 
 func! s:go_molokai()
   colorscheme molokai
-  let g:airline_theme='simple'
+  let g:airline_theme='gotham256'
 endfunc
 
 call s:go_molokai()
 call s:modify_colors()
+
+" TODO: Add an editor command to handle swapping colors.

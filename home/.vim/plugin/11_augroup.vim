@@ -22,5 +22,5 @@ augroup jalcine
   au BufWritePost *tmux*\.conf call s:reload_tmux()
 
   " Make sure we don't spell in certain windows.
-  au QuickFixCmdPost * setlocal nospell
+  au QuickFixCmdPre * set nospell
 augroup END

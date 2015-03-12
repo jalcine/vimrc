@@ -139,7 +139,7 @@ nnoremap <silent> [unite]r :call <SID>call_unite_resume()<cr>
 nnoremap <silent> [unite]X :call <Plug>unite_disable_max_candidates()<CR>
 
 " For those who end up using my machine but think it has CtrlP.
-nnoremap <silent> <leader>p [unite]f
+nnoremap <silent> <leader>p :call <SID>call_unite_files()<cr>
 " }}}
 
 " {{{ Git helpers

@@ -1,17 +1,16 @@
 #!/usr/bin/env python
+
 # Copyright (C) 2013 John Szakmeister <john@szakmeister.net>
 # All rights reserved.
 #
 # This software is licensed as described in the file LICENSE.txt, which
 # you should have received as part of this distribution.
-#
-# From: https://github.com/jszakmeister/markdown2ctags
 
 import sys
 import re
 
 
-__version__ = '0.1.1'
+__version__ = '0.1.2'
 
 
 class ScriptError(Exception):
@@ -54,8 +53,8 @@ class Tag(object):
 
     def __str__(self):
         return '%s\t%s\t%s;"\t%s' % (
-            self.tagName, self.tagFile, self.tagAddress,
-            self._formatFields())
+                self.tagName, self.tagFile, self.tagAddress,
+                self._formatFields())
 
     def __cmp__(self, other):
         return cmp(str(self), str(other))
@@ -98,12 +97,20 @@ atxHeadingRe = re.compile(r'^(#+)\s+(.*?)(?:\s+#+)?\s*$')
 settextHeadingRe = re.compile(r'^[-=]+$')
 settextSubjectRe = re.compile(r'^[^\s]+.*$')
 
-
 def findSections(filename, lines):
     sections = []
     previousSections = []
+    inCodeBlock = False
 
     for i, line in enumerate(lines):
+        # Skip GitHub Markdown style code blocks.
+        if line.startswith("```"):
+            inCodeBlock = not inCodeBlock
+            continue
+
+        if inCodeBlock:
+            continue
+
         m = atxHeadingRe.match(line)
         if m:
             level = len(m.group(1))
@@ -140,7 +147,7 @@ def findSections(filename, lines):
                 lineNumber = i
 
                 s = Section(level, name, lines[i-1], lineNumber,
-                    filename, parent)
+                        filename, parent)
                 previousSections.append(s)
                 sections.append(s)
 
@@ -177,19 +184,19 @@ def genTagsFile(output, tags, sort):
 def main():
     from optparse import OptionParser
 
-    parser = OptionParser(usage= "usage: %prog [options] file(s)",
-                          version= __version__)
+    parser = OptionParser(usage = "usage: %prog [options] file(s)",
+                          version = __version__)
     parser.add_option(
-        "-f", "--file", metavar="FILE", dest="tagfile",
-        default="tags",
-        help='Write tags into FILE (default: "tags").  Use "-" to write '
-            'tags to stdout.')
+            "-f", "--file", metavar = "FILE", dest = "tagfile",
+            default = "tags",
+            help = 'Write tags into FILE (default: "tags").  Use "-" to write '
+                   'tags to stdout.')
     parser.add_option(
-        "", "--sort", metavar="[yes|foldcase|no]", dest="sort",
-        choices=["yes", "no", "foldcase"],
-        default="yes",
-        help='Produce sorted output.  Acceptable values are "yes", '
-            '"no", and "foldcase".  Default is "yes".')
+            "", "--sort", metavar="[yes|foldcase|no]", dest = "sort",
+            choices = ["yes", "no", "foldcase"],
+            default = "yes",
+            help = 'Produce sorted output.  Acceptable values are "yes", '
+                   '"no", and "foldcase".  Default is "yes".')
 
     options, args = parser.parse_args()
 

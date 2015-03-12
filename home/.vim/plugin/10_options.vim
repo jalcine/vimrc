@@ -8,12 +8,15 @@ if exists('g:jalcine_options')
   finish
 endif
 
-"let base16colorspace=256
+let base16colorspace=256
 let g:ansible_options = {'ignore_blank_lines': 0}
 
 " {{{ NERD{Tree,Commenter}
+let g:NERDTreeDirArrows=1
+let g:NERDTreeAutoDeleteBuffer=0
+let g:NERDTreeMinimalUI=1
+let g:NERDTreeShowHidden=1
 let g:NERDCreateDefaultMappings=1
-let g:NERDTreeMinimalUI=0
 let g:NERDCompactSexyComs=1
 " }}}
 
@@ -206,7 +209,7 @@ let g:easytags_resolve_links = 1
 let g:easytags_suppress_ctags_warning = 1
 let g:easytags_languages = {
 \   'markdown': {
-\     'cmd': system('which markdown2ctags'),
+\     'cmd': 'markdown2ctags',
 \       'args': [],
 \       'fileoutput_opt': '-f',
 \       'stdout_opt': '-f -',

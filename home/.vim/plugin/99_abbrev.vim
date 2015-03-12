@@ -11,7 +11,6 @@ iabbrev me_fname Jacky
 iabbrev me_lname Alciné
 iabbrev me_site http://jalcine.me
 iabbrev fucntion function
-iabbrev sstk shutterstock
 iabbrev ggl google
 iabbrev ghb github
 iabbrev lnx linux

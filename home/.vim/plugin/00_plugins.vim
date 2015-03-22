@@ -74,7 +74,6 @@ func! s:init_plugins()
   Plugin 'heavenshell/vim-slack'
   Plugin 'tpope/vim-rsi'
   Plugin 'Chiel92/vim-autoformat'
-  Plugin 'Valloric/YouCompleteMe'
   Plugin 'Xuyuanp/nerdtree-git-plugin'
   Plugin 'jszakmeister/vim-togglecursor'
   Plugin 'TagHighlight'
@@ -85,9 +84,12 @@ func! s:init_plugins()
   Plugin 'ryanss/vim-hackernews'
   Plugin 'guns/xterm-color-table.vim'
   Plugin 'marijnh/tern_for_vim'
-  Plugin 'whatyouhide/vim-gotham'
   Plugin 'flazz/vim-colorschemes'
   Plugin 'tmatilai/vim-monit'
+  Plugin 'SyntaxRange'
+  Plugin 'farseer90718/vim-taskwarrior'
+  Plugin 'KabbAmine/vCoolor.vim'
+  Plugin 'fatih/vim-go'
 
   " Add any additional plugins I'd be using on this local machine.
   if filereadable(expand('~/.vim/plugins.local.vim'))

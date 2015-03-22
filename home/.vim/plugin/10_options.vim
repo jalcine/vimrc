@@ -29,7 +29,7 @@ let g:cmake_extensions = ['syntastic', 'ycm']
 " }}}
 
 " {{{ Syntastic
-let g:syntastic_check_on_open=0
+let g:syntastic_check_on_open=1
 let g:syntastic_check_on_wq=1
 let g:syntastic_aggregate_errors=1
 let g:syntastic_error_symbol='✗'
@@ -40,7 +40,7 @@ let g:syntastic_auto_jump=1
 let g:syntastic_auto_loc_list=1
 let g:syntastic_loc_list_height=3
 let g:syntastic_ignore_files = ['^/usr/', 'node_modules', 'vendor', 'build']
-let g:syntastic_mode_map = { 'mode': 'passive' }
+let g:syntastic_mode_map = { 'mode': 'active' }
 " {{{ Checkers for Syntastic
 let g:syntastic_javascript_checkers=['jshint', 'jscs']
 let g:syntastic_json_checkers=['jsonlint', 'jsonval']
@@ -88,9 +88,9 @@ let g:airline_mode_map={
 
 " {{{ Unite
 let g:unite_source_history_yank_enable=1
-let g:unite_winheight=5
+let g:unite_winheight=3
 let g:unite_data_directory='~/.vim/cache-unite'
-let g:unite_source_rec_max_cache_files=500
+let g:unite_source_rec_max_cache_files=250
 let g:unite_enable_start_insert=1
 let g:unite_prompt='» '
 let g:unite_source_grep_command = 'ag'
@@ -118,11 +118,11 @@ let g:investigate_custom_for_sh="^i:Man ^s"
 " }}}
 
 " {{{ Tagbar
-let g:tagbar_compact=0
-let g:tagbar_autoshowtag=0
+let g:tagbar_compact=1
+let g:tagbar_autoshowtag=1
 let g:tagbar_zoomwidth=20
-let g:tagbar_left=1
-let g:tagbar_sort=0
+let g:tagbar_left=0
+let g:tagbar_sort=1
 let g:tagbar_type_markdown = {
     \ 'ctagstype': 'markdown',
     \ 'ctagsbin' : 'markdown2ctags',
@@ -194,28 +194,22 @@ let g:load_doxygen_syntax=1
 let g:doxygen_enhanced_color=1
 let g:c_comment_strings=1
 let g:c_curly_errors=1
-let g:c_gnu=0
+let g:c_gnu=1
 let g:c_no_c99=1
 let g:c_space_errors=1
 " }}}
 
 let g:easytags_async=1
 let g:easytags_syntax_keyword='always'
-let g:easytags_dynamic_files=1
+let g:easytags_by_filetype=1
 let g:easytags_include_members=1
 let g:easytags_suppress_report=1
-let g:easytags_file=$HOME . '/.vim/easy_tags.ctags'
-let g:easytags_resolve_links = 1
-let g:easytags_suppress_ctags_warning = 1
-let g:easytags_languages = {
-\   'markdown': {
-\     'cmd': 'markdown2ctags',
-\       'args': [],
-\       'fileoutput_opt': '-f',
-\       'stdout_opt': '-f -',
-\       'recurse_flag': ''
-\   }
-\}
+let g:easytags_file='~/.vim/tags'
+let g:easytags_resolve_links=0
+let g:easytags_suppress_ctags_warning=1
+" TODO: Add support for phpctags.
+" TODO: Add support for jsctags.
+" TODO: Add support for markdownctags.
 
 if filereadable($HOME . '/.vim/plugin/options.local.vim')
   source $HOME/.vim/plugin/options.local.vim

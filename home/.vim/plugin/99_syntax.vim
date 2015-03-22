@@ -3,7 +3,6 @@
 " Description: Additions to syntax that I sorely need.
 " Last Modified: October 26, 2014
 
-syn match myTodo contained "\<\(TODO\|FIXME\|NOTE\|BUG\):"
-hi def link myTodo Todo
-hi def link myTodo cTodo
+" TODO: Add custom list of TODO highlighters in comments.
+
 highlight notesDoubleQuoted gui=italic

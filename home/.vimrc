@@ -55,10 +55,13 @@ set visualbell
 set errorbells
 set ruler
 set nonumber
-if has('conceal') | set conceallevel=2 concealcursor=ncv | endif
+if has('conceal') | set conceallevel=2 concealcursor=nc | endif
 
 " No more crazy spacing.
 set ve=onemore
+
+set cmdwinheight=2
+set colorcolumn=+1
 
 " Gimme something to look at.
 set laststatus=2
@@ -121,6 +124,10 @@ set wildignore+=.git,.hg,.bzr,.svn
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg,*.svg
 set wildignore+=build/*,tmp/*,vendor/cache/*,bin/*
 set wildignore+=.sass-cache/*
+
+" Complete with more things.
+set complete=.,w,b,u,U,i,d,t
+set completeopt=menu,longest
 " }}}
 "{{{ Folding
 " Allow for Vim syntax folding.

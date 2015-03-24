@@ -9,17 +9,6 @@
 " Not like a real cloud, like a server on the Internet that I couldn't
 " directly access.
 
-" This 's:os_name' is meant to only be used here since I only try to get
-" OS-specific things ironed out here.
-let s:os_name="Unknown"
-if executable('uname')
-  let s:os_name=substitute(system('uname'),'\n','','g')
-else
-  " Has to be Windows or something not *nix-ish.
-  " Why would you run Vim on Windows?
-  let s:os_name="Windoze"
-endif
-
 "{{{ Immediate Options
 " We live in the future, don't worry about backwards compatibility with Vi.
 " In fact, why bother set it? If $VIM is reading this, nocp is active!

@@ -17,20 +17,7 @@ func! s:modify_colors()
   hi Split ctermbg=NONE guibg=NONE
 endfunc
 
-func! s:go_dark()
-  set background=dark
-  colorscheme lucius
-  let g:airline_theme='lucius'
-endfunc
-
-func! s:go_light()
-  set background=dark
-  colorscheme lucius
-  let g:airline_theme='lucius'
-endfunc
-
-call s:go_dark()
-:LuciusBlack
-call s:modify_colors()
+colorscheme hybrid
+"call s:modify_colors()
 
 " TODO: Add an editor command to handle swapping colors.

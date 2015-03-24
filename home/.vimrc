@@ -57,6 +57,9 @@ set ruler
 set nonumber
 if has('conceal') | set conceallevel=2 concealcursor=ncv | endif
 
+" No more crazy spacing.
+set ve=onemore
+
 " Gimme something to look at.
 set laststatus=2
 set showtabline=2
@@ -208,6 +211,7 @@ set ttimeoutlen=500
 set updatetime=1500
 "}}}
 
+" TODO: Rename the options and plugins files.
 source ~/.vim/plugin/10_options.vim
 if filereadable('~/.vim/options.local.vim') | source ~/.vim/options.local.vim | endif
 source ~/.vim/plugin/00_plugins.vim

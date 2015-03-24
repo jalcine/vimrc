@@ -5,4 +5,11 @@
 
 " TODO: Add custom list of TODO highlighters in comments.
 
+syn keyword jalcineTodo 
+      \ NOTE FIXME BUG DONE
+      \ contained
+
 highlight notesDoubleQuoted gui=italic
+hi link jalcineTodo TODO
+hi link jalcineTodo Todo
+hi link jalcineTodo rubyTodo

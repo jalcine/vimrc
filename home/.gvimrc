@@ -5,3 +5,5 @@
 
 set background=dark
 set guifont=monoOne\ 9
+set novisualbell
+set noerrorbells

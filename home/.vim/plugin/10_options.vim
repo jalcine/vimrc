@@ -76,6 +76,7 @@ let g:airline#extensions#whitespace#mixed_indent_algo=1
 let g:airline#extensions#whitespace#show_message=1
 let g:airline#extensions#whitespace#trailing_format='s:[%s]'
 let g:airline#extensions#whitespace#mixed_indent_format='i:[%s]'
+let g:airline#extensions#tagbar#flags='f'
 let g:airline_mode_map={
       \ '__' : '-',
       \ 'n'  : 'N',
@@ -210,6 +211,14 @@ let g:easytags_suppress_ctags_warning=1
 " TODO: Add support for phpctags.
 " TODO: Add support for jsctags.
 " TODO: Add support for markdownctags.
+
+let g:rubycomplete_rails=1
+let g:rubycomplete_classes_in_global=1
+let g:rubycomplete_buffer_loading=1
+let g:rubycomplete_include_object=1
+let g:rubycomplete_include_objectspace=1
+let g:cpp_experimental_template_highlight=1
+let g:cpp_class_scope_highlight=1
 
 if filereadable($HOME . '/.vim/plugin/options.local.vim')
   source $HOME/.vim/plugin/options.local.vim

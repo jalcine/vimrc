@@ -37,7 +37,7 @@ endfunc
 
 func! s:go_molokai()
   colorscheme molokai
-  let g:airline_theme='molokai'
+  let g:airline_theme='serene'
 endfunc
 
 call s:go_molokai()

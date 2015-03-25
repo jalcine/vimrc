@@ -44,7 +44,7 @@ let g:syntastic_mode_map = { 'mode': 'active' }
 " {{{ Checkers for Syntastic
 let g:syntastic_javascript_checkers=['jshint', 'jscs']
 let g:syntastic_json_checkers=['jsonlint', 'jsonval']
-let g:syntastic_ruby_checkers=['mri', 'rubocop']
+let g:syntastic_ruby_checkers=['rubocop','mri']
 let g:syntastic_perl_checkers=['perl','perlcritic','podchecker']
 let g:syntastic_python_checkers=['pylint','pep8','python']
 let g:syntastic_cpp_checkers=['gcc','cppcheck','cpplint','ycm']
@@ -55,8 +55,6 @@ let g:syntastic_yaml_checkers=['jsyaml']
 let g:syntastic_sh_checkers=['sh','shellcheck','checkbashisms']
 let g:syntastic_vim_checkers=['vimlint']
 " }}}
-let g:syntastic_ruby_exec=substitute(system('which ruby'),'\n','','g')
-let g:syntastic_jshint_exe=substitute(system('which jshint'),'\n','','g')
 let g:syntastic_enable_perl_checker=1
 let g:syntastic_c_clang_tidy_sort=1
 let g:syntastic_c_clang_check_sort=1
@@ -64,7 +62,7 @@ let g:syntastic_c_remove_include_errors=1
 " }}}
 
 " {{{ Airline
-let g:airline_theme='hybrid'
+let g:airline_theme='lucius'
 let g:airline_detected_modified=1
 let g:airline_powerline_fonts=1
 let g:airline_detect_iminsert=1

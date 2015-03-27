@@ -201,11 +201,10 @@ let g:c_space_errors=1
 let g:easytags_async=1
 let g:easytags_syntax_keyword='always'
 let g:easytags_by_filetype=1
-let g:easytags_include_members=1
 let g:easytags_suppress_report=1
-let g:easytags_file='~/.vim/tags'
-let g:easytags_resolve_links=0
+let g:easytags_resolve_links=1
 let g:easytags_suppress_ctags_warning=1
+let g:easytags_dynamic_tags=1
 " TODO: Add support for phpctags.
 " TODO: Add support for jsctags.
 " TODO: Add support for markdownctags.

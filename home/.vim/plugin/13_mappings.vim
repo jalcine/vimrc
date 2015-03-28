@@ -62,24 +62,32 @@ nnoremap <silent> [make]u        :Make uninstall<CR>
 " }}}
 
 " {{{ Travel over errors.
-nnoremap <silent> <leader>ce <ESC>:cnext<CR>
-nnoremap <silent> <leader>cf <ESC>:cfirst<CR>
-nnoremap <silent> <leader>cl <ESC>:clast<CR>
-nnoremap <silent> <leader>co <ESC>:cwindow<CR>
-nnoremap <silent> <leader>cp <ESC>:cprevious<CR>
-nnoremap <silent> <leader>cx <ESC>:cclose<CR>
-nnoremap <silent> <leader>le <ESC>:lnext<CR>
-nnoremap <silent> <leader>lf <ESC>:lfirst<CR>
-nnoremap <silent> <leader>ll <ESC>:llast<CR>
-nnoremap <silent> <leader>lo <ESC>:lwindow<CR>
-nnoremap <silent> <leader>lp <ESC>:lprevious<CR>
-nnoremap <silent> <leader>lx <ESC>:lclose<CR>
+nnoremap [quickfix] <nop>
+nmap <leader>q [quickfix]
+nnoremap <silent> [quickfix]e <ESC>:cnext<CR>
+nnoremap <silent> [quickfix]f <ESC>:cfirst<CR>
+nnoremap <silent> [quickfix]l <ESC>:clast<CR>
+nnoremap <silent> [quickfix]o <ESC>:cwindow<CR>
+nnoremap <silent> [quickfix]p <ESC>:cprevious<CR>
+nnoremap <silent> [quickfix]x <ESC>:cclose<CR>
+
+nnoremap [locationlist] <nop>
+nmap <leader>l [locationlist]
+nnoremap <silent> [locationlist]e <ESC>:lnext<CR>
+nnoremap <silent> [locationlist]f <ESC>:lfirst<CR>
+nnoremap <silent> [locationlist]l <ESC>:llast<CR>
+nnoremap <silent> [locationlist]o <ESC>:lwindow<CR>
+nnoremap <silent> [locationlist]p <ESC>:lprevious<CR>
+nnoremap <silent> [locationlist]x <ESC>:lclose<CR>
 " }}}
 
 " {{{ tmux mappings
 nnoremap [tmux] <nop>
 nmap <leader>t [tmux]
 nnoremap <silent> [tmux]s <ESC>:TmuxSend<CR>
+nnoremap <silent> [tmux]c <ESC>:TmuxChangeCommand<CR>
+nnoremap <silent> [tmux]S <ESC>:TmuxSendCommand<CR>
+nnoremap <silent> [tmux]p <ESC>:TmuxSelectPane<CR>
 " }}}
 
 " Rewrite 'vhe' to 'vert help'.
@@ -112,8 +120,12 @@ func! s:call_unite_buffer()
   call s:call_unite('buffer')
 endfunc
 
+func! s:call_unite_project()
+  call s:call_unite('file_rec/git tag tag/include')
+endfunc
+
 func! s:call_unite_files()
-  return s:call_unite('file_rec:$PWD')
+  return s:call_unite('file_rec:$PWD/async file_rec/git')
 endfunc
 
 func! s:call_unite_local_grep()
@@ -136,6 +148,7 @@ nnoremap <silent> [unite]t :call <SID>call_unite_tags()<cr>
 nnoremap <silent> [unite]a :call <SID>call_unite_tasks()<cr>
 nnoremap <silent> [unite]x :call <SID>call_unite_tmux()<cr>
 nnoremap <silent> [unite]r :call <SID>call_unite_resume()<cr>
+nnoremap <silent> [unite]u :call <SID>call_unite('ultisnips')<cr>
 nnoremap <silent> [unite]X :call <Plug>unite_disable_max_candidates()<CR>
 
 " For those who end up using my machine but think it has CtrlP.
@@ -148,6 +161,7 @@ nmap <leader>g [git]
 nnoremap <silent> [git]a   :Git add<space>
 nnoremap <silent> [git]ab  :Git add %<cr>
 nnoremap <silent> [git]c   :Git commit<space>
+nnoremap <silent> [git]C   :Git commit %<CR>
 nnoremap <silent> [git]co  :Git checkout<space>
 nnoremap <silent> [git]f   :Git fetch<space>
 nnoremap <silent> [git]fa  :Git fetch --all<CR>

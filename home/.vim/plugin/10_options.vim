@@ -87,9 +87,9 @@ let g:airline_mode_map={
 
 " {{{ Unite
 let g:unite_source_history_yank_enable=1
-let g:unite_winheight=3
+let g:unite_winheight=8
 let g:unite_data_directory='~/.vim/cache-unite'
-let g:unite_source_rec_max_cache_files=250
+let g:unite_source_rec_max_cache_files=16384
 let g:unite_enable_start_insert=1
 let g:unite_prompt='» '
 let g:unite_source_grep_command = 'ag'
@@ -198,13 +198,10 @@ let g:c_no_c99=1
 let g:c_space_errors=1
 " }}}
 
-let g:easytags_async=1
-let g:easytags_syntax_keyword='always'
-let g:easytags_by_filetype=1
+let g:easytags_async=0
 let g:easytags_suppress_report=1
 let g:easytags_resolve_links=1
 let g:easytags_suppress_ctags_warning=1
-let g:easytags_dynamic_tags=1
 " TODO: Add support for phpctags.
 " TODO: Add support for jsctags.
 " TODO: Add support for markdownctags.

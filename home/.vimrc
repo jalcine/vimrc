@@ -50,7 +50,7 @@ if has('conceal') | set conceallevel=2 concealcursor=nc | endif
 set ve=onemore
 
 set cmdwinheight=2
-set colorcolumn=+1
+set colorcolumn=0
 
 " Gimme something to look at.
 set laststatus=2

@@ -161,12 +161,12 @@ nmap <leader>g [git]
 nnoremap <silent> [git]a   :Git add<space>
 nnoremap <silent> [git]ab  :Git add %<cr>
 nnoremap <silent> [git]c   :Git commit<space>
-nnoremap <silent> [git]C   :Git commit %<CR>
+nnoremap <silent> [git]C   :Gcommit %<CR>
 nnoremap <silent> [git]co  :Git checkout<space>
 nnoremap <silent> [git]f   :Git fetch<space>
 nnoremap <silent> [git]fa  :Git fetch --all<CR>
 nnoremap <silent> [git]p   :Git push<space>
-nnoremap <silent> [git]rm  :Git rm %<CR>
+nnoremap <silent> [git]rm  :Gremove %<CR>
 nnoremap <silent> [git]rmc :Git rm --cached %<CR>
 " }}}
 

@@ -1,12 +1,12 @@
 " Vim color file
 " Maintainer:  Michael Boehler
 " Mail:        michael@familie-boehler.de
-" Last Change: 2015-03-29 11:10:21 EDT
+" Last Change: 2015-03-29 11:10:21 EDT by Jacky Alciné <me@jalcine.me>.
 " Version:     3.2
 " This color scheme uses a light background.
 " GUI only
 " inspired by colorsheme PYTE
-" Updated by Jacky Alcine <me@jalcine.me> to support the term.
+" Updated by Jacky Alcine <me@jalcine.me> to support terminal Vim.
 
 set background=light
 hi clear
@@ -16,21 +16,21 @@ endif
 
 let colors_name = "ironman"
 
-hi Normal                    guifg=#222222 guibg=#F0F0F0 ctermbg=254 ctermfg=240
+hi Normal                    guifg=#222222 guibg=#F0F0F0 ctermbg=254 ctermfg=235
 " Search
-hi IncSearch                 gui=NONE guifg=Black guibg=#FFFF4B ctermfg=0 ctermbg=195
-hi Search                    gui=NONE guifg=Black guibg=#FFFF8F ctermfg=0 ctermbg=218
+hi IncSearch                 gui=NONE guifg=Black guibg=#FFFF4B ctermfg=0 ctermbg=3
+hi Search                    gui=NONE guifg=Black guibg=#FFFF8F ctermfg=0 ctermbg=11
 
 " Messages
-hi ErrorMsg                  gui=NONE guifg=#FF0000 guibg=NONE
-hi WarningMsg                gui=NONE guifg=#FF6600 guibg=NONE
-hi ModeMsg                   gui=NONE guifg=#0070ff guibg=NONE
-hi MoreMsg                   gui=NONE guifg=#FF6600 guibg=NONE
-hi Question                  gui=NONE guifg=#008050 guibg=NONE
+hi ErrorMsg                  gui=NONE guifg=#FF0000 guibg=NONE ctermfg=160 ctermbg=NONE
+hi WarningMsg                gui=NONE guifg=#FF6600 guibg=NONE ctermfg=202 ctermbg=NONE
+hi ModeMsg                   gui=NONE guifg=#0070ff guibg=NONE ctermfg=26  ctermbg=NONE
+hi MoreMsg                   gui=NONE guifg=#FF6600 guibg=NONE ctermfg=202 ctermbg=NONE
+hi Question                  gui=NONE guifg=#008050 guibg=NONE ctermfg=29  ctermbg=NONE
 
 " Completion Popup Menu
-hi Pmenu                     gui=NONE guifg=#303040 guibg=#ccff00
-hi PmenuSel                  gui=NONE guifg=#303040 guibg=#ffff00
+hi Pmenu                     gui=NONE guifg=#303040 guibg=#ccff00 ctermfg=236 ctermbg=191
+hi PmenuSel                  gui=NONE guifg=#303040 guibg=#ffff00 ctermfg=236 ctermbg=227
 " hi PmenuSbar	scrollbar  |hl-PmenuSbar|
 " hi PmenuThumb	thumb of the scrollbar  |hl-PmenuThumb|
 

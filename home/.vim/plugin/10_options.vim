@@ -62,16 +62,16 @@ let g:syntastic_c_remove_include_errors=1
 " }}}
 
 " {{{ Airline
-let g:airline_theme='lucius'
+let g:airline_theme='hybrid'
 let g:airline_detected_modified=1
 let g:airline_powerline_fonts=1
-let g:airline_detect_iminsert=1
+let g:airline_detect_iminsert=0
 let g:airline#extensions#hunks#non_zero_only=1
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#branch#enabled=1
 let g:airline#extensions#whitespace#enabled=1
 let g:airline#extensions#whitespace#mixed_indent_algo=1
-let g:airline#extensions#whitespace#show_message=1
+let g:airline#extensions#whitespace#show_message=0
 let g:airline#extensions#whitespace#trailing_format='s:[%s]'
 let g:airline#extensions#whitespace#mixed_indent_format='i:[%s]'
 let g:airline#extensions#tagbar#flags='f'

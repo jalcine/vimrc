@@ -6,6 +6,9 @@
 " Make it dark, boi.
 set background=dark
 colorscheme ironman
+hi Folded guibg=NONE
+hi Comment guibg=NONE
+hi NonText guibg=NONE
 
 " Update font.
 set guifont=monoOne\ 9
@@ -16,6 +19,7 @@ set noerrorbells
 
 " Make it pretty.
 set antialias
+set nolist
 
 " Keep the content.
 set browsedir=last

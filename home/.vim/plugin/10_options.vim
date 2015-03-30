@@ -9,15 +9,19 @@ if exists('g:jalcine_options')
 endif
 
 let base16colorspace=256
-let g:ansible_options = {'ignore_blank_lines': 0}
+let g:ansible_options = { 'ignore_blank_lines': 0 }
 
 " {{{ NERD{Tree,Commenter}
-let g:NERDTreeDirArrows=0
+let g:NERDTreeDirArrows=1
 let g:NERDTreeAutoDeleteBuffer=1
 let g:NERDTreeMinimalUI=1
 let g:NERDTreeShowHidden=1
 let g:NERDCreateDefaultMappings=1
 let g:NERDCompactSexyComs=1
+let g:NERDTreeCaseSensitiveSort=1
+let g:NERDTreeRespectWildIgnore=1
+let g:NERDTreeBookmarksFile='$HOME/.vim/nerdtree_bookmarks'
+let g:NERDTreeShowBookmarks=1
 " }}}
 
 " {{{ CMake

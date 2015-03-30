@@ -103,3 +103,6 @@ endfunc
 
 call s:install_plugin_manager()
 call s:init_plugins()
+
+runtime! ftplugin/man.vim
+runtime! autoload/tmux.vim " from unite-tmux.

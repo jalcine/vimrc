@@ -12,8 +12,8 @@ let base16colorspace=256
 let g:ansible_options = {'ignore_blank_lines': 0}
 
 " {{{ NERD{Tree,Commenter}
-let g:NERDTreeDirArrows=1
-let g:NERDTreeAutoDeleteBuffer=0
+let g:NERDTreeDirArrows=0
+let g:NERDTreeAutoDeleteBuffer=1
 let g:NERDTreeMinimalUI=1
 let g:NERDTreeShowHidden=1
 let g:NERDCreateDefaultMappings=1

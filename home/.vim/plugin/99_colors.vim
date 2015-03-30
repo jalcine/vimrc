@@ -18,8 +18,7 @@ func! s:modify_colors()
   "hi Normal ctermbg=NONE
 endfunc
 
-colorscheme lucius
-:LuciusBlack
+colorscheme hybrid
 call s:modify_colors()
 
 " TODO: Add an editor command to handle swapping colors.

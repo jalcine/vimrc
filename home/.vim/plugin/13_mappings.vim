@@ -125,7 +125,7 @@ func! s:call_unite_project()
 endfunc
 
 func! s:call_unite_files()
-  return s:call_unite('file_rec:$PWD/async file_rec/git')
+  return s:call_unite('file_rec/async:$PWD file_rec/git')
 endfunc
 
 func! s:call_unite_local_grep()

@@ -1,9 +1,9 @@
+" vim: fdm=marker tw=78 fdl=1 :
 " File: plugin/10_options.vim
 " Author: Jacky Alcine <me@jalcine.me>
 " Description: Options for plugins.
 " Last Modified: February 02, 2015
 
-" vim: ft=vim fdm=marker tw=78 fdl=0
 if exists('g:jalcine_options')
   finish
 endif
@@ -11,7 +11,7 @@ endif
 let base16colorspace=256
 let g:ansible_options = { 'ignore_blank_lines': 0 }
 
-" {{{ NERD{Tree,Commenter}
+" {{{ NERDTree + NERDCommenter
 let g:NERDTreeDirArrows=1
 let g:NERDTreeAutoDeleteBuffer=1
 let g:NERDTreeMinimalUI=1
@@ -51,8 +51,8 @@ let g:syntastic_json_checkers=['jsonlint', 'jsonval']
 let g:syntastic_ruby_checkers=['rubocop','mri']
 let g:syntastic_perl_checkers=['perl','perlcritic','podchecker']
 let g:syntastic_python_checkers=['pylint','pep8','python']
-let g:syntastic_cpp_checkers=['gcc','cppcheck','cpplint','ycm']
-let g:syntastic_c_checkers=['gcc','make','cppcheck']
+let g:syntastic_cpp_checkers=['gcc','cppcheck','cpplint','ycm','clang_tidy','clang_check']
+let g:syntastic_c_checkers=['gcc','make','cppcheck','clang_tidy','clang_check']
 let g:syntastic_haml_checkers=['haml_lint', 'haml']
 let g:syntastic_html_checkers=['jshint']
 let g:syntastic_yaml_checkers=['jsyaml']
@@ -181,6 +181,7 @@ let g:javascript_conceal_prototype  = "¶"
 " {{{ Colorscheme Specific
 let g:ruby_fold=1
 let g:sh_fold_enabled=7
+" }}}
 
 " {{{ Perl Options
 let g:perl_fold=1
@@ -202,14 +203,17 @@ let g:c_no_c99=1
 let g:c_space_errors=1
 " }}}
 
-let g:easytags_async=0
+" {{{ Easytag
+let g:easytags_async=1
 let g:easytags_suppress_report=1
 let g:easytags_resolve_links=1
 let g:easytags_suppress_ctags_warning=1
 " TODO: Add support for phpctags.
 " TODO: Add support for jsctags.
 " TODO: Add support for markdownctags.
+" }}}
 
+" {{{ ftplugin options
 let g:rubycomplete_rails=1
 let g:rubycomplete_classes_in_global=1
 let g:rubycomplete_buffer_loading=1
@@ -217,6 +221,7 @@ let g:rubycomplete_include_object=1
 let g:rubycomplete_include_objectspace=1
 let g:cpp_experimental_template_highlight=1
 let g:cpp_class_scope_highlight=1
+" }}}
 
 if filereadable($HOME . '/.vim/plugin/options.local.vim')
   source $HOME/.vim/plugin/options.local.vim

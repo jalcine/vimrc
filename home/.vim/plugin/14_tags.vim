@@ -5,7 +5,7 @@
 
 set tags=./tags,./TAGS
 if isdirectory('~/.tags')
-  let tagfiles = expand('~/.tags/**/*.tags', 0, 1)
+  let tagfiles = glob('**/*.tags', 0, 1)
   for atagfile in tagfiles
     let &tags .= ',' . fnamemodify(atagfile,':p:.')
   endfor

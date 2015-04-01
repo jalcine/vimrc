@@ -20,15 +20,14 @@ let g:NERDCreateDefaultMappings=1
 let g:NERDCompactSexyComs=1
 let g:NERDTreeCaseSensitiveSort=1
 let g:NERDTreeRespectWildIgnore=1
-let g:NERDTreeBookmarksFile='$HOME/.vim/nerdtree_bookmarks'
 let g:NERDTreeShowBookmarks=1
 " }}}
 
 " {{{ CMake
 let g:cmake_exec = {
-  \ 'async': 'dispatch',
-  \ 'sync': 'dispatch',
-  \ }
+      \ 'async': 'dispatch',
+      \ 'sync': 'dispatch',
+      \ }
 let g:cmake_extensions = ['syntastic', 'ycm']
 " }}}
 
@@ -43,8 +42,8 @@ let g:syntastic_always_populate_loc_list=1
 let g:syntastic_auto_jump=1
 let g:syntastic_auto_loc_list=1
 let g:syntastic_loc_list_height=3
-let g:syntastic_ignore_files = ['^/usr/', 'node_modules', 'vendor', 'build']
-let g:syntastic_mode_map = { 'mode': 'active' }
+let g:syntastic_ignore_files = ['^/usr/', '*node_modules*', '*vendor*', '*build*', '*LOCAL*', '*BASE', '*REMOTE*']
+let g:syntastic_mode_map = { 'mode': 'passive' }
 " {{{ Checkers for Syntastic
 let g:syntastic_javascript_checkers=['jshint', 'jscs']
 let g:syntastic_json_checkers=['jsonlint', 'jsonval']
@@ -63,6 +62,9 @@ let g:syntastic_enable_perl_checker=1
 let g:syntastic_c_clang_tidy_sort=1
 let g:syntastic_c_clang_check_sort=1
 let g:syntastic_c_remove_include_errors=1
+let g:syntastic_quiet_messages = { "level": "[]", "file": ['*_LOCAL_*', '*_BASE_*', '*_REMOTE_*']  }
+let g:syntastic_stl_format = '[%E{E: %fe #%e}%B{, }%W{W: %fw #%w}]'
+let g:syntastic_java_javac_options = "-g:none -source 8 -Xmaxerrs 5 -Xmaswarns 5"
 " }}}
 
 " {{{ Airline
@@ -90,15 +92,19 @@ let g:airline_mode_map={
 " }}}
 
 " {{{ Unite
-let g:unite_source_history_yank_enable=1
-let g:unite_winheight=8
-let g:unite_data_directory='~/.vim/cache-unite'
-let g:unite_source_rec_max_cache_files=16384
-let g:unite_enable_start_insert=1
 let g:unite_prompt='» '
+let g:unite_source_history_yank_enable=1
+let g:unite_data_directory='~/.vim/cache-unite'
+let g:unite_source_rec_max_cache_files=100
+let g:unite_source_grep_max_candidates=100
 let g:unite_source_grep_command = 'ag'
-let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
+let g:unite_source_grep_default_opts =
+  \ "-i --line-numbers --nocolor --nogroup --hidden "
+let g:unite_source_rec_async_command =
+  \ 'ag --follow --nocolor --nogroup --hidden -g ""'
+
 let g:unite_source_grep_recursive_opt = ''
+
 " }}}
 
 " {{{ Ultisnips
@@ -111,13 +117,9 @@ let g:UltiSnipsSnippetDirectories=["Ultisnips"]
 " }}}
 
 " {{{ Other
-let g:jalcine_options=1
-let g:goyo_linenr=1
-let g:used_javascript_libs='jasmine,backbone,jquery,lodash'
 let g:vundle_lazy_load=1
 let g:ycm_show_diagnostics_ui=0
 let g:ackprg='ag'
-let g:investigate_custom_for_sh="^i:Man ^s"
 " }}}
 
 " {{{ Tagbar
@@ -127,19 +129,19 @@ let g:tagbar_zoomwidth=20
 let g:tagbar_left=0
 let g:tagbar_sort=1
 let g:tagbar_type_markdown = {
-    \ 'ctagstype': 'markdown',
-    \ 'ctagsbin' : 'markdown2ctags',
-    \ 'ctagsargs' : '-f - --sort=yes',
-    \ 'kinds' : [
-        \ 's:sections',
-        \ 'i:images'
-    \ ],
-    \ 'sro' : '|',
-    \ 'kind2scope' : {
-        \ 's' : 'section',
-    \ },
-    \ 'sort': 0,
-\ }
+      \ 'ctagstype': 'markdown',
+      \ 'ctagsbin' : 'markdown2ctags',
+      \ 'ctagsargs' : '-f - --sort=yes',
+      \ 'kinds' : [
+      \ 's:sections',
+      \ 'i:images'
+      \ ],
+      \ 'sro' : '|',
+      \ 'kind2scope' : {
+      \ 's' : 'section',
+      \ },
+      \ 'sort': 0,
+      \ }
 " }}}
 
 " {{{ vim-session
@@ -153,7 +155,6 @@ let g:session_directory="~/.vim/sessions"
 " {{{ Git, Github and VCS
 let g:github_user='jalcine'
 let g:github_upstream_issues=1
-let g:github_search_path_format='$HOME/Development/Projects/:project'
 let g:github_comment_open_browser = 1
 let g:github_dashboard = { 'username': g:github_user }
 let g:github_dashboard['position'] = 'bottom'
@@ -223,7 +224,7 @@ let g:cpp_experimental_template_highlight=1
 let g:cpp_class_scope_highlight=1
 " }}}
 
-if filereadable($HOME . '/.vim/plugin/options.local.vim')
-  source $HOME/.vim/plugin/options.local.vim
+if filereadable($HOME . '/.vim/options.local.vim')
+  source $HOME/.vim/options.local.vim
 endif
 "}}}

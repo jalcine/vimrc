@@ -99,7 +99,7 @@ cnoremap sw% w !sudo tee %
 
 " {{{ Unite mappings
 func! s:call_unite(sources)
-  exec(':Unite -unique -no-hide-icon -truncate ' . a:sources)
+  exec(':Unite -unique -toggle -no-hide-icon -truncate ' . a:sources)
 endfunc
 
 func! s:call_unite_tasks()
@@ -113,19 +113,15 @@ func! s:call_unite_tmux()
 endfunc
 
 func! s:call_unite_tags()
-  call s:call_unite('tag tag/include')
+  call s:call_unite('tag:$PWD tag/include:$PWD')
 endfunc
 
 func! s:call_unite_buffer()
   call s:call_unite('buffer')
 endfunc
 
-func! s:call_unite_project()
-  call s:call_unite('file_rec/git tag tag/include')
-endfunc
-
 func! s:call_unite_files()
-  return s:call_unite('file_rec/async:$PWD file_rec/git')
+  return s:call_unite('file_rec/async:$PWD')
 endfunc
 
 func! s:call_unite_local_grep()
@@ -161,7 +157,7 @@ nmap <leader>g [git]
 nnoremap <silent> [git]a   :Git add<space>
 nnoremap <silent> [git]ab  :Git add %<cr>
 nnoremap <silent> [git]c   :Git commit<space>
-nnoremap <silent> [git]C   :Gcommit %<CR>
+nnoremap <silent> [git]C   :Gcommit --branch --verbose %<CR>
 nnoremap <silent> [git]co  :Git checkout<space>
 nnoremap <silent> [git]f   :Git fetch<space>
 nnoremap <silent> [git]fa  :Git fetch --all<CR>

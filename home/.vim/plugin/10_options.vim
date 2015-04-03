@@ -43,7 +43,7 @@ let g:syntastic_auto_jump=1
 let g:syntastic_auto_loc_list=1
 let g:syntastic_loc_list_height=3
 let g:syntastic_ignore_files = ['^/usr/', '*node_modules*', '*vendor*', '*build*', '*LOCAL*', '*BASE', '*REMOTE*']
-let g:syntastic_mode_map = { 'mode': 'passive' }
+let g:syntastic_mode_map = { 'mode': 'active' }
 " {{{ Checkers for Syntastic
 let g:syntastic_javascript_checkers=['jshint', 'jscs']
 let g:syntastic_json_checkers=['jsonlint', 'jsonval']
@@ -77,7 +77,7 @@ let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#branch#enabled=1
 let g:airline#extensions#whitespace#enabled=1
 let g:airline#extensions#whitespace#mixed_indent_algo=1
-let g:airline#extensions#whitespace#show_message=0
+let g:airline#extensions#whitespace#show_message=1
 let g:airline#extensions#whitespace#trailing_format='s:[%s]'
 let g:airline#extensions#whitespace#mixed_indent_format='i:[%s]'
 let g:airline#extensions#tagbar#flags='f'
@@ -110,9 +110,9 @@ let g:unite_source_grep_recursive_opt = ''
 " {{{ Ultisnips
 let g:snips_author="Jacky Alcine <me@jalcine.me>"
 let g:UltiSnipsEditSplit="horizontal"
-let g:UltiSnipsExpandTrigger="<C-l>"
-let g:UltiSnipsJumpForwardTrigger="<C-j>"
-let g:UltiSnipsJumpBackwardTrigger="<C-k>"
+let g:UltiSnipsExpandTrigger="<c-l>"
+let g:UltiSnipsJumpBackwardTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-k>"
 let g:UltiSnipsSnippetDirectories=["Ultisnips"]
 " }}}
 

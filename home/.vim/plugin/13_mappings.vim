@@ -16,9 +16,6 @@ let maplocalleader='\\'
 " One less hit to get to the command-line.
 nnoremap ; :
 
-" Toggle the use of list characters.
-nnoremap <silent> <leader>l :set list!<cr>
-
 " Toggle the state of search highlighting locally.
 nnoremap <silent> <leader>h :setlocal hlsearch!<CR>
 
@@ -71,14 +68,14 @@ nnoremap <silent> [quickfix]o <ESC>:cwindow<CR>
 nnoremap <silent> [quickfix]p <ESC>:cprevious<CR>
 nnoremap <silent> [quickfix]x <ESC>:cclose<CR>
 
-nnoremap [locationlist] <nop>
-nmap <leader>l [locationlist]
-nnoremap <silent> [locationlist]e <ESC>:lnext<CR>
-nnoremap <silent> [locationlist]f <ESC>:lfirst<CR>
-nnoremap <silent> [locationlist]l <ESC>:llast<CR>
-nnoremap <silent> [locationlist]o <ESC>:lwindow<CR>
-nnoremap <silent> [locationlist]p <ESC>:lprevious<CR>
-nnoremap <silent> [locationlist]x <ESC>:lclose<CR>
+nnoremap [loclist] <nop>
+nmap <leader>l [loclist]
+nnoremap <silent> [loclist]e <ESC>:lnext<CR>
+nnoremap <silent> [loclist]f <ESC>:lfirst<CR>
+nnoremap <silent> [loclist]l <ESC>:llast<CR>
+nnoremap <silent> [loclist]o <ESC>:lwindow<CR>
+nnoremap <silent> [loclist]p <ESC>:lprevious<CR>
+nnoremap <silent> [loclist]x <ESC>:lclose<CR>
 " }}}
 
 " {{{ tmux mappings
@@ -89,6 +86,9 @@ nnoremap <silent> [tmux]c <ESC>:TmuxChangeCommand<CR>
 nnoremap <silent> [tmux]S <ESC>:TmuxSendCommand<CR>
 nnoremap <silent> [tmux]p <ESC>:TmuxSelectPane<CR>
 " }}}
+
+" Drop into the shell quick as hell.
+cnoremap !sh :shell<CR>
 
 " Rewrite 'vhe' to 'vert help'.
 cnoremap vhe vert help

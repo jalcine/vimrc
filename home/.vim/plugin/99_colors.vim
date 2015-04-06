@@ -15,10 +15,11 @@ func! s:modify_colors()
   hi Todo ctermbg=NONE guibg=NONE
   hi VertSplit ctermbg=NONE guibg=NONE
   hi Split ctermbg=NONE guibg=NONE
-  "hi Normal ctermbg=NONE
+  hi Normal ctermbg=NONE
+  hi NonText ctermbg=NONE
 endfunc
 
-colorscheme hybrid
+colorscheme jellyx
 call s:modify_colors()
 
 " TODO: Add an editor command to handle swapping colors.

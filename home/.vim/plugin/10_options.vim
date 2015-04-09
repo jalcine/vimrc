@@ -42,7 +42,8 @@ let g:syntastic_always_populate_loc_list=1
 let g:syntastic_auto_jump=3
 let g:syntastic_auto_loc_list=2
 let g:syntastic_loc_list_height=10
-let g:syntastic_ignore_files = ['^/usr/', '*node_modules*', '*vendor*', '*build*', '*LOCAL*', '*BASE', '*REMOTE*']
+let g:syntastic_ignore_files = ['^/usr/', '*node_modules*', '*vendor*',
+      \ '*build*', '*LOCAL*', '*BASE', '*REMOTE*']
 let g:syntastic_mode_map = {
       \ 'mode': 'active',
       \ 'active_filetypes' : ["ruby", "php", "sh", "python"],
@@ -55,7 +56,7 @@ let g:syntastic_ruby_checkers=['rubocop','mri']
 let g:syntastic_perl_checkers=['perl','perlcritic','podchecker']
 let g:syntastic_python_checkers=['pylint','pep8','python']
 let g:syntastic_cpp_checkers=['gcc','cppcheck','cpplint','ycm','clang_tidy','clang_check']
-let g:syntastic_c_checkers=['gcc','make','cppcheck','clang_tidy','clang_check']
+let g:syntastic_c_checkers=['gcc','make','cppcheck','clang_tidy','clang_check','ycm']
 let g:syntastic_haml_checkers=['haml_lint', 'haml']
 let g:syntastic_html_checkers=['jshint']
 let g:syntastic_yaml_checkers=['jsyaml']
@@ -75,7 +76,7 @@ let g:syntastic_java_javac_options = "-g:none -source 8 -Xmaxerrs 5 -Xmaswarns 5
 " }}}
 
 " {{{ Airline
-let g:airline_theme='ubaryd'
+let g:airline_theme='jellybeans'
 let g:airline_detected_modified=1
 let g:airline_powerline_fonts=1
 let g:airline_detect_iminsert=0
@@ -102,8 +103,8 @@ let g:airline_mode_map={
 let g:unite_prompt='» '
 let g:unite_source_history_yank_enable=1
 let g:unite_data_directory='~/.vim/cache-unite'
-let g:unite_source_rec_max_cache_files=100
-let g:unite_source_grep_max_candidates=100
+let g:unite_source_rec_max_cache_files=16384
+let g:unite_source_grep_max_candidates=25
 let g:unite_source_grep_command = 'ag'
 let g:unite_source_grep_default_opts =
   \ "-i --line-numbers --nocolor --nogroup --hidden "
@@ -140,12 +141,12 @@ let g:tagbar_type_markdown = {
       \ 'ctagsbin' : 'markdown2ctags',
       \ 'ctagsargs' : '-f - --sort=yes',
       \ 'kinds' : [
-      \ 's:sections',
-      \ 'i:images'
+      \   's:sections',
+      \   'i:images'
       \ ],
       \ 'sro' : '|',
       \ 'kind2scope' : {
-      \ 's' : 'section',
+      \   's' : 'section',
       \ },
       \ 'sort': 0,
       \ }
@@ -203,7 +204,7 @@ let g:perl_sync_dist=50
 
 " {{{ C/C++ specifics
 let g:load_doxygen_syntax=1
-let g:doxygen_enhanced_color=1
+let g:doxygen_enhanced_color=0
 let g:c_comment_strings=1
 let g:c_curly_errors=1
 let g:c_gnu=1

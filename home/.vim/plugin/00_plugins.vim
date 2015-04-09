@@ -90,6 +90,8 @@ func! s:init_plugins()
   Plugin 'farseer90718/vim-taskwarrior'
   Plugin 'KabbAmine/vCoolor.vim'
   Plugin 'fatih/vim-go'
+  Plugin 'airblade/vim-gitgutter'
+  Plugin 'ajh17/VimCompletesMe'
 
   " Add any additional plugins I'd be using on this local machine.
   if filereadable(expand('~/.vim/plugins.local.vim'))

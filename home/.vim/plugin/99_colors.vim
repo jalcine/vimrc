@@ -16,7 +16,7 @@ func! s:modify_colors()
   hi VertSplit ctermbg=NONE guibg=NONE
   hi Split ctermbg=NONE guibg=NONE
   "hi Normal ctermbg=NONE
-  hi NonText ctermbg=NONE
+  hi NonText ctermbg=NONE ctermfg=black
 endfunc
 
 colorscheme jellybeans

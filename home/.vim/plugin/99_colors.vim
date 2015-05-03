@@ -13,18 +13,14 @@ func! s:modify_colors()
   hi Folded ctermbg=NONE guibg=NONE
   hi NonText ctermbg=NONE guibg=NONE
   hi Todo ctermbg=NONE guibg=NONE
-  hi Normal ctermbg=NONE guibg=NONE
   hi NonText ctermbg=NONE guibg=NONE
   hi VertSplit ctermbg=NONE guibg=NONE
   hi Split ctermbg=NONE guibg=NONE
 endfunc
 
 func! s:go_dark()
-  let g:ubaryd_css_props_highlight=1
-  let g:ubaryd_html_link_underline=1
-  let g:ubaryd_darkgutter=1
-  let g:airline_theme='ubaryd'
-  colorscheme ubaryd
+    let g:airline_theme='jellybeans'
+  colorscheme jellyx
 endfunc
 
 func! s:go_light()

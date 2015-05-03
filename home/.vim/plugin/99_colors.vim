@@ -20,12 +20,11 @@ func! s:modify_colors()
 endfunc
 
 func! s:go_dark()
-  colorscheme ubaryd
-  set background=dark
   let g:ubaryd_css_props_highlight=1
   let g:ubaryd_html_link_underline=1
   let g:ubaryd_darkgutter=1
   let g:airline_theme='ubaryd'
+  colorscheme ubaryd
 endfunc
 
 func! s:go_light()
@@ -34,12 +33,7 @@ func! s:go_light()
   let g:airline_theme='laederon'
 endfunc
 
-func! s:go_molokai()
-  colorscheme molokai
-  let g:airline_theme='gotham256'
-endfunc
-
-call s:go_molokai()
+call s:go_dark()
 call s:modify_colors()
 
 " TODO: Add an editor command to handle swapping colors.

@@ -40,7 +40,7 @@ let g:syntastic_auto_jump=1
 let g:syntastic_auto_loc_list=1
 let g:syntastic_loc_list_height=3
 let g:syntastic_ignore_files = ['^/usr/', 'node_modules', 'vendor', 'build']
-let g:syntastic_mode_map = { 'mode': 'passive' }
+let g:syntastic_mode_map = { 'mode': 'active' }
 " {{{ Checkers for Syntastic
 let g:syntastic_javascript_checkers=['jshint', 'jscs']
 let g:syntastic_json_checkers=['jsonlint', 'jsonval']
@@ -64,7 +64,6 @@ let g:syntastic_c_remove_include_errors=1
 " }}}
 
 " {{{ Airline
-let g:airline_theme='hybrid'
 let g:airline_detected_modified=1
 let g:airline_powerline_fonts=1
 let g:airline_detect_iminsert=1
@@ -93,9 +92,11 @@ let g:unite_data_directory='~/.vim/cache-unite'
 let g:unite_source_rec_max_cache_files=500
 let g:unite_enable_start_insert=1
 let g:unite_prompt='» '
-let g:unite_source_grep_command = 'ag'
-let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
-let g:unite_source_grep_recursive_opt = ''
+if executable('ag')
+  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
+  let g:unite_source_grep_recursive_opt = ''
+endif
 " }}}
 
 " {{{ Ultisnips
@@ -126,7 +127,7 @@ let g:tagbar_sort=0
 let g:tagbar_type_markdown = {
     \ 'ctagstype': 'markdown',
     \ 'ctagsbin' : 'markdown2ctags',
-    \ 'ctagsargs' : '-f - --sort=yes',
+    \ 'ctagsargs' : '--sort=yes',
     \ 'kinds' : [
         \ 's:sections',
         \ 'i:images'

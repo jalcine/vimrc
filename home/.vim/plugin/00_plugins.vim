@@ -74,7 +74,6 @@ func! s:init_plugins()
   Plugin 'heavenshell/vim-slack'
   Plugin 'tpope/vim-rsi'
   Plugin 'Chiel92/vim-autoformat'
-  Plugin 'Valloric/YouCompleteMe'
   Plugin 'Xuyuanp/nerdtree-git-plugin'
   Plugin 'jszakmeister/vim-togglecursor'
   Plugin 'TagHighlight'

@@ -11,16 +11,16 @@ func! s:modify_colors()
   hi Conceal ctermbg=NONE guibg=NONE
   hi FoldColumn ctermbg=NONE guibg=NONE
   hi Folded ctermbg=NONE guibg=NONE
-  hi NonText ctermbg=NONE guibg=NONE
   hi Todo ctermbg=NONE guibg=NONE
-  hi NonText ctermbg=NONE guibg=NONE
   hi VertSplit ctermbg=NONE guibg=NONE
   hi Split ctermbg=NONE guibg=NONE
+  "hi NonText ctermbg=NONE guibg=NONE
+  "hi Normal ctermbg=NONE guibg=NONE
 endfunc
 
 func! s:go_dark()
-    let g:airline_theme='jellybeans'
-  colorscheme jellyx
+  colorscheme distinguished
+  let g:airline_theme='dark'
 endfunc
 
 func! s:go_light()

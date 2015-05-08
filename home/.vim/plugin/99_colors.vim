@@ -15,11 +15,24 @@ func! s:modify_colors()
   hi Todo ctermbg=NONE guibg=NONE
   hi VertSplit ctermbg=NONE guibg=NONE
   hi Split ctermbg=NONE guibg=NONE
-  "hi Normal ctermbg=NONE
-  hi NonText ctermbg=NONE ctermfg=black
 endfunc
 
-colorscheme jellybeans
+func! s:go_dark()
+  colorscheme ubaryd
+  set background=dark
+  let g:ubaryd_css_props_highlight=1
+  let g:ubaryd_html_link_underline=1
+  let g:ubaryd_darkgutter=1
+  let g:airline_theme='ubaryd'
+endfunc
+
+func! s:go_light()
+  colorscheme laederon
+  set background=light
+  let g:airline_theme='laederon'
+endfunc
+
+call s:go_dark()
 call s:modify_colors()
 
 " TODO: Add an editor command to handle swapping colors.

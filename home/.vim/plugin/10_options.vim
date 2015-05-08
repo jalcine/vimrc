@@ -76,7 +76,6 @@ let g:syntastic_java_javac_options = "-g:none -source 8 -Xmaxerrs 5 -Xmaswarns 5
 " }}}
 
 " {{{ Airline
-let g:airline_theme='jellybeans'
 let g:airline_detected_modified=1
 let g:airline_powerline_fonts=1
 let g:airline_detect_iminsert=0
@@ -113,6 +112,14 @@ let g:unite_source_rec_async_command =
 
 let g:unite_source_grep_recursive_opt = ''
 
+let g:unite_source_rec_max_cache_files=500
+let g:unite_enable_start_insert=1
+let g:unite_prompt='» '
+if executable('ag')
+  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
+  let g:unite_source_grep_recursive_opt = ''
+endif
 " }}}
 
 " {{{ Ultisnips
@@ -137,19 +144,19 @@ let g:tagbar_zoomwidth=20
 let g:tagbar_left=0
 let g:tagbar_sort=1
 let g:tagbar_type_markdown = {
-      \ 'ctagstype': 'markdown',
-      \ 'ctagsbin' : 'markdown2ctags',
-      \ 'ctagsargs' : '-f - --sort=yes',
-      \ 'kinds' : [
-      \   's:sections',
-      \   'i:images'
-      \ ],
-      \ 'sro' : '|',
-      \ 'kind2scope' : {
-      \   's' : 'section',
-      \ },
-      \ 'sort': 0,
-      \ }
+    \ 'ctagstype': 'markdown',
+    \ 'ctagsbin' : 'markdown2ctags',
+    \ 'ctagsargs' : '-f - --sort=yes',
+    \ 'kinds' : [
+        \ 's:sections',
+        \ 'i:images'
+    \ ],
+    \ 'sro' : '|',
+    \ 'kind2scope' : {
+        \ 's' : 'section',
+    \ },
+    \ 'sort': 0,
+\ }
 " }}}
 
 " {{{ vim-session

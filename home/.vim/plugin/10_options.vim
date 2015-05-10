@@ -104,15 +104,6 @@ let g:unite_source_history_yank_enable=1
 let g:unite_data_directory='~/.vim/cache-unite'
 let g:unite_source_rec_max_cache_files=16384
 let g:unite_source_grep_max_candidates=25
-let g:unite_source_grep_command = 'ag'
-let g:unite_source_grep_default_opts =
-  \ "-i --line-numbers --nocolor --nogroup --hidden "
-let g:unite_source_rec_async_command =
-  \ 'ag --follow --nocolor --nogroup --hidden -g ""'
-
-let g:unite_source_grep_recursive_opt = ''
-
-let g:unite_source_rec_max_cache_files=500
 let g:unite_enable_start_insert=1
 let g:unite_prompt='» '
 if executable('ag')
@@ -134,7 +125,9 @@ let g:UltiSnipsSnippetDirectories=["Ultisnips"]
 " {{{ Other
 let g:vundle_lazy_load=1
 let g:ycm_show_diagnostics_ui=0
-let g:ackprg='ag'
+if executable('ag')
+  let g:ackprg='ag'
+endif
 " }}}
 
 " {{{ Tagbar

@@ -2,7 +2,7 @@
 " File:          plugin/99_colors.vim
 " Author:        Jacky Alcine <me@jalcine.me>
 " Description:   Source of trust when it comes to colors in Vim.
-" Last Modified: October 25, 2014
+" Last Modified: 2015-05-08 13:48:26 EDT
 
 " We always use 256 colors.
 let t_Co=256
@@ -18,12 +18,8 @@ func! s:modify_colors()
 endfunc
 
 func! s:go_dark()
-  colorscheme ubaryd
-  set background=dark
-  let g:ubaryd_css_props_highlight=1
-  let g:ubaryd_html_link_underline=1
-  let g:ubaryd_darkgutter=1
-  let g:airline_theme='ubaryd'
+  colorscheme hybrid
+  let g:airline_theme='hybrid'
 endfunc
 
 func! s:go_light()
@@ -34,5 +30,3 @@ endfunc
 
 call s:go_dark()
 call s:modify_colors()
-
-" TODO: Add an editor command to handle swapping colors.

@@ -92,6 +92,12 @@ func! s:init_plugins()
   Plugin 'fatih/vim-go'
   Plugin 'airblade/vim-gitgutter'
   Plugin 'ajh17/VimCompletesMe'
+  Plugin 'mrtazz/DoxygenToolkit.vim'
+  Plugin 'rhysd/vim-clang-format'
+  Plugin 'kana/vim-operator-user'
+  Plugin 'kien/rainbow_parentheses.vim'
+  Plugin 'plasticboy/vim-markdown'
+  Plugin 'justinmk/vim-syntax-extra'
 
   " Add any additional plugins I'd be using on this local machine.
   if filereadable(expand('~/.vim/plugins.local.vim'))

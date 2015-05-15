@@ -46,8 +46,7 @@ let g:syntastic_ignore_files = ['^/usr/', '*node_modules*', '*vendor*',
       \ '*build*', '*LOCAL*', '*BASE', '*REMOTE*']
 let g:syntastic_mode_map = {
       \ 'mode': 'active',
-      \ 'active_filetypes' : ["ruby", "php", "sh", "python"],
-      \ 'passive_filetypes' : ["c", "cpp", "java"]
+      \ 'active_filetypes' : ["ruby", "php", "sh", "python"]
       \ }
 " {{{ Checkers for Syntastic
 let g:syntastic_javascript_checkers=['jshint', 'jscs']
@@ -230,6 +229,10 @@ let g:rubycomplete_include_object=1
 let g:rubycomplete_include_objectspace=1
 let g:cpp_experimental_template_highlight=1
 let g:cpp_class_scope_highlight=1
+" }}}
+
+" {{{ Markdown
+let g:vim_markdown_frontmatter=1
 " }}}
 
 if filereadable($HOME . '/.vim/options.local.vim')

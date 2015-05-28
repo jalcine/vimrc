@@ -30,3 +30,5 @@ endfunc
 
 call s:go_dark()
 call s:modify_colors()
+hi Normal ctermbg=NONE
+hi NonText ctermbg=NONE

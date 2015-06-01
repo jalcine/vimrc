@@ -98,6 +98,7 @@ func! s:init_plugins()
   Plugin 'kien/rainbow_parentheses.vim'
   Plugin 'plasticboy/vim-markdown'
   Plugin 'justinmk/vim-syntax-extra'
+  Plugin 'peterhoeg/vim-qml'
 
   " Add any additional plugins I'd be using on this local machine.
   if filereadable(expand('~/.vim/plugins.local.vim'))

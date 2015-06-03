@@ -17,10 +17,13 @@ let maplocalleader='\\'
 nnoremap ; :
 
 " Toggle the state of search highlighting locally.
-nnoremap <silent> <leader>h :setlocal hlsearch!<CR>
+nnoremap <silent> <leader>h :setlocal hlsearch!<cr>
 
 " Toggle the state of spelling locally.
-nnoremap <silent> <leader>sp :setlocal spell!<CR>
+nnoremap <silent> <leader>sp :setlocal spell!<cr>
+
+" Toggle the visibilty of non-text characters and conceals.
+nnoremap <silent> <leader>k :call s:toggle_visibility()<cr>
 
 " {{{ Timing options
 inoremap <silent> <leader>pt <C-R>=strftime("%Y-%m-%d")<CR>
@@ -167,16 +170,31 @@ nnoremap <silent> [git]rmc :Git rm --cached %<CR>
 " }}}
 
 "{{{ Tabularize
-nnoremap [tabular] <nop>
-nmap <leader>a [tabular]
-nnoremap <silent> [tabular]( :Tabularize /(<CR>
-nnoremap <silent> [tabular]) :Tabularize /)<CR>
-nnoremap <silent> [tabular]: :Tabularize /:<CR>
-nnoremap <silent> [tabular]= :Tabularize /=<CR>
-nnoremap <silent> [tabular]{ :Tabularize /{<CR>
-xnoremap <silent> [tabular]( :Tabularize /(<CR>
-xnoremap <silent> [tabular]) :Tabularize /)<CR>
-xnoremap <silent> [tabular]: :Tabularize /:<CR>
-xnoremap <silent> [tabular]= :Tabularize /=<CR>
-xnoremap <silent> [tabular]{ :Tabularize /{<CR>
+" There's a lot of expressions that should/could be added as default.
+if exists('g:tabular_loaded')
+  " FIXME: Move most expressions into patterns for Tabular.
+  nnoremap [tabular] <nop>
+  nmap <leader>a [tabular]
+  nnoremap <silent> [tabular]( :Tabularize /(<CR>
+  nnoremap <silent> [tabular]) :Tabularize /)<CR>
+  nnoremap <silent> [tabular]: :Tabularize /:<CR>
+  nnoremap <silent> [tabular]= :Tabularize /=<CR>
+  nnoremap <silent> [tabular]{ :Tabularize /{<CR>
+  nnoremap <silent> [tabular]| :Tabularize /|<CR>
+  xnoremap <silent> [tabular]( :Tabularize /(<CR>
+  xnoremap <silent> [tabular]) :Tabularize /)<CR>
+  xnoremap <silent> [tabular]: :Tabularize /:<CR>
+  xnoremap <silent> [tabular]= :Tabularize /=<CR>
+  xnoremap <silent> [tabular]{ :Tabularize /{<CR>
+  xnoremap <silent> [tabular]| :Tabularize /|<CR>
+endif
 "}}}
+
+func! s:toggle_visibility()
+  setlocal list!
+  if &conceallevel != 0
+    setlocal conceallevel=0
+  else
+    setlocal conceallevel=2
+  endif
+endfunc

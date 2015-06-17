@@ -18,8 +18,8 @@ func! s:modify_colors()
 endfunc
 
 func! s:go_dark()
-  colorscheme hybrid
-  let g:airline_theme='hybrid'
+  colorscheme ubaryd
+  let g:airline_theme='ubaryd'
 endfunc
 
 func! s:go_light()
@@ -29,6 +29,6 @@ func! s:go_light()
 endfunc
 
 call s:go_dark()
-call s:modify_colors()
-hi Normal ctermbg=NONE
-hi NonText ctermbg=NONE
+"call s:modify_colors()
+"hi Normal ctermbg=NONE
+"hi NonText ctermbg=NONE

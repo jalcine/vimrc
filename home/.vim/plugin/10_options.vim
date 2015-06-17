@@ -1,4 +1,4 @@
-" vim: fdm = marker tw = 78 fdl = 1 :
+" vim: fdm=marker tw=78 fdl=1 :
 " File: plugin/10_options.vim
 " Author: Jacky Alcine <me@jalcine.me>
 " Description: Options for plugins.
@@ -173,6 +173,10 @@ let g:github_dashboard['emoji_map'] = {
       \   'repo_activity':  'laughing',
       \   'ForkEvent':      'fork_and_knife'
       \ }
+let g:gitgutter_sign_added            = '✏️'
+let g:gitgutter_sign_modified         = '➰'
+let g:gitgutter_sign_removed          = '#'
+let g:gitgutter_sign_modified_removed = '@'
 " }}}
 
 " {{{ JavaScript options
@@ -230,6 +234,9 @@ let g:rubycomplete_include_object = 1
 let g:rubycomplete_include_objectspace = 1
 let g:cpp_experimental_template_highlight = 1
 let g:cpp_class_scope_highlight = 1
+let g:html_indent_script1 = 'inc'
+let g:html_indent_style1 = 'inc'
+let g:vim_indent_cont = &sw
 " }}}
 
 " {{{ Markdown

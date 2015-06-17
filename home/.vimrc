@@ -43,7 +43,7 @@ set undodir=expand('$HOME/.vim/undo')
 set visualbell
 set errorbells
 set ruler
-set nonumber
+set number
 if has('conceal') | set conceallevel=2 concealcursor=nc | endif
 
 " No more crazy spacing.
@@ -74,6 +74,7 @@ set nottyfast
 set showcmd
 set showfulltag
 set showmatch
+set clipboard=unnamedplus
 
 " Show me the overflow.
 if has('syntax') && v:version >= 704

@@ -9,8 +9,8 @@ let t_Co=256
 
 func! s:modify_colors()
   hi Conceal ctermbg=NONE guibg=NONE
-  hi FoldColumn ctermbg=NONE guibg=NONE
-  hi SignColumn ctermbg=NONE guibg=NONE
+  "hi FoldColumn ctermbg=NONE guibg=NONE
+  "hi SignColumn ctermbg=NONE guibg=NONE
   hi Folded ctermbg=NONE guibg=NONE
   hi Todo ctermbg=NONE guibg=NONE
   hi VertSplit ctermbg=NONE guibg=NONE
@@ -18,8 +18,8 @@ func! s:modify_colors()
 endfunc
 
 func! s:go_dark()
-  colorscheme ubaryd
-  let g:airline_theme='ubaryd'
+  colorscheme Monokai
+  let g:airline_theme='hybrid'
 endfunc
 
 func! s:go_light()
@@ -29,6 +29,5 @@ func! s:go_light()
 endfunc
 
 call s:go_dark()
-"call s:modify_colors()
-"hi Normal ctermbg=NONE
-"hi NonText ctermbg=NONE
+call s:modify_colors()
+hi NonText ctermbg=NONE

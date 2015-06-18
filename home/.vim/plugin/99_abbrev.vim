@@ -25,3 +25,4 @@ iabbrev Wntr Wintermute
 iabbrev bko bugs.kde.org
 iabbrev bmo bugs.mozilla.org
 iabbrev blp launchpad.net
+iabbrev conifg config

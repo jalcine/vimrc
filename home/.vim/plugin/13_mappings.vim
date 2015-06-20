@@ -190,6 +190,9 @@ if exists('g:tabular_loaded')
 endif
 "}}}
 
+" Swap for emoji
+nnoremap <silent> <leader>emo %s/:\([^:]\+\):/\=emoji#for(submatch(1), submatch(0))/g<CR>
+
 func! s:toggle_visibility()
   setlocal list!
   if &conceallevel != 0

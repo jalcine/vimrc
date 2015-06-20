@@ -10,15 +10,17 @@ let t_Co=256
 func! s:modify_colors()
   hi Conceal ctermbg=NONE guibg=NONE
   "hi FoldColumn ctermbg=NONE guibg=NONE
+  "hi NonText ctermbg=NONE
   "hi SignColumn ctermbg=NONE guibg=NONE
   hi Folded ctermbg=NONE guibg=NONE
   hi Todo ctermbg=NONE guibg=NONE
   hi VertSplit ctermbg=NONE guibg=NONE
   hi Split ctermbg=NONE guibg=NONE
+  hi Special ctermbg=NONE guibg=NONE
 endfunc
 
 func! s:go_dark()
-  colorscheme Monokai
+  colorscheme monokain
   let g:airline_theme='hybrid'
 endfunc
 
@@ -30,4 +32,3 @@ endfunc
 
 call s:go_dark()
 call s:modify_colors()
-hi NonText ctermbg=NONE

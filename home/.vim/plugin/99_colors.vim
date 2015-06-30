@@ -12,6 +12,7 @@ func! s:modify_colors()
   "hi FoldColumn ctermbg=NONE guibg=NONE
   "hi NonText ctermbg=NONE
   "hi SignColumn ctermbg=NONE guibg=NONE
+  hi LineNr ctermbg=NONE guibg=NONE ctermfg=240
   hi Folded ctermbg=NONE guibg=NONE
   hi Todo ctermbg=NONE guibg=NONE
   hi VertSplit ctermbg=NONE guibg=NONE
@@ -20,7 +21,7 @@ func! s:modify_colors()
 endfunc
 
 func! s:go_dark()
-  colorscheme monokain
+  colorscheme molokai
   let g:airline_theme='hybrid'
 endfunc
 

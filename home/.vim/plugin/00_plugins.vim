@@ -100,6 +100,7 @@ func! s:init_plugins()
   Plugin 'yuku-t/unite-git'
   Plugin 'zepto/unite-tmux'
   Plugin 'junegunn/vim-emoji'
+  Plugin 'Valloric/YouCompleteMe'
 
   " Add any additional plugins I'd be using on this local machine.
   if filereadable(expand('~/.vim/plugins.local.vim'))

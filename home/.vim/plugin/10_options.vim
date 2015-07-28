@@ -246,7 +246,7 @@ let g:vim_indent_cont = &sw
 let g:vim_markdown_frontmatter = 1
 " }}}
 
-let g:tmuxcomplete#trigger = 'omnifunc'
+let g:tmuxcomplete#trigger = ''
 
 if filereadable($HOME . '/.vim/options.local.vim')
   source $HOME/.vim/options.local.vim

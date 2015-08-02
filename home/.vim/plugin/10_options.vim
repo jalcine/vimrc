@@ -248,7 +248,6 @@ let g:vim_markdown_frontmatter = 1
 " }}}
 
 let g:tmuxcomplete#trigger = ''
-
 if filereadable($HOME . '/.vim/options.local.vim')
   source $HOME/.vim/options.local.vim
 endif

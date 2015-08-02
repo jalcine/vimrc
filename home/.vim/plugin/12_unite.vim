@@ -38,3 +38,5 @@ func! s:configure_unite_buffer()
   imap <silent><buffer><expr> <C-p>   <Plug>(unite_auto_preview)<CR>
   imap <silent><buffer><expr> <C-s>   unite#do_action('split')<CR>
 endfunc
+
+

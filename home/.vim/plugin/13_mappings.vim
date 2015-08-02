@@ -22,9 +22,6 @@ nnoremap <silent> <leader>h :setlocal hlsearch!<cr>
 " Toggle the state of spelling locally.
 nnoremap <silent> <leader>sp :setlocal spell!<cr>
 
-" Toggle the visibilty of non-text characters and conceals.
-nnoremap <silent> <leader>k :call s:toggle_visibility()<cr>
-
 nnoremap <silent> <F2> setlocal paste!<cr>
 
 " Cold turkey; no more arrows motions.
@@ -110,7 +107,7 @@ cnoremap sw% w !sudo tee %
 
 " {{{ Unite mappings
 func! s:call_unite(sources)
-  exec(':Unite -unique -toggle -no-hide-icon -truncate ' . a:sources)
+  exec(':Unite -unique -toggle -no-hide-icon -no-empty -immediately -truncate ' . a:sources)
 endfunc
 
 func! s:call_unite_tasks()
@@ -143,6 +140,11 @@ func! s:call_unite_resume()
   return s:call_unite('resume')
 endfunc
 
+function! s:call_unite_snippets()
+  return s:call_unite('ultisnips')
+endfunction
+
+
 " Define a base mapping for Unite.
 nnoremap [unite] <nop>
 nmap <leader>u [unite]
@@ -155,7 +157,7 @@ nnoremap <silent> [unite]g :call <SID>call_unite_local_grep()<cr>
 nnoremap <silent> [unite]t :call <SID>call_unite_tags()<cr>
 nnoremap <silent> [unite]a :call <SID>call_unite_tasks()<cr>
 nnoremap <silent> [unite]x :call <SID>call_unite_tmux()<cr>
-nnoremap <silent> [unite]u :call <SID>call_unite('ultisnips')<cr>
+nnoremap <silent> [unite]u :call <SID>call_unite_snippets()<cr>
 nnoremap <silent> [unite]X :call <Plug>unite_disable_max_candidates()<CR>
 
 " For those who end up using my machine but think it has CtrlP.
@@ -198,9 +200,6 @@ if exists('g:tabular_loaded')
 endif
 "}}}
 
-" Swap for emoji
-nnoremap <silent> <leader>emo %s/:\([^:]\+\):/\=emoji#for(submatch(1), submatch(0))/g<CR>
-
 func! s:toggle_visibility()
   setlocal list!
   if &conceallevel != 0
@@ -209,3 +208,6 @@ func! s:toggle_visibility()
     setlocal conceallevel=2
   endif
 endfunc
+
+" Toggle the visibilty of non-text characters and conceals.
+nnoremap <silent> <leader>k :call <SID>toggle_visibility()<cr>

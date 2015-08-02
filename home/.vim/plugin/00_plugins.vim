@@ -101,6 +101,12 @@ func! s:init_plugins()
   Plugin 'zepto/unite-tmux'
   Plugin 'junegunn/vim-emoji'
   Plugin 'Valloric/YouCompleteMe'
+  Plugin 'PotatoesMaster/i3-vim-syntax'
+  Plugin 'mattn/emmet-vim'
+  Plugin 'nsf/gocode', {'rtp': 'vim/'}
+  Plugin 'easymotion/vim-easymotion'
+  Plugin 'isRuslan/vim-es6'
+  Plugin 'elixir-lang/vim-elixir'
 
   " Add any additional plugins I'd be using on this local machine.
   if filereadable(expand('~/.vim/plugins.local.vim'))

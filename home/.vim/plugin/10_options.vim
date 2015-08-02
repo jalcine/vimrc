@@ -72,6 +72,7 @@ let g:syntastic_cpp_remove_include_errors = 1
 let g:syntastic_quiet_messages = { "level": "[]", "file": ['*_LOCAL_*', '*_BASE_*', '*_REMOTE_*']  }
 let g:syntastic_stl_format = '[%E{E: %fe #%e}%B{, }%W{W: %fw #%w}]'
 let g:syntastic_java_javac_options = "-g:none -source 8 -Xmaxerrs 5 -Xmaswarns 5"
+let g:syntastic_javascript_jscs_options = "--esnext"
 " }}}
 
 " {{{ Airline

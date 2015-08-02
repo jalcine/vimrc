@@ -25,6 +25,8 @@ nnoremap <silent> <leader>sp :setlocal spell!<cr>
 " Toggle the visibilty of non-text characters and conceals.
 nnoremap <silent> <leader>k :call s:toggle_visibility()<cr>
 
+nnoremap <silent> <F2> setlocal paste!<cr>
+
 " Cold turkey; no more arrows motions.
 nnoremap <silent> <up>    <nop>
 nnoremap <silent> <down>  <nop>

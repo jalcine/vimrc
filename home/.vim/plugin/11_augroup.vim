@@ -13,12 +13,14 @@ augroup jalcine
   au!
 
   " Funky files.
-  au BufReadPre *cpanfile   let &ft=perl
-  au BufReadPre *pintofile  let &ft=perl
-  au BufReadPre *.h++       let &ft=cpp
-  au BufReadPre /usr/include/c++/* setlocal ft=cpp
-  au BufReadPre *.gdb       let &ft=gdb
+  au BufReadPre *cpanfile   let &ft='perl'
+  au BufReadPre *pintofile  let &ft='perl'
+  au BufReadPre *.h++       let &ft='cpp'
+  au BufReadPre /usr/include/c++/* let &ft='cpp'
+  au BufReadPre *.gdb       let &ft='gdb'
   au BufEnter   *           let &titlestring=expand('%:p')
+  au BufRead    *jscsrc     let &ft='json'
+  au BufRead    *jshintrc   let &ft='json'
 
   " Helps with editing tmux configuration files.
   au BufWritePost *tmux*.conf call s:reload_tmux()

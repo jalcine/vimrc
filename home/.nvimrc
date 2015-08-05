@@ -399,7 +399,7 @@ call plug#end()
 
 " {{{ personal augroup mods
 func! s:reload_tmux()
-  redraw | echomsg "[tmux -> vim] Sourced " . expand('%:p') . "." | redraw
+  redraw | echomsg '[tmux -> vim] Sourced ' . expand('%:p') . '.' | redraw
   call system('tmux source-file ' . expand('%:p') . '; tmux display-message ' .
         \ '"[tmux <- vim] Sourced ' . expand('%:p') . '"')
 endfunc

@@ -328,7 +328,8 @@ nnoremap <silent> <leader>k :call <SID>toggle_visibility()<cr>
 
 " {{{ Plugin Options
 
-let g:session_autosave = 'no'
+let g:session_autoload = 'no'
+let g:session_autosave = 'yes'
 
 " {{{ vim-airline options
 let g:airline_theme = 'jellybeans'
@@ -456,6 +457,7 @@ Plug 'jszakmeister/vim-togglecursor'
 Plug 'Chiel92/vim-autoformat'
 Plug 'KabbAmine/vCoolor.vim'
 Plug 'Shougo/neomru.vim'
+Plug 'Shougo/vimproc'
 
 Plug 'Valloric/YouCompleteMe', { 'for': 'cpp' }
 autocmd! User YouCompleteMe call youcompleteme#Enable()

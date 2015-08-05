@@ -1,4 +1,4 @@
-" vim: set fdm=marker foldenable foldlevel=0 nospell:
+" vim: setl scriptencoding=utf-8 fdm=marker foldenable foldlevel=0 nospell:
 " File:          .nvimrc
 " Author:        Jacky Alciné <yo@jacky.wtf>
 " Description:   The heart for Neovim.
@@ -16,8 +16,9 @@ set errorbells
 set ruler
 set number
 set conceallevel=2 concealcursor=nc
-call matchadd('ColorColumn', '\%' . &textwidth . 'v', 81)
 set tabstop=2 softtabstop=2 shiftwidth=2
+set smarttab expandtab
+call matchadd('ColorColumn', '\%' . &textwidth . 'v', 81)
 
 set wildmenu wildmode=longest:full
 set wildoptions=tagfile
@@ -460,7 +461,6 @@ Plug 'Shougo/neomru.vim'
 Plug 'Shougo/vimproc'
 
 Plug 'Valloric/YouCompleteMe', { 'for': 'cpp' }
-autocmd! User YouCompleteMe call youcompleteme#Enable()
 
 Plug 'Shougo/unite.vim'
 
@@ -488,9 +488,10 @@ augroup jalcine
   au BufRead    *jscsrc     let &ft='json'
   au BufRead    *jshintrc   let &ft='json'
   au BufWritePost * Neomake
+  au User YouCompleteMe call youcompleteme#Enable()
 
-  " Helps with editing tmux configuration files.
   au BufWritePost *tmux*.conf call s:reload_tmux()
+  auto FileType unite call s:configure_unite_buffer()
 
   " Make sure we don't spell in certain windows.
   au QuickFixCmdPre * set nospell
@@ -525,7 +526,6 @@ call unite#custom#profile('default', 'context', {
   \   'auto-resize': 1
   \ })
 
-autocmd FileType unite call s:configure_unite_buffer()
 
 func! s:configure_unite_buffer()
   imap <silent><buffer><expr> <C-j>   <Plug>(unite_select_next_line)<CR>

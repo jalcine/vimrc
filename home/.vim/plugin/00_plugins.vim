@@ -107,6 +107,8 @@ func! s:init_plugins()
   Plugin 'easymotion/vim-easymotion'
   Plugin 'isRuslan/vim-es6'
   Plugin 'elixir-lang/vim-elixir'
+  Plugin 'mhinz/vim-startify'
+  Plugin 'mustache/vim-mustache-handlebars'
 
   " Add any additional plugins I'd be using on this local machine.
   if filereadable(expand('~/.vim/plugins.local.vim'))

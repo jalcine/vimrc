@@ -21,7 +21,7 @@ func! s:modify_colors()
 endfunc
 
 func! s:go_dark()
-  colorscheme molokai
+  colorscheme hybrid
   let g:airline_theme='hybrid'
 endfunc
 
@@ -32,4 +32,4 @@ func! s:go_light()
 endfunc
 
 call s:go_dark()
-call s:modify_colors()
+"call s:modify_colors()

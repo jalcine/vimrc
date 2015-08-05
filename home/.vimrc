@@ -112,7 +112,7 @@ if has('wildignore') && v:version >= 704 | set wildignorecase | endif
 set wildignore+=*.swp,*.pyc,*.bak,*.class,*.orig
 set wildignore+=.git,.hg,.bzr,.svn
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg,*.svg
-set wildignore+=build/*,tmp/*,vendor/cache/*,bin/*
+set wildignore+=build/*,tmp/*,vendor/cache/*,bin/*,node_modules/*
 set wildignore+=.sass-cache/*
 
 " Complete with more things.

@@ -10,6 +10,71 @@
 set laststatus=2
 set number relativenumber
 syntax on
+set path=.,/usr/local/include,/usr/include,$HOME/.local/include
+set visualbell
+set errorbells
+set ruler
+set number
+set conceallevel=2 concealcursor=nc
+call matchadd('ColorColumn', '\%' . &textwidth . 'v', 81)
+set tabstop=2 softtabstop=2 shiftwidth=2
+
+set wildmenu wildmode=longest:full
+set wildoptions=tagfile
+set wildignorecase
+
+" Ignore a lot of stuff.
+set wildignore+=*.swp,*.pyc,*.bak,*.class,*.orig
+set wildignore+=.git,.hg,.bzr,.svn
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg,*.svg
+set wildignore+=build/*,tmp/*,vendor/cache/*,bin/*
+set wildignore+=.sass-cache/*
+
+" Complete with more things.
+set complete=.,w,b,u,U,i,d,t
+set completeopt=menu,longest
+
+set foldenable
+set foldmethod=syntax
+set foldcolumn=0
+set foldlevel=0
+set foldminlines=3
+set foldnestmax=5
+set foldlevelstart=1
+
+set spelllang=en_us
+set spellsuggest=best,3
+set dictionary+=/usr/share/dict/words,
+set dictionary+=/usr/share/dict/american-english
+set dictionary+=/usr/share/dict/web2,
+set dictionary+=/usr/share/dict/propernames.gz
+set dictionary+=/usr/share/dict/connectives.gz
+set dictionary+=/usr/share/dict/web2a.gz
+set spellfile=~/.nvim/dict.custom.utf-8.add
+
+"{{{ White spacing and Characters
+" A problem that plagued me for months, having visual cues for white spacing
+" solves formatting problems a lot quicker. Also, we're using modern shells
+" (right?) so using UTF-8 characters for symbols should be a given.
+set fillchars+=diff:⣿
+set fillchars+=vert:│
+set fillchars+=fold:-
+
+" A visual cue for line-wrapping.
+if has('linebreak') | set showbreak=↪ | endif
+
+" Visual cues when in 'list' model.
+set list
+set listchars+=eol:¬
+set listchars+=extends:❯
+set listchars+=precedes:❮
+set listchars+=trail:⋅
+set listchars+=nbsp:⋅
+set listchars+=tab:\|\ 
+
+" Keep some spacing.
+set sidescrolloff=1
+"}}}
 
 " {{{ abbreviations
 " {{{ Identifiers
@@ -319,6 +384,10 @@ let g:UltiSnipsJumpBackwardTrigger = '<c-j>'
 let g:UltiSnipsJumpForwardTrigger = '<c-k>'
 let g:UltiSnipsSnippetDirectories = ['Ultisnips']
 " }}}
+
+
+let g:vimsyn_folding='afpPr'
+let g:vimsyn_embed='Pr'
 
 " }}}
 

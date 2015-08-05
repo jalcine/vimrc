@@ -48,10 +48,225 @@ iabbrev Wntr Wintermute
 " }}}
 " }}}
 
+" {{{ Mappings
+
+" {{{ Leaders and Accessibility
+" PASTE mo'fo!
+set pastetoggle=<F2>
+
+" Set my leader to the comma key.
+let mapleader=','
+
+" Set buffer-local mappings to the key above <Enter>
+let maplocalleader='\\'
+
+" One less hit to get to the command-line.
+nnoremap ; :
+
+" Toggle the state of search highlighting locally.
+nnoremap <silent> <leader>h :setlocal hlsearch!<cr>
+
+" Toggle the state of spelling locally.
+nnoremap <silent> <leader>sp :setlocal spell!<cr>
+
+nnoremap <silent> <F2> setlocal paste!<cr>
+
+" Cold turkey; no more arrows motions.
+nnoremap <silent> <up>    <nop>
+nnoremap <silent> <down>  <nop>
+nnoremap <silent> <left>  <nop>
+nnoremap <silent> <right> <nop>
+
+" {{{ Timing options
+inoremap <silent> <leader>pt <C-R>=strftime("%Y-%m-%d")<CR>
+
+" Inject the current time with the labeling of the time-zone.
+inoremap <silent> <leader>py <C-R>=strftime("%H:%M:%S %Z")<CR>
+cnoremap <silent> <leader>py <C-R>=strftime("%H.%M.%S_%Z")<CR>
+cnoremap <silent> <leader>pY <C-R>=strftime("%H.%M.%S")<CR>
+
+" Inject the current date and time (in Insert or Command mode).
+inoremap <silent> <leader>pt <C-R>=strftime("%Y-%m-%d %H:%M:%S %Z")<CR>
+cnoremap <silent> <leader>pt <C-R>=strftime("%Y%m%d%H%M%S")<CR>
+cnoremap <silent> <leader>pT <C-R>=strftime("%Y-%m-%d_%H%M%S")<CR>
+
+" Inject the current date and time (in Insert or Command mode).
+inoremap <silent> <leader>pd <C-R>=strftime("%Y-%m-%d")<CR>
+cnoremap <silent> <leader>pd <C-R>=strftime("%Y-%m-%d")<CR>
+" }}}
+
+" Strip trailing whitespace from the end of files.
+nnoremap <silent> <leader>sw :%s/\s$//g<cr>
+
+" Formats the current buffer.
+nnoremap <leader>f :Autoformat<CR><CR>
+
+" {{{ Bind make command.
+nnoremap [make] <nop>
+nmap <leader>m [make]
+nnoremap <silent> [make]<space>  :Make<space>
+nnoremap <silent> [make]a        :Make all<CR>
+nnoremap <silent> [make]c        :Make clean<CR>
+nnoremap <silent> [make]i        :Make install<CR>
+nnoremap <silent> [make]t        :Make test<CR>
+nnoremap <silent> [make]tb       :call('Make',['test',expand('%')])<CR>
+nnoremap <silent> [make]u        :Make uninstall<CR>
+" }}}
+
+" {{{ Travel over errors.
+nnoremap [quickfix] <nop>
+nmap <leader>q [quickfix]
+nnoremap <silent> [quickfix]e <ESC>:cnext<CR>
+nnoremap <silent> [quickfix]f <ESC>:cfirst<CR>
+nnoremap <silent> [quickfix]l <ESC>:clast<CR>
+nnoremap <silent> [quickfix]o <ESC>:cwindow<CR>
+nnoremap <silent> [quickfix]p <ESC>:cprevious<CR>
+nnoremap <silent> [quickfix]x <ESC>:cclose<CR>
+
+nnoremap [loclist] <nop>
+nmap <leader>l [loclist]
+nnoremap <silent> [loclist]e <ESC>:lnext<CR>
+nnoremap <silent> [loclist]f <ESC>:lfirst<CR>
+nnoremap <silent> [loclist]l <ESC>:llast<CR>
+nnoremap <silent> [loclist]o <ESC>:lwindow<CR>
+nnoremap <silent> [loclist]p <ESC>:lprevious<CR>
+nnoremap <silent> [loclist]x <ESC>:lclose<CR>
+" }}}
+
+" {{{ tmux mappings
+nnoremap [tmux] <nop>
+nmap <leader>t [tmux]
+nnoremap <silent> [tmux]s <ESC>:TmuxSend<CR>
+nnoremap <silent> [tmux]c <ESC>:TmuxChangeCommand<CR>
+nnoremap <silent> [tmux]S <ESC>:TmuxSendCommand<CR>
+nnoremap <silent> [tmux]p <ESC>:TmuxSelectPane<CR>
+" }}}
+
+" Drop into the shell quick as hell.
+cnoremap !sh :shell<CR>
+
+" Rewrite 'vhe' to 'vert help'.
+cnoremap vhe vert help
+
+" Let me write to sudo whenever possible.
+cnoremap sw% w !sudo tee %
+" }}}
+
+" {{{ Unite mappings
+func! s:call_unite(sources)
+  exec(':Unite -unique -toggle -no-hide-icon -no-empty -immediately -truncate ' . a:sources)
+endfunc
+
+func! s:call_unite_tasks()
+  call s:call_unite('grep:.:-s:\(TODO\|todo\|NOTE\|note\|' .
+    \ 'FIXME\|fixme\|BUG\|bug)')
+endfunc
+
+func! s:call_unite_tmux()
+  call s:call_unite('tmux/panes tmux/sessions tmux/windows ' .
+    \ 'tmuxcomplete/lines')
+endfunc
+
+func! s:call_unite_tags()
+  call s:call_unite('tag:$PWD tag/include:$PWD')
+endfunc
+
+func! s:call_unite_buffer()
+  call s:call_unite('buffer')
+endfunc
+
+func! s:call_unite_files()
+  return s:call_unite('file_rec/async')
+endfunc
+
+func! s:call_unite_local_grep()
+  return s:call_unite('grep:.:-R')
+endfunc
+
+func! s:call_unite_resume()
+  return s:call_unite('resume')
+endfunc
+
+function! s:call_unite_snippets()
+  return s:call_unite('ultisnips')
+endfunction
+
+
+" Define a base mapping for Unite.
+nnoremap [unite] <nop>
+nmap <leader>u [unite]
+
+" Define the mappings.
+nnoremap <silent> [unite]<space> :call <SID>call_unite_resume()<cr>
+nnoremap <silent> [unite]b :call <SID>call_unite_buffer()<cr>
+nnoremap <silent> [unite]f :call <SID>call_unite_files()<cr>
+nnoremap <silent> [unite]g :call <SID>call_unite_local_grep()<cr>
+nnoremap <silent> [unite]t :call <SID>call_unite_tags()<cr>
+nnoremap <silent> [unite]a :call <SID>call_unite_tasks()<cr>
+nnoremap <silent> [unite]x :call <SID>call_unite_tmux()<cr>
+nnoremap <silent> [unite]u :call <SID>call_unite_snippets()<cr>
+nnoremap <silent> [unite]X :call <Plug>unite_disable_max_candidates()<CR>
+
+" For those who end up using my machine but think it has CtrlP.
+nnoremap <silent> <leader>p :call <SID>call_unite_files()<cr>
+" }}}
+
+" {{{ Git helpers
+nnoremap [git] <nop>
+nmap <leader>g [git]
+nnoremap <silent> [git]a   :Git add<space>
+nnoremap <silent> [git]ab  :Git add %<cr>
+nnoremap <silent> [git]c   :Git commit<space>
+nnoremap <silent> [git]C   :Gcommit --branch --verbose %<CR>
+nnoremap <silent> [git]co  :Git checkout<space>
+nnoremap <silent> [git]f   :Git fetch<space>
+nnoremap <silent> [git]fa  :Git fetch --all<CR>
+nnoremap <silent> [git]p   :Git push<space>
+nnoremap <silent> [git]rm  :Gremove %<CR>
+nnoremap <silent> [git]rmc :Git rm --cached %<CR>
+" }}}
+
+"{{{ Tabularize
+" There's a lot of expressions that should/could be added as default.
+if exists('g:tabular_loaded')
+  " FIXME: Move most expressions into patterns for Tabular.
+  nnoremap [tabular] <nop>
+  nmap <leader>a [tabular]
+  nnoremap <silent> [tabular]( :Tabularize /(<CR>
+  nnoremap <silent> [tabular]) :Tabularize /)<CR>
+  nnoremap <silent> [tabular]: :Tabularize /:<CR>
+  nnoremap <silent> [tabular]= :Tabularize /=<CR>
+  nnoremap <silent> [tabular]{ :Tabularize /{<CR>
+  nnoremap <silent> [tabular]| :Tabularize /|<CR>
+  xnoremap <silent> [tabular]( :Tabularize /(<CR>
+  xnoremap <silent> [tabular]) :Tabularize /)<CR>
+  xnoremap <silent> [tabular]: :Tabularize /:<CR>
+  xnoremap <silent> [tabular]= :Tabularize /=<CR>
+  xnoremap <silent> [tabular]{ :Tabularize /{<CR>
+  xnoremap <silent> [tabular]| :Tabularize /|<CR>
+endif
+"}}}
+
+func! s:toggle_visibility()
+  setlocal list!
+  if &conceallevel != 0
+    setlocal conceallevel=0
+  else
+    setlocal conceallevel=2
+  endif
+endfunc
+
+" Toggle the visibilty of non-text characters and conceals.
+nnoremap <silent> <leader>k :call <SID>toggle_visibility()<cr>
+
+" }}}
+
 " {{{ Plugin Options
 
+let g:session_autosave = 'no'
+
 " {{{ vim-airline options
-let g:airline_theme = 'ubaryd'
+let g:airline_theme = 'jellybeans'
 let g:airline_detected_modified = 1
 let g:airline_powerline_fonts = 1
 let g:airline_detect_iminsert = 0
@@ -107,27 +322,150 @@ let g:UltiSnipsSnippetDirectories = ['Ultisnips']
 
 " }}}
 
-" {{{ Plugin Managers
+" {{{ plugins
 
 " Set up vim-plug ▶️ https://github.com/junegunn/vim-plug#example
 
 call plug#begin('~/.nvim/plugins')
 
+Plug 'nanotech/jellybeans.vim'
 Plug 'benekastah/neomake'
 Plug 'bruno-/vim-man', { 'on': 'Man' }
 Plug 'janko-m/vim-test'
 Plug 'bling/vim-airline'
+Plug 'mattn/webapi-vim'
+Plug 'jalcine/cmake.vim'
 
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTree'] }
 Plug 'scrooloose/nerdcommenter', { 'on': 'NERDComment' }
 
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
+Plug 'int3/vim-extradite'
+Plug 'SyntaxRange'
+Plug 'TagHighlight'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'airblade/vim-gitgutter'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'godlygeek/tabular'
+Plug 'gorodinskiy/vim-coloresque'
+Plug 'guns/xterm-color-table.vim'
+Plug 'heavenshell/vim-slack'
+Plug 'honza/vim-snippets'
+Plug 'marijnh/tern_for_vim', { 'for': 'javascript'}
+Plug 'mattn/gist-vim'
+Plug 'mmozuras/vim-github-comment'
+Plug 'sheerun/vim-polyglot'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'tmux-plugins/vim-tmux'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rbenv', { 'for': 'ruby'}
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-rsi'
+Plug 'tpope/vim-surround'
+Plug 'tsukkee/unite-tag'
+Plug 'xolox/vim-easytags'
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-notes'
+Plug 'xolox/vim-publish'
+Plug 'xolox/vim-session'
+Plug 'xolox/vim-shell'
+Plug 'yuku-t/unite-git'
+Plug 'zepto/unite-tmux'
+Plug 'junegunn/vim-emoji'
+Plug 'PotatoesMaster/i3-vim-syntax'
+Plug 'mattn/emmet-vim', { 'for': ['html', 'css'] }
+Plug 'nsf/gocode', {'rtp': 'vim/'}
+Plug 'easymotion/vim-easymotion'
+Plug 'isRuslan/vim-es6', { 'for': ['javascript']}
+Plug 'elixir-lang/vim-elixir'
+Plug 'pangloss/vim-javascript'
+Plug 'plasticboy/vim-markdown'
+Plug 'jaxbot/github-issues.vim'
+Plug 'jszakmeister/vim-togglecursor'
+Plug 'Chiel92/vim-autoformat'
+Plug 'KabbAmine/vCoolor.vim'
+Plug 'Shougo/neomru.vim'
 
-" Code to execute when the plugin is loaded on demand
 Plug 'Valloric/YouCompleteMe', { 'for': 'cpp' }
-autocmd! User YouCompleteMe call youcompleteme#Enable(
+autocmd! User YouCompleteMe call youcompleteme#Enable()
+
+Plug 'Shougo/unite.vim'
 
 call plug#end()
 
+" }}}
+
+" {{{ personal augroup mods
+func! s:reload_tmux()
+  redraw | echomsg "[tmux -> vim] Sourced " . expand('%:p') . "." | redraw
+  call system('tmux source-file ' . expand('%:p') . '; tmux display-message ' .
+        \ '"[tmux <- vim] Sourced ' . expand('%:p') . '"')
+endfunc
+
+augroup jalcine
+  au!
+
+  " Funky files.
+  au BufReadPre *cpanfile   let &ft='perl'
+  au BufReadPre *pintofile  let &ft='perl'
+  au BufReadPre *.h++       let &ft='cpp'
+  au BufReadPre /usr/include/c++/* let &ft='cpp'
+  au BufReadPre *.gdb       let &ft='gdb'
+  au BufEnter   *           let &titlestring=expand('%:p')
+  au BufRead    *jscsrc     let &ft='json'
+  au BufRead    *jshintrc   let &ft='json'
+  au BufWritePost * Neomake
+
+  " Helps with editing tmux configuration files.
+  au BufWritePost *tmux*.conf call s:reload_tmux()
+
+  " Make sure we don't spell in certain windows.
+  au QuickFixCmdPre * set nospell
+augroup END
+" }}}
+
+" {{{ Tweaking Unite
+call unite#filters#matcher_default#use([
+  \ 'matcher_context',
+  \ 'matcher_project_files',
+  \ 'matcher_project_ignore_files',
+  \ 'matcher_hide_current_file'
+  \ ])
+
+call unite#filters#sorter_default#use([
+  \ 'sorter_rank',
+  \ 'sorter_ftime'
+  \ ])
+
+call unite#filters#converter_default#use([
+  \ 'converter_smart_path'
+  \ ])
+
+call unite#custom#profile('source/grep', 'context', {
+  \   'quit' : 1
+  \ })
+
+call unite#custom#profile('default', 'context', {
+  \   'start_insert': 1,
+  \   'winheight': 10,
+  \   'direction': 'botright',
+  \   'auto-resize': 1
+  \ })
+
+autocmd FileType unite call s:configure_unite_buffer()
+
+func! s:configure_unite_buffer()
+  imap <silent><buffer><expr> <C-j>   <Plug>(unite_select_next_line)<CR>
+  imap <silent><buffer><expr> <C-k>   <Plug>(unite_select_previous_line)<CR>
+  imap <silent><buffer><expr> <C-p>   <Plug>(unite_auto_preview)<CR>
+  imap <silent><buffer><expr> <C-s>   unite#do_action('split')<CR>
+endfunc
+" }}}
+
+" {{{ color
+colorscheme jellybeans
+hi VertSplit ctermbg=NONE
+hi Folded ctermbg=NONE ctermfg=188
 " }}}

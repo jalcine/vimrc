@@ -1,4 +1,4 @@
-" vim: setl scriptencoding=utf-8 fdm=marker foldenable foldlevel=0 nospell:
+" vim: set fdm=marker foldenable foldlevel=0 nospell:
 " File:          .nvimrc
 " Author:        Jacky Alciné <yo@jacky.wtf>
 " Description:   The heart for Neovim.
@@ -18,7 +18,20 @@ set number
 set conceallevel=2 concealcursor=nc
 set tabstop=2 softtabstop=2 shiftwidth=2
 set smarttab expandtab
+set backspace=indent,eol,start
+set textwidth=80
+set nowrap
 call matchadd('ColorColumn', '\%' . &textwidth . 'v', 81)
+
+set complete=.,w,b,u,U,i,d,t
+set completeopt=menu,longest
+
+set hlsearch incsearch
+set showmatch wrapscan
+set nogdefault noignorecase
+set showcmd
+set showfulltag
+set showmatch
 
 set wildmenu wildmode=longest:full
 set wildoptions=tagfile
@@ -62,7 +75,7 @@ set fillchars+=vert:│
 set fillchars+=fold:-
 
 " A visual cue for line-wrapping.
-if has('linebreak') | set showbreak=↪ | endif
+set showbreak=↪
 
 " Visual cues when in 'list' model.
 set list
@@ -410,6 +423,7 @@ Plug 'jalcine/cmake.vim'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTree'] }
 Plug 'scrooloose/nerdcommenter', { 'on': 'NERDComment' }
 
+Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'int3/vim-extradite'

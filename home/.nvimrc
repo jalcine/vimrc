@@ -412,7 +412,6 @@ let g:vimsyn_embed='Pr'
 
 call plug#begin('~/.nvim/plugins')
 
-Plug 'nanotech/jellybeans.vim'
 Plug 'benekastah/neomake'
 Plug 'bruno-/vim-man', { 'on': 'Man' }
 Plug 'janko-m/vim-test'
@@ -550,7 +549,8 @@ endfunc
 " }}}
 
 " {{{ color
-colorscheme jellybeans
+colorscheme lucid
 hi VertSplit ctermbg=NONE
 hi Folded ctermbg=NONE ctermfg=188
+hi NonText ctermbg=NONE
 " }}}

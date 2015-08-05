@@ -1,4 +1,5 @@
-home/.vim/options.local.vim
-home/.vimrc.local
-home/.vim/dict.custom.utf8-8.add.spl
-home/.vim/undo/*
+home/.nvim/options.local.vim
+home/.nvimrc.local
+home/.nvim/dict.custom.utf8-8.add.spl
+home/.nvim/undo/*
+*.swp

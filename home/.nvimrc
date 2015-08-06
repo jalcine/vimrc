@@ -15,7 +15,7 @@ set visualbell
 set errorbells
 set ruler
 set number
-set conceallevel=2 concealcursor=nc
+set conceallevel=1 concealcursor=nv
 set tabstop=2 softtabstop=2 shiftwidth=2
 set smarttab expandtab
 set backspace=indent,eol,start
@@ -413,14 +413,15 @@ let g:vimsyn_embed='Pr'
 call plug#begin('~/.nvim/plugins')
 
 Plug 'benekastah/neomake'
-Plug 'bruno-/vim-man', { 'on': 'Man' }
+Plug 'bruno-/vim-man'
 Plug 'janko-m/vim-test'
 Plug 'bling/vim-airline'
 Plug 'mattn/webapi-vim'
 Plug 'jalcine/cmake.vim'
+Plug 'SirVer/ultisnips'
 
-Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTree'] }
-Plug 'scrooloose/nerdcommenter', { 'on': 'NERDComment' }
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdcommenter'
 
 Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-fugitive'
@@ -476,6 +477,7 @@ Plug 'Shougo/vimproc'
 Plug 'Valloric/YouCompleteMe', { 'for': 'cpp' }
 
 Plug 'Shougo/unite.vim'
+Plug 'mhumeSF/one-dark.vim'
 
 call plug#end()
 
@@ -549,8 +551,8 @@ endfunc
 " }}}
 
 " {{{ color
-colorscheme lucid
+colorscheme onedark
 hi VertSplit ctermbg=NONE
-hi Folded ctermbg=NONE ctermfg=188
+hi Folded ctermbg=NONE ctermfg=110
 hi NonText ctermbg=NONE
 " }}}

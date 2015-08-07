@@ -7,6 +7,8 @@
 " This is my personal setup for NeoVim. It works ~exactly~ the
 " way I expect it to. Any different would trip me up.
 
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+
 set laststatus=2
 set number relativenumber
 syntax on
@@ -419,10 +421,8 @@ Plug 'bling/vim-airline'
 Plug 'mattn/webapi-vim'
 Plug 'jalcine/cmake.vim'
 Plug 'SirVer/ultisnips'
-
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
-
 Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
@@ -473,9 +473,7 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'KabbAmine/vCoolor.vim'
 Plug 'Shougo/neomru.vim'
 Plug 'Shougo/vimproc'
-
 Plug 'Valloric/YouCompleteMe'
-
 Plug 'Shougo/unite.vim'
 Plug 'mhumeSF/one-dark.vim'
 

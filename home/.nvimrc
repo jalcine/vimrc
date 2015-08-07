@@ -1,4 +1,4 @@
-" vim: set fdm=marker foldenable foldlevel=0 nospell:
+" vim: set scripte=utf-8 fdm=marker foldenable foldlevel=0 nospell:
 " File:          .nvimrc
 " Author:        Jacky Alciné <yo@jacky.wtf>
 " Description:   The heart for Neovim.
@@ -445,7 +445,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rbenv', { 'for': 'ruby'}
+Plug 'tpope/vim-rbenv'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rsi'
 Plug 'tpope/vim-surround'
@@ -460,7 +460,7 @@ Plug 'yuku-t/unite-git'
 Plug 'zepto/unite-tmux'
 Plug 'junegunn/vim-emoji'
 Plug 'PotatoesMaster/i3-vim-syntax'
-Plug 'mattn/emmet-vim', { 'for': ['html', 'css'] }
+Plug 'mattn/emmet-vim'
 Plug 'nsf/gocode', {'rtp': 'vim/'}
 Plug 'easymotion/vim-easymotion'
 Plug 'isRuslan/vim-es6', { 'for': ['javascript']}
@@ -474,7 +474,7 @@ Plug 'KabbAmine/vCoolor.vim'
 Plug 'Shougo/neomru.vim'
 Plug 'Shougo/vimproc'
 
-Plug 'Valloric/YouCompleteMe', { 'for': 'cpp' }
+Plug 'Valloric/YouCompleteMe'
 
 Plug 'Shougo/unite.vim'
 Plug 'mhumeSF/one-dark.vim'

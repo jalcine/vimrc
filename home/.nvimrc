@@ -1,4 +1,4 @@
-" vim: set scripte=utf-8 fdm=marker foldenable foldlevel=0 nospell:
+" vim: set fdm=marker foldenable foldlevel=0 nospell:
 " File:          .nvimrc
 " Author:        Jacky Alciné <yo@jacky.wtf>
 " Description:   The heart for Neovim.
@@ -8,6 +8,7 @@
 " way I expect it to. Any different would trip me up.
 
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+set t_Co=256
 
 set laststatus=2
 set number relativenumber
@@ -22,7 +23,7 @@ set tabstop=2 softtabstop=2 shiftwidth=2
 set smarttab expandtab
 set backspace=indent,eol,start
 set textwidth=80
-set nowrap
+set wrap
 call matchadd('ColorColumn', '\%' . &textwidth . 'v', 81)
 
 set complete=.,w,b,u,U,i,d,t
@@ -348,7 +349,7 @@ let g:session_autoload = 'no'
 let g:session_autosave = 'yes'
 
 " {{{ vim-airline options
-let g:airline_theme = 'jellybeans'
+let g:airline_theme = 'bubblegum'
 let g:airline_detected_modified = 1
 let g:airline_powerline_fonts = 1
 let g:airline_detect_iminsert = 0
@@ -476,9 +477,9 @@ Plug 'Shougo/neomru.vim'
 Plug 'Shougo/vimproc'
 Plug 'Valloric/YouCompleteMe'
 Plug 'Shougo/unite.vim'
-Plug 'mhumeSF/one-dark.vim'
 Plug 'vim-ruby/vim-ruby'
 Plug 'mustache/vim-mustache-handlebars'
+Plug 'gryftir/gryffin'
 
 call plug#end()
 
@@ -552,8 +553,5 @@ endfunc
 " }}}
 
 " {{{ color
-colorscheme onedark
-hi VertSplit ctermbg=NONE
-hi Folded ctermbg=NONE ctermfg=110
-hi NonText ctermbg=NONE
+colorscheme gryffin
 " }}}

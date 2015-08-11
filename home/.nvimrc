@@ -348,8 +348,13 @@ nnoremap <silent> <leader>k :call <SID>toggle_visibility()<cr>
 let g:session_autoload = 'no'
 let g:session_autosave = 'yes'
 
+" {{{ neomake options
+let g:neomake_javascript_enabled_checkers = ['jshint', 'jscs', 'eslint']
+let g:neomake_javascript_jscs_options = '--esnext'
+" }}}
+
 " {{{ vim-airline options
-let g:airline_theme = 'bubblegum'
+let g:airline_theme = 'ubaryd'
 let g:airline_detected_modified = 1
 let g:airline_powerline_fonts = 1
 let g:airline_detect_iminsert = 0

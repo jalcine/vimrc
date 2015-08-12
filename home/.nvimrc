@@ -12,7 +12,6 @@ set t_Co=256
 
 set laststatus=2
 set number relativenumber
-syntax on
 set path=.,/usr/local/include,/usr/include,$HOME/.local/include
 set visualbell
 set errorbells
@@ -562,3 +561,5 @@ endfunc
 " {{{ color
 colorscheme gryffin
 " }}}
+
+syntax enable

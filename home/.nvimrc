@@ -441,7 +441,7 @@ Plug 'gorodinskiy/vim-coloresque'
 Plug 'guns/xterm-color-table.vim'
 Plug 'heavenshell/vim-slack'
 Plug 'honza/vim-snippets'
-Plug 'marijnh/tern_for_vim', { 'for': 'javascript'}
+Plug 'marijnh/tern_for_vim'
 Plug 'mattn/gist-vim'
 Plug 'mmozuras/vim-github-comment'
 Plug 'sheerun/vim-polyglot'
@@ -470,7 +470,7 @@ Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'mattn/emmet-vim'
 Plug 'nsf/gocode', {'rtp': 'vim/'}
 Plug 'easymotion/vim-easymotion'
-Plug 'isRuslan/vim-es6', { 'for': ['javascript']}
+Plug 'isRuslan/vim-es6'
 Plug 'elixir-lang/vim-elixir'
 Plug 'pangloss/vim-javascript'
 Plug 'plasticboy/vim-markdown'
@@ -485,6 +485,8 @@ Plug 'Shougo/unite.vim'
 Plug 'vim-ruby/vim-ruby'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'gryftir/gryffin'
+Plug 'aperezdc/vim-template'
+Plug 'dsawardekar/ember.vim'
 
 call plug#end()
 

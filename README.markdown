@@ -9,3 +9,4 @@ enhance my development experience with a very short start time (~11ms on my
 [Vundle]: https://github.com/gmarik/vundle
 [homesick]: https://github.com/technicalpickles/homesick
 [laptop]: https://jacky.wtf/gear/#laptop
+[neovim]: https://neovim.io

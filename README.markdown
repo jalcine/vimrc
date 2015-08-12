@@ -10,3 +10,4 @@ enhance my development experience with a very short start time (~11ms on my
 [homesick]: https://github.com/technicalpickles/homesick
 [laptop]: https://jacky.wtf/gear/#laptop
 [neovim]: https://neovim.io
+[1]: http://geoff.greer.fm/2015/01/15/why-neovim-is-better-than-vim/

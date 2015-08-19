@@ -4,8 +4,11 @@
 " Description:   The heart for Neovim.
 " Last Modified: 2015-01-03 15:51:04 EST
 "
-" This is my personal setup for NeoVim. It works ~exactly~ the
+" This is my peronal setup for NeoVim. It works ~exactly~ the
 " way I expect it to. Any different would trip me up.
+
+" UTF-8 NWA style
+scriptencoding utf-8
 
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 set t_Co=256
@@ -19,8 +22,7 @@ set ruler
 set number
 set conceallevel=1 concealcursor=nv
 set tabstop=2 softtabstop=2 shiftwidth=2
-set smarttab expandtab
-set backspace=indent,eol,start
+set expandtab
 set textwidth=80
 set wrap
 call matchadd('ColorColumn', '\%' . &textwidth . 'v', 81)
@@ -28,7 +30,6 @@ call matchadd('ColorColumn', '\%' . &textwidth . 'v', 81)
 set complete=.,w,b,u,U,i,d,t
 set completeopt=menu,longest
 
-set hlsearch incsearch
 set showmatch wrapscan
 set nogdefault noignorecase
 set showcmd
@@ -45,6 +46,7 @@ set wildignore+=.git,.hg,.bzr,.svn
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg,*.svg
 set wildignore+=build/*,tmp/*,vendor/cache/*,bin/*
 set wildignore+=.sass-cache/*
+set wildignore+=node_modules/*
 
 " Complete with more things.
 set complete=.,w,b,u,U,i,d,t
@@ -52,7 +54,7 @@ set completeopt=menu,longest
 
 set foldenable
 set foldmethod=syntax
-set foldcolumn=0
+set foldcolumn=1
 set foldlevel=0
 set foldminlines=3
 set foldnestmax=5
@@ -136,10 +138,10 @@ iabbrev Wntr Wintermute
 set pastetoggle=<F2>
 
 " Set my leader to the comma key.
-let mapleader=','
+let g:mapleader=','
 
 " Set buffer-local mappings to the key above <Enter>
-let maplocalleader='\\'
+let g:maplocalleader='\\'
 
 " One less hit to get to the command-line.
 nnoremap ; :
@@ -328,6 +330,16 @@ if exists('g:tabular_loaded')
 endif
 "}}}
 
+" {{{ testing
+nnoremap [vimtest] <nop>
+nmap <leader>t [vimtest]
+nnoremap <silent> [vimtest]t :TestNearest<CR>
+nnoremap <silent> [vimtest]T :TestFile<CR>
+nnoremap <silent> [vimtest]a :TestSuite<CR>
+nnoremap <silent> [vimtest]l :TestLast<CR>
+nnoremap <silent> [vimtest]g :TestVisit<CR>
+" }}}
+
 func! s:toggle_visibility()
   setlocal list!
   if &conceallevel != 0
@@ -344,10 +356,25 @@ nnoremap <silent> <leader>k :call <SID>toggle_visibility()<cr>
 
 " {{{ Plugin Options
 
+"let g:github_access_token = readfile('~/.github-issues-vim')
+
 let g:session_autoload = 'no'
 let g:session_autosave = 'yes'
+let g:session_directory = '~/.nvim/sessions'
+
+let g:easytags_async = 1
+let g:easytags_syntax_keyword = 'always'
+let g:easytags_dynamic_files = 1
+
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 1
+
+let g:test_strategy = 'neovim'
 
 " {{{ neomake options
+let g:neomake_open_list = 2
+let g:neomake_serialize = 1
+let g:neomake_verbose = 1
 let g:neomake_javascript_enabled_checkers = ['jshint', 'jscs', 'eslint']
 let g:neomake_javascript_jscs_options = '--esnext'
 " }}}
@@ -417,8 +444,9 @@ let g:vimsyn_embed='Pr'
 
 " Set up vim-plug ▶️ https://github.com/junegunn/vim-plug#example
 
-call plug#begin('~/.nvim/plugins')
+call g:plug#begin('~/.nvim/plugins')
 
+Plug 'tpope/vim-dispatch'
 Plug 'benekastah/neomake'
 Plug 'bruno-/vim-man'
 Plug 'janko-m/vim-test'
@@ -438,6 +466,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'godlygeek/tabular'
 Plug 'gorodinskiy/vim-coloresque'
 Plug 'guns/xterm-color-table.vim'
+Plug 'heavenshell/vim-jsdoc'
 Plug 'heavenshell/vim-slack'
 Plug 'honza/vim-snippets'
 Plug 'marijnh/tern_for_vim'
@@ -483,11 +512,13 @@ Plug 'Valloric/YouCompleteMe'
 Plug 'Shougo/unite.vim'
 Plug 'vim-ruby/vim-ruby'
 Plug 'mustache/vim-mustache-handlebars'
-Plug 'gryftir/gryffin'
 Plug 'aperezdc/vim-template'
 Plug 'dsawardekar/ember.vim'
+Plug 'embear/vim-localvimrc'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'gryftir/gryffin'
 
-call plug#end()
+call g:plug#end()
 
 " }}}
 
@@ -522,27 +553,27 @@ augroup END
 " }}}
 
 " {{{ Tweaking Unite
-call unite#filters#matcher_default#use([
+call g:unite#filters#matcher_default#use([
   \ 'matcher_context',
   \ 'matcher_project_files',
   \ 'matcher_project_ignore_files',
   \ 'matcher_hide_current_file'
   \ ])
 
-call unite#filters#sorter_default#use([
+call g:unite#filters#sorter_default#use([
   \ 'sorter_rank',
   \ 'sorter_ftime'
   \ ])
 
-call unite#filters#converter_default#use([
+call g:unite#filters#converter_default#use([
   \ 'converter_smart_path'
   \ ])
 
-call unite#custom#profile('source/grep', 'context', {
+call g:unite#custom#profile('source/grep', 'context', {
   \   'quit' : 1
   \ })
 
-call unite#custom#profile('default', 'context', {
+call g:unite#custom#profile('default', 'context', {
   \   'start_insert': 1,
   \   'winheight': 10,
   \   'direction': 'botright',
@@ -560,6 +591,13 @@ endfunc
 
 " {{{ color
 colorscheme gryffin
+set background=dark
+hi Folded ctermbg=NONE
+hi VertSplit ctermbg=NONE
+hi Split ctermbg=NONE
+hi Conceal ctermbg=NONE
+hi FoldColumn ctermbg=NONE
 " }}}
 
 syntax enable
+filetype plugin indent on

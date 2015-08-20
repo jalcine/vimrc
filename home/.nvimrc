@@ -58,7 +58,7 @@ set foldcolumn=1
 set foldlevel=0
 set foldminlines=3
 set foldnestmax=5
-set foldlevelstart=1
+set foldlevelstart=3
 
 set spelllang=en_us
 set spellsuggest=best,3
@@ -380,7 +380,7 @@ let g:neomake_javascript_jscs_options = '--esnext'
 " }}}
 
 " {{{ vim-airline options
-let g:airline_theme = 'ubaryd'
+let g:airline_theme = 'tomorrow'
 let g:airline_detected_modified = 1
 let g:airline_powerline_fonts = 1
 let g:airline_detect_iminsert = 0
@@ -516,7 +516,6 @@ Plug 'aperezdc/vim-template'
 Plug 'dsawardekar/ember.vim'
 Plug 'embear/vim-localvimrc'
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'gryftir/gryffin'
 
 call g:plug#end()
 
@@ -590,13 +589,14 @@ endfunc
 " }}}
 
 " {{{ color
-colorscheme gryffin
+colorscheme maui
 set background=dark
-hi Folded ctermbg=NONE
-hi VertSplit ctermbg=NONE
-hi Split ctermbg=NONE
-hi Conceal ctermbg=NONE
 hi FoldColumn ctermbg=NONE
+hi LineNr ctermbg=NONE
+hi SignColumn ctermbg=NONE
+hi Normal ctermbg=NONE
+hi NonText ctermbg=NONE
+hi Folded ctermbg=NONE
 " }}}
 
 syntax enable

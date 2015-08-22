@@ -516,6 +516,7 @@ Plug 'aperezdc/vim-template'
 Plug 'dsawardekar/ember.vim'
 Plug 'embear/vim-localvimrc'
 Plug 'nathanaelkane/vim-indent-guides'
+Plug 'twilight256.vim'
 
 call g:plug#end()
 
@@ -589,7 +590,7 @@ endfunc
 " }}}
 
 " {{{ color
-colorscheme maui
+colorscheme twilight256
 set background=dark
 hi FoldColumn ctermbg=NONE
 hi LineNr ctermbg=NONE

@@ -380,7 +380,7 @@ let g:neomake_javascript_jscs_options = '--esnext'
 " }}}
 
 " {{{ vim-airline options
-let g:airline_theme = 'tomorrow'
+let g:airline_theme = 'silver'
 let g:airline_detected_modified = 1
 let g:airline_powerline_fonts = 1
 let g:airline_detect_iminsert = 0
@@ -516,7 +516,7 @@ Plug 'aperezdc/vim-template'
 Plug 'dsawardekar/ember.vim'
 Plug 'embear/vim-localvimrc'
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'twilight256.vim'
+Plug 'gregsexton/Muon'
 
 call g:plug#end()
 
@@ -590,7 +590,7 @@ endfunc
 " }}}
 
 " {{{ color
-colorscheme twilight256
+colorscheme muon
 set background=dark
 hi FoldColumn ctermbg=NONE
 hi LineNr ctermbg=NONE

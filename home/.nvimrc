@@ -358,6 +358,8 @@ nnoremap <silent> <leader>k :call <SID>toggle_visibility()<cr>
 
 "let g:github_access_token = readfile('~/.github-issues-vim')
 
+let g:javascript_conceal=1
+
 let g:session_autoload = 'no'
 let g:session_autosave = 'yes'
 let g:session_directory = '~/.nvim/sessions'
@@ -380,7 +382,7 @@ let g:neomake_javascript_jscs_options = '--esnext'
 " }}}
 
 " {{{ vim-airline options
-let g:airline_theme = 'silver'
+let g:airline_theme = 'ubaryd'
 let g:airline_detected_modified = 1
 let g:airline_powerline_fonts = 1
 let g:airline_detect_iminsert = 0
@@ -575,11 +577,15 @@ call g:unite#custom#profile('source/grep', 'context', {
 
 call g:unite#custom#profile('default', 'context', {
   \   'start_insert': 1,
-  \   'winheight': 10,
-  \   'direction': 'botright',
-  \   'auto-resize': 1
+  \   'auto-resize': 0,
+  \   'winheight': 5,
+  \   'direction': 'top'
   \ })
 
+call g:unite#custom#source('tag,file_rec/async,grep', 'ignore_globs',
+    \ split(&wildignore, ','))
+
+echomsg split(&wildignore, ',')
 
 func! s:configure_unite_buffer()
   imap <silent><buffer><expr> <C-j>   <Plug>(unite_select_next_line)<CR>
@@ -598,6 +604,7 @@ hi SignColumn ctermbg=NONE
 hi Normal ctermbg=NONE
 hi NonText ctermbg=NONE
 hi Folded ctermbg=NONE
+hi Conceal ctermbg=NONE
 " }}}
 
 syntax enable

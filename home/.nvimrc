@@ -46,7 +46,7 @@ set wildignore+=.git,.hg,.bzr,.svn
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg,*.svg
 set wildignore+=build/*,tmp/*,vendor/cache/*,bin/*
 set wildignore+=.sass-cache/*
-set wildignore+=node_modules/*
+set wildignore+=*node_modules/*
 
 " Complete with more things.
 set complete=.,w,b,u,U,i,d,t
@@ -312,9 +312,8 @@ nnoremap <silent> [git]rmc :Git rm --cached %<CR>
 "{{{ Tabularize
 " There's a lot of expressions that should/could be added as default.
 if exists('g:tabular_loaded')
-  " FIXME: Move most expressions into patterns for Tabular.
   nnoremap [tabular] <nop>
-  nmap <leader>a [tabular]
+  nmap <silent> <leader>a [tabular]
   nnoremap <silent> [tabular]( :Tabularize /(<CR>
   nnoremap <silent> [tabular]) :Tabularize /)<CR>
   nnoremap <silent> [tabular]: :Tabularize /:<CR>
@@ -448,45 +447,66 @@ let g:vimsyn_embed='Pr'
 
 call g:plug#begin('~/.nvim/plugins')
 
-Plug 'tpope/vim-dispatch'
-Plug 'benekastah/neomake'
-Plug 'bruno-/vim-man'
-Plug 'janko-m/vim-test'
-Plug 'bling/vim-airline'
-Plug 'mattn/webapi-vim'
-Plug 'jalcine/cmake.vim'
+
+Plug 'Chiel92/vim-autoformat'
+Plug 'KabbAmine/vCoolor.vim'
+Plug 'PotatoesMaster/i3-vim-syntax'
+Plug 'Shougo/neomru.vim'
+Plug 'Shougo/unite.vim'
+Plug 'Shougo/vimproc'
 Plug 'SirVer/ultisnips'
-Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/nerdcommenter'
-Plug 'mhinz/vim-startify'
-Plug 'int3/vim-extradite'
 Plug 'SyntaxRange'
 Plug 'TagHighlight'
-Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'Valloric/YouCompleteMe'
 Plug 'airblade/vim-gitgutter'
+Plug 'aperezdc/vim-template'
+Plug 'benekastah/neomake'
+Plug 'bling/vim-airline'
+Plug 'bruno-/vim-man'
+Plug 'dsawardekar/ember.vim'
+Plug 'easymotion/vim-easymotion'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'elixir-lang/vim-elixir'
+Plug 'embear/vim-localvimrc'
 Plug 'godlygeek/tabular'
 Plug 'gorodinskiy/vim-coloresque'
+Plug 'gregsexton/Muon'
 Plug 'guns/xterm-color-table.vim'
 Plug 'heavenshell/vim-jsdoc'
 Plug 'heavenshell/vim-slack'
 Plug 'honza/vim-snippets'
+Plug 'int3/vim-extradite'
+Plug 'isRuslan/vim-es6'
+Plug 'jalcine/cmake.vim'
+Plug 'janko-m/vim-test'
+Plug 'jaxbot/github-issues.vim'
+Plug 'jszakmeister/vim-togglecursor'
+Plug 'junegunn/vim-emoji'
 Plug 'marijnh/tern_for_vim'
+Plug 'mattn/emmet-vim'
 Plug 'mattn/gist-vim'
+Plug 'mattn/webapi-vim'
+Plug 'mhinz/vim-startify'
 Plug 'mmozuras/vim-github-comment'
+Plug 'mustache/vim-mustache-handlebars'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'nsf/gocode', {'rtp': 'vim/'}
+Plug 'pangloss/vim-javascript'
+Plug 'plasticboy/vim-markdown'
+Plug 'scrooloose/nerdcommenter'
 Plug 'sheerun/vim-polyglot'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tmux-plugins/vim-tmux'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rbenv'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rsi'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-rails'
-Plug 'tpope/vim-bundler'
-Plug 'tpope/vim-surround'
 Plug 'tsukkee/unite-tag'
+Plug 'vim-ruby/vim-ruby'
 Plug 'xolox/vim-easytags'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'
@@ -495,30 +515,6 @@ Plug 'xolox/vim-session'
 Plug 'xolox/vim-shell'
 Plug 'yuku-t/unite-git'
 Plug 'zepto/unite-tmux'
-Plug 'junegunn/vim-emoji'
-Plug 'PotatoesMaster/i3-vim-syntax'
-Plug 'mattn/emmet-vim'
-Plug 'nsf/gocode', {'rtp': 'vim/'}
-Plug 'easymotion/vim-easymotion'
-Plug 'isRuslan/vim-es6'
-Plug 'elixir-lang/vim-elixir'
-Plug 'pangloss/vim-javascript'
-Plug 'plasticboy/vim-markdown'
-Plug 'jaxbot/github-issues.vim'
-Plug 'jszakmeister/vim-togglecursor'
-Plug 'Chiel92/vim-autoformat'
-Plug 'KabbAmine/vCoolor.vim'
-Plug 'Shougo/neomru.vim'
-Plug 'Shougo/vimproc'
-Plug 'Valloric/YouCompleteMe'
-Plug 'Shougo/unite.vim'
-Plug 'vim-ruby/vim-ruby'
-Plug 'mustache/vim-mustache-handlebars'
-Plug 'aperezdc/vim-template'
-Plug 'dsawardekar/ember.vim'
-Plug 'embear/vim-localvimrc'
-Plug 'nathanaelkane/vim-indent-guides'
-Plug 'gregsexton/Muon'
 
 call g:plug#end()
 
@@ -584,8 +580,6 @@ call g:unite#custom#profile('default', 'context', {
 
 call g:unite#custom#source('tag,file_rec/async,grep', 'ignore_globs',
     \ split(&wildignore, ','))
-
-echomsg split(&wildignore, ',')
 
 func! s:configure_unite_buffer()
   imap <silent><buffer><expr> <C-j>   <Plug>(unite_select_next_line)<CR>

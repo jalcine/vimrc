@@ -3,3 +3,13 @@ home/.nvimrc.local
 home/.nvim/dict.custom.utf8-8.add.spl
 home/.nvim/undo/*
 *.swp
+# Created by https://www.gitignore.io/api/vim
+
+### Vim ###
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+*.un~
+Session.vim
+.netrwhist
+*~
+

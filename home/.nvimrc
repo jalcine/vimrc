@@ -359,6 +359,9 @@ nnoremap <silent> <leader>k :call <SID>toggle_visibility()<cr>
 
 let g:javascript_conceal=1
 
+let g:xml_syntax_folding=1
+let g:xml_namespace_transparent=1
+
 let g:session_autoload = 'no'
 let g:session_autosave = 'yes'
 let g:session_directory = '~/.nvim/sessions'
@@ -488,6 +491,7 @@ Plug 'mattn/gist-vim'
 Plug 'mattn/webapi-vim'
 Plug 'mhinz/vim-startify'
 Plug 'mmozuras/vim-github-comment'
+Plug 'moll/vim-node'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'nsf/gocode', {'rtp': 'vim/'}
@@ -578,7 +582,7 @@ call g:unite#custom#profile('default', 'context', {
   \   'direction': 'top'
   \ })
 
-call g:unite#custom#source('tag,file_rec/async,grep', 'ignore_globs',
+call g:unite#custom#source('tag,file_rec/async', 'ignore_globs',
     \ split(&wildignore, ','))
 
 func! s:configure_unite_buffer()

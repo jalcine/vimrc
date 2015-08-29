@@ -356,11 +356,27 @@ nnoremap <silent> <leader>k :call <SID>toggle_visibility()<cr>
 " {{{ Plugin Options
 
 "let g:github_access_token = readfile('~/.github-issues-vim')
+let s:custom_header =
+  \ map(split(system('fortune | cowsay'), '\n'), '"   ". v:val') + ['','']
 
-let g:javascript_conceal=1
+func s:filter_header(lines) abort
+  let l:longest_line = max(map(copy(a:lines), 'len(v:val)'))
+  let l:centered_lines= map(copy(a:lines),
+      \ 'repeat(" ", (&columns / 2) - (longest_line / 2)) . v:val')
+  return centered_lines
+endfunc
 
-let g:xml_syntax_folding=1
-let g:xml_namespace_transparent=1
+let g:startify_custom_header = s:filter_header(s:custom_header)
+
+let g:startify_files_number = 5
+let g:startify_change_to_dir = 0
+let g:startify_change_to_vcs_root = 1
+let g:startify_relative_path = 1
+let g:startify_bookmarks = [ '~/.nvimrc', '~/.bashrc' ]
+
+let g:javascript_conceal = 1
+let g:xml_syntax_folding = 1
+let g:xml_namespace_transparent = 1
 
 let g:session_autoload = 'no'
 let g:session_autosave = 'yes'

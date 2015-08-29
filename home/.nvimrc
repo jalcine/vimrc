@@ -182,7 +182,7 @@ cnoremap <silent> <leader>pd <C-R>=strftime("%Y-%m-%d")<CR>
 nnoremap <silent> <leader>sw :%s/\s$//g<cr>
 
 " Formats the current buffer.
-nnoremap <leader>f :Autoformat<CR><CR>
+nnoremap <silent><F3> :Autoformat<CR><CR>
 
 " {{{ Bind make command.
 nnoremap [make] <nop>
@@ -309,26 +309,6 @@ nnoremap <silent> [git]rm  :Gremove %<CR>
 nnoremap <silent> [git]rmc :Git rm --cached %<CR>
 " }}}
 
-"{{{ Tabularize
-" There's a lot of expressions that should/could be added as default.
-if exists('g:tabular_loaded')
-  nnoremap [tabular] <nop>
-  nmap <silent> <leader>a [tabular]
-  nnoremap <silent> [tabular]( :Tabularize /(<CR>
-  nnoremap <silent> [tabular]) :Tabularize /)<CR>
-  nnoremap <silent> [tabular]: :Tabularize /:<CR>
-  nnoremap <silent> [tabular]= :Tabularize /=<CR>
-  nnoremap <silent> [tabular]{ :Tabularize /{<CR>
-  nnoremap <silent> [tabular]| :Tabularize /|<CR>
-  xnoremap <silent> [tabular]( :Tabularize /(<CR>
-  xnoremap <silent> [tabular]) :Tabularize /)<CR>
-  xnoremap <silent> [tabular]: :Tabularize /:<CR>
-  xnoremap <silent> [tabular]= :Tabularize /=<CR>
-  xnoremap <silent> [tabular]{ :Tabularize /{<CR>
-  xnoremap <silent> [tabular]| :Tabularize /|<CR>
-endif
-"}}}
-
 " {{{ testing
 nnoremap [vimtest] <nop>
 nmap <leader>t [vimtest]
@@ -355,7 +335,15 @@ nnoremap <silent> <leader>k :call <SID>toggle_visibility()<cr>
 
 " {{{ Plugin Options
 
-"let g:github_access_token = readfile('~/.github-issues-vim')
+let g:jsdoc_additional_descriptions = 1
+let g:jsdoc_access_descriptions = 1
+let g:jsdoc_underscore_private = 1
+let g:jsdoc_allow_shorthand = 1
+let g:localvimrc_name = [ '.vimrc' ]
+
+let g:github_access_token = readfile(expand('~/.github-issues-vim'))[0]
+let g:github_user = 'jalcine'
+
 let s:custom_header =
   \ map(split(system('fortune | cowsay'), '\n'), '"   ". v:val') + ['','']
 
@@ -466,30 +454,25 @@ let g:vimsyn_embed='Pr'
 
 call g:plug#begin('~/.nvim/plugins')
 
-
 Plug 'Chiel92/vim-autoformat'
-Plug 'KabbAmine/vCoolor.vim'
 Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'Shougo/neomru.vim'
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/vimproc'
 Plug 'SirVer/ultisnips'
-Plug 'SyntaxRange'
-Plug 'TagHighlight'
+Plug 'abudden/TagHighlight'
 Plug 'Valloric/YouCompleteMe'
 Plug 'airblade/vim-gitgutter'
-Plug 'aperezdc/vim-template'
 Plug 'benekastah/neomake'
 Plug 'bling/vim-airline'
 Plug 'bruno-/vim-man'
+Plug 'dsawardekar/portkey'
 Plug 'dsawardekar/ember.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'elixir-lang/vim-elixir'
+"Plug 'elixir-lang/vim-elixir'
 Plug 'embear/vim-localvimrc'
-Plug 'godlygeek/tabular'
 Plug 'gorodinskiy/vim-coloresque'
-Plug 'gregsexton/Muon'
 Plug 'guns/xterm-color-table.vim'
 Plug 'heavenshell/vim-jsdoc'
 Plug 'heavenshell/vim-slack'

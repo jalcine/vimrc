@@ -384,7 +384,7 @@ let g:neomake_javascript_jscs_options = '--esnext'
 " }}}
 
 " {{{ vim-airline options
-let g:airline_theme = 'ubaryd'
+let g:airline_theme = 'murmur'
 let g:airline_detected_modified = 1
 let g:airline_powerline_fonts = 1
 let g:airline_detect_iminsert = 0
@@ -519,6 +519,7 @@ Plug 'xolox/vim-session'
 Plug 'xolox/vim-shell'
 Plug 'yuku-t/unite-git'
 Plug 'zepto/unite-tmux'
+Plug 'zsoltf/vim-maui'
 
 call g:plug#end()
 
@@ -594,7 +595,7 @@ endfunc
 " }}}
 
 " {{{ color
-colorscheme muon
+colorscheme maui
 set background=dark
 hi FoldColumn ctermbg=NONE
 hi LineNr ctermbg=NONE

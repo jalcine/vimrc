@@ -25,6 +25,7 @@ set tabstop=2 softtabstop=2 shiftwidth=2
 set expandtab
 set textwidth=80
 set wrap
+set cursorline cursorcolumn
 call matchadd('ColorColumn', '\%' . &textwidth . 'v', 81)
 
 set complete=.,w,b,u,U,i,d,t
@@ -377,14 +378,17 @@ let g:easytags_dynamic_files = 1
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 
+let g:doxygen_enhanced_color = 1
+let g:load_doxygen_syntax = 1
+let g:c_no_comment_fold = 0
+
 let g:test_strategy = 'neovim'
 
 " {{{ neomake options
-let g:neomake_open_list = 2
+let g:neomake_list_height = 5
 let g:neomake_serialize = 1
-let g:neomake_verbose = 1
-let g:neomake_javascript_enabled_checkers = ['jshint', 'jscs', 'eslint']
-let g:neomake_javascript_jscs_options = '--esnext'
+let g:neomake_verbose = 0
+let g:neomake_javascript_enabled_checkers = ['eslint']
 " }}}
 
 " {{{ vim-airline options
@@ -421,15 +425,10 @@ let g:unite_enable_start_insert = 1
 " }}}
 
 " {{{ nerd*
-let g:NERDTreeDirArrows = 1
-let g:NERDTreeAutoDeleteBuffer = 1
-let g:NERDTreeMinimalUI = 1
-let g:NERDTreeShowHidden = 1
 let g:NERDCreateDefaultMappings = 1
 let g:NERDCompactSexyComs = 1
-let g:NERDTreeCaseSensitiveSort = 1
-let g:NERDTreeRespectWildIgnore = 1
-let g:NERDTreeShowBookmarks = 1
+let g:NERDSpaceDelims = 1
+let g:NERDRemoveExtraSpaces = 1
 " }}}
 
 " {{{ ultisnips
@@ -454,6 +453,7 @@ let g:vimsyn_embed='Pr'
 
 call g:plug#begin('~/.nvim/plugins')
 
+Plug 'ryanoasis/vim-devicons'
 Plug 'Chiel92/vim-autoformat'
 Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'Shougo/neomru.vim'
@@ -470,7 +470,9 @@ Plug 'dsawardekar/portkey'
 Plug 'dsawardekar/ember.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'editorconfig/editorconfig-vim'
-"Plug 'elixir-lang/vim-elixir'
+" Plug 'elixir-lang/vim-elixir'
+" Plug 'artur-shaik/vim-javacomplete2'
+" Plug 'DonnieWest/VimStudio'
 Plug 'embear/vim-localvimrc'
 Plug 'gorodinskiy/vim-coloresque'
 Plug 'guns/xterm-color-table.vim'
@@ -504,18 +506,19 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-jdaddy'
 Plug 'tpope/vim-rbenv'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rsi'
 Plug 'tpope/vim-surround'
 Plug 'tsukkee/unite-tag'
 Plug 'vim-ruby/vim-ruby'
-Plug 'xolox/vim-easytags'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'
 Plug 'xolox/vim-publish'
 Plug 'xolox/vim-session'
 Plug 'xolox/vim-shell'
+Plug 'xolox/vim-easytags'
 Plug 'yuku-t/unite-git'
 Plug 'zepto/unite-tmux'
 Plug 'zsoltf/vim-maui'
@@ -593,6 +596,9 @@ func! s:configure_unite_buffer()
 endfunc
 " }}}
 
+syntax enable
+filetype plugin indent on
+
 " {{{ color
 colorscheme maui
 set background=dark
@@ -603,7 +609,5 @@ hi Normal ctermbg=NONE
 hi NonText ctermbg=NONE
 hi Folded ctermbg=NONE
 hi Conceal ctermbg=NONE
+hi CursorLine ctermbg=234 guibg=#303030
 " }}}
-
-syntax enable
-filetype plugin indent on

@@ -24,12 +24,13 @@ set conceallevel=1 concealcursor=nv
 set tabstop=2 softtabstop=2 shiftwidth=2
 set expandtab
 set textwidth=80
-set wrap
-set cursorline cursorcolumn
+set nowrap
+" set cursorline cursorcolumn
 call matchadd('ColorColumn', '\%' . &textwidth . 'v', 81)
 
 set complete=.,w,b,u,U,i,d,t
 set completeopt=menu,longest
+set nobackup noswapfile
 
 set showmatch wrapscan
 set nogdefault noignorecase
@@ -56,10 +57,10 @@ set completeopt=menu,longest
 set foldenable
 set foldmethod=syntax
 set foldcolumn=1
-set foldlevel=0
+set foldlevel=1
 set foldminlines=3
 set foldnestmax=5
-set foldlevelstart=3
+set foldlevelstart=1
 
 set spelllang=en_us
 set spellsuggest=best,3
@@ -336,6 +337,41 @@ nnoremap <silent> <leader>k :call <SID>toggle_visibility()<cr>
 
 " {{{ Plugin Options
 
+let javaScript_fold=1
+let perl_fold=1
+let php_folding=1
+let r_syntax_folding=1
+let ruby_fold=1
+let sh_fold_enabled=1
+let vimsyn_folding='af'
+let xml_syntax_folding=1
+let g:javascript_conceal = 1
+let g:xml_syntax_folding = 1
+let g:xml_namespace_transparent = 1
+let g:notes_directories = ['~/Notes']
+let g:notes_suffix = '.txt'
+let g:indent_guides_enable_on_vim_startup = 0
+let g:indentLine_noConcealCursor = ""
+let g:javascript_enable_domhtmlcss = 1
+let g:javascript_fold = 1
+let g:javascript_conceal_function = 'ƒ'
+let g:javascript_conceal_null = 'ø'
+let g:javascript_conceal_this = '@'
+let g:javascript_conceal_return = '⇚'
+let g:javascript_conceal_undefined = '¿'
+let g:javascript_conceal_NaN = 'ℕ'
+let g:javascript_conceal_prototype = '¶'
+let g:javascript_conceal_static = '•'
+let g:javascript_conceal_super = 'Ω'
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+let g:DevIconsEnableFoldersOpenClose = 1
+
+let g:gitgutter_diff_args = '-w'
+let g:gitgutter_sign_added = 'xx'
+let g:gitgutter_sign_modified = 'yy'
+let g:gitgutter_sign_removed = 'zz'
+let g:gitgutter_sign_modified_removed = 'ww'
+
 let g:jsdoc_additional_descriptions = 1
 let g:jsdoc_access_descriptions = 1
 let g:jsdoc_underscore_private = 1
@@ -359,13 +395,11 @@ let g:startify_custom_header = s:filter_header(s:custom_header)
 
 let g:startify_files_number = 5
 let g:startify_change_to_dir = 0
-let g:startify_change_to_vcs_root = 1
+let g:startify_change_to_vcs_root = 0
 let g:startify_relative_path = 1
-let g:startify_bookmarks = [ '~/.nvimrc', '~/.bashrc' ]
+let g:startify_bookmarks = [ '~/.nvimrc', '~/.bashrc', '~/code' ]
 
-let g:javascript_conceal = 1
-let g:xml_syntax_folding = 1
-let g:xml_namespace_transparent = 1
+let g:localvimrc_persistent=1
 
 let g:session_autoload = 'no'
 let g:session_autosave = 'yes'
@@ -392,7 +426,7 @@ let g:neomake_javascript_enabled_checkers = ['eslint']
 " }}}
 
 " {{{ vim-airline options
-let g:airline_theme = 'murmur'
+let g:airline_theme = 'base16'
 let g:airline_detected_modified = 1
 let g:airline_powerline_fonts = 1
 let g:airline_detect_iminsert = 0
@@ -454,13 +488,14 @@ let g:vimsyn_embed='Pr'
 call g:plug#begin('~/.nvim/plugins')
 
 Plug 'ryanoasis/vim-devicons'
+Plug 'majutsushi/tagbar'
 Plug 'Chiel92/vim-autoformat'
 Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'Shougo/neomru.vim'
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/vimproc'
 Plug 'SirVer/ultisnips'
-Plug 'abudden/TagHighlight'
+Plug 'TagHighlight'
 Plug 'Valloric/YouCompleteMe'
 Plug 'airblade/vim-gitgutter'
 Plug 'benekastah/neomake'
@@ -499,7 +534,6 @@ Plug 'nsf/gocode', {'rtp': 'vim/'}
 Plug 'pangloss/vim-javascript'
 Plug 'plasticboy/vim-markdown'
 Plug 'scrooloose/nerdcommenter'
-Plug 'sheerun/vim-polyglot'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'tpope/vim-dispatch'
@@ -521,7 +555,8 @@ Plug 'xolox/vim-shell'
 Plug 'xolox/vim-easytags'
 Plug 'yuku-t/unite-git'
 Plug 'zepto/unite-tmux'
-Plug 'zsoltf/vim-maui'
+Plug 'elzr/vim-json'
+Plug 'dfxyz/CandyPaper.vim'
 
 call g:plug#end()
 
@@ -600,14 +635,5 @@ syntax enable
 filetype plugin indent on
 
 " {{{ color
-colorscheme maui
-set background=dark
-hi FoldColumn ctermbg=NONE
-hi LineNr ctermbg=NONE
-hi SignColumn ctermbg=NONE
-hi Normal ctermbg=NONE
-hi NonText ctermbg=NONE
-hi Folded ctermbg=NONE
-hi Conceal ctermbg=NONE
-hi CursorLine ctermbg=234 guibg=#303030
+colorscheme CandyPaper
 " }}}

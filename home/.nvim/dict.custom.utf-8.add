@@ -429,3 +429,5 @@ VAM
 vim
 Hapi
 Sequelize
+CodeShip
+TravisCI

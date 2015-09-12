@@ -4,32 +4,34 @@
 " Description:   The heart for Neovim.
 " Last Modified: 2015-01-03 15:51:04 EST
 "
-" This is my personal setup for NeoVim. It works ~exactly~ the
+" This is my peronal setup for NeoVim. It works ~exactly~ the
 " way I expect it to. Any different would trip me up.
+
+" UTF-8 NWA style
+scriptencoding utf-8
 
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 set t_Co=256
 
 set laststatus=2
 set number relativenumber
-syntax on
 set path=.,/usr/local/include,/usr/include,$HOME/.local/include
 set visualbell
 set errorbells
 set ruler
-set number
+set number numberwidth=2
 set conceallevel=1 concealcursor=nv
 set tabstop=2 softtabstop=2 shiftwidth=2
-set smarttab expandtab
-set backspace=indent,eol,start
+set expandtab
 set textwidth=80
-set wrap
+set nowrap
+" set cursorline cursorcolumn
 call matchadd('ColorColumn', '\%' . &textwidth . 'v', 81)
 
 set complete=.,w,b,u,U,i,d,t
 set completeopt=menu,longest
+set nobackup noswapfile
 
-set hlsearch incsearch
 set showmatch wrapscan
 set nogdefault noignorecase
 set showcmd
@@ -46,6 +48,7 @@ set wildignore+=.git,.hg,.bzr,.svn
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg,*.svg
 set wildignore+=build/*,tmp/*,vendor/cache/*,bin/*
 set wildignore+=.sass-cache/*
+set wildignore+=*node_modules/*
 
 " Complete with more things.
 set complete=.,w,b,u,U,i,d,t
@@ -53,8 +56,8 @@ set completeopt=menu,longest
 
 set foldenable
 set foldmethod=syntax
-set foldcolumn=0
-set foldlevel=0
+set foldcolumn=1
+set foldlevel=1
 set foldminlines=3
 set foldnestmax=5
 set foldlevelstart=1
@@ -137,10 +140,10 @@ iabbrev Wntr Wintermute
 set pastetoggle=<F2>
 
 " Set my leader to the comma key.
-let mapleader=','
+let g:mapleader=','
 
 " Set buffer-local mappings to the key above <Enter>
-let maplocalleader='\\'
+let g:maplocalleader='\\'
 
 " One less hit to get to the command-line.
 nnoremap ; :
@@ -181,7 +184,7 @@ cnoremap <silent> <leader>pd <C-R>=strftime("%Y-%m-%d")<CR>
 nnoremap <silent> <leader>sw :%s/\s$//g<cr>
 
 " Formats the current buffer.
-nnoremap <leader>f :Autoformat<CR><CR>
+nnoremap <silent><F3> :Autoformat<CR><CR>
 
 " {{{ Bind make command.
 nnoremap [make] <nop>
@@ -308,26 +311,15 @@ nnoremap <silent> [git]rm  :Gremove %<CR>
 nnoremap <silent> [git]rmc :Git rm --cached %<CR>
 " }}}
 
-"{{{ Tabularize
-" There's a lot of expressions that should/could be added as default.
-if exists('g:tabular_loaded')
-  " FIXME: Move most expressions into patterns for Tabular.
-  nnoremap [tabular] <nop>
-  nmap <leader>a [tabular]
-  nnoremap <silent> [tabular]( :Tabularize /(<CR>
-  nnoremap <silent> [tabular]) :Tabularize /)<CR>
-  nnoremap <silent> [tabular]: :Tabularize /:<CR>
-  nnoremap <silent> [tabular]= :Tabularize /=<CR>
-  nnoremap <silent> [tabular]{ :Tabularize /{<CR>
-  nnoremap <silent> [tabular]| :Tabularize /|<CR>
-  xnoremap <silent> [tabular]( :Tabularize /(<CR>
-  xnoremap <silent> [tabular]) :Tabularize /)<CR>
-  xnoremap <silent> [tabular]: :Tabularize /:<CR>
-  xnoremap <silent> [tabular]= :Tabularize /=<CR>
-  xnoremap <silent> [tabular]{ :Tabularize /{<CR>
-  xnoremap <silent> [tabular]| :Tabularize /|<CR>
-endif
-"}}}
+" {{{ testing
+nnoremap [vimtest] <nop>
+nmap <leader>t [vimtest]
+nnoremap <silent> [vimtest]t :TestNearest<CR>
+nnoremap <silent> [vimtest]T :TestFile<CR>
+nnoremap <silent> [vimtest]a :TestSuite<CR>
+nnoremap <silent> [vimtest]l :TestLast<CR>
+nnoremap <silent> [vimtest]g :TestVisit<CR>
+" }}}
 
 func! s:toggle_visibility()
   setlocal list!
@@ -345,16 +337,96 @@ nnoremap <silent> <leader>k :call <SID>toggle_visibility()<cr>
 
 " {{{ Plugin Options
 
+let javaScript_fold=1
+let perl_fold=1
+let php_folding=1
+let r_syntax_folding=1
+let ruby_fold=1
+let sh_fold_enabled=1
+let vimsyn_folding='af'
+let xml_syntax_folding=1
+let g:javascript_conceal = 1
+let g:xml_syntax_folding = 1
+let g:xml_namespace_transparent = 1
+let g:notes_directories = ['~/Notes']
+let g:notes_suffix = '.txt'
+let g:indent_guides_enable_on_vim_startup = 0
+let g:indentLine_noConcealCursor = ""
+let g:javascript_enable_domhtmlcss = 1
+let g:javascript_fold = 1
+let g:javascript_conceal_function = 'ƒ'
+let g:javascript_conceal_null = 'ø'
+let g:javascript_conceal_this = '@'
+let g:javascript_conceal_return = '⇚'
+let g:javascript_conceal_undefined = '¿'
+let g:javascript_conceal_NaN = 'ℕ'
+let g:javascript_conceal_prototype = '¶'
+let g:javascript_conceal_static = '•'
+let g:javascript_conceal_super = 'Ω'
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+let g:DevIconsEnableFoldersOpenClose = 1
+
+let g:gitgutter_diff_args = '-w'
+let g:gitgutter_sign_added = 'xx'
+let g:gitgutter_sign_modified = 'yy'
+let g:gitgutter_sign_removed = 'zz'
+let g:gitgutter_sign_modified_removed = 'ww'
+
+let g:jsdoc_additional_descriptions = 1
+let g:jsdoc_access_descriptions = 1
+let g:jsdoc_underscore_private = 1
+let g:jsdoc_allow_shorthand = 1
+let g:localvimrc_name = [ '.vimrc' ]
+
+let g:github_access_token = readfile(expand('~/.github-issues-vim'))[0]
+let g:github_user = 'jalcine'
+
+let s:custom_header =
+  \ map(split(system('fortune | cowsay'), '\n'), '"   ". v:val') + ['','']
+
+func s:filter_header(lines) abort
+  let l:longest_line = max(map(copy(a:lines), 'len(v:val)'))
+  let l:centered_lines= map(copy(a:lines),
+      \ 'repeat(" ", (&columns / 2) - (longest_line / 2)) . v:val')
+  return centered_lines
+endfunc
+
+let g:startify_custom_header = s:filter_header(s:custom_header)
+
+let g:startify_files_number = 5
+let g:startify_change_to_dir = 0
+let g:startify_change_to_vcs_root = 0
+let g:startify_relative_path = 1
+let g:startify_bookmarks = [ '~/.nvimrc', '~/.bashrc', '~/code' ]
+
+let g:localvimrc_persistent=1
+
 let g:session_autoload = 'no'
 let g:session_autosave = 'yes'
+let g:session_directory = '~/.nvim/sessions'
+
+let g:easytags_async = 1
+let g:easytags_syntax_keyword = 'always'
+let g:easytags_dynamic_files = 1
+
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 1
+
+let g:doxygen_enhanced_color = 1
+let g:load_doxygen_syntax = 1
+let g:c_no_comment_fold = 0
+
+let g:test_strategy = 'neovim'
 
 " {{{ neomake options
-let g:neomake_javascript_enabled_checkers = ['jshint', 'jscs', 'eslint']
-let g:neomake_javascript_jscs_options = '--esnext'
+let g:neomake_list_height = 5
+let g:neomake_serialize = 1
+let g:neomake_verbose = 0
+let g:neomake_javascript_enabled_checkers = ['eslint']
 " }}}
 
 " {{{ vim-airline options
-let g:airline_theme = 'ubaryd'
+let g:airline_theme = 'serene'
 let g:airline_detected_modified = 1
 let g:airline_powerline_fonts = 1
 let g:airline_detect_iminsert = 0
@@ -387,15 +459,10 @@ let g:unite_enable_start_insert = 1
 " }}}
 
 " {{{ nerd*
-let g:NERDTreeDirArrows = 1
-let g:NERDTreeAutoDeleteBuffer = 1
-let g:NERDTreeMinimalUI = 1
-let g:NERDTreeShowHidden = 1
 let g:NERDCreateDefaultMappings = 1
 let g:NERDCompactSexyComs = 1
-let g:NERDTreeCaseSensitiveSort = 1
-let g:NERDTreeRespectWildIgnore = 1
-let g:NERDTreeShowBookmarks = 1
+let g:NERDSpaceDelims = 1
+let g:NERDRemoveExtraSpaces = 1
 " }}}
 
 " {{{ ultisnips
@@ -418,77 +485,81 @@ let g:vimsyn_embed='Pr'
 
 " Set up vim-plug ▶️ https://github.com/junegunn/vim-plug#example
 
-call plug#begin('~/.nvim/plugins')
+call g:plug#begin('~/.nvim/plugins')
 
-Plug 'benekastah/neomake'
-Plug 'bruno-/vim-man'
-Plug 'janko-m/vim-test'
-Plug 'bling/vim-airline'
-Plug 'mattn/webapi-vim'
-Plug 'jalcine/cmake.vim'
+Plug 'ryanoasis/vim-devicons'
+Plug 'majutsushi/tagbar'
+Plug 'Chiel92/vim-autoformat'
+Plug 'PotatoesMaster/i3-vim-syntax'
+Plug 'Shougo/neomru.vim'
+Plug 'Shougo/unite.vim'
+Plug 'Shougo/vimproc'
 Plug 'SirVer/ultisnips'
-Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/nerdcommenter'
-Plug 'mhinz/vim-startify'
-Plug 'int3/vim-extradite'
-Plug 'SyntaxRange'
 Plug 'TagHighlight'
-Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'Valloric/YouCompleteMe'
 Plug 'airblade/vim-gitgutter'
+Plug 'benekastah/neomake'
+Plug 'bling/vim-airline'
+Plug 'bruno-/vim-man'
+Plug 'dsawardekar/portkey'
+Plug 'dsawardekar/ember.vim'
+Plug 'easymotion/vim-easymotion'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'godlygeek/tabular'
+" Plug 'elixir-lang/vim-elixir'
+" Plug 'artur-shaik/vim-javacomplete2'
+" Plug 'DonnieWest/VimStudio'
+Plug 'embear/vim-localvimrc'
 Plug 'gorodinskiy/vim-coloresque'
 Plug 'guns/xterm-color-table.vim'
+Plug 'heavenshell/vim-jsdoc'
 Plug 'heavenshell/vim-slack'
 Plug 'honza/vim-snippets'
+Plug 'int3/vim-extradite'
+Plug 'isRuslan/vim-es6'
+Plug 'jalcine/cmake.vim'
+Plug 'janko-m/vim-test'
+Plug 'jaxbot/github-issues.vim'
+Plug 'jszakmeister/vim-togglecursor'
+Plug 'junegunn/vim-emoji'
 Plug 'marijnh/tern_for_vim'
+Plug 'mattn/emmet-vim'
 Plug 'mattn/gist-vim'
+Plug 'mattn/webapi-vim'
+Plug 'mhinz/vim-startify'
 Plug 'mmozuras/vim-github-comment'
-Plug 'sheerun/vim-polyglot'
+Plug 'moll/vim-node'
+Plug 'mustache/vim-mustache-handlebars'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'nsf/gocode', {'rtp': 'vim/'}
+Plug 'pangloss/vim-javascript'
+Plug 'plasticboy/vim-markdown'
+Plug 'scrooloose/nerdcommenter'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tmux-plugins/vim-tmux'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-jdaddy'
 Plug 'tpope/vim-rbenv'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rsi'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-rails'
-Plug 'tpope/vim-bundler'
-Plug 'tpope/vim-surround'
 Plug 'tsukkee/unite-tag'
-Plug 'xolox/vim-easytags'
+Plug 'vim-ruby/vim-ruby'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'
 Plug 'xolox/vim-publish'
 Plug 'xolox/vim-session'
 Plug 'xolox/vim-shell'
+Plug 'xolox/vim-easytags'
 Plug 'yuku-t/unite-git'
 Plug 'zepto/unite-tmux'
-Plug 'junegunn/vim-emoji'
-Plug 'PotatoesMaster/i3-vim-syntax'
-Plug 'mattn/emmet-vim'
-Plug 'nsf/gocode', {'rtp': 'vim/'}
-Plug 'easymotion/vim-easymotion'
-Plug 'isRuslan/vim-es6'
-Plug 'elixir-lang/vim-elixir'
-Plug 'pangloss/vim-javascript'
-Plug 'plasticboy/vim-markdown'
-Plug 'jaxbot/github-issues.vim'
-Plug 'jszakmeister/vim-togglecursor'
-Plug 'Chiel92/vim-autoformat'
-Plug 'KabbAmine/vCoolor.vim'
-Plug 'Shougo/neomru.vim'
-Plug 'Shougo/vimproc'
-Plug 'Valloric/YouCompleteMe'
-Plug 'Shougo/unite.vim'
-Plug 'vim-ruby/vim-ruby'
-Plug 'mustache/vim-mustache-handlebars'
-Plug 'gryftir/gryffin'
-Plug 'aperezdc/vim-template'
-Plug 'dsawardekar/ember.vim'
+Plug 'elzr/vim-json'
+Plug 'dfxyz/CandyPaper.vim'
+Plug 'merlinrebrovic/focus.vim'
 
-call plug#end()
+call g:plug#end()
 
 " }}}
 
@@ -523,33 +594,35 @@ augroup END
 " }}}
 
 " {{{ Tweaking Unite
-call unite#filters#matcher_default#use([
+call g:unite#filters#matcher_default#use([
   \ 'matcher_context',
   \ 'matcher_project_files',
   \ 'matcher_project_ignore_files',
   \ 'matcher_hide_current_file'
   \ ])
 
-call unite#filters#sorter_default#use([
+call g:unite#filters#sorter_default#use([
   \ 'sorter_rank',
   \ 'sorter_ftime'
   \ ])
 
-call unite#filters#converter_default#use([
+call g:unite#filters#converter_default#use([
   \ 'converter_smart_path'
   \ ])
 
-call unite#custom#profile('source/grep', 'context', {
+call g:unite#custom#profile('source/grep', 'context', {
   \   'quit' : 1
   \ })
 
-call unite#custom#profile('default', 'context', {
+call g:unite#custom#profile('default', 'context', {
   \   'start_insert': 1,
-  \   'winheight': 10,
-  \   'direction': 'botright',
-  \   'auto-resize': 1
+  \   'auto-resize': 0,
+  \   'winheight': 5,
+  \   'direction': 'top'
   \ })
 
+call g:unite#custom#source('tag,file_rec/async', 'ignore_globs',
+    \ split(&wildignore, ','))
 
 func! s:configure_unite_buffer()
   imap <silent><buffer><expr> <C-j>   <Plug>(unite_select_next_line)<CR>
@@ -559,6 +632,9 @@ func! s:configure_unite_buffer()
 endfunc
 " }}}
 
+syntax enable
+filetype plugin indent on
+
 " {{{ color
-colorscheme gryffin
+colorscheme CandyPaper
 " }}}

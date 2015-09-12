@@ -1,10 +1,13 @@
 # Vim Configuration
 
-This repository contains my setup for both **[Vim][]** and **[Neovim][]**. I've
-decided to move my personal development environment over to Neovim after reading
-[Greer's post][1] on the matter. The intent of this repository is to allow a
-semi-backward compatible environment where I can have a similar configuration
-for both editors. The intent is to move _completely_ to **neovim**.
+This repository contains my setup for **[Neovim][]**. I've decided to move my
+personal development environment over to Neovim after reading [Greer's post][1]
+on the matter. This comes souped up with close to 80 (or more plugins) to
+enhance my development experience with a very short start time (~11ms on my
+[laptop][]).
 
 [Vundle]: https://github.com/gmarik/vundle
 [homesick]: https://github.com/technicalpickles/homesick
+[laptop]: https://jacky.wtf/gear/#laptop
+[neovim]: https://neovim.io
+[1]: http://geoff.greer.fm/2015/01/15/why-neovim-is-better-than-vim/

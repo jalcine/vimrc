@@ -582,6 +582,7 @@ augroup jalcine
   au BufEnter   *           let &titlestring=expand('%:p')
   au BufRead    *jscsrc     let &ft='json'
   au BufRead    *jshintrc   let &ft='json'
+  au BufRead    *eslintrc   let &ft='json'
   au BufWritePost * Neomake
   au User YouCompleteMe call youcompleteme#Enable()
 
@@ -637,4 +638,5 @@ filetype plugin indent on
 
 " {{{ color
 colorscheme CandyPaper
+hi Folded ctermbg=NONE ctermfg=101
 " }}}

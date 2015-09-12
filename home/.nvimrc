@@ -19,7 +19,7 @@ set path=.,/usr/local/include,/usr/include,$HOME/.local/include
 set visualbell
 set errorbells
 set ruler
-set number
+set number numberwidth=2
 set conceallevel=1 concealcursor=nv
 set tabstop=2 softtabstop=2 shiftwidth=2
 set expandtab
@@ -426,7 +426,7 @@ let g:neomake_javascript_enabled_checkers = ['eslint']
 " }}}
 
 " {{{ vim-airline options
-let g:airline_theme = 'base16'
+let g:airline_theme = 'serene'
 let g:airline_detected_modified = 1
 let g:airline_powerline_fonts = 1
 let g:airline_detect_iminsert = 0
@@ -557,6 +557,7 @@ Plug 'yuku-t/unite-git'
 Plug 'zepto/unite-tmux'
 Plug 'elzr/vim-json'
 Plug 'dfxyz/CandyPaper.vim'
+Plug 'merlinrebrovic/focus.vim'
 
 call g:plug#end()
 

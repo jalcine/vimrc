@@ -371,6 +371,10 @@ let g:gitgutter_sign_added = 'xx'
 let g:gitgutter_sign_modified = 'yy'
 let g:gitgutter_sign_removed = 'zz'
 let g:gitgutter_sign_modified_removed = 'ww'
+let g:tagbar_compact=1
+let g:tagbar_autoclose=1
+let g:tagbar_iconchars = ['▸', '▾']
+let g:tagbar_autoshowtag = 1
 
 let g:jsdoc_additional_descriptions = 1
 let g:jsdoc_access_descriptions = 1

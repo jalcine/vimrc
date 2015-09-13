@@ -426,7 +426,9 @@ let g:neomake_javascript_enabled_checkers = ['eslint']
 " }}}
 
 " {{{ vim-airline options
-let g:airline_theme = 'serene'
+let g:airline_theme = 'papercolor'
+let g:sunset_latitude = 40.7
+let g:sunset_longitude = -73.9
 let g:airline_detected_modified = 1
 let g:airline_powerline_fonts = 1
 let g:airline_detect_iminsert = 0
@@ -556,8 +558,10 @@ Plug 'xolox/vim-easytags'
 Plug 'yuku-t/unite-git'
 Plug 'zepto/unite-tmux'
 Plug 'elzr/vim-json'
-Plug 'dfxyz/CandyPaper.vim'
+Plug 'NLKNguyen/papercolor-theme'
 Plug 'merlinrebrovic/focus.vim'
+Plug 'jelera/vim-javascript-syntax'
+Plug 'Sunset'
 
 call g:plug#end()
 
@@ -636,5 +640,6 @@ syntax enable
 filetype plugin indent on
 
 " {{{ color
-colorscheme CandyPaper
+colorscheme PaperColor
+hi Folded ctermbg=NONE ctermfg=101
 " }}}

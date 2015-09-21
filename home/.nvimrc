@@ -367,10 +367,10 @@ let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:DevIconsEnableFoldersOpenClose = 1
 
 let g:gitgutter_diff_args = '-w'
-let g:gitgutter_sign_added = 'xx'
-let g:gitgutter_sign_modified = 'yy'
-let g:gitgutter_sign_removed = 'zz'
-let g:gitgutter_sign_modified_removed = 'ww'
+let g:gitgutter_sign_added = '++'
+let g:gitgutter_sign_modified = '**'
+let g:gitgutter_sign_removed = '--'
+let g:gitgutter_sign_modified_removed = '##'
 let g:tagbar_compact=1
 let g:tagbar_autoclose=1
 let g:tagbar_iconchars = ['▸', '▾']
@@ -429,10 +429,11 @@ let g:neomake_verbose = 0
 let g:neomake_javascript_enabled_checkers = ['eslint']
 " }}}
 
-" {{{ vim-airline options
-let g:airline_theme = 'papercolor'
 let g:sunset_latitude = 40.7
 let g:sunset_longitude = -73.9
+
+" {{{ vim-airline options
+let g:airline_theme = 'durant'
 let g:airline_detected_modified = 1
 let g:airline_powerline_fonts = 1
 let g:airline_detect_iminsert = 0
@@ -458,9 +459,9 @@ let g:airline_mode_map = {
 " {{{ unite options
 let g:unite_prompt = '» '
 let g:unite_source_history_yank_enable = 1
-let g:unite_data_directory = '~/.vim/cache-unite'
-let g:unite_source_rec_max_cache_files = 1000
-let g:unite_source_grep_max_candidates = 500
+let g:unite_data_directory = '~/.nvim/cache-unite'
+let g:unite_source_rec_max_cache_files = 6000
+let g:unite_source_grep_max_candidates = 6000
 let g:unite_enable_start_insert = 1
 " }}}
 
@@ -562,10 +563,12 @@ Plug 'xolox/vim-easytags'
 Plug 'yuku-t/unite-git'
 Plug 'zepto/unite-tmux'
 Plug 'elzr/vim-json'
-Plug 'NLKNguyen/papercolor-theme'
 Plug 'merlinrebrovic/focus.vim'
 Plug 'jelera/vim-javascript-syntax'
 Plug 'Sunset'
+Plug 'gertjanreynaert/cobalt2-vim-theme'
+Plug 'hail2u/vim-css3-syntax'
+Plug 'JulesWang/css.vim'
 
 call g:plug#end()
 
@@ -598,6 +601,8 @@ augroup jalcine
 
   " Make sure we don't spell in certain windows.
   au QuickFixCmdPre * set nospell
+  autocmd FileType css setlocal iskeyword+=-
+  autocmd Filetype gitcommit setlocal spell textwidth=72
 augroup END
 " }}}
 
@@ -644,6 +649,6 @@ syntax enable
 filetype plugin indent on
 
 " {{{ color
-colorscheme PaperColor
+colorscheme cobalt2
 hi Folded ctermbg=NONE ctermfg=101
 " }}}

@@ -595,6 +595,8 @@ augroup jalcine
   au BufRead    *jshintrc   let &ft='json'
   au BufWritePost * Neomake
   au User YouCompleteMe call youcompleteme#Enable()
+  au BufEnter   * setl relativenumber
+  au BufLeave   * setl norelativenumber
 
   au BufWritePost *tmux*.conf call s:reload_tmux()
   auto FileType unite call s:configure_unite_buffer()

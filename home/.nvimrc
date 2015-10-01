@@ -388,7 +388,7 @@ let g:github_user = 'jalcine'
 let s:custom_header =
   \ map(split(system('fortune | cowsay'), '\n'), '"   ". v:val') + ['','']
 
-func s:filter_header(lines) abort
+func! s:filter_header(lines) abort
   let l:longest_line = max(map(copy(a:lines), 'len(v:val)'))
   let l:centered_lines= map(copy(a:lines),
       \ 'repeat(" ", (&columns / 2) - (longest_line / 2)) . v:val')
@@ -433,7 +433,7 @@ let g:sunset_latitude = 40.7
 let g:sunset_longitude = -73.9
 
 " {{{ vim-airline options
-let g:airline_theme = 'durant'
+let g:airline_theme = 'murmur'
 let g:airline_detected_modified = 1
 let g:airline_powerline_fonts = 1
 let g:airline_detect_iminsert = 0
@@ -512,7 +512,7 @@ Plug 'dsawardekar/portkey'
 Plug 'dsawardekar/ember.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'editorconfig/editorconfig-vim'
-" Plug 'elixir-lang/vim-elixir'
+Plug 'elixir-lang/vim-elixir'
 " Plug 'artur-shaik/vim-javacomplete2'
 " Plug 'DonnieWest/VimStudio'
 Plug 'embear/vim-localvimrc'
@@ -555,6 +555,7 @@ Plug 'tpope/vim-surround'
 Plug 'tsukkee/unite-tag'
 Plug 'vim-ruby/vim-ruby'
 Plug 'xolox/vim-misc'
+Plug 'severin-lemaignan/vim-minimap'
 Plug 'xolox/vim-notes'
 Plug 'xolox/vim-publish'
 Plug 'xolox/vim-session'
@@ -566,9 +567,9 @@ Plug 'elzr/vim-json'
 Plug 'merlinrebrovic/focus.vim'
 Plug 'jelera/vim-javascript-syntax'
 Plug 'Sunset'
-Plug 'gertjanreynaert/cobalt2-vim-theme'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'JulesWang/css.vim'
+Plug 'christophermca/meta5'
 
 call g:plug#end()
 
@@ -651,6 +652,6 @@ syntax enable
 filetype plugin indent on
 
 " {{{ color
-colorscheme cobalt2
-hi Folded ctermbg=NONE ctermfg=101
+colorscheme meta5
+hi Folded ctermfg=252 ctermbg=NONE
 " }}}

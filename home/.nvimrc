@@ -350,7 +350,6 @@ let g:xml_syntax_folding = 1
 let g:xml_namespace_transparent = 1
 let g:notes_directories = ['~/Notes']
 let g:notes_suffix = '.txt'
-let g:indent_guides_enable_on_vim_startup = 0
 let g:indentLine_noConcealCursor = ""
 let g:javascript_enable_domhtmlcss = 1
 let g:javascript_fold = 1
@@ -413,8 +412,10 @@ let g:easytags_async = 1
 let g:easytags_syntax_keyword = 'always'
 let g:easytags_dynamic_files = 1
 
-let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
+let g:indent_guides_start_level = 2
+let g:indent_guides_color_change_percent = 5
+let g:indent_guides_enable_on_vim_startup = 0
 
 let g:doxygen_enhanced_color = 1
 let g:load_doxygen_syntax = 1
@@ -433,7 +434,7 @@ let g:sunset_latitude = 40.7
 let g:sunset_longitude = -73.9
 
 " {{{ vim-airline options
-let g:airline_theme = 'murmur'
+let g:airline_theme = 'jellybeans'
 let g:airline_detected_modified = 1
 let g:airline_powerline_fonts = 1
 let g:airline_detect_iminsert = 0
@@ -569,7 +570,7 @@ Plug 'jelera/vim-javascript-syntax'
 Plug 'Sunset'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'JulesWang/css.vim'
-Plug 'christophermca/meta5'
+Plug 'nanotech/jellybeans.vim'
 
 call g:plug#end()
 
@@ -652,6 +653,5 @@ syntax enable
 filetype plugin indent on
 
 " {{{ color
-colorscheme meta5
-hi Folded ctermfg=252 ctermbg=NONE
+colorscheme jellybeans
 " }}}

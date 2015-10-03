@@ -621,7 +621,6 @@ augroup jalcine
   au FileType css setl iskeyword+=-
   au FileType gitcommit setl spell
   au FileType markdown call textobj#quote#init()
-endau
 augroup END
 " }}}
 

@@ -607,6 +607,7 @@ augroup jalcine
   au BufEnter   *           let &titlestring=expand('%:p')
   au BufRead    *jscsrc     let &ft='json'
   au BufRead    *jshintrc   let &ft='json'
+  au BufRead    *eslintrc   let &ft='json'
   au BufWritePost * Neomake
   au User YouCompleteMe call youcompleteme#Enable()
   au BufEnter   * setl relativenumber
@@ -665,5 +666,3 @@ endfunc
 
 syntax enable
 colorscheme jellybeans
-hi Folded ctermbg=NONE
-hi FoldColumn ctermbg=NONE

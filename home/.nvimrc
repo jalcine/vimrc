@@ -50,6 +50,8 @@ set wildignore+=build/*,tmp/*,vendor/cache/*,bin/*
 set wildignore+=.sass-cache/*
 set wildignore+=*node_modules/*
 
+set cpoptions+=d
+
 " Complete with more things.
 set complete=.,w,b,u,U,i,d,t
 set completeopt=menu,longest
@@ -380,6 +382,8 @@ let g:jsdoc_access_descriptions = 1
 let g:jsdoc_underscore_private = 1
 let g:jsdoc_allow_shorthand = 1
 let g:localvimrc_name = [ '.vimrc' ]
+let g:tern_show_argument_hints = 'on_hold'
+let g:tern_show_signature_in_pum = 1
 
 let g:github_access_token = readfile(expand('~/.github-issues-vim'))[0]
 let g:github_user = 'jalcine'
@@ -402,7 +406,7 @@ let g:startify_change_to_vcs_root = 0
 let g:startify_relative_path = 1
 let g:startify_bookmarks = [ '~/.nvimrc', '~/.bashrc', '~/code' ]
 
-let g:localvimrc_persistent=1
+let g:localvimrc_persistent = 1
 
 let g:session_autoload = 'no'
 let g:session_autosave = 'yes'
@@ -411,6 +415,15 @@ let g:session_directory = '~/.nvim/sessions'
 let g:easytags_async = 1
 let g:easytags_syntax_keyword = 'always'
 let g:easytags_dynamic_files = 1
+let g:easytags_languages = {
+  \ 'javascript': {
+  \   'cmd': 'jsctags',
+  \   'args': [],
+  \   'fileoutput_opt': '-f',
+  \   'stdout_opt': '-f-',
+  \   'recurse_flag': '-R'
+  \   }
+  \ }
 
 let g:indent_guides_guide_size = 1
 let g:indent_guides_start_level = 2
@@ -499,12 +512,11 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'majutsushi/tagbar'
 Plug 'Chiel92/vim-autoformat'
 Plug 'PotatoesMaster/i3-vim-syntax'
-Plug 'Shougo/neomru.vim'
-Plug 'Shougo/unite.vim'
-Plug 'Shougo/vimproc'
-Plug 'SirVer/ultisnips'
+Plug 'Shougo/vimproc', { 'do': 'make' } | Plug 'Shougo/neomru.vim', { 'do': 'make' }
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'Shougo/unite.vim' | Plug 'yuku-t/unite-git' | Plug 'zepto/unite-tmux' | Plug 'tsukkee/unite-tag'
 Plug 'TagHighlight'
-Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
 Plug 'airblade/vim-gitgutter'
 Plug 'benekastah/neomake'
 Plug 'bling/vim-airline'
@@ -514,14 +526,13 @@ Plug 'dsawardekar/ember.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'elixir-lang/vim-elixir'
-" Plug 'artur-shaik/vim-javacomplete2'
-" Plug 'DonnieWest/VimStudio'
+Plug 'artur-shaik/vim-javacomplete2'
+Plug 'DonnieWest/VimStudio'
 Plug 'embear/vim-localvimrc'
 Plug 'gorodinskiy/vim-coloresque'
 Plug 'guns/xterm-color-table.vim'
 Plug 'heavenshell/vim-jsdoc'
 Plug 'heavenshell/vim-slack'
-Plug 'honza/vim-snippets'
 Plug 'int3/vim-extradite'
 Plug 'isRuslan/vim-es6'
 Plug 'jalcine/cmake.vim'
@@ -553,7 +564,6 @@ Plug 'tpope/vim-rbenv'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rsi'
 Plug 'tpope/vim-surround'
-Plug 'tsukkee/unite-tag'
 Plug 'vim-ruby/vim-ruby'
 Plug 'xolox/vim-misc'
 Plug 'severin-lemaignan/vim-minimap'
@@ -562,8 +572,6 @@ Plug 'xolox/vim-publish'
 Plug 'xolox/vim-session'
 Plug 'xolox/vim-shell'
 Plug 'xolox/vim-easytags'
-Plug 'yuku-t/unite-git'
-Plug 'zepto/unite-tmux'
 Plug 'elzr/vim-json'
 Plug 'merlinrebrovic/focus.vim'
 Plug 'jelera/vim-javascript-syntax'
@@ -571,6 +579,10 @@ Plug 'Sunset'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'JulesWang/css.vim'
 Plug 'nanotech/jellybeans.vim'
+Plug 'rust-lang/rust.vim'
+Plug 'kana/vim-textobj-user'
+Plug 'reedes/vim-textobj-quote'
+Plug 'mjakl/vim-asciidoc'
 
 call g:plug#end()
 
@@ -601,12 +613,14 @@ augroup jalcine
   au BufLeave   * setl norelativenumber
 
   au BufWritePost *tmux*.conf call s:reload_tmux()
-  auto FileType unite call s:configure_unite_buffer()
+  au FileType unite call s:configure_unite_buffer()
 
   " Make sure we don't spell in certain windows.
-  au QuickFixCmdPre * set nospell
-  autocmd FileType css setlocal iskeyword+=-
-  autocmd Filetype gitcommit setlocal spell textwidth=72
+  au QuickFixCmdPre * setl nospell
+  au FileType css setl iskeyword+=-
+  au FileType gitcommit setl spell
+  au FileType markdown call textobj#quote#init()
+endau
 augroup END
 " }}}
 
@@ -650,8 +664,6 @@ endfunc
 " }}}
 
 syntax enable
-filetype plugin indent on
-
-" {{{ color
 colorscheme jellybeans
-" }}}
+hi Folded ctermbg=NONE
+hi FoldColumn ctermbg=NONE

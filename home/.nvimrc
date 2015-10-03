@@ -50,6 +50,8 @@ set wildignore+=build/*,tmp/*,vendor/cache/*,bin/*
 set wildignore+=.sass-cache/*
 set wildignore+=*node_modules/*
 
+set cpoptions+=d
+
 " Complete with more things.
 set complete=.,w,b,u,U,i,d,t
 set completeopt=menu,longest
@@ -350,7 +352,6 @@ let g:xml_syntax_folding = 1
 let g:xml_namespace_transparent = 1
 let g:notes_directories = ['~/Notes']
 let g:notes_suffix = '.txt'
-let g:indent_guides_enable_on_vim_startup = 0
 let g:indentLine_noConcealCursor = ""
 let g:javascript_enable_domhtmlcss = 1
 let g:javascript_fold = 1
@@ -367,16 +368,22 @@ let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:DevIconsEnableFoldersOpenClose = 1
 
 let g:gitgutter_diff_args = '-w'
-let g:gitgutter_sign_added = 'xx'
-let g:gitgutter_sign_modified = 'yy'
-let g:gitgutter_sign_removed = 'zz'
-let g:gitgutter_sign_modified_removed = 'ww'
+let g:gitgutter_sign_added = '++'
+let g:gitgutter_sign_modified = '**'
+let g:gitgutter_sign_removed = '--'
+let g:gitgutter_sign_modified_removed = '##'
+let g:tagbar_compact=1
+let g:tagbar_autoclose=1
+let g:tagbar_iconchars = ['▸', '▾']
+let g:tagbar_autoshowtag = 1
 
 let g:jsdoc_additional_descriptions = 1
 let g:jsdoc_access_descriptions = 1
 let g:jsdoc_underscore_private = 1
 let g:jsdoc_allow_shorthand = 1
 let g:localvimrc_name = [ '.vimrc' ]
+let g:tern_show_argument_hints = 'on_hold'
+let g:tern_show_signature_in_pum = 1
 
 let g:github_access_token = readfile(expand('~/.github-issues-vim'))[0]
 let g:github_user = 'jalcine'
@@ -384,7 +391,7 @@ let g:github_user = 'jalcine'
 let s:custom_header =
   \ map(split(system('fortune | cowsay'), '\n'), '"   ". v:val') + ['','']
 
-func s:filter_header(lines) abort
+func! s:filter_header(lines) abort
   let l:longest_line = max(map(copy(a:lines), 'len(v:val)'))
   let l:centered_lines= map(copy(a:lines),
       \ 'repeat(" ", (&columns / 2) - (longest_line / 2)) . v:val')
@@ -399,7 +406,7 @@ let g:startify_change_to_vcs_root = 0
 let g:startify_relative_path = 1
 let g:startify_bookmarks = [ '~/.nvimrc', '~/.bashrc', '~/code' ]
 
-let g:localvimrc_persistent=1
+let g:localvimrc_persistent = 1
 
 let g:session_autoload = 'no'
 let g:session_autosave = 'yes'
@@ -408,9 +415,20 @@ let g:session_directory = '~/.nvim/sessions'
 let g:easytags_async = 1
 let g:easytags_syntax_keyword = 'always'
 let g:easytags_dynamic_files = 1
+let g:easytags_languages = {
+  \ 'javascript': {
+  \   'cmd': 'jsctags',
+  \   'args': [],
+  \   'fileoutput_opt': '-f',
+  \   'stdout_opt': '-f-',
+  \   'recurse_flag': '-R'
+  \   }
+  \ }
 
-let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
+let g:indent_guides_start_level = 2
+let g:indent_guides_color_change_percent = 5
+let g:indent_guides_enable_on_vim_startup = 0
 
 let g:doxygen_enhanced_color = 1
 let g:load_doxygen_syntax = 1
@@ -425,8 +443,11 @@ let g:neomake_verbose = 0
 let g:neomake_javascript_enabled_checkers = ['eslint']
 " }}}
 
+let g:sunset_latitude = 40.7
+let g:sunset_longitude = -73.9
+
 " {{{ vim-airline options
-let g:airline_theme = 'serene'
+let g:airline_theme = 'jellybeans'
 let g:airline_detected_modified = 1
 let g:airline_powerline_fonts = 1
 let g:airline_detect_iminsert = 0
@@ -452,9 +473,9 @@ let g:airline_mode_map = {
 " {{{ unite options
 let g:unite_prompt = '» '
 let g:unite_source_history_yank_enable = 1
-let g:unite_data_directory = '~/.vim/cache-unite'
-let g:unite_source_rec_max_cache_files = 1000
-let g:unite_source_grep_max_candidates = 500
+let g:unite_data_directory = '~/.nvim/cache-unite'
+let g:unite_source_rec_max_cache_files = 6000
+let g:unite_source_grep_max_candidates = 6000
 let g:unite_enable_start_insert = 1
 " }}}
 
@@ -491,12 +512,11 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'majutsushi/tagbar'
 Plug 'Chiel92/vim-autoformat'
 Plug 'PotatoesMaster/i3-vim-syntax'
-Plug 'Shougo/neomru.vim'
-Plug 'Shougo/unite.vim'
-Plug 'Shougo/vimproc'
-Plug 'SirVer/ultisnips'
+Plug 'Shougo/vimproc', { 'do': 'make' } | Plug 'Shougo/neomru.vim', { 'do': 'make' }
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'Shougo/unite.vim' | Plug 'yuku-t/unite-git' | Plug 'zepto/unite-tmux' | Plug 'tsukkee/unite-tag'
 Plug 'TagHighlight'
-Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
 Plug 'airblade/vim-gitgutter'
 Plug 'benekastah/neomake'
 Plug 'bling/vim-airline'
@@ -505,15 +525,14 @@ Plug 'dsawardekar/portkey'
 Plug 'dsawardekar/ember.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'editorconfig/editorconfig-vim'
-" Plug 'elixir-lang/vim-elixir'
-" Plug 'artur-shaik/vim-javacomplete2'
-" Plug 'DonnieWest/VimStudio'
+Plug 'elixir-lang/vim-elixir'
+Plug 'artur-shaik/vim-javacomplete2'
+Plug 'DonnieWest/VimStudio'
 Plug 'embear/vim-localvimrc'
 Plug 'gorodinskiy/vim-coloresque'
 Plug 'guns/xterm-color-table.vim'
 Plug 'heavenshell/vim-jsdoc'
 Plug 'heavenshell/vim-slack'
-Plug 'honza/vim-snippets'
 Plug 'int3/vim-extradite'
 Plug 'isRuslan/vim-es6'
 Plug 'jalcine/cmake.vim'
@@ -545,19 +564,25 @@ Plug 'tpope/vim-rbenv'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rsi'
 Plug 'tpope/vim-surround'
-Plug 'tsukkee/unite-tag'
 Plug 'vim-ruby/vim-ruby'
 Plug 'xolox/vim-misc'
+Plug 'severin-lemaignan/vim-minimap'
 Plug 'xolox/vim-notes'
 Plug 'xolox/vim-publish'
 Plug 'xolox/vim-session'
 Plug 'xolox/vim-shell'
 Plug 'xolox/vim-easytags'
-Plug 'yuku-t/unite-git'
-Plug 'zepto/unite-tmux'
 Plug 'elzr/vim-json'
-Plug 'dfxyz/CandyPaper.vim'
 Plug 'merlinrebrovic/focus.vim'
+Plug 'jelera/vim-javascript-syntax'
+Plug 'Sunset'
+Plug 'hail2u/vim-css3-syntax'
+Plug 'JulesWang/css.vim'
+Plug 'nanotech/jellybeans.vim'
+Plug 'rust-lang/rust.vim'
+Plug 'kana/vim-textobj-user'
+Plug 'reedes/vim-textobj-quote'
+Plug 'mjakl/vim-asciidoc'
 
 call g:plug#end()
 
@@ -585,12 +610,18 @@ augroup jalcine
   au BufRead    *eslintrc   let &ft='json'
   au BufWritePost * Neomake
   au User YouCompleteMe call youcompleteme#Enable()
+  au BufEnter   * setl relativenumber
+  au BufLeave   * setl norelativenumber
 
   au BufWritePost *tmux*.conf call s:reload_tmux()
-  auto FileType unite call s:configure_unite_buffer()
+  au FileType unite call s:configure_unite_buffer()
 
   " Make sure we don't spell in certain windows.
-  au QuickFixCmdPre * set nospell
+  au QuickFixCmdPre * setl nospell
+  au FileType css setl iskeyword+=-
+  au FileType gitcommit setl spell
+  au FileType markdown call textobj#quote#init()
+endau
 augroup END
 " }}}
 
@@ -634,9 +665,4 @@ endfunc
 " }}}
 
 syntax enable
-filetype plugin indent on
-
-" {{{ color
-colorscheme CandyPaper
-hi Folded ctermbg=NONE ctermfg=101
-" }}}
+colorscheme jellybeans

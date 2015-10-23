@@ -58,7 +58,7 @@ set completeopt=menu,longest
 
 set foldenable
 set foldmethod=syntax
-set foldcolumn=1
+set foldcolumn=0
 set foldlevel=1
 set foldminlines=3
 set foldnestmax=5
@@ -241,7 +241,7 @@ cnoremap sw% w !sudo tee %
 
 " {{{ Unite mappings
 func! s:call_unite(sources)
-  exec(':Unite -unique -toggle -no-hide-icon -no-empty -immediately -truncate ' . a:sources)
+  exec(':Unite -toggle -no-hide-icon -no-empty ' . a:sources)
 endfunc
 
 func! s:call_unite_tasks()
@@ -369,7 +369,7 @@ let g:DevIconsEnableFoldersOpenClose = 1
 
 let g:gitgutter_diff_args = '-w'
 let g:gitgutter_sign_added = '++'
-let g:gitgutter_sign_modified = '**'
+let g:gitgutter_sign_modified = '+*'
 let g:gitgutter_sign_removed = '--'
 let g:gitgutter_sign_modified_removed = '##'
 let g:tagbar_compact=1
@@ -404,7 +404,7 @@ let g:startify_files_number = 5
 let g:startify_change_to_dir = 0
 let g:startify_change_to_vcs_root = 0
 let g:startify_relative_path = 1
-let g:startify_bookmarks = [ '~/.nvimrc', '~/.bashrc', '~/code' ]
+let g:startify_bookmarks = [ '~/.nvimrc', '~/.bashrc', '~/code', '~/.Xresources' ]
 
 let g:localvimrc_persistent = 1
 
@@ -447,7 +447,7 @@ let g:sunset_latitude = 40.7
 let g:sunset_longitude = -73.9
 
 " {{{ vim-airline options
-let g:airline_theme = 'jellybeans'
+let g:airline_theme = 'gotham256'
 let g:airline_detected_modified = 1
 let g:airline_powerline_fonts = 1
 let g:airline_detect_iminsert = 0
@@ -471,12 +471,12 @@ let g:airline_mode_map = {
 " }}}
 
 " {{{ unite options
-let g:unite_prompt = '» '
+let g:unite_prompt = '> '
 let g:unite_source_history_yank_enable = 1
 let g:unite_data_directory = '~/.nvim/cache-unite'
-let g:unite_source_rec_max_cache_files = 6000
-let g:unite_source_grep_max_candidates = 6000
-let g:unite_enable_start_insert = 1
+let g:unite_source_rec_max_cache_files = 16384
+let g:unite_source_grep_max_candidates = 1024
+let g:unite_enable_start_insert = 0
 " }}}
 
 " {{{ nerd*
@@ -495,7 +495,6 @@ let g:UltiSnipsJumpBackwardTrigger = '<c-j>'
 let g:UltiSnipsJumpForwardTrigger = '<c-k>'
 let g:UltiSnipsSnippetDirectories = ['Ultisnips']
 " }}}
-
 
 let g:vimsyn_folding='afpPr'
 let g:vimsyn_embed='Pr'
@@ -578,11 +577,11 @@ Plug 'jelera/vim-javascript-syntax'
 Plug 'Sunset'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'JulesWang/css.vim'
-Plug 'nanotech/jellybeans.vim'
 Plug 'rust-lang/rust.vim'
 Plug 'kana/vim-textobj-user'
 Plug 'reedes/vim-textobj-quote'
 Plug 'mjakl/vim-asciidoc'
+Plug 'whatyouhide/vim-gotham'
 
 call g:plug#end()
 
@@ -622,6 +621,7 @@ augroup jalcine
   au FileType gitcommit setl spell
   au FileType markdown call textobj#quote#init()
 augroup END
+
 " }}}
 
 " {{{ Tweaking Unite
@@ -641,15 +641,10 @@ call g:unite#filters#converter_default#use([
   \ 'converter_smart_path'
   \ ])
 
-call g:unite#custom#profile('source/grep', 'context', {
-  \   'quit' : 1
-  \ })
-
 call g:unite#custom#profile('default', 'context', {
-  \   'start_insert': 1,
-  \   'auto-resize': 0,
-  \   'winheight': 5,
-  \   'direction': 'top'
+  \   'start_insert': 0,
+  \   'auto-resize': 1,
+  \   'winheight': 8
   \ })
 
 call g:unite#custom#source('tag,file_rec/async', 'ignore_globs',
@@ -663,5 +658,5 @@ func! s:configure_unite_buffer()
 endfunc
 " }}}
 
+colorscheme gotham256
 syntax enable
-colorscheme jellybeans

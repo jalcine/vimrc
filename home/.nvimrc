@@ -141,6 +141,13 @@ iabbrev Wntr Wintermute
 " PASTE mo'fo!
 set pastetoggle=<F2>
 
+" Jump around!
+map  <Esc>[7~ <Home>
+map  <Esc>[8~ <End>
+
+imap <Esc>[7~ <Home>
+imap <Esc>[8~ <End>
+
 " Set my leader to the comma key.
 let g:mapleader=','
 
@@ -447,7 +454,7 @@ let g:sunset_latitude = 40.7
 let g:sunset_longitude = -73.9
 
 " {{{ vim-airline options
-let g:airline_theme = 'gotham256'
+let g:airline_theme = 'tomorrow'
 let g:airline_detected_modified = 1
 let g:airline_powerline_fonts = 1
 let g:airline_detect_iminsert = 0
@@ -507,7 +514,6 @@ let g:vimsyn_embed='Pr'
 
 call g:plug#begin('~/.nvim/plugins')
 
-Plug 'ryanoasis/vim-devicons'
 Plug 'majutsushi/tagbar'
 Plug 'Chiel92/vim-autoformat'
 Plug 'PotatoesMaster/i3-vim-syntax'
@@ -581,7 +587,7 @@ Plug 'rust-lang/rust.vim'
 Plug 'kana/vim-textobj-user'
 Plug 'reedes/vim-textobj-quote'
 Plug 'mjakl/vim-asciidoc'
-Plug 'whatyouhide/vim-gotham'
+Plug 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
 
 call g:plug#end()
 
@@ -658,5 +664,5 @@ func! s:configure_unite_buffer()
 endfunc
 " }}}
 
-colorscheme gotham256
+colorscheme Tomorrow-Night
 syntax enable

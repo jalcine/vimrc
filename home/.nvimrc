@@ -588,6 +588,7 @@ Plug 'kana/vim-textobj-user'
 Plug 'reedes/vim-textobj-quote'
 Plug 'mjakl/vim-asciidoc'
 Plug 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
+Plug 'davidhalter/jedi-vim'
 
 call g:plug#end()
 

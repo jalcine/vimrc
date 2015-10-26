@@ -665,5 +665,5 @@ func! s:configure_unite_buffer()
 endfunc
 " }}}
 
-colorscheme Tomorrow-Night
+colorscheme Tomorrow-Night-Bright
 syntax enable

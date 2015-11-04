@@ -6,6 +6,12 @@ on the matter. This comes souped up with close to 80 (or more plugins) to
 enhance my development experience with a very short start time (~11ms on my
 [laptop][]).
 
+Neovim, as of version 0.1.0, doesn’t use the classic `~/.nvimrc` setup. However,
+because of habit, I’ve linked `~/.nvimrc` to `~/.config/nvim/init.vim`. Some
+habits die hard.
+
+This was finalized 2015-11-04 00:05:00 EST.
+
 [Vundle]: https://github.com/gmarik/vundle
 [homesick]: https://github.com/technicalpickles/homesick
 [laptop]: https://jacky.wtf/gear/#laptop

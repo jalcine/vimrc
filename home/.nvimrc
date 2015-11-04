@@ -315,7 +315,7 @@ nnoremap <silent> [git]rmc :Git rm --cached %<CR>
 
 " {{{ testing
 nnoremap [vimtest] <nop>
-nmap <leader>t [vimtest]
+nmap <leader>y [vimtest]
 nnoremap <silent> [vimtest]t :TestNearest<CR>
 nnoremap <silent> [vimtest]T :TestFile<CR>
 nnoremap <silent> [vimtest]a :TestSuite<CR>
@@ -338,6 +338,9 @@ nnoremap <silent> <leader>k :call <SID>toggle_visibility()<cr>
 " }}}
 
 " {{{ Plugin Options
+
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_seed_identifiers_with_syntax = 1
 
 let javaScript_fold=1
 let perl_fold=1
@@ -581,7 +584,10 @@ Plug 'rust-lang/rust.vim'
 Plug 'kana/vim-textobj-user'
 Plug 'reedes/vim-textobj-quote'
 Plug 'mjakl/vim-asciidoc'
-Plug 'whatyouhide/vim-gotham'
+Plug 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
+Plug 'davidhalter/jedi-vim'
+Plug 'KabbAmine/zeavim.vim'
+Plug 'ntpeters/vim-better-whitespace'
 
 call g:plug#end()
 

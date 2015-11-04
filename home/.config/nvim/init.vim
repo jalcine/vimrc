@@ -1,8 +1,8 @@
 " vim: set fdm=marker foldenable foldlevel=0 nospell:
-" File:          .nvimrc
+" File:          .config/nvim/init.vim
 " Author:        Jacky Alciné <yo@jacky.wtf>
 " Description:   The heart for Neovim.
-" Last Modified: 2015-01-03 15:51:04 EST
+" Last Modified: 2015-11-02 22:33:39 PST
 "
 " This is my peronal setup for NeoVim. It works ~exactly~ the
 " way I expect it to. Any different would trip me up.
@@ -72,7 +72,7 @@ set dictionary+=/usr/share/dict/web2,
 set dictionary+=/usr/share/dict/propernames.gz
 set dictionary+=/usr/share/dict/connectives.gz
 set dictionary+=/usr/share/dict/web2a.gz
-set spellfile=~/.nvim/dict.custom.utf-8.add
+set spellfile=~/.config/nvim/dict.custom.utf-8.add
 
 "{{{ White spacing and Characters
 " A problem that plagued me for months, having visual cues for white spacing
@@ -404,13 +404,13 @@ let g:startify_files_number = 5
 let g:startify_change_to_dir = 0
 let g:startify_change_to_vcs_root = 0
 let g:startify_relative_path = 1
-let g:startify_bookmarks = [ '~/.nvimrc', '~/.bashrc', '~/code' ]
+let g:startify_bookmarks = [ '~/.config/nvim/init.vim', '~/.bashrc', '~/code' ]
 
 let g:localvimrc_persistent = 1
 
 let g:session_autoload = 'no'
 let g:session_autosave = 'yes'
-let g:session_directory = '~/.nvim/sessions'
+let g:session_directory = '~/.config/nvim/sessions'
 
 let g:easytags_async = 1
 let g:easytags_syntax_keyword = 'always'
@@ -473,7 +473,7 @@ let g:airline_mode_map = {
 " {{{ unite options
 let g:unite_prompt = '» '
 let g:unite_source_history_yank_enable = 1
-let g:unite_data_directory = '~/.nvim/cache-unite'
+let g:unite_data_directory = '~/.config/nvim/cache-unite'
 let g:unite_source_rec_max_cache_files = 6000
 let g:unite_source_grep_max_candidates = 6000
 let g:unite_enable_start_insert = 1
@@ -506,7 +506,7 @@ let g:vimsyn_embed='Pr'
 
 " Set up vim-plug ▶️ https://github.com/junegunn/vim-plug#example
 
-call g:plug#begin('~/.nvim/plugins')
+call g:plug#begin('~/.config/nvim/plugins')
 
 Plug 'ryanoasis/vim-devicons'
 Plug 'majutsushi/tagbar'
@@ -621,7 +621,6 @@ augroup jalcine
   au FileType css setl iskeyword+=-
   au FileType gitcommit setl spell
   au FileType markdown call textobj#quote#init()
-endau
 augroup END
 " }}}
 

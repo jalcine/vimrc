@@ -534,7 +534,7 @@ Plug 'janko-m/vim-test'
 Plug 'jaxbot/github-issues.vim'
 Plug 'jszakmeister/vim-togglecursor'
 Plug 'junegunn/vim-emoji'
-Plug 'marijnh/tern_for_vim'
+Plug 'marijnh/tern_for_vim', { 'do': 'npm install'}
 Plug 'mattn/emmet-vim'
 Plug 'mattn/gist-vim'
 Plug 'mattn/webapi-vim'

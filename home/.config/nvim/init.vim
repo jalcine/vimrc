@@ -26,7 +26,7 @@ set expandtab
 set textwidth=80
 set nowrap
 " set cursorline cursorcolumn
-call matchadd('ColorColumn', '\%' . &textwidth . 'v', 81)
+call matchadd('ColorColumn', '\%' . &textwidth . 'v', 80)
 
 set complete=.,w,b,u,U,i,d,t
 set completeopt=menu,longest
@@ -51,10 +51,6 @@ set wildignore+=.sass-cache/*
 set wildignore+=*node_modules/*
 
 set cpoptions+=d
-
-" Complete with more things.
-set complete=.,w,b,u,U,i,d,t
-set completeopt=menu,longest
 
 set foldenable
 set foldmethod=syntax
@@ -372,6 +368,7 @@ let g:gitgutter_sign_added = '++'
 let g:gitgutter_sign_modified = '**'
 let g:gitgutter_sign_removed = '--'
 let g:gitgutter_sign_modified_removed = '##'
+let g:github_user = 'jalcine'
 let g:tagbar_compact=1
 let g:tagbar_autoclose=1
 let g:tagbar_iconchars = ['▸', '▾']
@@ -385,8 +382,6 @@ let g:localvimrc_name = [ '.vimrc' ]
 let g:tern_show_argument_hints = 'on_hold'
 let g:tern_show_signature_in_pum = 1
 
-let g:github_access_token = readfile(expand('~/.github-issues-vim'))[0]
-let g:github_user = 'jalcine'
 
 let s:custom_header =
   \ map(split(system('fortune | cowsay'), '\n'), '"   ". v:val') + ['','']
@@ -508,7 +503,6 @@ let g:vimsyn_embed='Pr'
 
 call g:plug#begin('~/.config/nvim/plugins')
 
-Plug 'ryanoasis/vim-devicons'
 Plug 'majutsushi/tagbar'
 Plug 'Chiel92/vim-autoformat'
 Plug 'PotatoesMaster/i3-vim-syntax'
@@ -516,7 +510,7 @@ Plug 'Shougo/vimproc', { 'do': 'make' } | Plug 'Shougo/neomru.vim', { 'do': 'mak
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'Shougo/unite.vim' | Plug 'yuku-t/unite-git' | Plug 'zepto/unite-tmux' | Plug 'tsukkee/unite-tag'
 Plug 'TagHighlight'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
+Plug 'Valloric/YouCompleteMe', { 'do': 'python install.py' }
 Plug 'airblade/vim-gitgutter'
 Plug 'benekastah/neomake'
 Plug 'bling/vim-airline'
@@ -665,3 +659,6 @@ endfunc
 
 syntax enable
 colorscheme jellybeans
+if filereadable('~/.config/nvim/local.vim')
+  source ~/.config/nvim/local.vim
+endif

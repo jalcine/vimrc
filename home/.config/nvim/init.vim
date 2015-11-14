@@ -101,6 +101,8 @@ iabbrev me_name Jacky Alciné
 iabbrev me_fname Jacky
 iabbrev me_lname Alciné
 iabbrev me_site https://jacky.wtf
+" FIXME: Make this appear in Python files only.
+iabbrev s. self.
 " }}}
 " {{{ Constant Typos
 iabbrev fucntion function
@@ -237,7 +239,7 @@ cnoremap sw% w !sudo tee %
 
 " {{{ Unite mappings
 func! s:call_unite(sources)
-  exec(':Unite -unique -toggle -no-hide-icon -no-empty -immediately -truncate ' . a:sources)
+  exec(':Unite -sync -unique -match-input -no-empty -immediately ' . a:sources)
 endfunc
 
 func! s:call_unite_tasks()
@@ -259,7 +261,7 @@ func! s:call_unite_buffer()
 endfunc
 
 func! s:call_unite_files()
-  return s:call_unite('file_rec/async')
+  return s:call_unite('file_rec/neovim')
 endfunc
 
 func! s:call_unite_local_grep()
@@ -311,7 +313,7 @@ nnoremap <silent> [git]rmc :Git rm --cached %<CR>
 
 " {{{ testing
 nnoremap [vimtest] <nop>
-nmap <leader>t [vimtest]
+nmap <leader>v [vimtest]
 nnoremap <silent> [vimtest]t :TestNearest<CR>
 nnoremap <silent> [vimtest]T :TestFile<CR>
 nnoremap <silent> [vimtest]a :TestSuite<CR>
@@ -403,9 +405,7 @@ let g:startify_bookmarks = [ '~/.config/nvim/init.vim', '~/.bashrc', '~/code' ]
 
 let g:localvimrc_persistent = 1
 
-let g:session_autoload = 'no'
-let g:session_autosave = 'yes'
-let g:session_directory = '~/.config/nvim/sessions'
+let g:startify_session_dir = '~/.config/nvim/sessions'
 
 let g:easytags_async = 1
 let g:easytags_syntax_keyword = 'always'
@@ -434,8 +434,9 @@ let g:test_strategy = 'neovim'
 " {{{ neomake options
 let g:neomake_list_height = 5
 let g:neomake_serialize = 1
-let g:neomake_verbose = 0
+let g:neomake_verbose = 1
 let g:neomake_javascript_enabled_checkers = ['eslint']
+let g:neomake_python_enabled_checkers = ['pyflakes', 'pylint', 'python', 'pep8', 'flake8']
 " }}}
 
 let g:sunset_latitude = 40.7
@@ -469,9 +470,18 @@ let g:airline_mode_map = {
 let g:unite_prompt = '» '
 let g:unite_source_history_yank_enable = 1
 let g:unite_data_directory = '~/.config/nvim/cache-unite'
-let g:unite_source_rec_max_cache_files = 6000
-let g:unite_source_grep_max_candidates = 6000
 let g:unite_enable_start_insert = 1
+
+" :h unite-source-grep
+let g:unite_source_file_rec_max_cache_files = 24000
+let g:unite_source_grep_max_candidates = g:unite_source_file_rec_max_cache_files
+let g:unite_source_rec_async_command = 'ag'
+let g:unite_source_grep_command = 'ag'
+let g:unite_source_grep_default_opts =
+  \ '-i --vimgrep --hidden --ignore ' .
+  \ '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
+let g:unite_source_grep_recursive_opt = ''
+
 " }}}
 
 " {{{ nerd*
@@ -563,7 +573,6 @@ Plug 'xolox/vim-misc'
 Plug 'severin-lemaignan/vim-minimap'
 Plug 'xolox/vim-notes'
 Plug 'xolox/vim-publish'
-Plug 'xolox/vim-session'
 Plug 'xolox/vim-shell'
 Plug 'xolox/vim-easytags'
 Plug 'elzr/vim-json'
@@ -577,6 +586,8 @@ Plug 'rust-lang/rust.vim'
 Plug 'kana/vim-textobj-user'
 Plug 'reedes/vim-textobj-quote'
 Plug 'mjakl/vim-asciidoc'
+Plug 'kchmck/vim-coffee-script'
+Plug 'mtscout6/vim-cjsx'
 
 call g:plug#end()
 

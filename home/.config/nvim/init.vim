@@ -435,8 +435,9 @@ let g:test_strategy = 'neovim'
 let g:neomake_list_height = 5
 let g:neomake_serialize = 1
 let g:neomake_verbose = 1
-let g:neomake_javascript_enabled_checkers = ['eslint']
+let g:neomake_javascript_enabled_checkers = ['eslint', 'jscs']
 let g:neomake_python_enabled_checkers = ['pyflakes', 'pylint', 'python', 'pep8', 'flake8']
+let g:neomake_sh_enabled_checkers = ['shellcheck']
 " }}}
 
 let g:sunset_latitude = 40.7
@@ -478,7 +479,7 @@ let g:unite_source_grep_max_candidates = g:unite_source_file_rec_max_cache_files
 let g:unite_source_rec_async_command = 'ag'
 let g:unite_source_grep_command = 'ag'
 let g:unite_source_grep_default_opts =
-  \ '-i --vimgrep --hidden --ignore ' .
+  \ '-i -Q --vimgrep --hidden --ignore ' .
   \ '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
 let g:unite_source_grep_recursive_opt = ''
 

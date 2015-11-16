@@ -260,6 +260,10 @@ func! s:call_unite_buffer()
   call s:call_unite('buffer')
 endfunc
 
+func! s:call_unite_github_prs()
+  call s:call_unite('pull_request')
+endfunc
+
 func! s:call_unite_files()
   return s:call_unite('file_rec/neovim')
 endfunc
@@ -291,6 +295,7 @@ nnoremap <silent> [unite]a :call <SID>call_unite_tasks()<cr>
 nnoremap <silent> [unite]x :call <SID>call_unite_tmux()<cr>
 nnoremap <silent> [unite]u :call <SID>call_unite_snippets()<cr>
 nnoremap <silent> [unite]X :call <Plug>unite_disable_max_candidates()<CR>
+nnoremap <silent> [unite]p :call <SID>call_unite_github_prs()<cr>
 
 " For those who end up using my machine but think it has CtrlP.
 nnoremap <silent> <leader>p :call <SID>call_unite_files()<cr>
@@ -336,7 +341,6 @@ nnoremap <silent> <leader>k :call <SID>toggle_visibility()<cr>
 " }}}
 
 " {{{ Plugin Options
-
 let javaScript_fold=1
 let perl_fold=1
 let php_folding=1
@@ -350,6 +354,7 @@ let g:xml_syntax_folding = 1
 let g:xml_namespace_transparent = 1
 let g:notes_directories = ['~/Notes']
 let g:notes_suffix = '.txt'
+let g:vimfiler_as_default_explorer = 1
 let g:indentLine_noConcealCursor = ""
 let g:javascript_enable_domhtmlcss = 1
 let g:javascript_fold = 1
@@ -519,8 +524,14 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'Shougo/vimproc', { 'do': 'make' } | Plug 'Shougo/neomru.vim', { 'do': 'make' }
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-Plug 'Shougo/unite.vim' | Plug 'yuku-t/unite-git' | Plug 'zepto/unite-tmux' | Plug 'tsukkee/unite-tag'
+Plug 'Shougo/unite.vim' | Plug 'zepto/unite-tmux' | Plug 'tsukkee/unite-tag' |
+      \  Plug 'lambdalisue/unite-grep-vcs' | Plug 'joker1007/unite-pull-request'
+      \ | Plug 'rafi/vim-unite-issue'
 Plug 'TagHighlight'
+Plug 'bogado/file-line'
+Plug 'MattesGroeger/vim-bookmarks'
+Plug 'hynek/vim-python-pep8-indent'
+Plug 'Shougo/vimfiler.vim'
 Plug 'Valloric/YouCompleteMe', { 'do': 'python install.py' }
 Plug 'airblade/vim-gitgutter'
 Plug 'benekastah/neomake'
@@ -545,7 +556,7 @@ Plug 'janko-m/vim-test'
 Plug 'jaxbot/github-issues.vim'
 Plug 'jszakmeister/vim-togglecursor'
 Plug 'junegunn/vim-emoji'
-Plug 'marijnh/tern_for_vim'
+Plug 'marijnh/tern_for_vim', { 'do': 'npm install'}
 Plug 'mattn/emmet-vim'
 Plug 'mattn/gist-vim'
 Plug 'mattn/webapi-vim'

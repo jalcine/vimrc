@@ -376,6 +376,7 @@ let g:gitgutter_sign_modified = '**'
 let g:gitgutter_sign_removed = '--'
 let g:gitgutter_sign_modified_removed = '##'
 let g:github_user = 'jalcine'
+let g:github_comment_open_browser = 1
 let g:tagbar_compact=1
 let g:tagbar_autoclose=1
 let g:tagbar_iconchars = ['▸', '▾']
@@ -443,6 +444,7 @@ let g:neomake_verbose = 1
 let g:neomake_javascript_enabled_checkers = ['eslint', 'jscs']
 let g:neomake_python_enabled_checkers = ['pyflakes', 'pylint', 'python', 'pep8', 'flake8']
 let g:neomake_sh_enabled_checkers = ['shellcheck']
+let g:neomake_ruby_enabled_checkers = ['rubocop', 'mri']
 " }}}
 
 let g:sunset_latitude = 40.7
@@ -479,10 +481,13 @@ let g:unite_data_directory = '~/.config/nvim/cache-unite'
 let g:unite_enable_start_insert = 1
 
 " :h unite-source-grep
-let g:unite_source_file_rec_max_cache_files = 24000
+let g:unite_source_rec_max_cache_files = 30000
+let g:unite_source_file_rec_max_cache_files = 30000
 let g:unite_source_grep_max_candidates = g:unite_source_file_rec_max_cache_files
 let g:unite_source_rec_async_command = 'ag'
 let g:unite_source_grep_command = 'ag'
+let g:unite_source_find_default_expr = ''
+let g:unite_source_find_command = 'ag'
 let g:unite_source_grep_default_opts =
   \ '-i -Q --vimgrep --hidden --ignore ' .
   \ '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''

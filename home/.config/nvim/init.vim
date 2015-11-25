@@ -244,12 +244,11 @@ endfunc
 
 func! s:call_unite_tasks()
   call s:call_unite('grep:.:-s:\(TODO\|todo\|NOTE\|note\|' .
-    \ 'FIXME\|fixme\|BUG\|bug)')
+        \ 'FIXME\|fixme\|BUG\|bug)')
 endfunc
 
 func! s:call_unite_tmux()
-  call s:call_unite('tmux/panes tmux/sessions tmux/windows ' .
-    \ 'tmuxcomplete/lines')
+  call s:call_unite('tmux/panes tmux/sessions tmux/windows')
 endfunc
 
 func! s:call_unite_tags()
@@ -392,12 +391,12 @@ let g:tern_show_signature_in_pum = 1
 
 
 let s:custom_header =
-  \ map(split(system('fortune | cowsay'), '\n'), '"   ". v:val') + ['','']
+      \ map(split(system('fortune | cowsay'), '\n'), '"   ". v:val') + ['','']
 
 func! s:filter_header(lines) abort
   let l:longest_line = max(map(copy(a:lines), 'len(v:val)'))
   let l:centered_lines= map(copy(a:lines),
-      \ 'repeat(" ", (&columns / 2) - (longest_line / 2)) . v:val')
+        \ 'repeat(" ", (&columns / 2) - (longest_line / 2)) . v:val')
   return centered_lines
 endfunc
 
@@ -417,14 +416,14 @@ let g:easytags_async = 1
 let g:easytags_syntax_keyword = 'always'
 let g:easytags_dynamic_files = 1
 let g:easytags_languages = {
-  \ 'javascript': {
-  \   'cmd': 'jsctags',
-  \   'args': [],
-  \   'fileoutput_opt': '-f',
-  \   'stdout_opt': '-f-',
-  \   'recurse_flag': '-R'
-  \   }
-  \ }
+      \ 'javascript': {
+      \   'cmd': 'jsctags',
+      \   'args': [],
+      \   'fileoutput_opt': '-f',
+      \   'stdout_opt': '-f-',
+      \   'recurse_flag': '-R'
+      \   }
+      \ }
 
 let g:indent_guides_guide_size = 1
 let g:indent_guides_start_level = 2
@@ -481,17 +480,12 @@ let g:unite_data_directory = '~/.config/nvim/cache-unite'
 let g:unite_enable_start_insert = 1
 
 " :h unite-source-grep
-let g:unite_source_rec_max_cache_files = 30000
-let g:unite_source_file_rec_max_cache_files = 30000
-let g:unite_source_grep_max_candidates = g:unite_source_file_rec_max_cache_files
-let g:unite_source_rec_async_command = 'ag'
 let g:unite_source_grep_command = 'ag'
-let g:unite_source_find_default_expr = ''
-let g:unite_source_find_command = 'ag'
 let g:unite_source_grep_default_opts =
-  \ '-i -Q --vimgrep --hidden --ignore ' .
+  \ '-i --vimgrep --hidden --ignore ' .
   \ '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
 let g:unite_source_grep_recursive_opt = ''
+
 
 " }}}
 
@@ -586,12 +580,9 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rsi'
 Plug 'tpope/vim-surround'
 Plug 'vim-ruby/vim-ruby'
-Plug 'xolox/vim-misc'
+Plug 'xolox/vim-misc' | Plug 'xolox/vim-notes' | Plug 'xolox/vim-publish' \
+  | Plug 'xolox/vim-shell' | Plug 'xolox/vim-easytags'
 Plug 'severin-lemaignan/vim-minimap'
-Plug 'xolox/vim-notes'
-Plug 'xolox/vim-publish'
-Plug 'xolox/vim-shell'
-Plug 'xolox/vim-easytags'
 Plug 'elzr/vim-json'
 Plug 'merlinrebrovic/focus.vim'
 Plug 'jelera/vim-javascript-syntax'
@@ -605,6 +596,7 @@ Plug 'reedes/vim-textobj-quote'
 Plug 'mjakl/vim-asciidoc'
 Plug 'kchmck/vim-coffee-script'
 Plug 'mtscout6/vim-cjsx'
+Plug 'saltstack/salt-vim'
 
 call g:plug#end()
 
@@ -631,7 +623,7 @@ augroup jalcine
   au BufRead    *jshintrc   let &ft='json'
   au BufRead    *eslintrc   let &ft='json'
   au BufWritePost * Neomake
-  au User YouCompleteMe call youcompleteme#Enable()
+  " au User YouCompleteMe call youcompleteme#Enable()
   au BufEnter   * setl relativenumber
   au BufLeave   * setl norelativenumber
 
@@ -648,34 +640,34 @@ augroup END
 
 " {{{ Tweaking Unite
 call g:unite#filters#matcher_default#use([
-  \ 'matcher_context',
-  \ 'matcher_project_files',
-  \ 'matcher_project_ignore_files',
-  \ 'matcher_hide_current_file'
-  \ ])
+      \ 'matcher_context',
+      \ 'matcher_project_files',
+      \ 'matcher_project_ignore_files',
+      \ 'matcher_hide_current_file'
+      \ ])
 
 call g:unite#filters#sorter_default#use([
-  \ 'sorter_rank',
-  \ 'sorter_ftime'
-  \ ])
+      \ 'sorter_rank',
+      \ 'sorter_ftime'
+      \ ])
 
 call g:unite#filters#converter_default#use([
-  \ 'converter_smart_path'
-  \ ])
+      \ 'converter_smart_path'
+      \ ])
 
 call g:unite#custom#profile('source/grep', 'context', {
-  \   'quit' : 1
-  \ })
+      \   'quit' : 1
+      \ })
 
 call g:unite#custom#profile('default', 'context', {
-  \   'start_insert': 1,
-  \   'auto-resize': 0,
-  \   'winheight': 5,
-  \   'direction': 'top'
-  \ })
+      \   'start_insert': 1,
+      \   'auto-resize': 0,
+      \   'winheight': 5,
+      \   'direction': 'top'
+      \ })
 
 call g:unite#custom#source('tag,file_rec/async', 'ignore_globs',
-    \ split(&wildignore, ','))
+      \ split(&wildignore, ','))
 
 func! s:configure_unite_buffer()
   imap <silent><buffer><expr> <C-j>   <Plug>(unite_select_next_line)<CR>

@@ -354,6 +354,7 @@ let g:xml_namespace_transparent = 1
 let g:notes_directories = ['~/Notes']
 let g:notes_suffix = '.txt'
 let g:vimfiler_as_default_explorer = 1
+let g:vimfiler_define_wrapper_commands = 1
 let g:indentLine_noConcealCursor = ""
 let g:javascript_enable_domhtmlcss = 1
 let g:javascript_fold = 1
@@ -531,7 +532,7 @@ Plug 'bogado/file-line'
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'hynek/vim-python-pep8-indent'
 Plug 'Shougo/vimfiler.vim'
-Plug 'Valloric/YouCompleteMe', { 'do': 'python install.py' }
+Plug 'Valloric/YouCompleteMe', { 'do': 'python install.py', 'frozen': 1, 'commit': 'cb3325970e604725fe32ea5368063d714cf44012' }
 Plug 'airblade/vim-gitgutter'
 Plug 'benekastah/neomake'
 Plug 'bling/vim-airline'
@@ -580,8 +581,8 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rsi'
 Plug 'tpope/vim-surround'
 Plug 'vim-ruby/vim-ruby'
-Plug 'xolox/vim-misc' | Plug 'xolox/vim-notes' | Plug 'xolox/vim-publish' \
-  | Plug 'xolox/vim-shell' | Plug 'xolox/vim-easytags'
+Plug 'xolox/vim-misc' | Plug 'xolox/vim-notes' | Plug 'xolox/vim-publish'
+      \ | Plug 'xolox/vim-shell' | Plug 'xolox/vim-easytags'
 Plug 'severin-lemaignan/vim-minimap'
 Plug 'elzr/vim-json'
 Plug 'merlinrebrovic/focus.vim'

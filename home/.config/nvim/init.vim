@@ -522,7 +522,7 @@ call g:plug#begin('~/.config/nvim/plugins')
 Plug 'majutsushi/tagbar'
 Plug 'Chiel92/vim-autoformat'
 Plug 'PotatoesMaster/i3-vim-syntax'
-Plug 'Shougo/vimproc', { 'do': 'make' } | Plug 'Shougo/neomru.vim', { 'do': 'make' }
+Plug 'Shougo/vimproc', { 'do': 'make' } | Plug 'Shougo/neomru.vim'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'Shougo/unite.vim' | Plug 'zepto/unite-tmux' | Plug 'tsukkee/unite-tag' |
       \  Plug 'lambdalisue/unite-grep-vcs' | Plug 'joker1007/unite-pull-request'

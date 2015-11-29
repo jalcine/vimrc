@@ -532,7 +532,9 @@ Plug 'bogado/file-line'
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'hynek/vim-python-pep8-indent'
 Plug 'Shougo/vimfiler.vim'
-Plug 'Valloric/YouCompleteMe', { 'do': 'python install.py', 'frozen': 1, 'commit': 'cb3325970e604725fe32ea5368063d714cf44012' }
+Plug 'Valloric/YouCompleteMe',
+      \ { 'do': 'python install.py', 'frozen': 1, 'commit': 'cb3325970e604725fe32ea5368063d714cf44012' }
+      \ | Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
 Plug 'airblade/vim-gitgutter'
 Plug 'benekastah/neomake'
 Plug 'bling/vim-airline'

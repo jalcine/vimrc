@@ -600,6 +600,7 @@ Plug 'mjakl/vim-asciidoc'
 Plug 'kchmck/vim-coffee-script'
 Plug 'mtscout6/vim-cjsx'
 Plug 'saltstack/salt-vim'
+Plug 'ingo-library'
 
 call g:plug#end()
 

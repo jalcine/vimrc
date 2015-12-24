@@ -131,6 +131,9 @@ iabbrev lnx linux
 iabbrev wntr wintermute
 iabbrev Wntr Wintermute
 " }}}
+" {{{ Shit I Fuck up A log
+iabbrev _repo repository
+" }}}
 " }}}
 
 " {{{ Mappings

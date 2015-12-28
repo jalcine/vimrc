@@ -11,9 +11,8 @@
 scriptencoding utf-8
 
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-set t_Co=256
 
-set laststatus=2
+set laststatus
 set number relativenumber
 set path=.,/usr/local/include,/usr/include,$HOME/.local/include
 set visualbell
@@ -259,12 +258,8 @@ func! s:call_unite_buffer()
   call s:call_unite('buffer')
 endfunc
 
-func! s:call_unite_github_prs()
-  call s:call_unite('pull_request')
-endfunc
-
 func! s:call_unite_files()
-  return s:call_unite('file_rec/neovim')
+  return s:call_unite('file_rec/async')
 endfunc
 
 func! s:call_unite_local_grep()
@@ -277,6 +272,10 @@ endfunc
 
 function! s:call_unite_snippets()
   return s:call_unite('ultisnips')
+endfunction
+
+function! s:call_unite_tabs()
+  return s:call_unite('tab')
 endfunction
 
 
@@ -294,7 +293,7 @@ nnoremap <silent> [unite]a :call <SID>call_unite_tasks()<cr>
 nnoremap <silent> [unite]x :call <SID>call_unite_tmux()<cr>
 nnoremap <silent> [unite]u :call <SID>call_unite_snippets()<cr>
 nnoremap <silent> [unite]X :call <Plug>unite_disable_max_candidates()<CR>
-nnoremap <silent> [unite]p :call <SID>call_unite_github_prs()<cr>
+nnoremap <silent> [unite]T :call <SID>call_unite_tabs()<cr>
 
 " For those who end up using my machine but think it has CtrlP.
 nnoremap <silent> <leader>p :call <SID>call_unite_files()<cr>
@@ -305,6 +304,8 @@ nnoremap [git] <nop>
 nmap <leader>g [git]
 nnoremap <silent> [git]a   :Git add<space>
 nnoremap <silent> [git]ab  :Git add %<cr>
+nnoremap <silent> [git]b   :Gbrowse<CR>
+vnoremap <silent> [git]b   :Gbrowse<CR>
 nnoremap <silent> [git]c   :Git commit<space>
 nnoremap <silent> [git]C   :Gcommit --branch --verbose %<CR>
 nnoremap <silent> [git]co  :Git checkout<space>
@@ -378,9 +379,19 @@ let g:gitgutter_sign_modified_removed = '##'
 let g:github_user = 'jalcine'
 let g:github_comment_open_browser = 1
 let g:tagbar_compact=1
-let g:tagbar_autoclose=1
+let g:tagbar_autoclose=0
 let g:tagbar_iconchars = ['▸', '▾']
 let g:tagbar_autoshowtag = 1
+let g:tagbar_type_coffee = {
+    \ 'ctagstype' : 'coffee',
+    \ 'kinds'     : [
+        \ 'c:classes',
+        \ 'm:methods',
+        \ 'f:functions',
+        \ 'v:variables',
+        \ 'f:fields',
+    \ ]
+\ }
 
 let g:jsdoc_additional_descriptions = 1
 let g:jsdoc_access_descriptions = 1
@@ -600,7 +611,6 @@ Plug 'mtscout6/vim-cjsx'
 Plug 'saltstack/salt-vim'
 
 call g:plug#end()
-
 " }}}
 
 " {{{ personal augroup mods
@@ -662,9 +672,9 @@ call g:unite#custom#profile('source/grep', 'context', {
 
 call g:unite#custom#profile('default', 'context', {
       \   'start_insert': 1,
-      \   'auto-resize': 0,
-      \   'winheight': 5,
-      \   'direction': 'top'
+      \   'auto-resize': 1,
+      \   'winheight': 8,
+      \   'direction': 'botright'
       \ })
 
 call g:unite#custom#source('tag,file_rec/async', 'ignore_globs',
@@ -678,8 +688,10 @@ func! s:configure_unite_buffer()
 endfunc
 " }}}
 
-syntax enable
-colorscheme jellybeans
-if filereadable('~/.config/nvim/local.vim')
+if filereadable("$HOME/.config/nvim/local.vim")
   source ~/.config/nvim/local.vim
 endif
+
+filetype plugin indent on 
+syntax enable
+colorscheme jellybeans

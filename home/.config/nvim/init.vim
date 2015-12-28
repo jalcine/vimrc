@@ -130,6 +130,9 @@ iabbrev lnx linux
 iabbrev wntr wintermute
 iabbrev Wntr Wintermute
 " }}}
+" {{{ Shit I Fuck up A log
+iabbrev _repo repository
+" }}}
 " }}}
 
 " {{{ Mappings
@@ -543,7 +546,9 @@ Plug 'bogado/file-line'
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'hynek/vim-python-pep8-indent'
 Plug 'Shougo/vimfiler.vim'
-Plug 'Valloric/YouCompleteMe', { 'do': 'python install.py', 'frozen': 1, 'commit': 'cb3325970e604725fe32ea5368063d714cf44012' }
+Plug 'Valloric/YouCompleteMe',
+      \ { 'do': 'python install.py', 'frozen': 1, 'commit': 'cb3325970e604725fe32ea5368063d714cf44012' }
+      \ | Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
 Plug 'airblade/vim-gitgutter'
 Plug 'benekastah/neomake'
 Plug 'bling/vim-airline'
@@ -609,6 +614,7 @@ Plug 'mjakl/vim-asciidoc'
 Plug 'kchmck/vim-coffee-script'
 Plug 'mtscout6/vim-cjsx'
 Plug 'saltstack/salt-vim'
+Plug 'ingo-library'
 
 call g:plug#end()
 " }}}

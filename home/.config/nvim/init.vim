@@ -12,7 +12,7 @@ scriptencoding utf-8
 
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
-set laststatus
+set laststatus=2
 set number relativenumber
 set path=.,/usr/local/include,/usr/include,$HOME/.local/include
 set visualbell

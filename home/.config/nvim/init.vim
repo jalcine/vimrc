@@ -70,6 +70,8 @@ set dictionary+=/usr/share/dict/connectives.gz
 set dictionary+=/usr/share/dict/web2a.gz
 set spellfile=~/.config/nvim/dict.custom.utf-8.add
 
+set cinoptions+='JN'
+
 "{{{ White spacing and Characters
 " A problem that plagued me for months, having visual cues for white spacing
 " solves formatting problems a lot quicker. Also, we're using modern shells
@@ -580,6 +582,8 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
+Plug 'shumphrey/fugitive-gitlab.vim'
+Plug 'tommcdo/vim-fubitive'
 Plug 'tpope/vim-jdaddy'
 Plug 'tpope/vim-rbenv'
 Plug 'tpope/vim-repeat'

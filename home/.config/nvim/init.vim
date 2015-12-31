@@ -1,4 +1,4 @@
-" vim: set fdm=marker foldenable foldlevel=0 nospell:
+" vim: set fdm=marker foldenable foldlevel=1 nospell:
 " File:          .config/nvim/init.vim
 " Author:        Jacky Alciné <yo@jacky.wtf>
 " Description:   The heart for Neovim.
@@ -48,6 +48,9 @@ set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg,*.svg
 set wildignore+=build/*,tmp/*,vendor/cache/*,bin/*
 set wildignore+=.sass-cache/*
 set wildignore+=*node_modules/*
+
+set undodir=~/.config/nvim/undodir
+set undofile
 
 set cpoptions+=d
 
@@ -264,7 +267,7 @@ func! s:call_unite_buffer()
 endfunc
 
 func! s:call_unite_files()
-  return s:call_unite('file_rec/async')
+  return s:call_unite('file_rec/async file_mru')
 endfunc
 
 func! s:call_unite_local_grep()
@@ -317,6 +320,7 @@ nnoremap <silent> [git]co  :Git checkout<space>
 nnoremap <silent> [git]f   :Git fetch<space>
 nnoremap <silent> [git]fa  :Git fetch --all<CR>
 nnoremap <silent> [git]p   :Git push<space>
+nnoremap <silent> [git]P   :Git push<CR>
 nnoremap <silent> [git]rm  :Gremove %<CR>
 nnoremap <silent> [git]rmc :Git rm --cached %<CR>
 " }}}
@@ -550,7 +554,7 @@ Plug 'MattesGroeger/vim-bookmarks'
 Plug 'hynek/vim-python-pep8-indent'
 Plug 'Shougo/vimfiler.vim'
 Plug 'Valloric/YouCompleteMe',
-      \ { 'do': 'python install.py', 'frozen': 1, 'commit': 'cb3325970e604725fe32ea5368063d714cf44012' }
+      \ { 'do': 'python install.py --clang-completer --tern-completer --gocode-completer' }
       \ | Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
 Plug 'airblade/vim-gitgutter'
 Plug 'benekastah/neomake'
@@ -621,6 +625,7 @@ Plug 'mtscout6/vim-cjsx'
 Plug 'saltstack/salt-vim'
 Plug 'ingo-library'
 Plug 'Shougo/deoplete.nvim'
+Plug 'bogado/file-line'
 
 call g:plug#end()
 " }}}
@@ -658,6 +663,8 @@ augroup jalcine
   au FileType css setl iskeyword+=-
   au FileType gitcommit setl spell
   au FileType markdown call textobj#quote#init()
+
+  autocmd InsertChange,TextChanged * update | Neomake
 augroup END
 " }}}
 

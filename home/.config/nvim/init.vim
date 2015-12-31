@@ -375,6 +375,7 @@ let g:javascript_conceal_static = '•'
 let g:javascript_conceal_super = 'Ω'
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:DevIconsEnableFoldersOpenClose = 1
+let g:deoplete#enable_at_startup = 1
 
 let g:gitgutter_diff_args = '-w'
 let g:gitgutter_sign_added = '++'
@@ -619,6 +620,7 @@ Plug 'kchmck/vim-coffee-script'
 Plug 'mtscout6/vim-cjsx'
 Plug 'saltstack/salt-vim'
 Plug 'ingo-library'
+Plug 'Shougo/deoplete.nvim'
 
 call g:plug#end()
 " }}}

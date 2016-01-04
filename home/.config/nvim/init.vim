@@ -472,7 +472,7 @@ let g:sunset_latitude = 40.7
 let g:sunset_longitude = -73.9
 
 " {{{ vim-airline options
-let g:airline_theme = 'jellybeans'
+let g:airline_theme = 'badwolf'
 let g:airline_detected_modified = 1
 let g:airline_powerline_fonts = 1
 let g:airline_detect_iminsert = 0
@@ -615,7 +615,6 @@ Plug 'jelera/vim-javascript-syntax'
 Plug 'Sunset'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'JulesWang/css.vim'
-Plug 'nanotech/jellybeans.vim'
 Plug 'rust-lang/rust.vim'
 Plug 'kana/vim-textobj-user'
 Plug 'reedes/vim-textobj-quote'
@@ -626,6 +625,7 @@ Plug 'saltstack/salt-vim'
 Plug 'ingo-library'
 Plug 'Shougo/deoplete.nvim'
 Plug 'bogado/file-line'
+Plug 'flazz/vim-colorschemes'
 
 call g:plug#end()
 " }}}
@@ -711,6 +711,6 @@ if filereadable("$HOME/.config/nvim/local.vim")
   source ~/.config/nvim/local.vim
 endif
 
-filetype plugin indent on 
+colorscheme badwolf
+filetype plugin indent on
 syntax enable
-colorscheme jellybeans

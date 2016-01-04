@@ -24,7 +24,7 @@ set tabstop=2 softtabstop=2 shiftwidth=2
 set expandtab
 set textwidth=80
 set nowrap
-" set cursorline cursorcolumn
+set cursorline cursorcolumn
 call matchadd('ColorColumn', '\%' . &textwidth . 'v', 80)
 
 set complete=.,w,b,u,U,i,d,t
@@ -389,7 +389,7 @@ let g:gitgutter_sign_modified_removed = '##'
 let g:github_user = 'jalcine'
 let g:github_comment_open_browser = 1
 let g:tagbar_compact=1
-let g:tagbar_autoclose=0
+let g:tagbar_autoclose=1
 let g:tagbar_iconchars = ['▸', '▾']
 let g:tagbar_autoshowtag = 1
 let g:tagbar_type_coffee = {
@@ -459,6 +459,7 @@ let g:indent_guides_guide_size = 1
 let g:indent_guides_start_level = 2
 let g:indent_guides_color_change_percent = 5
 let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'startify']
 
 let g:doxygen_enhanced_color = 1
 let g:load_doxygen_syntax = 1
@@ -719,6 +720,6 @@ if filereadable("$HOME/.config/nvim/local.vim")
   source ~/.config/nvim/local.vim
 endif
 
-colorscheme badwolf
 filetype plugin indent on
 syntax enable
+colorscheme distinguished

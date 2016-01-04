@@ -1,4 +1,4 @@
-" vim: set fdm=marker foldenable foldlevel=-1 nospell:
+" vim: set fdm=marker foldenable foldlevel=1 nospell:
 " File:          .config/nvim/init.vim
 " Author:        Jacky Alciné <yo@jacky.wtf>
 " Description:   The heart for Neovim.
@@ -71,6 +71,8 @@ set dictionary+=/usr/share/dict/propernames.gz
 set dictionary+=/usr/share/dict/connectives.gz
 set dictionary+=/usr/share/dict/web2a.gz
 set spellfile=~/.config/nvim/dict.custom.utf-8.add
+
+set cinoptions+='JN'
 
 "{{{ White spacing and Characters
 " A problem that plagued me for months, having visual cues for white spacing
@@ -377,6 +379,7 @@ let g:javascript_conceal_static = '•'
 let g:javascript_conceal_super = 'Ω'
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:DevIconsEnableFoldersOpenClose = 1
+let g:deoplete#enable_at_startup = 1
 
 let g:gitgutter_diff_args = '-w'
 let g:gitgutter_sign_added = '++'
@@ -399,6 +402,17 @@ let g:tagbar_type_coffee = {
         \ 'f:fields',
     \ ]
 \ }
+let g:tagbar_type_markdown = {
+  \ 'ctagstype' : 'markdown',
+  \ 'kinds' : [
+    \ 'h:Heading_L1',
+    \ 'i:Heading_L2',
+    \ 'k:Heading_L3',
+    \ 'l:Heading_L4',
+    \ 'm:Heading_L5',
+    \ 'n:Heading_L6'
+  \ ]
+\ }
 
 let g:jsdoc_additional_descriptions = 1
 let g:jsdoc_access_descriptions = 1
@@ -407,7 +421,6 @@ let g:jsdoc_allow_shorthand = 1
 let g:localvimrc_name = [ '.vimrc' ]
 let g:tern_show_argument_hints = 'on_hold'
 let g:tern_show_signature_in_pum = 1
-
 
 let s:custom_header =
       \ map(split(system('fortune | cowsay'), '\n'), '"   ". v:val') + ['','']
@@ -420,16 +433,14 @@ func! s:filter_header(lines) abort
 endfunc
 
 let g:startify_custom_header = s:filter_header(s:custom_header)
-
 let g:startify_files_number = 5
 let g:startify_change_to_dir = 0
 let g:startify_change_to_vcs_root = 0
 let g:startify_relative_path = 1
 let g:startify_bookmarks = [ '~/.config/nvim/init.vim', '~/.bashrc', '~/code' ]
+let g:startify_session_dir = '~/.config/nvim/sessions'
 
 let g:localvimrc_persistent = 1
-
-let g:startify_session_dir = '~/.config/nvim/sessions'
 
 let g:easytags_async = 1
 let g:easytags_syntax_keyword = 'always'
@@ -447,11 +458,11 @@ let g:easytags_languages = {
 let g:indent_guides_guide_size = 1
 let g:indent_guides_start_level = 2
 let g:indent_guides_color_change_percent = 5
-let g:indent_guides_enable_on_vim_startup = 0
+let g:indent_guides_enable_on_vim_startup = 1
 
 let g:doxygen_enhanced_color = 1
 let g:load_doxygen_syntax = 1
-let g:c_no_comment_fold = 0
+let g:c_no_comment_fold = 1
 
 let g:test_strategy = 'neovim'
 
@@ -469,7 +480,7 @@ let g:sunset_latitude = 40.7
 let g:sunset_longitude = -73.9
 
 " {{{ vim-airline options
-let g:airline_theme = 'jellybeans'
+let g:airline_theme = 'badwolf'
 let g:airline_detected_modified = 1
 let g:airline_powerline_fonts = 1
 let g:airline_detect_iminsert = 0
@@ -594,6 +605,8 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
+Plug 'shumphrey/fugitive-gitlab.vim'
+Plug 'tommcdo/vim-fubitive'
 Plug 'tpope/vim-jdaddy'
 Plug 'tpope/vim-rbenv'
 Plug 'tpope/vim-repeat'
@@ -609,7 +622,6 @@ Plug 'jelera/vim-javascript-syntax'
 Plug 'Sunset'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'JulesWang/css.vim'
-Plug 'nanotech/jellybeans.vim'
 Plug 'rust-lang/rust.vim'
 Plug 'kana/vim-textobj-user'
 Plug 'reedes/vim-textobj-quote'
@@ -621,6 +633,7 @@ Plug 'ingo-library'
 Plug 'bogado/file-line'
 Plug 'Shougo/deoplete.nvim'
 Plug 'jmcantrell/vim-virtualenv'
+Plug 'flazz/vim-colorschemes'
 
 call g:plug#end()
 " }}}
@@ -691,6 +704,6 @@ if filereadable("$HOME/.config/nvim/local.vim")
   source ~/.config/nvim/local.vim
 endif
 
-filetype plugin indent on 
+colorscheme badwolf
+filetype plugin indent on
 syntax enable
-colorscheme jellybeans

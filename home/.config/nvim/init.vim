@@ -12,7 +12,7 @@ scriptencoding utf-8
 
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
-set laststatus
+set laststatus=2
 set number relativenumber
 set path=.,/usr/local/include,/usr/include,$HOME/.local/include
 set visualbell
@@ -518,6 +518,7 @@ let g:NERDRemoveExtraSpaces = 1
 " {{{ ultisnips
 let g:snips_author = 'Jacky Alciné <yo@jacky.wtf>'
 let g:UltiSnipsEnableSnipMate = 1
+let g:UltiSnipsUsePythonVersion = 2
 let g:UltiSnipsEditSplit = 'context'
 let g:UltiSnipsExpandTrigger = '<c-l>'
 let g:UltiSnipsJumpBackwardTrigger = '<c-j>'
@@ -528,6 +529,8 @@ let g:UltiSnipsSnippetDirectories = ['Ultisnips']
 
 let g:vimsyn_folding='afpPr'
 let g:vimsyn_embed='Pr'
+
+let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
 " }}}
 
@@ -542,17 +545,13 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'Shougo/vimproc', { 'do': 'make' } | Plug 'Shougo/neomru.vim'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-Plug 'Shougo/unite.vim' | Plug 'zepto/unite-tmux' | Plug 'tsukkee/unite-tag' |
-      \  Plug 'lambdalisue/unite-grep-vcs' | Plug 'joker1007/unite-pull-request'
-      \ | Plug 'rafi/vim-unite-issue'
+Plug 'Shougo/unite.vim', { 'commit': 'fbb67ea93aaa', 'frozen': 1 }
+      \ | Plug 'zepto/unite-tmux' | Plug 'tsukkee/unite-tag'
 Plug 'TagHighlight'
 Plug 'bogado/file-line'
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'hynek/vim-python-pep8-indent'
 Plug 'Shougo/vimfiler.vim'
-Plug 'Valloric/YouCompleteMe',
-      \ { 'do': 'python install.py --clang-completer --tern-completer --gocode-completer' }
-      \ | Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
 Plug 'airblade/vim-gitgutter'
 Plug 'benekastah/neomake'
 Plug 'bling/vim-airline'
@@ -620,6 +619,8 @@ Plug 'mtscout6/vim-cjsx'
 Plug 'saltstack/salt-vim'
 Plug 'ingo-library'
 Plug 'bogado/file-line'
+Plug 'Shougo/deoplete.nvim'
+Plug 'jmcantrell/vim-virtualenv'
 
 call g:plug#end()
 " }}}
@@ -635,30 +636,15 @@ augroup jalcine
   au!
 
   " Funky files.
-  au BufReadPre *cpanfile   let &ft='perl'
-  au BufReadPre *pintofile  let &ft='perl'
-  au BufReadPre *.h++       let &ft='cpp'
-  au BufReadPre /usr/include/c++/* let &ft='cpp'
-  au BufReadPre *.gdb       let &ft='gdb'
-  au BufEnter   *           let &titlestring=expand('%:p')
-  au BufRead    *jscsrc     let &ft='json'
-  au BufRead    *jshintrc   let &ft='json'
-  au BufRead    *eslintrc   let &ft='json'
-  au BufWritePost * Neomake
-  " au User YouCompleteMe call youcompleteme#Enable()
-  au BufEnter   * setl relativenumber
-  au BufLeave   * setl norelativenumber
+  au User YouCompleteMe call youcompleteme#Enable()
 
   au BufWritePost *tmux*.conf call s:reload_tmux()
   au FileType unite call s:configure_unite_buffer()
 
   " Make sure we don't spell in certain windows.
-  au QuickFixCmdPre * setl nospell
   au FileType css setl iskeyword+=-
   au FileType gitcommit setl spell
   au FileType markdown call textobj#quote#init()
-
-  autocmd InsertChange,TextChanged * update | Neomake
 augroup END
 " }}}
 
@@ -686,11 +672,11 @@ call g:unite#custom#profile('source/grep', 'context', {
 call g:unite#custom#profile('default', 'context', {
       \   'start_insert': 1,
       \   'auto-resize': 1,
-      \   'winheight': 8,
+      \   'winheight': 15,
       \   'direction': 'botright'
       \ })
 
-call g:unite#custom#source('tag,file_rec/async', 'ignore_globs',
+call g:unite#custom#source('tag,file_rec/async,mru', 'ignore_globs',
       \ split(&wildignore, ','))
 
 func! s:configure_unite_buffer()

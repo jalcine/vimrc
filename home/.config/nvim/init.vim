@@ -402,6 +402,17 @@ let g:tagbar_type_coffee = {
         \ 'f:fields',
     \ ]
 \ }
+let g:tagbar_type_markdown = {
+  \ 'ctagstype' : 'markdown',
+  \ 'kinds' : [
+    \ 'h:Heading_L1',
+    \ 'i:Heading_L2',
+    \ 'k:Heading_L3',
+    \ 'l:Heading_L4',
+    \ 'm:Heading_L5',
+    \ 'n:Heading_L6'
+  \ ]
+\ }
 
 let g:jsdoc_additional_descriptions = 1
 let g:jsdoc_access_descriptions = 1
@@ -410,7 +421,6 @@ let g:jsdoc_allow_shorthand = 1
 let g:localvimrc_name = [ '.vimrc' ]
 let g:tern_show_argument_hints = 'on_hold'
 let g:tern_show_signature_in_pum = 1
-
 
 let s:custom_header =
       \ map(split(system('fortune | cowsay'), '\n'), '"   ". v:val') + ['','']
@@ -423,16 +433,14 @@ func! s:filter_header(lines) abort
 endfunc
 
 let g:startify_custom_header = s:filter_header(s:custom_header)
-
 let g:startify_files_number = 5
 let g:startify_change_to_dir = 0
 let g:startify_change_to_vcs_root = 0
 let g:startify_relative_path = 1
 let g:startify_bookmarks = [ '~/.config/nvim/init.vim', '~/.bashrc', '~/code' ]
+let g:startify_session_dir = '~/.config/nvim/sessions'
 
 let g:localvimrc_persistent = 1
-
-let g:startify_session_dir = '~/.config/nvim/sessions'
 
 let g:easytags_async = 1
 let g:easytags_syntax_keyword = 'always'
@@ -450,11 +458,11 @@ let g:easytags_languages = {
 let g:indent_guides_guide_size = 1
 let g:indent_guides_start_level = 2
 let g:indent_guides_color_change_percent = 5
-let g:indent_guides_enable_on_vim_startup = 0
+let g:indent_guides_enable_on_vim_startup = 1
 
 let g:doxygen_enhanced_color = 1
 let g:load_doxygen_syntax = 1
-let g:c_no_comment_fold = 0
+let g:c_no_comment_fold = 1
 
 let g:test_strategy = 'neovim'
 

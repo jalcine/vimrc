@@ -24,7 +24,7 @@ set tabstop=2 softtabstop=2 shiftwidth=2
 set expandtab
 set textwidth=80
 set nowrap
-set cursorline cursorcolumn
+set cursorcolumn
 call matchadd('ColorColumn', '\%' . &textwidth . 'v', 80)
 
 set complete=.,w,b,u,U,i,d,t
@@ -483,7 +483,7 @@ let g:sunset_latitude = 40.7
 let g:sunset_longitude = -73.9
 
 " {{{ vim-airline options
-let g:airline_theme = 'distinguished'
+let g:airline_theme = 'tomorrow'
 let g:airline_detected_modified = 1
 let g:airline_powerline_fonts = 0
 let g:airline_detect_iminsert = 0
@@ -710,4 +710,4 @@ endif
 
 filetype plugin indent on
 syntax enable
-colorscheme distinguished
+colorscheme Tomorrow-Night

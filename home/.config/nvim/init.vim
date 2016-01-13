@@ -137,6 +137,7 @@ iabbrev Wntr Wintermute
 " }}}
 " {{{ Shit I Fuck up A log
 iabbrev _repo repository
+iabbrev NOne None
 " }}}
 " }}}
 
@@ -232,6 +233,7 @@ nnoremap <silent> [tmux]s <ESC>:TmuxSend<CR>
 nnoremap <silent> [tmux]c <ESC>:TmuxChangeCommand<CR>
 nnoremap <silent> [tmux]S <ESC>:TmuxSendCommand<CR>
 nnoremap <silent> [tmux]p <ESC>:TmuxSelectPane<CR>
+nnoremap <silent> [tmux]C call tmux#tmux_cmd('reset')<CR>
 " }}}
 
 " Drop into the shell quick as hell.
@@ -481,9 +483,9 @@ let g:sunset_latitude = 40.7
 let g:sunset_longitude = -73.9
 
 " {{{ vim-airline options
-let g:airline_theme = 'badwolf'
+let g:airline_theme = 'distinguished'
 let g:airline_detected_modified = 1
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 let g:airline_detect_iminsert = 0
 let g:airline#extensions#hunks#non_zero_only = 1
 let g:airline#extensions#tabline#enabled = 1
@@ -635,6 +637,7 @@ Plug 'bogado/file-line'
 Plug 'Shougo/deoplete.nvim'
 Plug 'jmcantrell/vim-virtualenv'
 Plug 'flazz/vim-colorschemes'
+Plug 'rizzatti/dash.vim'
 
 call g:plug#end()
 " }}}

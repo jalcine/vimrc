@@ -6,6 +6,9 @@
 "
 " This is my peronal setup for NeoVim. It works ~exactly~ the
 " way I expect it to. Any different would trip me up.
+"
+" Some stuff for Vint.
+" vint: -ProhibitUnnecessaryDoubleQuote
 
 " UTF-8 NWA style
 scriptencoding utf-8
@@ -351,14 +354,14 @@ nnoremap <silent> <leader>k :call <SID>toggle_visibility()<cr>
 " }}}
 
 " {{{ Plugin Options
-let javaScript_fold=1
-let perl_fold=1
-let php_folding=1
-let r_syntax_folding=1
-let ruby_fold=1
-let sh_fold_enabled=1
-let vimsyn_folding='af'
-let xml_syntax_folding=1
+let g:javaScript_fold=1
+let g:perl_fold=1
+let g:php_folding=1
+let g:r_syntax_folding=1
+let g:ruby_fold=1
+let g:sh_fold_enabled=1
+let g:vimsyn_folding='af'
+let g:xml_syntax_folding=1
 let g:javascript_conceal = 1
 let g:xml_syntax_folding = 1
 let g:xml_namespace_transparent = 1
@@ -366,7 +369,6 @@ let g:notes_directories = ['~/Notes']
 let g:notes_suffix = '.txt'
 let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_define_wrapper_commands = 1
-let g:indentLine_noConcealCursor = ""
 let g:javascript_enable_domhtmlcss = 1
 let g:javascript_fold = 1
 let g:javascript_conceal_function = 'ƒ'
@@ -419,8 +421,8 @@ let s:custom_header =
 func! s:filter_header(lines) abort
   let l:longest_line = max(map(copy(a:lines), 'len(v:val)'))
   let l:centered_lines= map(copy(a:lines),
-        \ 'repeat(" ", (&columns / 2) - (longest_line / 2)) . v:val')
-  return centered_lines
+        \ 'repeat(" ", (&columns / 2) - (l:longest_line / 2)) . v:val')
+  return l:centered_lines
 endfunc
 
 let g:startify_custom_header = s:filter_header(s:custom_header)
@@ -447,10 +449,10 @@ let g:easytags_languages = {
       \ }
 
 let g:indent_guides_guide_size = 1
-let g:indent_guides_start_level = 2
-let g:indent_guides_color_change_percent = 5
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'startify']
+let g:indent_guides_start_level = 5
+let g:indent_guides_color_change_percent = 2
+let g:indent_guides_enable_on_vim_startup = 0
+let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'startify', 'tagbar']
 
 let g:doxygen_enhanced_color = 1
 let g:load_doxygen_syntax = 1
@@ -459,8 +461,10 @@ let g:c_no_comment_fold = 1
 let g:test_strategy = 'neovim'
 
 " {{{ neomake options
-let g:neomake_list_height = 5
-let g:neomake_serialize = 1
+let g:neomake_list_height = 3
+let g:neomake_open_list = 1
+let g:neomake_serialize = 0
+let g:neomake_serialize_abort_on_error = 1
 let g:neomake_verbose = 1
 let g:neomake_javascript_enabled_checkers = ['eslint', 'jscs']
 let g:neomake_python_enabled_checkers = ['pyflakes', 'pylint', 'python', 'pep8', 'flake8']
@@ -628,8 +632,8 @@ Plug 'jmcantrell/vim-virtualenv'
 Plug 'flazz/vim-colorschemes'
 Plug 'rizzatti/dash.vim'
 Plug 'lukaszkorecki/CoffeeTags'
-
 call g:plug#end()
+
 " }}}
 
 " {{{ personal augroup mods
@@ -653,6 +657,10 @@ augroup jalcine
   au FileType css setl iskeyword+=-
   au FileType gitcommit setl spell
   au FileType markdown call textobj#quote#init()
+
+  " Enable Neomake to run on builds.
+  autocmd! BufWritePost * Neomake
+  autocmd! BufReadPost * Neomake
 augroup END
 " }}}
 

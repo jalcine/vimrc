@@ -24,7 +24,6 @@ set tabstop=2 softtabstop=2 shiftwidth=2
 set expandtab
 set textwidth=80
 set nowrap
-set cursorcolumn
 call matchadd('ColorColumn', '\%' . &textwidth . 'v', 80)
 
 set complete=.,w,b,u,U,i,d,t
@@ -394,16 +393,6 @@ let g:tagbar_compact=1
 let g:tagbar_autoclose=1
 let g:tagbar_iconchars = ['▸', '▾']
 let g:tagbar_autoshowtag = 1
-let g:tagbar_type_coffee = {
-    \ 'ctagstype' : 'coffee',
-    \ 'kinds'     : [
-        \ 'c:classes',
-        \ 'm:methods',
-        \ 'f:functions',
-        \ 'v:variables',
-        \ 'f:fields',
-    \ ]
-\ }
 let g:tagbar_type_markdown = {
   \ 'ctagstype' : 'markdown',
   \ 'kinds' : [
@@ -483,7 +472,7 @@ let g:sunset_latitude = 40.7
 let g:sunset_longitude = -73.9
 
 " {{{ vim-airline options
-let g:airline_theme = 'tomorrow'
+let g:airline_theme = 'jellybeans'
 let g:airline_detected_modified = 1
 let g:airline_powerline_fonts = 0
 let g:airline_detect_iminsert = 0
@@ -638,6 +627,7 @@ Plug 'Shougo/deoplete.nvim'
 Plug 'jmcantrell/vim-virtualenv'
 Plug 'flazz/vim-colorschemes'
 Plug 'rizzatti/dash.vim'
+Plug 'lukaszkorecki/CoffeeTags'
 
 call g:plug#end()
 " }}}
@@ -655,7 +645,8 @@ augroup jalcine
   " Funky files.
   au User YouCompleteMe call youcompleteme#Enable()
 
-  au BufWritePost *tmux*.conf call s:reload_tmux()
+  au BufWritePost *tmux*.conf  call s:reload_tmux()
+  au BufWritePost *tmux/*.conf call s:reload_tmux()
   au FileType unite call s:configure_unite_buffer()
 
   " Make sure we don't spell in certain windows.
@@ -704,10 +695,10 @@ func! s:configure_unite_buffer()
 endfunc
 " }}}
 
+filetype plugin indent on
+syntax enable
+colorscheme xoria256
+
 if filereadable("$HOME/.config/nvim/local.vim")
   source ~/.config/nvim/local.vim
 endif
-
-filetype plugin indent on
-syntax enable
-colorscheme Tomorrow-Night

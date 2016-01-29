@@ -640,9 +640,9 @@ call g:plug#end()
 
 " {{{ personal augroup mods
 func! s:reload_tmux()
-  redraw | echomsg '[tmux -> vim] Sourced ' . expand('%:p') . '.' | redraw
+  redraw | echomsg '[tmux ➡️  vim] Sourced ' . expand('%:p') . '.' | redraw
   call system('tmux source-file ' . expand('%:p') . '; tmux display-message ' .
-        \ '"[tmux <- vim] Sourced ' . expand('%:p') . '"')
+        \ '"[tmux ⬅️  vim] Sourced ' . expand('%:p') . '"')
 endfunc
 
 augroup jalcine
@@ -690,7 +690,7 @@ call g:unite#custom#profile('source/grep', 'context', {
 call g:unite#custom#profile('default', 'context', {
       \   'start_insert': 1,
       \   'auto-resize': 1,
-      \   'winheight': 15,
+      \   'winheight': 5,
       \   'direction': 'botright'
       \ })
 
@@ -705,10 +705,10 @@ func! s:configure_unite_buffer()
 endfunc
 " }}}
 
-filetype plugin indent on
-syntax enable
-colorscheme xoria256
-
 if filereadable("$HOME/.config/nvim/local.vim")
   source ~/.config/nvim/local.vim
 endif
+
+colorscheme Tomorrow-Night-Bright
+filetype plugin indent on
+syntax enable

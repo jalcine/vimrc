@@ -13,3 +13,5 @@ Session.vim
 .netrwhist
 *~
 
+*.orig
+*.old

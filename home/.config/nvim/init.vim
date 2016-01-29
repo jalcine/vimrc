@@ -312,6 +312,7 @@ nnoremap <silent> <leader>p :call <SID>call_unite_files()<cr>
 " }}}
 
 " {{{ Git helpers
+command Greview :Git! diff --staged
 nnoremap [git] <nop>
 nmap <leader>g [git]
 nnoremap <silent> [git]a   :Git add<space>
@@ -327,6 +328,7 @@ nnoremap <silent> [git]p   :Git push<space>
 nnoremap <silent> [git]P   :Git push<CR>
 nnoremap <silent> [git]rm  :Gremove %<CR>
 nnoremap <silent> [git]rmc :Git rm --cached %<CR>
+nnoremap <silent> [git]r    :Greview<cr>
 " }}}
 
 " {{{ testing

@@ -248,71 +248,8 @@ cnoremap vhe vert help
 cnoremap sw% w !sudo tee %
 " }}}
 
-" {{{ Unite mappings
-func! s:call_unite(sources)
-  exec(':Unite -sync -unique -match-input -no-empty -immediately ' . a:sources)
-endfunc
-
-func! s:call_unite_tasks()
-  call s:call_unite('grep:.:-s:\(TODO\|todo\|NOTE\|note\|' .
-        \ 'FIXME\|fixme\|BUG\|bug)')
-endfunc
-
-func! s:call_unite_tmux()
-  call s:call_unite('tmux/panes tmux/sessions tmux/windows')
-endfunc
-
-func! s:call_unite_tags()
-  call s:call_unite('tag:$PWD tag/include:$PWD')
-endfunc
-
-func! s:call_unite_buffer()
-  call s:call_unite('buffer')
-endfunc
-
-func! s:call_unite_files()
-  return s:call_unite('file_rec/async file_mru')
-endfunc
-
-func! s:call_unite_local_grep()
-  return s:call_unite('grep:.:-R')
-endfunc
-
-func! s:call_unite_resume()
-  return s:call_unite('resume')
-endfunc
-
-function! s:call_unite_snippets()
-  return s:call_unite('ultisnips')
-endfunction
-
-function! s:call_unite_tabs()
-  return s:call_unite('tab')
-endfunction
-
-
-" Define a base mapping for Unite.
-nnoremap [unite] <nop>
-nmap <leader>u [unite]
-
-" Define the mappings.
-nnoremap <silent> [unite]<space> :call <SID>call_unite_resume()<cr>
-nnoremap <silent> [unite]b :call <SID>call_unite_buffer()<cr>
-nnoremap <silent> [unite]f :call <SID>call_unite_files()<cr>
-nnoremap <silent> [unite]g :call <SID>call_unite_local_grep()<cr>
-nnoremap <silent> [unite]t :call <SID>call_unite_tags()<cr>
-nnoremap <silent> [unite]a :call <SID>call_unite_tasks()<cr>
-nnoremap <silent> [unite]x :call <SID>call_unite_tmux()<cr>
-nnoremap <silent> [unite]u :call <SID>call_unite_snippets()<cr>
-nnoremap <silent> [unite]X :call <Plug>unite_disable_max_candidates()<CR>
-nnoremap <silent> [unite]T :call <SID>call_unite_tabs()<cr>
-
-" For those who end up using my machine but think it has CtrlP.
-nnoremap <silent> <leader>p :call <SID>call_unite_files()<cr>
-" }}}
-
 " {{{ Git helpers
-command Greview :Git! diff --staged
+command! Greview :Git! diff --staged
 nnoremap [git] <nop>
 nmap <leader>g [git]
 nnoremap <silent> [git]a   :Git add<space>
@@ -501,22 +438,6 @@ let g:airline_mode_map = {
       \ }
 " }}}
 
-" {{{ unite options
-let g:unite_prompt = '» '
-let g:unite_source_history_yank_enable = 1
-let g:unite_data_directory = '~/.config/nvim/cache-unite'
-let g:unite_enable_start_insert = 1
-
-" :h unite-source-grep
-let g:unite_source_grep_command = 'ag'
-let g:unite_source_grep_default_opts =
-  \ '-i --vimgrep --hidden --ignore ' .
-  \ '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
-let g:unite_source_grep_recursive_opt = ''
-
-
-" }}}
-
 " {{{ nerd*
 let g:NERDCreateDefaultMappings = 1
 let g:NERDCompactSexyComs = 1
@@ -556,8 +477,7 @@ Plug 'tomtom/quickfixsigns_vim'
 Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'Shougo/vimproc', { 'do': 'make' } | Plug 'Shougo/neomru.vim'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-Plug 'Shougo/unite.vim', { 'commit': 'fbb67ea93aaa', 'frozen': 1 }
-      \ | Plug 'zepto/unite-tmux' | Plug 'tsukkee/unite-tag'
+Plug 'ctrlp/ctrlp'
 Plug 'TagHighlight'
 Plug 'bogado/file-line'
 Plug 'MattesGroeger/vim-bookmarks'
@@ -701,10 +621,12 @@ call g:unite#custom#source('tag,file_rec/async,mru', 'ignore_globs',
       \ split(&wildignore, ','))
 
 func! s:configure_unite_buffer()
-  imap <silent><buffer><expr> <C-j>   <Plug>(unite_select_next_line)<CR>
-  imap <silent><buffer><expr> <C-k>   <Plug>(unite_select_previous_line)<CR>
-  imap <silent><buffer><expr> <C-p>   <Plug>(unite_auto_preview)<CR>
-  imap <silent><buffer><expr> <C-s>   unite#do_action('split')<CR>
+  imap <silent><buffer><expr> <C-j> <Plug>(unite_select_next_line)<CR>
+  imap <silent><buffer><expr> <C-k> <Plug>(unite_select_previous_line)<CR>
+  imap <silent><buffer><expr> <C-p> <Plug>(unite_auto_preview)<CR>
+  imap <silent><buffer><expr> <C-i> <Plug>(unite_input_directory)<cr>
+  imap <silent><buffer><expr> <F5>  <Plug>(unite_restart)<CR>
+  imap <silent><buffer><expr> <C-s> unite#do_action('split')<CR>
 endfunc
 " }}}
 
@@ -715,3 +637,4 @@ endif
 colorscheme Tomorrow-Night-Bright
 filetype plugin indent on
 syntax enable
+hi VertSplit ctermbg=NONE

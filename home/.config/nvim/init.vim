@@ -460,7 +460,7 @@ let g:ctrlp_regexp_search = 1
 let g:ctrlp_reuse_window = 'netrw\|help\|quickfix'
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_show_hidden = 1
-let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix'
+let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix',
       \ 'line', 'mixed'] 
 function! s:wig2cmd()
   " Change wildignore into space or | separated groups

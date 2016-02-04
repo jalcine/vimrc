@@ -576,7 +576,6 @@ augroup jalcine
 
   au BufWritePost *tmux*.conf  call s:reload_tmux()
   au BufWritePost *tmux/*.conf call s:reload_tmux()
-  au FileType unite call s:configure_unite_buffer()
 
   " Make sure we don't spell in certain windows.
   au FileType css setl iskeyword+=-
@@ -587,47 +586,6 @@ augroup jalcine
   autocmd! BufWritePost * Neomake
   autocmd! BufReadPost * Neomake
 augroup END
-" }}}
-
-" {{{ Tweaking Unite
-call g:unite#filters#matcher_default#use([
-      \ 'matcher_context',
-      \ 'matcher_project_files',
-      \ 'matcher_project_ignore_files',
-      \ 'matcher_hide_current_file'
-      \ ])
-
-call g:unite#filters#sorter_default#use([
-      \ 'sorter_rank',
-      \ 'sorter_ftime'
-      \ ])
-
-call g:unite#filters#converter_default#use([
-      \ 'converter_smart_path'
-      \ ])
-
-call g:unite#custom#profile('source/grep', 'context', {
-      \   'quit' : 1
-      \ })
-
-call g:unite#custom#profile('default', 'context', {
-      \   'start_insert': 1,
-      \   'auto-resize': 1,
-      \   'winheight': 5,
-      \   'direction': 'botright'
-      \ })
-
-call g:unite#custom#source('tag,file_rec/async,mru', 'ignore_globs',
-      \ split(&wildignore, ','))
-
-func! s:configure_unite_buffer()
-  imap <silent><buffer><expr> <C-j> <Plug>(unite_select_next_line)<CR>
-  imap <silent><buffer><expr> <C-k> <Plug>(unite_select_previous_line)<CR>
-  imap <silent><buffer><expr> <C-p> <Plug>(unite_auto_preview)<CR>
-  imap <silent><buffer><expr> <C-i> <Plug>(unite_input_directory)<cr>
-  imap <silent><buffer><expr> <F5>  <Plug>(unite_restart)<CR>
-  imap <silent><buffer><expr> <C-s> unite#do_action('split')<CR>
-endfunc
 " }}}
 
 if filereadable("$HOME/.config/nvim/local.vim")

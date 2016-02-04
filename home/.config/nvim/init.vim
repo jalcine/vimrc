@@ -409,6 +409,7 @@ let g:neomake_javascript_enabled_checkers = ['eslint', 'jscs']
 let g:neomake_python_enabled_checkers = ['pyflakes', 'pylint', 'python', 'pep8', 'flake8']
 let g:neomake_sh_enabled_checkers = ['shellcheck']
 let g:neomake_ruby_enabled_checkers = ['rubocop', 'mri']
+let g:neomake_vim_enabled_checkers = ['vint']
 " }}}
 
 " {{{ vim-airline options
@@ -566,7 +567,6 @@ Plug 'severin-lemaignan/vim-minimap'
 Plug 'elzr/vim-json'
 Plug 'merlinrebrovic/focus.vim'
 Plug 'jelera/vim-javascript-syntax'
-Plug 'Sunset'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'JulesWang/css.vim'
 Plug 'rust-lang/rust.vim'

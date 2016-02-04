@@ -411,9 +411,6 @@ let g:neomake_sh_enabled_checkers = ['shellcheck']
 let g:neomake_ruby_enabled_checkers = ['rubocop', 'mri']
 " }}}
 
-let g:sunset_latitude = 40.7
-let g:sunset_longitude = -73.9
-
 " {{{ vim-airline options
 let g:airline_theme = 'jellybeans'
 let g:airline_detected_modified = 1
@@ -456,6 +453,34 @@ let g:UltiSnipsJumpForwardTrigger = '<c-k>'
 let g:UltiSnipsSnippetDirectories = ['Ultisnips']
 " }}}
 
+" {{{ ctrlp
+let g:ctrlp_map = '<c-space>'
+let g:ctrlp_by_filename = 1
+let g:ctrlp_regexp_search = 1
+let g:ctrlp_reuse_window = 'netrw\|help\|quickfix'
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_show_hidden = 1
+let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix'
+      \ 'line', 'mixed'] 
+function! s:wig2cmd()
+  " Change wildignore into space or | separated groups
+  " e.g. .aux .out .toc .jpg .bmp .gif
+  " or   .aux$\|.out$\|.toc$\|.jpg$\|.bmp$\|.gif$
+  let pats = ['[*\/]*\([?_.0-9A-Za-z]\+\)\([*\/]*\)\(\\\@<!,\|$\)','\\\@<!,']
+  let subs = has('win32') || has('win64') ? ['\1\3', ' '] : ['\1\2\3', '\\|']
+  let expr = substitute(&wig, pats[0], subs[0], 'g')
+  let expr = substitute(expr, pats[1], subs[1], 'g')
+  let expr = substitute(expr, '\\,', ',', 'g')
+
+  " Set the user_command option
+  let g:ctrlp_user_command = has('win32') || has('win64')
+    \ ? 'dir %s /-n /b /s /a-d | findstr /V /l "'.expr.'"'
+    \ : 'find %s -type f | grep -v "'.expr .'"'
+endfunction
+
+call s:wig2cmd()
+
+" }}}
 
 let g:vimsyn_folding='afpPr'
 let g:vimsyn_embed='Pr'
@@ -477,7 +502,8 @@ Plug 'tomtom/quickfixsigns_vim'
 Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'Shougo/vimproc', { 'do': 'make' } | Plug 'Shougo/neomru.vim'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-Plug 'ctrlp/ctrlp'
+Plug 'ctrlpvim/ctrlp.vim' | Plug 'ivalkeen/vim-ctrlp-tjump' |
+      \ Plug 'sgur/ctrlp-extensions.vim'
 Plug 'TagHighlight'
 Plug 'bogado/file-line'
 Plug 'MattesGroeger/vim-bookmarks'

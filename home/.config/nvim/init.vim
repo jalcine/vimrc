@@ -15,6 +15,108 @@ scriptencoding utf-8
 
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
+" {{{ plugins
+
+" Set up vim-plug ▶️ https://github.com/junegunn/vim-plug#example
+
+call g:plug#begin('~/.config/nvim/plugins')
+
+Plug 'majutsushi/tagbar'
+Plug 'gcmt/taboo.vim'
+Plug 'Chiel92/vim-autoformat'
+Plug 'tomtom/quickfixsigns_vim'
+Plug 'PotatoesMaster/i3-vim-syntax'
+Plug 'Shougo/vimproc', { 'do': 'make' } | Plug 'Shougo/neomru.vim'
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'ctrlpvim/ctrlp.vim' | Plug 'ivalkeen/vim-ctrlp-tjump' |
+      \ Plug 'sgur/ctrlp-extensions.vim'
+Plug 'TagHighlight'
+Plug 'bogado/file-line'
+Plug 'MattesGroeger/vim-bookmarks'
+Plug 'hynek/vim-python-pep8-indent'
+Plug 'mhinz/vim-signify'
+Plug 'benekastah/neomake'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'bruno-/vim-man'
+Plug 'dsawardekar/portkey'
+Plug 'dsawardekar/ember.vim'
+Plug 'easymotion/vim-easymotion'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'elixir-lang/vim-elixir'
+Plug 'artur-shaik/vim-javacomplete2'
+Plug 'DonnieWest/VimStudio'
+Plug 'embear/vim-localvimrc'
+Plug 'gorodinskiy/vim-coloresque'
+Plug 'guns/xterm-color-table.vim'
+Plug 'heavenshell/vim-jsdoc'
+Plug 'heavenshell/vim-slack'
+Plug 'int3/vim-extradite'
+Plug 'isRuslan/vim-es6'
+Plug 'jalcine/cmake.vim'
+Plug 'janko-m/vim-test'
+Plug 'jaxbot/github-issues.vim'
+Plug 'jszakmeister/vim-togglecursor'
+Plug 'junegunn/vim-emoji'
+Plug 'marijnh/tern_for_vim', { 'do': 'npm install'}
+Plug 'mattn/emmet-vim'
+Plug 'mattn/gist-vim'
+Plug 'mattn/webapi-vim'
+Plug 'mhinz/vim-startify'
+Plug 'mmozuras/vim-github-comment'
+Plug 'moll/vim-node'
+Plug 'mustache/vim-mustache-handlebars'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'nsf/gocode', {'rtp': 'vim/'}
+Plug 'pangloss/vim-javascript'
+Plug 'plasticboy/vim-markdown'
+Plug 'scrooloose/nerdcommenter'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'tmux-plugins/vim-tmux'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-fugitive'
+Plug 'shumphrey/fugitive-gitlab.vim'
+Plug 'tommcdo/vim-fubitive'
+Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-jdaddy'
+Plug 'tpope/vim-rbenv'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-rsi'
+Plug 'tpope/vim-surround'
+Plug 'vim-ruby/vim-ruby'
+Plug 'xolox/vim-misc' | Plug 'xolox/vim-notes' | Plug 'xolox/vim-publish'
+      \ | Plug 'xolox/vim-shell' | Plug 'xolox/vim-easytags'
+Plug 'severin-lemaignan/vim-minimap'
+Plug 'elzr/vim-json'
+Plug 'merlinrebrovic/focus.vim'
+Plug 'jelera/vim-javascript-syntax'
+Plug 'hail2u/vim-css3-syntax'
+Plug 'JulesWang/css.vim'
+Plug 'rust-lang/rust.vim'
+Plug 'kana/vim-textobj-user'
+Plug 'reedes/vim-textobj-quote'
+Plug 'mjakl/vim-asciidoc'
+Plug 'kchmck/vim-coffee-script'
+Plug 'mtscout6/vim-cjsx'
+Plug 'saltstack/salt-vim'
+Plug 'ingo-library'
+Plug 'bogado/file-line'
+Plug 'Shougo/deoplete.nvim'
+Plug 'jmcantrell/vim-virtualenv'
+Plug 'flazz/vim-colorschemes'
+Plug 'rizzatti/dash.vim'
+Plug 'lukaszkorecki/CoffeeTags'
+Plug 'rking/ag.vim'
+Plug 'rizzatti/dash.vim'
+Plug 'ryanoasis/vim-devicons'
+call g:plug#end()
+
+" }}}
+
+" {{{ Options
+set encoding=utf-8
 set laststatus=2
 set number relativenumber
 set path=.,/usr/local/include,/usr/include,$HOME/.local/include
@@ -75,8 +177,9 @@ set dictionary+=/usr/share/dict/web2a.gz
 set spellfile=~/.config/nvim/dict.custom.utf-8.add
 
 set cinoptions+='JN'
+" }}}
 
-"{{{ White spacing and Characters
+" {{{2 White spacing and Characters
 " A problem that plagued me for months, having visual cues for white spacing
 " solves formatting problems a lot quicker. Also, we're using modern shells
 " (right?) so using UTF-8 characters for symbols should be a given.
@@ -100,7 +203,7 @@ set listchars+=tab:\|\
 set sidescrolloff=1
 "}}}
 
-" {{{ abbreviations
+" {{{2 abbreviations
 " {{{ Identifiers
 iabbrev me_email yo@jacky.wtf
 iabbrev me_name Jacky Alciné
@@ -163,8 +266,6 @@ nnoremap <silent> <leader>h :setlocal hlsearch!<cr>
 
 " Toggle the state of spelling locally.
 nnoremap <silent> <leader>sp :setlocal spell!<cr>
-
-nnoremap <silent> <F2> setlocal paste!<cr>
 
 " Cold turkey; no more arrows motions.
 nnoremap <silent> <up>    <nop>
@@ -305,7 +406,7 @@ let g:javascript_conceal = 1
 let g:xml_syntax_folding = 1
 let g:xml_namespace_transparent = 1
 let g:notes_directories = ['~/Notes']
-let g:notes_suffix = '.txt'
+let g:notes_suffix = '.markdown'
 let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_define_wrapper_commands = 1
 let g:javascript_enable_domhtmlcss = 1
@@ -324,14 +425,10 @@ let g:DevIconsEnableFoldersOpenClose = 1
 let g:deoplete#enable_at_startup = 1
 
 let g:gitgutter_diff_args = '-w'
-let g:gitgutter_sign_added = '++'
-let g:gitgutter_sign_modified = '**'
-let g:gitgutter_sign_removed = '--'
-let g:gitgutter_sign_modified_removed = '##'
 let g:github_user = 'jalcine'
 let g:github_comment_open_browser = 1
 let g:tagbar_compact=1
-let g:tagbar_autoclose=1
+let g:tagbar_autoclose=0
 let g:tagbar_iconchars = ['▸', '▾']
 let g:tagbar_autoshowtag = 1
 let g:tagbar_type_markdown = {
@@ -415,7 +512,7 @@ let g:neomake_vim_enabled_checkers = ['vint']
 " {{{ vim-airline options
 let g:airline_theme = 'jellybeans'
 let g:airline_detected_modified = 1
-let g:airline_powerline_fonts = 0
+let g:airline_powerline_fonts = 1
 let g:airline_detect_iminsert = 0
 let g:airline#extensions#hunks#non_zero_only = 1
 let g:airline#extensions#tabline#enabled = 1
@@ -490,102 +587,6 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
 " }}}
 
-" {{{ plugins
-
-" Set up vim-plug ▶️ https://github.com/junegunn/vim-plug#example
-
-call g:plug#begin('~/.config/nvim/plugins')
-
-Plug 'majutsushi/tagbar'
-Plug 'gcmt/taboo.vim'
-Plug 'Chiel92/vim-autoformat'
-Plug 'tomtom/quickfixsigns_vim'
-Plug 'PotatoesMaster/i3-vim-syntax'
-Plug 'Shougo/vimproc', { 'do': 'make' } | Plug 'Shougo/neomru.vim'
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-Plug 'ctrlpvim/ctrlp.vim' | Plug 'ivalkeen/vim-ctrlp-tjump' |
-      \ Plug 'sgur/ctrlp-extensions.vim'
-Plug 'TagHighlight'
-Plug 'bogado/file-line'
-Plug 'MattesGroeger/vim-bookmarks'
-Plug 'hynek/vim-python-pep8-indent'
-Plug 'Shougo/vimfiler.vim'
-Plug 'airblade/vim-gitgutter'
-Plug 'benekastah/neomake'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'bruno-/vim-man'
-Plug 'dsawardekar/portkey'
-Plug 'dsawardekar/ember.vim'
-Plug 'easymotion/vim-easymotion'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'elixir-lang/vim-elixir'
-Plug 'artur-shaik/vim-javacomplete2'
-Plug 'DonnieWest/VimStudio'
-Plug 'embear/vim-localvimrc'
-Plug 'gorodinskiy/vim-coloresque'
-Plug 'guns/xterm-color-table.vim'
-Plug 'heavenshell/vim-jsdoc'
-Plug 'heavenshell/vim-slack'
-Plug 'int3/vim-extradite'
-Plug 'isRuslan/vim-es6'
-Plug 'jalcine/cmake.vim'
-Plug 'janko-m/vim-test'
-Plug 'jaxbot/github-issues.vim'
-Plug 'jszakmeister/vim-togglecursor'
-Plug 'junegunn/vim-emoji'
-Plug 'marijnh/tern_for_vim', { 'do': 'npm install'}
-Plug 'mattn/emmet-vim'
-Plug 'mattn/gist-vim'
-Plug 'mattn/webapi-vim'
-Plug 'mhinz/vim-startify'
-Plug 'mmozuras/vim-github-comment'
-Plug 'moll/vim-node'
-Plug 'mustache/vim-mustache-handlebars'
-Plug 'nathanaelkane/vim-indent-guides'
-Plug 'nsf/gocode', {'rtp': 'vim/'}
-Plug 'pangloss/vim-javascript'
-Plug 'plasticboy/vim-markdown'
-Plug 'scrooloose/nerdcommenter'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'tmux-plugins/vim-tmux'
-Plug 'tpope/vim-dispatch'
-Plug 'tpope/vim-vinegar'
-Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-fugitive'
-Plug 'shumphrey/fugitive-gitlab.vim'
-Plug 'tommcdo/vim-fubitive'
-Plug 'tpope/vim-jdaddy'
-Plug 'tpope/vim-rbenv'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-rsi'
-Plug 'tpope/vim-surround'
-Plug 'vim-ruby/vim-ruby'
-Plug 'xolox/vim-misc' | Plug 'xolox/vim-notes' | Plug 'xolox/vim-publish'
-      \ | Plug 'xolox/vim-shell' | Plug 'xolox/vim-easytags'
-Plug 'severin-lemaignan/vim-minimap'
-Plug 'elzr/vim-json'
-Plug 'merlinrebrovic/focus.vim'
-Plug 'jelera/vim-javascript-syntax'
-Plug 'hail2u/vim-css3-syntax'
-Plug 'JulesWang/css.vim'
-Plug 'rust-lang/rust.vim'
-Plug 'kana/vim-textobj-user'
-Plug 'reedes/vim-textobj-quote'
-Plug 'mjakl/vim-asciidoc'
-Plug 'kchmck/vim-coffee-script'
-Plug 'mtscout6/vim-cjsx'
-Plug 'saltstack/salt-vim'
-Plug 'ingo-library'
-Plug 'bogado/file-line'
-Plug 'Shougo/deoplete.nvim'
-Plug 'jmcantrell/vim-virtualenv'
-Plug 'flazz/vim-colorschemes'
-Plug 'rizzatti/dash.vim'
-Plug 'lukaszkorecki/CoffeeTags'
-call g:plug#end()
-
-" }}}
 
 " {{{ personal augroup mods
 func! s:reload_tmux()
@@ -614,8 +615,8 @@ augroup jalcine
 augroup END
 " }}}
 
-if filereadable("$HOME/.config/nvim/local.vim")
-  source ~/.config/nvim/local.vim
+if filereadable(expand("$HOME/.config/nvim/local.vim"))
+  source $HOME/.config/nvim/local.vim
 endif
 
 colorscheme Tomorrow-Night-Bright

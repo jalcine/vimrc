@@ -77,6 +77,7 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-speeddating'
 Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'tommcdo/vim-fubitive'
 Plug 'tpope/vim-vinegar'
@@ -111,6 +112,9 @@ Plug 'lukaszkorecki/CoffeeTags'
 Plug 'rking/ag.vim'
 Plug 'rizzatti/dash.vim'
 Plug 'ryanoasis/vim-devicons'
+Plug 'saltstack/salt-vim'
+Plug 'stephpy/vim-yaml'
+Plug 'jceb/vim-orgmode'
 call g:plug#end()
 
 " }}}
@@ -177,6 +181,9 @@ set dictionary+=/usr/share/dict/web2a.gz
 set spellfile=~/.config/nvim/dict.custom.utf-8.add
 
 set cinoptions+='JN'
+if executable('ag')
+  set grepprg=ag\ --nogroup\ --nocolor
+endif
 " }}}
 
 " {{{2 White spacing and Characters
@@ -294,6 +301,8 @@ cnoremap <silent> <leader>pd <C-R>=strftime("%Y-%m-%d")<CR>
 " Strip trailing whitespace from the end of files.
 nnoremap <silent> <leader>sw :%s/\s$//g<cr>
 
+nnoremap <silent> <leader>ei :%s/:\([^:]\+\):/\=emoji#for(submatch(1), submatch(0))/g<cr>
+
 " Formats the current buffer.
 nnoremap <silent><F3> :Autoformat<CR><CR>
 
@@ -390,6 +399,9 @@ endfunc
 
 " Toggle the visibilty of non-text characters and conceals.
 nnoremap <silent> <leader>k :call <SID>toggle_visibility()<cr>
+
+" Quickly searches using the awesome stuff.
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " }}}
 
@@ -497,8 +509,8 @@ let g:c_no_comment_fold = 1
 let g:test_strategy = 'neovim'
 
 " {{{ neomake options
-let g:neomake_list_height = 3
-let g:neomake_open_list = 1
+let g:neomake_list_height = 5
+let g:neomake_open_list = 2
 let g:neomake_serialize = 0
 let g:neomake_serialize_abort_on_error = 1
 let g:neomake_verbose = 1
@@ -510,7 +522,7 @@ let g:neomake_vim_enabled_checkers = ['vint']
 " }}}
 
 " {{{ vim-airline options
-let g:airline_theme = 'jellybeans'
+let g:airline_theme = 'tomorrow'
 let g:airline_detected_modified = 1
 let g:airline_powerline_fonts = 1
 let g:airline_detect_iminsert = 0
@@ -558,6 +570,7 @@ let g:ctrlp_regexp_search = 1
 let g:ctrlp_reuse_window = 'netrw\|help\|quickfix'
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_show_hidden = 1
+let g:ctrlp_use_caching = has('win32') || has('win64')
 let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix',
       \ 'line', 'mixed'] 
 function! s:wig2cmd()
@@ -573,8 +586,14 @@ function! s:wig2cmd()
   " Set the user_command option
   let g:ctrlp_user_command = has('win32') || has('win64')
     \ ? 'dir %s /-n /b /s /a-d | findstr /V /l "'.expr.'"'
-    \ : 'find %s -type f | grep -v "'.expr .'"'
+    \ :'ag %s -l --nocolor -g "" --vimgrep --smartcase --noheading'
 endfunction
+
+" {{{ ag
+
+let g:ag_prg="ag --vimgrep --smart-case --noheading"
+let g:ag_highlight=1
+
 
 call s:wig2cmd()
 

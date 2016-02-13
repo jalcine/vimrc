@@ -181,6 +181,7 @@ set dictionary+=/usr/share/dict/web2a.gz
 set spellfile=~/.config/nvim/dict.custom.utf-8.add
 
 set cinoptions+='JN'
+
 if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 endif
@@ -564,38 +565,33 @@ let g:UltiSnipsSnippetDirectories = ['Ultisnips']
 " }}}
 
 " {{{ ctrlp
-let g:ctrlp_map = '<c-space>'
+" let g:ctrlp_map = '<c-space>'
 let g:ctrlp_by_filename = 1
 let g:ctrlp_regexp_search = 1
 let g:ctrlp_reuse_window = 'netrw\|help\|quickfix'
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_show_hidden = 1
-let g:ctrlp_use_caching = has('win32') || has('win64')
-let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix',
-      \ 'line', 'mixed'] 
-function! s:wig2cmd()
-  " Change wildignore into space or | separated groups
-  " e.g. .aux .out .toc .jpg .bmp .gif
-  " or   .aux$\|.out$\|.toc$\|.jpg$\|.bmp$\|.gif$
-  let pats = ['[*\/]*\([?_.0-9A-Za-z]\+\)\([*\/]*\)\(\\\@<!,\|$\)','\\\@<!,']
-  let subs = has('win32') || has('win64') ? ['\1\3', ' '] : ['\1\2\3', '\\|']
-  let expr = substitute(&wig, pats[0], subs[0], 'g')
-  let expr = substitute(expr, pats[1], subs[1], 'g')
-  let expr = substitute(expr, '\\,', ',', 'g')
+" let g:ctrlp_working_path_mode = 'ra'
+" let g:ctrlp_show_hidden = 1
+" let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix',
+      " \ 'line', 'mixed'] 
 
-  " Set the user_command option
-  let g:ctrlp_user_command = has('win32') || has('win64')
-    \ ? 'dir %s /-n /b /s /a-d | findstr /V /l "'.expr.'"'
-    \ :'ag %s -l --nocolor -g "" --vimgrep --smartcase --noheading'
-endfunction
+" function! s:wig2cmd()
+  " let pats = ['[*\/]*\([?_.0-9A-Za-z]\+\)\([*\/]*\)\(\\\@<!,\|$\)','\\\@<!,']
+  " let subs = has('win32') || has('win64') ? ['\1\3', ' '] : ['\1\2\3', '\\|']
+  " let expr = substitute(&wig, pats[0], subs[0], 'g')
+  " let expr = substitute(expr, pats[1], subs[1], 'g')
+  " let expr = substitute(expr, '\\,', ',', 'g')
+
+  " let g:ctrlp_user_command = has('win32') || has('win64')
+    " \ ? 'dir %s /-n /b /s /a-d | findstr /V /l "'.expr.'"'
+    " \ : 'ag %s -l --nocolor -g "" --vimgrep --smartcase --noheading'
+" endfunction
 
 " {{{ ag
 
 let g:ag_prg="ag --vimgrep --smart-case --noheading"
 let g:ag_highlight=1
 
-
-call s:wig2cmd()
+" call s:wig2cmd()
 
 " }}}
 

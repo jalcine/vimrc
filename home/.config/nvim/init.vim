@@ -11,6 +11,7 @@
 " vint: -ProhibitUnnecessaryDoubleQuote
 
 " UTF-8 NWA style
+set encoding=utf-8
 scriptencoding utf-8
 
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
@@ -120,7 +121,6 @@ call g:plug#end()
 " }}}
 
 " {{{ Options
-set encoding=utf-8
 set laststatus=2
 set number relativenumber
 set path=.,/usr/local/include,/usr/include,$HOME/.local/include
@@ -523,7 +523,7 @@ let g:neomake_vim_enabled_checkers = ['vint']
 " }}}
 
 " {{{ vim-airline options
-let g:airline_theme = 'tomorrow'
+let g:airline_theme = 'jellybeans'
 let g:airline_detected_modified = 1
 let g:airline_powerline_fonts = 1
 let g:airline_detect_iminsert = 0
@@ -634,7 +634,7 @@ if filereadable(expand("$HOME/.config/nvim/local.vim"))
   source $HOME/.config/nvim/local.vim
 endif
 
-colorscheme Tomorrow-Night-Bright
+colorscheme jellybeans
 filetype plugin indent on
 syntax enable
 hi VertSplit ctermbg=NONE

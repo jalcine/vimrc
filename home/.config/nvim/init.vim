@@ -18,7 +18,7 @@ let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 " {{{ plugins
 
-" Set up vim-plug ▶️ https://github.com/junegunn/vim-plug#example
+" Set up vim-plug ▶️  https://github.com/junegunn/vim-plug#example
 
 call g:plug#begin('~/.config/nvim/plugins')
 
@@ -116,6 +116,8 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'saltstack/salt-vim'
 Plug 'stephpy/vim-yaml'
 Plug 'jceb/vim-orgmode'
+Plug 'derekwyatt/vim-scala'
+Plug 'kien/rainbow_parentheses.vim'
 call g:plug#end()
 
 " }}}
@@ -154,8 +156,7 @@ set wildignore+=*.swp,*.pyc,*.bak,*.class,*.orig
 set wildignore+=.git,.hg,.bzr,.svn
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg,*.svg
 set wildignore+=build/*,tmp/*,vendor/cache/*,bin/*
-set wildignore+=.sass-cache/*
-set wildignore+=*node_modules/*
+set wildignore+=.sass-cache/*,*node_modules/*,*/target/*
 
 set undodir=~/.config/nvim/undodir
 set undofile
@@ -510,11 +511,11 @@ let g:c_no_comment_fold = 1
 let g:test_strategy = 'neovim'
 
 " {{{ neomake options
-let g:neomake_list_height = 5
-let g:neomake_open_list = 2
+let g:neomake_list_height = 3
+let g:neomake_open_list = 0
 let g:neomake_serialize = 0
 let g:neomake_serialize_abort_on_error = 1
-let g:neomake_verbose = 1
+let g:neomake_verbose = 0
 let g:neomake_javascript_enabled_checkers = ['eslint', 'jscs']
 let g:neomake_python_enabled_checkers = ['pyflakes', 'pylint', 'python', 'pep8', 'flake8']
 let g:neomake_sh_enabled_checkers = ['shellcheck']
@@ -526,7 +527,7 @@ let g:neomake_vim_enabled_checkers = ['vint']
 let g:airline_theme = 'jellybeans'
 let g:airline_detected_modified = 1
 let g:airline_powerline_fonts = 1
-let g:airline_detect_iminsert = 0
+let g:airline_detect_iminsert = 1
 let g:airline#extensions#hunks#non_zero_only = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#branch#enabled = 1
@@ -536,6 +537,8 @@ let g:airline#extensions#whitespace#show_message = 1
 let g:airline#extensions#whitespace#trailing_format = 's:[%s]'
 let g:airline#extensions#whitespace#mixed_indent_format = 'i:[%s]'
 let g:airline#extensions#tagbar#flags = 'f'
+let g:airline_left_sep = "\uE0B4"
+let g:airline_right_sep = "\uE0B6"
 let g:airline_mode_map = {
       \ '__' : '-',
       \ 'n'  : 'N',
@@ -602,7 +605,6 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
 " }}}
 
-
 " {{{ personal augroup mods
 func! s:reload_tmux()
   redraw | echomsg '[tmux ➡️  vim] Sourced ' . expand('%:p') . '.' | redraw
@@ -637,4 +639,5 @@ endif
 colorscheme jellybeans
 filetype plugin indent on
 syntax enable
-hi VertSplit ctermbg=NONE
+hi Folded ctermbg=NONE
+hi SignColumn ctermbg=NONE

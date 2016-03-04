@@ -22,17 +22,23 @@ let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 call g:plug#begin('~/.config/nvim/plugins')
 
+" {{{ Core Plugins
+" These plugins help me work on other file formats.
+Plug 'PotatoesMaster/i3-vim-syntax'
+
+" {{{ Editor Enhancements
+" I use these plugins to make searching for, manipulating and working with code a
+" lot easier.
 Plug 'majutsushi/tagbar'
-Plug 'gcmt/taboo.vim'
 Plug 'Chiel92/vim-autoformat'
 Plug 'tomtom/quickfixsigns_vim'
-Plug 'PotatoesMaster/i3-vim-syntax'
-Plug 'Shougo/vimproc', { 'do': 'make' } | Plug 'Shougo/neomru.vim'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'ctrlpvim/ctrlp.vim' | Plug 'ivalkeen/vim-ctrlp-tjump' |
       \ Plug 'sgur/ctrlp-extensions.vim'
 Plug 'TagHighlight'
 Plug 'bogado/file-line'
+
+" {{{ Syntax Enhancements
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'hynek/vim-python-pep8-indent'
 Plug 'mhinz/vim-signify'

@@ -25,7 +25,6 @@ call g:plug#begin('~/.config/nvim/plugins')
 Plug 'Chiel92/vim-autoformat'
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'PotatoesMaster/i3-vim-syntax'
-Plug 'Shougo/deoplete.nvim'
 Plug 'SirVer/ultisnips'
 Plug 'TagHighlight'
 Plug 'benekastah/neomake'

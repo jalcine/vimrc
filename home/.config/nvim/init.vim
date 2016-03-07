@@ -552,7 +552,6 @@ let g:ctrlp_tjump_skip_tag_name = 1
 " {{{ vim-bookmarks
 let g:bookmark_sign = '☰'
 let g:bookmark_highlight_lines = 1
-let g:bookmark_auto_save_file = '~/.config/nvim/bookmarks.txt'
 " "}}
 
 " {{{ ag

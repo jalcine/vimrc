@@ -22,108 +22,78 @@ let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 call g:plug#begin('~/.config/nvim/plugins')
 
-" {{{ Core Plugins
-" These plugins help me work on other file formats.
-Plug 'PotatoesMaster/i3-vim-syntax'
-
-" {{{ Editor Enhancements
-" I use these plugins to make searching for, manipulating and working with code a
-" lot easier.
-Plug 'majutsushi/tagbar'
 Plug 'Chiel92/vim-autoformat'
-Plug 'tomtom/quickfixsigns_vim'
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-Plug 'ctrlpvim/ctrlp.vim' | Plug 'ivalkeen/vim-ctrlp-tjump' |
-      \ Plug 'sgur/ctrlp-extensions.vim'
-Plug 'TagHighlight'
-Plug 'bogado/file-line'
-
-" {{{ Syntax Enhancements
 Plug 'MattesGroeger/vim-bookmarks'
-Plug 'hynek/vim-python-pep8-indent'
-Plug 'mhinz/vim-signify'
+Plug 'PotatoesMaster/i3-vim-syntax'
+Plug 'Shougo/deoplete.nvim'
+Plug 'SirVer/ultisnips'
+Plug 'TagHighlight'
 Plug 'benekastah/neomake'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'bogado/file-line'
 Plug 'bruno-/vim-man'
-Plug 'dsawardekar/portkey'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'dsawardekar/ember.vim'
-Plug 'easymotion/vim-easymotion'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'elixir-lang/vim-elixir'
-Plug 'artur-shaik/vim-javacomplete2'
-Plug 'DonnieWest/VimStudio'
 Plug 'embear/vim-localvimrc'
+Plug 'flazz/vim-colorschemes'
 Plug 'gorodinskiy/vim-coloresque'
-Plug 'guns/xterm-color-table.vim'
 Plug 'heavenshell/vim-jsdoc'
 Plug 'heavenshell/vim-slack'
+Plug 'honza/vim-snippets'
 Plug 'int3/vim-extradite'
 Plug 'isRuslan/vim-es6'
-Plug 'jalcine/cmake.vim'
-Plug 'janko-m/vim-test'
+Plug 'ivalkeen/vim-ctrlp-tjump'
 Plug 'jaxbot/github-issues.vim'
+Plug 'jceb/vim-orgmode'
+Plug 'jmcantrell/vim-virtualenv'
 Plug 'jszakmeister/vim-togglecursor'
 Plug 'junegunn/vim-emoji'
-Plug 'marijnh/tern_for_vim', { 'do': 'npm install'}
-Plug 'mattn/emmet-vim'
+Plug 'kana/vim-textobj-user'
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'majutsushi/tagbar'
+Plug 'marijnh/tern_for_vim', { 'do': 'npm install', 'for': 'javascript' }
 Plug 'mattn/gist-vim'
 Plug 'mattn/webapi-vim'
+Plug 'merlinrebrovic/focus.vim'
+Plug 'mhinz/vim-signify'
 Plug 'mhinz/vim-startify'
 Plug 'mmozuras/vim-github-comment'
-Plug 'moll/vim-node'
+Plug 'moll/vim-node', { 'for': 'javascript' }
+Plug 'mtscout6/vim-cjsx'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'nsf/gocode', {'rtp': 'vim/'}
-Plug 'pangloss/vim-javascript'
-Plug 'plasticboy/vim-markdown'
-Plug 'scrooloose/nerdcommenter'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'tmux-plugins/vim-tmux'
-Plug 'tpope/vim-dispatch'
-Plug 'tpope/vim-vinegar'
-Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-speeddating'
-Plug 'shumphrey/fugitive-gitlab.vim'
-Plug 'tommcdo/vim-fubitive'
-Plug 'tpope/vim-vinegar'
-Plug 'tpope/vim-jdaddy'
-Plug 'tpope/vim-rbenv'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-rsi'
-Plug 'tpope/vim-surround'
-Plug 'vim-ruby/vim-ruby'
-Plug 'xolox/vim-misc' | Plug 'xolox/vim-notes' | Plug 'xolox/vim-publish'
-      \ | Plug 'xolox/vim-shell' | Plug 'xolox/vim-easytags'
-Plug 'severin-lemaignan/vim-minimap'
-Plug 'elzr/vim-json'
-Plug 'merlinrebrovic/focus.vim'
-Plug 'jelera/vim-javascript-syntax'
-Plug 'hail2u/vim-css3-syntax'
-Plug 'JulesWang/css.vim'
-Plug 'rust-lang/rust.vim'
-Plug 'kana/vim-textobj-user'
 Plug 'reedes/vim-textobj-quote'
-Plug 'mjakl/vim-asciidoc'
-Plug 'kchmck/vim-coffee-script'
-Plug 'mtscout6/vim-cjsx'
-Plug 'saltstack/salt-vim'
-Plug 'ingo-library'
-Plug 'bogado/file-line'
-Plug 'Shougo/deoplete.nvim'
-Plug 'jmcantrell/vim-virtualenv'
-Plug 'flazz/vim-colorschemes'
 Plug 'rizzatti/dash.vim'
-Plug 'lukaszkorecki/CoffeeTags'
 Plug 'rking/ag.vim'
-Plug 'rizzatti/dash.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'saltstack/salt-vim'
-Plug 'stephpy/vim-yaml'
-Plug 'jceb/vim-orgmode'
-Plug 'derekwyatt/vim-scala'
-Plug 'kien/rainbow_parentheses.vim'
+Plug 'scrooloose/nerdcommenter'
+Plug 'sgur/ctrlp-extensions.vim'
+Plug 'sheerun/vim-polyglot'
+Plug 'shumphrey/fugitive-gitlab.vim'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'tmux-plugins/vim-tmux'
+Plug 'tommcdo/vim-fubitive'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-jdaddy'
+Plug 'tpope/vim-rbenv', { 'for': 'ruby' }
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-rsi'
+Plug 'tpope/vim-speeddating'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-vinegar'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+Plug 'xolox/vim-easytags'
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-notes'
+Plug 'xolox/vim-publish'
+Plug 'xolox/vim-shell'
+
 call g:plug#end()
 
 " }}}
@@ -346,19 +316,6 @@ nnoremap <silent> [loclist]p <ESC>:lprevious<CR>
 nnoremap <silent> [loclist]x <ESC>:lclose<CR>
 " }}}
 
-" {{{ tmux mappings
-nnoremap [tmux] <nop>
-nmap <leader>t [tmux]
-nnoremap <silent> [tmux]s <ESC>:TmuxSend<CR>
-nnoremap <silent> [tmux]c <ESC>:TmuxChangeCommand<CR>
-nnoremap <silent> [tmux]S <ESC>:TmuxSendCommand<CR>
-nnoremap <silent> [tmux]p <ESC>:TmuxSelectPane<CR>
-nnoremap <silent> [tmux]C call tmux#tmux_cmd('reset')<CR>
-" }}}
-
-" Drop into the shell quick as hell.
-cnoremap !sh :shell<CR>
-
 " Rewrite 'vhe' to 'vert help'.
 cnoremap vhe vert help
 
@@ -411,6 +368,12 @@ nnoremap <silent> <leader>k :call <SID>toggle_visibility()<cr>
 " Quickly searches using the awesome stuff.
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
+" {{{ CtrlP
+" Search across tags
+nnoremap <c-]> :CtrlPtjump<cr>
+vnoremap <c-]> :CtrlPtjumpVisual<cr>
+" }}}
+
 " }}}
 
 " {{{ Plugin Options
@@ -447,10 +410,12 @@ let g:deoplete#enable_at_startup = 1
 let g:gitgutter_diff_args = '-w'
 let g:github_user = 'jalcine'
 let g:github_comment_open_browser = 1
+let g:tagbar_left=1
 let g:tagbar_compact=1
+let g:tagbar_autofocus=1
 let g:tagbar_autoclose=0
 let g:tagbar_iconchars = ['▸', '▾']
-let g:tagbar_autoshowtag = 1
+let g:tagbar_autoshowtag=1
 let g:tagbar_type_markdown = {
   \ 'ctagstype' : 'markdown',
   \ 'kinds' : [
@@ -486,7 +451,7 @@ let g:startify_files_number = 5
 let g:startify_change_to_dir = 0
 let g:startify_change_to_vcs_root = 0
 let g:startify_relative_path = 1
-let g:startify_bookmarks = [ '~/.config/nvim/init.vim', '~/.bashrc', '~/code' ]
+let g:startify_bookmarks = [ '~/.config/nvim/init.vim', '~/.bashrc', '~/prjs' ]
 let g:startify_session_dir = '~/.config/nvim/sessions'
 
 let g:localvimrc_persistent = 1
@@ -574,34 +539,25 @@ let g:UltiSnipsSnippetDirectories = ['Ultisnips']
 " }}}
 
 " {{{ ctrlp
-" let g:ctrlp_map = '<c-space>'
 let g:ctrlp_by_filename = 1
 let g:ctrlp_regexp_search = 1
 let g:ctrlp_reuse_window = 'netrw\|help\|quickfix'
-" let g:ctrlp_working_path_mode = 'ra'
-" let g:ctrlp_show_hidden = 1
-" let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix',
-      " \ 'line', 'mixed'] 
+let g:ctrlp_show_hidden=1
+let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix',
+      \ 'line', 'mixed']
+let g:ctrlp_tjump_only_silent = 1
+let g:ctrlp_tjump_skip_tag_name = 1
+" }}}
 
-" function! s:wig2cmd()
-  " let pats = ['[*\/]*\([?_.0-9A-Za-z]\+\)\([*\/]*\)\(\\\@<!,\|$\)','\\\@<!,']
-  " let subs = has('win32') || has('win64') ? ['\1\3', ' '] : ['\1\2\3', '\\|']
-  " let expr = substitute(&wig, pats[0], subs[0], 'g')
-  " let expr = substitute(expr, pats[1], subs[1], 'g')
-  " let expr = substitute(expr, '\\,', ',', 'g')
-
-  " let g:ctrlp_user_command = has('win32') || has('win64')
-    " \ ? 'dir %s /-n /b /s /a-d | findstr /V /l "'.expr.'"'
-    " \ : 'ag %s -l --nocolor -g "" --vimgrep --smartcase --noheading'
-" endfunction
+" {{{ vim-bookmarks
+let g:bookmark_sign = '☰'
+let g:bookmark_highlight_lines = 1
+let g:bookmark_auto_save_file = '~/.config/nvim/bookmarks.txt'
+" "}}
 
 " {{{ ag
-
 let g:ag_prg="ag --vimgrep --smart-case --noheading"
 let g:ag_highlight=1
-
-" call s:wig2cmd()
-
 " }}}
 
 let g:vimsyn_folding='afpPr'

@@ -602,4 +602,5 @@ colorscheme jellybeans
 filetype plugin indent on
 syntax enable
 hi Folded ctermbg=NONE
+hi FoldColumn ctermbg=NONE
 hi SignColumn ctermbg=NONE

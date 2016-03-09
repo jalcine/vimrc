@@ -92,6 +92,10 @@ Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'
 Plug 'xolox/vim-publish'
 Plug 'xolox/vim-shell'
+Plug 'kopischke/vim-stay'
+Plug 'Konfekt/FastFold'
+Plug 'Shougo/deoplete.nvim'
+Plug 'StanAngeloff/php.vim'
 
 call g:plug#end()
 
@@ -139,7 +143,6 @@ set undofile
 set cpoptions+=d
 
 set foldenable
-set foldmethod=syntax
 set foldcolumn=1
 set foldlevel=1
 set foldminlines=3

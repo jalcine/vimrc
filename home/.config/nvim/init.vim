@@ -11,115 +11,106 @@
 " vint: -ProhibitUnnecessaryDoubleQuote
 
 " UTF-8 NWA style
+set encoding=utf-8
 scriptencoding utf-8
 
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 " {{{ plugins
 
-" Set up vim-plug ▶️ https://github.com/junegunn/vim-plug#example
+" Set up vim-plug ▶️  https://github.com/junegunn/vim-plug#example
 
 call g:plug#begin('~/.config/nvim/plugins')
 
-Plug 'majutsushi/tagbar'
-Plug 'gcmt/taboo.vim'
 Plug 'Chiel92/vim-autoformat'
-Plug 'tomtom/quickfixsigns_vim'
-Plug 'PotatoesMaster/i3-vim-syntax'
-Plug 'Shougo/vimproc', { 'do': 'make' } | Plug 'Shougo/neomru.vim'
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-Plug 'ctrlpvim/ctrlp.vim' | Plug 'ivalkeen/vim-ctrlp-tjump' |
-      \ Plug 'sgur/ctrlp-extensions.vim'
-Plug 'TagHighlight'
-Plug 'bogado/file-line'
 Plug 'MattesGroeger/vim-bookmarks'
-Plug 'hynek/vim-python-pep8-indent'
-Plug 'mhinz/vim-signify'
+Plug 'PotatoesMaster/i3-vim-syntax'
+Plug 'SirVer/ultisnips'
+Plug 'TagHighlight'
 Plug 'benekastah/neomake'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'bogado/file-line'
 Plug 'bruno-/vim-man'
-Plug 'dsawardekar/portkey'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'dsawardekar/ember.vim'
-Plug 'easymotion/vim-easymotion'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'elixir-lang/vim-elixir'
-Plug 'artur-shaik/vim-javacomplete2'
-Plug 'DonnieWest/VimStudio'
 Plug 'embear/vim-localvimrc'
+Plug 'flazz/vim-colorschemes'
 Plug 'gorodinskiy/vim-coloresque'
-Plug 'guns/xterm-color-table.vim'
 Plug 'heavenshell/vim-jsdoc'
 Plug 'heavenshell/vim-slack'
+Plug 'honza/vim-snippets'
 Plug 'int3/vim-extradite'
 Plug 'isRuslan/vim-es6'
-Plug 'jalcine/cmake.vim'
-Plug 'janko-m/vim-test'
+Plug 'ivalkeen/vim-ctrlp-tjump'
 Plug 'jaxbot/github-issues.vim'
+Plug 'jceb/vim-orgmode'
+Plug 'jmcantrell/vim-virtualenv'
 Plug 'jszakmeister/vim-togglecursor'
 Plug 'junegunn/vim-emoji'
-Plug 'marijnh/tern_for_vim', { 'do': 'npm install'}
-Plug 'mattn/emmet-vim'
+Plug 'kana/vim-textobj-user'
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'majutsushi/tagbar'
+Plug 'marijnh/tern_for_vim', { 'do': 'npm install', 'for': 'javascript' }
 Plug 'mattn/gist-vim'
 Plug 'mattn/webapi-vim'
+Plug 'merlinrebrovic/focus.vim'
+Plug 'mhinz/vim-signify'
 Plug 'mhinz/vim-startify'
 Plug 'mmozuras/vim-github-comment'
-Plug 'moll/vim-node'
+Plug 'moll/vim-node', { 'for': 'javascript' }
+Plug 'mtscout6/vim-cjsx'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'nsf/gocode', {'rtp': 'vim/'}
-Plug 'pangloss/vim-javascript'
-Plug 'plasticboy/vim-markdown'
-Plug 'scrooloose/nerdcommenter'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'tmux-plugins/vim-tmux'
-Plug 'tpope/vim-dispatch'
-Plug 'tpope/vim-vinegar'
-Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-speeddating'
-Plug 'shumphrey/fugitive-gitlab.vim'
-Plug 'tommcdo/vim-fubitive'
-Plug 'tpope/vim-vinegar'
-Plug 'tpope/vim-jdaddy'
-Plug 'tpope/vim-rbenv'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-rsi'
-Plug 'tpope/vim-surround'
-Plug 'vim-ruby/vim-ruby'
-Plug 'xolox/vim-misc' | Plug 'xolox/vim-notes' | Plug 'xolox/vim-publish'
-      \ | Plug 'xolox/vim-shell' | Plug 'xolox/vim-easytags'
-Plug 'severin-lemaignan/vim-minimap'
-Plug 'elzr/vim-json'
-Plug 'merlinrebrovic/focus.vim'
-Plug 'jelera/vim-javascript-syntax'
-Plug 'hail2u/vim-css3-syntax'
-Plug 'JulesWang/css.vim'
-Plug 'rust-lang/rust.vim'
-Plug 'kana/vim-textobj-user'
 Plug 'reedes/vim-textobj-quote'
-Plug 'mjakl/vim-asciidoc'
-Plug 'kchmck/vim-coffee-script'
-Plug 'mtscout6/vim-cjsx'
-Plug 'saltstack/salt-vim'
-Plug 'ingo-library'
-Plug 'bogado/file-line'
-Plug 'Shougo/deoplete.nvim'
-Plug 'jmcantrell/vim-virtualenv'
-Plug 'flazz/vim-colorschemes'
 Plug 'rizzatti/dash.vim'
 Plug 'rking/ag.vim'
+Plug 'ryanoasis/vim-devicons'
+Plug 'saltstack/salt-vim'
+Plug 'scrooloose/nerdcommenter'
+Plug 'sgur/ctrlp-extensions.vim'
+Plug 'sheerun/vim-polyglot'
+Plug 'shumphrey/fugitive-gitlab.vim'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'tmux-plugins/vim-tmux'
+Plug 'tommcdo/vim-fubitive'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-jdaddy'
+Plug 'tpope/vim-rbenv', { 'for': 'ruby' }
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-rsi'
+Plug 'tpope/vim-speeddating'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-vinegar'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+Plug 'xolox/vim-easytags'
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-notes'
+Plug 'xolox/vim-publish'
+Plug 'xolox/vim-shell'
+Plug 'kopischke/vim-stay'
+Plug 'Konfekt/FastFold'
+Plug 'Shougo/deoplete.nvim'
+Plug 'StanAngeloff/php.vim'
+Plug 'flazz/vim-colorschemes'
+Plug 'jceb/vim-orgmode'
+Plug 'jmcantrell/vim-virtualenv'
+Plug 'lukaszkorecki/CoffeeTags'
 Plug 'rizzatti/dash.vim'
+Plug 'rking/ag.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'saltstack/salt-vim'
 Plug 'stephpy/vim-yaml'
-Plug 'jceb/vim-orgmode'
+
 call g:plug#end()
 
 " }}}
 
 " {{{ Options
-set encoding=utf-8
 set laststatus=2
 set number relativenumber
 set path=.,/usr/local/include,/usr/include,$HOME/.local/include
@@ -153,8 +144,7 @@ set wildignore+=*.swp,*.pyc,*.bak,*.class,*.orig
 set wildignore+=.git,.hg,.bzr,.svn
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg,*.svg
 set wildignore+=build/*,tmp/*,vendor/cache/*,bin/*
-set wildignore+=.sass-cache/*
-set wildignore+=*node_modules/*
+set wildignore+=.sass-cache/*,*node_modules/*,*/target/*
 
 set undodir=~/.config/nvim/undodir
 set undofile
@@ -162,7 +152,6 @@ set undofile
 set cpoptions+=d
 
 set foldenable
-set foldmethod=syntax
 set foldcolumn=1
 set foldlevel=1
 set foldminlines=3
@@ -338,19 +327,6 @@ nnoremap <silent> [loclist]p <ESC>:lprevious<CR>
 nnoremap <silent> [loclist]x <ESC>:lclose<CR>
 " }}}
 
-" {{{ tmux mappings
-nnoremap [tmux] <nop>
-nmap <leader>t [tmux]
-nnoremap <silent> [tmux]s <ESC>:TmuxSend<CR>
-nnoremap <silent> [tmux]c <ESC>:TmuxChangeCommand<CR>
-nnoremap <silent> [tmux]S <ESC>:TmuxSendCommand<CR>
-nnoremap <silent> [tmux]p <ESC>:TmuxSelectPane<CR>
-nnoremap <silent> [tmux]C call tmux#tmux_cmd('reset')<CR>
-" }}}
-
-" Drop into the shell quick as hell.
-cnoremap !sh :shell<CR>
-
 " Rewrite 'vhe' to 'vert help'.
 cnoremap vhe vert help
 
@@ -403,6 +379,12 @@ nnoremap <silent> <leader>k :call <SID>toggle_visibility()<cr>
 " Quickly searches using the awesome stuff.
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
+" {{{ CtrlP
+" Search across tags
+nnoremap <c-]> :CtrlPtjump<cr>
+vnoremap <c-]> :CtrlPtjumpVisual<cr>
+" }}}
+
 " }}}
 
 " {{{ Plugin Options
@@ -439,10 +421,12 @@ let g:deoplete#enable_at_startup = 1
 let g:gitgutter_diff_args = '-w'
 let g:github_user = 'jalcine'
 let g:github_comment_open_browser = 1
+let g:tagbar_left=1
 let g:tagbar_compact=1
+let g:tagbar_autofocus=1
 let g:tagbar_autoclose=0
 let g:tagbar_iconchars = ['▸', '▾']
-let g:tagbar_autoshowtag = 1
+let g:tagbar_autoshowtag=1
 let g:tagbar_type_markdown = {
   \ 'ctagstype' : 'markdown',
   \ 'kinds' : [
@@ -478,7 +462,7 @@ let g:startify_files_number = 5
 let g:startify_change_to_dir = 0
 let g:startify_change_to_vcs_root = 0
 let g:startify_relative_path = 1
-let g:startify_bookmarks = [ '~/.config/nvim/init.vim', '~/.bashrc', '~/code' ]
+let g:startify_bookmarks = [ '~/.config/nvim/init.vim', '~/.bashrc', '~/prjs' ]
 let g:startify_session_dir = '~/.config/nvim/sessions'
 
 let g:localvimrc_persistent = 1
@@ -512,11 +496,11 @@ let g:coffee_linter = 'coffeelint.rb'
 let g:test_strategy = 'neovim'
 
 " {{{ neomake options
-let g:neomake_list_height = 5
-let g:neomake_open_list = 2
+let g:neomake_list_height = 3
+let g:neomake_open_list = 0
 let g:neomake_serialize = 0
 let g:neomake_serialize_abort_on_error = 1
-let g:neomake_verbose = 1
+let g:neomake_verbose = 0
 let g:neomake_javascript_enabled_checkers = ['eslint', 'jscs']
 let g:neomake_python_enabled_checkers = ['pyflakes', 'pylint', 'python', 'pep8', 'flake8']
 let g:neomake_sh_enabled_checkers = ['shellcheck']
@@ -526,10 +510,10 @@ let g:neomake_coffeelint_enabled_checkers = ['coffeelint.rb']
 " }}}
 
 " {{{ vim-airline options
-let g:airline_theme = 'tomorrow'
+let g:airline_theme = 'jellybeans'
 let g:airline_detected_modified = 1
 let g:airline_powerline_fonts = 1
-let g:airline_detect_iminsert = 0
+let g:airline_detect_iminsert = 1
 let g:airline#extensions#hunks#non_zero_only = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#branch#enabled = 1
@@ -539,6 +523,8 @@ let g:airline#extensions#whitespace#show_message = 1
 let g:airline#extensions#whitespace#trailing_format = 's:[%s]'
 let g:airline#extensions#whitespace#mixed_indent_format = 'i:[%s]'
 let g:airline#extensions#tagbar#flags = 'f'
+let g:airline_left_sep = "\uE0B4"
+let g:airline_right_sep = "\uE0B6"
 let g:airline_mode_map = {
       \ '__' : '-',
       \ 'n'  : 'N',
@@ -568,34 +554,24 @@ let g:UltiSnipsSnippetDirectories = ['Ultisnips']
 " }}}
 
 " {{{ ctrlp
-" let g:ctrlp_map = '<c-space>'
 let g:ctrlp_by_filename = 1
 let g:ctrlp_regexp_search = 1
 let g:ctrlp_reuse_window = 'netrw\|help\|quickfix'
-" let g:ctrlp_working_path_mode = 'ra'
-" let g:ctrlp_show_hidden = 1
-" let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix',
-      " \ 'line', 'mixed'] 
+let g:ctrlp_show_hidden=1
+let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix',
+      \ 'line', 'mixed']
+let g:ctrlp_tjump_only_silent = 1
+let g:ctrlp_tjump_skip_tag_name = 1
+" }}}
 
-" function! s:wig2cmd()
-  " let pats = ['[*\/]*\([?_.0-9A-Za-z]\+\)\([*\/]*\)\(\\\@<!,\|$\)','\\\@<!,']
-  " let subs = has('win32') || has('win64') ? ['\1\3', ' '] : ['\1\2\3', '\\|']
-  " let expr = substitute(&wig, pats[0], subs[0], 'g')
-  " let expr = substitute(expr, pats[1], subs[1], 'g')
-  " let expr = substitute(expr, '\\,', ',', 'g')
-
-  " let g:ctrlp_user_command = has('win32') || has('win64')
-    " \ ? 'dir %s /-n /b /s /a-d | findstr /V /l "'.expr.'"'
-    " \ : 'ag %s -l --nocolor -g "" --vimgrep --smartcase --noheading'
-" endfunction
+" {{{ vim-bookmarks
+let g:bookmark_sign = '☰'
+let g:bookmark_highlight_lines = 1
+" "}}
 
 " {{{ ag
-
 let g:ag_prg="ag --vimgrep --smart-case --noheading"
 let g:ag_highlight=1
-
-" call s:wig2cmd()
-
 " }}}
 
 let g:vimsyn_folding='afpPr'
@@ -604,7 +580,6 @@ let g:vimsyn_embed='Pr'
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
 " }}}
-
 
 " {{{ personal augroup mods
 func! s:reload_tmux()
@@ -640,7 +615,9 @@ if filereadable(expand("$HOME/.config/nvim/local.vim"))
   source $HOME/.config/nvim/local.vim
 endif
 
-colorscheme Tomorrow-Night-Bright
+colorscheme jellybeans
 filetype plugin indent on
 syntax enable
-hi VertSplit ctermbg=NONE
+hi Folded ctermbg=NONE
+hi FoldColumn ctermbg=NONE
+hi SignColumn ctermbg=NONE

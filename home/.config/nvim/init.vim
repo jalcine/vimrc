@@ -98,13 +98,15 @@ Plug 'Shougo/deoplete.nvim'
 Plug 'StanAngeloff/php.vim'
 Plug 'flazz/vim-colorschemes'
 Plug 'jceb/vim-orgmode'
-Plug 'jmcantrell/vim-virtualenv'
 Plug 'lukaszkorecki/CoffeeTags'
 Plug 'rizzatti/dash.vim'
 Plug 'rking/ag.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'saltstack/salt-vim'
 Plug 'stephpy/vim-yaml'
+Plug 'benmills/vimux'
+Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'janko-m/vim-test'
 
 call g:plug#end()
 
@@ -112,7 +114,7 @@ call g:plug#end()
 
 " {{{ Options
 set laststatus=2
-set number relativenumber
+set number norelativenumber
 set path=.,/usr/local/include,/usr/include,$HOME/.local/include
 set visualbell
 set errorbells
@@ -134,6 +136,7 @@ set nogdefault noignorecase
 set showcmd
 set showfulltag
 set showmatch
+set tabline=0
 
 set wildmenu wildmode=longest:full
 set wildoptions=tagfile
@@ -493,7 +496,10 @@ let g:c_no_comment_fold = 1
 let g:coffee_lint_options = ''
 let g:coffee_linter = 'coffeelint.rb'
 
-let g:test_strategy = 'neovim'
+let g:test#strategy = 'dispatch'
+let g:test#preserve_screen = 1
+
+" TODO: Add this: https://github.com/janko-m/vim-test#transformations
 
 " {{{ neomake options
 let g:neomake_list_height = 3
@@ -515,7 +521,7 @@ let g:airline_detected_modified = 1
 let g:airline_powerline_fonts = 1
 let g:airline_detect_iminsert = 1
 let g:airline#extensions#hunks#non_zero_only = 1
-let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 0
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#whitespace#enabled = 1
 let g:airline#extensions#whitespace#mixed_indent_algo = 1
@@ -554,14 +560,19 @@ let g:UltiSnipsSnippetDirectories = ['Ultisnips']
 " }}}
 
 " {{{ ctrlp
-let g:ctrlp_by_filename = 1
-let g:ctrlp_regexp_search = 1
+let g:ctrlp_by_filename = 0
+let g:ctrlp_regexp = 1
+let g:ctrlp_use_caching = 1
 let g:ctrlp_reuse_window = 'netrw\|help\|quickfix'
-let g:ctrlp_show_hidden=1
+let g:ctrlp_show_hidden = 1
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_default_input = 0
+let g:ctrlp_match_window = 'top,order:ttb,min:1,max:3,results:3'
 let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix',
-      \ 'line', 'mixed']
+      \ 'line', 'mixed', 'autoignore']
 let g:ctrlp_tjump_only_silent = 1
 let g:ctrlp_tjump_skip_tag_name = 1
+let g:ctrlp_cmd = 'CtrlPMixed'
 " }}}
 
 " {{{ vim-bookmarks
@@ -614,10 +625,14 @@ augroup END
 if filereadable(expand("$HOME/.config/nvim/local.vim"))
   source $HOME/.config/nvim/local.vim
 endif
+" }}}
 
+" {{{ Final tweaks
 colorscheme jellybeans
 filetype plugin indent on
 syntax enable
 hi Folded ctermbg=NONE
 hi FoldColumn ctermbg=NONE
 hi SignColumn ctermbg=NONE
+hi BookmarkLineDefault ctermfg=white ctermbg=33
+" }}}

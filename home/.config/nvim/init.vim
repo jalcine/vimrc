@@ -16,101 +16,6 @@ scriptencoding utf-8
 
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
-" {{{ plugins
-
-" Set up vim-plug ▶️  https://github.com/junegunn/vim-plug#example
-
-call g:plug#begin('~/.config/nvim/plugins')
-
-Plug 'Chiel92/vim-autoformat'
-Plug 'MattesGroeger/vim-bookmarks'
-Plug 'PotatoesMaster/i3-vim-syntax'
-Plug 'SirVer/ultisnips'
-Plug 'TagHighlight'
-Plug 'benekastah/neomake'
-Plug 'bogado/file-line'
-Plug 'bruno-/vim-man'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'dsawardekar/ember.vim'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'embear/vim-localvimrc'
-Plug 'flazz/vim-colorschemes'
-Plug 'gorodinskiy/vim-coloresque'
-Plug 'heavenshell/vim-jsdoc'
-Plug 'heavenshell/vim-slack'
-Plug 'honza/vim-snippets'
-Plug 'int3/vim-extradite'
-Plug 'isRuslan/vim-es6'
-Plug 'ivalkeen/vim-ctrlp-tjump'
-Plug 'jaxbot/github-issues.vim'
-Plug 'jceb/vim-orgmode'
-Plug 'jmcantrell/vim-virtualenv'
-Plug 'jszakmeister/vim-togglecursor'
-Plug 'junegunn/vim-emoji'
-Plug 'kana/vim-textobj-user'
-Plug 'kien/rainbow_parentheses.vim'
-Plug 'majutsushi/tagbar'
-Plug 'marijnh/tern_for_vim', { 'do': 'npm install', 'for': 'javascript' }
-Plug 'mattn/gist-vim'
-Plug 'mattn/webapi-vim'
-Plug 'merlinrebrovic/focus.vim'
-Plug 'mhinz/vim-signify'
-Plug 'mhinz/vim-startify'
-Plug 'mmozuras/vim-github-comment'
-Plug 'moll/vim-node', { 'for': 'javascript' }
-Plug 'mtscout6/vim-cjsx'
-Plug 'mustache/vim-mustache-handlebars'
-Plug 'nathanaelkane/vim-indent-guides'
-Plug 'reedes/vim-textobj-quote'
-Plug 'rizzatti/dash.vim'
-Plug 'rking/ag.vim'
-Plug 'ryanoasis/vim-devicons'
-Plug 'saltstack/salt-vim'
-Plug 'scrooloose/nerdcommenter'
-Plug 'sgur/ctrlp-extensions.vim'
-Plug 'sheerun/vim-polyglot'
-Plug 'shumphrey/fugitive-gitlab.vim'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'tmux-plugins/vim-tmux'
-Plug 'tommcdo/vim-fubitive'
-Plug 'tpope/vim-dispatch'
-Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-jdaddy'
-Plug 'tpope/vim-rbenv', { 'for': 'ruby' }
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-rsi'
-Plug 'tpope/vim-speeddating'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-vinegar'
-Plug 'tpope/vim-vinegar'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
-Plug 'xolox/vim-easytags'
-Plug 'xolox/vim-misc'
-Plug 'xolox/vim-notes'
-Plug 'xolox/vim-publish'
-Plug 'xolox/vim-shell'
-Plug 'kopischke/vim-stay'
-Plug 'Konfekt/FastFold'
-Plug 'Shougo/deoplete.nvim'
-Plug 'StanAngeloff/php.vim'
-Plug 'flazz/vim-colorschemes'
-Plug 'jceb/vim-orgmode'
-Plug 'lukaszkorecki/CoffeeTags'
-Plug 'rizzatti/dash.vim'
-Plug 'rking/ag.vim'
-Plug 'ryanoasis/vim-devicons'
-Plug 'saltstack/salt-vim'
-Plug 'stephpy/vim-yaml'
-Plug 'benmills/vimux'
-Plug 'tmux-plugins/vim-tmux-focus-events'
-Plug 'janko-m/vim-test'
-
-call g:plug#end()
-
-" }}}
 
 " {{{ Options
 set laststatus=2
@@ -442,6 +347,8 @@ let g:tagbar_type_markdown = {
   \ ]
 \ }
 
+let g:polyglot_disabled = ['coffee']
+
 let g:jsdoc_additional_descriptions = 1
 let g:jsdoc_access_descriptions = 1
 let g:jsdoc_underscore_private = 1
@@ -493,9 +400,6 @@ let g:doxygen_enhanced_color = 1
 let g:load_doxygen_syntax = 1
 let g:c_no_comment_fold = 1
 
-let g:coffee_lint_options = ''
-let g:coffee_linter = 'coffeelint.rb'
-
 let g:test#strategy = 'dispatch'
 let g:test#preserve_screen = 1
 
@@ -512,13 +416,12 @@ let g:neomake_python_enabled_checkers = ['pyflakes', 'pylint', 'python', 'pep8',
 let g:neomake_sh_enabled_checkers = ['shellcheck']
 let g:neomake_ruby_enabled_checkers = ['rubocop', 'mri']
 let g:neomake_vim_enabled_checkers = ['vint']
-let g:neomake_coffeelint_enabled_checkers = ['coffeelint.rb']
 " }}}
 
 " {{{ vim-airline options
 let g:airline_theme = 'jellybeans'
 let g:airline_detected_modified = 1
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 let g:airline_detect_iminsert = 1
 let g:airline#extensions#hunks#non_zero_only = 1
 let g:airline#extensions#tabline#enabled = 0
@@ -567,7 +470,7 @@ let g:ctrlp_reuse_window = 'netrw\|help\|quickfix'
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_default_input = 0
-let g:ctrlp_match_window = 'top,order:ttb,min:1,max:3,results:3'
+let g:ctrlp_match_window = 'top,order:ttb,min:3'
 let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix',
       \ 'line', 'mixed', 'autoignore']
 let g:ctrlp_tjump_only_silent = 1
@@ -625,6 +528,94 @@ augroup END
 if filereadable(expand("$HOME/.config/nvim/local.vim"))
   source $HOME/.config/nvim/local.vim
 endif
+" }}}
+
+" {{{ plugins
+
+" Set up vim-plug ▶️  https://github.com/junegunn/vim-plug#example
+
+call g:plug#begin('~/.config/nvim/plugins')
+
+Plug 'Chiel92/vim-autoformat'
+Plug 'Konfekt/FastFold'
+Plug 'MattesGroeger/vim-bookmarks'
+Plug 'PotatoesMaster/i3-vim-syntax'
+Plug 'Shougo/deoplete.nvim'
+Plug 'SirVer/ultisnips'
+Plug 'StanAngeloff/php.vim', { 'for': 'php' }
+Plug 'TagHighlight'
+Plug 'benekastah/neomake'
+Plug 'benmills/vimux'
+Plug 'bogado/file-line'
+Plug 'bruno-/vim-man'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'dsawardekar/ember.vim'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'embear/vim-localvimrc'
+Plug 'flazz/vim-colorschemes'
+Plug 'gorodinskiy/vim-coloresque'
+Plug 'heavenshell/vim-jsdoc'
+Plug 'heavenshell/vim-slack'
+Plug 'honza/vim-snippets'
+Plug 'int3/vim-extradite'
+Plug 'isRuslan/vim-es6'
+Plug 'ivalkeen/vim-ctrlp-tjump'
+Plug 'janko-m/vim-test'
+Plug 'jaxbot/github-issues.vim'
+Plug 'jceb/vim-orgmode'
+Plug 'jmcantrell/vim-virtualenv'
+Plug 'jszakmeister/vim-togglecursor'
+Plug 'junegunn/vim-emoji'
+Plug 'kana/vim-textobj-user'
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'kopischke/vim-stay'
+Plug 'lukaszkorecki/CoffeeTags'
+Plug 'majutsushi/tagbar'
+Plug 'marijnh/tern_for_vim', { 'do': 'npm install', 'for': 'javascript' }
+Plug 'mattn/gist-vim'
+Plug 'mattn/webapi-vim'
+Plug 'merlinrebrovic/focus.vim'
+Plug 'mhinz/vim-signify'
+Plug 'mhinz/vim-startify'
+Plug 'mmozuras/vim-github-comment'
+Plug 'moll/vim-node', { 'for': 'javascript' }
+Plug 'mtscout6/vim-cjsx'
+Plug 'mustache/vim-mustache-handlebars'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'reedes/vim-textobj-quote'
+Plug 'rizzatti/dash.vim'
+Plug 'rking/ag.vim'
+Plug 'saltstack/salt-vim'
+Plug 'scrooloose/nerdcommenter'
+Plug 'sgur/ctrlp-extensions.vim'
+Plug 'sheerun/vim-polyglot', { 'do': './build' }
+Plug 'shumphrey/fugitive-gitlab.vim'
+Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
+Plug 'terryma/vim-multiple-cursors'
+Plug 'tmux-plugins/vim-tmux'
+Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'tommcdo/vim-fubitive'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-jdaddy', { 'for': 'json' }
+Plug 'tpope/vim-rbenv', { 'for': 'ruby' }
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-rsi'
+Plug 'tpope/vim-speeddating'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-vinegar'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+Plug 'xolox/vim-easytags'
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-notes'
+Plug 'xolox/vim-publish'
+Plug 'xolox/vim-shell'
+
+call g:plug#end()
+
 " }}}
 
 " {{{ Final tweaks

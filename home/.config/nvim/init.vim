@@ -400,7 +400,7 @@ let g:doxygen_enhanced_color = 1
 let g:load_doxygen_syntax = 1
 let g:c_no_comment_fold = 1
 
-let g:test#strategy = 'dispatch'
+let g:test#strategy = 'neovim'
 let g:test#preserve_screen = 1
 
 " TODO: Add this: https://github.com/janko-m/vim-test#transformations
@@ -412,7 +412,8 @@ let g:neomake_serialize = 0
 let g:neomake_serialize_abort_on_error = 1
 let g:neomake_verbose = 0
 let g:neomake_javascript_enabled_checkers = ['eslint', 'jscs']
-let g:neomake_python_enabled_checkers = ['pyflakes', 'pylint', 'python', 'pep8', 'flake8']
+let g:neomake_python_enabled_checkers = ['python', 'flake8']
+let g:neomake_scss_enabled_checkers = ['scss-lint']
 let g:neomake_sh_enabled_checkers = ['shellcheck']
 let g:neomake_ruby_enabled_checkers = ['rubocop', 'mri']
 let g:neomake_vim_enabled_checkers = ['vint']

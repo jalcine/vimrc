@@ -19,12 +19,11 @@ let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 " {{{ Options
 set laststatus=2
-set number norelativenumber
+set number relativenumber numberwidth=1
 set path=.,/usr/local/include,/usr/include,$HOME/.local/include
 set visualbell
 set errorbells
 set ruler
-set number numberwidth=2
 set conceallevel=1 concealcursor=nv
 set tabstop=2 softtabstop=2 shiftwidth=2
 set expandtab
@@ -326,6 +325,7 @@ let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:DevIconsEnableFoldersOpenClose = 1
 let g:deoplete#enable_at_startup = 1
 
+let g:rustfmt_autosave = 1
 let g:gitgutter_diff_args = '-w'
 let g:github_user = 'jalcine'
 let g:github_comment_open_browser = 1
@@ -421,7 +421,7 @@ let g:neomake_vim_enabled_checkers = ['vint']
 " {{{ vim-airline options
 let g:airline_theme = 'jellybeans'
 let g:airline_detected_modified = 1
-let g:airline_powerline_fonts = 0
+let g:airline_powerline_fonts = 1
 let g:airline_detect_iminsert = 1
 let g:airline#extensions#hunks#non_zero_only = 1
 let g:airline#extensions#tabline#enabled = 0
@@ -511,7 +511,7 @@ augroup jalcine
   au BufWritePost *tmux*.conf  call s:reload_tmux()
   au BufWritePost *tmux/*.conf call s:reload_tmux()
 
-  " Make sure we don't spell in certain windows.
+  " Tweak for particular file types.
   au FileType css setl iskeyword+=-
   au FileType gitcommit setl spell
   au FileType markdown call textobj#quote#init()
@@ -537,6 +537,7 @@ endif
 call g:plug#begin('~/.config/nvim/plugins')
 
 Plug 'Chiel92/vim-autoformat'
+Plug 'KabbAmine/zeavim.vim'
 Plug 'Konfekt/FastFold'
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'PotatoesMaster/i3-vim-syntax'
@@ -589,6 +590,7 @@ Plug 'saltstack/salt-vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'sgur/ctrlp-extensions.vim'
 Plug 'sheerun/vim-polyglot', { 'do': './build' }
+Plug 'hail2u/vim-css3-syntax'
 Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
 Plug 'terryma/vim-multiple-cursors'
@@ -598,6 +600,7 @@ Plug 'tommcdo/vim-fubitive'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-heroku'
 Plug 'tpope/vim-jdaddy', { 'for': 'json' }
 Plug 'tpope/vim-rbenv', { 'for': 'ruby' }
 Plug 'tpope/vim-repeat'
@@ -619,11 +622,9 @@ call g:plug#end()
 " }}}
 
 " {{{ Final tweaks
-colorscheme jellybeans
+colorscheme Monokai
 filetype plugin indent on
 syntax enable
-hi Folded ctermbg=NONE
-hi FoldColumn ctermbg=NONE
-hi SignColumn ctermbg=NONE
 hi BookmarkLineDefault ctermfg=white ctermbg=33
+match VendorPrefix /-\(moz\|webkit\|o\|ms\)-[a-zA-Z-]\+/
 " }}}

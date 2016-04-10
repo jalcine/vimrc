@@ -623,9 +623,10 @@ call g:plug#end()
 " }}}
 
 " {{{ Final tweaks
-colorscheme Monokai
+colorscheme Tomorrow-Night-Bright
 filetype plugin indent on
 syntax enable
 hi BookmarkLineDefault ctermfg=white ctermbg=33
+hi VendorPrefix ctermbg=white ctermbg=blue
 match VendorPrefix /-\(moz\|webkit\|o\|ms\)-[a-zA-Z-]\+/
 " }}}

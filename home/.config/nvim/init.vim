@@ -463,22 +463,6 @@ let g:UltiSnipsJumpForwardTrigger = '<c-k>'
 let g:UltiSnipsSnippetDirectories = ['Ultisnips']
 " }}}
 
-" {{{ ctrlp
-let g:ctrlp_by_filename = 0
-let g:ctrlp_regexp = 1
-let g:ctrlp_use_caching = 1
-let g:ctrlp_reuse_window = 'netrw\|help\|quickfix'
-let g:ctrlp_show_hidden = 1
-let g:ctrlp_working_path_mode = 0
-let g:ctrlp_default_input = 0
-let g:ctrlp_match_window = 'top,order:ttb,min:3'
-let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix',
-      \ 'line', 'mixed', 'autoignore']
-let g:ctrlp_tjump_only_silent = 1
-let g:ctrlp_tjump_skip_tag_name = 1
-let g:ctrlp_cmd = 'CtrlPMixed'
-" }}}
-
 " {{{ vim-bookmarks
 let g:bookmark_sign = '☰'
 let g:bookmark_highlight_lines = 1
@@ -550,7 +534,6 @@ Plug 'benekastah/neomake'
 Plug 'benmills/vimux'
 Plug 'bogado/file-line'
 Plug 'bruno-/vim-man'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'dsawardekar/ember.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'embear/vim-localvimrc'
@@ -561,7 +544,6 @@ Plug 'heavenshell/vim-slack'
 Plug 'honza/vim-snippets'
 Plug 'int3/vim-extradite'
 Plug 'isRuslan/vim-es6'
-Plug 'ivalkeen/vim-ctrlp-tjump'
 Plug 'janko-m/vim-test'
 Plug 'jaxbot/github-issues.vim'
 Plug 'jceb/vim-orgmode'
@@ -589,7 +571,6 @@ Plug 'rizzatti/dash.vim'
 Plug 'rking/ag.vim'
 Plug 'saltstack/salt-vim'
 Plug 'scrooloose/nerdcommenter'
-Plug 'sgur/ctrlp-extensions.vim'
 Plug 'sheerun/vim-polyglot', { 'do': './build' }
 Plug 'hail2u/vim-css3-syntax'
 Plug 'shumphrey/fugitive-gitlab.vim'

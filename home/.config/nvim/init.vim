@@ -33,18 +33,26 @@ call matchadd('ColorColumn', '\%' . &textwidth . 'v', 80)
 
 set complete=.,w,b,u,U,i,d,t
 set completeopt=menu,longest
-set nobackup noswapfile
+
+
+set cursorline cursorcolumn
 
 set showmatch wrapscan
 set nogdefault noignorecase
 set showcmd
 set showfulltag
 set showmatch
+set modeline modelines=5
+set noshelltemp
 set tabline=0
+set backspace=indent,eol,start
 
 set wildmenu wildmode=longest:full
 set wildoptions=tagfile
 set wildignorecase
+
+set matchtime=6
+set maxcombine=4
 
 " Ignore a lot of stuff.
 set wildignore+=*.swp,*.pyc,*.bak,*.class,*.orig
@@ -53,8 +61,8 @@ set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg,*.svg
 set wildignore+=build/*,tmp/*,vendor/cache/*,bin/*
 set wildignore+=.sass-cache/*,*node_modules/*,*/target/*
 
-set undodir=~/.config/nvim/undodir
-set undofile
+set nobackup noswapfile
+set undofile undodir=~/.config/nvim/undodir
 
 set cpoptions+=d
 
@@ -75,10 +83,13 @@ set dictionary+=/usr/share/dict/connectives.gz
 set dictionary+=/usr/share/dict/web2a.gz
 set spellfile=~/.config/nvim/dict.custom.utf-8.add
 
+set splitbelow splitright
+
 set cinoptions+='JN'
 
 if executable('ag')
-  set grepprg=ag\ --nogroup\ --nocolor
+  set grepprg=ag\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow
+  set grepformat=%f:%l:%c:%m
 endif
 " }}}
 
@@ -147,6 +158,13 @@ iabbrev Wntr Wintermute
 iabbrev _repo repository
 iabbrev NOne None
 " }}}
+" }}}
+
+" {{{ Commands
+" Just in case.
+command! -bang Q q<bang>
+command! -bang QA qa<bang>
+command! -bang Qa qa<bang>
 " }}}
 
 " {{{ Mappings
@@ -259,6 +277,8 @@ nnoremap <silent> [git]P   :Git push<CR>
 nnoremap <silent> [git]rm  :Gremove %<CR>
 nnoremap <silent> [git]rmc :Git rm --cached %<CR>
 nnoremap <silent> [git]r    :Greview<cr>
+nnoremap <silent> [git]v :Gitv<CR>
+nnoremap <silent> [git]V :Gitv!<CR>
 " }}}
 
 " {{{ testing
@@ -286,10 +306,11 @@ nnoremap <silent> <leader>k :call <SID>toggle_visibility()<cr>
 " Quickly searches using the awesome stuff.
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
-" {{{ CtrlP
-" Search across tags
-nnoremap <c-]> :CtrlPtjump<cr>
-vnoremap <c-]> :CtrlPtjumpVisual<cr>
+" {{{ unite
+nnoremap <space>y :Unite history/yank<cr>
+nnoremap <C-p> :Unite file_rec/async<cr>
+nnoremap <space>/ :Unite grep:.<cr>
+nnoremap <space>s :Unite -quick-match buffer<cr>
 " }}}
 
 " }}}
@@ -324,7 +345,7 @@ let g:javascript_conceal_super = 'Ω'
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:DevIconsEnableFoldersOpenClose = 1
 let g:deoplete#enable_at_startup = 1
-
+let g:signify_update_on_bufenter = 0
 let g:rustfmt_autosave = 1
 let g:gitgutter_diff_args = '-w'
 let g:github_user = 'jalcine'
@@ -346,7 +367,13 @@ let g:tagbar_type_markdown = {
     \ 'n:Heading_L6'
   \ ]
 \ }
-
+let g:ycm_complete_in_comments_and_strings=1
+let g:ycm_key_list_select_completion=['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion=['<C-p>', '<Up>']
+let g:ycm_filetype_blacklist={'unite': 1}
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:polyglot_disabled = ['coffee']
 
 let g:jsdoc_additional_descriptions = 1
@@ -487,12 +514,19 @@ func! s:reload_tmux()
         \ '"[tmux ⬅️  vim] Sourced ' . expand('%:p') . '"')
 endfunc
 
+function! s:unite_settings()
+  nmap <buffer> Q <plug>(unite_exit)
+  nmap <buffer> <esc> <plug>(unite_exit)
+  imap <buffer> <esc> <plug>(unite_exit)
+endfunction
+
 augroup jalcine
   au!
 
   " Funky files.
   au User YouCompleteMe call youcompleteme#Enable()
 
+  " Reload tmux files when we edit them.
   au BufWritePost *tmux*.conf  call s:reload_tmux()
   au BufWritePost *tmux/*.conf call s:reload_tmux()
 
@@ -502,12 +536,35 @@ augroup jalcine
   au FileType markdown call textobj#quote#init()
 
   " Enable Neomake to run on builds.
-  autocmd! BufWritePost * Neomake
-  autocmd! BufReadPost * Neomake
+  au BufWritePost * Neomake
+  au BufReadPost  * Neomake
+
+  " Clear Fugitive buffers.
+  au BufReadPost fugitive://* set bufhidden=delete
+
+  " Focus.
+  au WinLeave * setlocal nocursorline nocursorcolumn
+  au WinEnter * setlocal cursorcolumn cursorline
+
+  " Things for Unite
+  au FileType unite call s:unite_settings()
 
   " CoffeeScript jazz.
-  autocmd BufNewFile,BufReadPost *.coffee setl foldmethod=indent shiftwidth=2 expandtab
+  au BufNewFile,BufReadPost *.coffee setl foldmethod=indent shiftwidth=2 expandtab
+
+  au FileType css,scss setlocal foldmethod=marker foldmarker={,}
+  au FileType css,scss nnoremap <silent> <leader>S vi{:sort<CR>
+  au FileType python setlocal foldmethod=indent
+  au FileType markdown setlocal nolist
+  au FileType vim setlocal fdm=indent keywordprg=:help
 augroup END
+" }}}
+
+" {{{ unite
+let g:unite_source_history_yank_enable = 1
+let g:unite_source_grep_command = "ag"
+let g:unite_source_grep_default_opts = "-i --nocolor --nogroup"
+let g:unite_source_rec_max_cache_files = 8000
 " }}}
 
 if filereadable(expand("$HOME/.config/nvim/local.vim"))
@@ -563,8 +620,8 @@ Plug 'mhinz/vim-signify'
 Plug 'mhinz/vim-startify'
 Plug 'mmozuras/vim-github-comment'
 Plug 'moll/vim-node', { 'for': 'javascript' }
-Plug 'mtscout6/vim-cjsx'
-Plug 'mustache/vim-mustache-handlebars'
+Plug 'mtscout6/vim-cjsx', { 'for': 'coffee' }
+Plug 'mustache/vim-mustache-handlebars', { 'for' : 'mustache' }
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'reedes/vim-textobj-quote'
 Plug 'rizzatti/dash.vim'
@@ -572,7 +629,7 @@ Plug 'rking/ag.vim'
 Plug 'saltstack/salt-vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'sheerun/vim-polyglot', { 'do': './build' }
-Plug 'hail2u/vim-css3-syntax'
+Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
 Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
 Plug 'terryma/vim-multiple-cursors'
@@ -598,16 +655,38 @@ Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'
 Plug 'xolox/vim-publish'
 Plug 'xolox/vim-shell'
+Plug 'gregsexton/gitv'
+Plug 'Shougo/unite.vim'
+Plug 'Shougo/vimproc.vim'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
+Plug 'justinmk/vim-sneak'
+Plug 'Shougo/neomru.vim'
+Plug 'tsukkee/unite-tag'
+Plug 'Shougo/unite-help'
+Plug 'Shougo/unite-outline'
 
 call g:plug#end()
 
 " }}}
 
 " {{{ Final tweaks
-colorscheme Tomorrow-Night-Bright
+
 filetype plugin indent on
 syntax enable
+
+" {{{ Colorscheme
+set background=dark
+colorscheme distinguished
 hi BookmarkLineDefault ctermfg=white ctermbg=33
 hi VendorPrefix ctermbg=white ctermbg=blue
 match VendorPrefix /-\(moz\|webkit\|o\|ms\)-[a-zA-Z-]\+/
+" }}}
+
+" {{{ post-work for unite
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#filters#sorter_default#use(['sorter_rank'])
+call unite#custom#profile('default', 'context', {
+      \ 'start_insert': 1
+      \ })
+" }}}
 " }}}

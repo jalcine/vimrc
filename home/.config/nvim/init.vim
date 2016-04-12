@@ -307,10 +307,53 @@ nnoremap <silent> <leader>k :call <SID>toggle_visibility()<cr>
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " {{{ unite
-nnoremap <space>y :Unite history/yank<cr>
-nnoremap <C-p> :Unite file_rec/async<cr>
-nnoremap <space>/ :Unite grep:.<cr>
-nnoremap <space>s :Unite -quick-match buffer<cr>
+func! s:call_unite(sources)
+  exec(':Unite -match-input -immediately ' . a:sources)
+endfunc
+
+func! s:call_unite_history()
+  call s:calL_unite('history/yank')
+endfunc
+
+func! s:call_unite_tmux()
+  call s:call_unite('tmux/panes tmux/sessions tmux/windows')
+endfunc
+
+func! s:call_unite_tasks()
+  call s:call_unite('grep:.:-s:\(TODO\|todo\|NOTE\|note\|' .
+        \ 'FIXME\|fixme\|BUG\|bug)')
+endfunc
+
+func! s:call_unite_grep()
+  call s:call_unite('grep:.')
+endfunc
+
+func! s:call_unite_buffer()
+  call s:call_unite('-quick-match buffer')
+endfunc
+
+func! s:call_unite_files()
+  call s:call_unite('file_rec/async')
+endfunc
+
+func! s:call_unite_tags()
+  call s:call_unite('tag:$PWD tag/include:$PWD')
+endfunc
+
+function! s:call_unite_snippets()
+  return s:call_unite('ultisnips')
+endfunc
+
+nnoremap [unite] <nop>
+nmap <leader>u [unite]
+nnoremap <silent> [unite]b :call <SID>call_unite_buffer()<cr>
+nnoremap <silent> [unite]f :call <SID>call_unite_files()<cr>
+nnoremap <silent> [unite]t :call <SID>call_unite_tags()<cr>
+nnoremap <silent> [unite]a :call <SID>call_unite_tasks()<cr>
+nnoremap <silent> [unite]x :call <SID>call_unite_tmux()<cr>
+nnoremap <silent> [unite]u :call <SID>call_unite_snippets()<cr>
+nnoremap <silent> [unite]X :call <Plug>unite_disable_max_candidates()<CR>
+nnoremap <silent> <leader>p :call <SID>call_unite_files()<cr>
 " }}}
 
 " }}}
@@ -563,8 +606,12 @@ augroup END
 " {{{ unite
 let g:unite_source_history_yank_enable = 1
 let g:unite_source_grep_command = "ag"
-let g:unite_source_grep_default_opts = "-i --nocolor --nogroup"
+let g:unite_source_grep_default_opts =
+  \ '-i --vimgrep --hidden --nocolor --nogroup --ignore ' .
+  \ '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
+
 let g:unite_source_rec_max_cache_files = 8000
+let g:unite_prompt = '» '
 " }}}
 
 if filereadable(expand("$HOME/.config/nvim/local.vim"))
@@ -657,13 +704,15 @@ Plug 'xolox/vim-publish'
 Plug 'xolox/vim-shell'
 Plug 'gregsexton/gitv'
 Plug 'Shougo/unite.vim'
-Plug 'Shougo/vimproc.vim'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
+Plug 'Shougo/vimproc.vim', { 'do' : 'make' }
+Plug 'Shougo/neomru.vim'
+Plug 'Valloric/YouCompleteMe', { 'do': 'python install.py', 'frozen': 1 }
 Plug 'justinmk/vim-sneak'
 Plug 'Shougo/neomru.vim'
 Plug 'tsukkee/unite-tag'
 Plug 'Shougo/unite-help'
 Plug 'Shougo/unite-outline'
+Plug 'zepto/unite-tmux'
 
 call g:plug#end()
 
@@ -688,5 +737,42 @@ call unite#filters#sorter_default#use(['sorter_rank'])
 call unite#custom#profile('default', 'context', {
       \ 'start_insert': 1
       \ })
+call g:unite#filters#matcher_default#use([
+      \ 'matcher_context',
+      \ 'matcher_fuzzy',
+      \ 'matcher_project_files',
+      \ 'matcher_project_ignore_files',
+      \ 'matcher_hide_current_file'
+      \ ])
+
+call g:unite#filters#sorter_default#use([
+      \ 'sorter_rank',
+      \ 'sorter_ftime'
+      \ ])
+
+call g:unite#filters#converter_default#use([
+      \ 'converter_smart_path'
+      \ ])
+
+call g:unite#custom#profile('source/grep', 'context', {
+      \   'quit' : 1
+      \ })
+
+call g:unite#custom#profile('default', 'context', {
+      \   'start_insert': 1,
+      \   'auto-resize': 0,
+      \   'winheight': 5,
+      \   'direction': 'top'
+      \ })
+
+call g:unite#custom#source('tag,file_rec/async', 'ignore_globs',
+      \ split(&wildignore, ','))
+
+func! s:configure_unite_buffer()
+  imap <silent><buffer><expr> <C-j>   <Plug>(unite_select_next_line)<CR>
+  imap <silent><buffer><expr> <C-k>   <Plug>(unite_select_previous_line)<CR>
+  imap <silent><buffer><expr> <C-p>   <Plug>(unite_auto_preview)<CR>
+  imap <silent><buffer><expr> <C-s>   unite#do_action('split')<CR>
+endfunc
 " }}}
 " }}}

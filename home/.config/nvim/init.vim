@@ -349,11 +349,12 @@ nmap <leader>u [unite]
 nnoremap <silent> [unite]b :call <SID>call_unite_buffer()<cr>
 nnoremap <silent> [unite]f :call <SID>call_unite_files()<cr>
 nnoremap <silent> [unite]t :call <SID>call_unite_tags()<cr>
+nnoremap <silent> [unite]g :call <SID>call_unite_grep()<cr>
 nnoremap <silent> [unite]a :call <SID>call_unite_tasks()<cr>
 nnoremap <silent> [unite]x :call <SID>call_unite_tmux()<cr>
 nnoremap <silent> [unite]u :call <SID>call_unite_snippets()<cr>
 nnoremap <silent> [unite]X :call <Plug>unite_disable_max_candidates()<CR>
-nnoremap <silent> <leader>p :call <SID>call_unite_files()<cr>
+nnoremap <silent> <C-p> :call <SID>call_unite_files()<cr>
 " }}}
 
 " }}}
@@ -586,11 +587,13 @@ augroup jalcine
   au BufReadPost fugitive://* set bufhidden=delete
 
   " Focus.
-  au WinLeave * setlocal nocursorline nocursorcolumn
-  au WinEnter * setlocal cursorcolumn cursorline
+  au WinLeave * setlocal nocursorline nocursorcolumn norelativenumber
+  au WinEnter * setlocal cursorcolumn cursorline relativenumber
 
   " Things for Unite
   au FileType unite call s:unite_settings()
+
+  au BufEnter   * let &titlestring=expand('%:p')
 
   " CoffeeScript jazz.
   au BufNewFile,BufReadPost *.coffee setl foldmethod=indent shiftwidth=2 expandtab

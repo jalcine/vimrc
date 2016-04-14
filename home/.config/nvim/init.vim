@@ -735,47 +735,49 @@ match VendorPrefix /-\(moz\|webkit\|o\|ms\)-[a-zA-Z-]\+/
 " }}}
 
 " {{{ post-work for unite
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#filters#sorter_default#use(['sorter_rank'])
-call unite#custom#profile('default', 'context', {
-      \ 'start_insert': 1
-      \ })
-call g:unite#filters#matcher_default#use([
-      \ 'matcher_context',
-      \ 'matcher_fuzzy',
-      \ 'matcher_project_files',
-      \ 'matcher_project_ignore_files',
-      \ 'matcher_hide_current_file'
-      \ ])
+if exists('g:loaded_unite')
+  call unite#filters#matcher_default#use(['matcher_fuzzy'])
+  call unite#filters#sorter_default#use(['sorter_rank'])
+  call unite#custom#profile('default', 'context', {
+        \ 'start_insert': 1
+        \ })
+  call g:unite#filters#matcher_default#use([
+        \ 'matcher_context',
+        \ 'matcher_fuzzy',
+        \ 'matcher_project_files',
+        \ 'matcher_project_ignore_files',
+        \ 'matcher_hide_current_file'
+        \ ])
 
-call g:unite#filters#sorter_default#use([
-      \ 'sorter_rank',
-      \ 'sorter_ftime'
-      \ ])
+  call g:unite#filters#sorter_default#use([
+        \ 'sorter_rank',
+        \ 'sorter_ftime'
+        \ ])
 
-call g:unite#filters#converter_default#use([
-      \ 'converter_smart_path'
-      \ ])
+  call g:unite#filters#converter_default#use([
+        \ 'converter_smart_path'
+        \ ])
 
-call g:unite#custom#profile('source/grep', 'context', {
-      \   'quit' : 1
-      \ })
+  call g:unite#custom#profile('source/grep', 'context', {
+        \   'quit' : 1
+        \ })
 
-call g:unite#custom#profile('default', 'context', {
-      \   'start_insert': 1,
-      \   'auto-resize': 0,
-      \   'winheight': 5,
-      \   'direction': 'top'
-      \ })
+  call g:unite#custom#profile('default', 'context', {
+        \   'start_insert': 1,
+        \   'auto-resize': 0,
+        \   'winheight': 5,
+        \   'direction': 'top'
+        \ })
 
-call g:unite#custom#source('tag,file_rec/async', 'ignore_globs',
-      \ split(&wildignore, ','))
+  call g:unite#custom#source('tag,file_rec/async', 'ignore_globs',
+        \ split(&wildignore, ','))
 
-func! s:configure_unite_buffer()
-  imap <silent><buffer><expr> <C-j>   <Plug>(unite_select_next_line)<CR>
-  imap <silent><buffer><expr> <C-k>   <Plug>(unite_select_previous_line)<CR>
-  imap <silent><buffer><expr> <C-p>   <Plug>(unite_auto_preview)<CR>
-  imap <silent><buffer><expr> <C-s>   unite#do_action('split')<CR>
-endfunc
+  func! s:configure_unite_buffer()
+    imap <silent><buffer><expr> <C-j>   <Plug>(unite_select_next_line)<CR>
+    imap <silent><buffer><expr> <C-k>   <Plug>(unite_select_previous_line)<CR>
+    imap <silent><buffer><expr> <C-p>   <Plug>(unite_auto_preview)<CR>
+    imap <silent><buffer><expr> <C-s>   unite#do_action('split')<CR>
+  endfunc
+endif
 " }}}
 " }}}

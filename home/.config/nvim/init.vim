@@ -709,13 +709,14 @@ Plug 'gregsexton/gitv'
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/vimproc.vim', { 'do' : 'make' }
 Plug 'Shougo/neomru.vim'
-Plug 'Valloric/YouCompleteMe', { 'do': 'python install.py', 'frozen': 1 }
+Plug 'Valloric/YouCompleteMe', { 'do': 'python install.py --clang-completer', 'frozen': 1 }
 Plug 'justinmk/vim-sneak'
 Plug 'Shougo/neomru.vim'
 Plug 'tsukkee/unite-tag'
 Plug 'Shougo/unite-help'
 Plug 'Shougo/unite-outline'
 Plug 'zepto/unite-tmux'
+Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 
 call g:plug#end()
 

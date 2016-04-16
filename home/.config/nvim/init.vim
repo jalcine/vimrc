@@ -1,4 +1,4 @@
-" vim: set fdm=marker foldenable foldlevel=1 nospell:
+" vim: set fdm=marker foldenable foldlevel=1 nospell:v
 " File:          .config/nvim/init.vim
 " Author:        Jacky Alciné <yo@jacky.wtf>
 " Description:   The heart for Neovim.
@@ -308,7 +308,7 @@ nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " {{{ unite
 func! s:call_unite(sources)
-  exec(':Unite -match-input -immediately ' . a:sources)
+  exec(':Unite -no-split -match-input -immediately ' . a:sources)
 endfunc
 
 func! s:call_unite_history()
@@ -491,10 +491,6 @@ let g:neomake_vim_enabled_checkers = ['vint']
 " }}}
 
 " {{{ vim-airline options
-let g:airline_theme = 'jellybeans'
-let g:airline_detected_modified = 1
-let g:airline_powerline_fonts = 1
-let g:airline_detect_iminsert = 1
 let g:airline#extensions#hunks#non_zero_only = 1
 let g:airline#extensions#tabline#enabled = 0
 let g:airline#extensions#branch#enabled = 1
@@ -504,6 +500,10 @@ let g:airline#extensions#whitespace#show_message = 1
 let g:airline#extensions#whitespace#trailing_format = 's:[%s]'
 let g:airline#extensions#whitespace#mixed_indent_format = 'i:[%s]'
 let g:airline#extensions#tagbar#flags = 'f'
+let g:airline_theme = 'papercolor'
+let g:airline_detected_modified = 1
+let g:airline_powerline_fonts = 1
+let g:airline_detect_iminsert = 1
 let g:airline_left_sep = "\uE0B4"
 let g:airline_right_sep = "\uE0B6"
 let g:airline_mode_map = {
@@ -717,6 +717,11 @@ Plug 'Shougo/unite-help'
 Plug 'Shougo/unite-outline'
 Plug 'zepto/unite-tmux'
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
+Plug 'dsawardekar/portkey'
+Plug 'dsawardekar/ember.vim'
+Plug 'KabbAmine/zeavim.vim'
+Plug 'elixir-lang/vim-elixir'
+Plug 'mattreduce/vim-mix'
 
 call g:plug#end()
 
@@ -729,9 +734,10 @@ syntax enable
 
 " {{{ Colorscheme
 set background=dark
-colorscheme distinguished
+colorscheme PaperColor
 hi BookmarkLineDefault ctermfg=white ctermbg=33
 hi VendorPrefix ctermbg=white ctermbg=blue
+hi Conceal ctermbg=NONE ctermfg=white
 match VendorPrefix /-\(moz\|webkit\|o\|ms\)-[a-zA-Z-]\+/
 " }}}
 

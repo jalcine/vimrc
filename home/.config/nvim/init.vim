@@ -388,7 +388,6 @@ let g:javascript_conceal_static = '•'
 let g:javascript_conceal_super = 'Ω'
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:DevIconsEnableFoldersOpenClose = 1
-let g:deoplete#enable_at_startup = 1
 let g:signify_update_on_bufenter = 0
 let g:rustfmt_autosave = 1
 let g:gitgutter_diff_args = '-w'
@@ -613,7 +612,7 @@ let g:unite_source_grep_default_opts =
   \ '-i --vimgrep --hidden --nocolor --nogroup --ignore ' .
   \ '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
 
-let g:unite_source_rec_max_cache_files = 8000
+let g:unite_source_rec_max_cache_files = 20000
 let g:unite_prompt = '» '
 " }}}
 
@@ -633,7 +632,6 @@ Plug 'KabbAmine/zeavim.vim'
 Plug 'Konfekt/FastFold'
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'PotatoesMaster/i3-vim-syntax'
-Plug 'Shougo/deoplete.nvim'
 Plug 'SirVer/ultisnips'
 Plug 'StanAngeloff/php.vim', { 'for': 'php' }
 Plug 'TagHighlight'
@@ -729,7 +727,7 @@ syntax enable
 
 " {{{ Colorscheme
 set background=dark
-colorscheme distinguished
+colorscheme jellybeans 
 hi BookmarkLineDefault ctermfg=white ctermbg=33
 hi VendorPrefix ctermbg=white ctermbg=blue
 match VendorPrefix /-\(moz\|webkit\|o\|ms\)-[a-zA-Z-]\+/

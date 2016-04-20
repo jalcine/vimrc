@@ -1,4 +1,4 @@
-" vim: set fdm=marker foldenable foldlevel=1 nospell:v
+" vim: set fdm=marker foldenable foldlevel=1 nospell:
 " File:          .config/nvim/init.vim
 " Author:        Jacky Alciné <yo@jacky.wtf>
 " Description:   The heart for Neovim.
@@ -33,8 +33,6 @@ call matchadd('ColorColumn', '\%' . &textwidth . 'v', 80)
 
 set complete=.,w,b,u,U,i,d,t
 set completeopt=menu,longest
-
-
 set cursorline cursorcolumn
 
 set showmatch wrapscan
@@ -333,7 +331,7 @@ func! s:call_unite_buffer()
 endfunc
 
 func! s:call_unite_files()
-  call s:call_unite('file_rec/async')
+  call s:call_unite('file_rec/neovim file_mru')
 endfunc
 
 func! s:call_unite_tags()
@@ -342,6 +340,10 @@ endfunc
 
 function! s:call_unite_snippets()
   return s:call_unite('ultisnips')
+endfunc
+
+function! s:call_unite_windows()
+  return s:call_unite('window window/gui')
 endfunc
 
 nnoremap [unite] <nop>
@@ -353,6 +355,7 @@ nnoremap <silent> [unite]g :call <SID>call_unite_grep()<cr>
 nnoremap <silent> [unite]a :call <SID>call_unite_tasks()<cr>
 nnoremap <silent> [unite]x :call <SID>call_unite_tmux()<cr>
 nnoremap <silent> [unite]u :call <SID>call_unite_snippets()<cr>
+nnoremap <silent> [unite]w :call <SID>call_unite_windows()<cr>
 nnoremap <silent> [unite]X :call <Plug>unite_disable_max_candidates()<CR>
 nnoremap <silent> <C-p> :call <SID>call_unite_files()<cr>
 " }}}
@@ -372,7 +375,7 @@ let g:javascript_conceal = 1
 let g:xml_syntax_folding = 1
 let g:xml_namespace_transparent = 1
 let g:notes_directories = ['~/Notes']
-let g:notes_suffix = '.markdown'
+let g:notes_suffix = '.txt'
 let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_define_wrapper_commands = 1
 let g:javascript_enable_domhtmlcss = 1
@@ -400,6 +403,7 @@ let g:tagbar_autofocus=1
 let g:tagbar_autoclose=0
 let g:tagbar_iconchars = ['▸', '▾']
 let g:tagbar_autoshowtag=1
+let g:tagbar_width=30
 let g:tagbar_type_markdown = {
   \ 'ctagstype' : 'markdown',
   \ 'kinds' : [
@@ -411,6 +415,24 @@ let g:tagbar_type_markdown = {
     \ 'n:Heading_L6'
   \ ]
 \ }
+let g:tagbar_type_elixir = {
+  \ 'ctagstype': 'elixir', 
+  \ 'kinds': [
+    \ 'f:functions:0:0', 
+    \ 'c:callbacks:0:0', 
+    \ 'd:delegates:0:0',
+    \ 'e:exceptions:0:0',
+    \ 'i:implementations:0:0',
+    \ 'a:macros:0:0',
+    \ 'o:operators:0:0',
+    \ 'm:modules:0:0',
+    \ 'p:protocols:0:0',
+    \ 'r:records:0:0'
+  \ ], 
+  \ 'sro': '.',
+  \ 'kind2scope': {'m': 'modules'},
+  \ 'scope2kind': {'modules': 'm'}
+  \ }
 let g:ycm_complete_in_comments_and_strings=1
 let g:ycm_key_list_select_completion=['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion=['<C-p>', '<Up>']
@@ -471,23 +493,25 @@ let g:doxygen_enhanced_color = 1
 let g:load_doxygen_syntax = 1
 let g:c_no_comment_fold = 1
 
-let g:test#strategy = 'neovim'
+let g:test#strategy = 'dispatch'
 let g:test#preserve_screen = 1
 
 " TODO: Add this: https://github.com/janko-m/vim-test#transformations
 
 " {{{ neomake options
 let g:neomake_list_height = 3
-let g:neomake_open_list = 0
-let g:neomake_serialize = 0
-let g:neomake_serialize_abort_on_error = 1
-let g:neomake_verbose = 0
+let g:neomake_open_list = 1
+let g:neomake_serialize = 1
+let g:neomake_serialize_abort_on_error = 0
+let g:neomake_verbose = 1
+let g:neomake_logfile = "/home/jacky/neomake.log"
 let g:neomake_javascript_enabled_checkers = ['eslint', 'jscs']
 let g:neomake_python_enabled_checkers = ['python', 'flake8']
 let g:neomake_scss_enabled_checkers = ['scss-lint']
 let g:neomake_sh_enabled_checkers = ['shellcheck']
 let g:neomake_ruby_enabled_checkers = ['rubocop', 'mri']
 let g:neomake_vim_enabled_checkers = ['vint']
+let g:neomake_elixir_enabled_checkers = ['mix', 'credo']
 " }}}
 
 " {{{ vim-airline options
@@ -577,7 +601,6 @@ augroup jalcine
   " Tweak for particular file types.
   au FileType css setl iskeyword+=-
   au FileType gitcommit setl spell
-  au FileType markdown call textobj#quote#init()
 
   " Enable Neomake to run on builds.
   au BufWritePost * Neomake
@@ -637,7 +660,7 @@ Plug 'Shougo/deoplete.nvim'
 Plug 'SirVer/ultisnips'
 Plug 'StanAngeloff/php.vim', { 'for': 'php' }
 Plug 'TagHighlight'
-Plug 'benekastah/neomake'
+Plug '~/prjs/neomake'
 Plug 'benmills/vimux'
 Plug 'bogado/file-line'
 Plug 'bruno-/vim-man'
@@ -673,7 +696,7 @@ Plug 'moll/vim-node', { 'for': 'javascript' }
 Plug 'mtscout6/vim-cjsx', { 'for': 'coffee' }
 Plug 'mustache/vim-mustache-handlebars', { 'for' : 'mustache' }
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'reedes/vim-textobj-quote'
+Plug 'reedes/vim-textobj-quote', { 'for': 'markdown,notes' }
 Plug 'rizzatti/dash.vim'
 Plug 'rking/ag.vim'
 Plug 'saltstack/salt-vim'

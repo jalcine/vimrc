@@ -485,3 +485,5 @@ mins
 confirmable
 mixin
 Hardcodes
+ex_statsd
+ex_statsd

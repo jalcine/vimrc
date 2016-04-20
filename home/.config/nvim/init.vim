@@ -335,7 +335,7 @@ func! s:call_unite_files()
 endfunc
 
 func! s:call_unite_tags()
-  call s:call_unite('tag:$PWD tag/include:$PWD')
+  call s:call_unite('tag tag/file tag/include')
 endfunc
 
 function! s:call_unite_snippets()
@@ -345,6 +345,10 @@ endfunc
 function! s:call_unite_windows()
   return s:call_unite('window window/gui')
 endfunc
+
+function! s:call_unite_issues()
+  return s:call_unite('issue:jira issue:github')
+endfunction
 
 nnoremap [unite] <nop>
 nmap <leader>u [unite]
@@ -356,6 +360,7 @@ nnoremap <silent> [unite]a :call <SID>call_unite_tasks()<cr>
 nnoremap <silent> [unite]x :call <SID>call_unite_tmux()<cr>
 nnoremap <silent> [unite]u :call <SID>call_unite_snippets()<cr>
 nnoremap <silent> [unite]w :call <SID>call_unite_windows()<cr>
+nnoremap <silent> [unite]i :call <SID>call_unite_issues()<cr>
 nnoremap <silent> [unite]X :call <Plug>unite_disable_max_candidates()<CR>
 nnoremap <silent> <C-p> :call <SID>call_unite_files()<cr>
 " }}}
@@ -391,7 +396,6 @@ let g:javascript_conceal_static = '•'
 let g:javascript_conceal_super = 'Ω'
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:DevIconsEnableFoldersOpenClose = 1
-let g:deoplete#enable_at_startup = 1
 let g:signify_update_on_bufenter = 0
 let g:rustfmt_autosave = 1
 let g:gitgutter_diff_args = '-w'
@@ -559,7 +563,7 @@ let g:UltiSnipsSnippetDirectories = ['Ultisnips']
 " }}}
 
 " {{{ vim-bookmarks
-let g:bookmark_sign = '☰'
+let g:bookmark_sign = '♥'
 let g:bookmark_highlight_lines = 1
 " "}}
 
@@ -636,7 +640,7 @@ let g:unite_source_grep_default_opts =
   \ '-i --vimgrep --hidden --nocolor --nogroup --ignore ' .
   \ '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
 
-let g:unite_source_rec_max_cache_files = 8000
+let g:unite_source_rec_max_cache_files = 20000
 let g:unite_prompt = '» '
 " }}}
 
@@ -652,11 +656,11 @@ endif
 call g:plug#begin('~/.config/nvim/plugins')
 
 Plug 'Chiel92/vim-autoformat'
+Plug 'kshenoy/vim-signature'
 Plug 'KabbAmine/zeavim.vim'
 Plug 'Konfekt/FastFold'
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'PotatoesMaster/i3-vim-syntax'
-Plug 'Shougo/deoplete.nvim'
 Plug 'SirVer/ultisnips'
 Plug 'StanAngeloff/php.vim', { 'for': 'php' }
 Plug 'TagHighlight'
@@ -739,6 +743,8 @@ Plug 'tsukkee/unite-tag'
 Plug 'Shougo/unite-help'
 Plug 'Shougo/unite-outline'
 Plug 'zepto/unite-tmux'
+Plug 'rafi/vim-unite-issue'
+Plug 'tyru/open-browser.vim'
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 Plug 'dsawardekar/portkey'
 Plug 'dsawardekar/ember.vim'
@@ -798,6 +804,14 @@ if exists('g:loaded_unite')
         \   'winheight': 5,
         \   'direction': 'top'
         \ })
+
+  call unite#custom#profile('source/vim_bookmarks', 'context', {
+      \   'winheight': 13,
+      \   'direction': 'botright',
+      \   'start_insert': 0,
+      \   'keep_focus': 1,
+      \   'no_quit': 1,
+      \ })
 
   call g:unite#custom#source('tag,file_rec/async', 'ignore_globs',
         \ split(&wildignore, ','))

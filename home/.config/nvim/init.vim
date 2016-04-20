@@ -528,7 +528,7 @@ let g:airline#extensions#whitespace#show_message = 1
 let g:airline#extensions#whitespace#trailing_format = 's:[%s]'
 let g:airline#extensions#whitespace#mixed_indent_format = 'i:[%s]'
 let g:airline#extensions#tagbar#flags = 'f'
-let g:airline_theme = 'papercolor'
+let g:airline_theme = 'durant'
 let g:airline_detected_modified = 1
 let g:airline_powerline_fonts = 1
 let g:airline_detect_iminsert = 1
@@ -744,6 +744,7 @@ Plug 'Shougo/unite-help'
 Plug 'Shougo/unite-outline'
 Plug 'zepto/unite-tmux'
 Plug 'rafi/vim-unite-issue'
+Plug 'ujihisa/unite-colorscheme'
 Plug 'tyru/open-browser.vim'
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 Plug 'dsawardekar/portkey'
@@ -763,7 +764,7 @@ syntax enable
 
 " {{{ Colorscheme
 set background=dark
-colorscheme PaperColor
+colorscheme seoul256
 hi BookmarkLineDefault ctermfg=white ctermbg=33
 hi VendorPrefix ctermbg=white ctermbg=blue
 hi Conceal ctermbg=NONE ctermfg=white

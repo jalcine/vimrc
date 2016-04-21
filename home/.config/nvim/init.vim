@@ -508,7 +508,6 @@ let g:neomake_open_list = 1
 let g:neomake_serialize = 1
 let g:neomake_serialize_abort_on_error = 0
 let g:neomake_verbose = 1
-let g:neomake_logfile = "/home/jacky/neomake.log"
 let g:neomake_javascript_enabled_checkers = ['eslint', 'jscs']
 let g:neomake_python_enabled_checkers = ['python', 'flake8']
 let g:neomake_scss_enabled_checkers = ['scss-lint']
@@ -528,12 +527,10 @@ let g:airline#extensions#whitespace#show_message = 1
 let g:airline#extensions#whitespace#trailing_format = 's:[%s]'
 let g:airline#extensions#whitespace#mixed_indent_format = 'i:[%s]'
 let g:airline#extensions#tagbar#flags = 'f'
-let g:airline_theme = 'durant'
+let g:airline_theme = 'jellybeans'
 let g:airline_detected_modified = 1
 let g:airline_powerline_fonts = 1
-let g:airline_detect_iminsert = 1
-let g:airline_left_sep = "\uE0B4"
-let g:airline_right_sep = "\uE0B6"
+let g:airline_detect_iminsert = 0
 let g:airline_mode_map = {
       \ '__' : '-',
       \ 'n'  : 'N',
@@ -664,7 +661,7 @@ Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'SirVer/ultisnips'
 Plug 'StanAngeloff/php.vim', { 'for': 'php' }
 Plug 'TagHighlight'
-Plug '~/prjs/neomake'
+Plug 'benekastah/neomake'
 Plug 'benmills/vimux'
 Plug 'bogado/file-line'
 Plug 'bruno-/vim-man'
@@ -764,7 +761,7 @@ syntax enable
 
 " {{{ Colorscheme
 set background=dark
-colorscheme seoul256
+colorscheme jellybeans
 hi BookmarkLineDefault ctermfg=white ctermbg=33
 hi VendorPrefix ctermbg=white ctermbg=blue
 hi Conceal ctermbg=NONE ctermfg=white

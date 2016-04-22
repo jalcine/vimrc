@@ -765,6 +765,8 @@ syntax enable
 set background=dark
 colorscheme Tomorrow-Night-Bright
 hi VendorPrefix ctermbg=white ctermbg=blue
+hi VertSplit ctermbg=NONE
+hi Split ctermbg=NONE
 match VendorPrefix /-\(moz\|webkit\|o\|ms\)-[a-zA-Z-]\+/
 " }}}
 

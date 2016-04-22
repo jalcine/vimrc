@@ -16,7 +16,6 @@ scriptencoding utf-8
 
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
-
 " {{{ Options
 set laststatus=2
 set number relativenumber numberwidth=1
@@ -749,6 +748,9 @@ Plug 'dsawardekar/ember.vim'
 Plug 'KabbAmine/zeavim.vim'
 Plug 'elixir-lang/vim-elixir'
 Plug 'mattreduce/vim-mix'
+Plug 'guns/xterm-color-table.vim'
+Plug 'airblade/vim-rooter'
+Plug 'jbgutierrez/vim-babel'
 
 call g:plug#end()
 

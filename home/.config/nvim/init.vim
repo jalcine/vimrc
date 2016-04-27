@@ -18,7 +18,7 @@ let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 " {{{ Options
 set laststatus=2
-set number relativenumber numberwidth=1
+set number relativenumber numberwidth=3
 set path=.,/usr/local/include,/usr/include,$HOME/.local/include
 set visualbell
 set errorbells
@@ -474,8 +474,11 @@ let g:startify_session_dir = '~/.config/nvim/sessions'
 let g:localvimrc_persistent = 1
 
 let g:easytags_async = 1
-let g:easytags_syntax_keyword = 'always'
+let g:easytags_file = '~/.vimtags'
+let g:easytags_resolve_links = 1
+let g:easytags_by_filetype = 1
 let g:easytags_dynamic_files = 1
+let g:easytags_include_members = 1
 let g:easytags_languages = {
       \ 'javascript': {
       \   'cmd': 'jsctags',
@@ -503,9 +506,9 @@ let g:test#preserve_screen = 1
 
 " {{{ neomake options
 let g:neomake_list_height = 3
-let g:neomake_open_list = 1
+let g:neomake_open_list = 0
 let g:neomake_serialize = 1
-let g:neomake_serialize_abort_on_error = 0
+let g:neomake_serialize_abort_on_error = 1
 let g:neomake_verbose = 1
 let g:neomake_javascript_enabled_checkers = ['eslint', 'jscs']
 let g:neomake_python_enabled_checkers = ['python', 'flake8']

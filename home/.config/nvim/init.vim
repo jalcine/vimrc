@@ -154,6 +154,7 @@ iabbrev Wntr Wintermute
 " {{{ Shit I Fuck up A log
 iabbrev _repo repository
 iabbrev NOne None
+iabbrev apperance appearance
 " }}}
 " }}}
 
@@ -216,6 +217,9 @@ nnoremap <silent> <leader>ei :%s/:\([^:]\+\):/\=emoji#for(submatch(1), submatch(
 
 " Formats the current buffer.
 nnoremap <silent><F3> :Autoformat<CR><CR>
+
+" Focuses Vim.
+nnoremap <silent> <leader><space> <Plug>FocusToggleMode
 
 " {{{ Bind make command.
 nnoremap [make] <nop>
@@ -400,6 +404,7 @@ let g:rustfmt_autosave = 1
 let g:gitgutter_diff_args = '-w'
 let g:github_user = 'jalcine'
 let g:github_comment_open_browser = 1
+let g:focusmode_width=82
 let g:tagbar_left=1
 let g:tagbar_compact=1
 let g:tagbar_autofocus=1
@@ -654,42 +659,33 @@ endif
 
 call g:plug#begin('~/.config/nvim/plugins')
 
-Plug 'Chiel92/vim-autoformat'
-Plug 'kshenoy/vim-signature'
-Plug 'KabbAmine/zeavim.vim'
 Plug 'Konfekt/FastFold'
-Plug 'MattesGroeger/vim-bookmarks'
-Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'SirVer/ultisnips'
-Plug 'StanAngeloff/php.vim', { 'for': 'php' }
 Plug 'TagHighlight'
 Plug 'benekastah/neomake'
-Plug 'benmills/vimux'
 Plug 'bogado/file-line'
-Plug 'bruno-/vim-man'
 Plug 'dsawardekar/ember.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'embear/vim-localvimrc'
-Plug 'flazz/vim-colorschemes'
+Plug 'sjl/badwolf'
 Plug 'gorodinskiy/vim-coloresque'
 Plug 'heavenshell/vim-jsdoc'
-Plug 'heavenshell/vim-slack'
 Plug 'honza/vim-snippets'
-Plug 'int3/vim-extradite'
-Plug 'isRuslan/vim-es6'
+" Plug 'int3/vim-extradite'
+Plug 'isRuslan/vim-es6', { 'for': 'javascript' }
 Plug 'janko-m/vim-test'
-Plug 'jaxbot/github-issues.vim'
 Plug 'jceb/vim-orgmode'
-Plug 'jmcantrell/vim-virtualenv'
+Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
 Plug 'jszakmeister/vim-togglecursor'
 Plug 'junegunn/vim-emoji'
 Plug 'kana/vim-textobj-user'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'kopischke/vim-stay'
-Plug 'lukaszkorecki/CoffeeTags'
+Plug 'lukaszkorecki/CoffeeTags', {'for': 'coffee'}
 Plug 'majutsushi/tagbar'
 Plug 'marijnh/tern_for_vim', { 'do': 'npm install', 'for': 'javascript' }
 Plug 'mattn/gist-vim'
+Plug 'jaxbot/github-issues.vim'
 Plug 'mattn/webapi-vim'
 Plug 'merlinrebrovic/focus.vim'
 Plug 'mhinz/vim-signify'
@@ -702,7 +698,7 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'reedes/vim-textobj-quote', { 'for': 'markdown,notes' }
 Plug 'rizzatti/dash.vim'
 Plug 'rking/ag.vim'
-Plug 'saltstack/salt-vim'
+Plug 'saltstack/salt-vim', { 'for': 'yaml' }
 Plug 'scrooloose/nerdcommenter'
 Plug 'sheerun/vim-polyglot', { 'do': './build' }
 Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
@@ -734,26 +730,25 @@ Plug 'xolox/vim-shell'
 Plug 'gregsexton/gitv'
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/vimproc.vim', { 'do' : 'make' }
-Plug 'Shougo/neomru.vim'
 Plug 'Valloric/YouCompleteMe', { 'do': 'python install.py --clang-completer', 'frozen': 1 }
 Plug 'justinmk/vim-sneak'
 Plug 'Shougo/neomru.vim'
 Plug 'tsukkee/unite-tag'
 Plug 'Shougo/unite-help'
-Plug 'Shougo/unite-outline'
 Plug 'zepto/unite-tmux'
 Plug 'rafi/vim-unite-issue'
 Plug 'ujihisa/unite-colorscheme'
-Plug 'tyru/open-browser.vim'
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
-Plug 'dsawardekar/portkey'
-Plug 'dsawardekar/ember.vim'
+" Plug 'dsawardekar/portkey'
+" Plug 'dsawardekar/ember.vim'
 Plug 'KabbAmine/zeavim.vim'
 Plug 'elixir-lang/vim-elixir'
 Plug 'mattreduce/vim-mix'
 Plug 'guns/xterm-color-table.vim'
 Plug 'airblade/vim-rooter'
-Plug 'jbgutierrez/vim-babel'
+Plug 'jbgutierrez/vim-babel', { 'for': 'javascript' }
+" Plug 'slashmili/alchemist.vim'
+Plug 'parkr/vim-jekyll', { 'for': 'markdown' }
 
 call g:plug#end()
 

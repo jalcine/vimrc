@@ -2,7 +2,7 @@
 " File:          .config/nvim/init.vim
 " Author:        Jacky Alciné <yo@jacky.wtf>
 " Description:   The heart for Neovim.
-" Last Modified: 2015-11-02 22:33:39 PST
+" Last Modified: 2016-05-07 15:41:52 PDT
 "
 " This is my peronal setup for NeoVim. It works ~exactly~ the
 " way I expect it to. Any different would trip me up.
@@ -18,7 +18,8 @@ let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 " {{{ Options
 set laststatus=2
-set number relativenumber numberwidth=3
+set number numberwidth=3
+set synmaxcol=150
 set path=.,/usr/local/include,/usr/include,$HOME/.local/include
 set visualbell
 set errorbells
@@ -32,7 +33,6 @@ call matchadd('ColorColumn', '\%' . &textwidth . 'v', 80)
 
 set complete=.,w,b,u,U,i,d,t
 set completeopt=menu,longest
-set cursorline cursorcolumn
 
 set showmatch wrapscan
 set nogdefault noignorecase
@@ -337,6 +337,11 @@ func! s:call_unite_files()
   call s:call_unite('file_rec/neovim file_mru')
 endfunc
 
+func! s:call_unite_file_search()
+  call s:call_unite('file_rec/neovim')
+endfunc
+
+
 func! s:call_unite_tags()
   call s:call_unite('tag tag/file tag/include')
 endfunc
@@ -357,6 +362,7 @@ nnoremap [unite] <nop>
 nmap <leader>u [unite]
 nnoremap <silent> [unite]b :call <SID>call_unite_buffer()<cr>
 nnoremap <silent> [unite]f :call <SID>call_unite_files()<cr>
+nnoremap <silent> [unite]F :call <SID>call_unite_file_search()<cr>
 nnoremap <silent> [unite]t :call <SID>call_unite_tags()<cr>
 nnoremap <silent> [unite]g :call <SID>call_unite_grep()<cr>
 nnoremap <silent> [unite]a :call <SID>call_unite_tasks()<cr>
@@ -617,21 +623,16 @@ augroup jalcine
   " Clear Fugitive buffers.
   au BufReadPost fugitive://* set bufhidden=delete
 
-  " Focus.
-  au WinLeave * setlocal nocursorline nocursorcolumn norelativenumber
-  au WinEnter * setlocal cursorcolumn cursorline relativenumber
-
   " Things for Unite
   au FileType unite call s:unite_settings()
 
   au BufEnter   * let &titlestring=expand('%:p')
 
   " CoffeeScript jazz.
-  au BufNewFile,BufReadPost *.coffee setl foldmethod=indent shiftwidth=2 expandtab
+  au BufNewFile,BufReadPost *.coffee shiftwidth=2 expandtab
 
   au FileType css,scss setlocal foldmethod=marker foldmarker={,}
   au FileType css,scss nnoremap <silent> <leader>S vi{:sort<CR>
-  au FileType python setlocal foldmethod=indent
   au FileType markdown setlocal nolist
   au FileType vim setlocal fdm=indent keywordprg=:help
 augroup END
@@ -671,7 +672,7 @@ Plug 'sjl/badwolf'
 Plug 'gorodinskiy/vim-coloresque'
 Plug 'heavenshell/vim-jsdoc'
 Plug 'honza/vim-snippets'
-" Plug 'int3/vim-extradite'
+Plug 'int3/vim-extradite'
 Plug 'isRuslan/vim-es6', { 'for': 'javascript' }
 Plug 'janko-m/vim-test'
 Plug 'jceb/vim-orgmode'
@@ -739,16 +740,19 @@ Plug 'zepto/unite-tmux'
 Plug 'rafi/vim-unite-issue'
 Plug 'ujihisa/unite-colorscheme'
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
-" Plug 'dsawardekar/portkey'
-" Plug 'dsawardekar/ember.vim'
+Plug 'dsawardekar/portkey'
+Plug 'dsawardekar/ember.vim'
 Plug 'KabbAmine/zeavim.vim'
 Plug 'elixir-lang/vim-elixir'
 Plug 'mattreduce/vim-mix'
 Plug 'guns/xterm-color-table.vim'
 Plug 'airblade/vim-rooter'
 Plug 'jbgutierrez/vim-babel', { 'for': 'javascript' }
-" Plug 'slashmili/alchemist.vim'
+Plug 'slashmili/alchemist.vim'
 Plug 'parkr/vim-jekyll', { 'for': 'markdown' }
+Plug 'mattn/calendar-vim'
+Plug 'utl.vim'
+Plug 'chrisbra/NrrwRgn'
 
 call g:plug#end()
 

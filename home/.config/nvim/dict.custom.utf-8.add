@@ -487,3 +487,7 @@ mixin
 Hardcodes
 ex_statsd
 ex_statsd
+nnoremap
+nmap
+mapleader
+vim

@@ -192,6 +192,16 @@ nnoremap <silent> <down>  <nop>
 nnoremap <silent> <left>  <nop>
 nnoremap <silent> <right> <nop>
 
+" Make it easy to jump around from term emu to Vim.
+tnoremap <A-h> <C-\><C-n><C-w>h
+tnoremap <A-j> <C-\><C-n><C-w>j
+tnoremap <A-k> <C-\><C-n><C-w>k
+tnoremap <A-l> <C-\><C-n><C-w>l
+nnoremap <A-h> <C-w>h
+nnoremap <A-j> <C-w>j
+nnoremap <A-k> <C-w>k
+nnoremap <A-l> <C-w>l
+
 " {{{ Timing options
 inoremap <silent> <leader>pt <C-R>=strftime("%Y-%m-%d")<CR>
 
@@ -753,6 +763,8 @@ Plug 'parkr/vim-jekyll', { 'for': 'markdown' }
 Plug 'mattn/calendar-vim'
 Plug 'utl.vim'
 Plug 'chrisbra/NrrwRgn'
+Plug 'tfnico/vim-gradle'
+Plug 'vim-scripts/groovy.vim'
 
 call g:plug#end()
 

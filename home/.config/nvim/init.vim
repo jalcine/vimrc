@@ -18,9 +18,9 @@ let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 " {{{ Options
 set laststatus=2
-set number relativenumber numberwidth=3
+set number norelativenumber numberwidth=3
 set path=.,/usr/local/include,/usr/include,$HOME/.local/include
-set visualbell
+set novisualbell
 set errorbells
 set ruler
 set conceallevel=1 concealcursor=nv
@@ -32,7 +32,7 @@ call matchadd('ColorColumn', '\%' . &textwidth . 'v', 80)
 
 set complete=.,w,b,u,U,i,d,t
 set completeopt=menu,longest
-set cursorline cursorcolumn
+set nocursorline nocursorcolumn
 
 set showmatch wrapscan
 set nogdefault noignorecase
@@ -41,15 +41,15 @@ set showfulltag
 set showmatch
 set modeline modelines=5
 set noshelltemp
-set tabline=0
+set showtabline=2 tabline=
 set backspace=indent,eol,start
 
 set wildmenu wildmode=longest:full
 set wildoptions=tagfile
 set wildignorecase
 
-set matchtime=6
-set maxcombine=4
+set matchtime=3
+set maxcombine=2
 
 " Ignore a lot of stuff.
 set wildignore+=*.swp,*.pyc,*.bak,*.class,*.orig
@@ -63,7 +63,8 @@ set undofile undodir=~/.config/nvim/undodir
 
 set cpoptions+=d
 
-set foldenable
+set foldmethod=manual
+set nofoldenable
 set foldcolumn=1
 set foldlevel=1
 set foldminlines=3
@@ -71,7 +72,7 @@ set foldnestmax=5
 set foldlevelstart=1
 
 set spelllang=en_us
-set spellsuggest=best,3
+set spellsuggest=best,6
 set dictionary+=/usr/share/dict/words,
 set dictionary+=/usr/share/dict/american-english
 set dictionary+=/usr/share/dict/web2,
@@ -223,7 +224,7 @@ cnoremap <silent> <leader>pd <C-R>=strftime("%Y-%m-%d")<CR>
 " Strip trailing whitespace from the end of files.
 nnoremap <silent> <leader>sw :%s/\s$//g<cr>
 
-nnoremap <silent> <leader>ei :%s/:\([^:]\+\):/\=emoji#for(submatch(1), submatch(0))/g<cr>
+vnoremap <silent> <leader>ei :%s/:\([^:]\+\):/\=emoji#for(submatch(1), submatch(0))/g<cr>
 
 " Formats the current buffer.
 nnoremap <silent><F3> :Autoformat<CR><CR>
@@ -317,6 +318,9 @@ nnoremap <silent> <leader>k :call <SID>toggle_visibility()<cr>
 " Quickly searches using the awesome stuff.
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
+" Make a new note from the selected text.
+vmap <Leader>ns :NoteFromSelectedText<CR>
+
 " {{{ unite
 func! s:call_unite(sources)
   exec(':Unite -no-split -match-input -immediately ' . a:sources)
@@ -344,8 +348,13 @@ func! s:call_unite_buffer()
 endfunc
 
 func! s:call_unite_files()
-  call s:call_unite('file_rec/neovim file_mru')
+  call s:call_unite('file_rec/neovim:' . getcwd())
 endfunc
+
+func! s:call_unite_old_files()
+  call s:call_unite('file_mru:' . getcwd())
+endfunc
+
 
 func! s:call_unite_tags()
   call s:call_unite('tag tag/file tag/include')
@@ -367,6 +376,7 @@ nnoremap [unite] <nop>
 nmap <leader>u [unite]
 nnoremap <silent> [unite]b :call <SID>call_unite_buffer()<cr>
 nnoremap <silent> [unite]f :call <SID>call_unite_files()<cr>
+nnoremap <silent> [unite]F :call <SID>call_unite_old_files()<cr>
 nnoremap <silent> [unite]t :call <SID>call_unite_tags()<cr>
 nnoremap <silent> [unite]g :call <SID>call_unite_grep()<cr>
 nnoremap <silent> [unite]a :call <SID>call_unite_tasks()<cr>
@@ -407,21 +417,21 @@ let g:javascript_conceal_NaN = 'ℕ'
 let g:javascript_conceal_prototype = '¶'
 let g:javascript_conceal_static = '•'
 let g:javascript_conceal_super = 'Ω'
-let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-let g:DevIconsEnableFoldersOpenClose = 1
-let g:signify_update_on_bufenter = 0
+let g:fastfold_fold_command_suffixes = ['x','X','a','A','o','O','c','C','r','R','m','M','i','n','N']
+let g:signify_update_on_bufenter = 1
+let g:signify_sign_show_count = 0
 let g:rustfmt_autosave = 1
-let g:gitgutter_diff_args = '-w'
 let g:github_user = 'jalcine'
+let g:github_complete_enable_omni_completion = 0
 let g:github_comment_open_browser = 1
 let g:focusmode_width=82
 let g:tagbar_left=1
 let g:tagbar_compact=1
 let g:tagbar_autofocus=1
 let g:tagbar_autoclose=0
-let g:tagbar_iconchars = ['▸', '▾']
-let g:tagbar_autoshowtag=1
-let g:tagbar_width=30
+let g:tagbar_iconchars = ['+', '-']
+let g:tagbar_autoshowtag = 1
+let g:tagbar_width=40
 let g:tagbar_type_markdown = {
   \ 'ctagstype' : 'markdown',
   \ 'kinds' : [
@@ -514,6 +524,10 @@ let g:doxygen_enhanced_color = 1
 let g:load_doxygen_syntax = 1
 let g:c_no_comment_fold = 1
 
+let g:rooter_user_lcd = 1 
+let g:rooter_silent_chdir = 1
+let g:rooter_resolve_links = 1
+let g:rooter_manual_only = 1
 let g:test#strategy = 'dispatch'
 let g:test#preserve_screen = 1
 
@@ -525,7 +539,7 @@ let g:neomake_open_list = 0
 let g:neomake_serialize = 1
 let g:neomake_serialize_abort_on_error = 1
 let g:neomake_verbose = 1
-let g:neomake_javascript_enabled_checkers = ['eslint', 'jscs']
+let g:neomake_javascript_enabled_checkers = ['eslint']
 let g:neomake_python_enabled_checkers = ['python', 'flake8']
 let g:neomake_scss_enabled_checkers = ['scss-lint']
 let g:neomake_sh_enabled_checkers = ['shellcheck']
@@ -536,7 +550,10 @@ let g:neomake_elixir_enabled_checkers = ['mix', 'credo']
 
 " {{{ vim-airline options
 let g:airline#extensions#hunks#non_zero_only = 1
-let g:airline#extensions#tabline#enabled = 0
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_splits = 1
+let g:airline#extensions#tabline#show_buffers = 1
+let g:airline#extensions#tabline#show_tabs = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#whitespace#enabled = 1
 let g:airline#extensions#whitespace#mixed_indent_algo = 1
@@ -544,7 +561,7 @@ let g:airline#extensions#whitespace#show_message = 1
 let g:airline#extensions#whitespace#trailing_format = 's:[%s]'
 let g:airline#extensions#whitespace#mixed_indent_format = 'i:[%s]'
 let g:airline#extensions#tagbar#flags = 'f'
-let g:airline_theme = 'badwolf'
+let g:airline_theme = 'ubaryd'
 let g:airline_detected_modified = 1
 let g:airline_powerline_fonts = 1
 let g:airline_detect_iminsert = 0
@@ -609,6 +626,10 @@ endfunction
 augroup jalcine
   au!
 
+  " Github auto-complete.
+  au FileType markdown,gitcommit
+    \ imap <C-x><C-x> <Plug>(github-complete-manual-completion)
+
   " Funky files.
   au User YouCompleteMe call youcompleteme#Enable()
 
@@ -628,8 +649,8 @@ augroup jalcine
   au BufReadPost fugitive://* set bufhidden=delete
 
   " Focus.
-  au WinLeave * setlocal nocursorline nocursorcolumn norelativenumber
-  au WinEnter * setlocal cursorcolumn cursorline relativenumber
+  " au WinLeave * setlocal nocursorline nocursorcolumn norelativenumber
+  " au WinEnter * setlocal cursorcolumn cursorline relativenumber
 
   " Things for Unite
   au FileType unite call s:unite_settings()
@@ -638,9 +659,11 @@ augroup jalcine
 
   " CoffeeScript jazz.
   au BufNewFile,BufReadPost *.coffee setl foldmethod=indent shiftwidth=2 expandtab
+  au FileType javascript setl foldmethod=syntax
 
   au FileType css,scss setlocal foldmethod=marker foldmarker={,}
   au FileType css,scss nnoremap <silent> <leader>S vi{:sort<CR>
+  au FileType ini set ft=dosini
   au FileType python setlocal foldmethod=indent
   au FileType markdown setlocal nolist
   au FileType vim setlocal fdm=indent keywordprg=:help
@@ -669,19 +692,21 @@ endif
 
 call g:plug#begin('~/.config/nvim/plugins')
 
+Plug 'koron/minimap-vim'
+Plug 'vim-jp/vital.vim'
 Plug 'Konfekt/FastFold'
 Plug 'SirVer/ultisnips'
 Plug 'TagHighlight'
-Plug 'benekastah/neomake'
+Plug 'benekastah/neomake', { 'on': 'Neomake' }
 Plug 'bogado/file-line'
 Plug 'dsawardekar/ember.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'embear/vim-localvimrc'
-Plug 'sjl/badwolf'
+Plug 'flazz/vim-colorschemes'
 Plug 'gorodinskiy/vim-coloresque'
 Plug 'heavenshell/vim-jsdoc'
 Plug 'honza/vim-snippets'
-" Plug 'int3/vim-extradite'
+Plug 'int3/vim-extradite'
 Plug 'isRuslan/vim-es6', { 'for': 'javascript' }
 Plug 'janko-m/vim-test'
 Plug 'jceb/vim-orgmode'
@@ -749,18 +774,37 @@ Plug 'zepto/unite-tmux'
 Plug 'rafi/vim-unite-issue'
 Plug 'ujihisa/unite-colorscheme'
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
-" Plug 'dsawardekar/portkey'
-" Plug 'dsawardekar/ember.vim'
+Plug 'dsawardekar/portkey'
+Plug 'dsawardekar/ember.vim'
 Plug 'KabbAmine/zeavim.vim'
 Plug 'elixir-lang/vim-elixir'
 Plug 'mattreduce/vim-mix'
 Plug 'guns/xterm-color-table.vim'
 Plug 'airblade/vim-rooter'
 Plug 'jbgutierrez/vim-babel', { 'for': 'javascript' }
-" Plug 'slashmili/alchemist.vim'
+Plug 'slashmili/alchemist.vim'
 Plug 'parkr/vim-jekyll', { 'for': 'markdown' }
 Plug 'tfnico/vim-gradle'
 Plug 'vim-scripts/groovy.vim'
+Plug 'easymotion/vim-easymotion' |
+  \ Plug 'haya14busa/vim-easyoperator-line' |
+  \ Plug 'haya14busa/vim-easyoperator-phrase'
+Plug 'haya14busa/incsearch.vim' |
+  \ Plug 'haya14busa/incsearch-fuzzy.vim' |
+  \ Plug 'haya14busa/incsearch-easymotion.vim'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+Plug 'junegunn/vim-easy-align'
+Plug 'amix/vim-zenroom2'
+Plug 'sjl/gundo.vim'
+Plug 'jamessan/vim-gnupg'
+Plug 'reedes/vim-wordy'
+Plug 'nicwest/QQ.vim'
+Plug 'tpope/vim-rhubarb'
+Plug 'junegunn/vim-github-dashboard'
+Plug 'mmozuras/vim-github-comment'
+Plug 'rhysd/github-complete.vim'
+Plug 'MattesGroeger/vim-bookmarks'
 
 call g:plug#end()
 
@@ -772,8 +816,7 @@ filetype plugin indent on
 syntax enable
 
 " {{{ Colorscheme
-set background=dark
-colorscheme badwolf
+colorscheme ubaryd
 hi VendorPrefix ctermbg=white ctermbg=blue
 hi VertSplit ctermbg=NONE
 hi Split ctermbg=NONE

@@ -2,7 +2,7 @@
 " File:          .config/nvim/init.vim
 " Author:        Jacky Alciné <yo@jacky.wtf>
 " Description:   The heart for Neovim.
-" Last Modified: 2015-11-02 22:33:39 PST
+" Last Modified: 2016-05-07 15:41:52 PDT
 "
 " This is my peronal setup for NeoVim. It works ~exactly~ the
 " way I expect it to. Any different would trip me up.
@@ -19,6 +19,7 @@ let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 " {{{ Options
 set laststatus=2
 set number norelativenumber numberwidth=3
+set synmaxcol=100
 set path=.,/usr/local/include,/usr/include,$HOME/.local/include
 set novisualbell
 set errorbells
@@ -354,7 +355,6 @@ endfunc
 func! s:call_unite_old_files()
   call s:call_unite('file_mru:' . getcwd())
 endfunc
-
 
 func! s:call_unite_tags()
   call s:call_unite('tag tag/file tag/include')
@@ -784,6 +784,9 @@ Plug 'airblade/vim-rooter'
 Plug 'jbgutierrez/vim-babel', { 'for': 'javascript' }
 Plug 'slashmili/alchemist.vim'
 Plug 'parkr/vim-jekyll', { 'for': 'markdown' }
+Plug 'mattn/calendar-vim'
+Plug 'utl.vim'
+Plug 'chrisbra/NrrwRgn'
 Plug 'tfnico/vim-gradle'
 Plug 'vim-scripts/groovy.vim'
 Plug 'easymotion/vim-easymotion' |

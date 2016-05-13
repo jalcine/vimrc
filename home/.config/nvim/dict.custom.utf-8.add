@@ -490,3 +490,7 @@ ex_statsd
 nginx
 SDK
 uWSGI
+nnoremap
+nmap
+mapleader
+vim

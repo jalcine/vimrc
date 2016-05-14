@@ -491,3 +491,6 @@ nnoremap
 nmap
 mapleader
 vim
+vim
+syntastic
+neomake

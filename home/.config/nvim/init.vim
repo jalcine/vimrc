@@ -550,7 +550,7 @@ let g:airline#extensions#whitespace#show_message = 1
 let g:airline#extensions#whitespace#trailing_format = 's:[%s]'
 let g:airline#extensions#whitespace#mixed_indent_format = 'i:[%s]'
 let g:airline#extensions#tagbar#flags = 'f'
-let g:airline_theme = 'badwolf'
+let g:airline_theme = 'serene'
 let g:airline_detected_modified = 1
 let g:airline_powerline_fonts = 1
 let g:airline_detect_iminsert = 0
@@ -765,6 +765,7 @@ Plug 'utl.vim'
 Plug 'chrisbra/NrrwRgn'
 Plug 'tfnico/vim-gradle'
 Plug 'vim-scripts/groovy.vim'
+Plug 'flazz/vim-colorschemes'
 
 call g:plug#end()
 
@@ -777,7 +778,7 @@ syntax enable
 
 " {{{ Colorscheme
 set background=dark
-colorscheme badwolf
+colorscheme distinguished
 hi VendorPrefix ctermbg=white ctermbg=blue
 hi VertSplit ctermbg=NONE
 hi Split ctermbg=NONE

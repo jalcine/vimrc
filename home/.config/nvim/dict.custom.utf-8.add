@@ -487,6 +487,9 @@ mixin
 Hardcodes
 ex_statsd
 ex_statsd
+nginx
+SDK
+uWSGI
 nnoremap
 nmap
 mapleader

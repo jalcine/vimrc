@@ -692,36 +692,54 @@ endif
 
 call g:plug#begin('~/.config/nvim/plugins')
 
-Plug 'koron/minimap-vim'
-Plug 'vim-jp/vital.vim'
-Plug 'Konfekt/FastFold'
-Plug 'SirVer/ultisnips'
-Plug 'TagHighlight'
+Plug 'airblade/vim-rooter'
+Plug 'amix/vim-zenroom2'
 Plug 'benekastah/neomake', { 'on': 'Neomake' }
 Plug 'bogado/file-line'
+Plug 'chrisbra/NrrwRgn'
 Plug 'dsawardekar/ember.vim'
+Plug 'dsawardekar/portkey'
+Plug 'easymotion/vim-easymotion'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'elixir-lang/vim-elixir'
 Plug 'embear/vim-localvimrc'
 Plug 'flazz/vim-colorschemes'
 Plug 'gorodinskiy/vim-coloresque'
+Plug 'gregsexton/gitv'
+Plug 'guns/xterm-color-table.vim'
+Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
+Plug 'haya14busa/vim-easyoperator-line'
+Plug 'haya14busa/vim-easyoperator-phrase'
 Plug 'heavenshell/vim-jsdoc'
 Plug 'honza/vim-snippets'
 Plug 'int3/vim-extradite'
 Plug 'isRuslan/vim-es6', { 'for': 'javascript' }
+Plug 'jamessan/vim-gnupg'
 Plug 'janko-m/vim-test'
+Plug 'jaxbot/github-issues.vim'
+Plug 'jbgutierrez/vim-babel', { 'for': 'javascript' }
 Plug 'jceb/vim-orgmode'
 Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
 Plug 'jszakmeister/vim-togglecursor'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/vim-emoji'
+Plug 'junegunn/vim-github-dashboard'
+Plug 'KabbAmine/zeavim.vim'
 Plug 'kana/vim-textobj-user'
 Plug 'kien/rainbow_parentheses.vim'
+Plug 'Konfekt/FastFold'
 Plug 'kopischke/vim-stay'
+Plug 'koron/minimap-vim'
 Plug 'lukaszkorecki/CoffeeTags', {'for': 'coffee'}
 Plug 'majutsushi/tagbar'
 Plug 'marijnh/tern_for_vim', { 'do': 'npm install', 'for': 'javascript' }
+Plug 'MattesGroeger/vim-bookmarks'
+Plug 'mattn/calendar-vim'
 Plug 'mattn/gist-vim'
-Plug 'jaxbot/github-issues.vim'
 Plug 'mattn/webapi-vim'
+Plug 'mattreduce/vim-mix'
 Plug 'merlinrebrovic/focus.vim'
 Plug 'mhinz/vim-signify'
 Plug 'mhinz/vim-startify'
@@ -730,16 +748,30 @@ Plug 'moll/vim-node', { 'for': 'javascript' }
 Plug 'mtscout6/vim-cjsx', { 'for': 'coffee' }
 Plug 'mustache/vim-mustache-handlebars', { 'for' : 'mustache' }
 Plug 'nathanaelkane/vim-indent-guides'
+Plug 'nicwest/QQ.vim'
+Plug 'parkr/vim-jekyll', { 'for': 'markdown' }
+Plug 'rafi/vim-unite-issue'
+Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 Plug 'reedes/vim-textobj-quote', { 'for': 'markdown,notes' }
+Plug 'reedes/vim-wordy'
+Plug 'rhysd/github-complete.vim'
 Plug 'rizzatti/dash.vim'
 Plug 'rking/ag.vim'
 Plug 'saltstack/salt-vim', { 'for': 'yaml' }
 Plug 'scrooloose/nerdcommenter'
 Plug 'sheerun/vim-polyglot', { 'do': './build' }
-Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
+Plug 'Shougo/neomru.vim'
+Plug 'Shougo/unite-help'
+Plug 'Shougo/unite.vim'
+Plug 'Shougo/vimproc.vim', { 'do' : 'make' }
 Plug 'shumphrey/fugitive-gitlab.vim'
+Plug 'SirVer/ultisnips'
+Plug 'sjl/gundo.vim'
+Plug 'slashmili/alchemist.vim'
 Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
+Plug 'TagHighlight'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'tfnico/vim-gradle'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'tommcdo/vim-fubitive'
@@ -750,62 +782,26 @@ Plug 'tpope/vim-heroku'
 Plug 'tpope/vim-jdaddy', { 'for': 'json' }
 Plug 'tpope/vim-rbenv', { 'for': 'ruby' }
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-rsi'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
+Plug 'tsukkee/unite-tag'
+Plug 'ujihisa/unite-colorscheme'
+Plug 'utl.vim'
+Plug 'Valloric/YouCompleteMe', { 'do': 'python install.py --clang-completer', 'frozen': 1 }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-jp/vital.vim'
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+Plug 'vim-scripts/groovy.vim'
 Plug 'xolox/vim-easytags'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'
 Plug 'xolox/vim-publish'
 Plug 'xolox/vim-shell'
-Plug 'gregsexton/gitv'
-Plug 'Shougo/unite.vim'
-Plug 'Shougo/vimproc.vim', { 'do' : 'make' }
-Plug 'Valloric/YouCompleteMe', { 'do': 'python install.py --clang-completer', 'frozen': 1 }
-Plug 'justinmk/vim-sneak'
-Plug 'Shougo/neomru.vim'
-Plug 'tsukkee/unite-tag'
-Plug 'Shougo/unite-help'
 Plug 'zepto/unite-tmux'
-Plug 'rafi/vim-unite-issue'
-Plug 'ujihisa/unite-colorscheme'
-Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
-Plug 'dsawardekar/portkey'
-Plug 'dsawardekar/ember.vim'
-Plug 'KabbAmine/zeavim.vim'
-Plug 'elixir-lang/vim-elixir'
-Plug 'mattreduce/vim-mix'
-Plug 'guns/xterm-color-table.vim'
-Plug 'airblade/vim-rooter'
-Plug 'jbgutierrez/vim-babel', { 'for': 'javascript' }
-Plug 'slashmili/alchemist.vim'
-Plug 'parkr/vim-jekyll', { 'for': 'markdown' }
-Plug 'mattn/calendar-vim'
-Plug 'utl.vim'
-Plug 'chrisbra/NrrwRgn'
-Plug 'tfnico/vim-gradle'
-Plug 'vim-scripts/groovy.vim'
-Plug 'easymotion/vim-easymotion' |
-  \ Plug 'haya14busa/vim-easyoperator-line' |
-  \ Plug 'haya14busa/vim-easyoperator-phrase'
-Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
-Plug 'junegunn/vim-easy-align'
-Plug 'amix/vim-zenroom2'
-Plug 'sjl/gundo.vim'
-Plug 'jamessan/vim-gnupg'
-Plug 'reedes/vim-wordy'
-Plug 'nicwest/QQ.vim'
-Plug 'tpope/vim-rhubarb'
-Plug 'junegunn/vim-github-dashboard'
-Plug 'mmozuras/vim-github-comment'
-Plug 'rhysd/github-complete.vim'
-Plug 'MattesGroeger/vim-bookmarks'
-Plug 'flazz/vim-colorschemes'
 
 call g:plug#end()
 
@@ -822,6 +818,11 @@ colorscheme distinguished
 hi VendorPrefix ctermbg=white ctermbg=blue
 hi VertSplit ctermbg=NONE
 hi Split ctermbg=NONE
+hi Conceal ctermbg=NONE
+hi Folded ctermbg=NONE
+hi SignColumn ctermbg=NONE
+hi FoldColumn ctermbg=NONE
+hi LineNr ctermbg=NONE
 match VendorPrefix /-\(moz\|webkit\|o\|ms\)-[a-zA-Z-]\+/
 " }}}
 

@@ -42,7 +42,7 @@ set showfulltag
 set showmatch
 set modeline modelines=5
 set noshelltemp
-set showtabline=2 tabline=
+set showtabline=2
 set backspace=indent,eol,start
 
 set wildmenu wildmode=longest:full
@@ -720,7 +720,6 @@ Plug 'jaxbot/github-issues.vim'
 Plug 'jbgutierrez/vim-babel', { 'for': 'javascript' }
 Plug 'jceb/vim-orgmode'
 Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
-Plug 'jszakmeister/vim-togglecursor'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/vim-easy-align'
@@ -814,7 +813,7 @@ syntax enable
 
 " {{{ Colorscheme
 set background=dark
-colorscheme distinguished
+colorscheme monokain
 hi VendorPrefix ctermbg=white ctermbg=blue
 hi VertSplit ctermbg=NONE
 hi Split ctermbg=NONE

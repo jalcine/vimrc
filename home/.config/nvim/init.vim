@@ -561,7 +561,7 @@ let g:airline#extensions#whitespace#show_message = 1
 let g:airline#extensions#whitespace#trailing_format = 's:[%s]'
 let g:airline#extensions#whitespace#mixed_indent_format = 'i:[%s]'
 let g:airline#extensions#tagbar#flags = 'f'
-let g:airline_theme = 'simple'
+let g:airline_theme = 'distinguished'
 let g:airline_detected_modified = 1
 let g:airline_powerline_fonts = 1
 let g:airline_detect_iminsert = 0
@@ -590,7 +590,7 @@ let g:UltiSnipsEditSplit = 'context'
 let g:UltiSnipsExpandTrigger = '<c-l>'
 let g:UltiSnipsJumpBackwardTrigger = '<c-j>'
 let g:UltiSnipsJumpForwardTrigger = '<c-k>'
-let g:UltiSnipsSnippetDirectories = ['Ultisnips']
+let g:UltiSnipsSnippetDirectories = [expand("$HOME/.config/nvim/snippets")]
 " }}}
 
 " {{{ vim-bookmarks
@@ -631,7 +631,7 @@ augroup jalcine
     \ imap <C-x><C-x> <Plug>(github-complete-manual-completion)
 
   " Funky files.
-  au User YouCompleteMe call youcompleteme#Enable()
+  " au User YouCompleteMe call youcompleteme#Enable()
 
   " Reload tmux files when we edit them.
   au BufWritePost *tmux*.conf  call s:reload_tmux()
@@ -750,7 +750,6 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'nicwest/QQ.vim'
 Plug 'parkr/vim-jekyll', { 'for': 'markdown' }
 Plug 'rafi/vim-unite-issue'
-Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 Plug 'reedes/vim-textobj-quote', { 'for': 'markdown,notes' }
 Plug 'reedes/vim-wordy'
 Plug 'rhysd/github-complete.vim'
@@ -790,7 +789,6 @@ Plug 'tpope/vim-vinegar'
 Plug 'tsukkee/unite-tag'
 Plug 'ujihisa/unite-colorscheme'
 Plug 'utl.vim'
-Plug 'Valloric/YouCompleteMe', { 'do': 'python install.py --all', 'frozen': 1 }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-jp/vital.vim'
@@ -814,8 +812,8 @@ filetype plugin indent on
 syntax enable
 
 " {{{ Colorscheme
+colorscheme distinguished
 set background=dark
-colorscheme ir_black
 hi VendorPrefix ctermbg=white ctermbg=blue
 hi VertSplit ctermbg=NONE
 hi Split ctermbg=NONE

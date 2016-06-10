@@ -42,7 +42,7 @@ set showfulltag
 set showmatch
 set modeline modelines=5
 set noshelltemp
-set showtabline=2 tabline=
+set showtabline=2
 set backspace=indent,eol,start
 
 set wildmenu wildmode=longest:full
@@ -425,7 +425,7 @@ let g:github_user = 'jalcine'
 let g:github_complete_enable_omni_completion = 0
 let g:github_comment_open_browser = 1
 let g:focusmode_width=82
-let g:tagbar_left=1
+let g:tagbar_left=0
 let g:tagbar_compact=1
 let g:tagbar_autofocus=1
 let g:tagbar_autoclose=0
@@ -561,7 +561,7 @@ let g:airline#extensions#whitespace#show_message = 1
 let g:airline#extensions#whitespace#trailing_format = 's:[%s]'
 let g:airline#extensions#whitespace#mixed_indent_format = 'i:[%s]'
 let g:airline#extensions#tagbar#flags = 'f'
-let g:airline_theme = 'serene'
+let g:airline_theme = 'simple'
 let g:airline_detected_modified = 1
 let g:airline_powerline_fonts = 1
 let g:airline_detect_iminsert = 0
@@ -686,7 +686,7 @@ if filereadable(expand("$HOME/.config/nvim/local.vim"))
 endif
 " }}}
 
-" {{{ plugins
+" {{{ Plugin listing
 
 " Set up vim-plug ▶️  https://github.com/junegunn/vim-plug#example
 
@@ -720,7 +720,6 @@ Plug 'jaxbot/github-issues.vim'
 Plug 'jbgutierrez/vim-babel', { 'for': 'javascript' }
 Plug 'jceb/vim-orgmode'
 Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
-Plug 'jszakmeister/vim-togglecursor'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/vim-easy-align'
@@ -759,6 +758,7 @@ Plug 'rizzatti/dash.vim'
 Plug 'rking/ag.vim'
 Plug 'saltstack/salt-vim', { 'for': 'yaml' }
 Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
 Plug 'sheerun/vim-polyglot', { 'do': './build' }
 Plug 'Shougo/neomru.vim'
 Plug 'Shougo/unite-help'
@@ -790,7 +790,7 @@ Plug 'tpope/vim-vinegar'
 Plug 'tsukkee/unite-tag'
 Plug 'ujihisa/unite-colorscheme'
 Plug 'utl.vim'
-Plug 'Valloric/YouCompleteMe', { 'do': 'python install.py --clang-completer', 'frozen': 1 }
+Plug 'Valloric/YouCompleteMe', { 'do': 'python install.py --all', 'frozen': 1 }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-jp/vital.vim'
@@ -805,6 +805,7 @@ Plug 'zepto/unite-tmux'
 Plug 'godlygeek/tabular'
 Plug 'thinca/vim-ref'
 Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }
+Plug 'benmills/vimux'
 
 call g:plug#end()
 
@@ -816,8 +817,7 @@ filetype plugin indent on
 syntax enable
 
 " {{{ Colorscheme
-set background=dark
-colorscheme distinguished
+colorscheme ir_black
 hi link notesSingleQuoted Normal
 hi notesDoubleQuoted gui=italic
 hi VendorPrefix ctermbg=white ctermbg=blue

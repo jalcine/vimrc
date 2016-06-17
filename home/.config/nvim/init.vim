@@ -432,6 +432,7 @@ let g:tagbar_autoclose=0
 let g:tagbar_iconchars = ['+', '-']
 let g:tagbar_autoshowtag = 1
 let g:tagbar_width=40
+let g:GPGPossibleRecipients = [ "gpg@jacky.wtf" ]
 let g:tagbar_type_markdown = {
   \ 'ctagstype' : 'markdown',
   \ 'kinds' : [
@@ -461,6 +462,14 @@ let g:tagbar_type_elixir = {
   \ 'kind2scope': {'m': 'modules'},
   \ 'scope2kind': {'modules': 'm'}
   \ }
+let g:tagbar_type_css = {
+\ 'ctagstype' : 'css',
+    \ 'kinds'     : [
+        \ 'c:classes',
+        \ 's:selectors',
+        \ 'i:identities'
+    \ ]
+\ }
 let g:ycm_complete_in_comments_and_strings=1
 let g:ycm_key_list_select_completion=['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion=['<C-p>', '<Up>']
@@ -524,10 +533,10 @@ let g:doxygen_enhanced_color = 1
 let g:load_doxygen_syntax = 1
 let g:c_no_comment_fold = 1
 
-let g:rooter_user_lcd = 1 
+let g:rooter_use_lcd = 1 
 let g:rooter_silent_chdir = 1
 let g:rooter_resolve_links = 1
-let g:rooter_manual_only = 1
+
 let g:test#strategy = 'dispatch'
 let g:test#preserve_screen = 1
 
@@ -561,7 +570,7 @@ let g:airline#extensions#whitespace#show_message = 1
 let g:airline#extensions#whitespace#trailing_format = 's:[%s]'
 let g:airline#extensions#whitespace#mixed_indent_format = 'i:[%s]'
 let g:airline#extensions#tagbar#flags = 'f'
-let g:airline_theme = 'distinguished'
+let g:airline_theme = 'jellybeans'
 let g:airline_detected_modified = 1
 let g:airline_powerline_fonts = 1
 let g:airline_detect_iminsert = 0
@@ -672,11 +681,16 @@ augroup END
 
 " {{{ unite
 let g:unite_source_history_yank_enable = 1
-let g:unite_source_grep_command = "ag"
-let g:unite_source_grep_default_opts =
-  \ '-i --vimgrep --hidden --nocolor --nogroup --ignore ' .
-  \ '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
-
+if executable('ag')
+  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_grep_default_opts =
+    \ '-i --vimgrep --hidden --ignore ' .
+    \ '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
+  let g:unite_source_grep_recursive_opt = ''
+  let g:unite_source_rec_async_command =
+    \ ['ag', '--follow', '--nocolor', '--nogroup',
+    \  '--hidden', '-g', '']
+endif
 let g:unite_source_rec_max_cache_files = 20000
 let g:unite_prompt = '» '
 " }}}
@@ -806,14 +820,13 @@ call g:plug#end()
 
 " }}}
 
-" {{{ Final tweaks
-
+" {{{ Final tweaks 
 filetype plugin indent on
 syntax enable
 
 " {{{ Colorscheme
-colorscheme distinguished
 set background=dark
+colorscheme triplejelly
 hi VendorPrefix ctermbg=white ctermbg=blue
 hi VertSplit ctermbg=NONE
 hi Split ctermbg=NONE
@@ -822,6 +835,8 @@ hi Folded ctermbg=NONE
 hi SignColumn ctermbg=NONE
 hi FoldColumn ctermbg=NONE
 hi LineNr ctermbg=NONE
+hi notesBold cterm=bold
+hi notesItalic cterm=italic
 match VendorPrefix /-\(moz\|webkit\|o\|ms\)-[a-zA-Z-]\+/
 " }}}
 

@@ -814,6 +814,9 @@ Plug 'xolox/vim-notes'
 Plug 'xolox/vim-publish'
 Plug 'xolox/vim-shell'
 Plug 'zepto/unite-tmux'
+Plug 'godlygeek/tabular'
+Plug 'thinca/vim-ref'
+Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }
 Plug 'benmills/vimux'
 
 call g:plug#end()
@@ -826,7 +829,11 @@ syntax enable
 
 " {{{ Colorscheme
 set background=dark
-colorscheme triplejelly
+colorscheme ir_black
+hi link notesSingleQuoted Normal
+hi notesDoubleQuoted gui=italic
+hi notesBold cterm=bold
+hi notesItalic cterm=italic
 hi VendorPrefix ctermbg=white ctermbg=blue
 hi VertSplit ctermbg=NONE
 hi Split ctermbg=NONE
@@ -835,8 +842,7 @@ hi Folded ctermbg=NONE
 hi SignColumn ctermbg=NONE
 hi FoldColumn ctermbg=NONE
 hi LineNr ctermbg=NONE
-hi notesBold cterm=bold
-hi notesItalic cterm=italic
+
 match VendorPrefix /-\(moz\|webkit\|o\|ms\)-[a-zA-Z-]\+/
 " }}}
 

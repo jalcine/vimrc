@@ -469,8 +469,6 @@ XDG
 nvim
 init
 vim
-vim
-vim
 async
 dev
 db
@@ -486,7 +484,6 @@ confirmable
 mixin
 Hardcodes
 ex_statsd
-ex_statsd
 nginx
 SDK
 uWSGI
@@ -494,9 +491,9 @@ nnoremap
 nmap
 mapleader
 vim
-vim
 syntastic
 neomake
+<<<<<<< HEAD
 background-color
 changelogs
 oakland
@@ -526,3 +523,11 @@ date
 af
 jacky
 category
+hostnames
+Redis
+MySQL
+uwsgi
+isn’t
+don’t
+I’ll
+aren’t

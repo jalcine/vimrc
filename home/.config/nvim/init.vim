@@ -18,7 +18,7 @@ let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 " {{{ Options
 set laststatus=2
-set number norelativenumber numberwidth=3
+set number relativenumber numberwidth=1
 set synmaxcol=100
 set path=.,/usr/local/include,/usr/include,$HOME/.local/include
 set novisualbell
@@ -417,6 +417,7 @@ let g:javascript_conceal_NaN = 'ℕ'
 let g:javascript_conceal_prototype = '¶'
 let g:javascript_conceal_static = '•'
 let g:javascript_conceal_super = 'Ω'
+let g:jsx_ext_required = 0
 let g:fastfold_fold_command_suffixes = ['x','X','a','A','o','O','c','C','r','R','m','M','i','n','N']
 let g:signify_update_on_bufenter = 1
 let g:signify_sign_show_count = 0
@@ -429,9 +430,8 @@ let g:tagbar_left=0
 let g:tagbar_compact=1
 let g:tagbar_autofocus=1
 let g:tagbar_autoclose=0
-let g:tagbar_iconchars = ['+', '-']
 let g:tagbar_autoshowtag = 1
-let g:tagbar_width=40
+let g:tagbar_width = 40
 let g:GPGPossibleRecipients = [ "gpg@jacky.wtf" ]
 let g:tagbar_type_markdown = {
   \ 'ctagstype' : 'markdown',
@@ -658,8 +658,8 @@ augroup jalcine
   au BufReadPost fugitive://* set bufhidden=delete
 
   " Focus.
-  " au WinLeave * setlocal nocursorline nocursorcolumn norelativenumber
-  " au WinEnter * setlocal cursorcolumn cursorline relativenumber
+  au WinLeave * setlocal nocursorline nocursorcolumn norelativenumber
+  au WinEnter * setlocal cursorcolumn cursorline relativenumber
 
   " Things for Unite
   au FileType unite call s:unite_settings()
@@ -814,10 +814,10 @@ Plug 'xolox/vim-notes'
 Plug 'xolox/vim-publish'
 Plug 'xolox/vim-shell'
 Plug 'zepto/unite-tmux'
-Plug 'godlygeek/tabular'
 Plug 'thinca/vim-ref'
 Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }
 Plug 'benmills/vimux'
+Plug 'mxw/vim-jsx'
 
 call g:plug#end()
 
@@ -829,7 +829,7 @@ syntax enable
 
 " {{{ Colorscheme
 set background=dark
-colorscheme ir_black
+colorscheme jellybeans
 hi link notesSingleQuoted Normal
 hi notesDoubleQuoted gui=italic
 hi notesBold cterm=bold

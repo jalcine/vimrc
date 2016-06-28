@@ -1,4 +1,9 @@
 #!/bin/sh
 # All of the core logic has been moved into the app.
 
+# Install remote execution runtimes.
+pip install --user neovim
+gem install neovim
+
+# Install.
 vim -s ~/.config/nvim/plugins.vim

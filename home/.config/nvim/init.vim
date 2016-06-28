@@ -706,9 +706,20 @@ endif
 
 call g:plug#begin('~/.config/nvim/plugins')
 
+Plug 'KabbAmine/zeavim.vim'
+Plug 'Konfekt/FastFold'
+Plug 'MattesGroeger/vim-bookmarks'
+Plug 'Shougo/neomru.vim'
+Plug 'Shougo/unite-help'
+Plug 'Shougo/unite.vim'
+Plug 'Shougo/vimproc.vim', { 'do' : 'make' }
+Plug 'SirVer/ultisnips'
+Plug 'TagHighlight'
 Plug 'airblade/vim-rooter'
 Plug 'amix/vim-zenroom2'
+Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }
 Plug 'benekastah/neomake', { 'on': 'Neomake' }
+Plug 'benmills/vimux'
 Plug 'bogado/file-line'
 Plug 'chrisbra/NrrwRgn'
 Plug 'dsawardekar/ember.vim'
@@ -739,16 +750,13 @@ Plug 'junegunn/limelight.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/vim-emoji'
 Plug 'junegunn/vim-github-dashboard'
-Plug 'KabbAmine/zeavim.vim'
 Plug 'kana/vim-textobj-user'
 Plug 'kien/rainbow_parentheses.vim'
-Plug 'Konfekt/FastFold'
 Plug 'kopischke/vim-stay'
 Plug 'koron/minimap-vim'
 Plug 'lukaszkorecki/CoffeeTags', {'for': 'coffee'}
 Plug 'majutsushi/tagbar'
 Plug 'marijnh/tern_for_vim', { 'do': 'npm install', 'for': 'javascript' }
-Plug 'MattesGroeger/vim-bookmarks'
 Plug 'mattn/calendar-vim'
 Plug 'mattn/gist-vim'
 Plug 'mattn/webapi-vim'
@@ -760,6 +768,7 @@ Plug 'mmozuras/vim-github-comment'
 Plug 'moll/vim-node', { 'for': 'javascript' }
 Plug 'mtscout6/vim-cjsx', { 'for': 'coffee' }
 Plug 'mustache/vim-mustache-handlebars', { 'for' : 'mustache' }
+Plug 'mxw/vim-jsx'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'nicwest/QQ.vim'
 Plug 'parkr/vim-jekyll', { 'for': 'markdown' }
@@ -773,21 +782,17 @@ Plug 'saltstack/salt-vim', { 'for': 'yaml' }
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'sheerun/vim-polyglot', { 'do': './build' }
-Plug 'Shougo/neomru.vim'
-Plug 'Shougo/unite-help'
-Plug 'Shougo/unite.vim'
-Plug 'Shougo/vimproc.vim', { 'do' : 'make' }
 Plug 'shumphrey/fugitive-gitlab.vim'
-Plug 'SirVer/ultisnips'
 Plug 'sjl/gundo.vim'
 Plug 'slashmili/alchemist.vim'
 Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
-Plug 'TagHighlight'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tfnico/vim-gradle'
+Plug 'thinca/vim-ref'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'tommcdo/vim-fubitive'
+Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
@@ -814,10 +819,6 @@ Plug 'xolox/vim-notes'
 Plug 'xolox/vim-publish'
 Plug 'xolox/vim-shell'
 Plug 'zepto/unite-tmux'
-Plug 'thinca/vim-ref'
-Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }
-Plug 'benmills/vimux'
-Plug 'mxw/vim-jsx'
 
 call g:plug#end()
 
@@ -842,6 +843,8 @@ hi Folded ctermbg=NONE
 hi SignColumn ctermbg=NONE
 hi FoldColumn ctermbg=NONE
 hi LineNr ctermbg=NONE
+hi Normal ctermbg=NONE
+hi NonText ctermbg=NONE
 
 match VendorPrefix /-\(moz\|webkit\|o\|ms\)-[a-zA-Z-]\+/
 " }}}

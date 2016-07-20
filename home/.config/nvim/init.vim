@@ -18,13 +18,13 @@ let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 " {{{ Options
 set laststatus=2
-set number relativenumber numberwidth=1
+set number norelativenumber numberwidth=1
 set synmaxcol=100
 set path=.,/usr/local/include,/usr/include,$HOME/.local/include
 set novisualbell
 set errorbells
 set ruler
-set conceallevel=1 concealcursor=nv
+set conceallevel=2 concealcursor=nv
 set tabstop=2 softtabstop=2 shiftwidth=2
 set expandtab
 set textwidth=80
@@ -540,7 +540,20 @@ let g:rooter_resolve_links = 1
 let g:test#strategy = 'dispatch'
 let g:test#preserve_screen = 1
 
-" TODO: Add this: https://github.com/janko-m/vim-test#transformations
+function! VagrantTransform(cmd) abort
+  let vagrant_project = get(matchlist(s:cat('Vagrantfile'), '\vconfig\.vm.synced_folder ["''].+[''"], ["''](.+)[''"]'), 1)
+  return 'vagrant ssh --command '.shellescape('cd '.vagrant_project.'; '.a:cmd)
+endfunction
+
+function! DockerComposeTransform(cmd) abort
+  return 'docker-compose run ' . g:test_docker_image . ' ' . a:cmd
+endfunction
+
+let g:test#custom_transformations = {
+      \ 'vagrant': function('VagrantTransform'),
+      \ 'docker-compose': function('DockerComposeTransform')
+      \ }
+
 
 " {{{ neomake options
 let g:neomake_list_height = 3
@@ -658,8 +671,8 @@ augroup jalcine
   au BufReadPost fugitive://* set bufhidden=delete
 
   " Focus.
-  au WinLeave * setlocal nocursorline nocursorcolumn norelativenumber
-  au WinEnter * setlocal cursorcolumn cursorline relativenumber
+  " au WinLeave * setlocal nocursorline nocursorcolumn norelativenumber
+  " au WinEnter * setlocal cursorcolumn cursorline relativenumber
 
   " Things for Unite
   au FileType unite call s:unite_settings()

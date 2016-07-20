@@ -18,7 +18,7 @@ let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 " {{{ Options
 set laststatus=2
-set number relativenumber numberwidth=1
+set number norelativenumber numberwidth=1
 set synmaxcol=100
 set path=.,/usr/local/include,/usr/include,$HOME/.local/include
 set novisualbell
@@ -31,7 +31,7 @@ set textwidth=80
 set nowrap
 call matchadd('ColorColumn', '\%' . &textwidth . 'v', 80)
 
-set complete=.,w,b,u,U,i,d,t
+set complete=k,.,w,b,u,U,i,d,t
 set completeopt=menu,longest
 set nocursorline nocursorcolumn
 
@@ -391,48 +391,48 @@ nnoremap <silent> <C-p> :call <SID>call_unite_files()<cr>
 " }}}
 
 " {{{ Plugin Options
+let g:GPGPossibleRecipients = [ "gpg@jacky.wtf" ]
+let g:fastfold_fold_command_suffixes = ['x','X','a','A','o','O','c','C','r','R','m','M','i','n','N']
+let g:focusmode_width=82
+let g:github_comment_open_browser = 1
+let g:github_complete_enable_omni_completion = 0
+let g:github_user = 'jalcine'
 let g:javaScript_fold=1
+let g:javascript_conceal = 1
+let g:javascript_conceal_NaN = 'ℕ'
+let g:javascript_conceal_function = 'ƒ'
+let g:javascript_conceal_null = 'ø'
+let g:javascript_conceal_prototype = '¶'
+let g:javascript_conceal_return = '⇚'
+let g:javascript_conceal_static = '•'
+let g:javascript_conceal_super = 'Ω'
+let g:javascript_conceal_this = '@'
+let g:javascript_conceal_undefined = '¿'
+let g:javascript_enable_domhtmlcss = 1
+let g:javascript_fold = 1
+let g:jsx_ext_required = 0
+let g:notes_directories = ['~/Notes']
+let g:notes_suffix = '.txt'
 let g:perl_fold=1
 let g:php_folding=1
 let g:r_syntax_folding=1
 let g:ruby_fold=1
+let g:rustfmt_autosave = 1
 let g:sh_fold_enabled=1
-let g:vimsyn_folding='af'
-let g:xml_syntax_folding=1
-let g:javascript_conceal = 1
-let g:xml_syntax_folding = 1
-let g:xml_namespace_transparent = 1
-let g:notes_directories = ['~/Notes']
-let g:notes_suffix = '.txt'
+let g:signify_sign_show_count = 0
+let g:signify_update_on_bufenter = 1
+let g:tagbar_autoclose=0
+let g:tagbar_autofocus=1
+let g:tagbar_autoshowtag = 1
+let g:tagbar_compact=1
+let g:tagbar_left=0
+let g:tagbar_width = 40
 let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_define_wrapper_commands = 1
-let g:javascript_enable_domhtmlcss = 1
-let g:javascript_fold = 1
-let g:javascript_conceal_function = 'ƒ'
-let g:javascript_conceal_null = 'ø'
-let g:javascript_conceal_this = '@'
-let g:javascript_conceal_return = '⇚'
-let g:javascript_conceal_undefined = '¿'
-let g:javascript_conceal_NaN = 'ℕ'
-let g:javascript_conceal_prototype = '¶'
-let g:javascript_conceal_static = '•'
-let g:javascript_conceal_super = 'Ω'
-let g:jsx_ext_required = 0
-let g:fastfold_fold_command_suffixes = ['x','X','a','A','o','O','c','C','r','R','m','M','i','n','N']
-let g:signify_update_on_bufenter = 1
-let g:signify_sign_show_count = 0
-let g:rustfmt_autosave = 1
-let g:github_user = 'jalcine'
-let g:github_complete_enable_omni_completion = 0
-let g:github_comment_open_browser = 1
-let g:focusmode_width=82
-let g:tagbar_left=0
-let g:tagbar_compact=1
-let g:tagbar_autofocus=1
-let g:tagbar_autoclose=0
-let g:tagbar_autoshowtag = 1
-let g:tagbar_width = 40
-let g:GPGPossibleRecipients = [ "gpg@jacky.wtf" ]
+let g:vimsyn_folding='af'
+let g:xml_namespace_transparent = 1
+let g:xml_syntax_folding = 1
+let g:xml_syntax_folding=1
 let g:tagbar_type_markdown = {
   \ 'ctagstype' : 'markdown',
   \ 'kinds' : [
@@ -658,8 +658,8 @@ augroup jalcine
   au BufReadPost fugitive://* set bufhidden=delete
 
   " Focus.
-  au WinLeave * setlocal nocursorline nocursorcolumn norelativenumber
-  au WinEnter * setlocal cursorcolumn cursorline relativenumber
+  " au WinLeave * setlocal nocursorline nocursorcolumn norelativenumber
+  " au WinEnter * setlocal cursorcolumn cursorline relativenumber
 
   " Things for Unite
   au FileType unite call s:unite_settings()

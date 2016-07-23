@@ -832,6 +832,7 @@ Plug 'xolox/vim-notes'
 Plug 'xolox/vim-publish'
 Plug 'xolox/vim-shell'
 Plug 'zepto/unite-tmux'
+Plug 'klen/python-mode'
 
 call g:plug#end()
 

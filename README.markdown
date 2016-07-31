@@ -29,6 +29,15 @@ $ pip install neovim
 From there, running the script `install-vim-plugins` will finalize the process
 of getting a mirror image of my current environment.
 
+## Support &amp; Contributions
+
+I've noticed that people have taken a lean to use this configuration. I find
+that *super dope*! The thing is, I'm not going to fix issues that you might find
+while using this setup because I largely host it on Github for syndication
+across the multiple machines I work on (even the ephemeral ones). If I like your
+patch and it improves _my_ personal workflow as well, then I'll gladly accept
+it!
+
 ----
 
 > This was finalized 2016-03-06 23:09:04 PST.

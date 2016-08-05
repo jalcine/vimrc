@@ -24,7 +24,7 @@ set path=.,/usr/local/include,/usr/include,$HOME/.local/include
 set novisualbell
 set errorbells
 set ruler
-set conceallevel=2 concealcursor=nv
+set conceallevel=1 concealcursor=nvci
 set tabstop=2 softtabstop=2 shiftwidth=2
 set expandtab
 set textwidth=80
@@ -546,7 +546,7 @@ function! VagrantTransform(cmd) abort
 endfunction
 
 function! DockerComposeTransform(cmd) abort
-  return 'docker-compose run ' . g:test_docker_image . ' ' . a:cmd
+  return 'docker-compose ' . g:test_docker_compose_options .  'run ' . g:test_docker_compose_image . ' ' . a:cmd
 endfunction
 
 let g:test#custom_transformations = {
@@ -767,9 +767,9 @@ Plug 'kana/vim-textobj-user'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'kopischke/vim-stay'
 Plug 'koron/minimap-vim'
-Plug 'lukaszkorecki/CoffeeTags', {'for': 'coffee'}
+Plug 'lukaszkorecki/CoffeeTags'
 Plug 'majutsushi/tagbar'
-Plug 'marijnh/tern_for_vim', { 'do': 'npm install', 'for': 'javascript' }
+Plug 'marijnh/tern_for_vim'
 Plug 'mattn/calendar-vim'
 Plug 'mattn/gist-vim'
 Plug 'mattn/webapi-vim'
@@ -778,27 +778,27 @@ Plug 'merlinrebrovic/focus.vim'
 Plug 'mhinz/vim-signify'
 Plug 'mhinz/vim-startify'
 Plug 'mmozuras/vim-github-comment'
-Plug 'moll/vim-node', { 'for': 'javascript' }
-Plug 'mtscout6/vim-cjsx', { 'for': 'coffee' }
-Plug 'mustache/vim-mustache-handlebars', { 'for' : 'mustache' }
+Plug 'moll/vim-node'
+Plug 'mtscout6/vim-cjsx'
+Plug 'mustache/vim-mustache-handlebars'
 Plug 'mxw/vim-jsx'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'nicwest/QQ.vim'
-Plug 'parkr/vim-jekyll', { 'for': 'markdown' }
+Plug 'parkr/vim-jekyll'
 Plug 'rafi/vim-unite-issue'
-Plug 'reedes/vim-textobj-quote', { 'for': 'markdown,notes' }
+Plug 'reedes/vim-textobj-quote'
 Plug 'reedes/vim-wordy'
 Plug 'rhysd/github-complete.vim'
 Plug 'rizzatti/dash.vim'
 Plug 'rking/ag.vim'
-Plug 'saltstack/salt-vim', { 'for': 'yaml' }
+Plug 'saltstack/salt-vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
-Plug 'sheerun/vim-polyglot', { 'do': './build' }
+Plug 'sheerun/vim-polyglot'
 Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'sjl/gundo.vim'
 Plug 'slashmili/alchemist.vim'
-Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
+Plug 'stephpy/vim-yaml'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tfnico/vim-gradle'
 Plug 'thinca/vim-ref'
@@ -810,8 +810,8 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-heroku'
-Plug 'tpope/vim-jdaddy', { 'for': 'json' }
-Plug 'tpope/vim-rbenv', { 'for': 'ruby' }
+Plug 'tpope/vim-jdaddy'
+Plug 'tpope/vim-rbenv'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-rsi'
@@ -824,7 +824,7 @@ Plug 'utl.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-jp/vital.vim'
-Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+Plug 'vim-ruby/vim-ruby'
 Plug 'vim-scripts/groovy.vim'
 Plug 'xolox/vim-easytags'
 Plug 'xolox/vim-misc'

@@ -486,6 +486,8 @@ let g:jsdoc_allow_shorthand = 1
 let g:localvimrc_name = [ '.vimrc' ]
 let g:tern_show_argument_hints = 'on_hold'
 let g:tern_show_signature_in_pum = 1
+let g:goyo_width = 100
+let g:goyo_height = "80%"
 
 let s:custom_header =
       \ map(split(system('fortune | cowsay'), '\n'), '"   ". v:val') + ['','']
@@ -843,22 +845,25 @@ filetype plugin indent on
 syntax enable
 
 " {{{ Colorscheme
+func s:modify_colorscheme()
+  hi link notesSingleQuoted Normal
+  hi notesDoubleQuoted gui=italic
+  hi notesBold cterm=bold
+  hi notesItalic cterm=italic
+  hi VendorPrefix ctermbg=white ctermbg=blue
+  hi VertSplit ctermbg=NONE
+  hi Split ctermbg=NONE
+  hi Conceal ctermbg=NONE
+  hi Folded ctermbg=NONE
+  hi SignColumn ctermbg=NONE
+  hi FoldColumn ctermbg=NONE
+  hi LineNr ctermbg=NONE
+  hi NonText ctermbg=NONE
+endfunc
+
 set background=dark
 colorscheme jellybeans
-hi link notesSingleQuoted Normal
-hi notesDoubleQuoted gui=italic
-hi notesBold cterm=bold
-hi notesItalic cterm=italic
-hi VendorPrefix ctermbg=white ctermbg=blue
-hi VertSplit ctermbg=NONE
-hi Split ctermbg=NONE
-hi Conceal ctermbg=NONE
-hi Folded ctermbg=NONE
-hi SignColumn ctermbg=NONE
-hi FoldColumn ctermbg=NONE
-hi LineNr ctermbg=NONE
-hi Normal ctermbg=NONE
-hi NonText ctermbg=NONE
+call s:modify_colorscheme()
 
 match VendorPrefix /-\(moz\|webkit\|o\|ms\)-[a-zA-Z-]\+/
 " }}}
@@ -916,5 +921,27 @@ if exists('g:loaded_unite')
     imap <silent><buffer><expr> <C-s>   unite#do_action('split')<CR>
   endfunc
 endif
+" }}}
+" {{{ post-work for goyo
+function! s:goyo_enter()
+  silent !tmux set status off
+  silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
+  set noshowmode
+  set noshowcmd
+  set scrolloff=999
+  call s:modify_colorscheme()
+endfunction
+
+function! s:goyo_leave()
+  silent !tmux set status on
+  silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
+  set showmode
+  set showcmd
+  set scrolloff=5
+  call s:modify_colorscheme()
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
 " }}}
 " }}}

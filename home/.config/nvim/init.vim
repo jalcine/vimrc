@@ -24,7 +24,7 @@ set path=.,/usr/local/include,/usr/include,$HOME/.local/include
 set novisualbell
 set errorbells
 set ruler
-set conceallevel=1 concealcursor=nvci
+set conceallevel=2 concealcursor=nvci
 set tabstop=2 softtabstop=2 shiftwidth=2
 set expandtab
 set textwidth=80
@@ -585,7 +585,7 @@ let g:airline#extensions#whitespace#show_message = 1
 let g:airline#extensions#whitespace#trailing_format = 's:[%s]'
 let g:airline#extensions#whitespace#mixed_indent_format = 'i:[%s]'
 let g:airline#extensions#tagbar#flags = 'f'
-let g:airline_theme = 'jellybeans'
+let g:airline_theme = 'ubaryd'
 let g:airline_detected_modified = 1
 let g:airline_powerline_fonts = 1
 let g:airline_detect_iminsert = 0
@@ -671,10 +671,6 @@ augroup jalcine
 
   " Clear Fugitive buffers.
   au BufReadPost fugitive://* set bufhidden=delete
-
-  " Focus.
-  " au WinLeave * setlocal nocursorline nocursorcolumn norelativenumber
-  " au WinEnter * setlocal cursorcolumn cursorline relativenumber
 
   " Things for Unite
   au FileType unite call s:unite_settings()
@@ -842,6 +838,7 @@ call g:plug#end()
 
 " {{{ Final tweaks 
 filetype plugin indent on
+colorscheme janah
 syntax enable
 
 " {{{ Colorscheme
@@ -860,12 +857,7 @@ func s:modify_colorscheme()
   hi LineNr ctermbg=NONE
   hi NonText ctermbg=NONE
 endfunc
-
-set background=dark
-colorscheme jellybeans
-call s:modify_colorscheme()
-
-match VendorPrefix /-\(moz\|webkit\|o\|ms\)-[a-zA-Z-]\+/
+" match VendorPrefix /-\(moz\|webkit\|o\|ms\)-[a-zA-Z-]\+/
 " }}}
 
 " {{{ post-work for unite

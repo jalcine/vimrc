@@ -16,6 +16,30 @@ The plugins I use are fetched by [vim-plug][]. I ship this tree with a fixed
 version. I also ship it with a fixed list of the plugins at the particular state
 I plan to use them, at `home/.local/bin/install-vim-plugins`.
 
+## Using This Project
+This repository is set up using [homesick][]. I recommend using that to easily
+clone and get these options up and running. From there, you'll need to install
+the Python dependencies for Neovim:
+
+```bash
+$ pip install neovim
+```
+> I typically run `pip install --user neovim`.
+
+From there, running the script `install-vim-plugins` will finalize the process
+of getting a mirror image of my current environment.
+
+## Support &amp; Contributions
+
+I've noticed that people have taken a lean to use this configuration. I find
+that *super dope*! The thing is, I'm not going to fix issues that you might find
+while using this setup because I largely host it on Github for syndication
+across the multiple machines I work on (even the ephemeral ones). If I like your
+patch and it improves _my_ personal workflow as well, then I'll gladly accept
+it!
+
+----
+
 > This was finalized 2016-03-06 23:09:04 PST.
 
 [Vundle]: https://github.com/gmarik/vundle

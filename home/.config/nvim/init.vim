@@ -24,7 +24,7 @@ set path=.,/usr/local/include,/usr/include,$HOME/.local/include
 set novisualbell
 set errorbells
 set ruler
-set conceallevel=1 concealcursor=nv
+set conceallevel=1 concealcursor=nvci
 set tabstop=2 softtabstop=2 shiftwidth=2
 set expandtab
 set textwidth=80
@@ -486,6 +486,8 @@ let g:jsdoc_allow_shorthand = 1
 let g:localvimrc_name = [ '.vimrc' ]
 let g:tern_show_argument_hints = 'on_hold'
 let g:tern_show_signature_in_pum = 1
+let g:goyo_width = 100
+let g:goyo_height = "80%"
 
 let s:custom_header =
       \ map(split(system('fortune | cowsay'), '\n'), '"   ". v:val') + ['','']
@@ -540,7 +542,20 @@ let g:rooter_resolve_links = 1
 let g:test#strategy = 'dispatch'
 let g:test#preserve_screen = 1
 
-" TODO: Add this: https://github.com/janko-m/vim-test#transformations
+function! VagrantTransform(cmd) abort
+  let vagrant_project = get(matchlist(s:cat('Vagrantfile'), '\vconfig\.vm.synced_folder ["''].+[''"], ["''](.+)[''"]'), 1)
+  return 'vagrant ssh --command '.shellescape('cd '.vagrant_project.'; '.a:cmd)
+endfunction
+
+function! DockerComposeTransform(cmd) abort
+  return 'docker-compose ' . g:test_docker_compose_options .  'run ' . g:test_docker_compose_image . ' ' . a:cmd
+endfunction
+
+let g:test#custom_transformations = {
+      \ 'vagrant': function('VagrantTransform'),
+      \ 'docker-compose': function('DockerComposeTransform')
+      \ }
+
 
 " {{{ neomake options
 let g:neomake_list_height = 3
@@ -754,9 +769,9 @@ Plug 'kana/vim-textobj-user'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'kopischke/vim-stay'
 Plug 'koron/minimap-vim'
-Plug 'lukaszkorecki/CoffeeTags', {'for': 'coffee'}
+Plug 'lukaszkorecki/CoffeeTags'
 Plug 'majutsushi/tagbar'
-Plug 'marijnh/tern_for_vim', { 'do': 'npm install', 'for': 'javascript' }
+Plug 'marijnh/tern_for_vim'
 Plug 'mattn/calendar-vim'
 Plug 'mattn/gist-vim'
 Plug 'mattn/webapi-vim'
@@ -765,27 +780,27 @@ Plug 'merlinrebrovic/focus.vim'
 Plug 'mhinz/vim-signify'
 Plug 'mhinz/vim-startify'
 Plug 'mmozuras/vim-github-comment'
-Plug 'moll/vim-node', { 'for': 'javascript' }
-Plug 'mtscout6/vim-cjsx', { 'for': 'coffee' }
-Plug 'mustache/vim-mustache-handlebars', { 'for' : 'mustache' }
+Plug 'moll/vim-node'
+Plug 'mtscout6/vim-cjsx'
+Plug 'mustache/vim-mustache-handlebars'
 Plug 'mxw/vim-jsx'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'nicwest/QQ.vim'
-Plug 'parkr/vim-jekyll', { 'for': 'markdown' }
+Plug 'parkr/vim-jekyll'
 Plug 'rafi/vim-unite-issue'
-Plug 'reedes/vim-textobj-quote', { 'for': 'markdown,notes' }
+Plug 'reedes/vim-textobj-quote'
 Plug 'reedes/vim-wordy'
 Plug 'rhysd/github-complete.vim'
 Plug 'rizzatti/dash.vim'
 Plug 'rking/ag.vim'
-Plug 'saltstack/salt-vim', { 'for': 'yaml' }
+Plug 'saltstack/salt-vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
-Plug 'sheerun/vim-polyglot', { 'do': './build' }
+Plug 'sheerun/vim-polyglot'
 Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'sjl/gundo.vim'
 Plug 'slashmili/alchemist.vim'
-Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
+Plug 'stephpy/vim-yaml'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tfnico/vim-gradle'
 Plug 'thinca/vim-ref'
@@ -797,8 +812,8 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-heroku'
-Plug 'tpope/vim-jdaddy', { 'for': 'json' }
-Plug 'tpope/vim-rbenv', { 'for': 'ruby' }
+Plug 'tpope/vim-jdaddy'
+Plug 'tpope/vim-rbenv'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-rsi'
@@ -811,7 +826,7 @@ Plug 'utl.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-jp/vital.vim'
-Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+Plug 'vim-ruby/vim-ruby'
 Plug 'vim-scripts/groovy.vim'
 Plug 'xolox/vim-easytags'
 Plug 'xolox/vim-misc'
@@ -822,6 +837,7 @@ Plug 'zepto/unite-tmux'
 Plug 'vitalk/vim-simple-todo'
 Plug 'radenling/vim-dispatch-neovim'
 Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }
+Plug 'klen/python-mode'
 
 call g:plug#end()
 
@@ -832,22 +848,25 @@ filetype plugin indent on
 syntax enable
 
 " {{{ Colorscheme
+func s:modify_colorscheme()
+  hi link notesSingleQuoted Normal
+  hi notesDoubleQuoted gui=italic
+  hi notesBold cterm=bold
+  hi notesItalic cterm=italic
+  hi VendorPrefix ctermbg=white ctermbg=blue
+  hi VertSplit ctermbg=NONE
+  hi Split ctermbg=NONE
+  hi Conceal ctermbg=NONE
+  hi Folded ctermbg=NONE
+  hi SignColumn ctermbg=NONE
+  hi FoldColumn ctermbg=NONE
+  hi LineNr ctermbg=NONE
+  hi NonText ctermbg=NONE
+endfunc
+
 set background=dark
 colorscheme jellybeans
-hi link notesSingleQuoted Normal
-hi notesDoubleQuoted gui=italic
-hi notesBold cterm=bold
-hi notesItalic cterm=italic
-hi VendorPrefix ctermbg=white ctermbg=blue
-hi VertSplit ctermbg=NONE
-hi Split ctermbg=NONE
-hi Conceal ctermbg=NONE
-hi Folded ctermbg=NONE
-hi SignColumn ctermbg=NONE
-hi FoldColumn ctermbg=NONE
-hi LineNr ctermbg=NONE
-hi Normal ctermbg=NONE
-hi NonText ctermbg=NONE
+call s:modify_colorscheme()
 
 match VendorPrefix /-\(moz\|webkit\|o\|ms\)-[a-zA-Z-]\+/
 " }}}
@@ -905,5 +924,27 @@ if exists('g:loaded_unite')
     imap <silent><buffer><expr> <C-s>   unite#do_action('split')<CR>
   endfunc
 endif
+" }}}
+" {{{ post-work for goyo
+function! s:goyo_enter()
+  silent !tmux set status off
+  silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
+  set noshowmode
+  set noshowcmd
+  set scrolloff=999
+  call s:modify_colorscheme()
+endfunction
+
+function! s:goyo_leave()
+  silent !tmux set status on
+  silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
+  set showmode
+  set showcmd
+  set scrolloff=5
+  call s:modify_colorscheme()
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
 " }}}
 " }}}

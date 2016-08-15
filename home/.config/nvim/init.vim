@@ -819,6 +819,9 @@ Plug 'xolox/vim-notes'
 Plug 'xolox/vim-publish'
 Plug 'xolox/vim-shell'
 Plug 'zepto/unite-tmux'
+Plug 'vitalk/vim-simple-todo'
+Plug 'radenling/vim-dispatch-neovim'
+Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }
 
 call g:plug#end()
 

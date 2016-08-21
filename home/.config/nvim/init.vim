@@ -1,13 +1,13 @@
 " vim: set fdm=marker foldenable foldlevel=1 nospell:
-" File:          .config/nvim/init.vim
+" File:          home/.config/nvim/init.vim
 " Author:        Jacky Alciné <yo@jacky.wtf>
-" Description:   The heart for Neovim.
-" Last Modified: 2016-05-07 15:41:52 PDT
+" Description:   The core of my configuration.
+" Last Modified: 2016-08-20 21:39:39 PDT
 "
 " This is my peronal setup for NeoVim. It works ~exactly~ the
 " way I expect it to. Any different would trip me up.
 "
-" Some stuff for Vint.
+" > Some stuff for Vint.
 " vint: -ProhibitUnnecessaryDoubleQuote
 
 " UTF-8 NWA style
@@ -585,7 +585,7 @@ let g:airline#extensions#whitespace#show_message = 1
 let g:airline#extensions#whitespace#trailing_format = 's:[%s]'
 let g:airline#extensions#whitespace#mixed_indent_format = 'i:[%s]'
 let g:airline#extensions#tagbar#flags = 'f'
-let g:airline_theme = 'ubaryd'
+let g:airline_theme = 'behelit'
 let g:airline_detected_modified = 1
 let g:airline_powerline_fonts = 1
 let g:airline_detect_iminsert = 0
@@ -834,6 +834,7 @@ Plug 'vitalk/vim-simple-todo'
 Plug 'radenling/vim-dispatch-neovim'
 Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }
 Plug 'klen/python-mode'
+Plug 'tmux-plugins/vim-tmux-focus-events'
 
 call g:plug#end()
 
@@ -841,7 +842,6 @@ call g:plug#end()
 
 " {{{ Final tweaks 
 filetype plugin indent on
-colorscheme janah
 syntax enable
 
 " {{{ Colorscheme
@@ -850,7 +850,6 @@ func s:modify_colorscheme()
   hi notesDoubleQuoted gui=italic
   hi notesBold cterm=bold
   hi notesItalic cterm=italic
-  hi VendorPrefix ctermbg=white ctermbg=blue
   hi VertSplit ctermbg=NONE
   hi Split ctermbg=NONE
   hi Conceal ctermbg=NONE
@@ -860,7 +859,8 @@ func s:modify_colorscheme()
   hi LineNr ctermbg=NONE
   hi NonText ctermbg=NONE
 endfunc
-" match VendorPrefix /-\(moz\|webkit\|o\|ms\)-[a-zA-Z-]\+/
+colorscheme janah
+call s:modify_colorscheme()
 " }}}
 
 " {{{ post-work for unite

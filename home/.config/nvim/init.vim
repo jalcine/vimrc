@@ -17,7 +17,7 @@ let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 " {{{ Options
 set laststatus=2
-set number norelativenumber numberwidth=1
+set number relativenumber numberwidth=1
 set synmaxcol=100
 set path=.,/usr/local/include,/usr/include,$HOME/.local/include
 set novisualbell
@@ -314,6 +314,18 @@ func! s:toggle_visibility()
   endif
 endfunc
 
+" {{{ Terminal 
+tnoremap <Esc> <C-\><C-n>
+tnoremap <A-h> <C-\><C-n><C-w>h
+tnoremap <A-j> <C-\><C-n><C-w>j
+tnoremap <A-k> <C-\><C-n><C-w>k
+tnoremap <A-l> <C-\><C-n><C-w>l
+nnoremap <A-h> <C-w>h
+nnoremap <A-j> <C-w>j
+nnoremap <A-k> <C-w>k
+nnoremap <A-l> <C-w>l
+" }}}
+
 " Toggle the visibilty of non-text characters and conceals.
 nnoremap <silent> <leader>k :call <SID>toggle_visibility()<cr>
 
@@ -559,8 +571,10 @@ let g:neomake_scss_enabled_checkers = ['scss-lint']
 let g:neomake_sh_enabled_checkers = ['shellcheck']
 let g:neomake_ruby_enabled_checkers = ['rubocop', 'mri']
 let g:neomake_vim_enabled_checkers = ['vint']
-let g:neomake_elixir_enabled_checkers = ['mix', 'credo', 'dogma']
+let g:neomake_elixir_enabled_checkers = ['mix', 'credo']
 let g:neomake_elixir_elixir_exe = system('which elixir')
+let g:neomake_java_enabled_checkers = ['javac']
+>>>>>>> ab8a89ed33072a74883ac39222fbc7799a318d9a
 " }}}
 
 " {{{ vim-airline options
@@ -848,6 +862,7 @@ Plug 'klen/python-mode'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'Chiel92/vim-autoformat'
 
 call g:plug#end()
 
@@ -873,8 +888,11 @@ func! s:modify_colorscheme()
   hi Comment ctermbg=NONE
   hi NonText ctermbg=NONE
 endfunc
-colorscheme distinguished
+
+colorscheme ubaryd
 call s:modify_colorscheme()
+
+match VendorPrefix /-\(moz\|webkit\|o\|ms\)-[a-zA-Z-]\+/
 " }}}
 
 " {{{ post-work for unite

@@ -574,7 +574,6 @@ let g:neomake_vim_enabled_checkers = ['vint']
 let g:neomake_elixir_enabled_checkers = ['mix', 'credo']
 let g:neomake_elixir_elixir_exe = system('which elixir')
 let g:neomake_java_enabled_checkers = ['javac']
->>>>>>> ab8a89ed33072a74883ac39222fbc7799a318d9a
 " }}}
 
 " {{{ vim-airline options
@@ -891,8 +890,6 @@ endfunc
 
 colorscheme ubaryd
 call s:modify_colorscheme()
-
-match VendorPrefix /-\(moz\|webkit\|o\|ms\)-[a-zA-Z-]\+/
 " }}}
 
 " {{{ post-work for unite

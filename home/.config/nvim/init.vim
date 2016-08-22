@@ -26,9 +26,9 @@ set ruler
 set conceallevel=2 concealcursor=nvci
 set tabstop=2 softtabstop=2 shiftwidth=2
 set expandtab
-set textwidth=80
+set textwidth=100
 set nowrap
-call matchadd('ColorColumn', '\%' . &textwidth . 'v', 80)
+set updatetime=1000
 
 set complete=k,.,w,b,u,U,i,d,t
 set completeopt=menu,longest
@@ -297,7 +297,7 @@ nnoremap <silent> [git]V :Gitv!<CR>
 nnoremap [vimtest] <nop>
 nmap <leader>v [vimtest]
 nnoremap <silent> [vimtest]t :TestNearest<CR>
-nnoremap <silent> [vimtest]T :TestFile<CR>
+nnoremap <silent> [vimtest]f :TestFile<CR>
 nnoremap <silent> [vimtest]a :TestSuite<CR>
 nnoremap <silent> [vimtest]l :TestLast<CR>
 nnoremap <silent> [vimtest]g :TestVisit<CR>
@@ -657,6 +657,7 @@ augroup jalcine
   " Github auto-complete.
   au FileType markdown,gitcommit
     \ imap <C-x><C-x> <Plug>(github-complete-manual-completion)
+  au FileType gitcommit setl omnifunc=github_complete#complete
 
   " Funky files.
   " au User YouCompleteMe call youcompleteme#Enable()
@@ -728,6 +729,14 @@ let g:NERDTreeIndicatorMapCustom = {
     \ "Clean"     : "✔︎",
     \ "Unknown"   : "?"
     \ }
+
+let g:signify_sign_add = emoji#for('small_blue_diamond')
+let g:signify_sign_change = emoji#for('small_orange_diamond')
+let g:signify_sign_changedelete = emoji#for('collision')
+let g:signify_sign_delete = emoji#for('small_red_triangle')
+let g:signify_sign_delete_first_line = emoji#for('bomb')
+
+let g:signify_vcs_list = [ 'git' ]
 
 if filereadable(expand("$HOME/.config/nvim/local.vim"))
   source $HOME/.config/nvim/local.vim
@@ -862,6 +871,10 @@ Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'Chiel92/vim-autoformat'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'low-ghost/nerdtree-fugitive'
+Plug 'dhruvasagar/vim-table-mode'
+Plug 'metakirby5/codi.vim'
 
 call g:plug#end()
 
@@ -888,7 +901,7 @@ func! s:modify_colorscheme()
   hi NonText ctermbg=NONE
 endfunc
 
-colorscheme ubaryd
+colorscheme distinguished
 call s:modify_colorscheme()
 " }}}
 

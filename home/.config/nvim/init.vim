@@ -18,7 +18,7 @@ let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 " {{{ Options
 set laststatus=2
-set number norelativenumber numberwidth=1
+set number relativenumber numberwidth=1
 set synmaxcol=100
 set path=.,/usr/local/include,/usr/include,$HOME/.local/include
 set novisualbell
@@ -313,6 +313,18 @@ func! s:toggle_visibility()
   endif
 endfunc
 
+" {{{ Terminal 
+tnoremap <Esc> <C-\><C-n>
+tnoremap <A-h> <C-\><C-n><C-w>h
+tnoremap <A-j> <C-\><C-n><C-w>j
+tnoremap <A-k> <C-\><C-n><C-w>k
+tnoremap <A-l> <C-\><C-n><C-w>l
+nnoremap <A-h> <C-w>h
+nnoremap <A-j> <C-w>j
+nnoremap <A-k> <C-w>k
+nnoremap <A-l> <C-w>l
+" }}}
+
 " Toggle the visibilty of non-text characters and conceals.
 nnoremap <silent> <leader>k :call <SID>toggle_visibility()<cr>
 
@@ -570,6 +582,7 @@ let g:neomake_sh_enabled_checkers = ['shellcheck']
 let g:neomake_ruby_enabled_checkers = ['rubocop', 'mri']
 let g:neomake_vim_enabled_checkers = ['vint']
 let g:neomake_elixir_enabled_checkers = ['mix', 'credo']
+let g:neomake_java_enabled_checkers = ['javac']
 " }}}
 
 " {{{ vim-airline options
@@ -585,7 +598,7 @@ let g:airline#extensions#whitespace#show_message = 1
 let g:airline#extensions#whitespace#trailing_format = 's:[%s]'
 let g:airline#extensions#whitespace#mixed_indent_format = 'i:[%s]'
 let g:airline#extensions#tagbar#flags = 'f'
-let g:airline_theme = 'jellybeans'
+let g:airline_theme = 'ubaryd'
 let g:airline_detected_modified = 1
 let g:airline_powerline_fonts = 1
 let g:airline_detect_iminsert = 0
@@ -838,6 +851,7 @@ Plug 'vitalk/vim-simple-todo'
 Plug 'radenling/vim-dispatch-neovim'
 Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }
 Plug 'klen/python-mode'
+Plug 'Chiel92/vim-autoformat'
 
 call g:plug#end()
 
@@ -865,7 +879,7 @@ func s:modify_colorscheme()
 endfunc
 
 set background=dark
-colorscheme jellybeans
+colorscheme ubaryd
 call s:modify_colorscheme()
 
 match VendorPrefix /-\(moz\|webkit\|o\|ms\)-[a-zA-Z-]\+/

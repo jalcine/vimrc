@@ -24,7 +24,7 @@ set path=.,/usr/local/include,/usr/include,$HOME/.local/include
 set novisualbell
 set errorbells
 set ruler
-set conceallevel=1 concealcursor=nvci
+set conceallevel=2 concealcursor=nvci
 set tabstop=2 softtabstop=2 shiftwidth=2
 set expandtab
 set textwidth=80
@@ -685,10 +685,6 @@ augroup jalcine
   " Clear Fugitive buffers.
   au BufReadPost fugitive://* set bufhidden=delete
 
-  " Focus.
-  " au WinLeave * setlocal nocursorline nocursorcolumn norelativenumber
-  " au WinEnter * setlocal cursorcolumn cursorline relativenumber
-
   " Things for Unite
   au FileType unite call s:unite_settings()
 
@@ -859,6 +855,7 @@ call g:plug#end()
 
 " {{{ Final tweaks 
 filetype plugin indent on
+colorscheme janah
 syntax enable
 
 " {{{ Colorscheme
@@ -878,7 +875,6 @@ func s:modify_colorscheme()
   hi NonText ctermbg=NONE
 endfunc
 
-set background=dark
 colorscheme ubaryd
 call s:modify_colorscheme()
 

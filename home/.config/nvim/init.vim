@@ -12,7 +12,6 @@
 
 " UTF-8 NWA style
 set encoding=utf-8
-scriptencoding utf-8
 
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
@@ -304,6 +303,8 @@ nnoremap <silent> [vimtest]l :TestLast<CR>
 nnoremap <silent> [vimtest]g :TestVisit<CR>
 " }}}
 
+map <Leader>nt <plug>NERDTreeTabsToggle<CR>
+
 func! s:toggle_visibility()
   setlocal list!
   if &conceallevel != 0
@@ -489,18 +490,7 @@ let g:tern_show_signature_in_pum = 1
 let g:goyo_width = 100
 let g:goyo_height = "80%"
 
-let s:custom_header =
-      \ map(split(system('fortune | cowsay'), '\n'), '"   ". v:val') + ['','']
-
-func! s:filter_header(lines) abort
-  let l:longest_line = max(map(copy(a:lines), 'len(v:val)'))
-  let l:centered_lines= map(copy(a:lines),
-        \ 'repeat(" ", (&columns / 2) - (l:longest_line / 2)) . v:val')
-  return l:centered_lines
-endfunc
-
-let g:startify_custom_header = s:filter_header(s:custom_header)
-let g:startify_files_number = 5
+let g:startify_files_number = 10
 let g:startify_change_to_dir = 0
 let g:startify_change_to_vcs_root = 0
 let g:startify_relative_path = 1
@@ -569,7 +559,8 @@ let g:neomake_scss_enabled_checkers = ['scss-lint']
 let g:neomake_sh_enabled_checkers = ['shellcheck']
 let g:neomake_ruby_enabled_checkers = ['rubocop', 'mri']
 let g:neomake_vim_enabled_checkers = ['vint']
-let g:neomake_elixir_enabled_checkers = ['mix', 'credo']
+let g:neomake_elixir_enabled_checkers = ['mix', 'credo', 'dogma']
+let g:neomake_elixir_elixir_exe = system('which elixir')
 " }}}
 
 " {{{ vim-airline options
@@ -585,7 +576,7 @@ let g:airline#extensions#whitespace#show_message = 1
 let g:airline#extensions#whitespace#trailing_format = 's:[%s]'
 let g:airline#extensions#whitespace#mixed_indent_format = 'i:[%s]'
 let g:airline#extensions#tagbar#flags = 'f'
-let g:airline_theme = 'behelit'
+let g:airline_theme = 'distinguished'
 let g:airline_detected_modified = 1
 let g:airline_powerline_fonts = 1
 let g:airline_detect_iminsert = 0
@@ -706,6 +697,25 @@ let g:unite_source_rec_max_cache_files = 20000
 let g:unite_prompt = '» '
 " }}}
 
+let g:org_todo_keywords=['TODO', 'WORKING', 'FEEDBACK', 'VERIFY', '|', 'DONE', 
+  \ 'DELEGATED', 'SKIPPED']
+let g:org_aggressive_conceal = 1
+let g:org_heading_shade_leading_stars = 1
+let g:org_indent = 1
+
+let g:nerdtree_tabs_autofind = 1
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ "Unknown"   : "?"
+    \ }
+
 if filereadable(expand("$HOME/.config/nvim/local.vim"))
   source $HOME/.config/nvim/local.vim
 endif
@@ -717,6 +727,7 @@ endif
 
 call g:plug#begin('~/.config/nvim/plugins')
 
+Plug 'ryanoasis/vim-devicons'
 Plug 'KabbAmine/zeavim.vim'
 Plug 'Konfekt/FastFold'
 Plug 'MattesGroeger/vim-bookmarks'
@@ -835,6 +846,8 @@ Plug 'radenling/vim-dispatch-neovim'
 Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }
 Plug 'klen/python-mode'
 Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'jistr/vim-nerdtree-tabs'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
 call g:plug#end()
 
@@ -845,7 +858,7 @@ filetype plugin indent on
 syntax enable
 
 " {{{ Colorscheme
-func s:modify_colorscheme()
+func! s:modify_colorscheme()
   hi link notesSingleQuoted Normal
   hi notesDoubleQuoted gui=italic
   hi notesBold cterm=bold
@@ -857,9 +870,10 @@ func s:modify_colorscheme()
   hi SignColumn ctermbg=NONE
   hi FoldColumn ctermbg=NONE
   hi LineNr ctermbg=NONE
+  hi Comment ctermbg=NONE
   hi NonText ctermbg=NONE
 endfunc
-colorscheme janah
+colorscheme distinguished
 call s:modify_colorscheme()
 " }}}
 

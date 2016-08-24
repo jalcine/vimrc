@@ -730,11 +730,6 @@ let g:NERDTreeIndicatorMapCustom = {
     \ "Unknown"   : "?"
     \ }
 
-let g:signify_sign_add = emoji#for('small_blue_diamond')
-let g:signify_sign_change = emoji#for('small_orange_diamond')
-let g:signify_sign_changedelete = emoji#for('collision')
-let g:signify_sign_delete = emoji#for('small_red_triangle')
-let g:signify_sign_delete_first_line = emoji#for('bomb')
 
 let g:signify_vcs_list = [ 'git' ]
 
@@ -980,5 +975,12 @@ endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
+" }}}
+" {{{ post-work for signify 
+let g:signify_sign_add = emoji#for('small_blue_diamond')
+let g:signify_sign_change = emoji#for('small_orange_diamond')
+let g:signify_sign_changedelete = emoji#for('collision')
+let g:signify_sign_delete = emoji#for('small_red_triangle')
+let g:signify_sign_delete_first_line = emoji#for('bomb')
 " }}}
 " }}}

@@ -4,7 +4,7 @@
 " Description:   The core of my configuration.
 " Last Modified: 2016-08-20 21:39:39 PDT
 "
-" This is my peronal setup for NeoVim. It works ~exactly~ the
+" This is my personal setup for NeoVim. It works ~exactly~ the
 " way I expect it to. Any different would trip me up.
 "
 " > Some stuff for Vint.
@@ -17,18 +17,15 @@ let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 " {{{ Options
 set laststatus=2
-set number relativenumber numberwidth=1
-set synmaxcol=100
+set number relativenumber numberwidth=3
 set path=.,/usr/local/include,/usr/include,$HOME/.local/include
 set novisualbell
 set errorbells
 set ruler
 set conceallevel=2 concealcursor=nvci
-set tabstop=2 softtabstop=2 shiftwidth=2
-set expandtab
-set textwidth=100
-set nowrap
-set updatetime=1000
+set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+set textwidth=80 nowrap
+set updatetime=750
 
 set complete=k,.,w,b,u,U,i,d,t
 set completeopt=menu,longest
@@ -48,8 +45,7 @@ set wildmenu wildmode=longest:full
 set wildoptions=tagfile
 set wildignorecase
 
-set matchtime=3
-set maxcombine=2
+set matchtime=2
 
 " Ignore a lot of stuff.
 set wildignore+=*.swp,*.pyc,*.bak,*.class,*.orig
@@ -59,17 +55,13 @@ set wildignore+=build/*,tmp/*,vendor/cache/*,bin/*
 set wildignore+=.sass-cache/*,*node_modules/*,*/target/*
 
 set nobackup noswapfile
-set undofile undodir=~/.config/nvim/undodir
+set undofile undodir=expand("$HOME/.config/nvim/undodir")
 
 set cpoptions+=d
 
-set foldmethod=manual
-set nofoldenable
-set foldcolumn=1
-set foldlevel=1
-set foldminlines=3
-set foldnestmax=5
-set foldlevelstart=1
+set foldenable
+set foldmethod=syntax foldcolumn=1 foldlevel=1 foldminlines=3
+      \ foldnestmax=5 foldlevelstart=1
 
 set spelllang=en_us
 set spellsuggest=best,6
@@ -82,6 +74,7 @@ set dictionary+=/usr/share/dict/web2a.gz
 set spellfile=~/.config/nvim/dict.custom.utf-8.add
 
 set splitbelow splitright
+set synmaxcol=0
 
 set cinoptions+='JN'
 
@@ -230,7 +223,7 @@ vnoremap <silent> <leader>ei :%s/:\([^:]\+\):/\=emoji#for(submatch(1), submatch(
 nnoremap <silent><F3> :Autoformat<CR><CR>
 
 " Focuses Vim.
-nnoremap <silent> <leader><space> <Plug>FocusToggleMode
+nnoremap <silent> <leader><space> :Goyo
 
 " {{{ Bind make command.
 nnoremap [make] <nop>
@@ -378,7 +371,7 @@ function! s:call_unite_snippets()
 endfunc
 
 function! s:call_unite_windows()
-  return s:call_unite('window window/gui')
+  return s:call_unite('window window/gui tab')
 endfunc
 
 function! s:call_unite_issues()
@@ -487,9 +480,6 @@ let g:ycm_complete_in_comments_and_strings=1
 let g:ycm_key_list_select_completion=['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion=['<C-p>', '<Up>']
 let g:ycm_filetype_blacklist={'unite': 1}
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:polyglot_disabled = ['coffee']
 
 let g:jsdoc_additional_descriptions = 1
@@ -512,11 +502,12 @@ let g:startify_session_dir = '~/.config/nvim/sessions'
 let g:localvimrc_persistent = 1
 
 let g:easytags_async = 1
-let g:easytags_file = '~/.vimtags'
 let g:easytags_resolve_links = 1
-let g:easytags_by_filetype = 1
+let g:easytags_file = expand("$HOME/.config/nvim/tags")
+let g:easytags_by_filetype = expand("$HOME/.config/nvim/tags")
 let g:easytags_dynamic_files = 1
 let g:easytags_include_members = 1
+let g:easytags_syntax_keyword = 'always'
 let g:easytags_languages = {
       \ 'javascript': {
       \   'cmd': 'jsctags',
@@ -526,9 +517,11 @@ let g:easytags_languages = {
       \   'recurse_flag': '-R'
       \   }
       \ }
+let g:easytags_events = ['BufWritePost']
+let g:easytags_always_enabled = 1
 
 let g:indent_guides_guide_size = 1
-let g:indent_guides_start_level = 5
+let g:indent_guides_start_level = 1
 let g:indent_guides_color_change_percent = 2
 let g:indent_guides_enable_on_vim_startup = 0
 let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'startify', 'tagbar']
@@ -558,15 +551,14 @@ let g:test#custom_transformations = {
       \ 'docker-compose': function('DockerComposeTransform')
       \ }
 
-
 " {{{ neomake options
-let g:neomake_list_height = 3
-let g:neomake_open_list = 0
-let g:neomake_serialize = 1
-let g:neomake_serialize_abort_on_error = 1
-let g:neomake_verbose = 1
+let g:neomake_list_height = 5
+let g:neomake_open_list = 2
+let g:neomake_serialize = 0
+let g:neomake_serialize_abort_on_error = 0
+let g:neomake_verbose = 0
 let g:neomake_javascript_enabled_checkers = ['eslint']
-let g:neomake_python_enabled_checkers = ['python', 'flake8']
+let g:neomake_python_enabled_checkers = [system('which python'), 'flake8']
 let g:neomake_scss_enabled_checkers = ['scss-lint']
 let g:neomake_sh_enabled_checkers = ['shellcheck']
 let g:neomake_ruby_enabled_checkers = ['rubocop', 'mri']
@@ -613,11 +605,10 @@ let g:NERDRemoveExtraSpaces = 1
 " {{{ ultisnips
 let g:snips_author = 'Jacky Alciné <yo@jacky.wtf>'
 let g:UltiSnipsEnableSnipMate = 1
-let g:UltiSnipsUsePythonVersion = 2
 let g:UltiSnipsEditSplit = 'context'
-let g:UltiSnipsExpandTrigger = '<c-l>'
-let g:UltiSnipsJumpBackwardTrigger = '<c-j>'
-let g:UltiSnipsJumpForwardTrigger = '<c-k>'
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsSnippetDirectories = [expand("$HOME/.config/nvim/snippets")]
 " }}}
 
@@ -680,7 +671,7 @@ augroup jalcine
   " Things for Unite
   au FileType unite call s:unite_settings()
 
-  au BufEnter   * let &titlestring=expand('%:p')
+  au BufEnter   * let &titlestring='%:p'
 
   " CoffeeScript jazz.
   au BufNewFile,BufReadPost *.coffee setl foldmethod=indent shiftwidth=2 expandtab
@@ -741,7 +732,7 @@ endif
 " {{{ Plugin listing
 
 " Set up vim-plug ▶️  https://github.com/junegunn/vim-plug#example
-
+let g:plug_window = 'botright new | resize 10'
 call g:plug#begin('~/.config/nvim/plugins')
 
 Plug 'ryanoasis/vim-devicons'
@@ -943,7 +934,7 @@ if exists('g:loaded_unite')
       \   'no_quit': 1,
       \ })
 
-  call g:unite#custom#source('tag,file_rec/async', 'ignore_globs',
+  call g:unite#custom#source('tag,file_rec/neovim', 'ignore_globs',
         \ split(&wildignore, ','))
 
   func! s:configure_unite_buffer()
@@ -975,12 +966,5 @@ endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
-" }}}
-" {{{ post-work for signify 
-let g:signify_sign_add = emoji#for('small_blue_diamond')
-let g:signify_sign_change = emoji#for('small_orange_diamond')
-let g:signify_sign_changedelete = emoji#for('collision')
-let g:signify_sign_delete = emoji#for('small_red_triangle')
-let g:signify_sign_delete_first_line = emoji#for('bomb')
 " }}}
 " }}}

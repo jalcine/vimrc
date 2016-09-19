@@ -425,19 +425,16 @@ let g:r_syntax_folding=1
 let g:ruby_fold=1
 let g:rustfmt_autosave = 1
 let g:sh_fold_enabled=1
-let g:signify_sign_show_count = 0
+let g:signify_sign_show_count = 1
 let g:signify_update_on_bufenter = 1
-let g:tagbar_autoclose=0
-let g:tagbar_autofocus=1
+let g:tagbar_autoclose = 1
+let g:tagbar_autofocus = 1
 let g:tagbar_autoshowtag = 1
 let g:tagbar_compact=1
 let g:tagbar_left=0
-let g:tagbar_width = 40
-let g:vimfiler_as_default_explorer = 1
-let g:vimfiler_define_wrapper_commands = 1
+let g:tagbar_width=40
 let g:vimsyn_folding='af'
 let g:xml_namespace_transparent = 1
-let g:xml_syntax_folding = 1
 let g:xml_syntax_folding=1
 let g:tagbar_type_markdown = {
   \ 'ctagstype' : 'markdown',
@@ -581,7 +578,7 @@ let g:airline#extensions#whitespace#show_message = 1
 let g:airline#extensions#whitespace#trailing_format = 's:[%s]'
 let g:airline#extensions#whitespace#mixed_indent_format = 'i:[%s]'
 let g:airline#extensions#tagbar#flags = 'f'
-let g:airline_theme = 'distinguished'
+let g:airline_theme = 'zenburn'
 let g:airline_detected_modified = 1
 let g:airline_powerline_fonts = 1
 let g:airline_detect_iminsert = 0
@@ -606,9 +603,9 @@ let g:NERDRemoveExtraSpaces = 1
 let g:snips_author = 'Jacky Alciné <yo@jacky.wtf>'
 let g:UltiSnipsEnableSnipMate = 1
 let g:UltiSnipsEditSplit = 'context'
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsExpandTrigger="<c-l>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 let g:UltiSnipsSnippetDirectories = [expand("$HOME/.config/nvim/snippets")]
 " }}}
 
@@ -648,7 +645,6 @@ augroup jalcine
   " Github auto-complete.
   au FileType markdown,gitcommit
     \ imap <C-x><C-x> <Plug>(github-complete-manual-completion)
-  au FileType gitcommit setl omnifunc=github_complete#complete
 
   " Funky files.
   " au User YouCompleteMe call youcompleteme#Enable()
@@ -656,10 +652,6 @@ augroup jalcine
   " Reload tmux files when we edit them.
   au BufWritePost *tmux*.conf  call s:reload_tmux()
   au BufWritePost *tmux/*.conf call s:reload_tmux()
-
-  " Tweak for particular file types.
-  au FileType css setl iskeyword+=-
-  au FileType gitcommit setl spell
 
   " Enable Neomake to run on builds.
   au BufWritePost * Neomake
@@ -671,18 +663,7 @@ augroup jalcine
   " Things for Unite
   au FileType unite call s:unite_settings()
 
-  au BufEnter   * let &titlestring='%:p'
-
-  " CoffeeScript jazz.
-  au BufNewFile,BufReadPost *.coffee setl foldmethod=indent shiftwidth=2 expandtab
-  au FileType javascript setl foldmethod=syntax
-
-  au FileType css,scss setlocal foldmethod=marker foldmarker={,}
-  au FileType css,scss nnoremap <silent> <leader>S vi{:sort<CR>
-  au FileType ini set ft=dosini
-  au FileType python setlocal foldmethod=indent
-  au FileType markdown setlocal nolist
-  au FileType vim setlocal fdm=indent keywordprg=:help
+  au BufEnter * let &titlestring='%:p'
 augroup END
 " }}}
 
@@ -721,7 +702,6 @@ let g:NERDTreeIndicatorMapCustom = {
     \ "Unknown"   : "?"
     \ }
 
-
 let g:signify_vcs_list = [ 'git' ]
 
 if filereadable(expand("$HOME/.config/nvim/local.vim"))
@@ -758,7 +738,8 @@ Plug 'easymotion/vim-easymotion'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'elixir-lang/vim-elixir'
 Plug 'embear/vim-localvimrc'
-Plug 'flazz/vim-colorschemes'
+" Plug 'flazz/vim-colorschemes'
+Plug 'noahfrederick/vim-hemisu'
 Plug 'gorodinskiy/vim-coloresque'
 Plug 'gregsexton/gitv'
 Plug 'guns/xterm-color-table.vim'
@@ -861,6 +842,7 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'low-ghost/nerdtree-fugitive'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'metakirby5/codi.vim'
+Plug 'junegunn/vim-github-dashboard'
 
 call g:plug#end()
 
@@ -887,7 +869,8 @@ func! s:modify_colorscheme()
   hi NonText ctermbg=NONE
 endfunc
 
-colorscheme distinguished
+set background=dark
+colorscheme hemisu
 call s:modify_colorscheme()
 " }}}
 
@@ -945,6 +928,7 @@ if exists('g:loaded_unite')
   endfunc
 endif
 " }}}
+
 " {{{ post-work for goyo
 function! s:goyo_enter()
   silent !tmux set status off
@@ -967,4 +951,5 @@ endfunction
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 " }}}
+
 " }}}

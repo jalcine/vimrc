@@ -157,6 +157,13 @@ iabbrev apperance appearance
 command! -bang Q q<bang>
 command! -bang QA qa<bang>
 command! -bang Qa qa<bang>
+command! -bang Today call s:write_in_today()<bang>
+
+" TODO: Extract into a separate source file.
+func s:write_in_today()
+  exec(':Note Morning Entries/' . strftime("%Y-%m-%d"))
+  exec(':Goyo')
+endfunc
 " }}}
 
 " {{{ Mappings

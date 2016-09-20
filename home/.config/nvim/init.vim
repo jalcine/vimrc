@@ -2,7 +2,7 @@
 " File:          home/.config/nvim/init.vim
 " Author:        Jacky Alciné <yo@jacky.wtf>
 " Description:   The core of my configuration.
-" Last Modified: 2016-08-20 21:39:39 PDT
+" Last Modified: 2016-09-19 22:36:52 PDT 
 "
 " This is my personal setup for NeoVim. It works ~exactly~ the
 " way I expect it to. Any different would trip me up.
@@ -231,6 +231,7 @@ nnoremap <silent><F3> :Autoformat<CR><CR>
 
 " Focuses Vim.
 nnoremap <silent> <leader><space> :Goyo
+nnoremap <silent> <leader>L <Plug>(Limelight)
 
 " {{{ Bind make command.
 nnoremap [make] <nop>
@@ -670,6 +671,10 @@ augroup jalcine
   " Things for Unite
   au FileType unite call s:unite_settings()
 
+  " Goyo jazz 
+  au User GoyoEnter Limelight
+  au User GoyoLeave Limelight!
+
   au BufEnter * let &titlestring='%:p'
 augroup END
 " }}}
@@ -745,8 +750,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'elixir-lang/vim-elixir'
 Plug 'embear/vim-localvimrc'
-" Plug 'flazz/vim-colorschemes'
-Plug 'noahfrederick/vim-hemisu'
+Plug 'flazz/vim-colorschemes'
 Plug 'gorodinskiy/vim-coloresque'
 Plug 'gregsexton/gitv'
 Plug 'guns/xterm-color-table.vim'
@@ -850,6 +854,8 @@ Plug 'low-ghost/nerdtree-fugitive'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'metakirby5/codi.vim'
 Plug 'junegunn/vim-github-dashboard'
+Plug 'heavenshell/vim-slack'
+Plug 'Sunset'
 
 call g:plug#end()
 

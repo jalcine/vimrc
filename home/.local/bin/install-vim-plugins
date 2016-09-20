@@ -1,9 +1,14 @@
-#!/bin/sh
-# All of the core logic has been moved into the app.
+#!/usr/bin/env bash
+
+if [ -x pyenv ]; then
+  pyenv install neovim-py2 2.7.11
+  pyenv install neovim-py3 3.5.2
+  pyenv shell neovim-py2
+fi
 
 # Install remote execution runtimes.
-pip install --user neovim
+pip install neovim requests
 gem install neovim
 
 # Install.
-vim -s ~/.config/nvim/plugins.vim
+nvim -S "$HOME/.config/nvim/plugins.vim"

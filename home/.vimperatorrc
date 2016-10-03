@@ -1,0 +1,3 @@
+" vim: set ft=vim :
+set gui=none
+colorscheme indigo

@@ -55,7 +55,7 @@ set wildignore+=build/*,tmp/*,vendor/cache/*,bin/*
 set wildignore+=.sass-cache/*,*node_modules/*,*/target/*
 
 set nobackup noswapfile
-set undofile undodir=expand("$HOME/.config/nvim/undodir")
+set undofile undodir=~/.config/nvim/undodir
 
 set cpoptions+=d
 
@@ -96,7 +96,7 @@ set fillchars+=fold:-
 set showbreak=↪
 
 " Visual cues when in 'list' model.
-set nolist
+set list
 set listchars+=eol:¬
 set listchars+=extends:❯
 set listchars+=precedes:❮
@@ -160,7 +160,7 @@ command! -bang Qa qa<bang>
 command! -bang Today call s:write_in_today()<bang>
 
 " TODO: Extract into a separate source file.
-func s:write_in_today()
+func! s:write_in_today()
   exec(':Note Morning Entries/' . strftime("%Y-%m-%d"))
   exec(':Goyo')
 endfunc
@@ -224,7 +224,7 @@ cnoremap <silent> <leader>pd <C-R>=strftime("%Y-%m-%d")<CR>
 " Strip trailing whitespace from the end of files.
 nnoremap <silent> <leader>sw :%s/\s$//g<cr>
 
-vnoremap <silent> <leader>ei :%s/:\([^:]\+\):/\=emoji#for(submatch(1), submatch(0))/g<cr>
+vnoremap <silent> <leader>ei %s/:\([^:]\+\):/\=emoji#for(submatch(1), submatch(0))/g<cr>
 
 " Formats the current buffer.
 nnoremap <silent><F3> :Autoformat<CR><CR>
@@ -882,9 +882,21 @@ func! s:modify_colorscheme()
   hi NonText ctermbg=NONE
 endfunc
 
-set background=dark
-colorscheme hemisu
-call s:modify_colorscheme()
+func! Sunset_daytime_callback()
+  colorscheme seoul256
+  exec(':AirlineTheme serene')
+  set background=light
+  call s:modify_colorscheme()
+endfunc
+
+func! Sunset_nighttime_callback()
+  colorscheme hybrid_reverse
+  exec(':AirlineTheme hybrid')
+  set background=dark
+  call s:modify_colorscheme()
+endfunc
+
+au VimEnter :call Sunset_nighttime_callback()
 " }}}
 
 " {{{ post-work for unite

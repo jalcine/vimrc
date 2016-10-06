@@ -1,4 +1,4 @@
-augroup jalcine_nginx
+augroup ft_nginx
   au!
   au BufRead,BufNewFile *.nginx set ft=nginx
   au BufRead,BufNewFile */etc/nginx/* set ft=nginx

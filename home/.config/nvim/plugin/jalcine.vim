@@ -1,6 +1,6 @@
 " Function: jalcine#get_phys_coords_for_sunset
 " Description: Fetches current physical coordinates.
-func! jalcine#get_phys_coords_for_sunset()
+func! jalcine#get_physical_coordinates()
   python << EOF
 import requests
 import vim
@@ -18,4 +18,52 @@ except BaseException:
 EOF
 endfunc
 
-call jalcine#get_phys_coords_for_sunset()
+func! Sunset_daytime_callback()
+  colorscheme hybrid
+  exec(':AirlineTheme default')
+  set background=light
+  call s:modify_colorscheme()
+endfunc
+
+func! Sunset_nighttime_callback()
+  colorscheme distinguished
+  exec(':AirlineTheme distinguished')
+  set background=dark
+  call s:modify_colorscheme()
+endfunc
+
+function! s:goyo_enter()
+  silent !tmux set status off
+  silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
+  set noshowmode
+  set scrolloff=999
+  call s:modify_colorscheme()
+endfunction
+
+function! s:goyo_leave()
+  silent !tmux set status on
+  silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
+  set showmode
+  set scrolloff=0
+  call s:modify_colorscheme()
+endfunction
+
+func! s:modify_colorscheme()
+  hi link notesSingleQuoted Normal
+  hi notesDoubleQuoted gui=italic
+  hi notesBold cterm=bold
+  hi notesItalic cterm=italic
+  hi VertSplit ctermbg=NONE
+  hi Split ctermbg=NONE
+  hi Conceal ctermbg=NONE
+  hi Folded ctermbg=NONE
+  hi SignColumn ctermbg=NONE
+  hi FoldColumn ctermbg=NONE
+  hi LineNr ctermbg=NONE
+  hi Comment ctermbg=NONE
+  hi NonText ctermbg=NONE
+endfunc
+
+au! User GoyoEnter nested call <SID>goyo_enter()
+au! User GoyoLeave nested call <SID>goyo_leave()
+call jalcine#get_physical_coordinates()

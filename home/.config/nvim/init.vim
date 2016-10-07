@@ -124,3 +124,4 @@ if filereadable(expand("$HOME/.config/nvim/local.vim"))
 endif
 
 call g:plugins#define()
+call g:grouped_actions#apply()

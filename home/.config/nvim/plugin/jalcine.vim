@@ -22,33 +22,17 @@ func! Sunset_daytime_callback()
   colorscheme hybrid
   exec(':AirlineTheme default')
   set background=light
-  call s:modify_colorscheme()
+  call jalcine#modify_colorscheme()
 endfunc
 
 func! Sunset_nighttime_callback()
   colorscheme distinguished
   exec(':AirlineTheme distinguished')
   set background=dark
-  call s:modify_colorscheme()
+  call jalcine#modify_colorscheme()
 endfunc
 
-function! s:goyo_enter()
-  silent !tmux set status off
-  silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
-  set noshowmode
-  set scrolloff=999
-  call s:modify_colorscheme()
-endfunction
-
-function! s:goyo_leave()
-  silent !tmux set status on
-  silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
-  set showmode
-  set scrolloff=0
-  call s:modify_colorscheme()
-endfunction
-
-func! s:modify_colorscheme()
+func! jalcine#modify_colorscheme()
   hi link notesSingleQuoted Normal
   hi notesDoubleQuoted gui=italic
   hi notesBold cterm=bold
@@ -64,6 +48,4 @@ func! s:modify_colorscheme()
   hi NonText ctermbg=NONE
 endfunc
 
-au! User GoyoEnter nested call <SID>goyo_enter()
-au! User GoyoLeave nested call <SID>goyo_leave()
 call jalcine#get_physical_coordinates()

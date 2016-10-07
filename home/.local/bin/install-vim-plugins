@@ -3,11 +3,12 @@
 if [ -x pyenv ]; then
   pyenv install neovim-py2 2.7.11
   pyenv install neovim-py3 3.5.2
-  pyenv shell neovim-py2
+  pyenv shell neovim-py2 neovim-py3
 fi
 
 # Install remote execution runtimes.
 pip install neovim requests
+pyenv shell neovim-py3 && pip3 install neovim requests
 gem install neovim
 
 # Install.

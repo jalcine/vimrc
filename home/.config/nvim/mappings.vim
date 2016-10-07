@@ -56,8 +56,6 @@ cnoremap <silent> <leader>pd <C-R>=strftime("%Y-%m-%d")<CR>
 " Strip trailing whitespace from the end of files.
 nnoremap <silent> <leader>sw :%s/\s$//g<cr>
 
-vnoremap <silent> <leader>ei %s/:\([^:]\+\):/\=emoji#for(submatch(1), submatch(0))/g<cr>
-
 " Formats the current buffer.
 nnoremap <silent><F3> :Autoformat<CR><CR>
 
@@ -162,81 +160,6 @@ nnoremap <A-l> <C-w>l
 " Toggle the visibilty of non-text characters and conceals.
 nnoremap <silent> <leader>k :call <SID>toggle_visibility()<cr>
 
-" Quickly searches using the awesome stuff.
-nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-
-" Make a new note from the selected text.
-vmap <Leader>ns :NoteFromSelectedText<CR>
-
-" {{{ unite
-" call unite#custom_source('quickfix', 'sorters', 'sorter_reverse')
-" call unite#custom_source('location_list', 'sorters', 'sorter_reverse')
-" nnoremap <silent> <Leader>q :Unite quickfix -direction=botright -no-quit<CR>
-" nnoremap <silent> <Leader>l :Unite location_list -direction=botright -no-quit<CR><Paste>
-
-func! s:call_unite(sources)
-  exec(':Unite -no-split -match-input -immediately ' . a:sources)
-endfunc
-
-func! s:call_unite_history()
-  call s:calL_unite('history/yank')
-endfunc
-
-func! s:call_unite_tmux()
-  call s:call_unite('tmux/panes tmux/sessions tmux/windows')
-endfunc
-
-func! s:call_unite_tasks()
-  call s:call_unite('grep:.:-s:\(TODO\|todo\|NOTE\|note\|' .
-        \ 'FIXME\|fixme\|BUG\|bug)')
-endfunc
-
-func! s:call_unite_grep()
-  call s:call_unite('grep:.')
-endfunc
-
-func! s:call_unite_buffer()
-  call s:call_unite('-quick-match buffer')
-endfunc
-
-func! s:call_unite_files()
-  call s:call_unite('file_rec/neovim:' . getcwd())
-endfunc
-
-func! s:call_unite_old_files()
-  call s:call_unite('file_mru:' . getcwd())
-endfunc
-
-func! s:call_unite_tags()
-  call s:call_unite('tag tag/file tag/include')
-endfunc
-
-function! s:call_unite_snippets()
-  return s:call_unite('ultisnips')
-endfunc
-
-function! s:call_unite_windows()
-  return s:call_unite('window window/gui tab')
-endfunc
-
-function! s:call_unite_issues()
-  return s:call_unite('issue:jira issue:github')
-endfunction
-
-nnoremap [unite] <nop>
-nmap <leader>u [unite]
-nnoremap <silent> [unite]b :call <SID>call_unite_buffer()<cr>
-nnoremap <silent> [unite]f :call <SID>call_unite_files()<cr>
-nnoremap <silent> [unite]F :call <SID>call_unite_old_files()<cr>
-nnoremap <silent> [unite]t :call <SID>call_unite_tags()<cr>
-nnoremap <silent> [unite]g :call <SID>call_unite_grep()<cr>
-nnoremap <silent> [unite]a :call <SID>call_unite_tasks()<cr>
-nnoremap <silent> [unite]x :call <SID>call_unite_tmux()<cr>
-nnoremap <silent> [unite]u :call <SID>call_unite_snippets()<cr>
-nnoremap <silent> [unite]w :call <SID>call_unite_windows()<cr>
-nnoremap <silent> [unite]i :call <SID>call_unite_issues()<cr>
-nnoremap <silent> [unite]X :call <Plug>unite_disable_max_candidates()<CR>
-nnoremap <silent> <C-p> :call <SID>call_unite_files()<cr>
-" }}}
+nmap <leader><leader><space> :FZF<CR>
 
 " }}}

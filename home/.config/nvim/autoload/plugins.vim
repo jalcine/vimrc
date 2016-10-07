@@ -1,6 +1,7 @@
 let g:plug_window = 'botright new | resize 6'
 let g:rooter_use_lcd = 1
 let g:airline_powerline_fonts = 1
+let g:notes_suffix = '.txt'
 
 func! plugins#define()
   call g:plug#begin(g:jalcine.plugins.dir)
@@ -10,7 +11,6 @@ func! plugins#define()
   Plug 'KabbAmine/zeavim.vim'
   Plug 'Konfekt/FastFold'
   Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-  Plug 'Sunset'
   Plug 'airblade/vim-rooter'
   Plug 'benekastah/neomake'
   Plug 'bogado/file-line'
@@ -46,9 +46,10 @@ func! plugins#define()
   Plug 'nathanaelkane/vim-indent-guides'
   Plug 'w0ng/vim-hybrid'
   Plug 'xolox/vim-misc' | Plug 'xolox/vim-easytags'
-  Plug 'xolox/vim-notes'
+  Plug 'xolox/vim-notes' | Plug 'bpstahlman/txtfmt'
   Plug 'xuyuanp/nerdtree-git-plugin'
   Plug 'zandrmartin/vim-distinguished'
+  Plug 'Sunset'
 
   call g:plug#end()
 endfunc

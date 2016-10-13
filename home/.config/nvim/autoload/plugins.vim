@@ -1,7 +1,15 @@
-let g:plug_window = 'botright new | resize 6'
-let g:rooter_use_lcd = 1
-let g:airline_powerline_fonts = 1
-let g:notes_suffix = '.txt'
+func! plugins#configure()
+  let g:plug_window = 'botright new | resize 6'
+  let g:rooter_use_lcd = 1
+  let g:rooter_silent_chdir = 1
+  let g:airline_powerline_fonts = 1
+  let g:airline_theme = 'distinguished'
+  let g:notes_suffix = '.txt'
+  let g:fzf_command_prefix = 'Fzf'
+  let g:fzf_buffers_jump = 1
+  let g:fzf_files_options =
+    \ '--preview "(highlight -O ansi {} || cat {}) 2> /dev/null | head -'.&lines.'"'
+endfunc
 
 func! plugins#define()
   call g:plug#begin(g:jalcine.plugins.dir)
@@ -20,6 +28,7 @@ func! plugins#define()
   Plug 'jceb/vim-orgmode'
   Plug 'jistr/vim-nerdtree-tabs'
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  Plug 'junegunn/fzf.vim'
   Plug 'junegunn/goyo.vim'
   Plug 'junegunn/limelight.vim'
   Plug 'junegunn/vim-easy-align'
@@ -53,3 +62,10 @@ func! plugins#define()
 
   call g:plug#end()
 endfunc
+
+func! plugins#open(name)
+  let l:path = g:jalcine.plugins.dir . "/" . a:name
+  exec(":edit " . l:path)
+endfunc
+
+command! -complete=dir -nargs=1 OpenPluginDir call plugins#open("<args>")<cr>

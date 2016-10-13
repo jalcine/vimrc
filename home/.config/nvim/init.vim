@@ -65,14 +65,9 @@ set foldenable
 set foldmethod=syntax foldcolumn=1 foldlevel=1 foldminlines=3
       \ foldnestmax=5 foldlevelstart=1
 
-set spelllang=en_us
-set spellsuggest=best,6
-set dictionary+=/usr/share/dict/words,
-set dictionary+=/usr/share/dict/american-english
-set dictionary+=/usr/share/dict/web2,
-set dictionary+=/usr/share/dict/propernames.gz
-set dictionary+=/usr/share/dict/connectives.gz
-set dictionary+=/usr/share/dict/web2a.gz
+set spelllang=en_us,fr
+set spellsuggest=double,3
+" TODO: Create separate files for (tech, writing).
 set spellfile=~/.config/nvim/dict.custom.utf-8.add
 
 set splitbelow splitright
@@ -110,8 +105,8 @@ set listchars+=tab:\|\
 set sidescrolloff=1
 "}}}
 
-source $HOME/.config/nvim/abbrev.vim
-source $HOME/.config/nvim/mappings.vim
+call mappings#bind()
+call abbreviations#apply()
 
 let g:jalcine = {
       \ "plugins": {
@@ -123,5 +118,6 @@ if filereadable(expand("$HOME/.config/nvim/local.vim"))
   source $HOME/.config/nvim/local.vim
 endif
 
+call g:plugins#configure()
 call g:plugins#define()
 call g:grouped_actions#apply()

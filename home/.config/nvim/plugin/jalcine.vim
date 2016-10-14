@@ -20,13 +20,13 @@ endfunc
 
 func! Sunset_daytime_callback()
   colorscheme hybrid
-  set background=light
+  set background=dark
   call jalcine#modify_colorscheme()
 endfunc
 
 func! Sunset_nighttime_callback()
   colorscheme distinguished
-  set background=dark
+  set background=light
   call jalcine#modify_colorscheme()
 endfunc
 

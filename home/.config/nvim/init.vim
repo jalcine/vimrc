@@ -106,7 +106,7 @@ set sidescrolloff=1
 "}}}
 
 call mappings#bind()
-call abbreviations#apply()
+call abbreviations#bind()
 
 let g:jalcine = {
       \ "plugins": {

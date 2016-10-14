@@ -59,6 +59,7 @@ func! plugins#define()
   Plug 'xuyuanp/nerdtree-git-plugin'
   Plug 'zandrmartin/vim-distinguished'
   Plug 'Sunset'
+  Plug 'vimperator/vimperator.vim'
 
   call g:plug#end()
 endfunc

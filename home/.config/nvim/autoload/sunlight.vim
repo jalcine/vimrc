@@ -25,6 +25,6 @@ func! Sunset_nighttime_callback()
 endfunc
 
 func! sunlight#bind()
-  call color#tweak()
   call sunlight#get_coords()
+  call color#tweak()
 endfunc

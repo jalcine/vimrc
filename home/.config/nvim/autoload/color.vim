@@ -14,4 +14,4 @@ func! color#tweak()
   hi NonText ctermbg=NONE
 endfunc
 
-au VimEnter * colorscheme hybrid | set bg=dark
+au VimEnter * colorscheme hybrid | set bg=dark | call color#tweak()

@@ -2,13 +2,22 @@
 " File:          home/.config/nvim/init.vim
 " Author:        Jacky Alciné <yo@jacky.wtf>
 " Description:   The core of my configuration.
-" Last Modified: 2016-09-19 22:36:52 PDT 
+" Last Modified: 2016-10-14 21:31:43 PDT
 "
 " This is my personal setup for NeoVim. It works ~exactly~ the
 " way I expect it to. Any different would trip me up.
 "
 " > Some stuff for Vint.
 " vint: -ProhibitUnnecessaryDoubleQuote
+
+" Don't talk to me.
+set vbs=0
+
+" Set my leader to the comma key.
+let g:mapleader=','
+
+" Set buffer-local mappings to the key above <Enter>
+let g:maplocalleader='\\'
 
 " UTF-8 NWA style
 set encoding=utf-8
@@ -99,25 +108,25 @@ set listchars+=extends:❯
 set listchars+=precedes:❮
 set listchars+=trail:⋅
 set listchars+=nbsp:⋅
-set listchars+=tab:\|\ 
+set listchars+=tab:\|\
 
 " Keep some spacing.
 set sidescrolloff=1
 "}}}
 
 call mappings#bind()
-call abbreviations#apply()
+call abbreviations#bind()
 
 let g:jalcine = {
       \ "plugins": {
-        \ "dir": expand("$HOME/.config/nvim/plugins")
-        \ }
+      \ "dir": expand("$HOME/.config/nvim/plugins")
+      \ }
       \ }
 
 if filereadable(expand("$HOME/.config/nvim/local.vim"))
   source $HOME/.config/nvim/local.vim
 endif
 
-call g:plugins#configure()
-call g:plugins#define()
-call g:grouped_actions#apply()
+call sunlight#bind()
+call plugins#bind()
+call grouped_actions#apply()

@@ -15,3 +15,5 @@ Session.vim
 
 *.orig
 *.old
+
+.ropeproject/*

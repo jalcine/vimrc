@@ -5,7 +5,7 @@ function! s:goyo_enter()
   set noshowcmd
   set scrolloff=999
   Limelight
-  call jalcine#modify_colorscheme()
+  call color#tweak()
 endfunction
 
 function! s:goyo_leave()
@@ -15,7 +15,7 @@ function! s:goyo_leave()
   set showcmd
   set scrolloff=5
   Limelight!
-  call jalcine#modify_colorscheme()
+  call color#tweak()
 endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()

@@ -108,7 +108,7 @@ set listchars+=extends:❯
 set listchars+=precedes:❮
 set listchars+=trail:⋅
 set listchars+=nbsp:⋅
-set listchars+=tab:\|\
+set listchars+=tab:\|\ 
 
 " Keep some spacing.
 set sidescrolloff=1

@@ -1,4 +1,12 @@
 func! plugins#configure()
+  let g:pymode_options = 1
+  let g:pymode_rope = 1
+  let g:pymode_quickfix_minheight = 3
+  let g:pymode_quickfix_maxheight = 6
+  let g:pymode_virtualenv = 1
+  let g:pymode_run = 1
+  let g:pymode_breakpoint = 1
+  let g:pymode_breakpoint_bind = '<leader>b'
   let g:plug_window = 'botright new | resize 6'
   let g:rooter_use_lcd = 1
   let g:rooter_silent_chdir = 1
@@ -91,6 +99,7 @@ func! plugins#configure()
   let g:startify_session_dir = '~/.config/nvim/sessions'
 
   let g:localvimrc_persistent = 1
+  let g:EditorConfig_max_line_indicator = "line"
 
   let g:easytags_async = 1
   let g:easytags_file = '~/.vimtags'
@@ -147,24 +156,29 @@ endfunc
 func! plugins#define()
   call g:plug#begin(g:jalcine.plugins.dir)
   Plug 'tpope/vim-sensible'
-  Plug 'ryanoasis/vim-devicons'
   Plug 'rking/ag.vim'
-  Plug 'KabbAmine/zeavim.vim'
-  Plug 'Konfekt/FastFold'
-  Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-  Plug 'airblade/vim-rooter'
-  Plug 'bogado/file-line'
+
+  Plug 'SirVer/ultisnips'
+        \ | Plug 'honza/vim-snippets'
   Plug 'editorconfig/editorconfig-vim'
+        \ | Plug 'bogado/file-line'
+        \ | Plug 'airblade/vim-rooter'
+        \ | Plug 'embear/vim-localvimrc'
+        \ | Plug 'Konfekt/FastFold'
+
   Plug 'heavenshell/vim-jsdoc'
+        \ | Plug 'KabbAmine/zeavim.vim'
+
   Plug 'benekastah/neomake'
-  Plug 'janko-m/vim-test'
-  Plug 'jceb/vim-orgmode'
-  Plug 'jistr/vim-nerdtree-tabs'
+        \ | Plug 'janko-m/vim-test'
+
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-  Plug 'junegunn/fzf.vim'
+        \ |  Plug 'junegunn/fzf.vim'
+
   Plug 'junegunn/goyo.vim'
-  Plug 'junegunn/limelight.vim'
-  Plug 'junegunn/vim-easy-align'
+        \ | Plug 'junegunn/limelight.vim'
+        \ | Plug 'junegunn/vim-easy-align'
+
   Plug 'klen/python-mode', { 'for': 'python'}
   Plug 'koron/minimap-vim'
   Plug 'majutsushi/tagbar' | Plug 'TagHighlight'
@@ -202,6 +216,7 @@ func! plugins#define()
         \ | Plug 'tiagofumo/vim-nerdtree-syntax-highlight', { 'on':  'NERDTreeToggle' }
         \ | Plug 'low-ghost/nerdtree-fugitive', { 'on':  'NERDTreeToggle' }
         \ | Plug 'xuyuanp/nerdtree-git-plugin', { 'on':  'NERDTreeToggle' }
+        \ | Plug 'jistr/vim-nerdtree-tabs'
 
   Plug 'vim-airline/vim-airline'
         \ | Plug 'vim-airline/vim-airline-themes'
@@ -211,6 +226,7 @@ func! plugins#define()
         \ | Plug 'bpstahlman/txtfmt'
         \ | Plug 'xolox/vim-easytags'
         \ | Plug 'xolox/vim-notes'
+        \ | Plug 'jceb/vim-orgmode'
 
   Plug 'Sunset'
         \ | Plug 'w0ng/vim-hybrid'
@@ -223,6 +239,7 @@ func! plugins#define()
   Plug 'utl.vim'
   Plug 'mattn/calendar-vim'
 
+  Plug 'ryanoasis/vim-devicons'
   call g:plug#end()
 endfunc
 

@@ -220,7 +220,7 @@ func! plugins#define()
 
   Plug 'vimperator/vimperator.vim'
   Plug 'SyntaxRange'
-  Plug 'utl'
+  Plug 'utl.vim'
   Plug 'mattn/calendar-vim'
 
   call g:plug#end()

@@ -216,6 +216,8 @@ func! plugins#define()
   Plug 'tmux-plugins/vim-tmux'
         \ | Plug 'tmux-plugins/vim-tmux-focus-events'
 
+  Plug 'vimperator/vimperator.vim'
+
   call g:plug#end()
 endfunc
 

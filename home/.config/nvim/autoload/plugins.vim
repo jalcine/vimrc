@@ -51,7 +51,11 @@ func! plugins#define()
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-surround'
+  Plug 'tpope/vim-dispatch'
+  Plug 'tpope/vim-speeddating'
+  Plug 'radenling/vim-dispatch-neovim'
   Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
   Plug 'nathanaelkane/vim-indent-guides'
   Plug 'w0ng/vim-hybrid'
   Plug 'xolox/vim-misc' | Plug 'xolox/vim-easytags'
@@ -60,6 +64,9 @@ func! plugins#define()
   Plug 'zandrmartin/vim-distinguished'
   Plug 'Sunset'
   Plug 'vimperator/vimperator.vim'
+  Plug 'SyntaxRange'
+  Plug 'utl'
+  Plug 'mattn/calendar-vim'
 
   call g:plug#end()
 endfunc

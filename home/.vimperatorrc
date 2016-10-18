@@ -1,3 +1,5 @@
 " vim: set ft=vimperator :
 set gui=none
+set gui+=bookmarks
+set gui+=tabs
 colorscheme indigo

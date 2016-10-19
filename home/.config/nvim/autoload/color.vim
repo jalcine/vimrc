@@ -1,6 +1,6 @@
 func! color#tweak()
-  hi link notesSingleQuoted Normal
-  hi notesDoubleQuoted gui=italic
+  hi notesDoubleQuoted gui=italic cterm=italic
+  hi notesSingleQuoted gui=italic cterm=italic
   hi notesBold cterm=bold
   hi notesItalic cterm=italic
   hi VertSplit ctermbg=NONE

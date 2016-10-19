@@ -27,10 +27,10 @@ augroup jalcine
   " Things for Unite
   au FileType unite call s:unite_settings()
 
-  au BufEnter   * let &titlestring=expand('%:p')
+  au BufEnter * let &titlestring=expand('%:p')
 
   " CoffeeScript jazz.
-  au BufNewFile,BufReadPost *.coffee setl foldmethod=indent shiftwidth=2 expandtab
+  au FileType coffee setl foldmethod=indent shiftwidth=2 expandtab
   au FileType javascript setl foldmethod=syntax
 
   au FileType css,scss setlocal foldmethod=marker foldmarker={,}
@@ -41,6 +41,8 @@ augroup jalcine
   au FileType vim setlocal fdm=indent keywordprg=:help
 
   au VimEnter * call sunlight#get_coords()
+
+  au BufWrite * :Autoformat
 augroup END
 
 func! s:reload_tmux()

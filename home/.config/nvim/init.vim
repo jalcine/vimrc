@@ -130,3 +130,4 @@ endif
 call sunlight#bind()
 call plugins#bind()
 call grouped_actions#apply()
+call jalcine#define_augroup()

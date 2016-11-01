@@ -1,33 +1,14 @@
 func! plugins#configure()
-  let g:pymode_options = 1
-  let g:pymode_rope = 1
-  let g:pymode_quickfix_minheight = 3
-  let g:pymode_quickfix_maxheight = 6
-  let g:pymode_virtualenv = 1
-  let g:pymode_run = 1
-  let g:pymode_breakpoint = 1
-  let g:pymode_breakpoint_bind = '<leader>b'
   let g:plug_window = 'botright new | resize 6'
   let g:rooter_use_lcd = 1
   let g:rooter_silent_chdir = 1
   let g:notes_suffix = '.txt'
-  let g:fzf_command_prefix = 'Fzf'
   let g:sunset_latitude='50'
   let g:sunset_longitude='70'
   let g:vim_json_syntax_conceal = 1
-  let g:fzf_buffers_jump = 1
+  let g:fzf_command_prefix = 'Fzf'
   let g:fzf_files_options =
         \ '--preview "(highlight -O ansi {} || cat {}) 2> /dev/null | head -'.&lines.'"'
-  let s:custom_header =
-        \ map(split(system('fortune | cowsay'), '\n'), '"   ". v:val') + ['','']
-
-  func! s:filter_header(lines) abort
-    let l:longest_line = max(map(copy(a:lines), 'len(v:val)'))
-    let l:centered_lines= map(copy(a:lines),
-          \ 'repeat(" ", (&columns / 2) - (l:longest_line / 2)) . v:val')
-    return l:centered_lines
-  endfunc
-
   " {{{ nerd*
   let g:NERDCreateDefaultMappings = 1
   let g:NERDCompactSexyComs = 1
@@ -89,6 +70,16 @@ func! plugins#configure()
         \ 'v'  : 'V',
         \ 'V'  : 'B'
         \ }
+  let s:custom_header =
+        \ map(split(system('fortune | cowsay'), '\n'), '"   ". v:val') + ['','']
+
+  func! s:filter_header(lines) abort
+    let l:longest_line = max(map(copy(a:lines), 'len(v:val)'))
+    let l:centered_lines= map(copy(a:lines),
+          \ 'repeat(" ", (&columns / 2) - (l:longest_line / 2)) . v:val')
+    return l:centered_lines
+  endfunc
+
 
   let g:startify_custom_header = s:filter_header(s:custom_header)
   let g:startify_files_number = 5
@@ -179,7 +170,6 @@ func! plugins#define()
         \ | Plug 'junegunn/limelight.vim'
         \ | Plug 'junegunn/vim-easy-align'
 
-  Plug 'klen/python-mode', { 'for': 'python'}
   Plug 'koron/minimap-vim'
   Plug 'majutsushi/tagbar' | Plug 'TagHighlight'
   Plug 'mattesgroeger/vim-bookmarks'

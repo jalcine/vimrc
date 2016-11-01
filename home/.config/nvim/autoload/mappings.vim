@@ -158,7 +158,10 @@ func! mappings#bind()
   nnoremap <silent> <leader>k :call <SID>toggle_visibility()<cr>
 
   " Handle file discovery options.
-  nnoremap [filesearch] <nop>
-  nmap <leader>f [filesearch]
-  nnoremap <silent> [filesearch]a call search#all_files()<CR>
+  nnoremap [search] <nop>
+  nmap <leader>f [search]
+  nnoremap <silent> [search]af call search#all_files()<CR>
+  nnoremap <silent> [search]b  call search#buffers()<CR>
+  nnoremap <silent> [search]t  call search#tags()<CR>
+  nnoremap <silent> [search]h  call search#history()<CR>
 endfunc

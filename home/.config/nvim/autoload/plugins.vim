@@ -141,7 +141,6 @@ func! plugins#configure()
         \ 'kind2scope': {'m': 'modules'},
         \ 'scope2kind': {'modules': 'm'}
         \ }
-
 endfunc
 
 func! plugins#define()

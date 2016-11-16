@@ -4,7 +4,7 @@ function jalcine#define_augroup()
 
     " Github auto-complete.
     au FileType markdown,gitcommit
-      \ imap <C-x><C-x> <Plug>(github-complete-manual-completion)
+          \ imap <C-x><C-x> <Plug>(github-complete-manual-completion)
     au FileType gitcommit setl omnifunc=github_complete#complete
 
     " Funky files.
@@ -19,7 +19,7 @@ function jalcine#define_augroup()
     au FileType gitcommit setl spell
 
     " Enable Neomake to run on builds.
-    au BufWritePost * Autoformat,Neomake
+    au BufWritePost * call s:do_format()
     au BufReadPost  * Neomake
 
     " Clear Fugitive buffers.
@@ -42,10 +42,35 @@ function jalcine#define_augroup()
 
     au VimEnter * call sunlight#get_coords()
   augroup END
+
+  augroup textobj_quote
+    autocmd!
+    autocmd FileType markdown call textobj#quote#init()
+    autocmd FileType textile call textobj#quote#init()
+    autocmd FileType text call textobj#quote#init({'educate': 0})
+  augroup END
+
+  augroup textobj_sentence
+    autocmd!
+    autocmd FileType markdown call textobj#sentence#init()
+    autocmd FileType textile call textobj#sentence#init()
+  augroup END
+
+  augroup pencil
+    autocmd!
+    autocmd FileType markdown,mkd call pencil#init()
+    autocmd FileType text         call pencil#init()
+  augroup END
 endfunc
 
 func! s:reload_tmux()
   redraw | echomsg '[tmux ➡️  vim] Sourced ' . expand('%:p') . '.' | redraw
   call system('tmux source-file ' . expand('%:p') . '; tmux display-message ' .
         \ '"[tmux ⬅️  vim] Sourced ' . expand('%:p') . '"')
+endfunc
+
+func! s:do_format()
+  if exists('b:should_format') && b:should_format == 1
+    Autoformat
+  endif
 endfunc

@@ -160,8 +160,8 @@ func! mappings#bind()
   " Handle file discovery options.
   nnoremap [search] <nop>
   nmap <leader>f [search]
-  nnoremap <silent> [search]af call search#all_files()<CR>
-  nnoremap <silent> [search]b  call search#buffers()<CR>
-  nnoremap <silent> [search]t  call search#tags()<CR>
-  nnoremap <silent> [search]h  call search#history()<CR>
+  nnoremap <silent> [search]af :call search#all_files()<CR>
+  nnoremap <silent> [search]b  :call search#buffers()<CR>
+  nnoremap <silent> [search]t  :call search#tags()<CR>
+  nnoremap <silent> [search]h  :call search#history()<CR>
 endfunc

@@ -1,17 +1,17 @@
 func! search#all_files()
-  call(':FzfFiles')
+  FzfFiles
 endfunc
 
 func! search#buffers()
-  call(':FzfBuffers')
+  FzfBuffers
 endfunc
 
 func! search#tags()
-  call(':FzfTags')
+  FzfTags
 endfunc
 
 func! search#history()
-  call(':FzfHistory')
+  FzfHistory
 endfunc
 
 

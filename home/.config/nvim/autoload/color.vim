@@ -6,12 +6,23 @@ func! color#tweak()
   hi VertSplit ctermbg=NONE
   hi Split ctermbg=NONE
   hi Conceal ctermbg=NONE
+  hi Normal ctermbg=NONE
   hi Folded ctermbg=NONE
-  hi SignColumn ctermbg=NONE
+  hi LineNr ctermbg=NONE
   hi FoldColumn ctermbg=NONE
-  hi LineNr ctermfg=7 ctermbg=NONE
-  hi Comment ctermbg=NONE
-  hi NonText ctermbg=NONE
+  hi SignColumn ctermbg=NONE
 endfunc
 
-au VimEnter * colorscheme hybrid | set bg=dark | call color#tweak()
+func! color#apply()
+  if has("termguicolors")
+    set termguicolors
+  endif
+  let g:quantum_black = 1
+  let g:quantum_italics = 1
+  let g:airline_theme = 'quantum'
+  set background=dark
+  colorscheme quantum
+  call color#tweak()
+endfunc
+
+au VimEnter * call color#apply()

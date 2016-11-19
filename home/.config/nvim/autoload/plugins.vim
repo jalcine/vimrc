@@ -291,6 +291,7 @@ func! plugins#define()
     Plug 'mattn/calendar-vim'
 
     Plug 'ryanoasis/vim-devicons'
+    Plug 'jamessan/vim-gnupg'
     call g:plug#end()
 endfunc
 

@@ -2,4 +2,6 @@
 set gui=none
 set gui+=bookmarks
 set gui+=tabs
+set gui+=addons
+set gui+=navigation
 colorscheme indigo

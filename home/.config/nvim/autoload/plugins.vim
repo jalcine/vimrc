@@ -24,6 +24,13 @@ func! plugins#configure()
                 \}
 
     let test#strategy = 'neovim'
+    let g:test#preserve_screen = 1
+    let test#strategy = {
+                \ 'nearest': 'neovim',
+                \ 'file':    'dispatch',
+                \ 'suite':   'basic',
+                \}
+
 
     let g:plug_window = 'botright new | resize 10'
     let g:rooter_use_lcd = 1
@@ -111,6 +118,9 @@ func! plugins#configure()
         return l:centered_lines
     endfunc
 
+    " {{{ vim-session
+    let g:session_autosave = 'yes'
+    " }}}
 
     let g:startify_custom_header = s:filter_header(s:custom_header)
     let g:startify_files_number = 5
@@ -123,21 +133,21 @@ func! plugins#configure()
     let g:localvimrc_persistent = 1
     let g:EditorConfig_max_line_indicator = "line"
 
-    let g:easytags_async = 1
-    let g:easytags_file = '~/.vimtags'
-    let g:easytags_resolve_links = 1
-    let g:easytags_by_filetype = 1
-    let g:easytags_dynamic_files = 1
-    let g:easytags_include_members = 1
-    let g:easytags_languages = {
-                \ 'javascript': {
-                \   'cmd': 'jsctags',
-                \   'args': [],
-                \   'fileoutput_opt': '-f',
-                \   'stdout_opt': '-f-',
-                \   'recurse_flag': '-R'
-                \   }
-                \ }
+    " let g:easytags_async = 0
+    " let g:easytags_file = '~/.vimtags'
+    " let g:easytags_resolve_links = 1
+    " let g:easytags_by_filetype = 1
+    " let g:easytags_dynamic_files = 1
+    " let g:easytags_include_members = 1
+    " let g:easytags_languages = {
+    " \ 'javascript': {
+    " \   'cmd': 'jsctags',
+    " \   'args': [],
+    " \   'fileoutput_opt': '-f',
+    " \   'stdout_opt': '-f-',
+    " \   'recurse_flag': '-R'
+    " \   }
+    " \ }
 
     let g:indent_guides_guide_size = 2
     let g:indent_guides_start_level = 2
@@ -149,13 +159,14 @@ func! plugins#configure()
     let g:goyo_height = "75%"
     let g:goyo_linenr = 1
 
+    let g:autoformat_verbosemode=1
+
     let g:tagbar_left=0
     let g:tagbar_compact=1
     let g:tagbar_autofocus=1
     let g:tagbar_autoclose=0
     let g:tagbar_iconchars = ['+', '-']
     let g:tagbar_autoshowtag = 1
-    let g:tagbar_width=40
 
     let g:tex_fold_enabled=1
     let g:vimsyn_folding='af'
@@ -164,6 +175,7 @@ func! plugins#configure()
     let g:perl_fold = 1
 
     let g:fastfold_skip_filetypes = ['nerdtree', 'tagbar']
+    let g:SimpylFold_docstring_preview = 1
 
     let g:org_indent = 1
     let g:org_aggressive_conceal = 0
@@ -210,6 +222,9 @@ func! plugins#define()
                 \ | Plug 'embear/vim-localvimrc'
                 \ | Plug 'Konfekt/FastFold'
                 \ | Plug 'kopischke/vim-stay'
+                \ | Plug 'tmhedberg/SimpylFold', { 'for': 'python' }
+                \ | Plug 'direnv/direnv.vim'
+                \ | Plug 'tpope/vim-dotenv'
 
     Plug 'heavenshell/vim-jsdoc'
                 \ | Plug 'KabbAmine/zeavim.vim'
@@ -224,16 +239,19 @@ func! plugins#define()
                 \ | Plug 'junegunn/limelight.vim'
                 \ | Plug 'junegunn/vim-easy-align'
 
-    Plug 'majutsushi/tagbar' | Plug 'TagHighlight'
+    " Plug 'majutsushi/tagbar'
+                \ | Plug 'TagHighlight'
     Plug 'mattesgroeger/vim-bookmarks'
 
     Plug 'mattn/webapi-vim'
                 \ | Plug 'mattn/gist-vim', { 'on': 'Gist' }
 
     Plug 'mhinz/vim-startify'
+                \ | Plug 'xolox/vim-session'
     Plug 'rdnetto/YCM-Generator', { 'branch': 'stable', 'on': 'YcmGenerateConfig' }
     Plug 'sheerun/vim-polyglot'
                 \ | Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }
+                \ | Plug 'fatih/vim-go'
 
     Plug 'terryma/vim-multiple-cursors'
                 \ | Plug 'nathanaelkane/vim-indent-guides'
@@ -250,6 +268,8 @@ func! plugins#define()
                 \ | Plug 'tpope/vim-vinegar'
                 \ | Plug 'tpope/vim-abolish'
                 \ | Plug 'radenling/vim-dispatch-neovim'
+                \ | Plug 'vim-utils/vim-husk'
+                \ | Plug 'vim-utils/vim-interruptless'
 
     Plug 'mhinz/vim-signify'
                 \ | Plug 'Chiel92/vim-autoformat'
@@ -273,14 +293,16 @@ func! plugins#define()
     Plug 'xolox/vim-misc'
                 \ | Plug 'xolox/vim-shell'
                 \ | Plug 'bpstahlman/txtfmt'
-                \ | Plug 'xolox/vim-easytags'
                 \ | Plug 'xolox/vim-notes'
                 \ | Plug 'godlygeek/tabular'
                 \ | Plug 'jceb/vim-orgmode'
                 \ | Plug 'mattn/emmet-vim'
+                \ | Plug 'henrik/vim-indexed-search'
+                \ | Plug 'guns/xterm-color-table.vim'
+                \ | Plug 'metakirby5/codi.vim'
 
     Plug 'Sunset'
-                \ | Plug 'tyrannicaltoucan/vim-quantum'
+                \ | Plug 'flazz/vim-colorschemes'
 
     Plug 'tmux-plugins/vim-tmux'
                 \ | Plug 'tmux-plugins/vim-tmux-focus-events'
@@ -290,8 +312,9 @@ func! plugins#define()
     Plug 'utl.vim'
     Plug 'mattn/calendar-vim'
 
-    Plug 'ryanoasis/vim-devicons'
     Plug 'jamessan/vim-gnupg'
+    Plug 'hashivim/vim-terraform'
+    Plug 'ryanoasis/vim-devicons'
     call g:plug#end()
 endfunc
 
@@ -304,6 +327,15 @@ func! plugins#bind()
     call plugins#configure()
     call plugins#define()
     filetype plugin indent on
+endfunc
+
+func! plugins#reparse()
+    so $HOME/.config/nvim/autoload/plugins.vim
+    call plugins#configure()
+    call plugins#define()
+    :PlugClean
+    :PlugInstall
+    :PlugUpgrade
 endfunc
 
 command! -complete=dir -nargs=1 OpenPluginDir call plugins#open("<args>")<cr>

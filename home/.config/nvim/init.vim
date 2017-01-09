@@ -70,8 +70,7 @@ set undofile undodir=~/.config/nvim/undodir
 
 set cpoptions+=d
 
-set foldenable
-set foldmethod=syntax foldcolumn=1 foldlevel=2 foldminlines=8
+set foldenable foldcolumn=1 foldlevel=2 foldminlines=8
       \ foldnestmax=5 foldlevelstart=1
 
 set spelllang=en_us,fr

@@ -6,10 +6,17 @@ pyenv virtualenv 3.5.2 neovim-py3 -vk
 pyenv shell neovim-py2 neovim-py3
 
 # Install remote execution runtimes. {{
-python_packages="neovim requests"
-pip install ${python_packages}
-pip3 install ${python_packages}
+python_packages="neovim requests autopep8 yapf"
+pip install "${python_packages}"
+pip3 install "${python_packages}"
 gem install neovim
+# }}
+
+# Install binaries for handling auto formatting. {{
+gem install sass ruby-beautify
+apt-get install clang-format astyle
+npm install -g eslint js-beautify typescript-formatter remark
+cpanm Perl::Tidy
 # }}
 
 # Install.

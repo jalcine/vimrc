@@ -6,23 +6,23 @@ func! color#tweak()
   hi VertSplit ctermbg=NONE
   hi Split ctermbg=NONE
   hi Conceal ctermbg=NONE
-  hi Normal ctermbg=NONE
   hi Folded ctermbg=NONE
   hi LineNr ctermbg=NONE
   hi FoldColumn ctermbg=NONE
   hi SignColumn ctermbg=NONE
+  hi Normal ctermbg=NONE
 endfunc
 
 func! color#apply()
   if has("termguicolors")
     set termguicolors
   endif
-  let g:quantum_black = 1
-  let g:quantum_italics = 1
-  let g:airline_theme = 'quantum'
+  set t_Co=256
+  let g:airline_theme = 'tomorrow'
   set background=dark
-  colorscheme quantum
+  colorscheme Tomorrow-Night-Bright
   call color#tweak()
+  AirlineRefresh
 endfunc
 
 au VimEnter * call color#apply()

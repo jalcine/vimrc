@@ -176,6 +176,7 @@ func! plugins#configure()
 
     let g:fastfold_skip_filetypes = ['nerdtree', 'tagbar']
     let g:SimpylFold_docstring_preview = 1
+    let g:ycm_autoclose_preview_window_after_completion=1
 
     let g:org_indent = 1
     let g:org_aggressive_conceal = 0
@@ -239,7 +240,7 @@ func! plugins#define()
                 \ | Plug 'junegunn/limelight.vim'
                 \ | Plug 'junegunn/vim-easy-align'
 
-    " Plug 'majutsushi/tagbar'
+    Plug 'majutsushi/tagbar'
                 \ | Plug 'TagHighlight'
     Plug 'mattesgroeger/vim-bookmarks'
 
@@ -249,9 +250,14 @@ func! plugins#define()
     Plug 'mhinz/vim-startify'
                 \ | Plug 'xolox/vim-session'
     Plug 'rdnetto/YCM-Generator', { 'branch': 'stable', 'on': 'YcmGenerateConfig' }
+                \ | Plug 'Valloric/YouCompleteMe', 
+                \ { 'do': './install.py --system-libclang --system-boost '
+                \ . '--tern-completer --clang-completer --gocode-completer '
+                \ . '--racer-completer' }
     Plug 'sheerun/vim-polyglot'
                 \ | Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }
                 \ | Plug 'fatih/vim-go'
+                \ | Plug 'python-mode/python-mode'
 
     Plug 'terryma/vim-multiple-cursors'
                 \ | Plug 'nathanaelkane/vim-indent-guides'
@@ -270,6 +276,7 @@ func! plugins#define()
                 \ | Plug 'radenling/vim-dispatch-neovim'
                 \ | Plug 'vim-utils/vim-husk'
                 \ | Plug 'vim-utils/vim-interruptless'
+                \ | Plug 'sjl/gundo.vim'
 
     Plug 'mhinz/vim-signify'
                 \ | Plug 'Chiel92/vim-autoformat'

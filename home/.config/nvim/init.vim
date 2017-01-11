@@ -69,6 +69,7 @@ set nobackup noswapfile
 set undofile undodir=~/.config/nvim/undodir
 
 set cpoptions+=d
+set lazyredraw
 
 set foldenable foldcolumn=1 foldlevel=2 foldminlines=8
       \ foldnestmax=5 foldlevelstart=1

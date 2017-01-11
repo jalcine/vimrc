@@ -20,7 +20,7 @@ func! color#apply()
   set t_Co=256
   let g:airline_theme = 'tomorrow'
   set background=dark
-  colorscheme Tomorrow-Night-Bright
+  colorscheme Tomorrow-Night
   call color#tweak()
   AirlineRefresh
 endfunc

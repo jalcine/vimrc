@@ -18,9 +18,9 @@ func! color#apply()
     set termguicolors
   endif
   set t_Co=256
-  let g:airline_theme = 'tomorrow'
+  let g:airline_theme = 'badwolf'
   set background=dark
-  colorscheme Tomorrow-Night
+  colorscheme badwolf
   call color#tweak()
   AirlineRefresh
 endfunc

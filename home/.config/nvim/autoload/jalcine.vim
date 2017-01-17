@@ -8,7 +8,7 @@ function jalcine#define_augroup()
     au FileType gitcommit setl omnifunc=github_complete#complete
 
     " Funky files.
-    " au User YouCompleteMe call youcompleteme#Enable()
+    au User YouCompleteMe call youcompleteme#Enable()
 
     " Reload tmux files when we edit them.
     au BufWritePost *tmux*.conf  call s:reload_tmux()
@@ -36,9 +36,8 @@ function jalcine#define_augroup()
 
     au FileType css,scss setlocal foldmethod=marker foldmarker={,}
     au FileType ini set ft=dosini
-    au FileType python setlocal foldmethod=indent
     au FileType markdown setlocal nolist
-    au FileType vim setlocal fdm=indent keywordprg=:help
+    au FileType vim setlocal fdm=marker keywordprg=:help
 
     au VimEnter * call sunlight#get_coords()
   augroup END
@@ -46,6 +45,7 @@ function jalcine#define_augroup()
   augroup textobj_quote
     autocmd!
     autocmd FileType markdown call textobj#quote#init()
+    autocmd FileType notes call textobj#quote#init()
     autocmd FileType textile call textobj#quote#init()
     autocmd FileType text call textobj#quote#init({'educate': 0})
   augroup END
@@ -53,13 +53,14 @@ function jalcine#define_augroup()
   augroup textobj_sentence
     autocmd!
     autocmd FileType markdown call textobj#sentence#init()
+    autocmd FileType notes call textobj#sentence#init()
     autocmd FileType textile call textobj#sentence#init()
   augroup END
 
   augroup pencil
     autocmd!
-    autocmd FileType markdown,mkd call pencil#init()
-    autocmd FileType text         call pencil#init()
+    autocmd FileType markdown call pencil#init()
+    autocmd FileType notes    call pencil#init()
   augroup END
 endfunc
 

@@ -23,9 +23,10 @@ func! plugins#configure()
                 \ }
                 \}
 
-    let test#strategy = 'neovim'
+    let g:test#strategy = 'neovim'
     let g:test#preserve_screen = 1
-    let test#strategy = {
+    let g:test#filename_modifier = ':~' " ~/Code/my_project/test/models/user_test.rb
+    let g:test#strategy = {
                 \ 'nearest': 'neovim',
                 \ 'file':    'dispatch',
                 \ 'suite':   'basic',
@@ -176,6 +177,8 @@ func! plugins#configure()
 
     let g:fastfold_skip_filetypes = ['nerdtree', 'tagbar']
     let g:SimpylFold_docstring_preview = 1
+
+    let g:ycm_python_binary_path=g:python3_host_prog
     let g:ycm_autoclose_preview_window_after_completion=1
 
     let g:org_indent = 1
@@ -251,13 +254,13 @@ func! plugins#define()
                 \ | Plug 'xolox/vim-session'
     Plug 'rdnetto/YCM-Generator', { 'branch': 'stable', 'on': 'YcmGenerateConfig' }
                 \ | Plug 'Valloric/YouCompleteMe', 
-                \ { 'do': './install.py --system-libclang --system-boost '
+                \ { 'do': './install.py '
                 \ . '--tern-completer --clang-completer --gocode-completer '
                 \ . '--racer-completer' }
+                \ | Plug 'xolox/vim-easytags'
     Plug 'sheerun/vim-polyglot'
                 \ | Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }
                 \ | Plug 'fatih/vim-go'
-                \ | Plug 'python-mode/python-mode'
 
     Plug 'terryma/vim-multiple-cursors'
                 \ | Plug 'nathanaelkane/vim-indent-guides'
@@ -277,6 +280,7 @@ func! plugins#define()
                 \ | Plug 'vim-utils/vim-husk'
                 \ | Plug 'vim-utils/vim-interruptless'
                 \ | Plug 'sjl/gundo.vim'
+                \ | Plug 'machakann/vim-highlightedyank'
 
     Plug 'mhinz/vim-signify'
                 \ | Plug 'Chiel92/vim-autoformat'

@@ -1,7 +1,7 @@
 " vim: set fdm=indent :
 func! plugins#configure()
-    let g:NERDTreeMinimalUI=1
-    let g:NERDTreeAutoDeleteBuffer=1
+    let g:NERDTreeMinimalUI = 1
+    let g:NERDTreeAutoDeleteBuffer = 1
 
     let g:textobj#sentence#abbreviations = [
                 \ '[ABCDIMPSUabcdegimpsv]',
@@ -25,22 +25,23 @@ func! plugins#configure()
 
     let g:test#strategy = 'neovim'
     let g:test#preserve_screen = 1
-    let g:test#filename_modifier = ':~' " ~/Code/my_project/test/models/user_test.rb
+    let g:test#filename_modifier = ':~'
     let g:test#strategy = {
                 \ 'nearest': 'neovim',
                 \ 'file':    'dispatch',
                 \ 'suite':   'basic',
-                \}
+                \ }
 
 
     let g:plug_window = 'botright new | resize 10'
     let g:rooter_use_lcd = 1
     let g:rooter_silent_chdir = 1
     let g:notes_suffix = '.txt'
-    let g:sunset_latitude='50'
-    let g:sunset_longitude='70'
+    let g:sunset_latitude = '50'
+    let g:sunset_longitude = '70'
     let g:vim_json_syntax_conceal = 1
     let g:fzf_command_prefix = 'Fzf'
+
     " {{{ nerd*
     let g:NERDCreateDefaultMappings = 1
     let g:NERDCompactSexyComs = 1
@@ -70,8 +71,8 @@ func! plugins#configure()
     " }}}
 
     " {{{ ag
-    let g:ag_prg="ag --vimgrep --smart-case --noheading"
-    let g:ag_highlight=1
+    let g:ag_prg = "ag --vimgrep --smart-case --noheading"
+    let g:ag_highlight = 1
     " }}}
 
     let g:neomake_list_height = 3
@@ -134,21 +135,21 @@ func! plugins#configure()
     let g:localvimrc_persistent = 1
     let g:EditorConfig_max_line_indicator = "line"
 
-    " let g:easytags_async = 0
-    " let g:easytags_file = '~/.vimtags'
-    " let g:easytags_resolve_links = 1
-    " let g:easytags_by_filetype = 1
-    " let g:easytags_dynamic_files = 1
-    " let g:easytags_include_members = 1
-    " let g:easytags_languages = {
-    " \ 'javascript': {
-    " \   'cmd': 'jsctags',
-    " \   'args': [],
-    " \   'fileoutput_opt': '-f',
-    " \   'stdout_opt': '-f-',
-    " \   'recurse_flag': '-R'
-    " \   }
-    " \ }
+    let g:easytags_async = 0
+    let g:easytags_file = '~/.vimtags'
+    let g:easytags_resolve_links = 1
+    let g:easytags_by_filetype = 1
+    let g:easytags_dynamic_files = 1
+    let g:easytags_include_members = 1
+    let g:easytags_languages = {
+        \ 'javascript': {
+        \   'cmd': 'jsctags',
+        \   'args': [],
+        \   'fileoutput_opt': '-f',
+        \   'stdout_opt': '-f-',
+        \   'recurse_flag': '-R'
+        \   }
+        \ }
 
     let g:indent_guides_guide_size = 2
     let g:indent_guides_start_level = 2
@@ -160,17 +161,17 @@ func! plugins#configure()
     let g:goyo_height = "75%"
     let g:goyo_linenr = 1
 
-    let g:autoformat_verbosemode=1
+    let g:autoformat_verbosemode = 1
 
-    let g:tagbar_left=0
-    let g:tagbar_compact=1
-    let g:tagbar_autofocus=1
-    let g:tagbar_autoclose=0
+    let g:tagbar_left = 0
+    let g:tagbar_compact = 1
+    let g:tagbar_autofocus = 1
+    let g:tagbar_autoclose = 0
     let g:tagbar_iconchars = ['+', '-']
     let g:tagbar_autoshowtag = 1
 
-    let g:tex_fold_enabled=1
-    let g:vimsyn_folding='af'
+    let g:tex_fold_enabled = 1
+    let g:vimsyn_folding = 'af'
     let g:xml_syntax_folding = 1
     let g:php_folding = 1
     let g:perl_fold = 1
@@ -178,8 +179,8 @@ func! plugins#configure()
     let g:fastfold_skip_filetypes = ['nerdtree', 'tagbar']
     let g:SimpylFold_docstring_preview = 1
 
-    let g:ycm_python_binary_path=g:python3_host_prog
-    let g:ycm_autoclose_preview_window_after_completion=1
+    let g:ycm_python_binary_path = g:python3_host_prog
+    let g:ycm_autoclose_preview_window_after_completion = 1
 
     let g:org_indent = 1
     let g:org_aggressive_conceal = 0
@@ -255,8 +256,10 @@ func! plugins#define()
     Plug 'rdnetto/YCM-Generator', { 'branch': 'stable', 'on': 'YcmGenerateConfig' }
                 \ | Plug 'Valloric/YouCompleteMe', 
                 \ { 'do': './install.py '
-                \ . '--tern-completer --clang-completer --gocode-completer '
-                \ . '--racer-completer' }
+                \ . '--system-libclang --clang-completer '
+                \ . '--tern-completer '
+                \ . '--gocode-completer '
+                \ }
                 \ | Plug 'xolox/vim-easytags'
     Plug 'sheerun/vim-polyglot'
                 \ | Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }

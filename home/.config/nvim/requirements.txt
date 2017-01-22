@@ -1,0 +1,5 @@
+neovim
+requests
+autopep8
+pyflakes
+yapf

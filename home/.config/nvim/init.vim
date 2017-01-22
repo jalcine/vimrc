@@ -13,6 +13,9 @@
 " Don't talk to me.
 set vbs=0
 
+" Tell me everything.
+" set verbose=15 verbosefile=~/.vimlog
+
 " Set my leader to the comma key.
 let g:mapleader=','
 

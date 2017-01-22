@@ -1,18 +1,20 @@
 #!/usr/bin/env bash
 # vim: set fdm=marker :
 
+cd ${HOME}/.config/nvim
 pyenv virtualenv 2.7.12 neovim-py2 -vk
 pyenv virtualenv 3.5.2 neovim-py3 -vk
-pyenv shell neovim-py2 neovim-py3
+pyenv local neovim-py2 neovim-py3
 
 # Install language dependencies. {{
-python_packages="neovim requests autopep8 yapf"
-pip install -r "${HOME}/.config/nvim/requirements.txt"
-pip3 install -r "${HOME}/.config/nvim/requirements.txt"
+pyenv exec pip install -r "${HOME}/.config/nvim/requirements.txt"
+pyenv exec pip3 install -r "${HOME}/.config/nvim/requirements.txt"
 bundle install --gemfile=${HOME}/.config/nvim/Gemfile
-npm install -g eslint js-beautify typescript-formatter remark
+npm install -g eslint js-beautify typescript-formatter remark typescript
 cpanm Perl::Tidy
 # }}
 
-# Install.
-nvim -S "${HOME}/.config/nvim/locked-plugin-list.vim"
+# Install plugins (prefer Python 3)
+pyenv local neovim-py3
+nvim -S "${HOME}/.config/nvim/locked-plugin-list.vim" +qall
+pyenv local neovim-py3 neovim-py2

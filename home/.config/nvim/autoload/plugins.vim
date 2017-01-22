@@ -55,6 +55,8 @@ func! plugins#configure()
     let g:UltiSnipsUsePythonVersion = 2
     let g:UltiSnipsEditSplit = 'context'
     let g:UltiSnipsSnippetDirectories = [$HOME. '/.config/nvim/snippets']
+    let g:UltiSnipsExpandTrigger = "<C-M>"
+
     " }}}
 
     " {{{ vim-bookmarks
@@ -180,7 +182,14 @@ func! plugins#configure()
     let g:SimpylFold_docstring_preview = 1
 
     let g:ycm_python_binary_path = g:python3_host_prog
+    let g:ycm_server_python_interpreter = g:python3_host_prog
     let g:ycm_autoclose_preview_window_after_completion = 1
+    let g:ycm_collect_identifiers_from_tags_files = 1
+    let g:ycm_add_preview_to_completeopt = 1
+
+    let g:go_highlight_functions = 1
+    let g:go_highlight_methods = 1
+    let g:go_highlight_structs = 1
 
     let g:org_indent = 1
     let g:org_aggressive_conceal = 0
@@ -258,7 +267,6 @@ func! plugins#define()
                 \ { 'do': './install.py '
                 \ . '--system-libclang --clang-completer '
                 \ . '--tern-completer '
-                \ . '--gocode-completer '
                 \ }
                 \ | Plug 'xolox/vim-easytags'
     Plug 'sheerun/vim-polyglot'

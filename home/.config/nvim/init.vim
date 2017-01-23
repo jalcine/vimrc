@@ -74,12 +74,11 @@ set undofile undodir=~/.config/nvim/undodir
 set cpoptions+=d
 set lazyredraw
 
-set foldenable foldcolumn=1 foldlevel=2 foldminlines=8
+set foldenable foldcolumn=1 foldlevel=2 foldminlines=3
       \ foldnestmax=5 foldlevelstart=1
 
-set spelllang=en_us,fr
-set spellsuggest=double,3
-" TODO: Create separate files for (tech, writing).
+set spelllang=en_us,fr,ar
+set spellsuggest=double,5
 set spellfile=~/.config/nvim/dict.custom.utf-8.add
 
 set splitbelow splitright
@@ -130,7 +129,5 @@ if filereadable(expand("$HOME/.config/nvim/local.vim"))
   source $HOME/.config/nvim/local.vim
 endif
 
-call sunlight#bind()
-call plugins#bind()
-call grouped_actions#apply()
-call jalcine#define_augroup()
+call jalcine#liftoff()
+

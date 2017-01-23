@@ -1,4 +1,3 @@
-" vim: set fdm=indent :
 func! plugins#configure()
     let g:NERDTreeMinimalUI = 1
     let g:NERDTreeAutoDeleteBuffer = 1
@@ -25,7 +24,6 @@ func! plugins#configure()
 
     let g:test#strategy = 'neovim'
     let g:test#preserve_screen = 1
-    let g:test#filename_modifier = ':~'
     let g:test#strategy = {
                 \ 'nearest': 'neovim',
                 \ 'file':    'dispatch',
@@ -34,12 +32,17 @@ func! plugins#configure()
 
 
     let g:plug_window = 'botright new | resize 10'
+
     let g:rooter_use_lcd = 1
     let g:rooter_silent_chdir = 1
+
     let g:notes_suffix = '.txt'
+
     let g:sunset_latitude = '50'
     let g:sunset_longitude = '70'
+
     let g:vim_json_syntax_conceal = 1
+
     let g:fzf_command_prefix = 'Fzf'
 
     " {{{ nerd*
@@ -52,10 +55,10 @@ func! plugins#configure()
     " {{{ ultisnips
     let g:snips_author = 'Jacky Alciné <yo@jacky.wtf>'
     let g:UltiSnipsEnableSnipMate = 1
-    let g:UltiSnipsUsePythonVersion = 2
+    let g:UltiSnipsUsePythonVersion = 3
     let g:UltiSnipsEditSplit = 'context'
     let g:UltiSnipsSnippetDirectories = [$HOME. '/.config/nvim/snippets']
-    let g:UltiSnipsExpandTrigger = "<C-M>"
+    let g:UltiSnipsExpandTrigger = "<c-j>"
 
     " }}}
 
@@ -100,7 +103,6 @@ func! plugins#configure()
     let g:airline#extensions#whitespace#show_message = 1
     let g:airline#extensions#whitespace#trailing_format = 's:[%s]'
     let g:airline#extensions#whitespace#mixed_indent_format = 'i:[%s]'
-    let g:airline#extensions#tagbar#flags = 'f'
     let g:airline_detected_modified = 1
     let g:airline_powerline_fonts = 1
     let g:airline_detect_iminsert = 0
@@ -127,18 +129,18 @@ func! plugins#configure()
     " }}}
 
     let g:startify_custom_header = s:filter_header(s:custom_header)
-    let g:startify_files_number = 5
+    let g:startify_files_number = 10
     let g:startify_change_to_dir = 0
     let g:startify_change_to_vcs_root = 0
     let g:startify_relative_path = 1
-    let g:startify_bookmarks = [ '~/.config/nvim/init.vim', '~/.bashrc', '~/prjs' ]
     let g:startify_session_dir = '~/.config/nvim/sessions'
 
     let g:localvimrc_persistent = 1
+
     let g:EditorConfig_max_line_indicator = "line"
 
-    let g:easytags_async = 0
-    let g:easytags_file = '~/.vimtags'
+    let g:easytags_async = 1
+    let g:easytags_file = '~/.config/nvim/tags'
     let g:easytags_resolve_links = 1
     let g:easytags_by_filetype = 1
     let g:easytags_dynamic_files = 1
@@ -154,23 +156,18 @@ func! plugins#configure()
         \ }
 
     let g:indent_guides_guide_size = 2
-    let g:indent_guides_start_level = 2
+    let g:indent_guides_start_level = 1
     let g:indent_guides_color_change_percent = 2
     let g:indent_guides_enable_on_vim_startup = 1
-    let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'startify', 'tagbar']
+    let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'startify']
 
     let g:goyo_width = 100
-    let g:goyo_height = "75%"
-    let g:goyo_linenr = 1
+    let g:goyo_height = "85%"
+    let g:goyo_linenr = 0
 
     let g:autoformat_verbosemode = 1
 
     let g:tagbar_left = 0
-    let g:tagbar_compact = 1
-    let g:tagbar_autofocus = 1
-    let g:tagbar_autoclose = 0
-    let g:tagbar_iconchars = ['+', '-']
-    let g:tagbar_autoshowtag = 1
 
     let g:tex_fold_enabled = 1
     let g:vimsyn_folding = 'af'
@@ -178,14 +175,14 @@ func! plugins#configure()
     let g:php_folding = 1
     let g:perl_fold = 1
 
-    let g:fastfold_skip_filetypes = ['nerdtree', 'tagbar']
+    let g:fastfold_skip_filetypes = ['nerdtree']
     let g:SimpylFold_docstring_preview = 1
 
     let g:ycm_python_binary_path = g:python3_host_prog
     let g:ycm_server_python_interpreter = g:python3_host_prog
     let g:ycm_autoclose_preview_window_after_completion = 1
-    let g:ycm_collect_identifiers_from_tags_files = 1
-    let g:ycm_add_preview_to_completeopt = 1
+    let g:ycm_collect_identifiers_from_tags_files = 0
+    let g:ycm_add_preview_to_completeopt = 0
 
     let g:go_highlight_functions = 1
     let g:go_highlight_methods = 1
@@ -253,22 +250,28 @@ func! plugins#define()
                 \ | Plug 'junegunn/limelight.vim'
                 \ | Plug 'junegunn/vim-easy-align'
 
-    Plug 'majutsushi/tagbar'
-                \ | Plug 'TagHighlight'
-    Plug 'mattesgroeger/vim-bookmarks'
-
     Plug 'mattn/webapi-vim'
                 \ | Plug 'mattn/gist-vim', { 'on': 'Gist' }
 
     Plug 'mhinz/vim-startify'
                 \ | Plug 'xolox/vim-session'
+                \ | Plug 'mattesgroeger/vim-bookmarks'
+
+    " {{{ Code Discovery
+    Plug 'majutsushi/tagbar'
+                \ | Plug 'TagHighlight'
     Plug 'rdnetto/YCM-Generator', { 'branch': 'stable', 'on': 'YcmGenerateConfig' }
-                \ | Plug 'Valloric/YouCompleteMe', 
-                \ { 'do': './install.py '
-                \ . '--system-libclang --clang-completer '
-                \ . '--tern-completer '
-                \ }
+                \ | Plug 'Valloric/YouCompleteMe', { 'do': 'neovim-install-ycm' }
                 \ | Plug 'xolox/vim-easytags'
+                \ | Plug 'othree/jspc.vim'
+    Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+                \ | Plug 'tiagofumo/vim-nerdtree-syntax-highlight', { 'on':  'NERDTreeToggle' }
+                \ | Plug 'low-ghost/nerdtree-fugitive', { 'on':  'NERDTreeToggle' }
+                \ | Plug 'xuyuanp/nerdtree-git-plugin', { 'on':  'NERDTreeToggle' }
+                \ | Plug 'jistr/vim-nerdtree-tabs'
+
+    " }}}
+
     Plug 'sheerun/vim-polyglot'
                 \ | Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }
                 \ | Plug 'fatih/vim-go'
@@ -303,11 +306,6 @@ func! plugins#define()
                 \ | Plug 'reedes/vim-pencil'
                 \ | Plug 'reedes/vim-litecorrect'
 
-    Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-                \ | Plug 'tiagofumo/vim-nerdtree-syntax-highlight', { 'on':  'NERDTreeToggle' }
-                \ | Plug 'low-ghost/nerdtree-fugitive', { 'on':  'NERDTreeToggle' }
-                \ | Plug 'xuyuanp/nerdtree-git-plugin', { 'on':  'NERDTreeToggle' }
-                \ | Plug 'jistr/vim-nerdtree-tabs'
 
     Plug 'vim-airline/vim-airline'
                 \ | Plug 'vim-airline/vim-airline-themes'
@@ -340,6 +338,10 @@ func! plugins#define()
     call g:plug#end()
 endfunc
 
+func! plugins#combind() abort
+  let g:startify_bookmarks = bm#all_files()
+endfunc
+
 func! plugins#open(name)
     let l:path = g:jalcine.plugins.dir . "/" . a:name
     exec(":edit " . l:path)
@@ -348,6 +350,7 @@ endfunc
 func! plugins#bind()
     call plugins#configure()
     call plugins#define()
+    call plugins#combind()
     filetype plugin indent on
 endfunc
 

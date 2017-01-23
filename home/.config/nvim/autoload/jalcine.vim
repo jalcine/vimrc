@@ -1,11 +1,13 @@
+function! jalcine#liftoff() abort
+  call sunlight#bind()
+  call plugins#bind()
+  call grouped_actions#apply()
+  call jalcine#define_augroup()
+endfunction
+
 function jalcine#define_augroup()
   augroup jalcine
     au!
-
-    " Github auto-complete.
-    au FileType markdown,gitcommit
-          \ imap <C-x><C-x> <Plug>(github-complete-manual-completion)
-    au FileType gitcommit setl omnifunc=github_complete#complete
 
     " Funky files.
     au User YouCompleteMe call youcompleteme#Enable()
@@ -19,27 +21,17 @@ function jalcine#define_augroup()
     au FileType gitcommit setl spell
 
     " Enable Neomake to run on builds.
-    au BufWritePost * call s:do_format()
     au BufReadPost  * Neomake
 
     " Clear Fugitive buffers.
     au BufReadPost fugitive://* set bufhidden=delete
 
-    " Things for Unite
-    au FileType unite call s:unite_settings()
-
     au BufEnter * let &titlestring=expand('%:p')
 
-    " CoffeeScript jazz.
-    au FileType coffee setl foldmethod=indent shiftwidth=2 expandtab
-    au FileType javascript setl foldmethod=syntax
-
-    au FileType css,scss setlocal foldmethod=marker foldmarker={,}
+    au FileType css,scss setl foldmethod=marker foldmarker={,}
     au FileType ini set ft=dosini
-    au FileType markdown setlocal nolist
-    au FileType vim setlocal fdm=marker keywordprg=:help
-
-    au VimEnter * call sunlight#get_coords()
+    au FileType markdown setl nolist
+    au FileType vim setl keywordprg=:help
   augroup END
 
   augroup textobj_quote
@@ -68,10 +60,4 @@ func! s:reload_tmux()
   redraw | echomsg '[tmux ➡️  vim] Sourced ' . expand('%:p') . '.' | redraw
   call system('tmux source-file ' . expand('%:p') . '; tmux display-message ' .
         \ '"[tmux ⬅️  vim] Sourced ' . expand('%:p') . '"')
-endfunc
-
-func! s:do_format()
-  if exists('b:should_format') && b:should_format == 1
-    Autoformat
-  endif
 endfunc

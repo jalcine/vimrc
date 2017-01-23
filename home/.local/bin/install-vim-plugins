@@ -10,7 +10,7 @@ pyenv local neovim-py2 neovim-py3
 pyenv exec pip install -r "${HOME}/.config/nvim/requirements.txt"
 pyenv exec pip3 install -r "${HOME}/.config/nvim/requirements.txt"
 bundle install --gemfile=${HOME}/.config/nvim/Gemfile
-npm install -g eslint js-beautify typescript-formatter remark typescript
+npm install -g eslint js-beautify typescript-formatter remark typescript jsctags
 cpanm Perl::Tidy
 # }}
 

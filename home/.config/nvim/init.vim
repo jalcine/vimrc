@@ -77,7 +77,7 @@ set lazyredraw
 set foldenable foldcolumn=1 foldlevel=2 foldminlines=3
       \ foldnestmax=5 foldlevelstart=1
 
-set spelllang=en_us,fr,ar
+set spelllang=en_us,fr
 set spellsuggest=double,5
 set spellfile=~/.config/nvim/dict.custom.utf-8.add
 
@@ -130,4 +130,3 @@ if filereadable(expand("$HOME/.config/nvim/local.vim"))
 endif
 
 call jalcine#liftoff()
-

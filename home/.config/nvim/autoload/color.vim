@@ -11,6 +11,7 @@ func! color#tweak()
   hi FoldColumn ctermbg=NONE
   hi SignColumn ctermbg=NONE
   hi Normal ctermbg=NONE
+  hi NonText ctermbg=NONE
 endfunc
 
 func! color#apply()

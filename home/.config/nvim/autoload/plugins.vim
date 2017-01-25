@@ -167,8 +167,6 @@ func! plugins#configure()
 
     let g:autoformat_verbosemode = 1
 
-    let g:tagbar_left = 0
-
     let g:tex_fold_enabled = 1
     let g:vimsyn_folding = 'af'
     let g:xml_syntax_folding = 1
@@ -198,25 +196,6 @@ func! plugins#configure()
                 \   [':foreground red', ':background black', ':weight bold', ':slant italic', ':decoration underline']],
                 \ ['ACTIVE', [':foreground:pink', ':weight bold']]
                 \ ]
-
-    let g:tagbar_type_elixir = {
-                \ 'ctagstype': 'elixir',
-                \ 'kinds': [
-                \ 'f:functions:0:0',
-                \ 'c:callbacks:0:0',
-                \ 'd:delegates:0:0',
-                \ 'e:exceptions:0:0',
-                \ 'i:implementations:0:0',
-                \ 'a:macros:0:0',
-                \ 'o:operators:0:0',
-                \ 'm:modules:0:0',
-                \ 'p:protocols:0:0',
-                \ 'r:records:0:0'
-                \ ],
-                \ 'sro': '.',
-                \ 'kind2scope': {'m': 'modules'},
-                \ 'scope2kind': {'modules': 'm'}
-                \ }
 endfunc
 
 func! plugins#define()
@@ -258,8 +237,7 @@ func! plugins#define()
                 \ | Plug 'mattesgroeger/vim-bookmarks'
 
     " {{{ Code Discovery
-    Plug 'majutsushi/tagbar'
-                \ | Plug 'TagHighlight'
+    Plug 'TagHighlight'
     Plug 'rdnetto/YCM-Generator', { 'branch': 'stable', 'on': 'YcmGenerateConfig' }
                 \ | Plug 'Valloric/YouCompleteMe', { 'do': 'neovim-install-ycm' }
                 \ | Plug 'xolox/vim-easytags'

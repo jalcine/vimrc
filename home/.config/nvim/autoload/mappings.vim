@@ -103,7 +103,7 @@ func! mappings#bind()
   " {{{ Git helpers
   command! Greview :Git! diff --staged
   nnoremap [git] <nop>
-  nmap <leader>g [git]
+  nnoremap <leader>g [git]
   nnoremap <silent> [git]a   :Git add<space>
   nnoremap <silent> [git]ab  :Git add %<cr>
   nnoremap <silent> [git]b   :Gbrowse<CR>
@@ -123,7 +123,7 @@ func! mappings#bind()
 
   " {{{ testing
   nnoremap [vimtest] <nop>
-  nmap <leader>v [vimtest]
+  nnoremap <leader>v [vimtest]
   nnoremap <silent> [vimtest]t :TestNearest<CR>
   nnoremap <silent> [vimtest]f :TestFile<CR>
   nnoremap <silent> [vimtest]a :TestSuite<CR>

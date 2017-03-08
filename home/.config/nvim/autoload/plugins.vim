@@ -1,4 +1,4 @@
-func! plugins#configure()
+func! plugins#configure() abort
     let g:NERDTreeMinimalUI = 1
     let g:NERDTreeAutoDeleteBuffer = 1
 
@@ -22,8 +22,7 @@ func! plugins#configure()
                 \ }
                 \}
 
-    let g:test#strategy = 'neovim'
-    let g:test#preserve_screen = 1
+    let g:test#preserve_screen = 0
     let g:test#strategy = {
                 \ 'nearest': 'neovim',
                 \ 'file':    'dispatch',
@@ -37,9 +36,6 @@ func! plugins#configure()
     let g:rooter_silent_chdir = 1
 
     let g:notes_suffix = '.txt'
-
-    let g:sunset_latitude = '50'
-    let g:sunset_longitude = '70'
 
     let g:vim_json_syntax_conceal = 1
 
@@ -81,17 +77,17 @@ func! plugins#configure()
     " }}}
 
     let g:neomake_list_height = 3
-    let g:neomake_open_list = 0
+    let g:neomake_open_list = 1
     let g:neomake_serialize = 1
     let g:neomake_serialize_abort_on_error = 1
     let g:neomake_verbose = 1
-    let g:neomake_javascript_enabled_checkers = ['eslint']
-    let g:neomake_python_enabled_checkers = ['python', 'flake8']
-    let g:neomake_scss_enabled_checkers = ['scss-lint']
-    let g:neomake_sh_enabled_checkers = ['shellcheck']
-    let g:neomake_ruby_enabled_checkers = ['rubocop', 'mri']
-    let g:neomake_vim_enabled_checkers = ['vint']
-    let g:neomake_elixir_enabled_checkers = ['mix', 'credo']
+    let g:neomake_javascript_enabled_makers = ['eslint']
+    let g:neomake_python_enabled_makers = ['python', 'flake8']
+    let g:neomake_scss_enabled_makers = ['scss-lint']
+    let g:neomake_sh_enabled_makers = ['shellcheck']
+    let g:neomake_ruby_enabled_makers = ['rubocop', 'mri']
+    let g:neomake_vim_enabled_makers = ['vint']
+    let g:neomake_elixir_enabled_makers = ['mix', 'credo']
     let g:airline#extensions#hunks#non_zero_only = 1
     let g:airline#extensions#tabline#enabled = 1
     let g:airline#extensions#tabline#show_splits = 1
@@ -157,7 +153,7 @@ func! plugins#configure()
 
     let g:indent_guides_guide_size = 2
     let g:indent_guides_start_level = 1
-    let g:indent_guides_color_change_percent = 2
+    " let g:indent_guides_color_change_percent = 2
     let g:indent_guides_enable_on_vim_startup = 1
     let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'startify']
 
@@ -220,7 +216,7 @@ func! plugins#define()
                 \ | Plug 'KabbAmine/zeavim.vim'
 
     Plug 'benekastah/neomake'
-                \ | Plug 'janko-m/vim-test'
+    Plug 'janko-m/vim-test'
 
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
                 \ |  Plug 'junegunn/fzf.vim'
@@ -253,6 +249,7 @@ func! plugins#define()
     Plug 'sheerun/vim-polyglot'
                 \ | Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }
                 \ | Plug 'fatih/vim-go'
+                \ | Plug 'saltstack/salt-vim'
 
     Plug 'terryma/vim-multiple-cursors'
                 \ | Plug 'nathanaelkane/vim-indent-guides'
@@ -299,8 +296,7 @@ func! plugins#define()
                 \ | Plug 'guns/xterm-color-table.vim'
                 \ | Plug 'metakirby5/codi.vim'
 
-    Plug 'Sunset'
-                \ | Plug 'flazz/vim-colorschemes'
+    Plug 'flazz/vim-colorschemes'
 
     Plug 'tmux-plugins/vim-tmux'
                 \ | Plug 'tmux-plugins/vim-tmux-focus-events'
@@ -320,19 +316,19 @@ func! plugins#combind() abort
   let g:startify_bookmarks = bm#all_files()
 endfunc
 
-func! plugins#open(name)
+func! plugins#open(name) abort
     let l:path = g:jalcine.plugins.dir . "/" . a:name
     exec(":edit " . l:path)
 endfunc
 
-func! plugins#bind()
+func! plugins#bind() abort
     call plugins#configure()
     call plugins#define()
     call plugins#combind()
     filetype plugin indent on
 endfunc
 
-func! plugins#reparse()
+func! plugins#reparse() abort
     so $HOME/.config/nvim/autoload/plugins.vim
     call plugins#configure()
     call plugins#define()

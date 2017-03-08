@@ -1,4 +1,5 @@
-func! color#tweak()
+func! color#tweak() abort
+  return
   hi notesDoubleQuoted gui=italic cterm=italic
   hi notesSingleQuoted gui=italic cterm=italic
   hi notesBold cterm=bold
@@ -14,7 +15,7 @@ func! color#tweak()
   hi NonText ctermbg=NONE
 endfunc
 
-func! color#apply()
+func! color#apply() abort
   if has("termguicolors")
     set termguicolors
   endif
@@ -23,7 +24,9 @@ func! color#apply()
   colorscheme bubblegum
   set background=dark
   call color#tweak()
-  AirlineRefresh
 endfunc
 
-au VimEnter * call color#apply()
+func! color#bind() abort
+  call color#apply()
+  call color#tweak()
+endfunc

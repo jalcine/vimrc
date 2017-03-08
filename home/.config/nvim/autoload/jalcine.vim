@@ -1,13 +1,15 @@
 function! jalcine#liftoff() abort
-  call sunlight#bind()
   call plugins#bind()
   call grouped_actions#apply()
   call jalcine#define_augroup()
 endfunction
 
-function jalcine#define_augroup()
+function! jalcine#define_augroup() abort
   augroup jalcine
     au!
+
+    " Ensure we set our colors.
+    au VimEnter * call color#bind()
 
     " Funky files.
     au User YouCompleteMe call youcompleteme#Enable()
@@ -56,7 +58,7 @@ function jalcine#define_augroup()
   augroup END
 endfunc
 
-func! s:reload_tmux()
+func! s:reload_tmux() abort
   redraw | echomsg '[tmux ➡️  vim] Sourced ' . expand('%:p') . '.' | redraw
   call system('tmux source-file ' . expand('%:p') . '; tmux display-message ' .
         \ '"[tmux ⬅️  vim] Sourced ' . expand('%:p') . '"')

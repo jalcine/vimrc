@@ -18,6 +18,9 @@ func! mappings#bind()
   " Toggle the state of spelling locally.
   nnoremap <silent> <leader>sp :setlocal spell!<cr>
 
+  " Toggle smart text editing.
+  nnoremap <silent> <leader>tp :TogglePencil<cr>
+
   " Cold turkey; no more arrows motions.
   nnoremap <silent> <up>    <nop>
   nnoremap <silent> <down>  <nop>

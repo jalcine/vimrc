@@ -88,28 +88,6 @@ func! plugins#configure() abort
     let g:neomake_ruby_enabled_makers = ['rubocop', 'mri']
     let g:neomake_vim_enabled_makers = ['vint']
     let g:neomake_elixir_enabled_makers = ['mix', 'credo']
-    let g:airline#extensions#hunks#non_zero_only = 1
-    let g:airline#extensions#tabline#enabled = 1
-    let g:airline#extensions#tabline#show_splits = 1
-    let g:airline#extensions#tabline#show_buffers = 1
-    let g:airline#extensions#tabline#show_tabs = 1
-    let g:airline#extensions#branch#enabled = 1
-    let g:airline#extensions#whitespace#enabled = 1
-    let g:airline#extensions#whitespace#mixed_indent_algo = 1
-    let g:airline#extensions#whitespace#show_message = 1
-    let g:airline#extensions#whitespace#trailing_format = 's:[%s]'
-    let g:airline#extensions#whitespace#mixed_indent_format = 'i:[%s]'
-    let g:airline_detected_modified = 1
-    let g:airline_powerline_fonts = 1
-    let g:airline_detect_iminsert = 0
-    let g:airline_mode_map = {
-                \ '__' : '-',
-                \ 'n'  : 'N',
-                \ 'i'  : 'I',
-                \ 'R'  : 'R',
-                \ 'v'  : 'V',
-                \ 'V'  : 'B'
-                \ }
     let s:custom_header =
                 \ map(split(system('fortune | cowsay'), '\n'), '"   ". v:val') + ['','']
 
@@ -153,7 +131,7 @@ func! plugins#configure() abort
 
     let g:indent_guides_guide_size = 2
     let g:indent_guides_start_level = 1
-    " let g:indent_guides_color_change_percent = 2
+    let g:indent_guides_color_change_percent = 2
     let g:indent_guides_enable_on_vim_startup = 1
     let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'startify']
 
@@ -281,9 +259,7 @@ func! plugins#define()
                 \ | Plug 'reedes/vim-pencil'
                 \ | Plug 'reedes/vim-litecorrect'
 
-
-    Plug 'vim-airline/vim-airline'
-                \ | Plug 'vim-airline/vim-airline-themes'
+    Plug 'itchyny/lightline.vim'
 
     Plug 'xolox/vim-misc'
                 \ | Plug 'xolox/vim-shell'
@@ -297,6 +273,7 @@ func! plugins#define()
                 \ | Plug 'metakirby5/codi.vim'
 
     Plug 'flazz/vim-colorschemes'
+          \ | Plug 'baskerville/bubblegum'
 
     Plug 'tmux-plugins/vim-tmux'
                 \ | Plug 'tmux-plugins/vim-tmux-focus-events'

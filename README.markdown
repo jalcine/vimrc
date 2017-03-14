@@ -20,9 +20,10 @@ the Python dependencies for this repository:
 ```bash
 $ pip install neovim requests
 ```
-> I typically run `pip install --user neovim`.
+> I typically run `pip install --user neovim`; to avoid cluttering my global
+> `site_packages`.
 
-## Support &amp; Contributions
+## Support and Contributions
 
 I've noticed that people have taken a lean to use this configuration. I find
 that *super dope*! The thing is, I'm not going to fix issues that you might find

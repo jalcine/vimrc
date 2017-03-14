@@ -1,5 +1,4 @@
 func! color#tweak() abort
-  return
   hi notesDoubleQuoted gui=italic cterm=italic
   hi notesSingleQuoted gui=italic cterm=italic
   hi notesBold cterm=bold
@@ -11,8 +10,6 @@ func! color#tweak() abort
   hi LineNr ctermbg=NONE
   hi FoldColumn ctermbg=NONE
   hi SignColumn ctermbg=NONE
-  hi Normal ctermbg=NONE
-  hi NonText ctermbg=NONE
 endfunc
 
 func! color#apply() abort
@@ -21,7 +18,7 @@ func! color#apply() abort
   endif
   set t_Co=256
   let g:airline_theme = 'bubblegum'
-  colorscheme bubblegum
+  colorscheme bubblegum-256-dark
   set background=dark
   call color#tweak()
 endfunc

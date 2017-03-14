@@ -18,7 +18,7 @@ func! color#apply() abort
   endif
   set t_Co=256
   let g:airline_theme = 'bubblegum'
-  colorscheme bubblegum-256-dark
+  colorscheme bubblegum
   set background=dark
   call color#tweak()
 endfunc

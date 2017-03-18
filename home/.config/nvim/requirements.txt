@@ -1,5 +1,0 @@
-neovim==0.1.13
-requests==2.12.1
-autopep8==1.2.4
-pyflakes==1.5.0
-yapf==0.15.0

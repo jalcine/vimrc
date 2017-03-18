@@ -10,6 +10,8 @@ func! color#tweak() abort
   hi LineNr ctermbg=NONE
   hi FoldColumn ctermbg=NONE
   hi SignColumn ctermbg=NONE
+  " hi Normal ctermbg=NONE
+  " hi NonText ctermbg=NONE
 endfunc
 
 func! color#apply() abort
@@ -17,8 +19,7 @@ func! color#apply() abort
     set termguicolors
   endif
   set t_Co=256
-  let g:airline_theme = 'bubblegum'
-  colorscheme bubblegum
+  colorscheme CandyPaper
   set background=dark
   call color#tweak()
 endfunc

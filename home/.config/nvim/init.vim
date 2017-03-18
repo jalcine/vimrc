@@ -79,7 +79,7 @@ set foldenable foldcolumn=1 foldlevel=2 foldminlines=3
 
 set spelllang=en_us,fr
 set spellsuggest=double,5
-set spellfile=~/.config/nvim/dict.custom.utf-8.add
+set spellfile=~/.config/nvim/dict/custom.utf-8.add
 
 set splitbelow splitright
 set synmaxcol=0

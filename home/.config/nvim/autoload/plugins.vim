@@ -1,3 +1,5 @@
+" vim: set fdm=syntax :
+
 func! plugins#configure() abort
     let g:NERDTreeMinimalUI = 1
     let g:NERDTreeAutoDeleteBuffer = 1
@@ -40,6 +42,31 @@ func! plugins#configure() abort
     let g:vim_json_syntax_conceal = 1
 
     let g:fzf_command_prefix = 'Fzf'
+
+    " {{{ airline
+    let g:airline#extensions#hunks#non_zero_only = 1
+    let g:airline#extensions#tabline#enabled = 1
+    let g:airline#extensions#tabline#show_splits = 1
+    let g:airline#extensions#tabline#show_buffers = 1
+    let g:airline#extensions#tabline#show_tabs = 1
+    let g:airline#extensions#branch#enabled = 1
+    let g:airline#extensions#whitespace#enabled = 1
+    let g:airline#extensions#whitespace#mixed_indent_algo = 1
+    let g:airline#extensions#whitespace#show_message = 1
+    let g:airline#extensions#whitespace#trailing_format = 's:[%s]'
+    let g:airline#extensions#whitespace#mixed_indent_format = 'i:[%s]'
+    let g:airline_detected_modified = 1
+    let g:airline_powerline_fonts = 1
+    let g:airline_detect_iminsert = 0
+    let g:airline_mode_map = {
+                \ '__' : '-',
+                \ 'n'  : 'N',
+                \ 'i'  : 'I',
+                \ 'R'  : 'R',
+                \ 'v'  : 'V',
+                \ 'V'  : 'B'
+                \ }
+    " }}}
 
     " {{{ nerd*
     let g:NERDCreateDefaultMappings = 1
@@ -113,11 +140,13 @@ func! plugins#configure() abort
 
     let g:EditorConfig_max_line_indicator = "line"
 
+    let g:easytags_events = ['BufReadPost', 'BufWritePost']
+    let g:easytags_suppress_ctags_warning = 1
     let g:easytags_async = 1
-    let g:easytags_file = '~/.config/nvim/tags'
+    let g:easytags_file = expand("$HOME/.config/nvim/tags")
     let g:easytags_resolve_links = 1
     let g:easytags_by_filetype = 1
-    let g:easytags_dynamic_files = 1
+    let g:easytags_dynamic_files = 2
     let g:easytags_include_members = 1
     let g:easytags_languages = {
         \ 'javascript': {
@@ -182,6 +211,7 @@ func! plugins#define()
                 \ | Plug 'honza/vim-snippets'
     Plug 'editorconfig/editorconfig-vim'
                 \ | Plug 'bogado/file-line'
+                \ | Plug 'farmergreg/vim-lastplace'
                 \ | Plug 'airblade/vim-rooter'
                 \ | Plug 'embear/vim-localvimrc'
                 \ | Plug 'Konfekt/FastFold'
@@ -215,12 +245,13 @@ func! plugins#define()
     Plug 'rdnetto/YCM-Generator', { 'branch': 'stable', 'on': 'YcmGenerateConfig' }
                 \ | Plug 'Valloric/YouCompleteMe', { 'do': 'neovim-install-ycm' }
                 \ | Plug 'xolox/vim-easytags'
+                \ | Plug 'majutsushi/tagbar'
                 \ | Plug 'othree/jspc.vim'
     Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
                 \ | Plug 'tiagofumo/vim-nerdtree-syntax-highlight', { 'on':  'NERDTreeToggle' }
                 \ | Plug 'low-ghost/nerdtree-fugitive', { 'on':  'NERDTreeToggle' }
                 \ | Plug 'xuyuanp/nerdtree-git-plugin', { 'on':  'NERDTreeToggle' }
-                \ | Plug 'jistr/vim-nerdtree-tabs'
+                \ | Plug 'jistr/vim-nerdtree-tabs', { 'on': 'NERDTreeTabsToggle' }
 
     " }}}
 
@@ -259,7 +290,8 @@ func! plugins#define()
                 \ | Plug 'reedes/vim-pencil'
                 \ | Plug 'reedes/vim-litecorrect'
 
-    Plug 'itchyny/lightline.vim'
+    Plug 'vim-airline/vim-airline'
+          \ | Plug 'vim-airline/vim-airline-themes'
 
     Plug 'xolox/vim-misc'
                 \ | Plug 'xolox/vim-shell'

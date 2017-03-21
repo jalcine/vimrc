@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# vim: set fdm=marker :
+
+cd "${HOME}/.config/nvim"
+pyenv local neovim-py2 neovim-py3
+
+cargo install racer
+npm install -g typescript
+
+plugins/YouCompleteMe/install.py \
+  --tern-completer \
+  --clang-completer

@@ -60,6 +60,9 @@ func! mappings#bind()
   " Formats the current buffer.
   nnoremap <silent><F3> :Autoformat<CR><CR>
 
+  " Show me tags.
+  nnoremap <F8> :TagbarToggle<CR>
+
   " Focuses Vim.
   nnoremap <silent> <leader><space> :Goyo
   nnoremap <silent> <leader>L <Plug>(Limelight)

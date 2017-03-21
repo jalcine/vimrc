@@ -19,8 +19,9 @@ func! color#apply() abort
     set termguicolors
   endif
   set t_Co=256
-  colorscheme CandyPaper
+  colorscheme Tomorrow-Night-Bright
   set background=dark
+  AirlineTheme tomorrow
   call color#tweak()
 endfunc
 

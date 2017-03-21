@@ -27,6 +27,8 @@ set encoding=utf-8
 
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
+set guifont=monoOne\ 8
+
 " {{{ Options
 set laststatus=2
 set noshowcmd

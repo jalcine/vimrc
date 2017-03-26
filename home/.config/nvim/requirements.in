@@ -1,6 +1,10 @@
-neovim
-requests
 autopep8
+jedi
+mistune
+neovim
+psutil
 pyflakes
-yapf
+requests
+setproctitle
 vim-vint
+yapf

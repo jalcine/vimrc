@@ -206,6 +206,10 @@ func! plugins#define()
 
     if !has('nvim') | Plug 'tpope/vim-sensible' | end
     Plug 'rking/ag.vim'
+          \ | Plug 'roxma/nvim-completion-manager'
+          \ | Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
+          \ | Plug 'Shougo/echodoc.vim'
+          \ | Plug 'roxma/nvim-cm-tern',  {'do': 'npm install'}
 
     Plug 'SirVer/ultisnips'
                 \ | Plug 'honza/vim-snippets'

@@ -172,4 +172,9 @@ func! mappings#bind()
   nnoremap <silent> [search]t  :call search#tags()<CR>
   nnoremap <silent> [search]h  :call search#history()<CR>
   nnoremap <silent> [search]w  :call search#windows()<CR>
+
+  " Open a new tab for projects.
+  nnoremap [jalcine] <nop>
+  nmap <leader>J [jalcine]
+  " nnoremap <silent> [jalcine]pn :call jalcine#projects#open(<S)
 endfunc

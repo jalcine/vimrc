@@ -204,7 +204,6 @@ endfunc
 func! plugins#define()
     call g:plug#begin(g:jalcine.plugins.dir)
 
-    if !has('nvim') | Plug 'tpope/vim-sensible' | end
     Plug 'rking/ag.vim'
           \ | Plug 'roxma/nvim-completion-manager'
           \ | Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
@@ -223,6 +222,7 @@ func! plugins#define()
                 \ | Plug 'tmhedberg/SimpylFold', { 'for': 'python' }
                 \ | Plug 'direnv/direnv.vim'
                 \ | Plug 'tpope/vim-dotenv'
+                \ | Plug 'tpope/vim-obsession'
 
     Plug 'heavenshell/vim-jsdoc'
                 \ | Plug 'KabbAmine/zeavim.vim'

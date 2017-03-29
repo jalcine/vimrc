@@ -8,3 +8,4 @@ requests
 setproctitle
 vim-vint
 yapf
+flake8

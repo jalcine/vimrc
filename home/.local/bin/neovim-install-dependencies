@@ -4,23 +4,23 @@
 cd "${HOME}/.config/nvim"
 pyenv virtualenv 2.7.12 neovim-py2 -vk
 pyenv virtualenv 3.5.2 neovim-py3 -vk
-pyenv local neovim-py2 neovim-py3
 
-# Install language dependencies. {{
+# Install language dependencies. {{{
 PY_REQS="${HOME}/.config/nvim/requirements.txt"
 RB_REQS="${HOME}/.config/nvim/Gemfile"
 JS_REQS="${HOME}/.config/nvim/npm.list"
 
-pyenv exec pip install -r ${PY_REQS} || echo "Can't install python2 deps." && exit
-pyenv exec pip3 install -r ${PY_REQS} || echo "Can't install python3 deps." && exit
+# Handle Python {{{
+pyenv local neovim-py3 && pyenv rehash
+pyenv exec pip-sync ${PY_REQS} || echo "Can't install python2 deps." && exit
+nvim -S "${HOME}/.config/nvim/locked-plugin-list.vim" +qall
+pyenv local neovim-py2 && pyenv rehash
+pyenv exec install -r ${PY_REQS} || echo "Can't install python3 deps." && exit
+pyenv local neovim-py3 neovim-py2
+# }}}
+
 bundle install --gemfile="${RB_REQS}" || echo "Can't install ruby deps." && exit
 npm install -g $(cat ${JS_REQS} | xargs) || echo "Can't install node deps." && exit
 cpanm Perl::Tidy || echo "Can't install perl deps." && exit
 cargo install racer || echo "Can't install rust deps." && exit
-# }}
-
-# Install plugins (prefer Python 3)
-pyenv local neovim-py3
-pyenv rehash
-nvim -S "${HOME}/.config/nvim/locked-plugin-list.vim" +qall
-pyenv local neovim-py3 neovim-py2
+# }}}

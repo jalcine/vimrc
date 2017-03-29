@@ -140,14 +140,15 @@ func! plugins#configure() abort
 
     let g:EditorConfig_max_line_indicator = "line"
 
-    let g:easytags_events = ['BufReadPost', 'BufWritePost']
-    let g:easytags_suppress_ctags_warning = 1
     let g:easytags_async = 1
-    let g:easytags_file = expand("$HOME/.config/nvim/tags")
-    let g:easytags_resolve_links = 1
-    let g:easytags_by_filetype = 1
+    let g:easytags_auto_highlight = 1
+    let g:easytags_autorecurse = 1
+    let g:easytags_by_filetype = '~/.config/nvim/tags/by-filetype'
     let g:easytags_dynamic_files = 2
+    let g:easytags_events = ['BufReadPost', 'BufWritePost']
+    let g:easytags_file = '~/.config/nvim/tags/db'
     let g:easytags_include_members = 1
+    let g:easytags_resolve_links = 1
     let g:easytags_languages = {
         \ 'javascript': {
         \   'cmd': 'jsctags',

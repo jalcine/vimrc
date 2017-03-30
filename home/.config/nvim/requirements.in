@@ -4,3 +4,8 @@ autopep8
 pyflakes
 yapf
 vim-vint
+isort
+mypy-lang
+typed-ast
+ipython
+flake8

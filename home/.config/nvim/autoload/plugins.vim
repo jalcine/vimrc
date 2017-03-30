@@ -46,8 +46,8 @@ func! plugins#configure() abort
     " {{{ airline
     let g:airline#extensions#hunks#non_zero_only = 1
     let g:airline#extensions#tabline#enabled = 1
-    let g:airline#extensions#tabline#show_splits = 1
-    let g:airline#extensions#tabline#show_buffers = 1
+    let g:airline#extensions#tabline#show_splits = 0
+    let g:airline#extensions#tabline#show_buffers = 0
     let g:airline#extensions#tabline#show_tabs = 1
     let g:airline#extensions#branch#enabled = 1
     let g:airline#extensions#whitespace#enabled = 1
@@ -315,6 +315,9 @@ func! plugins#define()
     Plug 'SyntaxRange'
     Plug 'utl.vim'
     Plug 'mattn/calendar-vim'
+    Plug 'kshenoy/vim-signature'
+    Plug 'fisadev/vim-isort'
+    Plug 'heavenshell/vim-pydocstring'
 
     Plug 'jamessan/vim-gnupg'
     Plug 'hashivim/vim-terraform'

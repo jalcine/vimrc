@@ -3,12 +3,6 @@
 
 cd "${HOME}/.config/nvim"
 
-pyenv rehash
-
 ${HOME}/.config/nvim/plugins/YouCompleteMe/install.py \
   --tern-completer \
   --clang-completer
-
-cargo install racer
-
-npm install -g typescript

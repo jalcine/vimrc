@@ -1,11 +1,15 @@
 autopep8
+flake8
+ipython
+isort
 jedi
 mistune
+mypy-lang
 neovim
 psutil
 pyflakes
 requests
 setproctitle
+typed-ast
 vim-vint
 yapf
-flake8

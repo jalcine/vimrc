@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+cd "${HOME}/.config/nvim"
+
+
+PY_REQS="${HOME}/.config/nvim/requirements.in"
+RB_REQS="${HOME}/.config/nvim/Gemfile"
+JS_REQS="${HOME}/.config/nvim/npm.list"
+
+pyenv local neovim-py3 && pyenv rehash
+pyenv exec pip-compile "${PY_REQS}" --output-file requirements-py3.txt
+
+nvim +PlugUpdate
+nvim +PlugSnapshot +"w ${HOME}/.config/nvim/locked-plugin-list.vim" +qall
+
+pyenv local neovim-py2 && pyenv rehash
+pyenv exec pip-compile "${PY_REQS}" --output-file requirements-py2.txt
+pyenv local neovim-py3 neovim-py2
+
+bundle update
+npm update -g $(xargs < ${JS_REQS})

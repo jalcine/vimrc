@@ -10,8 +10,7 @@ JS_REQS="${HOME}/.config/nvim/npm.list"
 pyenv local neovim-py3 && pyenv rehash
 pyenv exec pip-compile "${PY_REQS}" --output-file requirements-py3.txt
 
-nvim +PlugUpdate
-nvim +PlugSnapshot +"w ${HOME}/.config/nvim/locked-plugin-list.vim" +qall
+nvim +PlugUpdate +PlugSnapshot +"w ${HOME}/.config/nvim/locked-plugin-list.vim" +qall
 
 pyenv local neovim-py2 && pyenv rehash
 pyenv exec pip-compile "${PY_REQS}" --output-file requirements-py2.txt

@@ -12,3 +12,4 @@ setproctitle
 typed-ast
 vim-vint
 yapf
+trollius

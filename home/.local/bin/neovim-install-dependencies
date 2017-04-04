@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
 # vim: set fdm=marker :
+# TODO: Import shared framework for my shell scripts from `dotfiles`.
+# TODO: Add more option control to this.
+# TODO: Merge update + install scripts.
 
 cd "${HOME}/.config/nvim"
-pyenv virtualenv 2.7.12 neovim-py2 -vk
-pyenv virtualenv 3.5.2 neovim-py3 -vk
+pyenv virtualenv 2.7.12 neovim-py2 -v
+pyenv virtualenv 3.5.2 neovim-py3 -v
 
 # Install language dependencies. {{{
-PY_REQS="${HOME}/.config/nvim/requirements.in"
 RB_REQS="${HOME}/.config/nvim/Gemfile"
 JS_REQS="${HOME}/.config/nvim/npm.list"
 
@@ -20,10 +22,19 @@ pyenv exec pip install pip-tools
 pyenv exec pip-sync requirements-py2.txt
 
 pyenv local neovim-py3 neovim-py2
+
+pyenv exec nvim +"call plugins#install()" +qall
 # }}}
 
-bundle install --gemfile="${RB_REQS}"
-npm install -g $(cat ${JS_REQS} | xargs)
-cpanm Perl::Tidy
-[[ ! -x racer ]] && cargo install racer
+# {{{ Extra language support
+if [ "$JALCINE_NEOVIM_MINIMAL" ]
+then
+  exit
+else
+  bundle install --gemfile="${RB_REQS}"
+  npm install -g $(cat ${JS_REQS} | xargs)
+  cpanm Perl::Tidy
+  [ -x racer ] && cargo uninstall racer
+  cargo install racer
+fi
 # }}}

@@ -347,12 +347,17 @@ func! plugins#bind() abort
 endfunc
 
 func! plugins#reparse() abort
-    so $HOME/.config/nvim/autoload/plugins.vim
     call plugins#configure()
     call plugins#define()
     :PlugClean
     :PlugInstall
     :PlugUpgrade
+    :PlugSnapshot
+    :w ${HOME}/.config/nvim/locked-plugin-list.vim
+endfunc
+
+func! plugins#install() abort
+  :source ${HOME}/.config/nvim/locked-plugin-list.vim
 endfunc
 
 command! -complete=dir -nargs=1 OpenPluginDir call plugins#open("<args>")<cr>

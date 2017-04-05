@@ -4,7 +4,6 @@ ipython
 isort
 jedi
 mistune
-mypy-lang
 neovim
 psutil
 pyflakes
@@ -13,3 +12,4 @@ setproctitle
 typed-ast
 vim-vint
 yapf
+trollius

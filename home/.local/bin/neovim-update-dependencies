@@ -4,17 +4,23 @@ cd "${HOME}/.config/nvim"
 
 
 PY_REQS="${HOME}/.config/nvim/requirements.in"
+PY3_REQS="${HOME}/.config/nvim/requirements-py3.in"
 RB_REQS="${HOME}/.config/nvim/Gemfile"
 JS_REQS="${HOME}/.config/nvim/npm.list"
 
 pyenv local neovim-py3 && pyenv rehash
-pyenv exec pip-compile "${PY_REQS}" --output-file requirements-py3.txt
-
-nvim +PlugUpdate +PlugSnapshot +"w ${HOME}/.config/nvim/locked-plugin-list.vim" +qall
+pyenv exec pip-compile "${PY3_REQS}" --output-file requirements-py3.txt
+pyenv exec nvim +"call plugins#upgrade()" +qall
 
 pyenv local neovim-py2 && pyenv rehash
 pyenv exec pip-compile "${PY_REQS}" --output-file requirements-py2.txt
 pyenv local neovim-py3 neovim-py2
 
-bundle update
-npm update -g $(xargs < ${JS_REQS})
+if [ "$JALCINE_NEOVIM_MINIMAL" ]
+then
+  exit
+else
+  bundle update
+  npm update -g $(xargs < ${JS_REQS})
+  cargo update racer
+fi

@@ -111,6 +111,7 @@ func! plugins#configure() abort
     let g:neomake_serialize = 1
     let g:neomake_serialize_abort_on_error = 1
     let g:neomake_verbose = 1
+    let g:neomake_logfile = expand("$HOME/.config/nvim/neomake.log")
     let g:neomake_javascript_enabled_makers = ['eslint']
     let g:neomake_python_enabled_makers = ['python', 'flake8', 'mypy']
     let g:neomake_scss_enabled_makers = ['scss-lint']
@@ -145,11 +146,11 @@ func! plugins#configure() abort
     let g:vim_isort_python_version = 'python3'
 
     let g:easytags_async = 1
-    let g:easytags_auto_highlight = 1
-    let g:easytags_autorecurse = 1
+    let g:easytags_auto_highlight = 0
+    let g:easytags_autorecurse = 0
     let g:easytags_by_filetype = '~/.config/nvim/tags/by-filetype'
     let g:easytags_dynamic_files = 2
-    let g:easytags_events = ['BufReadPost', 'BufWritePost']
+    let g:easytags_events = ['BufReadPost']
     let g:easytags_file = '~/.config/nvim/tags/db'
     let g:easytags_include_members = 1
     let g:easytags_resolve_links = 1
@@ -349,11 +350,17 @@ func! plugins#bind() abort
 endfunc
 
 func! plugins#reparse() abort
-    so $HOME/.config/nvim/autoload/plugins.vim
     call plugins#configure()
     call plugins#define()
     :PlugClean
     :PlugInstall
+    :PlugUpgrade
+    :PlugSnapshot
+    :w ${HOME}/.config/nvim/locked-plugin-list.vim
+endfunc
+
+func! plugins#install() abort
+  :source ${HOME}/.config/nvim/locked-plugin-list.vim
 endfunc
 
 command! -complete=dir -nargs=1 OpenPluginDir call plugins#open("<args>")<cr>

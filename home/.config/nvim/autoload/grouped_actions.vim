@@ -7,6 +7,7 @@
 " This wraps the act of me writing in my daily journal.
 " TODO: Somehow ensure some short of encryption?
 " TODO: Randomly inject a prompt?
+
 func! s:write_in_today() abort
   let l:entry_path = 'Morning Entries/' . strftime("%Y-%m-%d")
   exec(':Note ' . l:entry_path)

@@ -1,4 +1,4 @@
-func! mappings#bind()
+func! mappings#bind() abort
   " {{{ Leaders and Accessibility
   " PASTE mo'fo!
   set pastetoggle=<F2>
@@ -139,7 +139,13 @@ func! mappings#bind()
 
   map <Leader>nt <plug>NERDTreeTabsToggle<CR>
 
-  func! s:toggle_visibility()
+  " {{{ typographic helpers
+  nnoremap <silent> <leader>qc <Plug>ReplaceWithCurly
+  nnoremap <silent> <leader>qs <Plug>ReplaceWithStraight
+
+  " }}}
+
+  func! s:toggle_visibility() abort
     setlocal list!
     if &conceallevel != 0
       setlocal conceallevel=0

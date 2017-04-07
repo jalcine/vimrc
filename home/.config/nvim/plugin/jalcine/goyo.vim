@@ -12,7 +12,7 @@ function! s:goyo_leave()
   set scrolloff=5
   set showcmd
   set showmode
-  Limelight!
+  Limelight
   call color#tweak()
   silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
   silent !tmux set status on

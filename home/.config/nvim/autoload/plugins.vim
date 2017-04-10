@@ -184,6 +184,7 @@ func! plugins#configure() abort
 
     let g:fastfold_skip_filetypes = ['nerdtree']
     let g:SimpylFold_docstring_preview = 1
+    let python_highlight_all=1
 
     let g:ycm_python_binary_path = g:python3_host_prog
     let g:ycm_server_python_interpreter = g:python3_host_prog
@@ -329,6 +330,7 @@ func! plugins#define() abort
     Plug 'jamessan/vim-gnupg'
     Plug 'hashivim/vim-terraform'
     Plug 'ryanoasis/vim-devicons'
+    Plug 'jmcantrell/vim-virtualenv'
 
     call g:plug#end()
 endfunc

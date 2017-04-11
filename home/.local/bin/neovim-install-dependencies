@@ -4,7 +4,7 @@
 # TODO: Add more option control to this.
 # TODO: Merge update + install scripts.
 
-cd "${HOME}/.config/nvim"
+cd "${HOME}/.config/nvim" || exit
 pyenv virtualenv 2.7.12 neovim-py2 -v
 pyenv virtualenv 3.5.2 neovim-py3 -v
 
@@ -23,7 +23,7 @@ pyenv exec pip-sync requirements-py2.txt
 
 pyenv local neovim-py3 neovim-py2
 
-pyenv exec nvim +"call plugins#install()" +qall
+nvim +"call plugins#install()" +qall
 # }}}
 
 # {{{ Extra language support
@@ -32,7 +32,7 @@ then
   exit
 else
   bundle install --gemfile="${RB_REQS}"
-  npm install -g $(cat ${JS_REQS} | xargs)
+  npm install -g < "${JS_REQS}"
   cpanm Perl::Tidy
   [ -x racer ] && cargo uninstall racer
   cargo install racer

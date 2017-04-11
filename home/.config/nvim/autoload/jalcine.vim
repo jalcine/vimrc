@@ -25,7 +25,8 @@ function! jalcine#define_augroup()
     au FileType gitcommit setl spell
 
     " Enable Neomake to run on builds.
-    au BufReadPost  * Neomake
+    au BufReadPost   * Neomake
+    au BufWritePost  * Neomake
 
     " Clear Fugitive buffers.
     au BufReadPost fugitive://* set bufhidden=delete

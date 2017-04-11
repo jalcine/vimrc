@@ -354,11 +354,10 @@ endfunc
 func! plugins#reparse() abort
     call plugins#configure()
     call plugins#define()
-    :PlugClean
-    :PlugInstall
-    :PlugUpgrade
-    :PlugSnapshot
-    :w ${HOME}/.config/nvim/locked-plugin-list.vim
+    PlugClean!
+    PlugInstall
+    PlugUpgrade
+    PlugUpdate | PlugSnapshot! ${HOME}/.config/nvim/locked-plugin-list.vim
 endfunc
 
 func! plugins#install() abort

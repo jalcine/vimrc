@@ -1,6 +1,7 @@
 eslint
 js-beautify
 typescript-formatter
+typescript
 remark
 typescript
 jsctags

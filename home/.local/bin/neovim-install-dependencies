@@ -33,7 +33,5 @@ else
   bundle install --gemfile="${RB_REQS}"
   npm install -g < "${JS_REQS}"
   cpanm Perl::Tidy
-  [ -x racer ] && cargo uninstall racer
-  cargo install racer
 fi
 # }}}

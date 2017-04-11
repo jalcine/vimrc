@@ -1,16 +1,15 @@
 #!/usr/bin/env bash
 
-cd "${HOME}/.config/nvim"
+cd "${HOME}/.config/nvim" || exit
 
 
 PY_REQS="${HOME}/.config/nvim/requirements.in"
 PY3_REQS="${HOME}/.config/nvim/requirements-py3.in"
-RB_REQS="${HOME}/.config/nvim/Gemfile"
 JS_REQS="${HOME}/.config/nvim/npm.list"
 
 pyenv local neovim-py3 && pyenv rehash
 pyenv exec pip-compile "${PY3_REQS}" --output-file requirements-py3.txt
-pyenv exec nvim +"call plugins#upgrade()" +qall
+nvim +"plugins#reparse()" +qall
 
 pyenv local neovim-py2 && pyenv rehash
 pyenv exec pip-compile "${PY_REQS}" --output-file requirements-py2.txt
@@ -21,6 +20,5 @@ then
   exit
 else
   bundle update
-  npm update -g $(xargs < ${JS_REQS})
-  cargo update racer
+  npm update -g < ${JS_REQS}
 fi

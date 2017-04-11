@@ -1,9 +1,12 @@
 " vim: set fdm=syntax :
 
+scriptencoding utf-8
+
 func! plugins#configure() abort
     let g:NERDTreeMinimalUI = 1
     let g:NERDTreeAutoDeleteBuffer = 1
 
+    let g:textobj#quote#educate = 0
     let g:textobj#sentence#abbreviations = [
                 \ '[ABCDIMPSUabcdegimpsv]',
                 \ 'l[ab]', '[eRr]d', 'Ph', '[Ccp]l', '[Lli]n', '[cn]o',
@@ -32,7 +35,7 @@ func! plugins#configure() abort
                 \ }
 
 
-    let g:plug_window = 'botright new | resize 10'
+    let g:plug_window = 'botright new | resize 5'
 
     let g:rooter_use_lcd = 1
     let g:rooter_silent_chdir = 1
@@ -81,7 +84,7 @@ func! plugins#configure() abort
     let g:UltiSnipsUsePythonVersion = 3
     let g:UltiSnipsEditSplit = 'context'
     let g:UltiSnipsSnippetDirectories = [$HOME. '/.config/nvim/snippets']
-    let g:UltiSnipsExpandTrigger = "<c-j>"
+    let g:UltiSnipsExpandTrigger = '<c-j>'
 
     " }}}
 
@@ -99,7 +102,7 @@ func! plugins#configure() abort
     " }}}
 
     " {{{ ag
-    let g:ag_prg = "ag --vimgrep --smart-case --noheading"
+    let g:ag_prg = 'ag --vimgrep --smart-case --noheading'
     let g:ag_highlight = 1
     " }}}
 
@@ -110,7 +113,7 @@ func! plugins#configure() abort
     let g:neomake_verbose = 1
     let g:neomake_logfile = expand("$HOME/.config/nvim/neomake.log")
     let g:neomake_javascript_enabled_makers = ['eslint']
-    let g:neomake_python_enabled_makers = ['python', 'flake8']
+    let g:neomake_python_enabled_makers = ['python', 'flake8', 'mypy']
     let g:neomake_scss_enabled_makers = ['scss-lint']
     let g:neomake_sh_enabled_makers = ['shellcheck']
     let g:neomake_ruby_enabled_makers = ['rubocop', 'mri']
@@ -140,6 +143,7 @@ func! plugins#configure() abort
     let g:localvimrc_persistent = 1
 
     let g:EditorConfig_max_line_indicator = "line"
+    let g:vim_isort_python_version = 'python3'
 
     let g:easytags_async = 1
     let g:easytags_auto_highlight = 0
@@ -167,7 +171,7 @@ func! plugins#configure() abort
     let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'startify']
 
     let g:goyo_width = 100
-    let g:goyo_height = "85%"
+    let g:goyo_height = '85%'
     let g:goyo_linenr = 0
 
     let g:autoformat_verbosemode = 1
@@ -180,6 +184,7 @@ func! plugins#configure() abort
 
     let g:fastfold_skip_filetypes = ['nerdtree']
     let g:SimpylFold_docstring_preview = 1
+    let python_highlight_all=1
 
     let g:ycm_python_binary_path = g:python3_host_prog
     let g:ycm_server_python_interpreter = g:python3_host_prog
@@ -203,7 +208,7 @@ func! plugins#configure() abort
                 \ ]
 endfunc
 
-func! plugins#define()
+func! plugins#define() abort
     call g:plug#begin(g:jalcine.plugins.dir)
 
     Plug 'rking/ag.vim'
@@ -320,13 +325,13 @@ func! plugins#define()
     Plug 'SyntaxRange'
     Plug 'utl.vim'
     Plug 'mattn/calendar-vim'
-    Plug 'kshenoy/vim-signature'
     Plug 'fisadev/vim-isort'
     Plug 'heavenshell/vim-pydocstring'
-
     Plug 'jamessan/vim-gnupg'
     Plug 'hashivim/vim-terraform'
     Plug 'ryanoasis/vim-devicons'
+    Plug 'jmcantrell/vim-virtualenv'
+
     call g:plug#end()
 endfunc
 

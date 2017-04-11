@@ -1,10 +1,12 @@
+scriptencoding utf-8
+
 function! jalcine#liftoff() abort
   call plugins#bind()
   call grouped_actions#apply()
   call jalcine#define_augroup()
 endfunction
 
-function! jalcine#define_augroup() abort
+function! jalcine#define_augroup()
   augroup jalcine
     au!
 
@@ -38,10 +40,7 @@ function! jalcine#define_augroup() abort
 
   augroup textobj_quote
     autocmd!
-    autocmd FileType markdown call textobj#quote#init()
-    autocmd FileType notes call textobj#quote#init()
-    autocmd FileType textile call textobj#quote#init()
-    autocmd FileType text call textobj#quote#init({'educate': 0})
+    autocmd FileType markdown,notes,textile,text call textobj#quote#init()
   augroup END
 
   augroup textobj_sentence

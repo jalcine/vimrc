@@ -22,7 +22,6 @@ pyenv exec pip install pip-tools
 pyenv exec pip-sync requirements-py2.txt
 
 pyenv local neovim-py3 neovim-py2
-
 nvim +"call plugins#install()" +qall
 # }}}
 

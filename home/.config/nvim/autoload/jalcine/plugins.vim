@@ -2,6 +2,14 @@
 
 scriptencoding utf-8
 
+" FIXME: Do we keep this here? I don't know.
+let g:jalcine = {
+      \ 'plugins': {
+      \ 'dir': expand('$HOME/.config/nvim/plugins')
+      \ }
+      \ }
+
+
 func! jalcine#plugins#configure() abort
     let g:NERDTreeMinimalUI = 1
     let g:NERDTreeAutoDeleteBuffer = 1
@@ -184,7 +192,7 @@ func! jalcine#plugins#configure() abort
 
     let g:fastfold_skip_filetypes = ['nerdtree']
     let g:SimpylFold_docstring_preview = 1
-    let python_highlight_all=1
+    let g:python_highlight_all=1
 
     let g:ycm_python_binary_path = g:python3_host_prog
     let g:ycm_server_python_interpreter = g:python3_host_prog
@@ -364,4 +372,5 @@ func! jalcine#plugins#install() abort
   source ${HOME}/.config/nvim/locked-plugin-list.vim
 endfunc
 
+" FIXME: Move to commands.
 " command! -complete=dir -nargs=1 OpenPluginDir call plugins#open("<args>")<cr>

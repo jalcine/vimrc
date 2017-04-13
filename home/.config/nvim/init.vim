@@ -2,28 +2,23 @@
 " File:          home/.config/nvim/init.vim
 " Author:        Jacky Alciné <yo@jacky.wtf>
 " Description:   The core of my configuration.
-" Last Modified: 2016-10-14 21:31:43 PDT
+" Last Modified: 2017-04-13 16:30:22 PDT
 "
-" This is my personal setup for NeoVim. It works ~exactly~ the
-" way I expect it to. Any different would trip me up.
-"
-" > Some stuff for Vint.
-" vint: -ProhibitUnnecessaryDoubleQuote
+" Here lies the root of the base options I set for Neovim.
 
-" Don't talk to me.
-set vbs=0
+scriptencoding utf-8
 
-" Tell me everything.
-" set verbose=15 verbosefile=~/.vimlog
+if $NEOVIM_DEBUG == 1
+  set verbose=15 verbosefile=~/.vimlog
+else
+  set verbose=0
+endif
 
 " Set my leader to the comma key.
 let g:mapleader=','
 
 " Set buffer-local mappings to the key above <Enter>
 let g:maplocalleader='\\'
-
-" UTF-8 NWA style
-set encoding=utf-8
 
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
@@ -77,8 +72,8 @@ set cpoptions+=d
 set tags=./tags,~/.config/nvim/tags/db
 set lazyredraw
 
-set foldenable foldcolumn=1 foldlevel=2 foldminlines=3
-      \ foldnestmax=5 foldlevelstart=1
+set foldenable foldcolumn=1 foldlevel=1 foldminlines=5
+      \ foldnestmax=3 foldlevelstart=1
 
 set spelllang=en_us,fr
 set spellsuggest=double,5
@@ -106,8 +101,6 @@ set fillchars+=fold:-
 " A visual cue for line-wrapping.
 set showbreak=↪
 
-" Visual cues when in 'list' model.
-set list
 set listchars+=eol:¬
 set listchars+=extends:❯
 set listchars+=precedes:❮
@@ -118,18 +111,3 @@ set listchars+=tab:\|\
 " Keep some spacing.
 set sidescrolloff=1
 "}}}
-
-call mappings#bind()
-call abbreviations#bind()
-
-let g:jalcine = {
-      \ "plugins": {
-      \ "dir": expand("$HOME/.config/nvim/plugins")
-      \ }
-      \ }
-
-if filereadable(expand("$HOME/.config/nvim/local.vim"))
-  source $HOME/.config/nvim/local.vim
-endif
-
-call jalcine#liftoff()

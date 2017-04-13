@@ -8,12 +8,14 @@
 " TODO: Somehow ensure some short of encryption?
 " TODO: Randomly inject a prompt?
 
+scriptencoding utf-8
+
 func! s:write_in_today() abort
-  let l:entry_path = 'Morning Entries/' . strftime("%Y-%m-%d")
+  let l:entry_path = 'Morning Entries/' . strftime('%Y-%m-%d')
   exec(':Note ' . l:entry_path)
   exec(':Goyo 100x50')
 endfunc
 
-function grouped_actions#apply()
+func! jalcine#commands#apply() abort
   command! -bang Today call s:write_in_today()<bang>
 endfunction

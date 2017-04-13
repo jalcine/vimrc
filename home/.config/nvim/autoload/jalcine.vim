@@ -1,8 +1,8 @@
 scriptencoding utf-8
 
 function! jalcine#liftoff() abort
-  call plugins#bind()
-  call grouped_actions#apply()
+  call jalcine#plugins#bind()
+  call jalcine#commands#apply()
   call jalcine#define_augroup()
 endfunction
 
@@ -45,12 +45,12 @@ function! jalcine#define_augroup() abort
   augroup END
 
   augroup textobj_quote
-    autocmd!
+    au!
     autocmd FileType markdown,notes,textile,text call textobj#quote#init()
   augroup END
 
   augroup textobj_sentence
-    autocmd!
+    au!
     autocmd FileType markdown call textobj#sentence#init()
     autocmd FileType notes call textobj#sentence#init()
     autocmd FileType textile call textobj#sentence#init()

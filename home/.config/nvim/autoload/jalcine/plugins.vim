@@ -2,7 +2,7 @@
 
 scriptencoding utf-8
 
-func! plugins#configure() abort
+func! jalcine#plugins#configure() abort
     let g:NERDTreeMinimalUI = 1
     let g:NERDTreeAutoDeleteBuffer = 1
 
@@ -111,7 +111,7 @@ func! plugins#configure() abort
     let g:neomake_serialize = 1
     let g:neomake_serialize_abort_on_error = 1
     let g:neomake_verbose = 1
-    let g:neomake_logfile = expand("$HOME/.config/nvim/neomake.log")
+    let g:neomake_logfile = expand('$HOME/.config/nvim/neomake.log')
     let g:neomake_javascript_enabled_makers = ['eslint']
     let g:neomake_python_enabled_makers = ['python', 'flake8', 'mypy']
     let g:neomake_scss_enabled_makers = ['scss-lint']
@@ -208,7 +208,7 @@ func! plugins#configure() abort
                 \ ]
 endfunc
 
-func! plugins#define() abort
+func! jalcine#plugins#define() abort
     call g:plug#begin(g:jalcine.plugins.dir)
 
     Plug 'rking/ag.vim'
@@ -335,33 +335,33 @@ func! plugins#define() abort
     call g:plug#end()
 endfunc
 
-func! plugins#combind() abort
+func! jalcine#plugins#combind() abort
   let g:startify_bookmarks = bm#all_files()
 endfunc
 
-func! plugins#open(name) abort
+func! jalcine#plugins#open(name) abort
     let l:path = g:jalcine.plugins.dir . "/" . a:name
     exec(":edit " . l:path)
 endfunc
 
-func! plugins#bind() abort
+func! jalcine#plugins#bind() abort
     call plugins#configure()
     call plugins#define()
     call plugins#combind()
     filetype plugin indent on
 endfunc
 
-func! plugins#reparse() abort
+func! jalcine#plugins#reparse() abort
     call plugins#configure()
     call plugins#define()
-    PlugClean!
+    PlugClean
     PlugInstall
     PlugUpgrade
     PlugUpdate | PlugSnapshot! ${HOME}/.config/nvim/locked-plugin-list.vim
 endfunc
 
-func! plugins#install() abort
-  :source ${HOME}/.config/nvim/locked-plugin-list.vim
+func! jalcine#plugins#install() abort
+  source ${HOME}/.config/nvim/locked-plugin-list.vim
 endfunc
 
-command! -complete=dir -nargs=1 OpenPluginDir call plugins#open("<args>")<cr>
+" command! -complete=dir -nargs=1 OpenPluginDir call plugins#open("<args>")<cr>

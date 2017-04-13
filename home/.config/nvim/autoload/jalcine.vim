@@ -6,7 +6,7 @@ function! jalcine#liftoff() abort
   call jalcine#define_augroup()
 endfunction
 
-function! jalcine#define_augroup()
+function! jalcine#define_augroup() abort
   augroup jalcine
     au!
 
@@ -39,6 +39,11 @@ function! jalcine#define_augroup()
     au FileType vim setl keywordprg=:help
   augroup END
 
+  augroup jalcine_goyo
+    au User GoyoEnter nested call <SID>goyo_enter()
+    au User GoyoLeave nested call <SID>goyo_leave()
+  augroup END
+
   augroup textobj_quote
     autocmd!
     autocmd FileType markdown,notes,textile,text call textobj#quote#init()
@@ -57,6 +62,26 @@ function! jalcine#define_augroup()
     autocmd FileType notes    call pencil#init()
   augroup END
 endfunc
+
+function! s:goyo_enter() abort
+  Limelight
+  call color#tweak()
+  silent !tmux set status off
+  silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
+  set noshowmode
+  set noshowcmd
+  set scrolloff=999
+endfunction
+
+function! s:goyo_leave() abort
+  set scrolloff=5
+  set showcmd
+  set showmode
+  Limelight
+  call color#tweak()
+  silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
+  silent !tmux set status on
+endfunction
 
 func! s:reload_tmux() abort
   redraw | echomsg '[tmux ➡️  vim] Sourced ' . expand('%:p') . '.' | redraw

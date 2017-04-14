@@ -1,4 +1,4 @@
-func! mappings#bind() abort
+func! jalcine#mappings#setup() abort
   " {{{ Leaders and Accessibility
   " PASTE mo'fo!
   set pastetoggle=<F2>
@@ -80,6 +80,8 @@ func! mappings#bind() abort
   " }}}
 
   " {{{ Travel over errors.
+  " TODO: Merge the closing + opening of the windows into one.
+  " TODO: Make the mappings for navigation the same but intelligent.
   nnoremap [quickfix] <nop>
   nmap <leader>q [quickfix]
   nnoremap <silent> [quickfix]e <ESC>:cnext<CR>
@@ -99,6 +101,7 @@ func! mappings#bind() abort
   nnoremap <silent> [loclist]x <ESC>:lclose<CR>
   " }}}
 
+  " TODO: Move rewrites into a separate place.
   " Rewrite 'vhe' to 'vert help'.
   cnoremap vhe vert help
 
@@ -107,6 +110,7 @@ func! mappings#bind() abort
   " }}}
 
   " {{{ Git helpers
+  " TODO: Prune commands we don't use.
   command! Greview :Git! diff --staged
   nnoremap [git] <nop>
   nnoremap <leader>g [git]
@@ -172,15 +176,14 @@ func! mappings#bind() abort
   " Handle file discovery options.
   nnoremap [search] <nop>
   nmap <leader>f [search]
-  nnoremap <silent> [search]af :call search#all_files()<CR>
-  nnoremap <silent> [search]gf :call search#files_in_git()<CR>
-  nnoremap <silent> [search]b  :call search#buffers()<CR>
-  nnoremap <silent> [search]t  :call search#tags()<CR>
-  nnoremap <silent> [search]h  :call search#history()<CR>
-  nnoremap <silent> [search]w  :call search#windows()<CR>
+  nnoremap <silent> [search]af :call jalcine#search#all_files()<CR>
+  nnoremap <silent> [search]gf :call jalcine#search#files_in_git()<CR>
+  nnoremap <silent> [search]b  :call jalcine#search#buffers()<CR>
+  nnoremap <silent> [search]t  :call jalcine#search#tags()<CR>
+  nnoremap <silent> [search]h  :call jalcine#search#history()<CR>
+  nnoremap <silent> [search]w  :call jalcine#search#windows()<CR>
 
   " Open a new tab for projects.
   nnoremap [jalcine] <nop>
   nmap <leader>J [jalcine]
-  " nnoremap <silent> [jalcine]pn :call jalcine#projects#open(<S)
 endfunc

@@ -1,10 +1,12 @@
-# Vim Configuration
+# Neovim Configuration
 
 This repository contains my setup for **[Neovim][]** and other Vim related
 projects like [Vimperator][] and [IdeaVIM][]. I've decided to move my development
 environment over to Neovim after reading [Greer's post][1] on the matter. This
 comes souped up with close to 80 (or more plugins) to enhance my development
-experience with a very short start time (~11ms on my [laptop][]).
+experience with a very short start time (~11ms on my [laptop][]). Whenever
+I make some changes, I update my [`startuptime.txt`](./startuptime.txt) file for
+reference.
 
 ## Plugin Manager
 
@@ -15,13 +17,9 @@ and dependencies intact.
 ## Using This Project
 This repository is set up using [homesick][]. I recommend using that to easily
 clone and get these options up and running. From there, you'll need to install
-the Python dependencies for this repository:
-
-```bash
-$ pip install neovim requests
-```
-> I typically run `pip install --user neovim`; to avoid cluttering my global
-> `site_packages`.
+a few dependencies for this project. Run `neovim-install-dependencies` to get
+that setup. It'll add the Python virtual environments, expected Node packages,
+Ruby gems, Perl packages and a Rust component.
 
 ## Support and Contributions
 

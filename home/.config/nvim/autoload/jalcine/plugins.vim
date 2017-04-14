@@ -1,8 +1,12 @@
-" vim: set fdm=syntax :
-
 scriptencoding utf-8
 
-func! plugins#configure() abort
+let g:jalcine = {
+      \ 'plugins': {
+      \   'dir': expand('$HOME/.config/nvim/plugins')
+      \ }
+      \ }
+
+func! jalcine#plugins#configure() abort
     let g:NERDTreeMinimalUI = 1
     let g:NERDTreeAutoDeleteBuffer = 1
 
@@ -116,7 +120,7 @@ func! plugins#configure() abort
     let g:neomake_serialize = 1
     let g:neomake_serialize_abort_on_error = 1
     let g:neomake_verbose = 1
-    let g:neomake_logfile = expand("$HOME/.config/nvim/neomake.log")
+    let g:neomake_logfile = expand('$HOME/.config/nvim/neomake.log')
     let g:neomake_javascript_enabled_makers = ['eslint']
     let g:neomake_python_enabled_makers = ['python', 'flake8', 'mypy']
     let g:neomake_scss_enabled_makers = ['scss-lint']
@@ -147,7 +151,7 @@ func! plugins#configure() abort
 
     let g:localvimrc_persistent = 1
 
-    let g:EditorConfig_max_line_indicator = "line"
+    let g:EditorConfig_max_line_indicator = 'line'
     let g:vim_isort_python_version = 'python3'
 
     let g:easytags_async = 1
@@ -189,7 +193,7 @@ func! plugins#configure() abort
 
     let g:fastfold_skip_filetypes = ['nerdtree']
     let g:SimpylFold_docstring_preview = 1
-    let python_highlight_all=1
+    let g:python_highlight_all=1
 
     let g:ycm_python_binary_path = g:python3_host_prog
     let g:ycm_server_python_interpreter = g:python3_host_prog
@@ -213,7 +217,7 @@ func! plugins#configure() abort
                 \ ]
 endfunc
 
-func! plugins#define() abort
+func! jalcine#plugins#define() abort
     call g:plug#begin(g:jalcine.plugins.dir)
 
     Plug 'rking/ag.vim'
@@ -341,33 +345,31 @@ func! plugins#define() abort
     call g:plug#end()
 endfunc
 
-func! plugins#combind() abort
+func! jalcine#plugins#combind() abort
   let g:startify_bookmarks = bm#all_files()
 endfunc
 
-func! plugins#open(name) abort
+func! jalcine#plugins#open(name) abort
     let l:path = g:jalcine.plugins.dir . "/" . a:name
     exec(":edit " . l:path)
 endfunc
 
-func! plugins#bind() abort
-    call plugins#configure()
-    call plugins#define()
-    call plugins#combind()
+func! jalcine#plugins#setup() abort
+    call jalcine#plugins#configure()
+    call jalcine#plugins#define()
+    call jalcine#plugins#combind()
     filetype plugin indent on
 endfunc
 
-func! plugins#reparse() abort
-    call plugins#configure()
-    call plugins#define()
-    PlugClean!
+func! jalcine#plugins#reparse() abort
+    call jalcine#plugins#configure()
+    call jalcine#plugins#define()
+    PlugClean
     PlugInstall
     PlugUpgrade
     PlugUpdate | PlugSnapshot! ${HOME}/.config/nvim/locked-plugin-list.vim
 endfunc
 
-func! plugins#install() abort
-  :source ${HOME}/.config/nvim/locked-plugin-list.vim
+func! jalcine#plugins#install() abort
+  source ${HOME}/.config/nvim/locked-plugin-list.vim
 endfunc
-
-command! -complete=dir -nargs=1 OpenPluginDir call plugins#open("<args>")<cr>

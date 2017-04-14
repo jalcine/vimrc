@@ -27,7 +27,6 @@ func! jalcine#autocommand#apply() abort
     au FileType gitcommit setl spell
 
     " Enable Neomake to run on builds.
-    au BufReadPost   * Neomake
     au BufWritePost  * Neomake
 
     " Clear Fugitive buffers.

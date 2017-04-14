@@ -15,8 +15,8 @@ func! jalcine#color#tweak() abort
 endfunc
 
 func! jalcine#color#apply() abort
-  colorscheme PaperColor
-  call airline#switch_theme('papercolor')
+  colorscheme bubblegum-256-dark
+  call airline#switch_theme('bubblegum')
   set background=dark
 endfunc
 

@@ -17,6 +17,7 @@ func! jalcine#autocommand#apply() abort
 
     " Funky files.
     au User YouCompleteMe call youcompleteme#Enable()
+    au User Startified setlocal buftype=nofile
 
     " Reload tmux files when we edit them.
     au BufWritePost *tmux*.conf  call s:reload_tmux()
@@ -102,5 +103,9 @@ func! s:jalcine_neovim_setup() abort
     exec('call jalcine#' . l:plugin_name . '#setup()')
   endfor
 
-  Startify
+  if !argc()
+    Startify
+    NERDTree
+    wincmd w
+  endif
 endfunc

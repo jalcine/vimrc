@@ -1,0 +1,56 @@
+
+
+times in msec
+ clock   self+sourced   self:  sourced script
+ clock   elapsed:              other lines
+
+000.012  000.012: --- NVIM STARTING ---
+000.217  000.206: locale set
+000.640  000.423: inits 1
+000.650  000.010: window checked
+000.838  000.188: parsing arguments
+000.841  000.002: expanding arguments
+000.900  000.060: inits 2
+001.110  000.210: init highlight
+001.553  000.350  000.350: sourcing /home/tchalla/.config/nvim/init.vim
+001.594  000.134: sourcing vimrc file(s)
+015.399  000.097  000.097: sourcing /home/tchalla/.config/nvim/ftdetect/nginx.vim
+015.503  000.065  000.065: sourcing /home/tchalla/.config/nvim/ftdetect/sh.vim
+015.718  014.078  013.916: sourcing /usr/share/nvim/runtime/filetype.vim
+015.850  000.047  000.047: sourcing /usr/share/nvim/runtime/ftplugin.vim
+015.974  000.037  000.037: sourcing /usr/share/nvim/runtime/indent.vim
+016.459  000.269  000.269: sourcing /usr/share/nvim/runtime/syntax/syncolor.vim
+016.589  000.477  000.208: sourcing /usr/share/nvim/runtime/syntax/synload.vim
+016.626  000.593  000.116: sourcing /usr/share/nvim/runtime/syntax/syntax.vim
+017.000  000.115  000.115: sourcing /home/tchalla/.config/nvim/plugin/jalcine/config.vim
+017.139  000.107  000.107: sourcing /home/tchalla/.config/nvim/plugin/jalcine/projects.vim
+017.347  000.139  000.139: sourcing /home/tchalla/.config/nvim/local.vim
+017.480  000.078  000.078: sourcing /home/tchalla/.config/nvim/autoload/jalcine/autocommand.vim
+017.682  000.516  000.298: sourcing /home/tchalla/.config/nvim/plugin/jalcine.vim
+017.986  000.018  000.018: sourcing /usr/share/nvim/runtime/plugin/gui_shim.vim
+018.171  000.165  000.165: sourcing /usr/share/nvim/runtime/plugin/gzip.vim
+018.213  000.024  000.024: sourcing /usr/share/nvim/runtime/plugin/health.vim
+018.277  000.048  000.048: sourcing /usr/share/nvim/runtime/plugin/man.vim
+018.804  000.508  000.508: sourcing /usr/share/nvim/runtime/plugin/matchit.vim
+019.016  000.192  000.192: sourcing /usr/share/nvim/runtime/plugin/matchparen.vim
+019.566  000.530  000.530: sourcing /usr/share/nvim/runtime/plugin/netrwPlugin.vim
+020.531  000.373  000.373: sourcing /usr/share/nvim/runtime/autoload/remote/host.vim
+021.147  000.284  000.284: sourcing /usr/share/nvim/runtime/autoload/remote/define.vim
+031.357  011.314  010.657: sourcing /home/tchalla/.local/share/nvim/rplugin.vim
+031.383  011.765  000.451: sourcing /usr/share/nvim/runtime/plugin/rplugin.vim
+031.516  000.090  000.090: sourcing /usr/share/nvim/runtime/plugin/rrhelper.vim
+031.723  000.169  000.169: sourcing /usr/share/nvim/runtime/plugin/shada.vim
+031.830  000.054  000.054: sourcing /usr/share/nvim/runtime/plugin/spellfile.vim
+032.178  000.312  000.312: sourcing /usr/share/nvim/runtime/plugin/tarPlugin.vim
+032.387  000.164  000.164: sourcing /usr/share/nvim/runtime/plugin/tohtml.vim
+032.467  000.039  000.039: sourcing /usr/share/nvim/runtime/plugin/tutor.vim
+032.826  000.320  000.320: sourcing /usr/share/nvim/runtime/plugin/zipPlugin.vim
+032.839  001.355: loading plugins
+033.225  000.386: loading packages
+033.357  000.132: loading after plugins
+033.373  000.016: inits 3
+040.455  007.081: reading ShaDa
+045.012  004.557: clearing screen
+045.487  000.475: opening buffers
+045.639  000.152: BufEnter autocommands
+045.647  000.007: editing files in windows

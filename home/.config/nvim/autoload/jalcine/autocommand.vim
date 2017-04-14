@@ -2,12 +2,18 @@
 
 scriptencoding utf-8
 
+
+
 func! jalcine#autocommand#apply() abort
   augroup jalcine
     au!
 
-  " Set things up.
-    au VimEnter * call s:jalcine_neovim_setup()
+    " Set things up.
+    if v:vim_did_enter
+      call s:jalcine_neovim_setup()
+    else
+      au VimEnter * call s:jalcine_neovim_setup()
+    endif
 
     " Funky files.
     au User YouCompleteMe call youcompleteme#Enable()
@@ -96,4 +102,6 @@ func! s:jalcine_neovim_setup() abort
   for l:plugin_name in l:order
     exec('call jalcine#' . l:plugin_name . '#setup()')
   endfor
+
+  Startify
 endfunc

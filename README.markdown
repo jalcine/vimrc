@@ -36,4 +36,6 @@ it!
 [laptop]: https://jacky.wtf/gear/#laptop
 [neovim]: https://neovim.io
 [vim-plug]: https://github.com/junegunn/vim-plug
+[Vimperator]: http://vimperator.org/vimperator.html
+[IdeaVIM]: https://github.com/JetBrains/ideavim
 [1]: http://geoff.greer.fm/2015/01/15/why-neovim-is-better-than-vim/

@@ -1,11 +1,8 @@
-" vim: set fdm=syntax :
-
 scriptencoding utf-8
 
-" FIXME: Do we keep this here? I don't know.
 let g:jalcine = {
       \ 'plugins': {
-      \ 'dir': expand('$HOME/.config/nvim/plugins')
+      \   'dir': expand('$HOME/.config/nvim/plugins')
       \ }
       \ }
 
@@ -369,6 +366,3 @@ endfunc
 func! jalcine#plugins#install() abort
   source ${HOME}/.config/nvim/locked-plugin-list.vim
 endfunc
-
-" FIXME: Move to commands.
-" command! -complete=dir -nargs=1 OpenPluginDir call jalcine#plugins#open("<args>")<cr>

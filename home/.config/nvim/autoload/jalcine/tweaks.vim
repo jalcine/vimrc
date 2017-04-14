@@ -1,5 +1,5 @@
 function! VagrantTransform(cmd) abort
-  let vagrant_project = get(matchlist(s:cat('Vagrantfile'), '\vconfig\.vm.synced_folder ["''].+[''"], ["''](.+)[''"]'), 1)
+  let l:vagrant_project = get(matchlist(s:cat('Vagrantfile'), '\vconfig\.vm.synced_folder ["''].+[''"], ["''](.+)[''"]'), 1)
   return 'vagrant ssh --command '.shellescape('cd '.vagrant_project.'; '.a:cmd)
 endfunction
 

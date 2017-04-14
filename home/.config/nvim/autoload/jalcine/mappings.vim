@@ -1,4 +1,4 @@
-func! mappings#bind() abort
+func! jalcine#mappings#setup() abort
   " {{{ Leaders and Accessibility
   " PASTE mo'fo!
   set pastetoggle=<F2>

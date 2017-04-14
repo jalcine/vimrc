@@ -6,8 +6,8 @@ func! jalcine#autocommand#apply() abort
   augroup jalcine
     au!
 
-    " Ensure we set our colors.
-    au VimEnter * call color#bind()
+  " Set things up.
+    au VimEnter * call s:jalcine_neovim_setup()
 
     " Funky files.
     au User YouCompleteMe call youcompleteme#Enable()
@@ -82,4 +82,18 @@ func! s:reload_tmux() abort
   redraw | echomsg '[tmux ➡️  vim] Sourced ' . expand('%:p') . '.' | redraw
   call system('tmux source-file ' . expand('%:p') . '; tmux display-message ' .
         \ '"[tmux ⬅️  vim] Sourced ' . expand('%:p') . '"')
+endfunc
+
+func! s:jalcine_neovim_setup() abort
+  let l:order = [
+        \ 'abbreviations',
+        \ 'plugins',
+        \ 'mappings',
+        \ 'commands',
+        \ 'color',
+        \ ]
+
+  for l:plugin_name in l:order
+    exec('call jalcine#' . l:plugin_name . '#setup()')
+  endfor
 endfunc

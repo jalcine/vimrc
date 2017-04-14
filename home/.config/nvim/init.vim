@@ -8,21 +8,19 @@
 
 scriptencoding utf-8
 
-if $NEOVIM_DEBUG == 1
-  set verbose=15 verbosefile=~/.vimlog
-else
-  set verbose=0
-endif
-
 " Set my leader to the comma key.
 let g:mapleader=','
 
 " Set buffer-local mappings to the key above <Enter>
 let g:maplocalleader='\\'
 
+" Give it some pizzazz.
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-
 set guifont=monoOne\ 8
+if has('termguicolors')
+  set termguicolors
+endif
+set t_Co=256
 
 " {{{ Options
 set laststatus=2
@@ -76,7 +74,7 @@ set foldenable foldcolumn=1 foldlevel=1 foldminlines=5
       \ foldnestmax=3 foldlevelstart=1
 
 set spelllang=en_us,fr
-set spellsuggest=double,5
+set spellsuggest=double,7
 set spellfile=~/.config/nvim/dict/custom.utf-8.add
 
 set splitbelow splitright

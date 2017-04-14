@@ -9,7 +9,6 @@ let g:jalcine = {
       \ }
       \ }
 
-
 func! jalcine#plugins#configure() abort
     let g:NERDTreeMinimalUI = 1
     let g:NERDTreeAutoDeleteBuffer = 1
@@ -150,7 +149,7 @@ func! jalcine#plugins#configure() abort
 
     let g:localvimrc_persistent = 1
 
-    let g:EditorConfig_max_line_indicator = "line"
+    let g:EditorConfig_max_line_indicator = 'line'
     let g:vim_isort_python_version = 'python3'
 
     let g:easytags_async = 1
@@ -337,7 +336,6 @@ func! jalcine#plugins#define() abort
     Plug 'heavenshell/vim-pydocstring'
     Plug 'jamessan/vim-gnupg'
     Plug 'hashivim/vim-terraform'
-    Plug 'ryanoasis/vim-devicons'
     Plug 'jmcantrell/vim-virtualenv'
 
     call g:plug#end()
@@ -352,16 +350,16 @@ func! jalcine#plugins#open(name) abort
     exec(":edit " . l:path)
 endfunc
 
-func! jalcine#plugins#bind() abort
-    call plugins#configure()
-    call plugins#define()
-    call plugins#combind()
+func! jalcine#plugins#setup() abort
+    call jalcine#plugins#configure()
+    call jalcine#plugins#define()
+    call jalcine#plugins#combind()
     filetype plugin indent on
 endfunc
 
 func! jalcine#plugins#reparse() abort
-    call plugins#configure()
-    call plugins#define()
+    call jalcine#plugins#configure()
+    call jalcine#plugins#define()
     PlugClean
     PlugInstall
     PlugUpgrade
@@ -373,4 +371,4 @@ func! jalcine#plugins#install() abort
 endfunc
 
 " FIXME: Move to commands.
-" command! -complete=dir -nargs=1 OpenPluginDir call plugins#open("<args>")<cr>
+" command! -complete=dir -nargs=1 OpenPluginDir call jalcine#plugins#open("<args>")<cr>

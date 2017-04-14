@@ -4,7 +4,7 @@
 scriptencoding utf-8
 
 
-func! jalcine#abbreviations#bind() abort
+func! jalcine#abbreviations#setup() abort
   iabbrev me_email yo@jacky.wtf
   iabbrev me_name Jacky Alciné
   iabbrev me_fname Jacky

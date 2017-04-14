@@ -1,4 +1,4 @@
-func! color#tweak() abort
+func! jalcine#color#tweak() abort
   hi notesDoubleQuoted gui=italic cterm=italic
   hi notesSingleQuoted gui=italic cterm=italic
   hi notesBold cterm=bold
@@ -10,22 +10,16 @@ func! color#tweak() abort
   hi LineNr ctermbg=NONE
   hi FoldColumn ctermbg=NONE
   hi SignColumn ctermbg=NONE
-  " hi Normal ctermbg=NONE
-  " hi NonText ctermbg=NONE
+  hi Normal ctermbg=NONE
+  hi NonText ctermbg=NONE
 endfunc
 
-func! color#apply() abort
-  if has("termguicolors")
-    set termguicolors
-  endif
-  set t_Co=256
-  colorscheme Tomorrow-Night-Bright
+func! jalcine#color#apply() abort
+  colorscheme PaperColor
+  call airline#switch_theme('papercolor')
   set background=dark
-  AirlineTheme tomorrow
-  call color#tweak()
 endfunc
 
-func! color#bind() abort
-  call color#apply()
-  call color#tweak()
+func! jalcine#color#setup() abort
+  call jalcine#color#apply()
 endfunc

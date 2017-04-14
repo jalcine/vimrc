@@ -16,6 +16,6 @@ func! s:write_in_today() abort
   exec(':Goyo 100x50')
 endfunc
 
-func! jalcine#commands#apply() abort
+func! jalcine#commands#setup() abort
   command! -bang Today call s:write_in_today()<bang>
 endfunction

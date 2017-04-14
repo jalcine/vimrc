@@ -89,8 +89,13 @@ func! plugins#configure() abort
     " }}}
 
     " {{{ vim-bookmarks
+    let g:bookmark_center = 1
     let g:bookmark_sign = '♥'
     let g:bookmark_highlight_lines = 1
+    let g:bookmark_auto_close = 1
+    let g:bookmark_auto_save = 1
+    let g:bookmark_auto_save_file = expand("$HOME/.config/nvim/bookmarks.txt")
+    let g:bookmark_location_list = 1
     " "}}
 
     " {{{ signify
@@ -330,7 +335,8 @@ func! plugins#define() abort
     Plug 'jamessan/vim-gnupg'
     Plug 'hashivim/vim-terraform'
     Plug 'ryanoasis/vim-devicons'
-    Plug 'jmcantrell/vim-virtualenv'
+    Plug 'lambdalisue/vim-pyenv'
+          \ | Plug 'jmcantrell/vim-virtualenv'
 
     call g:plug#end()
 endfunc

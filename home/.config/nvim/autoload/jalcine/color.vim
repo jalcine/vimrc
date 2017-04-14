@@ -15,11 +15,12 @@ func! jalcine#color#tweak() abort
 endfunc
 
 func! jalcine#color#apply() abort
-  colorscheme bubblegum-256-dark
-  call airline#switch_theme('bubblegum')
+  colorscheme badwolf
+  call airline#switch_theme('badcat')
   set background=dark
 endfunc
 
 func! jalcine#color#setup() abort
   call jalcine#color#apply()
+  call jalcine#color#tweak()
 endfunc

@@ -15,11 +15,12 @@ func! jalcine#color#tweak() abort
 endfunc
 
 func! jalcine#color#apply() abort
-  colorscheme PaperColor
-  call airline#switch_theme('papercolor')
+  colorscheme badwolf
+  call airline#switch_theme('badcat')
   set background=dark
 endfunc
 
 func! jalcine#color#setup() abort
   call jalcine#color#apply()
+  call jalcine#color#tweak()
 endfunc

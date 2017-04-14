@@ -1,5 +1,7 @@
 # Neovim Configuration
 
+![My daily view.](./snapshot.png)
+
 This repository contains my setup for **[Neovim][]** and other Vim related
 projects like [Vimperator][] and [IdeaVIM][]. I've decided to move my development
 environment over to Neovim after reading [Greer's post][1] on the matter. This
@@ -34,4 +36,6 @@ it!
 [laptop]: https://jacky.wtf/gear/#laptop
 [neovim]: https://neovim.io
 [vim-plug]: https://github.com/junegunn/vim-plug
+[Vimperator]: http://vimperator.org/vimperator.html
+[IdeaVIM]: https://github.com/JetBrains/ideavim
 [1]: http://geoff.greer.fm/2015/01/15/why-neovim-is-better-than-vim/

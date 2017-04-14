@@ -24,7 +24,7 @@ set t_Co=256
 
 " {{{ Options
 set laststatus=2
-set noshowcmd
+set showcmd
 set exrc
 set number relativenumber numberwidth=3
 set path=.,/usr/local/include,/usr/include,$HOME/.local/include
@@ -42,7 +42,6 @@ set nocursorline nocursorcolumn
 
 set showmatch wrapscan
 set nogdefault noignorecase
-set showcmd
 set showfulltag
 set showmatch
 set modeline modelines=5

@@ -128,21 +128,8 @@ func! jalcine#plugins#configure() abort
     let g:neomake_ruby_enabled_makers = ['rubocop', 'mri']
     let g:neomake_vim_enabled_makers = ['vint']
     let g:neomake_elixir_enabled_makers = ['mix', 'credo']
-    let s:custom_header =
-                \ map(split(system('fortune | cowsay'), '\n'), '"   ". v:val') + ['','']
 
-    func! s:filter_header(lines) abort
-        let l:longest_line = max(map(copy(a:lines), 'len(v:val)'))
-        let l:centered_lines= map(copy(a:lines),
-                    \ 'repeat(" ", (&columns / 2) - (l:longest_line / 2)) . v:val')
-        return l:centered_lines
-    endfunc
-
-    " {{{ vim-session
     let g:session_autosave = 'yes'
-    " }}}
-
-    let g:startify_custom_header = s:filter_header(s:custom_header)
     let g:startify_files_number = 10
     let g:startify_change_to_dir = 0
     let g:startify_change_to_vcs_root = 0
@@ -267,11 +254,11 @@ func! jalcine#plugins#define() abort
                 \ | Plug 'xolox/vim-easytags'
                 \ | Plug 'majutsushi/tagbar'
                 \ | Plug 'othree/jspc.vim'
-    Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-                \ | Plug 'tiagofumo/vim-nerdtree-syntax-highlight', { 'on':  'NERDTreeToggle' }
-                \ | Plug 'low-ghost/nerdtree-fugitive', { 'on':  'NERDTreeToggle' }
-                \ | Plug 'xuyuanp/nerdtree-git-plugin', { 'on':  'NERDTreeToggle' }
-                \ | Plug 'jistr/vim-nerdtree-tabs', { 'on': 'NERDTreeTabsToggle' }
+    Plug 'scrooloose/nerdtree'
+                \ | Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+                \ | Plug 'low-ghost/nerdtree-fugitive'
+                \ | Plug 'xuyuanp/nerdtree-git-plugin'
+                \ | Plug 'jistr/vim-nerdtree-tabs'
 
     " }}}
 

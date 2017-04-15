@@ -40,6 +40,7 @@ set complete=k,.,w,b,u,U,i,d,t
 set completeopt=menu,longest
 set nocursorline nocursorcolumn
 
+set noshowmode
 set showmatch wrapscan
 set nogdefault noignorecase
 set showfulltag

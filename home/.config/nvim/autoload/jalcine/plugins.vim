@@ -62,6 +62,7 @@ func! jalcine#plugins#configure() abort
     let g:airline#extensions#whitespace#show_message = 1
     let g:airline#extensions#whitespace#trailing_format = 's:[%s]'
     let g:airline#extensions#whitespace#mixed_indent_format = 'i:[%s]'
+    let g:airline#extensions#neomake#enabled = 1
     let g:airline_detected_modified = 1
     let g:airline_powerline_fonts = 1
     let g:airline_detect_iminsert = 0

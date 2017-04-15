@@ -106,6 +106,7 @@ func! s:jalcine_neovim_setup() abort
   if !argc()
     Startify
     NERDTree
+    Tagbar
     wincmd w
   endif
 endfunc

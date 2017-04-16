@@ -94,6 +94,7 @@ func! s:jalcine_neovim_setup() abort
   let l:order = [
         \ 'abbreviations',
         \ 'plugins',
+        \ 'config',
         \ 'mappings',
         \ 'commands',
         \ 'color',

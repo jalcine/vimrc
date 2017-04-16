@@ -17,5 +17,3 @@ endfunc
 func! jalcine#config#for_macosx() abort
   " TODO: Figure out macOS-specifically useful options.
 endfunc
-
-" au VimEnter call jalcine#config#apply()

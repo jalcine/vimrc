@@ -72,8 +72,7 @@ set lazyredraw
 set foldenable foldcolumn=1 foldlevel=1 foldminlines=5
       \ foldnestmax=3 foldlevelstart=1
 
-set spelllang=en_us,fr
-set spellsuggest=double,7
+set spelllang=en_us,fr spellsuggest=double,7
 set spellfile=~/.config/nvim/dict/custom.utf-8.add
 
 set splitbelow splitright

@@ -20,8 +20,8 @@ func! jalcine#autocommand#apply() abort
     au User Startified setlocal buftype=nofile
 
     " Reload tmux files when we edit them.
-    au BufWritePost *tmux*.conf  call s:reload_tmux()
-    au BufWritePost *tmux/*.conf call s:reload_tmux()
+    au BufWritePost *tmux*.conf  call jalcine#tweaks#reload_tmux()
+    au BufWritePost *tmux/*.conf call jalcine#tweaks#reload_tmux()
 
     " Tweak for particular file types.
     au FileType css setl iskeyword+=-
@@ -42,8 +42,8 @@ func! jalcine#autocommand#apply() abort
   augroup END
 
   augroup jalcine_goyo
-    au User GoyoEnter nested call <SID>goyo_enter()
-    au User GoyoLeave nested call <SID>goyo_leave()
+    au User GoyoEnter nested call jalcine#tweaks#goyo_enter()
+    au User GoyoLeave nested call jalcine#tweaks#goyo_leave()
   augroup END
 
   augroup textobj_quote
@@ -63,31 +63,6 @@ func! jalcine#autocommand#apply() abort
     autocmd FileType markdown call pencil#init()
     autocmd FileType notes    call pencil#init()
   augroup END
-endfunc
-
-" TODO: Move this to a goyo-specific file. Or maybe projects.
-func! s:goyo_enter() abort
-  Limelight
-  call color#tweak()
-  silent !tmux set status off
-  silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
-  set noshowmode
-  set noshowcmd
-  set scrolloff=999
-endfunction
-func! s:goyo_leave() abort
-  set scrolloff=5
-  set showcmd
-  set showmode
-  Limelight
-  call color#tweak()
-  silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
-  silent !tmux set status on
-endfunction
-func! s:reload_tmux() abort
-  redraw | echomsg '[tmux ➡️  vim] Sourced ' . expand('%:p') . '.' | redraw
-  call system('tmux source-file ' . expand('%:p') . '; tmux display-message ' .
-        \ '"[tmux ⬅️  vim] Sourced ' . expand('%:p') . '"')
 endfunc
 
 func! s:jalcine_neovim_setup() abort

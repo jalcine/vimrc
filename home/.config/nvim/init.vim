@@ -8,12 +8,6 @@
 
 scriptencoding utf-8
 
-" Set my leader to the comma key.
-let g:mapleader=','
-
-" Set buffer-local mappings to the key above <Enter>
-let g:maplocalleader='\\'
-
 " Give it some pizzazz.
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 set guifont=monoOne\ 8

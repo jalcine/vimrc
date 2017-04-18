@@ -10,6 +10,9 @@ func! jalcine#plugins#configure() abort
     let g:NERDTreeMinimalUI = 1
     let g:NERDTreeAutoDeleteBuffer = 1
 
+    let g:codi#log = "$HOME/.config/nvim/logs/codi.log"
+    let g:pyenv#auto_create_ctags = 0
+
     let g:textobj#quote#educate = 0
     let g:textobj#sentence#abbreviations = [
                 \ '[ABCDIMPSUabcdegimpsv]',
@@ -121,7 +124,7 @@ func! jalcine#plugins#configure() abort
     let g:neomake_serialize = 1
     let g:neomake_serialize_abort_on_error = 1
     let g:neomake_verbose = 1
-    let g:neomake_logfile = expand('$HOME/.config/nvim/neomake.log')
+    let g:neomake_logfile = expand('$HOME/.config/nvim/logs/neomake.log')
     let g:neomake_javascript_enabled_makers = ['eslint']
     let g:neomake_python_enabled_makers = ['python', 'flake8', 'mypy']
     let g:neomake_scss_enabled_makers = ['scss-lint']
@@ -356,6 +359,14 @@ func! jalcine#plugins#reparse() abort
     PlugInstall
     PlugUpgrade
     PlugUpdate | PlugSnapshot! ${HOME}/.config/nvim/locked-plugin-list.vim
+endfunc
+
+func! jalcine#plugins#update_python() abort
+  let g:python_host_prog = g:pyenv#python_exec
+  let g:python3_host_prog = g:pyenv#python_exec
+  let g:codi#interpreters = {
+        \ 'bin': g:pyenv#python_exec
+        \ }
 endfunc
 
 func! jalcine#plugins#install() abort

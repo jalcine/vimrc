@@ -2,7 +2,7 @@
 " This has options that I tend to use on different machines a lot (like macOS
 " and Linux).
 
-func! jalcine#config#apply() abort
+func! jalcine#config#setup() abort
   if xolox#misc#os#is_mac()
     call jalcine#config#for_macosx()
   else " I don't run Neovim on anything else, so this has to be Linux.

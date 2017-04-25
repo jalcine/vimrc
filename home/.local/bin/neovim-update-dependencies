@@ -9,7 +9,7 @@ JS_REQS="${HOME}/.config/nvim/npm.list"
 
 pyenv local neovim-py3 && pyenv rehash
 pyenv exec pip-compile "${PY3_REQS}" --output-file requirements-py3.txt
-nvim +"plugins#reparse()" +qall
+nvim +"call jalcine#plugins#reparse()" +qall
 
 pyenv local neovim-py2 && pyenv rehash
 pyenv exec pip-compile "${PY_REQS}" --output-file requirements-py2.txt
@@ -20,5 +20,5 @@ then
   exit
 else
   bundle update
-  npm update -g < ${JS_REQS}
+  npm install -g $(cat $JS_REQS)
 fi

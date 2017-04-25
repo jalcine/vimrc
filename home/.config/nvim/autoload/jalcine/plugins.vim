@@ -7,6 +7,7 @@ let g:jalcine = {
       \ }
 
 func! jalcine#plugins#configure() abort
+  let g:ropevim_guess_project = 1
     let g:NERDTreeMinimalUI = 1
     let g:NERDTreeAutoDeleteBuffer = 1
 
@@ -77,6 +78,7 @@ func! jalcine#plugins#configure() abort
                 \ 'v'  : 'V',
                 \ 'V'  : 'B'
                 \ }
+    let g:airline#extensions#branch#format = 'Git_flow_branch_format'
     " }}}
 
     " {{{ nerd*
@@ -119,14 +121,15 @@ func! jalcine#plugins#configure() abort
     let g:ag_highlight = 1
     " }}}
 
-    let g:neomake_list_height = 3
-    let g:neomake_open_list = 1
-    let g:neomake_serialize = 1
-    let g:neomake_serialize_abort_on_error = 1
-    let g:neomake_verbose = 1
+    let g:neomake_list_height = 5
+    let g:neomake_open_list = 2
+    let g:neomake_serialize = 0
+    let g:neomake_serialize_abort_on_error = 0
+    let g:neomake_verbose = 3
+    let g:neomake_remove_invalid_entries = 1
     let g:neomake_logfile = expand('$HOME/.config/nvim/logs/neomake.log')
     let g:neomake_javascript_enabled_makers = ['eslint']
-    let g:neomake_python_enabled_makers = ['python', 'flake8', 'mypy']
+    let g:neomake_python_enabled_makers = ['python', 'flake8', 'mypy', 'pylint']
     let g:neomake_scss_enabled_makers = ['scss-lint']
     let g:neomake_sh_enabled_makers = ['shellcheck']
     let g:neomake_ruby_enabled_makers = ['rubocop', 'mri']
@@ -212,10 +215,7 @@ func! jalcine#plugins#define() abort
     call g:plug#begin(g:jalcine.plugins.dir)
 
     Plug 'rking/ag.vim'
-          \ | Plug 'roxma/nvim-completion-manager'
-          \ | Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
           \ | Plug 'Shougo/echodoc.vim'
-          \ | Plug 'roxma/nvim-cm-tern',  {'do': 'npm install'}
 
     Plug 'SirVer/ultisnips'
                 \ | Plug 'honza/vim-snippets'
@@ -230,6 +230,7 @@ func! jalcine#plugins#define() abort
                 \ | Plug 'direnv/direnv.vim'
                 \ | Plug 'tpope/vim-dotenv'
                 \ | Plug 'tpope/vim-obsession'
+                \ | Plug 'python-rope/ropevim'
 
     Plug 'heavenshell/vim-jsdoc'
                 \ | Plug 'KabbAmine/zeavim.vim'
@@ -290,6 +291,9 @@ func! jalcine#plugins#define() abort
                 \ | Plug 'vim-utils/vim-interruptless'
                 \ | Plug 'sjl/gundo.vim'
                 \ | Plug 'machakann/vim-highlightedyank'
+                \ | Plug 'idanarye/vim-merginal'
+                \ | Plug 'tommcdo/vim-fugitive-blame-ext'
+                \ | Plug 'jreybert/vimagit'
 
     Plug 'mhinz/vim-signify'
                 \ | Plug 'Chiel92/vim-autoformat'
@@ -303,6 +307,7 @@ func! jalcine#plugins#define() abort
 
     Plug 'vim-airline/vim-airline'
           \ | Plug 'vim-airline/vim-airline-themes'
+          \ | Plug 'renyard/vim-git-flow-format'
 
     Plug 'xolox/vim-misc'
                 \ | Plug 'xolox/vim-shell'

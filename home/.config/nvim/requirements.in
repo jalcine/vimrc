@@ -9,7 +9,8 @@ psutil
 pyflakes
 requests
 setproctitle
-typed-ast
 vim-vint
 yapf
 trollius
+lxml
+pip==9.0.1

@@ -39,6 +39,8 @@ func! jalcine#autocommand#apply() abort
     au FileType ini set ft=dosini
     au FileType markdown setl nolist
     au FileType vim setl keywordprg=:help
+
+    au User vim-pyenv-activate-post call jalcine#plugins#update_python()
   augroup END
 
   augroup jalcine_goyo

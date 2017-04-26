@@ -65,9 +65,19 @@ func! jalcine#autocommand#apply() abort
     autocmd FileType markdown call pencil#init()
     autocmd FileType notes    call pencil#init()
   augroup END
+
+	augroup vim-pyenv-custom-augroup
+	  autocmd! *
+	  autocmd User vim-pyenv-activate-post   call s:jedi_auto_force_py_version()
+	  autocmd User vim-pyenv-deactivate-post call s:jedi_auto_force_py_version()
+	augroup END
 endfunc
 
-" TODO: Move this to a goyo-specific file. Or maybe projects.
+function! s:jedi_auto_force_py_version() abort
+  let l:major_version = pyenv#python#get_internal_major_version()
+  call jedi#force_py_version(l:major_version)
+endfunction
+
 func! s:goyo_enter() abort
   Limelight
   call color#tweak()

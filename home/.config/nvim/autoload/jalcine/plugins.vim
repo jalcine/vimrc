@@ -13,6 +13,8 @@ func! jalcine#plugins#configure() abort
 
     let g:codi#log = "$HOME/.config/nvim/logs/codi.log"
     let g:pyenv#auto_create_ctags = 0
+    let g:pyenv#auto_activate = 1
+    let g:pyenv#auto_assign_ctags = 1
 
     let g:textobj#quote#educate = 0
     let g:textobj#sentence#abbreviations = [
@@ -125,7 +127,7 @@ func! jalcine#plugins#configure() abort
     let g:neomake_open_list = 2
     let g:neomake_serialize = 0
     let g:neomake_serialize_abort_on_error = 0
-    let g:neomake_verbose = 3
+    let g:neomake_verbose = 2
     let g:neomake_remove_invalid_entries = 1
     let g:neomake_logfile = expand('$HOME/.config/nvim/logs/neomake.log')
     let g:neomake_javascript_enabled_makers = ['eslint']

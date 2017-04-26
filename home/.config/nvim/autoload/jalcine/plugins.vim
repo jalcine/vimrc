@@ -41,7 +41,7 @@ func! jalcine#plugins#configure() abort
     let g:test#strategy = {
                 \ 'nearest': 'neovim',
                 \ 'file':    'dispatch',
-                \ 'suite':   'basic',
+                \ 'suite':   'neovim',
                 \ }
 
 
@@ -93,7 +93,6 @@ func! jalcine#plugins#configure() abort
     " {{{ ultisnips
     let g:snips_author = 'Jacky Alciné <yo@jacky.wtf>'
     let g:UltiSnipsEnableSnipMate = 1
-    let g:UltiSnipsUsePythonVersion = 3
     let g:UltiSnipsEditSplit = 'context'
     let g:UltiSnipsSnippetDirectories = [$HOME. '/.config/nvim/snippets']
     let g:UltiSnipsExpandTrigger = '<c-j>'
@@ -127,7 +126,7 @@ func! jalcine#plugins#configure() abort
     let g:neomake_open_list = 2
     let g:neomake_serialize = 0
     let g:neomake_serialize_abort_on_error = 0
-    let g:neomake_verbose = 2
+    let g:neomake_verbose = 1
     let g:neomake_remove_invalid_entries = 1
     let g:neomake_logfile = expand('$HOME/.config/nvim/logs/neomake.log')
     let g:neomake_javascript_enabled_makers = ['eslint']
@@ -191,8 +190,6 @@ func! jalcine#plugins#configure() abort
     let g:SimpylFold_docstring_preview = 1
     let g:python_highlight_all=1
 
-    let g:ycm_python_binary_path = g:python3_host_prog
-    let g:ycm_server_python_interpreter = g:python3_host_prog
     let g:ycm_autoclose_preview_window_after_completion = 1
     let g:ycm_collect_identifiers_from_tags_files = 0
     let g:ycm_add_preview_to_completeopt = 0
@@ -354,6 +351,7 @@ endfunc
 
 func! jalcine#plugins#setup() abort
     call jalcine#plugins#configure()
+    call jalcine#plugins#update_python()
     call jalcine#plugins#define()
     call jalcine#plugins#combind()
     filetype plugin indent on
@@ -366,14 +364,18 @@ func! jalcine#plugins#reparse() abort
     PlugInstall
     PlugUpgrade
     PlugUpdate | PlugSnapshot! ${HOME}/.config/nvim/locked-plugin-list.vim
+    UpdateRemotePlugins
 endfunc
 
 func! jalcine#plugins#update_python() abort
-  let g:python_host_prog = g:pyenv#python_exec
-  let g:python3_host_prog = g:pyenv#python_exec
-  let g:codi#interpreters = {
-        \ 'bin': g:pyenv#python_exec
-        \ }
+  " Switch the internal provider versions.
+  let g:python_host_prog=substitute(system("pyenv which python2"), '^\n*\(.\{-}\)\n*$', '\1', '')
+  let g:python3_host_prog=substitute(system("pyenv which python3"), '^\n*\(.\{-}\)\n*$', '\1', '')
+
+  " Update arguments.
+  " TODO: How do we know which one takes priority?
+  let g:ycm_python_binary_path = g:python_host_prog
+  let g:ycm_server_python_interpreter = g:python_host_prog
 endfunc
 
 func! jalcine#plugins#install() abort

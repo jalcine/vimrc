@@ -5,7 +5,7 @@
 
 scriptencoding utf-8
 
-if exists('$HOME/.config/nvim/local.vim')
+if exists(expand("$HOME/.config/nvim/local.vim"))
   source $HOME/.config/nvim/local.vim
 endif
 

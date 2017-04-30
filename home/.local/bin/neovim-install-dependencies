@@ -23,6 +23,7 @@ pyenv exec pip-sync requirements-py2.txt
 
 pyenv local neovim-py3 neovim-py2
 nvim +"call jalcine#plugins#install()" +qall
+nvim +"UpdateRemotePlugins" +qall
 # }}}
 
 # {{{ Extra language support

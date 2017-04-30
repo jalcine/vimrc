@@ -1,2 +1,3 @@
 -r requirements.in
-mypy-lang
+-e git+git://github.com/python/mypy.git#egg=mypy
+typed-ast

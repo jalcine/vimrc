@@ -39,6 +39,8 @@ func! jalcine#autocommand#apply() abort
     au FileType ini set ft=dosini
     au FileType markdown setl nolist
     au FileType vim setl keywordprg=:help
+
+    au User vim-pyenv-activate-post call jalcine#plugins#update_python()
   augroup END
 
   augroup jalcine_goyo
@@ -65,6 +67,30 @@ func! jalcine#autocommand#apply() abort
   augroup END
 endfunc
 
+func! s:goyo_enter() abort
+  Limelight
+  call color#tweak()
+  silent !tmux set status off
+  silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
+  set noshowmode
+  set noshowcmd
+  set scrolloff=999
+endfunction
+func! s:goyo_leave() abort
+  set scrolloff=5
+  set showcmd
+  set showmode
+  Limelight
+  call color#tweak()
+  silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
+  silent !tmux set status on
+endfunction
+func! s:reload_tmux() abort
+  redraw | echomsg '[tmux ➡️  vim] Sourced ' . expand('%:p') . '.' | redraw
+  call system('tmux source-file ' . expand('%:p') . '; tmux display-message ' .
+        \ '"[tmux ⬅️  vim] Sourced ' . expand('%:p') . '"')
+endfunc
+
 func! s:jalcine_neovim_setup() abort
   let l:order = [
         \ 'abbreviations',
@@ -82,6 +108,7 @@ func! s:jalcine_neovim_setup() abort
   if !argc()
     Startify
     NERDTree
+    Tagbar
     wincmd w
   endif
 endfunc

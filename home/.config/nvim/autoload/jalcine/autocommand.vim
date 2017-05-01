@@ -41,6 +41,7 @@ func! jalcine#autocommand#apply() abort
     au FileType vim setl keywordprg=:help
 
     au User vim-pyenv-activate-post call jalcine#plugins#update_python()
+    au User RooterChDir call <SID>update_directory() 
   augroup END
 
   augroup jalcine_goyo
@@ -110,4 +111,10 @@ func! s:jalcine_neovim_setup() abort
     Tagbar
     wincmd w
   endif
+endfunc
+
+func! s:update_directory() abort
+  let l:dir = FindRootDirectory()
+  call jalcine#projects#enter_directory(l:dir)
+  let g:test#project_root = l:dir
 endfunc

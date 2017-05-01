@@ -13,8 +13,8 @@ func! jalcine#plugins#configure() abort
 
     let g:codi#log = "$HOME/.config/nvim/logs/codi.log"
     let g:pyenv#auto_create_ctags = 0
-    let g:pyenv#auto_activate = 1
-    let g:pyenv#auto_assign_ctags = 1
+    let g:pyenv#auto_activate = 0
+    let g:pyenv#auto_assign_ctags = 0
 
     let g:textobj#quote#educate = 0
     let g:textobj#sentence#abbreviations = [
@@ -48,7 +48,8 @@ func! jalcine#plugins#configure() abort
     let g:plug_window = 'botright new | resize 5'
 
     let g:rooter_use_lcd = 1
-    let g:rooter_silent_chdir = 1
+    let g:rooter_silent_chdir = 0
+    let g:rooter_resolve_links = 1
 
     let g:notes_suffix = '.txt'
 
@@ -368,9 +369,9 @@ func! jalcine#plugins#reparse() abort
 endfunc
 
 func! jalcine#plugins#update_python() abort
-  " Switch the internal provider versions.
-  let g:python_host_prog=substitute(system("pyenv which python2"), '^\n*\(.\{-}\)\n*$', '\1', '')
-  let g:python3_host_prog=substitute(system("pyenv which python3"), '^\n*\(.\{-}\)\n*$', '\1', '')
+  " Switch the internal provider versions that we'll want to use for Python.
+  let g:python_host_prog=substitute(system("PYENV_VERSION=neovim-py2 pyenv which python2"), '^\n*\(.\{-}\)\n*$', '\1', '')
+  let g:python3_host_prog=substitute(system("PYENV_VERSION=neovim-py3 pyenv which python3"), '^\n*\(.\{-}\)\n*$', '\1', '')
 
   " Update arguments.
   " TODO: How do we know which one takes priority?

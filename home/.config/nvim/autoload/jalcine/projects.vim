@@ -19,3 +19,7 @@ func! jalcine#projects#open_new(dir) abort
   endfor
   FzfGFiles
 endfunc
+
+func! jalcine#projects#enter_directory(dir) abort
+  " TODO: Update directory.
+endfunc

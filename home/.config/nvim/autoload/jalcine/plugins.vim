@@ -253,7 +253,7 @@ func! jalcine#plugins#define() abort
                 \ | Plug 'mattesgroeger/vim-bookmarks'
 
     " {{{ Code Discovery
-    Plug 'TagHighlight'
+    Plug 'vim-scripts/TagHighlight'
     Plug 'rdnetto/YCM-Generator', { 'branch': 'stable', 'on': 'YcmGenerateConfig' }
                 \ | Plug 'Valloric/YouCompleteMe', { 'do': 'neovim-install-ycm' }
                 \ | Plug 'xolox/vim-easytags'
@@ -327,8 +327,8 @@ func! jalcine#plugins#define() abort
                 \ | Plug 'tmux-plugins/vim-tmux-focus-events'
 
     Plug 'vimperator/vimperator.vim'
-    Plug 'SyntaxRange'
-    Plug 'utl.vim'
+    Plug 'vim-scripts/SyntaxRange'
+    Plug 'vim-scripts/utl.vim'
     Plug 'mattn/calendar-vim'
     Plug 'fisadev/vim-isort'
     Plug 'heavenshell/vim-pydocstring'

@@ -257,6 +257,7 @@ func! jalcine#plugins#define() abort
           \ | Plug 'xolox/vim-easytags'
           \ | Plug 'majutsushi/tagbar'
           \ | Plug 'othree/jspc.vim'
+
     Plug 'scrooloose/nerdtree'
                 \ | Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
                 \ | Plug 'low-ghost/nerdtree-fugitive'
@@ -325,8 +326,8 @@ func! jalcine#plugins#define() abort
                 \ | Plug 'tmux-plugins/vim-tmux-focus-events'
 
     Plug 'vimperator/vimperator.vim'
-    Plug 'SyntaxRange'
-    Plug 'utl.vim'
+    Plug 'vim-scripts/SyntaxRange'
+    Plug 'vim-scripts/utl.vim'
     Plug 'mattn/calendar-vim'
     Plug 'fisadev/vim-isort'
     Plug 'heavenshell/vim-pydocstring'

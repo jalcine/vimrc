@@ -254,11 +254,9 @@ func! jalcine#plugins#define() abort
 
     " {{{ Code Discovery
     Plug 'TagHighlight'
-    Plug 'rdnetto/YCM-Generator', { 'branch': 'stable', 'on': 'YcmGenerateConfig' }
-                \ | Plug 'Valloric/YouCompleteMe', { 'do': 'neovim-install-ycm' }
-                \ | Plug 'xolox/vim-easytags'
-                \ | Plug 'majutsushi/tagbar'
-                \ | Plug 'othree/jspc.vim'
+          \ | Plug 'xolox/vim-easytags'
+          \ | Plug 'majutsushi/tagbar'
+          \ | Plug 'othree/jspc.vim'
     Plug 'scrooloose/nerdtree'
                 \ | Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
                 \ | Plug 'low-ghost/nerdtree-fugitive'

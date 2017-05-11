@@ -217,7 +217,6 @@ endfunc
 func! jalcine#plugins#define() abort
   call g:plug#begin(g:jalcine.plugins.dir)
 
-  Plug 'Chiel92/vim-autoformat'
   " {{{ External support
   Plug 'KabbAmine/zeavim.vim'
   Plug 'guns/xterm-color-table.vim'
@@ -242,7 +241,9 @@ func! jalcine#plugins#define() abort
 
   " }}}
   " {{{ Editor Enhancement
+  Plug 'Chiel92/vim-autoformat'
   Plug 'scrooloose/nerdcommenter'
+  Plug 'Valloric/YouCompleteMe', { 'do': 'neovim-install-ycm' }
   Plug 'vim-airline/vim-airline'
         \ | Plug 'vim-airline/vim-airline-themes'
   Plug 'vim-scripts/SyntaxRange'
@@ -347,12 +348,11 @@ endfunc
 func! jalcine#plugins#reparse() abort
   call jalcine#plugins#configure()
   call jalcine#plugins#define()
-  PlugClean
-  PlugUpdate
-  PlugInstall
-  PlugUpgrade
-  PlugSnapshot! ${HOME}/.config/nvim/locked-plugin-list.vim
-  UpdateRemotePlugins
+  PlugClean!
+        \ | PlugUpdate
+        \ | PlugInstall
+        \ | PlugUpgrade
+        \ | PlugSnapshot! ${HOME}/.config/nvim/locked-plugin-list.vim
 endfunc
 
 func! jalcine#plugins#update_python() abort
@@ -362,10 +362,6 @@ func! jalcine#plugins#update_python() abort
 
   " Update arguments.
   " TODO: How do we know which one takes priority for the particular project?
-  let g:ycm_python_binary_path = g:python_host_prog
-  let g:ycm_server_python_interpreter = g:python_host_prog
-endfunc
-
-func! jalcine#plugins#install() abort
-  source ${HOME}/.config/nvim/locked-plugin-list.vim
+  let g:ycm_python_binary_path = g:python3_host_prog
+  let g:ycm_server_python_interpreter = g:python3_host_prog
 endfunc

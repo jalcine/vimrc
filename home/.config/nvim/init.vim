@@ -18,7 +18,7 @@ set t_Co=256
 
 " {{{ Options
 set laststatus=2
-set showcmd
+set showcmd cmdheight=2
 set exrc
 set number relativenumber numberwidth=3
 set path=.,/usr/local/include,/usr/include,$HOME/.local/include

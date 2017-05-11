@@ -22,8 +22,8 @@ pyenv exec pip install pip-tools
 pyenv exec pip-sync requirements-py2.txt
 
 pyenv local neovim-py3 neovim-py2
-nvim +"call jalcine#plugins#install()" +qall
-nvim +"UpdateRemotePlugins" +qall
+nvim +":call jalcine#plugins#reparse() | qall"
+nvim +":PlugInstall" +":UpdateRemotePlugins" +":qall"
 # }}}
 
 # {{{ Extra language support
@@ -32,6 +32,7 @@ then
   exit
 else
   bundle install --gemfile="${RB_REQS}"
+  # shellcheck disable=SC2046,SC2086
   npm install -g $(cat $JS_REQS)
   cpanm Perl::Tidy
 fi

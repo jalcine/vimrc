@@ -1,8 +1,4 @@
-" TODO: Add documentation.
-
 scriptencoding utf-8
-
-
 
 func! jalcine#autocommand#apply() abort
   augroup jalcine
@@ -86,6 +82,7 @@ func! s:goyo_leave() abort
   silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
   silent !tmux set status on
 endfunction
+
 func! s:reload_tmux() abort
   redraw | echomsg '[tmux ➡️  vim] Sourced ' . expand('%:p') . '.' | redraw
   call system('tmux source-file ' . expand('%:p') . '; tmux display-message ' .
@@ -107,10 +104,7 @@ func! s:jalcine_neovim_setup() abort
   endfor
 
   if !argc()
-    Startify
-    NERDTree
-    Tagbar
-    wincmd w
+    call jalcine#projects#show_initial_view()
   endif
 endfunc
 

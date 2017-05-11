@@ -5,19 +5,16 @@
 # TODO: Merge update + install scripts.
 
 cd "${HOME}/.config/nvim" || exit
-pyenv virtualenv 2.7.12 neovim-py2 -v
-pyenv virtualenv 3.5.2 neovim-py3 -v
+pyenv virtualenv 2.7.12 neovim-py2 -vf
+pyenv virtualenv 3.5.2 neovim-py3 -vf
 
 # Install language dependencies. {{{
 RB_REQS="${HOME}/.config/nvim/Gemfile"
 JS_REQS="${HOME}/.config/nvim/npm.list"
 
 # Handle Python {{{
-pyenv local neovim-py3 && pyenv rehash
 pyenv exec pip3 install pip-tools
 pyenv exec pip-sync requirements-py3.txt
-
-pyenv local neovim-py2 && pyenv rehash
 pyenv exec pip install pip-tools
 pyenv exec pip-sync requirements-py2.txt
 

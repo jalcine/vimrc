@@ -90,7 +90,17 @@ func! jalcine#plugins#configure() abort
   let g:NERDCompactSexyComs = 1
   let g:NERDSpaceDelims = 1
   let g:NERDRemoveExtraSpaces = 1
+  let g:NERDTrimTrailingWhitespace = 1
   " }}}
+  
+  " {{{ License stuff
+  let g:licenses_copyright_holders_name = 'Jacky Alciné <yo@jacky.wtf>'
+  let g:licenses_authors_name = 'Jacky Alciné'
+  let g:licenses_default_commands = ['agpl', 'mit', 'apache']
+  " }}}
+  
+  let g:vim_markdown_toc_autofit = 1
+  let g:vim_markdown_frontmatter = 1
 
   " {{{ ultisnips
   let g:snips_author = 'Jacky Alciné <yo@jacky.wtf>'
@@ -182,8 +192,6 @@ func! jalcine#plugins#configure() abort
   let g:goyo_height = '85%'
   let g:goyo_linenr = 0
 
-  let g:autoformat_verbosemode = 1
-
   let g:tex_fold_enabled = 1
   let g:vimsyn_folding = 'af'
   let g:xml_syntax_folding = 1
@@ -241,8 +249,10 @@ func! jalcine#plugins#define() abort
 
   " }}}
   " {{{ Editor Enhancement
-  Plug 'Chiel92/vim-autoformat'
+  Plug 'sbdchd/neoformat'
   Plug 'scrooloose/nerdcommenter'
+
+  Plug 'antoyo/vim-licenses'
   Plug 'Valloric/YouCompleteMe', { 'do': 'neovim-install-ycm' }
   Plug 'vim-airline/vim-airline'
         \ | Plug 'vim-airline/vim-airline-themes'
@@ -278,19 +288,20 @@ func! jalcine#plugins#define() abort
   Plug 'terryma/vim-multiple-cursors'
   " }}}
   " {{{ Language Support
+  Plug 'lervag/vimtex', { 'for': 'latex,tex' }
   Plug 'sheerun/vim-polyglot' " General language support.
   Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }
   Plug 'bpstahlman/txtfmt', { 'for': 'text.fmt' }
   Plug 'fatih/vim-go', { 'for': 'go' }
-  Plug 'fisadev/vim-isort', { 'for': 'python' }
   Plug 'hashivim/vim-terraform'
   Plug 'heavenshell/vim-jsdoc', { 'for': 'javascript' }
-  Plug 'heavenshell/vim-pydocstring', { 'for': 'python' }
   Plug 'jceb/vim-orgmode', { 'for': 'org' }
-  Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
-  Plug 'kana/vim-textobj-user', { 'for' : 'text' }
   Plug 'lambdalisue/vim-pyenv', { 'for': 'python' }
-  Plug 'python-rope/ropevim', { 'for': 'python' }
+        \ | Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
+        \ | Plug 'fisadev/vim-isort', { 'for': 'python' }
+        \ | Plug 'python-rope/ropevim', { 'for': 'python' }
+        \ | Plug 'heavenshell/vim-pydocstring', { 'for': 'python' }
+  Plug 'kana/vim-textobj-user', { 'for' : 'text' }
   Plug 'reedes/vim-litecorrect', { 'for' : 'text,markdown,org' }
   Plug 'reedes/vim-pencil', { 'for' : 'text,markdown,org' }
   Plug 'reedes/vim-textobj-quote', { 'for' : 'text,markdown,org' }
@@ -345,14 +356,22 @@ func! jalcine#plugins#setup() abort
   filetype plugin indent on
 endfunc
 
+func! jalcine#plugins#update() abort
+  PlugUpdate
+        \ | PlugUpgrade 
+        \ | PlugSnapshot! ${HOME}/.config/nvim/locked-plugin-list.vim
+endfunc
+
+func! jalcine#plugins#install() abort
+  source ${HOME}/.config/nvim/locked-plugin-list.vim
+endfunc
+
 func! jalcine#plugins#reparse() abort
   call jalcine#plugins#configure()
   call jalcine#plugins#define()
   PlugClean!
-        \ | PlugUpdate
-        \ | PlugInstall
-        \ | PlugUpgrade
-        \ | PlugSnapshot! ${HOME}/.config/nvim/locked-plugin-list.vim
+  call jalcine#plugins#update()
+  call jalcine#plugins#install()
 endfunc
 
 func! jalcine#plugins#update_python() abort

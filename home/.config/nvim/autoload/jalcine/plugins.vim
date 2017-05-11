@@ -301,11 +301,12 @@ func! jalcine#plugins#define() abort
         \ | Plug 'fisadev/vim-isort', { 'for': 'python' }
         \ | Plug 'python-rope/ropevim', { 'for': 'python' }
         \ | Plug 'heavenshell/vim-pydocstring', { 'for': 'python' }
-  Plug 'kana/vim-textobj-user', { 'for' : 'text' }
+  Plug 'kana/vim-textobj-user'
   Plug 'reedes/vim-litecorrect', { 'for' : 'text,markdown,org' }
   Plug 'reedes/vim-pencil', { 'for' : 'text,markdown,org' }
-  Plug 'reedes/vim-textobj-quote', { 'for' : 'text,markdown,org' }
-  Plug 'reedes/vim-textobj-sentence', { 'for' : 'text,markdown,org' }
+  Plug 'kana/vim-textobj-user', { 'for' : 'text,markdown,org' }
+        \ | Plug 'reedes/vim-textobj-quote', { 'for' : 'text,markdown,org' }
+        \ | Plug 'reedes/vim-textobj-sentence', { 'for' : 'text,markdown,org' }
   Plug 'reedes/vim-wordy', { 'for' : 'text,markdown,org' }
   Plug 'tpope/vim-jdaddy', { 'for': 'json' }
   Plug 'tpope/vim-rbenv', { 'for': 'ruby' }

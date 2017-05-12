@@ -9,7 +9,9 @@
 scriptencoding utf-8
 
 " Give it some pizzazz.
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
+      \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
+      \,sm:block-blinkwait175-blinkoff150-blinkon175
 set guifont=monoOne\ 8
 if has('termguicolors')
   set termguicolors
@@ -18,7 +20,7 @@ set t_Co=256
 
 " {{{ Options
 set laststatus=2
-set showcmd
+set showcmd cmdheight=2
 set exrc
 set number relativenumber numberwidth=3
 set path=.,/usr/local/include,/usr/include,$HOME/.local/include

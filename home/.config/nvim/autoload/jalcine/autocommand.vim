@@ -1,8 +1,4 @@
-" TODO: Add documentation.
-
 scriptencoding utf-8
-
-
 
 func! jalcine#autocommand#apply() abort
   augroup jalcine
@@ -28,10 +24,11 @@ func! jalcine#autocommand#apply() abort
     au FileType gitcommit setl spell
 
     " Enable Neomake to run on builds.
-    au BufWritePost  * Neomake
+    au BufReadPost,BufWritePost  * Neomake
 
     " Clear Fugitive buffers.
     au BufReadPost fugitive://* set bufhidden=delete
+    au BufRead COMMIT_EDITMSG execute "normal! gg" | execute "normal! O" | startinsert
 
     au BufEnter * let &titlestring=expand('%:p')
 
@@ -51,20 +48,26 @@ func! jalcine#autocommand#apply() abort
 
   augroup textobj_quote
     au!
-    autocmd FileType markdown,notes,textile,text call textobj#quote#init()
+    autocmd FileType markdown call textobj#quote#init()
+    autocmd FileType notes    call textobj#quote#init()
+    autocmd FileType help     call textobj#quote#init()
+    autocmd FileType text     call textobj#quote#init()
   augroup END
 
   augroup textobj_sentence
     au!
     autocmd FileType markdown call textobj#sentence#init()
-    autocmd FileType notes call textobj#sentence#init()
-    autocmd FileType textile call textobj#sentence#init()
+    autocmd FileType notes    call textobj#sentence#init()
+    autocmd FileType help     call textobj#sentence#init()
+    autocmd FileType text     call textobj#sentence#init()
   augroup END
 
   augroup pencil
     autocmd!
     autocmd FileType markdown call pencil#init()
     autocmd FileType notes    call pencil#init()
+    autocmd FileType help     call pencil#init()
+    autocmd FileType text     call pencil#init()
   augroup END
 endfunc
 
@@ -86,6 +89,7 @@ func! s:goyo_leave() abort
   silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
   silent !tmux set status on
 endfunction
+
 func! s:reload_tmux() abort
   redraw | echomsg '[tmux ➡️  vim] Sourced ' . expand('%:p') . '.' | redraw
   call system('tmux source-file ' . expand('%:p') . '; tmux display-message ' .
@@ -107,10 +111,7 @@ func! s:jalcine_neovim_setup() abort
   endfor
 
   if !argc()
-    Startify
-    NERDTree
-    Tagbar
-    wincmd w
+    call jalcine#projects#show_initial_view()
   endif
 endfunc
 

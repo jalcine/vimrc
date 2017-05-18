@@ -119,4 +119,5 @@ func! s:update_directory() abort
   let l:dir = FindRootDirectory()
   call jalcine#projects#enter_directory(l:dir)
   let g:test#project_root = l:dir
+  exec(':NERDTreeCWD | :NERDTreeFind')
 endfunc

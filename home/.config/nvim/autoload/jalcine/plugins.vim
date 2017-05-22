@@ -117,7 +117,7 @@ func! jalcine#plugins#configure() abort
   let g:bookmark_highlight_lines = 1
   let g:bookmark_auto_close = 1
   let g:bookmark_auto_save = 1
-  let g:bookmark_auto_save_file = expand("$HOME/.config/nvim/bookmarks.txt")
+  let g:bookmark_auto_save_file = expand('$HOME/.config/nvim/bookmarks.txt')
   let g:bookmark_location_list = 1
   " "}}
 
@@ -254,6 +254,11 @@ func! jalcine#plugins#define() abort
 
   Plug 'antoyo/vim-licenses'
   Plug 'Valloric/YouCompleteMe', { 'do': 'neovim-install-ycm' }
+        \ | Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
+  Plug 'jeaye/color_coded', {
+        \ 'do': 'cmake . && make && make install',
+        \ 'for': 'c,cpp',
+        \ 'on': 'CCtoggle' }
   Plug 'vim-airline/vim-airline'
         \ | Plug 'vim-airline/vim-airline-themes'
   Plug 'vim-scripts/SyntaxRange'
@@ -295,13 +300,14 @@ func! jalcine#plugins#define() abort
   Plug 'fatih/vim-go', { 'for': 'go' }
   Plug 'hashivim/vim-terraform'
   Plug 'heavenshell/vim-jsdoc', { 'for': 'javascript' }
-  Plug 'jceb/vim-orgmode', { 'for': 'org' }
+  Plug 'jceb/vim-orgmode'
   Plug 'lambdalisue/vim-pyenv', { 'for': 'python' }
         \ | Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
         \ | Plug 'fisadev/vim-isort', { 'for': 'python' }
         \ | Plug 'python-rope/ropevim', { 'for': 'python' }
         \ | Plug 'heavenshell/vim-pydocstring', { 'for': 'python' }
   Plug 'kana/vim-textobj-user'
+  Plug 'tpope/vim-scriptease'
   Plug 'reedes/vim-litecorrect', { 'for' : 'text,markdown,org' }
   Plug 'reedes/vim-pencil', { 'for' : 'text,markdown,org' }
   Plug 'kana/vim-textobj-user', { 'for' : 'text,markdown,org' }
@@ -345,8 +351,8 @@ func! jalcine#plugins#combind() abort
 endfunc
 
 func! jalcine#plugins#open(name) abort
-  let l:path = g:jalcine.plugins.dir . "/" . a:name
-  exec(":edit " . l:path)
+  let l:path = g:jalcine.plugins.dir . '/' . a:name
+  exec(':edit ' . l:path)
 endfunc
 
 func! jalcine#plugins#setup() abort
@@ -370,15 +376,15 @@ endfunc
 func! jalcine#plugins#reparse() abort
   call jalcine#plugins#configure()
   call jalcine#plugins#define()
-  PlugClean!
+  exec('PlugClean!')
   call jalcine#plugins#update()
   call jalcine#plugins#install()
 endfunc
 
 func! jalcine#plugins#update_python() abort
   " Switch the internal provider versions that we'll want to use for Python.
-  let g:python_host_prog=substitute(system("PYENV_VERSION=neovim-py2 pyenv which python2"), '^\n*\(.\{-}\)\n*$', '\1', '')
-  let g:python3_host_prog=substitute(system("PYENV_VERSION=neovim-py3 pyenv which python3"), '^\n*\(.\{-}\)\n*$', '\1', '')
+  let g:python_host_prog=substitute(system('PYENV_VERSION=neovim-py2 pyenv which python2'), '^\n*\(.\{-}\)\n*$', '\1', '')")
+  let g:python3_host_prog=substitute(system('PYENV_VERSION=neovim-py3 pyenv which python3'), '^\n*\(.\{-}\)\n*$', '\1', '')")
 
   " Update arguments.
   " TODO: How do we know which one takes priority for the particular project?

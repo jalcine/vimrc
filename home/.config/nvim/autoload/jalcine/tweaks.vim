@@ -27,6 +27,8 @@ func! jalcine#tweaks#goyo_enter() abort
   set noshowmode
   set noshowcmd
   set scrolloff=999
+  NERDTreeClose
+  TagbarClose
 endfunction
 
 func! jalcine#tweaks#goyo_leave() abort

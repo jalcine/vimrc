@@ -8,14 +8,10 @@
 
 scriptencoding utf-8
 
-" Set my leader to the comma key.
-let g:mapleader=','
-
-" Set buffer-local mappings to the key above <Enter>
-let g:maplocalleader='\\'
-
 " Give it some pizzazz.
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
+      \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
+      \,sm:block-blinkwait175-blinkoff150-blinkon175
 set guifont=monoOne\ 8
 if has('termguicolors')
   set termguicolors
@@ -24,7 +20,7 @@ set t_Co=256
 
 " {{{ Options
 set laststatus=2
-set showcmd
+set showcmd cmdheight=2
 set exrc
 set number relativenumber numberwidth=3
 set path=.,/usr/local/include,/usr/include,$HOME/.local/include
@@ -73,8 +69,7 @@ set lazyredraw
 set foldenable foldcolumn=1 foldlevel=1 foldminlines=5
       \ foldnestmax=3 foldlevelstart=1
 
-set spelllang=en_us,fr
-set spellsuggest=double,7
+set spelllang=en_us,fr spellsuggest=double,7
 set spellfile=~/.config/nvim/dict/custom.utf-8.add
 
 set splitbelow splitright

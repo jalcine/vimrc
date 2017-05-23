@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 ruby '2.3.1'
@@ -6,4 +8,5 @@ gem 'neovim'
 gem 'awesome_print'
 gem 'rubocop'
 gem 'sass'
+gem 'scss-lint'
 gem 'ruby-beautify'

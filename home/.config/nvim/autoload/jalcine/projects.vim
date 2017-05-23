@@ -9,6 +9,7 @@
 
 func! jalcine#projects#open_new(dir) abort
   tabnew | tchdir a:dir
+  Tagbar | NERDTreeTabsOpen | wincmd w
 
   let l:doc_files = ['README.md', 'README.markdown', 'README']
   for doc_file in l:doc_files
@@ -17,9 +18,20 @@ func! jalcine#projects#open_new(dir) abort
       break
     endif
   endfor
+
+  wincmd w
+  call jalcine#projects#enter_directory(a:dir)
   FzfGFiles
 endfunc
 
+func! jalcine#projects#show_initial_view() abort
+    Startify
+    NERDTreeTabsOpen
+    Tagbar
+    wincmd w
+endfunc
+
 func! jalcine#projects#enter_directory(dir) abort
-  " TODO: Update directory.
+  " TODO: Update directory for projects.
+  NERDTreeCWD
 endfunc

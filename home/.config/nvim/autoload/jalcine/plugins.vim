@@ -365,12 +365,13 @@ endfunc
 
 func! jalcine#plugins#update() abort
   PlugUpdate
-        \ | PlugUpgrade 
+        \ | PlugUpgrade
         \ | PlugSnapshot! ${HOME}/.config/nvim/locked-plugin-list.vim
 endfunc
 
 func! jalcine#plugins#install() abort
   source ${HOME}/.config/nvim/locked-plugin-list.vim
+  exec('UpdateRemotePlugins')
 endfunc
 
 func! jalcine#plugins#reparse() abort

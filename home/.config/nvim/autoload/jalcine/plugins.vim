@@ -3,6 +3,11 @@ scriptencoding utf-8
 let g:jalcine = {
       \ 'plugins': {
       \   'dir': expand('$HOME/.config/nvim/plugins')
+      \ },
+      \ 'color': {
+      \   'scheme': 'nord',
+      \   'airline_theme': 'nord',
+      \   'background': 'dark'
       \ }
       \ }
 
@@ -228,7 +233,7 @@ func! jalcine#plugins#define() abort
   " {{{ External support
   Plug 'KabbAmine/zeavim.vim'
   Plug 'guns/xterm-color-table.vim'
-  Plug 'flazz/vim-colorschemes'
+  Plug 'arcticicestudio/nord-vim', { 'tag': 'v0.5.0' }
   Plug 'tmux-plugins/vim-tmux'
         \ | Plug 'tmux-plugins/vim-tmux-focus-events'
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }

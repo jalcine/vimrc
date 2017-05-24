@@ -97,13 +97,13 @@ func! jalcine#plugins#configure() abort
   let g:NERDRemoveExtraSpaces = 1
   let g:NERDTrimTrailingWhitespace = 1
   " }}}
-  
+
   " {{{ License stuff
   let g:licenses_copyright_holders_name = 'Jacky Alciné <yo@jacky.wtf>'
   let g:licenses_authors_name = 'Jacky Alciné'
   let g:licenses_default_commands = ['agpl', 'mit', 'apache']
   " }}}
-  
+
   let g:vim_markdown_toc_autofit = 1
   let g:vim_markdown_frontmatter = 1
 
@@ -298,8 +298,8 @@ func! jalcine#plugins#define() abort
   Plug 'terryma/vim-multiple-cursors'
   " }}}
   " {{{ Language Support
-  Plug 'lervag/vimtex', { 'for': 'latex,tex' }
   Plug 'sheerun/vim-polyglot' " General language support.
+  Plug 'lervag/vimtex', { 'for': 'latex,tex' }
   Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }
   Plug 'bpstahlman/txtfmt', { 'for': 'text.fmt' }
   Plug 'fatih/vim-go', { 'for': 'go' }
@@ -313,12 +313,12 @@ func! jalcine#plugins#define() abort
         \ | Plug 'heavenshell/vim-pydocstring', { 'for': 'python' }
   Plug 'kana/vim-textobj-user'
   Plug 'tpope/vim-scriptease'
-  Plug 'reedes/vim-litecorrect', { 'for' : 'text,markdown,org' }
-  Plug 'reedes/vim-pencil', { 'for' : 'text,markdown,org' }
-  Plug 'kana/vim-textobj-user', { 'for' : 'text,markdown,org' }
-        \ | Plug 'reedes/vim-textobj-quote', { 'for' : 'text,markdown,org' }
-        \ | Plug 'reedes/vim-textobj-sentence', { 'for' : 'text,markdown,org' }
-  Plug 'reedes/vim-wordy', { 'for' : 'text,markdown,org' }
+  Plug 'reedes/vim-litecorrect'
+  Plug 'reedes/vim-pencil'
+  Plug 'kana/vim-textobj-user'
+        \ | Plug 'reedes/vim-textobj-quote'
+        \ | Plug 'reedes/vim-textobj-sentence'
+  Plug 'reedes/vim-wordy'
   Plug 'tpope/vim-jdaddy', { 'for': 'json' }
   Plug 'tpope/vim-rbenv', { 'for': 'ruby' }
   Plug 'tmhedberg/SimpylFold', { 'for': 'python' }
@@ -347,12 +347,15 @@ func! jalcine#plugins#define() abort
         \ | Plug 'mattn/gist-vim', { 'on': 'Gist' }
   Plug 'renyard/vim-git-flow-format'
   " }}}
-  
+
   call g:plug#end()
 endfunc
 
 func! jalcine#plugins#combind() abort
-  let g:startify_bookmarks = bm#all_files()
+  let g:startify_bookmarks = bm#all_files() 
+        \ + [
+        \ '~/.config/nvim/init.vim',
+        \ ]
 endfunc
 
 func! jalcine#plugins#open(name) abort

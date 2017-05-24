@@ -1,4 +1,10 @@
 func! jalcine#color#tweak() abort
+  call jalcine#color#modify_highlighting()
+
+  let g:nord_terminal_italics = 1
+endfunc
+
+func! jalcine#color#modify_highlighting() abort
   hi notesDoubleQuoted gui=italic cterm=italic
   hi notesSingleQuoted gui=italic cterm=italic
   hi notesBold cterm=bold gui=bold

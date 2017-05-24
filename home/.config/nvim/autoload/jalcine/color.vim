@@ -15,9 +15,10 @@ func! jalcine#color#tweak() abort
 endfunc
 
 func! jalcine#color#apply() abort
-  colorscheme badwolf
-  call airline#switch_theme('badcat')
-  set background=dark
+  syntax on
+  exec('colorscheme ' . g:jalcine.color.scheme)
+  call airline#switch_theme(g:jalcine.color.airline_theme)
+  exec('set background=' . g:jalcine.color.background)
 endfunc
 
 func! jalcine#color#setup() abort

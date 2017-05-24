@@ -3,6 +3,11 @@ scriptencoding utf-8
 let g:jalcine = {
       \ 'plugins': {
       \   'dir': expand('$HOME/.config/nvim/plugins')
+      \ },
+      \ 'color': {
+      \   'scheme': 'onedark',
+      \   'airline_theme': 'onedark',
+      \   'background': 'dark'
       \ }
       \ }
 

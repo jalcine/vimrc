@@ -11,7 +11,7 @@ pyenv local neovim-py3 && pyenv rehash
 pyenv exec pip-compile "${PY3_REQS}" --output-file requirements-py3.txt
 
 pyenv local neovim-py2 && pyenv rehash
-pyenv exec pip-compile "${PY_REQS}" --output-file requirements-py2.txt
+pyenv exec pip-compile "${PY_REQS}" --output-file requirements.txt
 pyenv local neovim-py3 neovim-py2
 
 nvim +"call jalcine#plugins#update()" +qall

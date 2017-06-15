@@ -4,8 +4,7 @@
 " The goal of this is to encapsulate some repetitive actions I take when I'm
 " working on code.
 "
-" TODO:
-"   * Write out a way to open up a new project in a tab.
+" TODO: Write out a way to open up a new project in a tab.
 
 func! jalcine#projects#open_new(dir) abort
   tabnew
@@ -23,16 +22,18 @@ func! jalcine#projects#open_new(dir) abort
   endfor
 
   call jalcine#projects#enter_directory(a:dir)
-  FzfGFiles
+  exec('FzfGFiles ' . a:dir)
+  TagbarOpen
 endfunc
 
 func! jalcine#projects#show_initial_view() abort
-    Startify
+    Startify | TagbarOpen
     NERDTreeTabsOpen
     Tagbar
+    wincmd w
 endfunc
 
 func! jalcine#projects#enter_directory(dir) abort
-  " TODO: Update directory for projects.
-  NERDTreeCWD
+  exec('tchdir ' . a:dir)
+  exec(':NERDTreeFind | :NERDTreeCWD | :NERDTreeFocus')
 endfunc

@@ -15,6 +15,10 @@ func! jalcine#plugins#configure() abort
   let g:echodoc#enable_at_startup = 1
   let g:ropevim_guess_project = 1
 
+  let g:neoformat_basic_format_align = 1
+  let g:neoformat_basic_format_retab = 1
+  let g:neoformat_basic_format_trim = 1
+
   let g:codi#log = expand('$HOME/.config/nvim/logs/codi.log')
   let g:pyenv#auto_create_ctags = 0
   let g:pyenv#auto_activate = 0
@@ -89,16 +93,16 @@ func! jalcine#plugins#configure() abort
   " }}}
 
   " {{{ nerd*
-  let g:NERDCreateDefaultMappings = 1
   let g:NERDCompactSexyComs = 1
-  let g:NERDSpaceDelims = 1
+  let g:NERDCreateDefaultMappings = 1
   let g:NERDRemoveExtraSpaces = 1
-  let g:NERDTrimTrailingWhitespace = 1
+  let g:NERDSpaceDelims = 1
+  let g:NERDTreeAutoDeleteBuffer = 1
   let g:NERDTreeMinimalUI = 1
-  let g:NERDTreeAutoDeleteBuffer = 1
   let g:NERDTreeWinSize = 28
-  let g:NERDTreeWinPos = 'right'
-  let g:NERDTreeAutoDeleteBuffer = 1
+  let g:NERDTrimTrailingWhitespace = 1
+  let g:nerdtree_tabs_autofind = 1
+  let g:nerdtree_tabs_focus_on_files = 1
   " }}}
 
   " {{{ License stuff
@@ -254,15 +258,19 @@ func! jalcine#plugins#define() abort
   Plug 'tpope/vim-speeddating'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-vinegar'
-
+  " }}}
+  " {{{ Language Support
+  Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
+        \ | Plug 'roxma/nvim-cm-racer'
+        \ | Plug 'Shougo/neco-vim'
+  Plug 'roxma/nvim-completion-manager'
   " }}}
   " {{{ Editor Enhancement
   Plug 'sbdchd/neoformat'
   Plug 'scrooloose/nerdcommenter'
-
+  Plug 'itchyny/vim-cursorword'
+  Plug 'yuttie/comfortable-motion.vim'
   Plug 'antoyo/vim-licenses'
-  Plug 'Valloric/YouCompleteMe', { 'do': 'neovim-install-ycm' }
-        \ | Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
   Plug 'jeaye/color_coded', {
         \ 'do': 'cmake . && make && make install',
         \ 'for': 'c,cpp',
@@ -382,7 +390,7 @@ endfunc
 
 func! jalcine#plugins#install() abort
   source ${HOME}/.config/nvim/locked-plugin-list.vim
-  exec('UpdateRemotePlugins')
+        \ | exec('UpdateRemotePlugins')
 endfunc
 
 func! jalcine#plugins#reparse() abort

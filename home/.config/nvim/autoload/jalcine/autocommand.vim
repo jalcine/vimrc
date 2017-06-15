@@ -4,7 +4,7 @@ func! jalcine#autocommand#apply() abort
   augroup jalcine
     au!
 
-    " Set things up.
+    " Set things up, regardless of when we started.
     if v:vim_did_enter
       call s:jalcine_neovim_setup()
     else
@@ -24,7 +24,7 @@ func! jalcine#autocommand#apply() abort
     au FileType gitcommit setl spell
 
     " Enable Neomake to run on builds.
-    au BufReadPost,BufWritePost  * Neomake
+    au BufWritePost * Neomake
 
     " Clear Fugitive buffers.
     au BufReadPost fugitive://* set bufhidden=delete
@@ -119,5 +119,5 @@ func! s:update_directory() abort
   let l:dir = FindRootDirectory()
   call jalcine#projects#enter_directory(l:dir)
   let g:test#project_root = l:dir
-  exec(':NERDTreeCWD | :NERDTreeFind')
+  exec(':NERDTreeFind | :NERDTreeCWD | :NERDTreeFocus')
 endfunc

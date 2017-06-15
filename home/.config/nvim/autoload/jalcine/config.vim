@@ -9,9 +9,7 @@ func! jalcine#config#setup() abort
     call jalcine#config#for_linux()
   endif
 
-  if exists(expand('~/.config/nvim/local.vim'))
-    source ~$HOME/.config/nvim/local.vim
-  endif
+  call jalcine#config#load_local()
 endfunc
 
 func! jalcine#config#for_linux() abort
@@ -20,4 +18,12 @@ endfunc
 
 func! jalcine#config#for_macosx() abort
   " TODO: Figure out macOS-specifically useful options.
+endfunc
+
+func! jalcine#config#load_local() abort
+  try
+    source $HOME/.config/nvim/local.vim
+  catch /*/
+    echomsg 'No local configuration.'
+  endtry
 endfunc

@@ -257,7 +257,6 @@ func! jalcine#plugins#define() abort
   Plug 'tpope/vim-speeddating'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-vinegar'
-
   " }}}
   " {{{ Language Support
   Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }

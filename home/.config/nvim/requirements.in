@@ -3,7 +3,6 @@ flake8
 ipython
 isort
 jedi
-jedi
 lxml
 mistune
 neovim

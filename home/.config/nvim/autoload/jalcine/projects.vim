@@ -7,9 +7,7 @@
 " TODO: Write out a way to open up a new project in a tab.
 
 func! jalcine#projects#open_new(dir) abort
-  tabnew | exec('tchdir ' . a:dir)
-  wincmd w | NERDTreeTabsOpen
-  exec('NERDTree ' . a:dir)
+  tabnew
 
   let l:doc_files = ['README.md', 'README.markdown', 'README']
   for l:doc_file in l:doc_files
@@ -21,17 +19,17 @@ func! jalcine#projects#open_new(dir) abort
 
   wincmd w
   call jalcine#projects#enter_directory(a:dir)
-  FzfGFiles
+  exec('FzfGFiles ' . a:dir)
+  TagbarOpen
 endfunc
 
 func! jalcine#projects#show_initial_view() abort
-    Startify
+    Startify | TagbarOpen
     NERDTreeTabsOpen
-    Tagbar
     wincmd w
 endfunc
 
 func! jalcine#projects#enter_directory(dir) abort
-  " TODO: Update directory for projects.
-  NERDTreeCWD
+  exec('tchdir ' . a:dir)
+  exec(':NERDTreeFind | :NERDTreeCWD | :NERDTreeFocus')
 endfunc

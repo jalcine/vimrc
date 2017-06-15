@@ -14,8 +14,6 @@ let g:jalcine = {
 func! jalcine#plugins#configure() abort
   let g:echodoc#enable_at_startup = 1
   let g:ropevim_guess_project = 1
-  let g:NERDTreeMinimalUI = 1
-  let g:NERDTreeAutoDeleteBuffer = 1
 
   let g:codi#log = expand('$HOME/.config/nvim/logs/codi.log')
   let g:pyenv#auto_create_ctags = 0
@@ -96,6 +94,11 @@ func! jalcine#plugins#configure() abort
   let g:NERDSpaceDelims = 1
   let g:NERDRemoveExtraSpaces = 1
   let g:NERDTrimTrailingWhitespace = 1
+  let g:NERDTreeMinimalUI = 1
+  let g:NERDTreeAutoDeleteBuffer = 1
+  let g:NERDTreeWinSize = 28
+  let g:NERDTreeWinPos = 'right'
+  let g:NERDTreeAutoDeleteBuffer = 1
   " }}}
 
   " {{{ License stuff

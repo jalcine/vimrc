@@ -4,16 +4,16 @@
 " The goal of this is to encapsulate some repetitive actions I take when I'm
 " working on code.
 "
-" TODO:
-"   * Write out a way to open up a new project in a tab.
+" TODO: Write out a way to open up a new project in a tab.
 
 func! jalcine#projects#open_new(dir) abort
-  tabnew | tchdir a:dir
-  Tagbar | NERDTreeTabsOpen | wincmd w
+  tabnew | exec('tchdir ' . a:dir)
+  wincmd w | NERDTreeTabsOpen
+  exec('NERDTree ' . a:dir)
 
   let l:doc_files = ['README.md', 'README.markdown', 'README']
-  for doc_file in l:doc_files
-    if exists(doc_file)
+  for l:doc_file in l:doc_files
+    if exists(l:doc_file)
       edit l:doc_file
       break
     endif

@@ -14,8 +14,6 @@ let g:jalcine = {
 func! jalcine#plugins#configure() abort
   let g:echodoc#enable_at_startup = 1
   let g:ropevim_guess_project = 1
-  let g:NERDTreeMinimalUI = 1
-  let g:NERDTreeAutoDeleteBuffer = 1
 
   let g:neoformat_basic_format_align = 1
   let g:neoformat_basic_format_retab = 1
@@ -95,13 +93,16 @@ func! jalcine#plugins#configure() abort
   " }}}
 
   " {{{ nerd*
-  let g:NERDCreateDefaultMappings = 1
   let g:NERDCompactSexyComs = 1
-  let g:NERDSpaceDelims = 1
+  let g:NERDCreateDefaultMappings = 1
   let g:NERDRemoveExtraSpaces = 1
+  let g:NERDSpaceDelims = 1
+  let g:NERDTreeAutoDeleteBuffer = 1
+  let g:NERDTreeMinimalUI = 1
+  let g:NERDTreeWinSize = 28
   let g:NERDTrimTrailingWhitespace = 1
-  let g:nerdtree_tabs_focus_on_files = 1
   let g:nerdtree_tabs_autofind = 1
+  let g:nerdtree_tabs_focus_on_files = 1
   " }}}
 
   " {{{ License stuff

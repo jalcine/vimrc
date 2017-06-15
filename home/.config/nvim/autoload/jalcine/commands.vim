@@ -19,4 +19,5 @@ endfunc
 func! jalcine#commands#setup() abort
   command! -bang Today call s:write_in_today()<bang>
   command! -complete=dir -nargs=1 OpenPluginDir call jalcine#plugins#open("<args>")<cr>
+  command! -complete=dir -nargs=1 OpenProject call jalcine#projects#open_new("<args>")<cr>
 endfunction

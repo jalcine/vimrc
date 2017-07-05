@@ -90,6 +90,7 @@ func! jalcine#mappings#setup() abort
   nnoremap <silent> [quickfix]o <ESC>:cwindow<CR>
   nnoremap <silent> [quickfix]p <ESC>:cprevious<CR>
   nnoremap <silent> [quickfix]x <ESC>:cclose<CR>
+  nnoremap <silent> [quickfix]X <ESC>:windo ccl<CR>
 
   nnoremap [loclist] <nop>
   nmap <leader>l [loclist]
@@ -99,6 +100,7 @@ func! jalcine#mappings#setup() abort
   nnoremap <silent> [loclist]o <ESC>:lwindow<CR>
   nnoremap <silent> [loclist]p <ESC>:lprevious<CR>
   nnoremap <silent> [loclist]x <ESC>:lclose<CR>
+  nnoremap <silent> [loclist]X <ESC>:windo lcl<CR>
   " }}}
 
   " TODO: Move rewrites into a separate place.

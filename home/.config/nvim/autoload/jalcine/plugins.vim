@@ -383,8 +383,8 @@ func! jalcine#plugins#setup() abort
 endfunc
 
 func! jalcine#plugins#update() abort
-  PlugUpdate
-        \ | PlugUpgrade
+  PlugUpdate!
+        \ | PlugUpgrade!
         \ | PlugSnapshot! ${HOME}/.config/nvim/locked-plugin-list.vim
 endfunc
 

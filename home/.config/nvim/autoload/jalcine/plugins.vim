@@ -385,7 +385,7 @@ endfunc
 
 func! jalcine#plugins#update() abort
   PlugUpdate
-        \ | PlugUpgrade
+        \ | PlugUpgrade!
         \ | exec('PlugSnapshot! ' . g:jalcine#lock)
 endfunc
 

@@ -19,7 +19,7 @@ pyenv exec pip2 install pip-tools
 pyenv exec pip2 install -r requirements.txt
 
 pyenv local neovim-py3 neovim-py2
-nvim +":call jalcine#plugins#update()" \
+nvim +":call jalcine#plugins#install()" \
      +":qall"
 # }}}
 

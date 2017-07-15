@@ -2,7 +2,8 @@ scriptencoding utf-8
 
 let g:jalcine = {
       \ 'plugins': {
-      \   'dir': expand('$HOME/.config/nvim/plugins')
+      \   'dir': expand('$HOME/.config/nvim/plugins'),
+      \   'lock': '${HOME}/.config/nvim/locked-plugin-list.vim'
       \ },
       \ 'color': {
       \   'scheme': 'nord',
@@ -385,11 +386,11 @@ endfunc
 func! jalcine#plugins#update() abort
   PlugUpdate
         \ | PlugUpgrade
-        \ | PlugSnapshot! ${HOME}/.config/nvim/locked-plugin-list.vim
+        \ | exec('PlugSnapshot! ' . g:jalcine#lock)
 endfunc
 
 func! jalcine#plugins#install() abort
-  source ${HOME}/.config/nvim/locked-plugin-list.vim
+  exec('source '. g:jalcine#lock)
         \ | exec('UpdateRemotePlugins')
 endfunc
 

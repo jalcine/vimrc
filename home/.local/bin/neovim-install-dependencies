@@ -5,6 +5,9 @@
 # TODO: Merge update + install scripts.
 
 cd "${HOME}/.config/nvim" || exit
+
+mkdir "${HOME}/.config/nvim/logs" || exit
+
 pyenv virtualenv 2.7.12 neovim-py2 -vf
 pyenv virtualenv 3.5.2 neovim-py3 -vf
 
@@ -27,7 +30,7 @@ nvim +":call jalcine#plugins#install()" \
 if [ "$JALCINE_NEOVIM_MINIMAL" ]
 then
   exit
-else
+elses
   bundle install --gemfile="${RB_REQS}"
   # shellcheck disable=SC2046,SC2086
   npm install -g $(cat $JS_REQS)

@@ -64,7 +64,7 @@ set undofile undodir=~/.config/nvim/undodir
 
 set cpoptions+=d
 set tags=./tags,~/.config/nvim/tags/db
-set lazyredraw
+set nolazyredraw redrawtime=500
 
 set foldenable foldcolumn=1 foldlevel=1 foldminlines=5
       \ foldnestmax=3 foldlevelstart=1

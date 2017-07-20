@@ -398,6 +398,9 @@ func! jalcine#plugins#reparse() abort
 endfunc
 
 func! jalcine#plugins#update_python() abort
+  " TODO: Convert the setting of these values into a method.
+
+
   " Switch the internal provider versions that we'll want to use for Python.
   let g:python_host_prog=substitute(system('PYENV_VERSION=neovim-py2 pyenv which python2'), '^\n*\(.\{-}\)\n*$', '\1', '')")
   let g:python3_host_prog=substitute(system('PYENV_VERSION=neovim-py3 pyenv which python3'), '^\n*\(.\{-}\)\n*$', '\1', '')")

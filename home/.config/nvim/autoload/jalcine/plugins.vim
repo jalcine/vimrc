@@ -2,11 +2,12 @@ scriptencoding utf-8
 
 let g:jalcine = {
       \ 'plugins': {
-      \   'dir': expand('$HOME/.config/nvim/plugins')
+      \   'dir': expand('$HOME/.config/nvim/plugins'),
+      \   'lock': '${HOME}/.config/nvim/locked-plugin-list.vim'
       \ },
       \ 'color': {
-      \   'scheme': 'nord',
-      \   'airline_theme': 'nord',
+      \   'scheme': 'ayu',
+      \   'airline_theme': 'ubaryd',
       \   'background': 'dark'
       \ }
       \ }
@@ -240,7 +241,7 @@ func! jalcine#plugins#define() abort
   " {{{ External support
   Plug 'KabbAmine/zeavim.vim'
   Plug 'guns/xterm-color-table.vim'
-  Plug 'arcticicestudio/nord-vim', { 'tag': 'v0.5.0' }
+  Plug 'ayu-theme/ayu-vim', { 'branch': '2813db6' }
   Plug 'tmux-plugins/vim-tmux'
         \ | Plug 'tmux-plugins/vim-tmux-focus-events'
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -271,10 +272,6 @@ func! jalcine#plugins#define() abort
   Plug 'itchyny/vim-cursorword'
   Plug 'yuttie/comfortable-motion.vim'
   Plug 'antoyo/vim-licenses'
-  Plug 'jeaye/color_coded', {
-        \ 'do': 'cmake . && make && make install',
-        \ 'for': 'c,cpp',
-        \ 'on': 'CCtoggle' }
   Plug 'vim-airline/vim-airline'
         \ | Plug 'vim-airline/vim-airline-themes'
   Plug 'vim-scripts/SyntaxRange'
@@ -321,7 +318,6 @@ func! jalcine#plugins#define() abort
         \ | Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
         \ | Plug 'fisadev/vim-isort', { 'for': 'python' }
         \ | Plug 'python-rope/ropevim', { 'for': 'python' }
-        \ | Plug 'heavenshell/vim-pydocstring', { 'for': 'python' }
   Plug 'kana/vim-textobj-user'
   Plug 'tpope/vim-scriptease'
   Plug 'reedes/vim-litecorrect'
@@ -383,13 +379,13 @@ func! jalcine#plugins#setup() abort
 endfunc
 
 func! jalcine#plugins#update() abort
-  PlugUpdate!
+  PlugUpdate
         \ | PlugUpgrade!
-        \ | PlugSnapshot! ${HOME}/.config/nvim/locked-plugin-list.vim
+        \ | exec('PlugSnapshot! ' . g:jalcine#lock)
 endfunc
 
 func! jalcine#plugins#install() abort
-  source ${HOME}/.config/nvim/locked-plugin-list.vim
+  exec('source '. g:jalcine#lock)
         \ | exec('UpdateRemotePlugins')
 endfunc
 
@@ -402,6 +398,9 @@ func! jalcine#plugins#reparse() abort
 endfunc
 
 func! jalcine#plugins#update_python() abort
+  " TODO: Convert the setting of these values into a method.
+
+
   " Switch the internal provider versions that we'll want to use for Python.
   let g:python_host_prog=substitute(system('PYENV_VERSION=neovim-py2 pyenv which python2'), '^\n*\(.\{-}\)\n*$', '\1', '')")
   let g:python3_host_prog=substitute(system('PYENV_VERSION=neovim-py3 pyenv which python3'), '^\n*\(.\{-}\)\n*$', '\1', '')")

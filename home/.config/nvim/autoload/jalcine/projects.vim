@@ -11,7 +11,6 @@ func! jalcine#projects#open_new(dir) abort
   exec("tchdir " . a:dir)
   exec("lchdir " . a:dir)
   Tagbar
-  NERDTreeTabsOpen
 
   let l:doc_files = ['README.md', 'README.markdown', 'README']
   for doc_file in l:doc_files
@@ -27,13 +26,9 @@ func! jalcine#projects#open_new(dir) abort
 endfunc
 
 func! jalcine#projects#show_initial_view() abort
-    Startify | TagbarOpen
-    NERDTreeTabsOpen
-    Tagbar
-    wincmd w
+  Startify
 endfunc
 
 func! jalcine#projects#enter_directory(dir) abort
   exec('tchdir ' . a:dir)
-  exec(':NERDTreeFind | :NERDTreeCWD | :NERDTreeFocus')
 endfunc

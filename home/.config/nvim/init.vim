@@ -42,7 +42,7 @@ set nogdefault noignorecase
 set showfulltag
 set showmatch
 set modeline modelines=5
-set noshelltemp
+set shelltemp
 set showtabline=2
 set backspace=indent,eol,start
 
@@ -50,7 +50,7 @@ set wildmenu wildmode=longest:full
 set wildoptions=tagfile
 set wildignorecase
 
-set matchtime=2
+set matchtime=1
 
 " Ignore a lot of stuff.
 set wildignore+=*.swp,*.pyc,*.bak,*.class,*.orig
@@ -64,7 +64,7 @@ set undofile undodir=~/.config/nvim/undodir
 
 set cpoptions+=d
 set tags=./tags,~/.config/nvim/tags/db
-set nolazyredraw redrawtime=500
+set lazyredraw redrawtime=100
 
 set foldenable foldcolumn=1 foldlevel=1 foldminlines=5
       \ foldnestmax=3 foldlevelstart=1

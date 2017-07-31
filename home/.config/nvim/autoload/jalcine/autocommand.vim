@@ -113,6 +113,7 @@ func! s:jalcine_neovim_setup() abort
   if !argc()
     call jalcine#projects#show_initial_view()
   endif
+  LanguageClientStart
 endfunc
 
 func! s:update_directory() abort

@@ -1,6 +1,6 @@
+
 func! jalcine#color#tweak() abort
   call jalcine#color#modify_highlighting()
-  let g:nord_terminal_italics = 1
 endfunc
 
 func! jalcine#color#modify_highlighting() abort

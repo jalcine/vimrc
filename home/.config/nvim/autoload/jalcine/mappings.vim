@@ -196,4 +196,12 @@ func! jalcine#mappings#setup() abort
   nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
   nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
   nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
+
+  " Make this work better (so InsertLeave is triggered)
+  inoremap <c-c> <ESC>
+
+  " Make <TAB> the tool to select the popup menu.
+	inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+	inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
 endfunc

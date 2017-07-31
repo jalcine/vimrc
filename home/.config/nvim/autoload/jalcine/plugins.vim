@@ -3,11 +3,11 @@ scriptencoding utf-8
 let g:jalcine = {
       \ 'plugins': {
       \   'dir': expand('$HOME/.config/nvim/plugins'),
-      \   'lock': '${HOME}/.config/nvim/locked-plugin-list.vim'
+      \   'lock': expand('$HOME/.config/nvim/locked-plugin-list.vim')
       \ },
       \ 'color': {
       \   'scheme': 'ayu',
-      \   'airline_theme': 'ubaryd',
+      \   'airline_theme': 'tomorrow',
       \   'background': 'dark'
       \ }
       \ }
@@ -16,8 +16,9 @@ func! jalcine#plugins#configure() abort
   let g:echodoc#enable_at_startup = 1
   let g:ropevim_guess_project = 1
   let g:LanguageClient_autoStart = 1
-
-  let g:jedi#goto_assignments_command = "[jedi]g"
+  let g:LanguageClient_selectionUI = 'fzf'
+  let g:EditorConfig_exclude_patterns = ['fugitive://.*']
+  let g:jedi#goto_assignments_command = '[jedi]g'
 
   let g:neoformat_basic_format_align = 1
   let g:neoformat_basic_format_retab = 1
@@ -117,8 +118,15 @@ func! jalcine#plugins#configure() abort
   let g:UltiSnipsEnableSnipMate = 1
   let g:UltiSnipsEditSplit = 'context'
   let g:UltiSnipsSnippetDirectories = [$HOME. '/.config/nvim/snippets']
-  let g:UltiSnipsExpandTrigger = '<c-j>'
+	let g:UltiSnipsExpandTrigger = '<Plug>(ultisnips_expand)'
+	let g:UltiSnipsJumpForwardTrigger	= '<c-j>'
+	let g:UltiSnipsJumpBackwardTrigger	= '<c-k>'
+	let g:UltiSnipsRemoveSelectModeMappings = 0
 
+  " }}}
+  "
+  " {{{ Completion Manager
+  " let g:cm_matcher#case = 'smartcase'
   " }}}
 
   " {{{ vim-bookmarks
@@ -132,7 +140,7 @@ func! jalcine#plugins#configure() abort
   " "}}
 
   " {{{ signify
-  let g:signify_vcs_list              = [ 'git', 'hg' ]
+  let g:signify_vcs_list              = [ 'git' ]
   let g:signify_cursorhold_insert     = 1
   let g:signify_cursorhold_normal     = 1
   let g:signify_update_on_bufenter    = 0
@@ -166,7 +174,8 @@ func! jalcine#plugins#configure() abort
   let g:startify_relative_path = 1
   let g:startify_session_dir = expand('$HOME/.config/nvim/sessions')
 
-  let g:localvimrc_persistent = 1
+  let g:localvimrc_persistent = 2
+  let g:localvimrc_ask = 0 
 
   let g:EditorConfig_max_line_indicator = 'line'
   let g:vim_isort_python_version = 'python3'
@@ -192,10 +201,11 @@ func! jalcine#plugins#configure() abort
         \ }
   " }}}
 
-  let g:indent_guides_guide_size = 2
+  let g:indent_guides_guide_size = 1
   let g:indent_guides_start_level = 1
   let g:indent_guides_color_change_percent = 2
   let g:indent_guides_enable_on_vim_startup = 1
+  let g:indent_guides_indent_levels = 6
   let g:indent_guides_exclude_filetypes = ['help', 'startify']
 
   let g:goyo_width = 100
@@ -291,14 +301,12 @@ func! jalcine#plugins#define() abort
   Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
         \ | Plug 'roxma/nvim-completion-manager'
         \ | Plug 'roxma/nvim-cm-racer'
+        \ | Plug 'roxma/ncm-github'
         \ | Plug 'Shougo/neco-vim'
-  Plug 'roxma/nvim-completion-manager'
   " }}}
   " {{{ Editor Enhancement
   Plug 'sbdchd/neoformat'
   Plug 'scrooloose/nerdcommenter'
-  Plug 'itchyny/vim-cursorword'
-  Plug 'yuttie/comfortable-motion.vim'
   Plug 'antoyo/vim-licenses'
   Plug 'vim-airline/vim-airline'
         \ | Plug 'vim-airline/vim-airline-themes'
@@ -320,7 +328,6 @@ func! jalcine#plugins#define() abort
   Plug 'jamessan/vim-gnupg'
   Plug 'junegunn/goyo.vim'
   Plug 'junegunn/limelight.vim'
-  Plug 'junegunn/vim-easy-align'
   Plug 'mhinz/vim-startify'
   Plug 'mhinz/vim-signify'
   Plug 'machakann/vim-highlightedyank'
@@ -329,33 +336,31 @@ func! jalcine#plugins#define() abort
   Plug 'xolox/vim-easytags'
   Plug 'xolox/vim-misc'
   Plug 'xolox/vim-notes'
-  Plug 'xolox/vim-session'
   Plug 'xolox/vim-shell'
   Plug 'terryma/vim-multiple-cursors'
   " }}}
   " {{{ Language Support
   Plug 'sheerun/vim-polyglot' " General language support.
-  Plug 'lervag/vimtex', { 'for': 'latex,tex' }
   Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }
   Plug 'bpstahlman/txtfmt', { 'for': 'text.fmt' }
   Plug 'fatih/vim-go'
   Plug 'hashivim/vim-terraform'
   Plug 'heavenshell/vim-jsdoc'
   Plug 'jceb/vim-orgmode'
+  Plug 'vimwiki/vimwiki'
   Plug 'lambdalisue/vim-pyenv'
         \ | Plug 'jmcantrell/vim-virtualenv'
         \ | Plug 'fisadev/vim-isort'
         \ | Plug 'python-rope/ropevim'
         \ | Plug 'davidhalter/jedi-vim'
         \ | Plug 'tmhedberg/SimpylFold'
-  Plug 'kana/vim-textobj-user'
-  Plug 'tpope/vim-scriptease'
+  Plug 'tpope/vim-scriptease', { 'for': 'vim' }
   Plug 'reedes/vim-litecorrect'
-  Plug 'reedes/vim-pencil'
   Plug 'kana/vim-textobj-user'
-        \ | Plug 'reedes/vim-textobj-quote'
-        \ | Plug 'reedes/vim-textobj-sentence'
-  Plug 'reedes/vim-wordy'
+        \ | Plug 'reedes/vim-textobj-quote', { 'for': 'text,markdown' }
+        \ | Plug 'reedes/vim-textobj-sentence', { 'for': 'text,markdown' }
+  Plug 'reedes/vim-wordy', { 'for': 'text,markdown' }
+  Plug 'reedes/vim-pencil', { 'for': 'text,markdown' }
   Plug 'tpope/vim-jdaddy', { 'for': 'json' }
   Plug 'tpope/vim-rbenv', { 'for': 'ruby' }
   Plug 'vimperator/vimperator.vim'
@@ -407,12 +412,11 @@ endfunc
 func! jalcine#plugins#update() abort
   PlugUpdate
         \ | PlugUpgrade!
-        \ | exec('PlugSnapshot! ' . g:jalcine#lock)
+        \ | exec('PlugSnapshot! ' . g:jalcine.plugins.lock)
 endfunc
 
 func! jalcine#plugins#install() abort
-  exec('source '. g:jalcine#lock)
-        \ | exec('UpdateRemotePlugins')
+  exec('source '. g:jalcine.plugins.lock)
 endfunc
 
 func! jalcine#plugins#reparse() abort

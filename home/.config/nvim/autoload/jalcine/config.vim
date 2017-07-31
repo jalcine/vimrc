@@ -8,8 +8,6 @@ func! jalcine#config#setup() abort
   else " I don't run Neovim on anything else, so this has to be Linux.
     call jalcine#config#for_linux()
   endif
-
-  call jalcine#config#load_local()
 endfunc
 
 func! jalcine#config#for_linux() abort
@@ -18,12 +16,4 @@ endfunc
 
 func! jalcine#config#for_macosx() abort
   " TODO: Figure out macOS-specifically useful options.
-endfunc
-
-func! jalcine#config#load_local() abort
-  try
-    source $HOME/.config/nvim/local.vim
-  catch /*/
-    echomsg 'No local configuration.'
-  endtry
 endfunc

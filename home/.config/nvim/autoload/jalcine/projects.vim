@@ -8,15 +8,15 @@
 
 func! jalcine#projects#open_new(dir) abort
   tabnew
-  exec("tchdir " . a:dir)
-  exec("lchdir " . a:dir)
+  exec('tchdir ' . a:dir)
+  exec('lchdir ' . a:dir)
   Tagbar
-  NERDTreeTabsOpen
+  Dotenv
 
   let l:doc_files = ['README.md', 'README.markdown', 'README']
-  for doc_file in l:doc_files
-    if exists(doc_file)
-      exec("edit " . l:doc_file)
+  for l:doc_file in l:doc_files
+    if exists(l:doc_file)
+      exec('edit ' . l:doc_file)
       break
     endif
   endfor
@@ -27,13 +27,9 @@ func! jalcine#projects#open_new(dir) abort
 endfunc
 
 func! jalcine#projects#show_initial_view() abort
-    Startify | TagbarOpen
-    NERDTreeTabsOpen
-    Tagbar
-    wincmd w
+  Startify
 endfunc
 
 func! jalcine#projects#enter_directory(dir) abort
   exec('tchdir ' . a:dir)
-  exec(':NERDTreeFind | :NERDTreeCWD | :NERDTreeFocus')
 endfunc

@@ -9,15 +9,6 @@
 scriptencoding utf-8
 
 " Give it some pizzazz.
-set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
-      \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
-      \,sm:block-blinkwait175-blinkoff150-blinkon175
-set guifont=monoOne\ 8
-if has('termguicolors')
-  set termguicolors
-endif
-set t_Co=256
-
 " {{{ Options
 set laststatus=2
 set showcmd cmdheight=2
@@ -42,7 +33,7 @@ set nogdefault noignorecase
 set showfulltag
 set showmatch
 set modeline modelines=5
-set noshelltemp
+set shelltemp
 set showtabline=2
 set backspace=indent,eol,start
 
@@ -50,7 +41,7 @@ set wildmenu wildmode=longest:full
 set wildoptions=tagfile
 set wildignorecase
 
-set matchtime=2
+set matchtime=1
 
 " Ignore a lot of stuff.
 set wildignore+=*.swp,*.pyc,*.bak,*.class,*.orig
@@ -60,16 +51,19 @@ set wildignore+=build/*,tmp/*,vendor/cache/*,bin/*
 set wildignore+=.sass-cache/*,*node_modules/*,*/target/*
 
 set nobackup noswapfile
+set viewoptions=cursor,folds
 set undofile undodir=~/.config/nvim/undodir
+if exists('$NVIM_VERBOSE')
+  set verbose=10  verbosefile=~/.config/nvim/logs/runtime.log
+endif
 
 set cpoptions+=d
 set tags=./tags,~/.config/nvim/tags/db
-set nolazyredraw redrawtime=500
 
 set foldenable foldcolumn=1 foldlevel=1 foldminlines=5
       \ foldnestmax=3 foldlevelstart=1
 
-set spelllang=en_us,fr spellsuggest=double,7
+set spelllang=en_us,fr spellsuggest=double,8
 set spellfile=~/.config/nvim/dict/custom.utf-8.add
 
 set splitbelow splitright

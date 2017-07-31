@@ -69,7 +69,7 @@ func! jalcine#mappings#setup() abort
 
   " {{{ Bind make command.
   nnoremap [make] <nop>
-  nmap <leader>m [make]
+  nnoremap <leader>m [make]
   nnoremap <silent> [make]<space>  :Make<space>
   nnoremap <silent> [make]a        :Make all<CR>
   nnoremap <silent> [make]c        :Make clean<CR>
@@ -83,7 +83,7 @@ func! jalcine#mappings#setup() abort
   " TODO: Merge the closing + opening of the windows into one.
   " TODO: Make the mappings for navigation the same but intelligent.
   nnoremap [quickfix] <nop>
-  nmap <leader>q [quickfix]
+  nnoremap <leader>q [quickfix]
   nnoremap <silent> [quickfix]e <ESC>:cnext<CR>
   nnoremap <silent> [quickfix]f <ESC>:cfirst<CR>
   nnoremap <silent> [quickfix]l <ESC>:clast<CR>
@@ -93,7 +93,7 @@ func! jalcine#mappings#setup() abort
   nnoremap <silent> [quickfix]X <ESC>:windo ccl<CR>
 
   nnoremap [loclist] <nop>
-  nmap <leader>l [loclist]
+  nnoremap <leader>l [loclist]
   nnoremap <silent> [loclist]e <ESC>:lnext<CR>
   nnoremap <silent> [loclist]f <ESC>:lfirst<CR>
   nnoremap <silent> [loclist]l <ESC>:llast<CR>
@@ -177,7 +177,7 @@ func! jalcine#mappings#setup() abort
 
   " Handle file discovery options.
   nnoremap [search] <nop>
-  nmap <leader>f [search]
+  nnoremap <leader>f [search]
   nnoremap <silent> [search]af :call jalcine#search#all_files()<CR>
   nnoremap <silent> [search]gf :call jalcine#search#files_in_git()<CR>
   nnoremap <silent> [search]b  :call jalcine#search#buffers()<CR>
@@ -187,5 +187,21 @@ func! jalcine#mappings#setup() abort
 
   " Open a new tab for projects.
   nnoremap [jalcine] <nop>
-  nmap <leader>J [jalcine]
+  nnoremap <leader>J [jalcine]
+
+  " Handle Jedi operations.
+  nnoremap [jedi] <nop>
+  nnoremap <leader>p [jedi]
+
+  nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+  nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+  nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
+
+  " Make this work better (so InsertLeave is triggered)
+  inoremap <c-c> <ESC>
+
+  " Make <TAB> the tool to select the popup menu.
+	inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+	inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
 endfunc

@@ -16,3 +16,4 @@ setproctitle
 trollius
 vim-vint
 yapf
+python-language-server

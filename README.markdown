@@ -23,7 +23,7 @@ a few dependencies for this project. Run `neovim-install-dependencies` to get
 that setup. It'll add the Python virtual environments, expected Node packages,
 Ruby gems, Perl packages and a Rust component.
 
-## Support and Contributions
+### Support and Contributions
 
 I've noticed that people have taken a lean to use this configuration. I find
 that *super dope*! The thing is, I'm not going to fix issues that you might find

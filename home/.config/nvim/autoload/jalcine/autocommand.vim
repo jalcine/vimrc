@@ -113,11 +113,11 @@ func! s:jalcine_neovim_setup() abort
   if !argc()
     call jalcine#projects#show_initial_view()
   endif
+  LanguageClientStart
 endfunc
 
 func! s:update_directory() abort
   let l:dir = FindRootDirectory()
-  call jalcine#projects#enter_directory(l:dir)
   let g:test#project_root = l:dir
-  exec(':NERDTreeFind | :NERDTreeCWD | :NERDTreeFocus')
+  call jalcine#projects#enter_directory(l:dir)
 endfunc

@@ -1,3 +1,0 @@
--r requirements.in
--e git+git://github.com/python/mypy.git#egg=mypy
-typed-ast

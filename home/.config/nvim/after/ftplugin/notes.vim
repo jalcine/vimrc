@@ -1,1 +1,0 @@
-setfiletype notes.txtfmt

@@ -6,6 +6,40 @@ filetype plugin indent on
 syntax on
 set ruler
 set number
+set termguicolors
+
+" {{{ White spacing and Characters
+" A problem that plagued me for months, having visual cues for white spacing
+" solves formatting problems a lot quicker. Also, we're using modern shells
+" (right?) so using UTF-8 characters for symbols should be a given.
+set fillchars+=diff:⣿
+set fillchars+=vert:│
+set fillchars+=fold:-
+
+" A visual cue for line-wrapping.
+set showbreak=↪
+
+set listchars+=eol:¬
+set listchars+=extends:❯
+set listchars+=precedes:❮
+set listchars+=trail:⋅
+set listchars+=nbsp:⋅
+set listchars+=tab:\|\ 
+
+" Keep some spacing.
+set sidescrolloff=1
+"}}}
+
+set conceallevel=2 concealcursor=nvci
+
+if executable('ag')
+  set grepprg=ag\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow
+  set grepformat=%f:%l:%c:%m
+endif
+
+if exists('$NVIM_VERBOSE')
+  set verbose=10 verbosefile=~/.config/nvim/logs/runtime.log
+endif
 
 " Paint the screen after we complete macro execution.
 set lazyredraw
@@ -70,6 +104,9 @@ Plug 'tpope/vim-scriptease'
 " Multi-purpose searching tool.
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } 
             \ | Plug 'junegunn/fzf.vim'
+
+" A really nice colorscheme.
+Plug 'ayu-theme/ayu-vim'
 
 " It's in the name; supports mad languages.
 Plug 'sheerun/vim-polyglot'
@@ -151,6 +188,10 @@ if filereadable(expand("~/.config/nvim/local.vim"))
   source ~/.config/nvim/local.vim
 endif
 
+let g:airline_theme='tomorrow'
+let ayucolor="mirage"
+colorscheme ayu
+
 
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
@@ -186,3 +227,8 @@ else
   let g:airline_symbols.readonly = ''
   let g:airline_symbols.linenr = ''
 endif
+
+let g:indentLine_char = ''
+let g:indentLine_first_char = ''
+let g:indentLine_showFirstIndentLevel = 1
+let g:indentLine_setColors = 0

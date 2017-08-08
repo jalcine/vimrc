@@ -193,6 +193,9 @@ Plug 'roxma/vim-tmux-clipboard'
 
 Plug 'sirver/ultisnips' | Plug 'honza/vim-snippets'
  
+Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-sleuth'
+
 call plug#end()
 
 command! -bang -nargs=* Ag

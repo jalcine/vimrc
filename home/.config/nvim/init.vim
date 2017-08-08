@@ -239,37 +239,40 @@ if executable('ag')
     set grepprg=ag\ --nogroup\ --nocolor
 endif
 
+" {{{ Searching
+nnoremap <silent>  <leader>sf  :Files<cr>
+nnoremap <silent>  <leader>sgf :GFiles<cr>
+nnoremap <silent>  <leader>st  :Tags<cr>
+nnoremap <silent>  <leader>sh  :History<cr>
+" }}}
+
 
 " {{{ Git helpers
 " TODO: Prune commands we don't use.
 command! Greview :Git! diff --staged
-nnoremap [git] <nop>
-nnoremap <leader>g [git]
-nnoremap <silent> [git]a   :Git add<space>
-nnoremap <silent> [git]ab  :Git add %<cr>
-nnoremap <silent> [git]b   :Gbrowse<CR>
-vnoremap <silent> [git]b   :Gbrowse<CR>
-nnoremap <silent> [git]c   :Git commit<space>
-nnoremap <silent> [git]C   :Gcommit --branch --verbose %<CR>
-nnoremap <silent> [git]co  :Git checkout<space>
-nnoremap <silent> [git]f   :Git fetch<space>
-nnoremap <silent> [git]fa  :Git fetch --all<CR>
-nnoremap <silent> [git]p   :Git push<space>
-nnoremap <silent> [git]P   :Git push<CR>
-nnoremap <silent> [git]rm  :Gremove %<CR>
-nnoremap <silent> [git]rmc :Git rm --cached %<CR>
-nnoremap <silent> [git]r   :Greview<cr>
-nnoremap <silent> [git]l   :FzfCommits<CR>
+nnoremap <silent> <leader>ga   :Git add<space>
+nnoremap <silent> <leader>gab  :Git add %<cr>
+nnoremap <silent> <leader>gb   :Gbrowse<CR>
+vnoremap <silent> <leader>gb   :Gbrowse<CR>
+nnoremap <silent> <leader>gc   :Git commit<space>
+nnoremap <silent> <leader>gC   :Gcommit --branch --verbose %<CR>
+nnoremap <silent> <leader>gco  :Git checkout<space>
+nnoremap <silent> <leader>gf   :Git fetch<space>
+nnoremap <silent> <leader>gfa  :Git fetch --all<CR>
+nnoremap <silent> <leader>gp   :Git push<space>
+nnoremap <silent> <leader>gP   :Git push<CR>
+nnoremap <silent> <leader>grm  :Gremove %<CR>
+nnoremap <silent> <leader>grmc :Git rm --cached %<CR>
+nnoremap <silent> <leader>gr   :Greview<cr>
+nnoremap <silent> <leader>gl   :FzfCommits<CR>
 " }}}
 
 " {{{ testing
-nnoremap [vimtest] <nop>
-nnoremap <leader>v [vimtest]
-nnoremap <silent> [vimtest]t :TestNearest<CR>
-nnoremap <silent> [vimtest]f :TestFile<CR>
-nnoremap <silent> [vimtest]a :TestSuite<CR>
-nnoremap <silent> [vimtest]l :TestLast<CR>
-nnoremap <silent> [vimtest]g :TestVisit<CR>
+nnoremap <silent> <leader>tt :TestNearest<CR>
+nnoremap <silent> <leader>tf :TestFile<CR>
+nnoremap <silent> <leader>ta :TestSuite<CR>
+nnoremap <silent> <leader>tl :TestLast<CR>
+nnoremap <silent> <leader>tg :TestVisit<CR>
 " }}}
 
 noremap YY "+y<CR>
@@ -277,47 +280,38 @@ noremap <leader>p "+gP<CR>
 noremap XX "+x<CR>
 
 " {{{ Bind make command.
-nnoremap [make] <nop>
-nnoremap <leader>m [make]
-nnoremap <silent> [make]<space>  :Make<space>
-nnoremap <silent> [make]a        :Make all<CR>
-nnoremap <silent> [make]c        :Make clean<CR>
-nnoremap <silent> [make]i        :Make install<CR>
-nnoremap <silent> [make]t        :Make test<CR>
-nnoremap <silent> [make]tb       :call('Make',['test',expand('%')])<CR>
-nnoremap <silent> [make]u        :Make uninstall<CR>
+nnoremap <silent> <leader>m<space>  :Make<space>
+nnoremap <silent> <leader>ma        :Make all<CR>
+nnoremap <silent> <leader>mc        :Make clean<CR>
+nnoremap <silent> <leader>mi        :Make install<CR>
+nnoremap <silent> <leader>mt        :Make test<CR>
+nnoremap <silent> <leader>mtb       :call('Make',['test',expand('%')])<CR>
+nnoremap <silent> <leader>mu        :Make uninstall<CR>
 " }}}
 
 " {{{ Travel over errors.
 " TODO: Merge the closing + opening of the windows into one.
 " TODO: Make the mappings for navigation the same but intelligent.
-nnoremap [quickfix] <nop>
-nnoremap <leader>q [quickfix]
-nnoremap <silent> [quickfix]e <ESC>:cnext<CR>
-nnoremap <silent> [quickfix]f <ESC>:cfirst<CR>
-nnoremap <silent> [quickfix]l <ESC>:clast<CR>
-nnoremap <silent> [quickfix]o <ESC>:cwindow<CR>
-nnoremap <silent> [quickfix]p <ESC>:cprevious<CR>
-nnoremap <silent> [quickfix]x <ESC>:cclose<CR>
-nnoremap <silent> [quickfix]X <ESC>:windo ccl<CR>
+nnoremap <silent> <leader>qe <ESC>:cnext<CR>
+nnoremap <silent> <leader>qf <ESC>:cfirst<CR>
+nnoremap <silent> <leader>ql <ESC>:clast<CR>
+nnoremap <silent> <leader>qo <ESC>:cwindow<CR>
+nnoremap <silent> <leader>qp <ESC>:cprevious<CR>
+nnoremap <silent> <leader>qx <ESC>:cclose<CR>
+nnoremap <silent> <leader>qX <ESC>:windo ccl<CR>
 
-nnoremap [loclist] <nop>
-nnoremap <leader>l [loclist]
-nnoremap <silent> [loclist]e <ESC>:lnext<CR>
-nnoremap <silent> [loclist]f <ESC>:lfirst<CR>
-nnoremap <silent> [loclist]l <ESC>:llast<CR>
-nnoremap <silent> [loclist]o <ESC>:lwindow<CR>
-nnoremap <silent> [loclist]p <ESC>:lprevious<CR>
-nnoremap <silent> [loclist]x <ESC>:lclose<CR>
-nnoremap <silent> [loclist]X <ESC>:windo lcl<CR>
+nnoremap <silent> <leader>le <ESC>:lnext<CR>
+nnoremap <silent> <leader>lf <ESC>:lfirst<CR>
+nnoremap <silent> <leader>ll <ESC>:llast<CR>
+nnoremap <silent> <leader>lo <ESC>:lwindow<CR>
+nnoremap <silent> <leader>lp <ESC>:lprevious<CR>
+nnoremap <silent> <leader>lx <ESC>:lclose<CR>
+nnoremap <silent> <leader>lX <ESC>:windo lcl<CR>
 " }}}
 
 
 " Toggle the state of search highlighting locally.
 nnoremap <silent> <leader>h :setlocal hlsearch!<cr>
-
-" Toggle the state of spelling locally.
-nnoremap <silent> <leader>sp :setlocal spell!<cr>
 
 " {{{ Timing options
 inoremap <silent> <leader>pt <C-R>=strftime("%Y-%m-%d")<CR>
@@ -342,13 +336,13 @@ if has('macunix')
     vmap <C-c> :w !pbcopy<CR><CR>
 endif
 
-let g:jedi#popup_on_dot = 0
-let g:jedi#goto_assignments_command = "<leader>g"
-let g:jedi#goto_definitions_command = "<leader>d"
+let g:jedi#popup_on_dot = 1
+let g:jedi#goto_assignments_command = "<leader>jg"
+let g:jedi#goto_definitions_command = "<leader>jd"
 let g:jedi#documentation_command = "K"
-let g:jedi#usages_command = "<leader>n"
-let g:jedi#rename_command = "<leader>r"
-let g:jedi#show_call_signatures = "0"
+let g:jedi#usages_command = "<leader>jn"
+let g:jedi#rename_command = "<leader>jr"
+let g:jedi#show_call_signatures = "1"
 let g:jedi#completions_command = "<C-Space>"
 let g:jedi#smart_auto_mappings = 0
 let g:polyglot_disabled = ['python']
@@ -447,8 +441,9 @@ let g:neomake_ruby_enabled_makers = ['rubocop', 'mri']
 let g:neomake_vim_enabled_makers = ['vint']
 let g:neomake_elixir_enabled_makers = ['mix', 'credo']
 
-let g:neotags_appendpath = 0
-let g:neotags_recursive = 0
+let g:tagbar_autofocus = 1
+let g:tagbar_autoshowtag = 1
+let g:tagbar_comact = 1
 
 " Use this option for the_silver_searcher
 let g:neotags_ctags_bin = 'ag -g "" '. getcwd() .' | ctags'

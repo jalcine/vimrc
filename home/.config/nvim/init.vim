@@ -1,3 +1,8 @@
+" File:          config/init.vim
+" Author:        Jacky Alcine <yo@jacky.wtf>
+" Description:   Entry point of all of my configuration.
+" Last Modified: August 08, 2017
+
 " A bit easier on my hands.
 let mapleader=','
 
@@ -18,6 +23,8 @@ set fillchars+=fold:-
 
 " A visual cue for line-wrapping.
 set showbreak=↪
+
+set regexpengine=1
 
 set listchars+=eol:¬
 set listchars+=extends:❯
@@ -131,13 +138,17 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 " A really nice colorscheme.
 Plug 'ayu-theme/ayu-vim'
 
+" Makes it easy to open and jump to line number in file.
 Plug 'bogado/file-line'
+
+" Prints out the doc signature.
 Plug 'Shougo/echodoc.vim'
 
+" Make it easy to work with tmux files and its provided events.
 Plug 'tmux-plugins/vim-tmux'
             \ | Plug 'tmux-plugins/vim-tmux-focus-events'
 
-" It's in the name; supports mad languages.
+" It's in the name; supports mad languages for Python, Ruby.
 Plug 'sheerun/vim-polyglot'
             \ | Plug 'arnaud-lb/vim-php-namespace'
             \ | Plug 'davidhalter/jedi-vim'
@@ -151,6 +162,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'vim-airline/vim-airline'
             \ | Plug 'vim-airline/vim-airline-themes'
 
+" Make it easy to automatically generate tags for projects.
 Plug 'craigemery/vim-autotag'
 
 " Make it easy to see that finicky whitespace.
@@ -172,6 +184,15 @@ Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
             \ | Plug 'roxma/ncm-github'
             \ | Plug 'Shougo/neco-vim'
 
+" Advanced search + replace.
+Plug 'brooth/far.vim'
+
+Plug 'fszymanski/fzf-gitignore', {'do': ':UpdateRemotePlugins'}
+
+Plug 'roxma/vim-tmux-clipboard'
+
+Plug 'sirver/ultisnips' | Plug 'honza/vim-snippets'
+ 
 call plug#end()
 
 command! -bang -nargs=* Ag
@@ -187,22 +208,24 @@ augroup vimrc-sync-fromstart
     autocmd BufEnter * :syntax sync maxlines=200
 augroup END
 
-function! IPhpInsertUse()
-    call PhpInsertUse()
-    call feedkeys('a',  'n')
-endfunction
-autocmd FileType php inoremap <Leader>u <Esc>:call IPhpInsertUse()<CR>
-autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
+augroup vimrc-php
+    autocmd!
+    function! IPhpInsertUse()
+        call PhpInsertUse()
+        call feedkeys('a',  'n')
+    endfunction
+    autocmd FileType php inoremap <Leader>u <Esc>:call IPhpInsertUse()<CR>
+    autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
 
-function! IPhpExpandClass()
-    call PhpExpandClass()
-    call feedkeys('a', 'n')
-endfunction
-autocmd FileType php inoremap <Leader>e <Esc>:call IPhpExpandClass()<CR>
-autocmd FileType php noremap <Leader>e :call PhpExpandClass()<CR>
-
-autocmd FileType php inoremap <Leader>s <Esc>:call PhpSortUse()<CR>
-autocmd FileType php noremap <Leader>s :call PhpSortUse()<CR>
+    function! IPhpExpandClass()
+        call PhpExpandClass()
+        call feedkeys('a', 'n')
+    endfunction
+    autocmd FileType php inoremap <Leader>e <Esc>:call IPhpExpandClass()<CR>
+    autocmd FileType php noremap <Leader>e :call PhpExpandClass()<CR>
+    autocmd FileType php inoremap <Leader>s <Esc>:call PhpSortUse()<CR>
+    autocmd FileType php noremap <Leader>s :call PhpSortUse()<CR>
+augroup END
 
 augroup vimrc-python
     autocmd!
@@ -215,6 +238,7 @@ if executable('ag')
     let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
     set grepprg=ag\ --nogroup\ --nocolor
 endif
+
 
 " {{{ Git helpers
 " TODO: Prune commands we don't use.
@@ -348,10 +372,10 @@ let g:pyenv#auto_assign_ctags = 0
 
 let g:test#preserve_screen = 0
 let g:test#strategy = {
-    \ 'nearest': 'neovim',
-    \ 'file':    'dispatch',
-    \ 'suite':   'neovim',
-    \ }
+            \ 'nearest': 'neovim',
+            \ 'file':    'dispatch',
+            \ 'suite':   'neovim',
+            \ }
 
 let g:rooter_use_lcd = 1
 let g:rooter_silent_chdir = 1
@@ -390,13 +414,13 @@ let g:airline_detected_modified = 1
 let g:airline_powerline_fonts = 1
 let g:airline_detect_iminsert = 1
 let g:airline_mode_map = {
-    \ '__' : '-',
-    \ 'n'  : 'N',
-    \ 'i'  : 'I',
-    \ 'R'  : 'R',
-    \ 'v'  : 'V',
-    \ 'V'  : 'B'
-    \ }
+            \ '__' : '-',
+            \ 'n'  : 'N',
+            \ 'i'  : 'I',
+            \ 'R'  : 'R',
+            \ 'v'  : 'V',
+            \ 'V'  : 'B'
+            \ }
 
 let g:indentLine_showFirstIndentLevel = 1
 let g:indentLine_setColors = 0
@@ -408,21 +432,37 @@ let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 let g:UltiSnipsEditSplit="vertical"
 
-  let g:neomake_list_height = 5
-  let g:neomake_open_list = 2
-  let g:neomake_serialize = 0
-  let g:neomake_serialize_abort_on_error = 0
-  let g:neomake_verbose = 1
-  let g:neomake_remove_invalid_entries = 1
-  let g:neomake_logfile = expand('$HOME/.config/nvim/logs/neomake.log')
-  let g:neomake_javascript_enabled_makers = ['eslint']
-  let g:neomake_python_enabled_makers = ['python', 'flake8', 'mypy', 'pylint']
-  let g:neomake_scss_enabled_makers = ['scss-lint']
-  let g:neomake_sh_enabled_makers = ['shellcheck']
-  let g:neomake_ruby_enabled_makers = ['rubocop', 'mri']
-  let g:neomake_vim_enabled_makers = ['vint']
+let g:neomake_list_height = 5
+let g:neomake_open_list = 2
+let g:neomake_serialize = 0
+let g:neomake_serialize_abort_on_error = 0
+let g:neomake_verbose = 1
+let g:neomake_remove_invalid_entries = 1
+let g:neomake_logfile = expand('$HOME/.config/nvim/logs/neomake.log')
+let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_python_enabled_makers = ['python', 'flake8', 'mypy', 'pylint']
+let g:neomake_scss_enabled_makers = ['scss-lint']
+let g:neomake_sh_enabled_makers = ['shellcheck']
+let g:neomake_ruby_enabled_makers = ['rubocop', 'mri']
+let g:neomake_vim_enabled_makers = ['vint']
 let g:neomake_elixir_enabled_makers = ['mix', 'credo']
+
+let g:neotags_appendpath = 0
+let g:neotags_recursive = 0
+
+" Use this option for the_silver_searcher
+let g:neotags_ctags_bin = 'ag -g "" '. getcwd() .' | ctags'
+let g:neotags_ctags_args = [
+            \ '-L -',
+            \ '--fields=+l',
+            \ '--c-kinds=+p',
+            \ '--c++-kinds=+p',
+            \ '--sort=no',
+            \ '--extras=+q'
+            \ ]
 
 let g:airline_theme='tomorrow'
 let ayucolor="mirage"
 colorscheme ayu
+hi FoldColumn ctermbg=NONE guibg=NONE
+hi SignColumn ctermbg=NONE guibg=NONE

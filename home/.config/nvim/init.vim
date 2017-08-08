@@ -144,6 +144,8 @@ Plug 'bogado/file-line'
 " Prints out the doc signature.
 Plug 'Shougo/echodoc.vim'
 
+Plug 'tpope/vim-dispatch' | Plug 'radenling/vim-dispatch-neovim'
+
 " Make it easy to work with tmux files and its provided events.
 Plug 'tmux-plugins/vim-tmux'
             \ | Plug 'tmux-plugins/vim-tmux-focus-events'
@@ -195,6 +197,7 @@ Plug 'sirver/ultisnips' | Plug 'honza/vim-snippets'
  
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-projectionist'
 
 call plug#end()
 
@@ -460,7 +463,7 @@ let g:neotags_ctags_args = [
             \ ]
 
 let g:airline_theme='tomorrow'
-let ayucolor="mirage"
+let ayucolor="dark"
 colorscheme ayu
 hi FoldColumn ctermbg=NONE guibg=NONE
 hi SignColumn ctermbg=NONE guibg=NONE

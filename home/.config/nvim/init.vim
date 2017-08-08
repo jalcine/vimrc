@@ -172,6 +172,9 @@ Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
             \ | Plug 'roxma/ncm-github'
             \ | Plug 'Shougo/neco-vim'
 
+Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-sleuth'
+
 call plug#end()
 
 command! -bang -nargs=* Ag

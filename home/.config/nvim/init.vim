@@ -451,17 +451,6 @@ let g:tagbar_autofocus = 1
 let g:tagbar_autoshowtag = 1
 let g:tagbar_comact = 1
 
-" Use this option for the_silver_searcher
-let g:neotags_ctags_bin = 'ag -g "" '. getcwd() .' | ctags'
-let g:neotags_ctags_args = [
-            \ '-L -',
-            \ '--fields=+l',
-            \ '--c-kinds=+p',
-            \ '--c++-kinds=+p',
-            \ '--sort=no',
-            \ '--extras=+q'
-            \ ]
-
 let g:airline_theme='tomorrow'
 let ayucolor="dark"
 colorscheme ayu

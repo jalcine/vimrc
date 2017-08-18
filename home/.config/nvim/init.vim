@@ -10,8 +10,8 @@ let mapleader=','
 filetype plugin indent on
 syntax on
 set ruler
-set number
-set termguicolors
+set number relativenumber
+set termguicolors guicursor=
 
 " {{{ White spacing and Characters
 " A problem that plagued me for months, having visual cues for white spacing
@@ -37,6 +37,7 @@ set listchars+=tab:\|\
 set sidescrolloff=1
 "}}}
 
+" Hide some things from me. I don't need to know everything.
 set conceallevel=2 concealcursor=nvci
 
 if executable('ag')
@@ -47,9 +48,6 @@ endif
 if exists('$NVIM_VERBOSE')
     set verbose=10 verbosefile=~/.config/nvim/logs/runtime.log
 endif
-
-" Paint the screen after we complete macro execution.
-set lazyredraw
 
 " Let's keep it i18n-friendly.
 set encoding=utf-8
@@ -68,14 +66,11 @@ set modeline
 set modelines=10
 
 " I tend to work on machines with fast terminal support.
-set ttyfast
-set laststatus=2
-set incsearch
 
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set textwidth=100
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set textwidth=80
 set smarttab
 set shiftround
 set expandtab
@@ -83,11 +78,10 @@ set expandtab
 set foldenable
 set foldcolumn=1
 
-set ignorecase
-set smartcase
+set ignorecase smartcase
 
 set nocscopetag
-set tags=tags,./tags;/
+set tags=tags,.tags
 
 " Set up plugins.
 call plug#begin('~/.config/nvim/plugins')
@@ -179,7 +173,8 @@ Plug 'majutsushi/tagbar'
 " Nifty plugin that helps with manipulation of surrounding characters.
 Plug 'tpope/vim-surround'
 
-" Language completion and manipulation support.
+" Language completion and manipulation support. This really turob charges
+" the editor.
 Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
             \ | Plug 'roxma/nvim-completion-manager'
             \ | Plug 'roxma/nvim-cm-racer'
@@ -189,24 +184,34 @@ Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
 " Advanced search + replace.
 Plug 'brooth/far.vim'
 
+" Make it easy to ignore files we shouldn't check in.
 Plug 'fszymanski/fzf-gitignore', {'do': ':UpdateRemotePlugins'}
 
+" Synchronize the tmux clipboard with neovim.
 Plug 'roxma/vim-tmux-clipboard'
 
+" Snippets because yes.
 Plug 'sirver/ultisnips' | Plug 'honza/vim-snippets'
- 
+
+" Make netrw way more useful.
 Plug 'tpope/vim-vinegar'
+
+" Adjust shiftwidth & expandtab off history of file use.
 Plug 'tpope/vim-sleuth'
+
+" Map files to their semantically corresponding files for testing, etc.
 Plug 'tpope/vim-projectionist'
 
+" Start Vim with something useful.
+Plug 'mhinz/vim-startify'
+
+" Make Vim more appealing for focused editing.
+Plug 'junegunn/goyo.vim'
+
+" Focus on blocks of text.
+Plug 'junegunn/limelight.vim'
+
 call plug#end()
-
-command! -bang -nargs=* Ag
-            \ call fzf#vim#ag(<q-args>,
-            \                 <bang>0 ? fzf#vim#with_preview('up:60%')
-            \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
-            \                 <bang>0)
-
 
 "" The PC is fast enough, do syntax highlight syncing from start unless 200 lines
 augroup vimrc-sync-fromstart
@@ -250,6 +255,16 @@ nnoremap <silent>  <leader>sf  :Files<cr>
 nnoremap <silent>  <leader>sgf :GFiles<cr>
 nnoremap <silent>  <leader>st  :Tags<cr>
 nnoremap <silent>  <leader>sh  :History<cr>
+" }}}
+
+" {{{ Extra special
+func! s:LaunchNoteOfTheDay() abort
+    execute ':Note Morning Entries/' . strftime('%Y-%m-%d')
+    Goyo
+endfunc
+
+" Provides a helper command to write an entry for the day.
+command! Today call <SID>LaunchNoteOfTheDay()
 " }}}
 
 
@@ -427,6 +442,8 @@ let g:indentLine_setColors = 0
 
 let g:fzf_buffers_jump = 1
 let g:fzf_history_dir = '~/.config/nvim/fzf-history'
+let g:fzf_gitignore_map = "<Leader>sgi"
+let g:fzf_tags_command = 'ctags -A .tags' 
 
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<c-b>"
@@ -451,8 +468,10 @@ let g:tagbar_autofocus = 1
 let g:tagbar_autoshowtag = 1
 let g:tagbar_comact = 1
 
+let g:localvimrc_persistent = 1
+
 let g:airline_theme='tomorrow'
 let ayucolor="dark"
 colorscheme ayu
-hi FoldColumn ctermbg=NONE guibg=NONE
-hi SignColumn ctermbg=NONE guibg=NONE
+
+autocmd VimEnter <silent> LocalVimRC

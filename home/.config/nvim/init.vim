@@ -1,6 +1,6 @@
-" File:          config/init.vim
-" Author:        Jacky Alcine <yo@jacky.wtf>
-" Description:   Entry point of all of my configuration.
+" File: config/init.vim
+" Author: Jacky Alcine <yo@jacky.wtf>
+" Description: Entry point of all of my configuration.
 " Last Modified: August 08, 2017
 
 " A bit easier on my hands.
@@ -10,7 +10,7 @@ let mapleader=','
 filetype plugin indent on
 syntax on
 set ruler
-set number
+set number relativenumber
 set termguicolors
 
 " {{{ White spacing and Characters
@@ -33,19 +33,20 @@ set listchars+=trail:⋅
 set listchars+=nbsp:⋅
 set listchars+=tab:\|\ 
 
-" Keep some spacing.
+" Keep some spacing and make each buffer its own thing.
 set sidescrolloff=1
+set nowrap
 "}}}
 
 set conceallevel=2 concealcursor=nvci
 
 if executable('ag')
-    set grepprg=ag\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow
-    set grepformat=%f:%l:%c:%m
+ set grepprg=ag\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow
+ set grepformat=%f:%l:%c:%m
 endif
 
 if exists('$NVIM_VERBOSE')
-    set verbose=10 verbosefile=~/.config/nvim/logs/runtime.log
+ set verbose=10 verbosefile=~/.config/nvim/logs/runtime.log
 endif
 
 " Paint the screen after we complete macro execution.
@@ -68,23 +69,18 @@ set modeline
 set modelines=10
 
 " I tend to work on machines with fast terminal support.
-set ttyfast
 set laststatus=2
 set incsearch
 
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set textwidth=100
-set smarttab
+set tabstop=4 softtabstop=4
+set shiftwidth=4 textwidth=100
+set smarttab expandtab
 set shiftround
-set expandtab
 
-set foldenable
-set foldcolumn=1
+" Fold away my code.
+set foldenable foldcolumn=1 foldlevel=1 foldmethod=syntax
 
-set ignorecase
-set smartcase
+set ignorecase smartcase
 
 set nocscopetag
 set tags=tags,./tags;/
@@ -98,42 +94,46 @@ Plug 'tpope/vim-sensible'
 " Repeat anything (and everything).
 Plug 'tpope/vim-repeat'
 
-" Testing and linting support.
+" Asynchronous `:make` support tailored for languages.
 Plug 'benekastah/neomake'
+
+" Asynchronous testing support for particular languages.
 Plug 'janko-m/vim-test'
 
 Plug 'tpope/vim-dotenv'
 Plug 'tpope/vim-obsession'
+Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-rsi'
-            \ | Plug 'vim-utils/vim-husk'
+ \ | Plug 'vim-utils/vim-husk'
 
 " For example, a motion-orientated commenting tool and an extension that makes it easy to box up
 " those comments.
 Plug 'tpope/vim-commentary' 
-            \ | Plug 'cbaumhardt/vim-commentary-boxed'
+ \ | Plug 'cbaumhardt/vim-commentary-boxed'
 
 " Get some shell and notes support popping.
 Plug 'xolox/vim-misc'
-            \ | Plug 'xolox/vim-notes'
-            \ | Plug 'xolox/vim-shell'
+ \ | Plug 'xolox/vim-notes'
+ \ | Plug 'xolox/vim-shell'
 
 " I use Git a lot; so bring it into Vim.
 Plug 'tpope/vim-fugitive' 
-            \ | Plug 'tpope/vim-rhubarb'
-            \ | Plug 'tommcdo/vim-fugitive-blame-ext'
-            \ | Plug 'idanarye/vim-merginal'
+ \ | Plug 'tpope/vim-rhubarb'
+ \ | Plug 'tommcdo/vim-fugitive-blame-ext'
+ \ | Plug 'idanarye/vim-merginal'
 
 " Development environment enhancements.
 Plug 'direnv/direnv.vim'
-            \ | Plug 'editorconfig/editorconfig-vim'
-            \ | Plug 'embear/vim-localvimrc'
+ \ | Plug 'editorconfig/editorconfig-vim'
+ \ | Plug 'embear/vim-localvimrc'
 
 " I tend to work on Vim plugins myself. This makes it easier.
 Plug 'tpope/vim-scriptease'
 
 " Multi-purpose searching tool.
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } 
-            \ | Plug 'junegunn/fzf.vim'
+ \ | Plug 'junegunn/fzf.vim'
+ \ | Plug 'fszymanski/fzf-gitignore', {'do': ':UpdateRemotePlugins'}
 
 " A really nice colorscheme.
 Plug 'ayu-theme/ayu-vim'
@@ -148,24 +148,25 @@ Plug 'tpope/vim-dispatch' | Plug 'radenling/vim-dispatch-neovim'
 
 " Make it easy to work with tmux files and its provided events.
 Plug 'tmux-plugins/vim-tmux'
-            \ | Plug 'tmux-plugins/vim-tmux-focus-events'
+ \ | Plug 'tmux-plugins/vim-tmux-focus-events'
 
 " It's in the name; supports mad languages for Python, Ruby.
 Plug 'sheerun/vim-polyglot'
-            \ | Plug 'arnaud-lb/vim-php-namespace'
-            \ | Plug 'davidhalter/jedi-vim'
-            \ | Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
-            \ | Plug 'lambdalisue/vim-pyenv'
-            \ | Plug 'jmcantrell/vim-virtualenv'
-            \ | Plug 'fisadev/vim-isort'
-            \ | Plug 'python-rope/ropevim'
-            \ | Plug 'tmhedberg/SimpylFold'
+ \ | Plug 'arnaud-lb/vim-php-namespace'
+ \ | Plug 'davidhalter/jedi-vim'
+ \ | Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
+ \ | Plug 'lambdalisue/vim-pyenv'
+ \ | Plug 'jmcantrell/vim-virtualenv'
+ \ | Plug 'fisadev/vim-isort'
+ \ | Plug 'python-rope/ropevim'
+ \ | Plug 'tmhedberg/SimpylFold'
 
 Plug 'vim-airline/vim-airline'
-            \ | Plug 'vim-airline/vim-airline-themes'
+ \ | Plug 'vim-airline/vim-airline-themes'
 
-" Make it easy to automatically generate tags for projects.
+" Things for tag support.
 Plug 'craigemery/vim-autotag'
+ \ | Plug 'majutsushi/tagbar'
 
 " Make it easy to see that finicky whitespace.
 Plug 'Yggdroot/indentLine'
@@ -173,23 +174,18 @@ Plug 'Yggdroot/indentLine'
 " Move the buffer to the directory to work in.
 Plug 'airblade/vim-rooter'
 
-" Give us a magic buffer with tag info!
-Plug 'majutsushi/tagbar'
-
 " Nifty plugin that helps with manipulation of surrounding characters.
 Plug 'tpope/vim-surround'
 
 " Language completion and manipulation support.
 Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
-            \ | Plug 'roxma/nvim-completion-manager'
-            \ | Plug 'roxma/nvim-cm-racer'
-            \ | Plug 'roxma/ncm-github'
-            \ | Plug 'Shougo/neco-vim'
+ \ | Plug 'roxma/nvim-completion-manager'
+ \ | Plug 'roxma/nvim-cm-racer'
+ \ | Plug 'roxma/ncm-github'
+ \ | Plug 'Shougo/neco-vim'
 
-" Advanced search + replace.
+" Advanced searchs replace.
 Plug 'brooth/far.vim'
-
-Plug 'fszymanski/fzf-gitignore', {'do': ':UpdateRemotePlugins'}
 
 Plug 'roxma/vim-tmux-clipboard'
 
@@ -199,78 +195,82 @@ Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-projectionist'
 
+Plug '~/src/vim-lyft'
+ \ | Plug 'prabirshrestha/async.vim'
+
 call plug#end()
 
 command! -bang -nargs=* Ag
-            \ call fzf#vim#ag(<q-args>,
-            \                 <bang>0 ? fzf#vim#with_preview('up:60%')
-            \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
-            \                 <bang>0)
+ \ call fzf#vim#ag(<q-args>,
+ \ <bang>0 ? fzf#vim#with_preview('up:60%')
+ \ : fzf#vim#with_preview('right:50%:hidden', '?'),
+ \ <bang>0)
 
 
 "" The PC is fast enough, do syntax highlight syncing from start unless 200 lines
 augroup vimrc-sync-fromstart
-    autocmd!
-    autocmd BufEnter * :syntax sync maxlines=200
+ autocmd!
+ autocmd BufEnter * :syntax sync maxlines=200
 augroup END
 
 augroup vimrc-php
-    autocmd!
-    function! IPhpInsertUse()
-        call PhpInsertUse()
-        call feedkeys('a',  'n')
-    endfunction
-    autocmd FileType php inoremap <Leader>u <Esc>:call IPhpInsertUse()<CR>
-    autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
+ autocmd!
+ function! IPhpInsertUse()
+ call PhpInsertUse()
+ call feedkeys('a', 'n')
+ endfunction
+ autocmd FileType php inoremap <Leader>u <Esc>:call IPhpInsertUse()<CR>
+ autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
 
-    function! IPhpExpandClass()
-        call PhpExpandClass()
-        call feedkeys('a', 'n')
-    endfunction
-    autocmd FileType php inoremap <Leader>e <Esc>:call IPhpExpandClass()<CR>
-    autocmd FileType php noremap <Leader>e :call PhpExpandClass()<CR>
-    autocmd FileType php inoremap <Leader>s <Esc>:call PhpSortUse()<CR>
-    autocmd FileType php noremap <Leader>s :call PhpSortUse()<CR>
+ function! IPhpExpandClass()
+ call PhpExpandClass()
+ call feedkeys('a', 'n')
+ endfunction
+ autocmd FileType php inoremap <Leader>e <Esc>:call IPhpExpandClass()<CR>
+ autocmd FileType php noremap <Leader>e :call PhpExpandClass()<CR>
+ autocmd FileType php inoremap <Leader>s <Esc>:call PhpSortUse()<CR>
+ autocmd FileType php noremap <Leader>s :call PhpSortUse()<CR>
 augroup END
 
 augroup vimrc-python
-    autocmd!
-    autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8 colorcolumn=79
-                \ formatoptions+=croq softtabstop=4
-                \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
+ autocmd!
+ autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8 colorcolumn=79
+ \ formatoptions+=croq softtabstop=4
+ \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 augroup END
 
 if executable('ag')
-    let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
-    set grepprg=ag\ --nogroup\ --nocolor
+ let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
+ set grepprg=ag\ --nogroup\ --nocolor
 endif
 
 " {{{ Searching
-nnoremap <silent>  <leader>sf  :Files<cr>
-nnoremap <silent>  <leader>sgf :GFiles<cr>
-nnoremap <silent>  <leader>st  :Tags<cr>
-nnoremap <silent>  <leader>sh  :History<cr>
+nnoremap <silent> <leader>sf :Files<cr>
+nnoremap <silent> <leader>sgf :GFiles<cr>
+nnoremap <silent> <leader>st :Tags<cr>
+nnoremap <silent> <leader>sh :History<cr>
+nnoremap <silent> <leader>sw :Windows<cr>
 " }}}
 
 
 " {{{ Git helpers
 " TODO: Prune commands we don't use.
 command! Greview :Git! diff --staged
-nnoremap <silent> <leader>ga   :Git add<space>
-nnoremap <silent> <leader>gab  :Git add %<cr>
-nnoremap <silent> <leader>gb   :Gbrowse<CR>
-vnoremap <silent> <leader>gb   :Gbrowse<CR>
-nnoremap <silent> <leader>gc   :Git commit<space>
-nnoremap <silent> <leader>gC   :Gcommit --branch --verbose %<CR>
-nnoremap <silent> <leader>gco  :Git checkout<space>
-nnoremap <silent> <leader>gf   :Git fetch<space>
-nnoremap <silent> <leader>gfa  :Git fetch --all<CR>
-nnoremap <silent> <leader>gp   :Git push<space>
-nnoremap <silent> <leader>gP   :Git push<CR>
-nnoremap <silent> <leader>grm  :Gremove %<CR>
+nnoremap <silent> <leader>ga :Git add<space>
+nnoremap <silent> <leader>gab :Git add %<cr>
+nnoremap <silent> <leader>gb :Gbrowse<CR>
+vnoremap <silent> <leader>gb :Gbrowse<CR>
+nnoremap <silent> <leader>gc :Git commit<space>
+nnoremap <silent> <leader>gC :Gcommit --branch --verbose %<CR>
+nnoremap <silent> <leader>gco :Git checkout<space>
+nnoremap <silent> <leader>gf :Git fetch<space>
+nnoremap <silent> <leader>gfa :Git fetch --all<CR>
+nnoremap <silent> <leader>gp :Git push<space>
+nnoremap <silent> <leader>gP :Git push<CR>
+nnoremap <silent> <leader>grm :Gremove %<CR>
 nnoremap <silent> <leader>grmc :Git rm --cached %<CR>
-nnoremap <silent> <leader>gr   :Greview<cr>
-nnoremap <silent> <leader>gl   :FzfCommits<CR>
+nnoremap <silent> <leader>gr :Greview<cr>
+nnoremap <silent> <leader>gl :FzfCommits<CR>
 " }}}
 
 " {{{ testing
@@ -286,17 +286,17 @@ noremap <leader>p "+gP<CR>
 noremap XX "+x<CR>
 
 " {{{ Bind make command.
-nnoremap <silent> <leader>m<space>  :Make<space>
-nnoremap <silent> <leader>ma        :Make all<CR>
-nnoremap <silent> <leader>mc        :Make clean<CR>
-nnoremap <silent> <leader>mi        :Make install<CR>
-nnoremap <silent> <leader>mt        :Make test<CR>
-nnoremap <silent> <leader>mtb       :call('Make',['test',expand('%')])<CR>
-nnoremap <silent> <leader>mu        :Make uninstall<CR>
+nnoremap <silent> <leader>m<space> :Make<space>
+nnoremap <silent> <leader>ma :Make all<CR>
+nnoremap <silent> <leader>mc :Make clean<CR>
+nnoremap <silent> <leader>mi :Make install<CR>
+nnoremap <silent> <leader>mt :Make test<CR>
+nnoremap <silent> <leader>mtb :call('Make',['test',expand('%')])<CR>
+nnoremap <silent> <leader>mu :Make uninstall<CR>
 " }}}
 
 " {{{ Travel over errors.
-" TODO: Merge the closing + opening of the windows into one.
+" TODO: Merge the closings opening of the windows into one.
 " TODO: Make the mappings for navigation the same but intelligent.
 nnoremap <silent> <leader>qe <ESC>:cnext<CR>
 nnoremap <silent> <leader>qf <ESC>:cfirst<CR>
@@ -337,9 +337,9 @@ cnoremap <silent> <leader>pd <C-R>=strftime("%Y-%m-%d")<CR>
 " }}}
 
 if has('macunix')
-    " pbcopy for OSX copy/paste
-    vmap <C-x> :!pbcopy<CR>
-    vmap <C-c> :w !pbcopy<CR><CR>
+ " pbcopy for OSX copy/paste
+ vmap <C-x> :!pbcopy<CR>
+ vmap <C-c> :w !pbcopy<CR><CR>
 endif
 
 let g:jedi#popup_on_dot = 1
@@ -356,11 +356,11 @@ let python_highlight_all = 1
 
 "" Include user's local vim config
 if filereadable(expand("~/.config/nvim/local.vim"))
-    source ~/.config/nvim/local.vim
+ source ~/.config/nvim/local.vim
 endif
 
 if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
+ let g:airline_symbols = {}
 endif
 
 let g:LanguageClient_autoStart = 1
@@ -372,10 +372,10 @@ let g:pyenv#auto_assign_ctags = 0
 
 let g:test#preserve_screen = 0
 let g:test#strategy = {
-            \ 'nearest': 'neovim',
-            \ 'file':    'dispatch',
-            \ 'suite':   'neovim',
-            \ }
+ \ 'nearest': 'neovim',
+ \ 'file': 'dispatch',
+ \ 'suite': 'neovim',
+ \ }
 
 let g:rooter_use_lcd = 1
 let g:rooter_silent_chdir = 1
@@ -384,16 +384,16 @@ let g:rooter_resolve_links = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline_left_sep          = '▶'
-let g:airline_left_alt_sep      = '»'
-let g:airline_right_sep         = '◀'
-let g:airline_right_alt_sep     = '«'
-let g:airline#extensions#branch#prefix     = '⤴'
-let g:airline#extensions#readonly#symbol   = '⊘'
+let g:airline_left_sep = '▶'
+let g:airline_left_alt_sep = '»'
+let g:airline_right_sep = '◀'
+let g:airline_right_alt_sep = '«'
+let g:airline#extensions#branch#prefix = '⤴'
+let g:airline#extensions#readonly#symbol = '⊘'
 let g:airline#extensions#linecolumn#prefix = '¶'
-let g:airline#extensions#paste#symbol      = 'ρ'
-let g:airline_symbols.branch    = '⎇'
-let g:airline_symbols.paste     = 'ρ'
+let g:airline#extensions#paste#symbol = 'ρ'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
 let g:airline_symbols.whitespace = 'Ξ'
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
@@ -414,13 +414,13 @@ let g:airline_detected_modified = 1
 let g:airline_powerline_fonts = 1
 let g:airline_detect_iminsert = 1
 let g:airline_mode_map = {
-            \ '__' : '-',
-            \ 'n'  : 'N',
-            \ 'i'  : 'I',
-            \ 'R'  : 'R',
-            \ 'v'  : 'V',
-            \ 'V'  : 'B'
-            \ }
+ \ '__' : '-',
+ \ 'n' : 'N',
+ \ 'i' : 'I',
+ \ 'R' : 'R',
+ \ 'v' : 'V',
+ \ 'V' : 'B'
+ \ }
 
 let g:indentLine_showFirstIndentLevel = 1
 let g:indentLine_setColors = 0
@@ -451,8 +451,11 @@ let g:tagbar_autofocus = 1
 let g:tagbar_autoshowtag = 1
 let g:tagbar_comact = 1
 
+let g:localvimrc_persistent = 2
+
+let g:autotagVerbosityLevel = 3
+let g:autotagTagsFile = '.vimtags'
+
 let g:airline_theme='tomorrow'
 let ayucolor="dark"
 colorscheme ayu
-hi FoldColumn ctermbg=NONE guibg=NONE
-hi SignColumn ctermbg=NONE guibg=NONE

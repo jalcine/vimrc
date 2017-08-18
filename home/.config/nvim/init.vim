@@ -474,7 +474,7 @@ let g:autotagTagsFile = '.vimtags'
 
 autocmd VimEnter <silent> LocalVimRC
 
-let g:airline_theme='tomorrow'
+let g:airline_theme='badcat'
 let ayucolor="dark"
 colorscheme ayu
 

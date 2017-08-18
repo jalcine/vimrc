@@ -477,6 +477,3 @@ autocmd VimEnter <silent> LocalVimRC
 let g:airline_theme='badcat'
 let ayucolor="dark"
 colorscheme ayu
-
-hi FoldColumn ctermbg=NONE guibg=NONE
-hi SignColumn ctermbg=NONE guibg=NONE

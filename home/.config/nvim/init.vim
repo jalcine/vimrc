@@ -2,6 +2,7 @@
 " Author: Jacky Alcine <yo@jacky.wtf>
 " Description: Entry point of all of my configuration.
 " Last Modified: August 08, 2017
+" vim: set fdm=marker foldlevel=1 :
 
 " A bit easier on my hands.
 let mapleader=','
@@ -13,7 +14,7 @@ set ruler
 set number relativenumber
 set termguicolors guicursor=
 
-" {{{ White spacing and Characters
+" White spacing and Characters {{{
 " A problem that plagued me for months, having visual cues for white spacing
 " solves formatting problems a lot quicker. Also, we're using modern shells
 " (right?) so using UTF-8 characters for symbols should be a given.
@@ -36,19 +37,23 @@ set listchars+=tab:\|\
 " Keep some spacing and make each buffer its own thing.
 set sidescrolloff=1
 set nowrap
-"}}}
 
 " Hide some things from me. I don't need to know everything.
 set conceallevel=2 concealcursor=nvci
+"}}}
 
+" Search Enhancements {{{
 if executable('ag')
  set grepprg=ag\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow
  set grepformat=%f:%l:%c:%m
 endif
+" }}}
 
+" Debugging help {{{
 if exists('$NVIM_VERBOSE')
  set verbose=10 verbosefile=~/.config/nvim/logs/runtime.log
 endif
+" }}}
 
 " Let's keep it i18n-friendly.
 set encoding=utf-8
@@ -134,7 +139,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
  \ | Plug 'fszymanski/fzf-gitignore', {'do': ':UpdateRemotePlugins'}
 
 " A really nice colorscheme.
-Plug 'ayu-theme/ayu-vim'
+Plug 'chriskempson/base16-vim'
 
 " Makes it easy to open and jump to line number in file.
 Plug 'bogado/file-line'
@@ -474,6 +479,11 @@ let g:autotagTagsFile = '.vimtags'
 
 autocmd VimEnter <silent> LocalVimRC
 
-let g:airline_theme='badcat'
-let ayucolor="dark"
-colorscheme ayu
+" Theming {{{
+let base16colorspace=256
+if filereadable(expand("~/.vimrc_background"))
+    source ~/.vimrc_background
+else
+    colorscheme base16-summerfruit-dark
+endif
+" }}}

@@ -5,6 +5,6 @@ func! jalcine#theme#setup()
     source ~/.vimrc_background
   else
     colorscheme base16-tomorrow-night
-    AirlineRefresh
+    AirlineTheme tomorrow
   endif
 endfunc

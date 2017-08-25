@@ -14,6 +14,9 @@ func! jalcine#plugins#setup() " {{{
   call jalcine#plugins#define()
   call jalcine#plugins#configure()
   call jalcine#plugins#configure_mappings()
+
+  filetype plugin indent on
+  syntax on
 endfunc " }}}
 
 func! jalcine#plugins#define() abort " {{{
@@ -87,34 +90,34 @@ func! jalcine#plugins#define() abort " {{{
 endfunc " }}}
 
 func! jalcine#plugins#configure() abort " {{{
-  " vim-airline {{{
-  let g:airline#extensions#tabline#enabled = 1
-  let g:airline#extensions#branch#prefix = '⤴'
-  let g:airline#extensions#readonly#symbol = '⊘'
-  let g:airline#extensions#linecolumn#prefix = '¶'
-  let g:airline#extensions#paste#symbol = 'ρ'
-  let g:airline#extensions#hunks#non_zero_only = 1
-  let g:airline#extensions#tabline#enabled = 1
-  let g:airline#extensions#tabline#show_splits = 1
-  let g:airline#extensions#tabline#show_buffers = 1
-  let g:airline#extensions#tabline#show_tabs = 1
+  " airline {{{
   let g:airline#extensions#branch#enabled = 1
+  let g:airline#extensions#branch#prefix = '⤴'
+  let g:airline#extensions#hunks#non_zero_only = 1
+  let g:airline#extensions#linecolumn#prefix = '¶'
+  let g:airline#extensions#neomake#enabled = 1
+  let g:airline#extensions#paste#symbol = 'ρ'
+  let g:airline#extensions#readonly#symbol = '⊘'
+  let g:airline#extensions#tabline#enabled = 1
+  let g:airline#extensions#tabline#enabled = 1
+  let g:airline#extensions#tabline#show_buffers = 1
+  let g:airline#extensions#tabline#show_splits = 1
+  let g:airline#extensions#tabline#show_tabs = 1
   let g:airline#extensions#whitespace#enabled = 1
   let g:airline#extensions#whitespace#mixed_indent_algo = 1
+  let g:airline#extensions#whitespace#mixed_indent_format = 'i:[%s]'
   let g:airline#extensions#whitespace#show_message = 1
   let g:airline#extensions#whitespace#trailing_format = 's:[%s]'
-  let g:airline#extensions#whitespace#mixed_indent_format = 'i:[%s]'
-  let g:airline#extensions#neomake#enabled = 1
+  let g:airline_detect_iminsert = 1
   let g:airline_detected_modified = 1
   let g:airline_powerline_fonts = 1
-  let g:airline_detect_iminsert = 1
   let g:airline_symbols = {}
   let g:airline_symbols.branch = '⎇'
-  let g:airline_symbols.paste = 'ρ'
-  let g:airline_symbols.whitespace = 'Ξ'
   let g:airline_symbols.branch = ''
-  let g:airline_symbols.readonly = ''
   let g:airline_symbols.linenr = ''
+  let g:airline_symbols.paste = 'ρ'
+  let g:airline_symbols.readonly = ''
+  let g:airline_symbols.whitespace = 'Ξ'
   let g:airline_mode_map = {
         \ '__' : '-',
         \ 'n' : 'N',

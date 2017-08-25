@@ -4,14 +4,14 @@
 " Last Modified: August 08, 2017
 " vim: set fdm=marker foldlevel=1 :
 
-" A bit easier on my hands.
-let mapleader=','
+if v:version < 800
+    echoerr "[jalcine] Please upgrade Vim to Vim8 or use Neovim (recommended)."
+endif
 
-" We'll start with plugin support.
-filetype plugin indent on
-syntax on
+set encoding=utf-8
 
 " Visual Editor Components {{{
+set laststatus=2
 set ruler
 set number relativenumber
 set termguicolors guicursor=
@@ -46,7 +46,7 @@ set nowrap
 " Hide some things from me. I don't need to know everything.
 set conceallevel=2 concealcursor=nvci
 "}}}
-
+"
 " Debugging help {{{
 " This makes it easier for me to capture logging output from Vim.
 if exists('$NVIM_VERBOSE')
@@ -55,10 +55,7 @@ if exists('$NVIM_VERBOSE')
     set debug=msg,throw,beep
 endif
 " }}}
-
-" Let's keep it i18n-friendly.
-set encoding=utf-8
-
+"
 " Undo, Backup, Swap {{{
 set undofile
 set undodir=~/.config/nvim/undo
@@ -67,10 +64,7 @@ set undoreload=1000
 
 set backup writebackup
 " }}}
-
-"" Status bar
-set laststatus=2
-
+"
 " Custom file-specific Vim option definitions {{{
 set modeline
 set modelines=10
@@ -82,12 +76,14 @@ set shiftwidth=2 textwidth=100
 set smarttab expandtab
 set shiftround
 " }}}
+"
 " Folding {{{
 set foldenable
 set foldcolumn=1
 set foldlevel=1
 set foldmethod=syntax
 " }}}
+"
 " Searching {{{
 set ignorecase smartcase
 set laststatus=2
@@ -102,10 +98,9 @@ set tags+=tags,.tags,.vimtags
 " Import globally built tags.
 set tags+=$HOME/.config/nvim/tags/*
 " }}}
-
-call jalcine#launch()
-
+"
 " {{{ Extra special
+" TODO: Move to commands file.
 func! s:LaunchNoteOfTheDay() abort
     execute ':Note Morning Entries/' . strftime('%Y-%m-%d')
     Goyo
@@ -114,10 +109,11 @@ endfunc
 " Provides a helper command to write an entry for the day.
 command! Today call <SID>LaunchNoteOfTheDay()
 " }}}
-
 " TODO: Move to vimrc for osxrc.
 if has('macunix')
  " pbcopy for OSX copy/paste
  vmap <C-x> :!pbcopy<CR>
  vmap <C-c> :w !pbcopy<CR><CR>
 endif
+
+call jalcine#launch()

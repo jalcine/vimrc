@@ -96,11 +96,11 @@ set incsearch hlsearch
 "
 " Tags {{{
 " Find tags in local directory.
-set tags.=./tags,./.tags,./.vimtags
-set tags.=tags,.tags,.vimtags
+set tags+=./tags,./.tags,./.vimtags
+set tags+=tags,.tags,.vimtags
 
 " Import globally built tags.
-set tags.=$HOME/.config/nvim/tags/*
+set tags+=$HOME/.config/nvim/tags/*
 " }}}
 
 call jalcine#launch()

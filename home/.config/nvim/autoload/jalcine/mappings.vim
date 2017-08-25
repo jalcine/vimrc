@@ -19,6 +19,7 @@ func! jalcine#mappings#apply_bulk(mappings_list, opts) abort
             \ . g:jalcine.mappings.leader . l:command
             \ . ' '
             \ . get(a_mapping, 1)
+      exec l:exc_cmd
       let l:idx += 1
     endwhile
   endfor

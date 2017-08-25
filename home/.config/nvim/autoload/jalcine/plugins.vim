@@ -13,6 +13,7 @@ let g:jalcine.plugins = {
 func! jalcine#plugins#setup() " {{{
   call jalcine#plugins#define()
   call jalcine#plugins#configure()
+  call jalcine#plugins#configure_mappings()
 endfunc " }}}
 
 func! jalcine#plugins#define() abort " {{{
@@ -210,8 +211,11 @@ func! jalcine#plugins#configure() abort " {{{
   " }}}
   " 
   " indentline {{{
-  let g:indentLine_showFirstIndentLevel = 1
-  let g:indentLine_setColors = 0
+  let g:indentLine_showFirstIndentLevel = 0
+  let g:indentLine_setColors = 1
+  let g:indentLine_leadingSpaceEnabled = 1
+  let g:indentLine_fileTypeExclude = ['tagbar', 'help', 'netrw', 'gitcommit', 'startify']
+  let g:indentLine_char = '┊'
   " }}}
   "
   " misc {{{

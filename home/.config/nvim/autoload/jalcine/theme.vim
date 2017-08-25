@@ -3,6 +3,7 @@ func! jalcine#theme#setup()
   if filereadable(expand("~/.vimrc_background"))
     source ~/.vimrc_background
   else
-    colorscheme base16-ir-black
+    colorscheme base16-pop
+    AirlineRefresh
   endif
 endfunc

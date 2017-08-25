@@ -1,6 +1,13 @@
+" File:          autoload/jalcine/mappings.vim
+" Author:        Jacky Alcine <yo@jacky.wtf>
+" Description:   Defines dynamic and static mappings.
+" Last Modified: August 25, 2017
+
+" options {{{
 let g:jalcine.mappings = {
       \ 'leader':  ','
       \ }
+" }}}
 
 func! jalcine#mappings#apply_bulk(mappings_list, opts) abort
   for a_mapping in a:mappings_list
@@ -26,6 +33,7 @@ func! jalcine#mappings#apply_bulk(mappings_list, opts) abort
 endfunc
 
 func! jalcine#mappings#setup() abort
+  " Define the leader!
   let mapleader=g:jalcine.mappings.leader
 
   " Toggle the state of search highlighting locally.

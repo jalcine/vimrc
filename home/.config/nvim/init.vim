@@ -16,7 +16,9 @@ set ruler
 set number relativenumber
 set termguicolors guicursor=
 set cursorline
-set wrap
+set sidescrolloff=1 sidescroll=1
+set conceallevel=2 concealcursor=nvci
+set wrap wrapmargin=1
 " }}}
 " 
 " White spacing and Characters {{{
@@ -39,12 +41,6 @@ set listchars+=trail:⋅
 set listchars+=nbsp:⋅
 set listchars+=tab:\|\ 
 
-" Keep some spacing and make each buffer its own thing.
-set sidescrolloff=1
-set nowrap
-
-" Hide some things from me. I don't need to know everything.
-set conceallevel=2 concealcursor=nvci
 "}}}
 "
 " Debugging help {{{

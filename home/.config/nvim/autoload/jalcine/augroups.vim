@@ -2,10 +2,11 @@ func! jalcine#augroups#setup()
 
   augroup jalcine-misc
     au!
-    au BufEnter * :syntax sync maxlines=200
-    au FileReadPre * <silent> Rooter
-    au VimEnter <silent> LocalVimRC!
-    au TabNewEntered <silent> TagbarOpenAutoClose
+    au BufEnter       * :syntax sync maxlines=200
+    au FileReadPre    * <silent> Rooter<cr>
+    au FileWritePost  * <silent> Neomake!
+    au VimEnter         <silent> LocalVimRC!
+    au TabNewEntered    <silent> TagbarOpenAutoClose
   augroup END
 
   augroup vimrc-langsupport

@@ -7,20 +7,21 @@ let g:jalcine = {}
 
 func! s:EnhanceInbuiltSearch() abort
   if executable('ag')
-  let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
-  set grepprg=ag\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow
-  set grepformat=%f:%l:%c:%m
+    let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
+    set grepprg=ag\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow
+    set grepformat=%f:%l:%c:%m
   endif
 endfunc
 
 func! jalcine#launch() abort
   call <SID>EnhanceInbuiltSearch()
+
   let l:sectors = [
         \ 'augroups',
-        \ 'mappings',
         \ 'plugins',
         \ 'lang',
         \ 'theme',
+        \ 'mappings',
         \ ]
 
   for sector in l:sectors

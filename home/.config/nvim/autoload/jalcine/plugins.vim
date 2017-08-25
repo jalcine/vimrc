@@ -17,6 +17,10 @@ func! jalcine#plugins#setup() " {{{
 
   filetype plugin indent on
   syntax on
+
+  if exists('$NVIM_VERBOSE')
+    let $NVIM_PYTHON_LOG_FILE=expand('$HOME/.config/nvim/logs/python.log')
+  endif
 endfunc " }}}
 
 func! jalcine#plugins#define() abort " {{{
@@ -24,47 +28,58 @@ func! jalcine#plugins#define() abort " {{{
 
   Plug 'tpope/vim-sensible'
   Plug 'tpope/vim-repeat'
+  Plug 'tpope/vim-endwise'
+
   Plug 'benekastah/neomake'
   Plug 'janko-m/vim-test'
   Plug 'tpope/vim-dotenv'
-  Plug 'tpope/vim-obsession'
-  Plug 'tpope/vim-endwise'
+        \ | Plug 'direnv/direnv.vim'
+
   Plug 'tpope/vim-rsi'
-  Plug 'vim-utils/vim-husk'
+        \ | Plug 'vim-utils/vim-husk'
+
   Plug 'tpope/vim-commentary' 
-  Plug 'cbaumhardt/vim-commentary-boxed'
+        \ | Plug 'cbaumhardt/vim-commentary-boxed'
+
   Plug 'xolox/vim-misc'
-  Plug 'xolox/vim-notes'
-  Plug 'xolox/vim-shell'
+        \ | Plug 'xolox/vim-notes'
+        \ | Plug 'xolox/vim-shell'
+
   Plug 'tpope/vim-fugitive' 
-  Plug 'tpope/vim-rhubarb'
-  Plug 'tommcdo/vim-fugitive-blame-ext'
-  Plug 'idanarye/vim-merginal'
-  Plug 'direnv/direnv.vim'
+        \ | Plug 'tpope/vim-rhubarb'
+        \ | Plug 'tommcdo/vim-fugitive-blame-ext'
+        \ | Plug 'idanarye/vim-merginal'
+
   Plug 'editorconfig/editorconfig-vim'
   Plug 'embear/vim-localvimrc'
   Plug 'tpope/vim-scriptease'
+
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } 
-  Plug 'junegunn/fzf.vim'
-  Plug 'fszymanski/fzf-gitignore', {'do': ':UpdateRemotePlugins'}
+        \ | Plug 'junegunn/fzf.vim'
+        \ | Plug 'fszymanski/fzf-gitignore', {'do': ':UpdateRemotePlugins'}
+
   Plug 'chriskempson/base16-vim'
-  Plug 'bogado/file-line'
-  Plug 'Shougo/echodoc.vim'
-  Plug 'tpope/vim-dispatch'
-  Plug 'radenling/vim-dispatch-neovim'
-  Plug 'tmux-plugins/vim-tmux'
-  Plug 'tmux-plugins/vim-tmux-focus-events'
-  Plug 'sheerun/vim-polyglot'
-  Plug 'arnaud-lb/vim-php-namespace'
-  Plug 'davidhalter/jedi-vim'
-  Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
-  Plug 'lambdalisue/vim-pyenv'
-  Plug 'jmcantrell/vim-virtualenv'
-  Plug 'fisadev/vim-isort'
-  Plug 'python-rope/ropevim'
-  Plug 'tmhedberg/SimpylFold'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
+  Plug 'bogado/file-line'
+        \ | Plug 'Shougo/echodoc.vim'
+
+  Plug 'tpope/vim-dispatch'
+        \ | Plug 'radenling/vim-dispatch-neovim'
+
+  Plug 'tmux-plugins/vim-tmux'
+  Plug 'tmux-plugins/vim-tmux-focus-events'
+
+  Plug 'sheerun/vim-polyglot'
+        \ | Plug 'arnaud-lb/vim-php-namespace', { 'for': 'php' }
+        \ | Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+        \ | Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
+        \ | Plug 'lambdalisue/vim-pyenv', { 'for': 'python' }
+        \ | Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
+        \ | Plug 'fisadev/vim-isort', { 'for': 'python' }
+        \ | Plug 'python-rope/ropevim', { 'for': 'python' }
+        \ | Plug 'tmhedberg/SimpylFold', { 'for': 'python' }
+
   Plug 'craigemery/vim-autotag'
   Plug 'majutsushi/tagbar'
   Plug 'Yggdroot/indentLine'
@@ -283,6 +298,7 @@ func! jalcine#plugins#configure_mappings() abort
         \ ['rm', ':Gremove %<CR>'],
         \ ['rmc', ':Git rm --cached %<CR>'],
         \ ['l', ':Commits<CR>'],
+        \ ['m', ':Merginal<CR>'],
         \ ], { 'prefix': 'g' })
   " }}}
 endfunc

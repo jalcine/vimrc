@@ -10,6 +10,7 @@ func! jalcine#launch()
         \ 'plugins',
         \ 'augroups',
         \ 'theme',
+        \ 'lang',
         \ ]
 
   for sector in l:sectors

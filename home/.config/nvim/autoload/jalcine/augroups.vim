@@ -1,5 +1,11 @@
-func! jalcine#augroups#setup()
+" File:          autoload/jalcine/augroups.vim
+" Author:        Jacky Alcine <yo@jacky.wtf>
+" Description:   Define the autogroups, Jacky.
+" Last Modified: August 25, 2017
 
+
+
+func! jalcine#augroups#setup()
   augroup jalcine-misc
     au!
     au BufEnter       * :syntax sync maxlines=200

@@ -19,6 +19,14 @@ set cursorline
 set sidescrolloff=1 sidescroll=1
 set conceallevel=2 concealcursor=nvci
 set wrap wrapmargin=1
+set signcolumn=yes
+"
+" Folding {{{
+set foldenable
+set foldcolumn=2
+set foldlevel=0
+set foldmethod=syntax
+" }}}
 " }}}
 " 
 " White spacing and Characters {{{
@@ -71,13 +79,6 @@ set tabstop=2 softtabstop=2
 set shiftwidth=2 textwidth=100
 set smarttab expandtab
 set shiftround
-" }}}
-"
-" Folding {{{
-set foldenable
-set foldcolumn=1
-set foldlevel=1
-set foldmethod=syntax
 " }}}
 "
 " Searching {{{

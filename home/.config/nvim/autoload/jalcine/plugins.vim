@@ -72,9 +72,9 @@ func! jalcine#plugins#define() abort " {{{
 
   Plug 'sheerun/vim-polyglot'
         \ | Plug 'arnaud-lb/vim-php-namespace', { 'for': 'php' }
-        \ | Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+        \ | Plug 'davidhalter/jedi-vim'
         \ | Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
-        \ | Plug 'lambdalisue/vim-pyenv', { 'for': 'python' }
+        \ | Plug 'lambdalisue/vim-pyenv'
         \ | Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
         \ | Plug 'fisadev/vim-isort', { 'for': 'python' }
         \ | Plug 'python-rope/ropevim', { 'for': 'python' }
@@ -113,7 +113,6 @@ func! jalcine#plugins#configure() abort " {{{
   let g:airline#extensions#neomake#enabled = 1
   let g:airline#extensions#paste#symbol = 'ρ'
   let g:airline#extensions#readonly#symbol = '⊘'
-  let g:airline#extensions#tabline#enabled = 1
   let g:airline#extensions#tabline#enabled = 1
   let g:airline#extensions#tabline#show_buffers = 1
   let g:airline#extensions#tabline#show_splits = 1
@@ -154,7 +153,7 @@ func! jalcine#plugins#configure() abort " {{{
   " }}}
   "
   " autotag {{{
-  let g:autotagVerbosityLevel = 3
+  let g:autotagVerbosityLevel = 5
   let g:autotagTagsFile = '.vimtags'
   " }}}
   "
@@ -187,6 +186,7 @@ func! jalcine#plugins#configure() abort " {{{
   let g:UltiSnipsJumpForwardTrigger="<tab>"
   let g:UltiSnipsJumpBackwardTrigger="<c-b>"
   let g:UltiSnipsEditSplit="vertical"
+  let g:UltiSnipsNoPythonWarning=1
   " }}}
   "
   " test {{{

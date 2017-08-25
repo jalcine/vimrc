@@ -2,6 +2,7 @@
 " Author:        Jacky Alcine <yo@jacky.wtf>
 " Description:   Defines dynamic and static mappings.
 " Last Modified: August 25, 2017
+" vim: set fdm=marker :
 
 " options {{{
 let g:jalcine.mappings = {
@@ -51,7 +52,7 @@ func! jalcine#mappings#setup() abort
   inoremap <silent> <leader>pt <C-R>=strftime("%Y-%m-%d %H:%M:%S %Z")<CR>
   cnoremap <silent> <leader>pt <C-R>=strftime("%Y%m%d%H%M%S")<CR>
 
-  " Inject the current date and time (in Insert or Command mode).
+  " Inject the current date in Insert or Command mode).
   inoremap <silent> <leader>pd <C-R>=strftime("%Y-%m-%d")<CR>
   cnoremap <silent> <leader>pd <C-R>=strftime("%Y-%m-%d")<CR>
   " }}}

@@ -5,14 +5,15 @@
 
 
 
-func! jalcine#augroups#setup()
+func! jalcine#augroups#setup() abort
   augroup jalcine-misc
     au!
     au BufEnter       * :syntax sync maxlines=200
     au FileReadPre    * Rooter
-    au FileWritePost  * Neomake!
-    au VimEnter         LocalVimRC!
-    au TabNewEntered    TagbarOpenAutoClose
+    au BufWritePost   * Neomake
+    au BufReadPost    * Neomake
+    au VimEnter       <silent> LocalVimRC!
+    au TabNewEntered  <islent> TagbarOpenAutoClose
   augroup END
 
   augroup vimrc-langsupport

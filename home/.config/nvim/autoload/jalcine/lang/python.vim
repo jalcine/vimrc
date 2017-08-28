@@ -12,8 +12,8 @@ endfunc
 func! s:SetupJediAndPyenv() abort
   if jedi#init_python()
     function! s:jedi_auto_force_py_version() abort
-      let major_version = pyenv#python#get_internal_major_version()
-      call jedi#force_py_version(major_version)
+      let l:major_version = pyenv#python#get_internal_major_version()
+      call jedi#force_py_version(l:major_version)
     endfunction
     augroup vim-pyenv-custom-augroup
       autocmd! *
@@ -29,8 +29,8 @@ func! s:SetupPythonHighlightOptions() abort
 endfunc
 
 func! s:SetupPythonPaths() abort
-  let g:python3_host_prog = systemlist('pyenv which python3')[0]
-  let g:python_host_prog = systemlist('pyenv which python2')[0]
+  let g:python_host_prog = systemlist('PYENV_VERSION=neovim-py2 pyenv which python2')[0]
+  let g:python3_host_prog = systemlist('PYENV_VERSION=neovim-py3 pyenv which python3')[0]
 endfunc
 
 func! jalcine#lang#python#setup() abort

@@ -2,7 +2,7 @@
 " Author: Jacky Alcine <yo@jacky.wtf>
 " Description: Entry point of all of my configuration.
 " Last Modified: August 08, 2017
-" vim: set fdm=marker foldlevel=1 :
+" vim: set fdm=marker foldlevel=0 :
 
 if v:version < 800
     echoerr "[jalcine] Please upgrade Vim to Vim8 or use Neovim (recommended)."
@@ -106,11 +106,12 @@ endfunc
 " Provides a helper command to write an entry for the day.
 command! Today call <SID>LaunchNoteOfTheDay()
 " }}}
+"
 " TODO: Move to vimrc for osxrc.
 if has('macunix')
- " pbcopy for OSX copy/paste
- vmap <C-x> :!pbcopy<CR>
- vmap <C-c> :w !pbcopy<CR><CR>
+    " pbcopy for OSX copy/paste
+    vmap <C-x> :!pbcopy<CR>
+    vmap <C-c> :w !pbcopy<CR><CR>
 endif
 
 call jalcine#launch()

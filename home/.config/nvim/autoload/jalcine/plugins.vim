@@ -116,6 +116,7 @@ func! jalcine#plugins#define() abort " {{{
         \ | Plug 'roxma/ncm-github'
         \ | Plug 'zchee/deoplete-go', { 'do': 'make'}
         \ | Plug 'SevereOverfl0w/deoplete-github'
+  Plug 'ternjs/tern_for_vim', { 'do': 'npm install && npm install -g tern' }
 
   Plug 'brooth/far.vim'
   Plug 'roxma/vim-tmux-clipboard'
@@ -291,10 +292,14 @@ func! jalcine#plugins#configure() abort " {{{
         \ }
         \ }
   let g:deoplete#enable_at_startup = 1
-  let g:deoplete#sources = {}
-  let g:deoplete#sources.gitcommit=['github']
+  let g:deoplete#enable_camel_case = 1
+  let g:deoplete#enable_ignore_case = 1
+  let g:deoplete#enable_refresh_always = 1
+  let g:deoplete#enable_smart_case = 1
   let g:deoplete#keyword_patterns = {}
   let g:deoplete#keyword_patterns.gitcommit = '.+'
+  let g:deoplete#sources = {}
+  let g:deoplete#sources.gitcommit=['github']
 
   call deoplete#util#set_pattern(
     \ g:deoplete#omni#input_patterns,

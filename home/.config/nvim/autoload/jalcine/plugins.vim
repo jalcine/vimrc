@@ -275,6 +275,10 @@ func! jalcine#plugins#configure() abort " {{{
         \ 'module': 'cm_matchers.substr_matcher',
         \ 'case': 'smartcase'
         \ }
+  " }}}
+  "
+  " deoplete {{{
+  " }}}
   let g:deoplete = {
         \ 'ignore_sources': {
         \ '_' : [
@@ -286,6 +290,15 @@ func! jalcine#plugins#configure() abort " {{{
         \ ]
         \ }
         \ }
+  let g:deoplete#enable_at_startup = 1
+  let g:deoplete#sources = {}
+  let g:deoplete#sources.gitcommit=['github']
+  let g:deoplete#keyword_patterns = {}
+  let g:deoplete#keyword_patterns.gitcommit = '.+'
+
+  call deoplete#util#set_pattern(
+    \ g:deoplete#omni#input_patterns,
+    \ 'gitcommit', [g:deoplete#keyword_patterns.gitcommit])
   " }}}
   "
   " misc {{{
@@ -293,10 +306,7 @@ func! jalcine#plugins#configure() abort " {{{
   let g:localvimrc_persistent = 2
   let g:polyglot_disabled = ['python']
   let g:python_highlight_all = 1
-  let g:deoplete#enable_at_startup = 1
   let g:notes_suffix = '.txt'
-  " TODO: Configure workspace options.
-  " TODO: Santiize new plugins.
   " }}}
   "
   " workspace {{{
@@ -365,14 +375,12 @@ func! jalcine#plugins#configure_mappings() abort " {{{
         \ ], { 'prefix': 'g' })
   " }}}
   "
-  " ultisnips {{{
-  inoremap <silent> <c-u> <c-r>=cm#sources#ultisnips#trigger_or_popup("\<Plug>(ultisnips_expand)")<cr>
-  "
   " ncm {{{
   inoremap <c-g> <Plug>(cm_force_refresh)
   inoremap <expr> <silent> <Tab>  pumvisible()?"\<C-n>":"\<TAB>"
   inoremap <expr> <silent> <S-TAB>  pumvisible()?"\<C-p>":"\<S-TAB>"
   inoremap <silent> <Plug>_ <C-r>=g:Deoplete_ncm()<CR>
+  inoremap <silent> <c-u> <c-r>=cm#sources#ultisnips#trigger_or_popup("\<Plug>(ultisnips_expand)")<cr>
 
   func! g:Deoplete_ncm() abort
     " forward to ncm

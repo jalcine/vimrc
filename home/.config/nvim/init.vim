@@ -4,11 +4,12 @@
 " Last Modified: August 08, 2017
 " vim: set fdm=marker foldlevel=0 :
 
-if v:version < 800
-    echoerr "[jalcine] Please upgrade Vim to Vim8 or use Neovim (recommended)."
-endif
-
 set encoding=utf-8
+scriptencoding utf-8
+
+if v:version < 800
+    echoerr '[jalcine] Please upgrade Vim to Vim8 or use Neovim (recommended).'
+endif
 
 " Visual Editor Components {{{
 set laststatus=2
@@ -18,7 +19,7 @@ set termguicolors guicursor=
 set cursorline
 set sidescrolloff=1 sidescroll=1
 set conceallevel=2 concealcursor=nvci
-set wrap wrapmargin=1
+set nowrap
 set signcolumn=yes
 "
 " Folding {{{
@@ -28,7 +29,7 @@ set foldlevel=0
 set foldmethod=syntax
 " }}}
 " }}}
-" 
+"
 " White spacing and Characters {{{
 " A problem that plagued me for months, having visual cues for white spacing
 " solves formatting problems a lot quicker. Also, we're using modern shells
@@ -47,7 +48,7 @@ set listchars+=extends:❯
 set listchars+=precedes:❮
 set listchars+=trail:⋅
 set listchars+=nbsp:⋅
-set listchars+=tab:\|\ 
+set listchars+=tab:\|\
 
 "}}}
 "
@@ -107,7 +108,7 @@ endfunc
 command! Today call <SID>LaunchNoteOfTheDay()
 " }}}
 "
-" TODO: Move to vimrc for osxrc.
+"s TODO: Move to vimrc for osxrc.
 if has('macunix')
     " pbcopy for OSX copy/paste
     vmap <C-x> :!pbcopy<CR>

@@ -3,6 +3,7 @@
 " Author:        Jacky Alcine <yo@jacky.wtf>
 " Last Modified: August 24, 2017
 " vim: set fdm=marker :
+scriptencoding utf-8
 
 " Options {{{
 let g:jalcine.plugins = {
@@ -10,7 +11,7 @@ let g:jalcine.plugins = {
       \ }
 " }}}
 
-func! jalcine#plugins#setup() " {{{
+func! jalcine#plugins#setup() abort " {{{
   call jalcine#plugins#define()
   call jalcine#plugins#configure()
   call jalcine#plugins#configure_mappings()
@@ -38,14 +39,14 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'tpope/vim-rsi'
         \ | Plug 'vim-utils/vim-husk'
 
-  Plug 'tpope/vim-commentary' 
+  Plug 'tpope/vim-commentary'
         \ | Plug 'cbaumhardt/vim-commentary-boxed'
 
   Plug 'xolox/vim-misc'
         \ | Plug 'xolox/vim-notes'
         \ | Plug 'xolox/vim-shell'
 
-  Plug 'tpope/vim-fugitive' 
+  Plug 'tpope/vim-fugitive'
         \ | Plug 'tpope/vim-rhubarb'
         \ | Plug 'tommcdo/vim-fugitive-blame-ext'
         \ | Plug 'idanarye/vim-merginal'
@@ -53,8 +54,18 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'editorconfig/editorconfig-vim'
   Plug 'embear/vim-localvimrc'
   Plug 'tpope/vim-scriptease'
+  Plug 'mhinz/vim-signify'
+  Plug 'MattesGroeger/vim-bookmarks'
+  Plug 'jceb/vim-orgmode'
+  Plug 'mattn/emmet-vim'
+  Plug 'thaerkh/vim-workspace'
+  Plug 'junegunn/gv.vim'
+  Plug 'mattn/webapi-vim'
+  Plug 'tpope/vim-abolish'
+  Plug 'stanangeloff/php.vim'
+  Plug 'moll/vim-node'
 
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } 
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
         \ | Plug 'junegunn/fzf.vim'
         \ | Plug 'fszymanski/fzf-gitignore', {'do': ':UpdateRemotePlugins'}
 
@@ -79,23 +90,33 @@ func! jalcine#plugins#define() abort " {{{
         \ | Plug 'fisadev/vim-isort', { 'for': 'python' }
         \ | Plug 'python-rope/ropevim', { 'for': 'python' }
         \ | Plug 'tmhedberg/SimpylFold', { 'for': 'python' }
+        \ | Plug 'powerman/vim-plugin-AnsiEsc'
+        \ | Plug 'nsf/gocode', { 'run': 'make' },
+        \ | Plug 'slashmili/alchemist.vim',
 
   Plug 'craigemery/vim-autotag'
   Plug 'majutsushi/tagbar'
   Plug 'Yggdroot/indentLine'
   Plug 'airblade/vim-rooter'
   Plug 'tpope/vim-surround'
-  Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
-        \ | Plug 'roxma/nvim-completion-manager'
+
+  Plug 'roxma/nvim-completion-manager'
+        \ | Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
         \ | Plug 'roxma/nvim-cm-racer'
+        \ | Plug 'roxma/ncm-rct-complete'
         \ | Plug 'roxma/ncm-github'
+        \ | Plug 'jsfaint/gen_tags.vim'
         \ | Plug 'Shougo/neco-vim'
         \ | Plug 'roxma/clang_complete'
+        \ | Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
         \ | Plug 'Shougo/neco-syntax'
         \ | Plug 'Shougo/neoinclude.vim'
         \ | Plug 'calebeby/ncm-css'
         \ | Plug 'roxma/nvim-cm-tern', { 'run': 'npm install' }
         \ | Plug 'roxma/ncm-github'
+        \ | Plug 'zchee/deoplete-go', { 'do': 'make'}
+        \ | Plug 'SevereOverfl0w/deoplete-github'
+
   Plug 'brooth/far.vim'
   Plug 'roxma/vim-tmux-clipboard'
   Plug 'sirver/ultisnips'
@@ -154,8 +175,8 @@ func! jalcine#plugins#configure() abort " {{{
 
   let g:fzf_buffers_jump = 1
   let g:fzf_history_dir = '~/.config/nvim/fzf-history'
-  let g:fzf_gitignore_map = "<Leader>sgi"
-  let g:fzf_tags_command = 'ctags -A .tags' 
+  let g:fzf_gitignore_map = '<Leader>sgi'
+  let g:fzf_tags_command = 'ctags -A .tags'
   " }}}
   "
   " autotag {{{
@@ -187,12 +208,13 @@ func! jalcine#plugins#configure() abort " {{{
   let g:tagbar_autoshowtag = 0
   let g:tagbar_comact = 1
   " }}}
-  " 
+  "
   " ultisnips {{{
-  let g:UltiSnipsJumpForwardTrigger="<tab>"
-  let g:UltiSnipsJumpBackwardTrigger="<c-b>"
-  let g:UltiSnipsEditSplit="vertical"
+  let g:UltiSnipsJumpForwardTrigger='<tab>'
+  let g:UltiSnipsJumpBackwardTrigger='<c-b>'
+  let g:UltiSnipsEditSplit='vertical'
   let g:UltiSnipsNoPythonWarning=1
+  let g:UltiSnipsExpandTrigger = '<Plug>(ultisnips_expand)'
   " }}}
   "
   " test {{{
@@ -203,21 +225,26 @@ func! jalcine#plugins#configure() abort " {{{
         \ 'suite': 'neovim',
         \ }
   " }}}
-  " 
+  "
   " languageclient {{{
   let g:LanguageClient_autoStart = 1
   let g:LanguageClient_selectionUI = 'fzf'
+
+  " TODO: Set up language server shit.
+  let g:LanguageClient_serverCommands = {
+        \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+        \ }
   " }}}
   "
   " jedi {{{
   let g:jedi#popup_on_dot = 1
-  let g:jedi#goto_assignments_command = "<leader>jg"
-  let g:jedi#goto_definitions_command = "<leader>jd"
-  let g:jedi#documentation_command = "K"
-  let g:jedi#usages_command = "<leader>jn"
-  let g:jedi#rename_command = "<leader>jr"
-  let g:jedi#show_call_signatures = "1"
-  let g:jedi#completions_command = "<C-Space>"
+  let g:jedi#goto_assignments_command = '<leader>jg'
+  let g:jedi#goto_definitions_command = '<leader>jd'
+  let g:jedi#documentation_command = 'K'
+  let g:jedi#usages_command = '<leader>jn'
+  let g:jedi#rename_command = '<leader>jr'
+  let g:jedi#show_call_signatures = '1'
+  let g:jedi#completions_command = '<C-Space>'
   let g:jedi#smart_auto_mappings = 0
 
   " }}}
@@ -232,8 +259,9 @@ func! jalcine#plugins#configure() abort " {{{
   let g:rooter_use_lcd = 1
   let g:rooter_silent_chdir = 1
   let g:rooter_resolve_links = 1
+  let g:rooter_change_directory_for_non_project_files = 'home'
   " }}}
-  " 
+  "
   " indentline {{{
   let g:indentLine_showFirstIndentLevel = 0
   let g:indentLine_setColors = 1
@@ -242,14 +270,43 @@ func! jalcine#plugins#configure() abort " {{{
   let g:indentLine_char = '┊'
   " }}}
   "
+  " ncm {{{
+  let g:cm_matcher = {
+        \ 'module': 'cm_matchers.substr_matcher',
+        \ 'case': 'smartcase'
+        \ }
+  let g:deoplete = {
+        \ 'ignore_sources': {
+        \ '_' : [
+        \   'buffer',
+        \   'member',
+        \   'tag',
+        \   'file',
+        \   'around',
+        \ ]
+        \ }
+        \ }
+  " }}}
+  "
   " misc {{{
+  " let g:alchemist#elixir_erlang_src = "/usr/local/share/src"
   let g:localvimrc_persistent = 2
   let g:polyglot_disabled = ['python']
-  let python_highlight_all = 1
+  let g:python_highlight_all = 1
+  let g:deoplete#enable_at_startup = 1
+  let g:notes_suffix = '.txt'
+  " TODO: Configure workspace options.
+  " TODO: Santiize new plugins.
+  " }}}
+  "
+  " workspace {{{
+  let g:workspace_autocreate = 0
+  let g:workspace_session_name = '.session.vim'
+  let g:workspace_autosave_ignore = ['gitcommit']
   " }}}
 endfunc " }}}
 
-func! jalcine#plugins#configure_mappings() abort
+func! jalcine#plugins#configure_mappings() abort " {{{
   " make {{{
   " Binds the command used for running 'Make'.
   call jalcine#mappings#apply_bulk([
@@ -284,7 +341,7 @@ func! jalcine#plugins#configure_mappings() abort
         \ ['w', ':Windows<cr>'],
         \ ['c', ':Commits<cr>'],
         \ ['b', ':Buffers<cr>'],
-      \ ], { 'prefix': 's' })
+        \ ], { 'prefix': 's' })
   " }}}
   "
   " git {{{
@@ -307,4 +364,28 @@ func! jalcine#plugins#configure_mappings() abort
         \ ['m', ':Merginal<CR>'],
         \ ], { 'prefix': 'g' })
   " }}}
-endfunc
+  "
+  " ultisnips {{{
+  inoremap <silent> <c-u> <c-r>=cm#sources#ultisnips#trigger_or_popup("\<Plug>(ultisnips_expand)")<cr>
+  "
+  " ncm {{{
+  inoremap <c-g> <Plug>(cm_force_refresh)
+  inoremap <expr> <silent> <Tab>  pumvisible()?"\<C-n>":"\<TAB>"
+  inoremap <expr> <silent> <S-TAB>  pumvisible()?"\<C-p>":"\<S-TAB>"
+  inoremap <silent> <Plug>_ <C-r>=g:Deoplete_ncm()<CR>
+
+  func! g:Deoplete_ncm() abort
+    " forward to ncm
+    call cm#complete('deoplete', cm#context(),
+          \ g:deoplete#_context.complete_position + 1,
+          \ g:deoplete#_context.candidates)
+    return ''
+  endfunc
+  " }}}
+  "
+  " workspace {{{
+  call jalcine#mappings#apply_bulk([
+        \ ['t', ':ToggleWorkspace<CR>'],
+        \ ], { 'prefix': 'w' })
+  " }}}
+endfunc " }}}

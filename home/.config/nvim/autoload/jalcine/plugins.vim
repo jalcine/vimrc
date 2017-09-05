@@ -108,14 +108,12 @@ func! jalcine#plugins#define() abort " {{{
         \ | Plug 'jsfaint/gen_tags.vim'
         \ | Plug 'Shougo/neco-vim'
         \ | Plug 'roxma/clang_complete'
-        \ | Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
         \ | Plug 'Shougo/neco-syntax'
         \ | Plug 'Shougo/neoinclude.vim'
         \ | Plug 'calebeby/ncm-css'
         \ | Plug 'roxma/nvim-cm-tern', { 'run': 'npm install' }
         \ | Plug 'roxma/ncm-github'
-        \ | Plug 'zchee/deoplete-go', { 'do': 'make'}
-        \ | Plug 'SevereOverfl0w/deoplete-github'
+        \ | Plug 'sourcegraph/javascript-typescript-langserver', { 'do': 'npm install' }
   Plug 'ternjs/tern_for_vim', { 'do': 'npm install && npm install -g tern' }
 
   Plug 'brooth/far.vim'
@@ -211,11 +209,10 @@ func! jalcine#plugins#configure() abort " {{{
   " }}}
   "
   " ultisnips {{{
-  let g:UltiSnipsJumpForwardTrigger='<tab>'
-  let g:UltiSnipsJumpBackwardTrigger='<c-b>'
+  let g:UltiSnipsExpandTrigger		= '<Plug>(ultisnips_expand)'
+  let g:UltiSnipsRemoveSelectModeMappings = 0
   let g:UltiSnipsEditSplit='vertical'
   let g:UltiSnipsNoPythonWarning=1
-  let g:UltiSnipsExpandTrigger = '<Plug>(ultisnips_expand)'
   " }}}
   "
   " test {{{
@@ -234,6 +231,7 @@ func! jalcine#plugins#configure() abort " {{{
   " TODO: Set up language server shit.
   let g:LanguageClient_serverCommands = {
         \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+        \ 'javascript': [fnamemodify('$MYVIMRC', ':p:h') . '/plugins/javascript-typescript-langserver/lib/language-server-stdio.js']
         \ }
   " }}}
   "
@@ -276,34 +274,10 @@ func! jalcine#plugins#configure() abort " {{{
         \ 'module': 'cm_matchers.substr_matcher',
         \ 'case': 'smartcase'
         \ }
-  " }}}
-  "
-  " deoplete {{{
-  " }}}
-  let g:deoplete = {
-        \ 'ignore_sources': {
-        \ '_' : [
-        \   'buffer',
-        \   'member',
-        \   'tag',
-        \   'file',
-        \   'around',
-        \ ]
-        \ }
-        \ }
-  let g:deoplete#enable_at_startup = 1
-  let g:deoplete#enable_camel_case = 1
-  let g:deoplete#enable_ignore_case = 1
-  let g:deoplete#enable_refresh_always = 1
-  let g:deoplete#enable_smart_case = 1
-  let g:deoplete#keyword_patterns = {}
-  let g:deoplete#keyword_patterns.gitcommit = '.+'
-  let g:deoplete#sources = {}
-  let g:deoplete#sources.gitcommit=['github']
-
-  call deoplete#util#set_pattern(
-    \ g:deoplete#omni#input_patterns,
-    \ 'gitcommit', [g:deoplete#keyword_patterns.gitcommit])
+  if exists('$NVIM_VERBOSE')
+    let $NVIM_NCM_LOG_LEVEL='DEBUG'
+    let $NVIM_NCM_MULTI_THREAD=0
+  endif
   " }}}
   "
   " misc {{{
@@ -381,19 +355,8 @@ func! jalcine#plugins#configure_mappings() abort " {{{
   " }}}
   "
   " ncm {{{
-  inoremap <c-g> <Plug>(cm_force_refresh)
-  inoremap <expr> <silent> <Tab>  pumvisible()?"\<C-n>":"\<TAB>"
-  inoremap <expr> <silent> <S-TAB>  pumvisible()?"\<C-p>":"\<S-TAB>"
-  inoremap <silent> <Plug>_ <C-r>=g:Deoplete_ncm()<CR>
+  inoremap <silent> <c-g> <Plug>(cm_force_refresh)
   inoremap <silent> <c-u> <c-r>=cm#sources#ultisnips#trigger_or_popup("\<Plug>(ultisnips_expand)")<cr>
-
-  func! g:Deoplete_ncm() abort
-    " forward to ncm
-    call cm#complete('deoplete', cm#context(),
-          \ g:deoplete#_context.complete_position + 1,
-          \ g:deoplete#_context.candidates)
-    return ''
-  endfunc
   " }}}
   "
   " workspace {{{

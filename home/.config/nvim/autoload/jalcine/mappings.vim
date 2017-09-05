@@ -11,8 +11,8 @@ let g:jalcine.mappings = {
 " }}}
 
 func! jalcine#mappings#apply_bulk(mappings_list, opts) abort
-  for a_mapping in a:mappings_list
-    let l:command = a_mapping[0]
+  for l:a_mapping in a:mappings_list
+    let l:command = l:a_mapping[0]
 
     if has_key(a:opts, 'prefix')
       let l:command = a:opts.prefix . l:command
@@ -22,11 +22,11 @@ func! jalcine#mappings#apply_bulk(mappings_list, opts) abort
     let l:idx = 0
     while l:idx < len(l:modes)
       let l:mode = l:modes[l:idx : 1]
-      let l:exc_cmd = mode . 'noremap '
+      let l:exc_cmd = l:mode . 'noremap '
             \ . '<silent> '
             \ . g:jalcine.mappings.leader . l:command
             \ . ' '
-            \ . get(a_mapping, 1)
+            \ . get(l:a_mapping, 1)
       exec l:exc_cmd
       let l:idx += 1
     endwhile
@@ -35,7 +35,7 @@ endfunc
 
 func! jalcine#mappings#setup() abort
   " Define the leader!
-  let mapleader=g:jalcine.mappings.leader
+  exec 'let mapleader="' . g:jalcine.mappings.leader . '"'
 
   " Toggle the state of search highlighting locally.
   nnoremap <silent> <leader>h :setlocal hlsearch!<cr>

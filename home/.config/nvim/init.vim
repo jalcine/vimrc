@@ -21,6 +21,7 @@ set sidescrolloff=1 sidescroll=1
 set conceallevel=2 concealcursor=nvci
 set nowrap
 set signcolumn=yes
+set shortmess+=c
 "
 " Folding {{{
 set foldenable

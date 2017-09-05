@@ -8,6 +8,7 @@ if v:version < 800
     echoerr "[jalcine] Please upgrade Vim to Vim8 or use Neovim (recommended)."
 endif
 
+" Move to the future.
 set encoding=utf-8
 
 " Visual Editor Components {{{
@@ -69,11 +70,6 @@ set undoreload=1000
 set backup writebackup
 " }}}
 "
-" Custom file-specific Vim option definitions {{{
-set modeline
-set modelines=10
-" }}}
-"
 " Spacing {{{
 set tabstop=2 softtabstop=2
 set shiftwidth=2 textwidth=100
@@ -97,6 +93,8 @@ set tags+=$HOME/.config/nvim/tags/*
 " }}}
 "
 " {{{ Extra special
+set modeline modelines=10
+
 " TODO: Move to commands file.
 func! s:LaunchNoteOfTheDay() abort
     execute ':Note Morning Entries/' . strftime('%Y-%m-%d')
@@ -106,12 +104,5 @@ endfunc
 " Provides a helper command to write an entry for the day.
 command! Today call <SID>LaunchNoteOfTheDay()
 " }}}
-"
-" TODO: Move to vimrc for osxrc.
-if has('macunix')
-    " pbcopy for OSX copy/paste
-    vmap <C-x> :!pbcopy<CR>
-    vmap <C-c> :w !pbcopy<CR><CR>
-endif
 
 call jalcine#launch()

@@ -6,7 +6,7 @@
 let g:jalcine.mappings.lang.php = 'lp'
 
 func! s:ApplyCustomMappings() abort
-  call jalcine#mappings#apply([
+  call jalcine#mappings#apply_bulk([
         \ ['e', 'call jalcine#lang#php#invoke("expandclass")<CR>'],
         \ ['s', 'call jalcine#lang#php#invoke("sortuse")<CR>'],
         \ ['u', 'call jalcine#lang#php#invoke("insertuse")<CR>'],
@@ -23,4 +23,7 @@ endfunc
 
 func! jalcine#lang#php#tweak() abort
   call <SID>ApplyCustomMappings()
+endfunc
+
+func! jalcine#lang#php#setup() abort
 endfunc

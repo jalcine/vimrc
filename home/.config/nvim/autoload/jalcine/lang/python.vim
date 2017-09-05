@@ -34,9 +34,9 @@ func! s:SetupPythonPaths() abort
 endfunc
 
 func! jalcine#lang#python#setup() abort
+  call <SID>SetupPythonPaths()
   call <SID>SetupPythonHighlightOptions()
   call <SID>SetupJediAndPyenv()
-  call <SID>SetupPythonPaths()
   " TODO: Find the venv defined for Neovim.
   " TODO: Assoc python2 to Neovim.
   " TODO: Assoc python3 to Neovim.

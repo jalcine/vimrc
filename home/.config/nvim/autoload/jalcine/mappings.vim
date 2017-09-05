@@ -35,7 +35,7 @@ endfunc
 
 func! jalcine#mappings#setup() abort
   " Define the leader!
-  let mapleader=g:jalcine.mappings.leader
+  exec 'let mapleader="' . g:jalcine.mappings.leader . '"'
 
   " Toggle the state of search highlighting locally.
   nnoremap <silent> <leader>h :setlocal hlsearch!<cr>

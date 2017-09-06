@@ -37,6 +37,34 @@ func! jalcine#mappings#setup() abort
   " Define the leader!
   exec 'let mapleader="' . g:jalcine.mappings.leader . '"'
 
+  " Ensure that InsertLeave is triggered.
+  inoremap <c-c> <ESC>
+
+  " {{{ Terminal
+  tnoremap <Esc> <C-\><C-n>
+  tnoremap <A-h> <C-\><C-n><C-w>h
+  tnoremap <A-j> <C-\><C-n><C-w>j
+  tnoremap <A-k> <C-\><C-n><C-w>k
+  tnoremap <A-l> <C-\><C-n><C-w>l
+  nnoremap <A-h> <C-w>h
+  nnoremap <A-j> <C-w>j
+  nnoremap <A-k> <C-w>k
+  nnoremap <A-l> <C-w>l
+  " }}}
+
+  " Rewrite 'vhe' to 'vert help'.
+  cnoremap vhe vert help
+
+  " Let me write to sudo whenever possible.
+  cnoremap sw% w !sudo tee %
+
+  " Show me tags.
+  nnoremap <F8> :TagbarToggle<CR>
+
+  " Focuses Vim.
+  nnoremap <silent> <leader><space> :Goyo
+  nnoremap <silent> <leader>L <Plug>(Limelight)
+
   " Toggle the state of search highlighting locally.
   nnoremap <silent> <leader>h :setlocal hlsearch!<cr>
 

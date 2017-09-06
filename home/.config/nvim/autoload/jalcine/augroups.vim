@@ -3,17 +3,15 @@
 " Description:   Define the autogroups, Jacky.
 " Last Modified: August 25, 2017
 
-
-
 func! jalcine#augroups#setup() abort
-  augroup jalcine-misc
+  augroup vimrc_misc
     au!
     au BufEnter         * :syntax sync maxlines=200
     au FileReadPost     * Rooter
     au BufWritePost     * Neomake
     au BufReadPost      * Neomake
     au VimEnter           <silent> LocalVimRC!
-    au User RooterChDir   TagbarOpenAutoClose
+    au User RooterChDir   TagbarOpenAutoClose | wincd 
     au CompleteDone     * if pumvisible() == 0 | pclose | endif
   augroup END
 
@@ -25,5 +23,10 @@ func! jalcine#augroups#setup() abort
           \ 'priority': 7,  
           \ 'abbreviation': '', 
           \ })
+  augroup END
+
+  augroup vimrc_goyo
+      au User GoyoEnter nested call jalcine#tweaks#goyo#enter()
+      au User GoyoLeave nested call jalcine#tweaks#goyo#leave()
   augroup END
 endfunc

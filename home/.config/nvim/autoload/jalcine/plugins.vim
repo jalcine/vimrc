@@ -53,23 +53,21 @@ func! jalcine#plugins#define() abort " {{{
         \ | Plug 'mattn/gist-vim'
         \ | Plug 'nkantar/ght.vim'
 
+  Plug 'MattesGroeger/vim-bookmarks'
+  Plug 'ap/vim-css-color'
+  Plug 'chiel92/vim-autoformat'
   Plug 'editorconfig/editorconfig-vim'
   Plug 'embear/vim-localvimrc'
-  Plug 'tpope/vim-scriptease'
-  Plug 'thaerkh/vim-workspace'
-  Plug 'chiel92/vim-autoformat'
-  Plug 'ap/vim-css-color'
   Plug 'gabrielelana/vim-markdown'
-  Plug 'mhinz/vim-signify'
-  Plug 'MattesGroeger/vim-bookmarks'
   Plug 'jceb/vim-orgmode'
-  Plug 'mattn/emmet-vim'
-  Plug 'thaerkh/vim-workspace'
   Plug 'junegunn/gv.vim'
+  Plug 'mattn/emmet-vim'
   Plug 'mattn/webapi-vim'
-  Plug 'tpope/vim-abolish'
-  Plug 'stanangeloff/php.vim'
+  Plug 'mhinz/vim-signify'
   Plug 'moll/vim-node'
+  Plug 'thaerkh/vim-workspace'
+  Plug 'tpope/vim-abolish'
+  Plug 'tpope/vim-scriptease'
 
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
         \ | Plug 'junegunn/fzf.vim'
@@ -96,11 +94,11 @@ func! jalcine#plugins#define() abort " {{{
         \ | Plug 'fisadev/vim-isort', { 'for': 'python' }
         \ | Plug 'python-rope/ropevim', { 'for': 'python' }
         \ | Plug 'tmhedberg/SimpylFold', { 'for': 'python' }
-        \ | Plug 'fatih/vim-go', { 'for': 'go'}
         \ | Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
-        \ | Plug 'powerman/vim-plugin-AnsiEsc'
-        \ | Plug 'nsf/gocode', { 'run': 'make' },
-        \ | Plug 'slashmili/alchemist.vim',
+        \ | Plug 'fatih/vim-go', { 'for': 'go'}
+        \ | Plug 'nsf/gocode', { 'run': 'make' }
+        \ | Plug 'slashmili/alchemist.vim'
+        \ | Plug 'stanangeloff/php.vim'
 
   Plug 'powerman/vim-plugin-AnsiEsc'
   Plug 'majutsushi/tagbar'
@@ -244,7 +242,8 @@ func! jalcine#plugins#configure() abort " {{{
   " TODO: Set up language server shit.
   let g:LanguageClient_serverCommands = {
         \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-        \ 'javascript': [fnamemodify('$MYVIMRC', ':p:h') . '/plugins/javascript-typescript-langserver/lib/language-server-stdio.js']
+        \ 'javascript': [fnamemodify('$MYVIMRC', ':p:h') . '/plugins/javascript-typescript-langserver/lib/language-server-stdio.js'],
+        \ 'python': ['pyls']
         \ }
   " }}}
   "

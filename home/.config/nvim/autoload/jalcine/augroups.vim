@@ -11,8 +11,6 @@ func! jalcine#augroups#setup() abort
     au BufWritePost     * Neomake
     au BufReadPost      * Neomake
     au VimEnter           <silent> LocalVimRC!
-    au User RooterChDir   TagbarOpenAutoClose | wincd 
-    au CompleteDone     * if pumvisible() == 0 | pclose | endif
   augroup END
 
   augroup vimrc-langsupport

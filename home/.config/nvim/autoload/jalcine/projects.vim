@@ -1,9 +1,5 @@
 func! jalcine#projects#open_new(dir) abort
   tabnew
-  exec('tchdir ' . a:dir)
-  exec('lchdir ' . a:dir)
-  Tagbar
-  Dotenv
 
   let l:doc_files = ['README.md', 'README.markdown', 'README']
   for l:doc_file in l:doc_files
@@ -13,11 +9,11 @@ func! jalcine#projects#open_new(dir) abort
     endif
   endfor
 
-  call jalcine#projects#enter_directory(a:dir)
-  exec('FzfGFiles ' . a:dir)
-  TagbarOpen
+  DotEnv | DirenvExport | TagbarOpenAutoClose
+  call jalcine#projects#enter(a:dir)
 endfunc
 
-func! jalcine#projects#enter_directory(dir) abort
-  exec('tchdir ' . a:dir)
+func! jalcine#projects#enter(dir) abort
+  exec('tchdir ' . a:dir . ' | lchdir ' . a:dir)
+  exec('FzfGFiles ' . a:dir)
 endfunc

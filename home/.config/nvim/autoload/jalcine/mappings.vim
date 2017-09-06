@@ -6,7 +6,8 @@
 
 " options {{{
 let g:jalcine.mappings = {
-      \ 'leader':  ','
+      \ 'leader':  ',',
+      \ 'localLeader':  '\\'
       \ }
 " }}}
 
@@ -35,7 +36,8 @@ endfunc
 
 func! jalcine#mappings#setup() abort
   " Define the leader!
-  exec 'let mapleader="' . g:jalcine.mappings.leader . '"'
+  exec 'let g:mapleader="' . g:jalcine.mappings.leader . '"'
+  exec 'let g:maplocalleader="' . g:jalcine.mappings.localLeader. '"'
 
   " Ensure that InsertLeave is triggered.
   inoremap <c-c> <ESC>

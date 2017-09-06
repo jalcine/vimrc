@@ -25,3 +25,6 @@ endfunc
 func! jalcine#lang#php#tweak() abort
   call <SID>ApplyCustomMappings()
 endfunc
+
+func! jalcine#lang#php#setup() abort
+endfunc

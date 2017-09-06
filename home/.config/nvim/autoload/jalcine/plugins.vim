@@ -50,10 +50,16 @@ func! jalcine#plugins#define() abort " {{{
         \ | Plug 'tpope/vim-rhubarb'
         \ | Plug 'tommcdo/vim-fugitive-blame-ext'
         \ | Plug 'idanarye/vim-merginal'
+        \ | Plug 'mattn/gist-vim'
+        \ | Plug 'nkantar/ght.vim'
 
   Plug 'editorconfig/editorconfig-vim'
   Plug 'embear/vim-localvimrc'
   Plug 'tpope/vim-scriptease'
+  Plug 'thaerkh/vim-workspace'
+  Plug 'chiel92/vim-autoformat'
+  Plug 'ap/vim-css-color'
+  Plug 'gabrielelana/vim-markdown'
   Plug 'mhinz/vim-signify'
   Plug 'MattesGroeger/vim-bookmarks'
   Plug 'jceb/vim-orgmode'
@@ -90,6 +96,9 @@ func! jalcine#plugins#define() abort " {{{
         \ | Plug 'fisadev/vim-isort', { 'for': 'python' }
         \ | Plug 'python-rope/ropevim', { 'for': 'python' }
         \ | Plug 'tmhedberg/SimpylFold', { 'for': 'python' }
+        \ | Plug 'fatih/vim-go', { 'for': 'go'}
+        \ | Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+        \ | Plug 'powerman/vim-plugin-AnsiEsc'
         \ | Plug 'nsf/gocode', { 'run': 'make' },
         \ | Plug 'slashmili/alchemist.vim',
 
@@ -98,6 +107,8 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'Yggdroot/indentLine'
   Plug 'airblade/vim-rooter'
   Plug 'tpope/vim-surround'
+  Plug 'raimondi/delimitmate'
+
 
   Plug 'roxma/nvim-completion-manager'
         \ | Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
@@ -112,6 +123,8 @@ func! jalcine#plugins#define() abort " {{{
         \ | Plug 'calebeby/ncm-css'
         \ | Plug 'roxma/nvim-cm-tern', { 'run': 'npm install' }
         \ | Plug 'roxma/ncm-github'
+        \ | Plug 'phpactor/phpactor' ,  {'do': 'composer install'}
+        \ | Plug 'roxma/ncm-phpactor'
         \ | Plug 'sourcegraph/javascript-typescript-langserver', { 'do': 'npm install' }
         \ | Plug 'ternjs/tern_for_vim', { 'do': 'npm install && npm install -g tern' }
 
@@ -120,12 +133,17 @@ func! jalcine#plugins#define() abort " {{{
 
   Plug 'brooth/far.vim'
   Plug 'roxma/vim-tmux-clipboard'
+  Plug 'sirver/ultisnips'
+        \ | Plug 'honza/vim-snippets'
+
   Plug 'tpope/vim-vinegar'
   Plug 'tpope/vim-sleuth'
   Plug 'tpope/vim-projectionist'
   Plug 'mhinz/vim-startify'
   Plug 'junegunn/goyo.vim'
   Plug 'junegunn/limelight.vim'
+
+  Plug 'jalcine/vim-sunset'
 
   call plug#end()
 endfunc " }}}

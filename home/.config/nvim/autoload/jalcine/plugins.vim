@@ -73,13 +73,13 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'bogado/file-line'
-        \ | Plug 'Shougo/echodoc.vim'
+  Plug 'Shougo/echodoc.vim'
 
   Plug 'tpope/vim-dispatch'
         \ | Plug 'radenling/vim-dispatch-neovim'
 
   Plug 'tmux-plugins/vim-tmux'
-  Plug 'tmux-plugins/vim-tmux-focus-events'
+        \ | Plug 'tmux-plugins/vim-tmux-focus-events'
 
   Plug 'sheerun/vim-polyglot'
         \ | Plug 'arnaud-lb/vim-php-namespace', { 'for': 'php' }
@@ -90,11 +90,10 @@ func! jalcine#plugins#define() abort " {{{
         \ | Plug 'fisadev/vim-isort', { 'for': 'python' }
         \ | Plug 'python-rope/ropevim', { 'for': 'python' }
         \ | Plug 'tmhedberg/SimpylFold', { 'for': 'python' }
-        \ | Plug 'powerman/vim-plugin-AnsiEsc'
         \ | Plug 'nsf/gocode', { 'run': 'make' },
         \ | Plug 'slashmili/alchemist.vim',
 
-  Plug 'craigemery/vim-autotag'
+  Plug 'powerman/vim-plugin-AnsiEsc'
   Plug 'majutsushi/tagbar'
   Plug 'Yggdroot/indentLine'
   Plug 'airblade/vim-rooter'
@@ -114,12 +113,13 @@ func! jalcine#plugins#define() abort " {{{
         \ | Plug 'roxma/nvim-cm-tern', { 'run': 'npm install' }
         \ | Plug 'roxma/ncm-github'
         \ | Plug 'sourcegraph/javascript-typescript-langserver', { 'do': 'npm install' }
-  Plug 'ternjs/tern_for_vim', { 'do': 'npm install && npm install -g tern' }
+        \ | Plug 'ternjs/tern_for_vim', { 'do': 'npm install && npm install -g tern' }
+
+  Plug 'sirver/ultisnips'
+        \ | Plug 'honza/vim-snippets'
 
   Plug 'brooth/far.vim'
   Plug 'roxma/vim-tmux-clipboard'
-  Plug 'sirver/ultisnips'
-  Plug 'honza/vim-snippets'
   Plug 'tpope/vim-vinegar'
   Plug 'tpope/vim-sleuth'
   Plug 'tpope/vim-projectionist'
@@ -178,11 +178,6 @@ func! jalcine#plugins#configure() abort " {{{
   let g:fzf_tags_command = 'ctags -A .tags'
   " }}}
   "
-  " autotag {{{
-  let g:autotagVerbosityLevel = 5
-  let g:autotagTagsFile = '.vimtags'
-  " }}}
-  "
   " neomake {{{
   if exists('$NVIM_VERBOSE')
     let g:neomake_verbose = 3
@@ -209,10 +204,10 @@ func! jalcine#plugins#configure() abort " {{{
   " }}}
   "
   " ultisnips {{{
-  let g:UltiSnipsExpandTrigger		= '<Plug>(ultisnips_expand)'
+  let g:UltiSnipsExpandTrigger= '<Plug>(ultisnips_expand)'
+	let g:UltiSnipsJumpForwardTrigger	= '<c-j>'
+	let g:UltiSnipsJumpBackwardTrigger	= '<c-k>'
   let g:UltiSnipsRemoveSelectModeMappings = 0
-  let g:UltiSnipsEditSplit='vertical'
-  let g:UltiSnipsNoPythonWarning=1
   " }}}
   "
   " test {{{
@@ -271,9 +266,10 @@ func! jalcine#plugins#configure() abort " {{{
   "
   " ncm {{{
   let g:cm_matcher = {
-        \ 'module': 'cm_matchers.substr_matcher',
+        \ 'module': 'cm_matchers.abbrev_matcher',
         \ 'case': 'smartcase'
         \ }
+  let g:cm_completekeys = "\<Plug>(cm_completefunc)"
   if exists('$NVIM_VERBOSE')
     let $NVIM_NCM_LOG_LEVEL='DEBUG'
     let $NVIM_NCM_MULTI_THREAD=0
@@ -355,8 +351,11 @@ func! jalcine#plugins#configure_mappings() abort " {{{
   " }}}
   "
   " ncm {{{
+  inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+  inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+  " inoremap <expr> <CR> pumvisible() ?  "\<c-y>\<Plug>(expand_or_nl)" : "\<CR>"
   inoremap <silent> <c-g> <Plug>(cm_force_refresh)
-  inoremap <silent> <c-u> <c-r>=cm#sources#ultisnips#trigger_or_popup("\<Plug>(ultisnips_expand)")<cr>
+  inoremap <silent> <c-u> <c-r>=cm#sources#ultisnips#trigger_or_popup("<Plug>(ultisnips_expand)")<cr>
   " }}}
   "
   " workspace {{{

@@ -6,7 +6,7 @@
 let g:jalcine.mappings.lang.php = 'lp'
 
 func! s:ApplyCustomMappings() abort
-  call jalcine#mappings#apply([
+  call jalcine#mappings#apply_bulk([
         \ ['e', 'call jalcine#lang#php#invoke("expandclass")<CR>'],
         \ ['s', 'call jalcine#lang#php#invoke("sortuse")<CR>'],
         \ ['u', 'call jalcine#lang#php#invoke("insertuse")<CR>'],
@@ -16,9 +16,10 @@ func! s:ApplyCustomMappings() abort
 endfunc
 
 func! jalcine#lang#php#invoke(cmd) abort
-  if     a:cmd == 'sortuse' | call PhpInsertUse()
-  elseif a:cmd == 'expandclass' | call PhpExpandClass()
-  elseif a:cmd == 'insertuse' | call PhpInsertUse()
+  if     a:cmd ==# 'sortuse' | call PhpInsertUse()
+  elseif a:cmd ==# 'expandclass' | call PhpExpandClass()
+  elseif a:cmd ==# 'insertuse' | call PhpInsertUse()
+  endif
 endfunc
 
 func! jalcine#lang#php#tweak() abort

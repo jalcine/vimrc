@@ -2,7 +2,7 @@ func! jalcine#tweaks#init() abort
   " Nothing is needed.
 endfunc
 
-func! jalcine#tweaks#goyo_enter() abort
+func! jalcine#tweaks#goyo#enter() abort
   Limelight
   call jalcine#theme#setup()
   silent !tmux set status off
@@ -10,11 +10,10 @@ func! jalcine#tweaks#goyo_enter() abort
   set noshowmode
   set noshowcmd
   set scrolloff=999
-  NERDTreeClose
   TagbarClose
 endfunction
 
-func! jalcine#tweaks#goyo_leave() abort
+func! jalcine#tweaks#goyo#leave() abort
   set scrolloff=5
   set showcmd
   set showmode

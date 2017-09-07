@@ -4,15 +4,15 @@ let g:jalcine.theme = {
       \   'airline':     'base16_default',
       \ },
       \ 'dark': {
-      \   'colorscheme': 'base16-default-dark',
+      \   'colorscheme': 'base16-ir-black',
       \   'airline':     'base16_default',
       \ }
       \ }
 
-func! jalcine#theme#setup()
-  let base16colorspace=256
+func! jalcine#theme#setup() abort
+  let g:base16colorspace=256
   set termguicolors
-  if filereadable(expand("~/.vimrc_background"))
+  if filereadable(expand('~/.vimrc_background'))
     source ~/.vimrc_background
   else
     exec 'AirlineTheme ' . g:jalcine.theme[&background].airline

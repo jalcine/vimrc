@@ -14,17 +14,25 @@ let g:jalcine.mappings = {
 func! jalcine#mappings#apply_bulk(mappings_list, opts) abort
   for l:a_mapping in a:mappings_list
     let l:command = l:a_mapping[0]
+    let l:map_format = 'map'
 
     if has_key(a:opts, 'prefix')
       let l:command = a:opts.prefix . l:command
+    endif
+
+    if has_key(a:opts, 'remap')
+      let l:map_format = 'noremap'
+    endif
+
+    if has_key(a:opts, 'silent')
+      let l:map_format .= ' <silent>'
     endif
 
     let l:modes = get(l:a_mapping, 2, 'n')
     let l:idx = 0
     while l:idx < len(l:modes)
       let l:mode = l:modes[l:idx : 1]
-      let l:exc_cmd = l:mode . 'noremap '
-            \ . '<silent> '
+      let l:exc_cmd = l:mode . l:map_format
             \ . g:jalcine.mappings.leader . l:command
             \ . ' '
             \ . get(l:a_mapping, 1)
@@ -64,11 +72,8 @@ func! jalcine#mappings#setup() abort
   nnoremap <F8> :TagbarToggle<CR>
 
   " Focuses Vim.
-  nnoremap <silent> <leader><space> :Goyo
-  nnoremap <silent> <leader>L <Plug>(Limelight)
-
-  " Toggle the state of search highlighting locally.
-  nnoremap <silent> <leader>h :setlocal hlsearch!<cr>
+  nnoremap <silent> <leader><space> :Goyo<CR>
+  nnoremap <silent> <leader>L <Plug>(Limelight)<CR>
 
   " Time & Date Values {{{
   inoremap <silent> <leader>pt <C-R>=strftime("%Y-%m-%d")<CR>

@@ -20,11 +20,11 @@ func! jalcine#launch() abort
         \ 'augroups',
         \ 'plugins',
         \ 'lang',
-        \ 'theme',
         \ 'mappings',
+        \ 'theme',
         \ ]
 
-  for sector in l:sectors
+  for l:sector in l:sectors
     exe 'call jalcine#' . l:sector . '#setup()'
   endfor
 endfunc

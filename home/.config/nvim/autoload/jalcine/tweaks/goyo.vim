@@ -16,7 +16,7 @@ func! jalcine#tweaks#goyo#leave() abort
   set scrolloff=5
   set showcmd
   set showmode
-  Limelight
+  Limelight!
   call jalcine#theme#setup()
   silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
   silent !tmux set status on

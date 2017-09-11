@@ -13,18 +13,21 @@ func! jalcine#augroups#setup() abort
     au VimEnter           <silent> LocalVimRC!
   augroup END
 
+  augroup vimrc_term
+    au!
+    au TermOpen * setlocal conceallevel=0 colorcolumn=0 relativenumber
+    au BufEnter term://* startinsert
+  augroup END
+
   augroup vimrc-langsupport
     au!
-    au FileType python call jalcine#lang#python#tweak()
-    au FileType php    call jalcine#lang#php#tweak()
-    au User CmSetup    call cm#register_source({'name' : 'deoplete',
-          \ 'priority': 7,  
-          \ 'abbreviation': '', 
-          \ })
+    " au FileType *              LanguageClientStart
+    au FileType python         call jalcine#lang#python#tweak()
+    au FileType php            call jalcine#lang#php#tweak()
   augroup END
 
   augroup vimrc_goyo
-      au User GoyoEnter nested call jalcine#tweaks#goyo#enter()
-      au User GoyoLeave nested call jalcine#tweaks#goyo#leave()
+    au User GoyoEnter nested call jalcine#tweaks#goyo#enter()
+    au User GoyoLeave nested call jalcine#tweaks#goyo#leave()
   augroup END
 endfunc

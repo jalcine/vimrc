@@ -3,6 +3,7 @@
 " Author:        Jacky Alcine <yo@jacky.wtf>
 " Last Modified: August 24, 2017
 " vim: set fdm=marker :
+
 scriptencoding utf-8
 
 " Options {{{
@@ -12,6 +13,8 @@ let g:jalcine.plugins = {
 " }}}
 
 func! jalcine#plugins#setup() abort " {{{
+  filetype off
+
   call jalcine#plugins#define()
   call jalcine#plugins#configure()
   call jalcine#plugins#configure_mappings()
@@ -31,7 +34,8 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-endwise'
   Plug 'tpope/vim-speeddating'
-
+  Plug 'zhaocai/GoldenView.Vim'
+  Plug 'Lokaltog/vim-easymotion'
   Plug 'benekastah/neomake'
   Plug 'janko-m/vim-test'
   Plug 'tpope/vim-dotenv'
@@ -108,7 +112,6 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'tpope/vim-surround'
   Plug 'raimondi/delimitmate'
 
-
   Plug 'roxma/nvim-completion-manager'
         \ | Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
         \ | Plug 'roxma/nvim-cm-racer'
@@ -127,6 +130,7 @@ func! jalcine#plugins#define() abort " {{{
         \ | Plug 'sourcegraph/javascript-typescript-langserver', { 'do': 'npm install' }
         \ | Plug 'ternjs/tern_for_vim', { 'do': 'npm install && npm install -g tern' }
         \ | Plug 'felixfbecker/php-language-server', {'do': 'phpenv exec composer install'}
+        \ | Plug 'JakeBecker/elixir-ls', {'do': 'mix run'}
 
   Plug 'sirver/ultisnips'
         \ | Plug 'honza/vim-snippets'
@@ -315,13 +319,14 @@ func! jalcine#plugins#configure() abort " {{{
 endfunc " }}}
 
 func! s:ConfigureLanguageServer() abort " {{{
-  let l:vimrc_root = fnamemodify('$MYVIMRC', ':p:h')
+  let l:vimrc_root = fnamemodify($MYVIMRC, ':p:h')
   let g:LanguageClient_serverCommands = {
         \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
         \ 'javascript': [ l:vimrc_root . '/plugins/javascript-typescript-langserver/lib/language-server-stdio.js'],
         \ 'python': ['PYENV_VERSION=neovim-py3 pyenv', 'exec', 'pyls'],
         \ 'go': ['goenv', 'exec', 'go-langserver'],
-        \ 'php': ['phpenv', l:vimrc_root . '/plugins/php-language-server/vendor/bin/php-language-server.php']
+        \ 'php': ['phpenv', l:vimrc_root . '/plugins/php-language-server/vendor/bin/php-language-server.php'],
+        \ 'elixir': ['exenv', l:vimrc_root . '/plugins/elixir-ls/apps/language_server']
         \ }
 endfunc " }}}
 

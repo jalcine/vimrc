@@ -1,6 +1,6 @@
 let g:jalcine.theme = {
       \ 'light': {
-      \   'colorscheme': 'base16-google',
+      \   'colorscheme': 'base16-google-light',
       \   'airline':     'base16',
       \ },
       \ 'dark': {
@@ -15,7 +15,7 @@ func! jalcine#theme#go(mode) abort
   endif
 
   exec 'set background=' . a:mode
-  call jalcine#theme#setup()
+  call jalcine#theme#load()
 endfunc
 
 func! jalcine#theme#setup() abort

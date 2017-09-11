@@ -3,6 +3,7 @@
 " Author:        Jacky Alcine <yo@jacky.wtf>
 " Last Modified: August 24, 2017
 " vim: set fdm=marker :
+
 scriptencoding utf-8
 
 " Options {{{
@@ -12,6 +13,8 @@ let g:jalcine.plugins = {
 " }}}
 
 func! jalcine#plugins#setup() abort " {{{
+  filetype off
+
   call jalcine#plugins#define()
   call jalcine#plugins#configure()
   call jalcine#plugins#configure_mappings()
@@ -30,7 +33,9 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'tpope/vim-sensible'
   Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-endwise'
-
+  Plug 'tpope/vim-speeddating'
+  Plug 'zhaocai/GoldenView.Vim'
+  Plug 'Lokaltog/vim-easymotion'
   Plug 'benekastah/neomake'
   Plug 'janko-m/vim-test'
   Plug 'tpope/vim-dotenv'
@@ -65,7 +70,6 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'mattn/webapi-vim'
   Plug 'mhinz/vim-signify'
   Plug 'moll/vim-node'
-  Plug 'thaerkh/vim-workspace'
   Plug 'tpope/vim-abolish'
   Plug 'tpope/vim-scriptease'
 
@@ -78,6 +82,7 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'vim-airline/vim-airline-themes'
   Plug 'bogado/file-line'
   Plug 'Shougo/echodoc.vim'
+  Plug 'keith/investigate.vim'
 
   Plug 'tpope/vim-dispatch'
         \ | Plug 'radenling/vim-dispatch-neovim'
@@ -107,7 +112,6 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'tpope/vim-surround'
   Plug 'raimondi/delimitmate'
 
-
   Plug 'roxma/nvim-completion-manager'
         \ | Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
         \ | Plug 'roxma/nvim-cm-racer'
@@ -125,6 +129,8 @@ func! jalcine#plugins#define() abort " {{{
         \ | Plug 'roxma/ncm-phpactor'
         \ | Plug 'sourcegraph/javascript-typescript-langserver', { 'do': 'npm install' }
         \ | Plug 'ternjs/tern_for_vim', { 'do': 'npm install && npm install -g tern' }
+        \ | Plug 'felixfbecker/php-language-server', {'do': 'phpenv exec composer install'}
+        \ | Plug 'JakeBecker/elixir-ls', {'do': 'mix run'}
 
   Plug 'sirver/ultisnips'
         \ | Plug 'honza/vim-snippets'
@@ -164,16 +170,22 @@ func! jalcine#plugins#configure() abort " {{{
   let g:airline#extensions#whitespace#mixed_indent_format = 'i:[%s]'
   let g:airline#extensions#whitespace#show_message = 1
   let g:airline#extensions#whitespace#trailing_format = 's:[%s]'
+  let g:airline#extensions#neomake#enabled = 1
   let g:airline_detect_iminsert = 1
   let g:airline_detected_modified = 1
   let g:airline_powerline_fonts = 1
   let g:airline_symbols = {}
   let g:airline_symbols.branch = '⎇'
-  let g:airline_symbols.branch = ''
+  let g:airline_symbols.readonly = '🔒'
   let g:airline_symbols.linenr = ''
-  let g:airline_symbols.paste = 'ρ'
-  let g:airline_symbols.readonly = ''
+  let g:airline_symbols.maxlinenr = '㏑'
+  let g:airline_symbols.notexists = '∄'
+  let g:airline_symbols.paste = '∥'
+  let g:airline_symbols.spell = 'Ꞩ'
   let g:airline_symbols.whitespace = 'Ξ'
+  let g:airline_theme = 'ubaryd'
+
+
   let g:airline_mode_map = {
         \ '__' : '-',
         \ 'n' : 'N',
@@ -238,20 +250,22 @@ func! jalcine#plugins#configure() abort " {{{
   " languageclient {{{
   let g:LanguageClient_autoStart = 1
   let g:LanguageClient_selectionUI = 'fzf'
-
-  " TODO: Set up language server shit.
-  let g:LanguageClient_serverCommands = {
-        \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-        \ 'javascript': [fnamemodify('$MYVIMRC', ':p:h') . '/plugins/javascript-typescript-langserver/lib/language-server-stdio.js'],
-        \ 'python': ['pyls']
-        \ }
+  " }}}
+  "
+  " signify {{{
+  let g:signify_vcs_list              = [ 'git', 'bzr' ]
+  let g:signify_cursorhold_insert     = 1
+  let g:signify_cursorhold_normal     = 1
+  let g:signify_update_on_bufenter    = 0
+  let g:signify_update_on_focusgained = 1
+  let g:signify_realtime = 1
   " }}}
   "
   " jedi {{{
   let g:jedi#popup_on_dot = 1
+  let g:jedi#documentation_command = 'K'
   let g:jedi#goto_assignments_command = '<leader>jg'
   let g:jedi#goto_definitions_command = '<leader>jd'
-  let g:jedi#documentation_command = 'K'
   let g:jedi#usages_command = '<leader>jn'
   let g:jedi#rename_command = '<leader>jr'
   let g:jedi#show_call_signatures = '1'
@@ -300,12 +314,20 @@ func! jalcine#plugins#configure() abort " {{{
   let g:python_highlight_all = 1
   let g:notes_suffix = '.txt'
   " }}}
-  "
-  " workspace {{{
-  let g:workspace_autocreate = 0
-  let g:workspace_session_name = '.session.vim'
-  let g:workspace_autosave_ignore = ['gitcommit']
-  " }}}
+
+  call <SID>ConfigureLanguageServer()
+endfunc " }}}
+
+func! s:ConfigureLanguageServer() abort " {{{
+  let l:vimrc_root = fnamemodify($MYVIMRC, ':p:h')
+  let g:LanguageClient_serverCommands = {
+        \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+        \ 'javascript': [ l:vimrc_root . '/plugins/javascript-typescript-langserver/lib/language-server-stdio.js'],
+        \ 'python': ['PYENV_VERSION=neovim-py3 pyenv', 'exec', 'pyls'],
+        \ 'go': ['goenv', 'exec', 'go-langserver'],
+        \ 'php': ['phpenv', l:vimrc_root . '/plugins/php-language-server/vendor/bin/php-language-server.php'],
+        \ 'elixir': ['exenv', l:vimrc_root . '/plugins/elixir-ls/apps/language_server']
+        \ }
 endfunc " }}}
 
 func! jalcine#plugins#configure_mappings() abort " {{{
@@ -364,6 +386,12 @@ func! jalcine#plugins#configure_mappings() abort " {{{
         \ ['rmc', ':Git rm --cached %<CR>'],
         \ ['l', ':Commits<CR>'],
         \ ['m', ':Merginal<CR>'],
+        \ ['st', ':SignifyToggle<CR>'],
+        \ ['sh', ':SignifyToggleHighlight<CR>'],
+        \ ['sr', ':SignifyRefresh<CR>'],
+        \ ['sd', ':SignifyDebug<CR>'],
+        \ ['sj', '<plug>(signify-next-hunk)'],
+        \ ['sk', '<plug>(signify-prev-hunk)'],
         \ ], { 'prefix': 'g' })
   " }}}
   "
@@ -372,12 +400,7 @@ func! jalcine#plugins#configure_mappings() abort " {{{
   inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
   " inoremap <expr> <CR> pumvisible() ?  "\<c-y>\<Plug>(expand_or_nl)" : "\<CR>"
   inoremap <silent> <c-g> <Plug>(cm_force_refresh)
-  inoremap <silent> <c-u> <c-r>=cm#sources#ultisnips#trigger_or_popup("<Plug>(ultisnips_expand)")<cr>
+  inoremap <silent> <c-u> <c-r>=cm#sources#ultisnips#trigger_or_popup("\<Plug>(ultisnips_expand)")<cr>
   " }}}
   "
-  " workspace {{{
-  call jalcine#mappings#apply_bulk([
-        \ ['t', ':ToggleWorkspace<CR>'],
-        \ ], { 'prefix': 'w' })
-  " }}}
 endfunc " }}}

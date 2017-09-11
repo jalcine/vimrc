@@ -14,7 +14,7 @@ endif
 " Visual Editor Components {{{
 set laststatus=2
 set ruler
-set number relativenumber
+set number norelativenumber
 set termguicolors guicursor=
 set cursorline
 set sidescrolloff=1 sidescroll=1
@@ -22,11 +22,12 @@ set conceallevel=2 concealcursor=nvci
 set nowrap
 set signcolumn=yes
 set shortmess+=c
+set hidden
 "
 " Folding {{{
 set foldenable
 set foldcolumn=2
-set foldlevel=0
+set foldlevel=2
 set foldmethod=syntax
 " }}}
 " }}}
@@ -73,7 +74,7 @@ set backup writebackup
 "
 " Spacing {{{
 set tabstop=2 softtabstop=2
-set shiftwidth=2 textwidth=100
+set shiftwidth=2 textwidth=80
 set smarttab expandtab
 set shiftround
 " }}}
@@ -99,11 +100,12 @@ set modeline modelines=10
 " TODO: Move to commands file.
 func! s:LaunchNoteOfTheDay() abort
     execute ':Note Morning Entries/' . strftime('%Y-%m-%d')
-    Goyo
+    Goyo x30
 endfunc
 
 " Provides a helper command to write an entry for the day.
 command! Today call <SID>LaunchNoteOfTheDay()
 " }}}
 
+" Lift off.
 call jalcine#launch()

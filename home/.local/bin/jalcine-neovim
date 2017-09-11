@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+# vim: set fdm=marker :
+# TODO: Import shared framework for my shell scripts from `dotfiles`.
+# TODO: Add more option control to this.
+# TODO: Merge update + install scripts.
+
+cd "${HOME}/.config/nvim" || exit
+
+NEEDED_SUBDIRS=(logs tags)
+
+for subdir in "${NEEDED_SUBDIRS}[@]"; do
+  mkdir "${HOME}/.config/nvim/${subdir}" || exit
+done
+
+pyenv virtualenv 2.7.12 neovim-py2 -vf
+pyenv virtualenv 3.5.2 neovim-py3 -vf
+
+# Install language dependencies. {{{
+RB_REQS="${HOME}/.config/nvim/Gemfile"
+JS_REQS="${HOME}/.config/nvim/npm.list"
+
+# Handle Python {{{
+pyenv exec pip3 install pip-tools
+pyenv exec pip3 install -r requirements-py3.txt
+pyenv exec pip2 install pip-tools
+pyenv exec pip2 install -r requirements.txt
+
+pyenv local neovim-py3 neovim-py2
+nvim +":call jalcine#plugins#install()" \
+     +":qall"
+# }}}
+
+# {{{ Extra language support
+if [ "$JALCINE_NEOVIM_MINIMAL" ]
+then
+  exit
+elses
+  bundle install --gemfile="${RB_REQS}"
+  # shellcheck disable=SC2046,SC2086
+  npm install -g $(cat $JS_REQS)
+  cpanm Perl::Tidy
+fi
+# }}}

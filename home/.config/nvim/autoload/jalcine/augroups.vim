@@ -7,10 +7,16 @@ func! jalcine#augroups#setup() abort
   augroup vimrc_misc
     au!
     au BufEnter         * :syntax sync maxlines=200
-    au FileReadPost     * Rooter
+    au BufEnter         * Rooter
     au BufWritePost     * Neomake
     au BufReadPost      * Neomake
     au VimEnter           <silent> LocalVimRC!
+    au User RooterChDir   call <SID>GenerateTagsInDir()
+  augroup END
+
+  augroup vimrc_tagbar
+    au BufEnter         * nested :call tagbar#autoopen(0)
+    au BufWinEnter      * if &previewwindow | setlocal nonumber | endif
   augroup END
 
   augroup vimrc_term
@@ -21,7 +27,7 @@ func! jalcine#augroups#setup() abort
 
   augroup vimrc-langsupport
     au!
-    " au FileType *              LanguageClientStart
+    au FileType *              LanguageClientStart
     au FileType python         call jalcine#lang#python#tweak()
     au FileType php            call jalcine#lang#php#tweak()
   augroup END
@@ -30,4 +36,11 @@ func! jalcine#augroups#setup() abort
     au User GoyoEnter nested call jalcine#tweaks#goyo#enter()
     au User GoyoLeave nested call jalcine#tweaks#goyo#leave()
   augroup END
+endfunc
+
+func! s:GenerateTagsInDir() abort
+  if getcwd() != expand('$HOME')
+    GenCtags
+    GenGTAGS
+  endif
 endfunc

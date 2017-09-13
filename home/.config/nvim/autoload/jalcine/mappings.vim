@@ -75,7 +75,6 @@ func! jalcine#mappings#setup() abort " {{{
   nnoremap <silent> <leader><space> :Goyo<CR>
   "
   " Time & Date Values {{{
-  nnoremap <silent> <leader>L <Plug>(Limelight)<CR>
   inoremap <silent> <leader>pt <C-R>=strftime("%Y-%m-%d")<CR>
   "
   " Inject the current time with the labeling of the time-zone.

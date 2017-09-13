@@ -23,6 +23,7 @@ set nowrap
 set signcolumn=yes
 set shortmess+=c
 set hidden
+set pumheight=5
 "
 " Folding {{{
 set foldenable
@@ -57,9 +58,8 @@ set listchars+=tab:\|\
 " Debugging help {{{
 " This makes it easier for me to capture logging output from Vim.
 if exists('$NVIM_VERBOSE')
-    set verbose=10
+    set verbose=5
     set verbosefile=~/.config/nvim/logs/runtime.log
-    set debug=msg,throw,beep
 endif
 " }}}
 "

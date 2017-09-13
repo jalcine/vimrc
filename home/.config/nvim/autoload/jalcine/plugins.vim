@@ -13,18 +13,24 @@ let g:jalcine.plugins = {
 " }}}
 
 func! jalcine#plugins#setup() abort " {{{
+  " Shut off everything for a moment.
   filetype off
 
+  " Lift off.
   call jalcine#plugins#define()
   call jalcine#plugins#configure()
   call jalcine#plugins#configure_mappings()
 
+  " Go into orbit.
   filetype plugin indent on
   syntax on
 
+  " Check everything.
   if exists('$NVIM_VERBOSE')
     let $NVIM_PYTHON_LOG_FILE=expand('$HOME/.config/nvim/logs/python.log')
   endif
+
+  
 endfunc " }}}
 
 func! jalcine#plugins#define() abort " {{{
@@ -63,24 +69,25 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'chiel92/vim-autoformat'
   Plug 'editorconfig/editorconfig-vim'
   Plug 'embear/vim-localvimrc'
-  Plug 'gabrielelana/vim-markdown'
+  Plug 'gabrielelana/vim-markdown', { 'for': 'markdown' }
   Plug 'jceb/vim-orgmode'
   Plug 'junegunn/gv.vim'
-  Plug 'mattn/emmet-vim'
+  Plug 'mattn/emmet-vim', {'for': 'html,hbs' }
   Plug 'mattn/webapi-vim'
   Plug 'mhinz/vim-signify'
-  Plug 'moll/vim-node'
+  Plug 'moll/vim-node', { 'for': 'javascript' }
   Plug 'tpope/vim-abolish'
   Plug 'tpope/vim-scriptease'
 
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
         \ | Plug 'junegunn/fzf.vim'
-        \ | Plug 'fszymanski/fzf-gitignore', {'do': ':UpdateRemotePlugins'}
+        \ | Plug 'fszymanski/fzf-gitignore', { 'do' : ':UpdateRemotePlugins' }
 
   Plug 'chriskempson/base16-vim'
   Plug 'vim-airline/vim-airline'
-  Plug 'vim-airline/vim-airline-themes'
+        \ | Plug 'vim-airline/vim-airline-themes'
   Plug 'bogado/file-line'
+  Plug 'farmergreg/vim-lastplace'
   Plug 'Shougo/echodoc.vim'
   Plug 'keith/investigate.vim'
 
@@ -90,23 +97,23 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'tmux-plugins/vim-tmux'
         \ | Plug 'tmux-plugins/vim-tmux-focus-events'
 
-  Plug 'sheerun/vim-polyglot'
-        \ | Plug 'arnaud-lb/vim-php-namespace', { 'for': 'php' }
-        \ | Plug 'davidhalter/jedi-vim'
-        \ | Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
-        \ | Plug 'lambdalisue/vim-pyenv'
-        \ | Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
-        \ | Plug 'fisadev/vim-isort', { 'for': 'python' }
-        \ | Plug 'python-rope/ropevim', { 'for': 'python' }
-        \ | Plug 'tmhedberg/SimpylFold', { 'for': 'python' }
-        \ | Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
-        \ | Plug 'fatih/vim-go', { 'for': 'go'}
-        \ | Plug 'nsf/gocode', { 'run': 'make' }
-        \ | Plug 'slashmili/alchemist.vim'
-        \ | Plug 'stanangeloff/php.vim'
+  Plug 'davidhalter/jedi-vim'
+  Plug 'lambdalisue/vim-pyenv'
+  Plug 'arnaud-lb/vim-php-namespace', { 'for': 'php' }
+  Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
+  Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
+  Plug 'fisadev/vim-isort', { 'for': 'python' }
+  Plug 'python-rope/ropevim', { 'for': 'python' }
+  Plug 'tmhedberg/SimpylFold', { 'for': 'python' }
+  Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+  Plug 'fatih/vim-go', { 'for': 'go'}
+  Plug 'nsf/gocode', { 'run': 'make' }
+  Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
+  Plug 'stanangeloff/php.vim', { 'for': 'php' }
 
   Plug 'powerman/vim-plugin-AnsiEsc'
   Plug 'majutsushi/tagbar'
+        \ | Plug 'jsfaint/gen_tags.vim'
   Plug 'Yggdroot/indentLine'
   Plug 'airblade/vim-rooter'
   Plug 'tpope/vim-surround'
@@ -114,23 +121,22 @@ func! jalcine#plugins#define() abort " {{{
 
   Plug 'roxma/nvim-completion-manager'
         \ | Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
-        \ | Plug 'roxma/nvim-cm-racer'
-        \ | Plug 'roxma/ncm-rct-complete'
-        \ | Plug 'roxma/ncm-github'
-        \ | Plug 'jsfaint/gen_tags.vim'
-        \ | Plug 'Shougo/neco-vim'
-        \ | Plug 'roxma/clang_complete'
         \ | Plug 'Shougo/neco-syntax'
         \ | Plug 'Shougo/neoinclude.vim'
+        \ | Plug 'sourcegraph/javascript-typescript-langserver', 
+        \   { 'do': 'ndenv exec npm install && ndenv exec npm run build' }
+        \ | Plug 'roxma/nvim-cm-tern', { 'run': 'ndexec exec npm install' }
+        \ | Plug 'ternjs/tern_for_vim', { 'do': 'ndenv exec npm install' }
         \ | Plug 'calebeby/ncm-css'
-        \ | Plug 'roxma/nvim-cm-tern', { 'run': 'npm install' }
         \ | Plug 'roxma/ncm-github'
-        \ | Plug 'phpactor/phpactor' ,  {'do': 'composer install'}
-        \ | Plug 'roxma/ncm-phpactor'
-        \ | Plug 'sourcegraph/javascript-typescript-langserver', { 'do': 'npm install' }
-        \ | Plug 'ternjs/tern_for_vim', { 'do': 'npm install && npm install -g tern' }
-        \ | Plug 'felixfbecker/php-language-server', {'do': 'phpenv exec composer install'}
-        \ | Plug 'JakeBecker/elixir-ls', {'do': 'mix run'}
+        \ | Plug 'Shougo/neco-vim'
+        " \ | Plug 'roxma/nvim-cm-racer'
+        " \ | Plug 'roxma/ncm-rct-complete'
+        " \ | Plug 'roxma/clang_complete'
+        " \ | Plug 'phpactor/phpactor' ,  {'do': 'phpenv exec composer install'}
+        " \ | Plug 'roxma/ncm-phpactor'
+        " \ | Plug 'felixfbecker/php-language-server', {'do': 'phpenv exec composer install'}
+        " \ | Plug 'JakeBecker/elixir-ls', {'do': 'exenv exec mix run'}
 
   Plug 'sirver/ultisnips'
         \ | Plug 'honza/vim-snippets'
@@ -148,6 +154,7 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'junegunn/limelight.vim'
 
   Plug 'jalcine/vim-sunset'
+  Plug 'ryanoasis/vim-devicons'
 
   call plug#end()
 endfunc " }}}
@@ -308,11 +315,14 @@ func! jalcine#plugins#configure() abort " {{{
   " }}}
   "
   " misc {{{
-  " let g:alchemist#elixir_erlang_src = "/usr/local/share/src"
+  let g:alchemist#elixir_erlang_src = '/usr/local/share/src'
   let g:localvimrc_persistent = 2
-  let g:polyglot_disabled = ['python']
   let g:python_highlight_all = 1
   let g:notes_suffix = '.txt'
+  let g:far#source = 'agnvim'
+  let g:gen_tags#ctags_auto_gen = 1
+  let g:gen_tags#gtags_auto_gen = 1
+  let g:gen_tags#ctags_use_cache_dir = expand('$HOME/.config/nvim/tags')
   " }}}
 
   call <SID>ConfigureLanguageServer()
@@ -321,16 +331,17 @@ endfunc " }}}
 func! s:ConfigureLanguageServer() abort " {{{
   let l:vimrc_root = fnamemodify($MYVIMRC, ':p:h')
   let g:LanguageClient_serverCommands = {
-        \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-        \ 'javascript': [ l:vimrc_root . '/plugins/javascript-typescript-langserver/lib/language-server-stdio.js'],
-        \ 'python': ['PYENV_VERSION=neovim-py3 pyenv', 'exec', 'pyls'],
+        \ 'rust': ['rustup', 'run', 'stable', 'rls'],
+        \ 'javascript': [ 'ndenv', 'exec', 'node', l:vimrc_root . '/plugins/javascript-typescript-langserver/lib/language-server-stdio.js' ],
+        \ 'python': ['pyenv', 'exec', 'pyls'],
         \ 'go': ['goenv', 'exec', 'go-langserver'],
-        \ 'php': ['phpenv', l:vimrc_root . '/plugins/php-language-server/vendor/bin/php-language-server.php'],
-        \ 'elixir': ['exenv', l:vimrc_root . '/plugins/elixir-ls/apps/language_server']
+        \ 'php': ['phpenv', 'exec', l:vimrc_root . '/plugins/php-language-server/vendor/bin/php-language-server.php'],
+        \ 'elixir': ['exenv', 'exec', l:vimrc_root . '/plugins/elixir-ls/apps/language_server']
         \ }
 endfunc " }}}
 
 func! jalcine#plugins#configure_mappings() abort " {{{
+  nnoremap <silent> <F9> :TagbarToggle<CR>
   " make {{{
   " Binds the command used for running 'Make'.
   call jalcine#mappings#apply_bulk([

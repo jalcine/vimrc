@@ -10,6 +10,7 @@ func! jalcine#tweaks#goyo#enter() abort
   set noshowmode
   set noshowcmd
   set scrolloff=999
+  TagbarClose
 endfunction
 
 func! jalcine#tweaks#goyo#leave() abort

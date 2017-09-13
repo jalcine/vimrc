@@ -10,6 +10,8 @@ experience with a very short start time (~11ms on my [laptop][]). Whenever
 I make some changes, I update my [`startuptime.txt`](./startuptime.txt) file for
 reference.
 
+I'm just going to make this simple little change for the lulz.
+
 ## Plugin Manager
 
 The plugins I use are fetched by [vim-plug][]. This repository contains a setup

@@ -57,8 +57,8 @@ set listchars+=tab:\|\
 "
 " Debugging help {{{
 " This makes it easier for me to capture logging output from Vim.
-if exists('$NVIM_VERBOSE')
-    set verbose=5
+if exists('$DEBUG')
+    set verbose=3
     set verbosefile=~/.config/nvim/logs/runtime.log
 endif
 " }}}

@@ -1,11 +1,11 @@
 let g:jalcine.theme = {
       \ 'light': {
       \   'colorscheme': 'base16-google-light',
-      \   'airline':     'base16',
+      \   'airline':     'base16_google',
       \ },
       \ 'dark': {
-      \   'colorscheme': 'base16-apathy',
-      \   'airline':     'wombat',
+      \   'colorscheme': 'base16-onedark',
+      \   'airline':     'base16_3024',
       \ }
       \ }
 
@@ -31,14 +31,6 @@ endfunc
 
 func! jalcine#theme#load() abort
   exec 'colorscheme ' .  g:jalcine.theme[&background].colorscheme
-
-  hi SignColumn guibg=NONE
-  hi FoldColumn guibg=NONE
-  hi LineNr guibg=NONE
-  hi DiffAdd gui=bold guibg=NONE
-  hi DiffDelete gui=bold guibg=NONE
-  hi DiffChange gui=bold guibg=NONE
-
   let g:airline_theme = g:jalcine.theme[&background].colorscheme
 
   if v:vim_did_enter == 1

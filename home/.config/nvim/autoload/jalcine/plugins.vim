@@ -331,13 +331,19 @@ endfunc " }}}
 func! s:ConfigureLanguageServer() abort " {{{
   let l:vimrc_root = fnamemodify($MYVIMRC, ':p:h')
   let g:LanguageClient_serverCommands = {
-        \ 'rust': ['rustup', 'run', 'stable', 'rls'],
+        \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
         \ 'javascript': [ 'ndenv', 'exec', 'node', l:vimrc_root . '/plugins/javascript-typescript-langserver/lib/language-server-stdio.js' ],
         \ 'python': ['pyenv', 'exec', 'pyls'],
-        \ 'go': ['goenv', 'exec', 'go-langserver'],
+        \ 'go': ['go-langserver'],
         \ 'php': ['phpenv', 'exec', l:vimrc_root . '/plugins/php-language-server/vendor/bin/php-language-server.php'],
         \ 'elixir': ['exenv', 'exec', l:vimrc_root . '/plugins/elixir-ls/apps/language_server']
         \ }
+
+  if exists('$DEBUG')
+    let g:LanguageClient_serverCommands.javascript += ['--trace', '--logfile ' . l:vimrc_root . '/logs/lsp-javascript.log' ]
+    let g:LanguageClient_serverCommands.python += ['--log-file ' . l:vimrc_root . '/logs/lsp-python.log' ]
+    let g:LanguageClient_serverCommands.go += ['-logfile ' . l:vimrc_root . '/logs/lsp-go.log' ]
+  endif
 endfunc " }}}
 
 func! jalcine#plugins#configure_mappings() abort " {{{

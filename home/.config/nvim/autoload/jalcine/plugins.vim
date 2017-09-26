@@ -82,6 +82,7 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
         \ | Plug 'junegunn/fzf.vim'
         \ | Plug 'fszymanski/fzf-gitignore', { 'do' : ':UpdateRemotePlugins' }
+        \ | Plug 'tweekmonster/fzf-filemru'
 
   Plug 'chriskempson/base16-vim'
   Plug 'vim-airline/vim-airline'
@@ -97,6 +98,7 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'tmux-plugins/vim-tmux'
         \ | Plug 'tmux-plugins/vim-tmux-focus-events'
 
+  Plug 'sheerun/vim-polyglot'
   Plug 'davidhalter/jedi-vim'
   Plug 'lambdalisue/vim-pyenv'
   Plug 'arnaud-lb/vim-php-namespace', { 'for': 'php' }
@@ -110,10 +112,13 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'nsf/gocode', { 'run': 'make' }
   Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
   Plug 'stanangeloff/php.vim', { 'for': 'php' }
+  Plug 'mxw/vim-jsx', { 'for': 'javascript.jsx' }
+  Plug 'moll/vim-node', { 'for': 'javascript' }
 
   Plug 'powerman/vim-plugin-AnsiEsc'
   Plug 'majutsushi/tagbar'
         \ | Plug 'jsfaint/gen_tags.vim'
+        \ | Plug 'zhm/TagHighlight'
   Plug 'Yggdroot/indentLine'
   Plug 'airblade/vim-rooter'
   Plug 'tpope/vim-surround'
@@ -130,13 +135,13 @@ func! jalcine#plugins#define() abort " {{{
         \ | Plug 'calebeby/ncm-css'
         \ | Plug 'roxma/ncm-github'
         \ | Plug 'Shougo/neco-vim'
-        " \ | Plug 'roxma/nvim-cm-racer'
-        " \ | Plug 'roxma/ncm-rct-complete'
-        " \ | Plug 'roxma/clang_complete'
-        " \ | Plug 'phpactor/phpactor' ,  {'do': 'phpenv exec composer install'}
-        " \ | Plug 'roxma/ncm-phpactor'
-        " \ | Plug 'felixfbecker/php-language-server', {'do': 'phpenv exec composer install'}
-        " \ | Plug 'JakeBecker/elixir-ls', {'do': 'exenv exec mix run'}
+        \ | Plug 'roxma/nvim-cm-racer'
+        \ | Plug 'roxma/ncm-rct-complete'
+        \ | Plug 'roxma/clang_complete'
+        \ | Plug 'phpactor/phpactor' ,  {'do': 'phpenv exec composer install'}
+        \ | Plug 'roxma/ncm-phpactor'
+        \ | Plug 'felixfbecker/php-language-server', {'do': 'phpenv exec composer install'}
+        \ | Plug 'JakeBecker/elixir-ls', {'do': 'exenv exec mix run'}
 
   Plug 'sirver/ultisnips'
         \ | Plug 'honza/vim-snippets'
@@ -320,9 +325,10 @@ func! jalcine#plugins#configure() abort " {{{
   let g:python_highlight_all = 1
   let g:notes_suffix = '.txt'
   let g:far#source = 'agnvim'
-  let g:gen_tags#ctags_auto_gen = 1
-  let g:gen_tags#gtags_auto_gen = 1
+  let g:gen_tags#ctags_auto_gen = 0
+  let g:gen_tags#gtags_auto_gen = 0
   let g:gen_tags#ctags_use_cache_dir = expand('$HOME/.config/nvim/tags')
+  let g:goldenview__enable_default_mapping = 0
   " }}}
 
   call <SID>ConfigureLanguageServer()
@@ -333,16 +339,19 @@ func! s:ConfigureLanguageServer() abort " {{{
   let g:LanguageClient_serverCommands = {
         \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
         \ 'javascript': [ 'ndenv', 'exec', 'node', l:vimrc_root . '/plugins/javascript-typescript-langserver/lib/language-server-stdio.js' ],
+        \ 'javascript.jsx': [ 'ndenv', 'exec', 'node', l:vimrc_root . '/plugins/javascript-typescript-langserver/lib/language-server-stdio.js' ],
+        \ 'jsx': [ 'ndenv', 'exec', 'node', l:vimrc_root . '/plugins/javascript-typescript-langserver/lib/language-server-stdio.js' ],
         \ 'python': ['pyenv', 'exec', 'pyls'],
-        \ 'go': ['go-langserver'],
+        \ 'go': ['goenv', 'exec', 'go-langserver'],
         \ 'php': ['phpenv', 'exec', l:vimrc_root . '/plugins/php-language-server/vendor/bin/php-language-server.php'],
-        \ 'elixir': ['exenv', 'exec', l:vimrc_root . '/plugins/elixir-ls/apps/language_server']
+        \ 'elixir': ['exenv', 'exec', l:vimrc_root . '/plugins/elixir-ls/apps/language_server'],
+        \ 'ruby': ['rbenv', 'exec', 'language_server']
         \ }
 
   if exists('$DEBUG')
-    let g:LanguageClient_serverCommands.javascript += ['--trace', '--logfile ' . l:vimrc_root . '/logs/lsp-javascript.log' ]
-    let g:LanguageClient_serverCommands.python += ['--log-file ' . l:vimrc_root . '/logs/lsp-python.log' ]
-    let g:LanguageClient_serverCommands.go += ['-logfile ' . l:vimrc_root . '/logs/lsp-go.log' ]
+    let g:LanguageClient_serverCommands.javascript += ['--trace', '--logfile', l:vimrc_root . '/logs/lsp-javascript.log' ]
+    let g:LanguageClient_serverCommands.python += ['--log-file', l:vimrc_root . '/logs/lsp-python.log' ]
+    let g:LanguageClient_serverCommands.go += ['-logfile', l:vimrc_root . '/logs/lsp-go.log' ]
   endif
 endfunc " }}}
 

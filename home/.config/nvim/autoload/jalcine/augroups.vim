@@ -27,7 +27,7 @@ func! jalcine#augroups#setup() abort
 
   augroup vimrc-langsupport
     au!
-    au FileType *              LanguageClientStart
+    au FileType *              call <SID>ConditionallyStartLanuageServer("<amatch>")
     au FileType python         call jalcine#lang#python#tweak()
     au FileType php            call jalcine#lang#php#tweak()
   augroup END
@@ -40,7 +40,15 @@ endfunc
 
 func! s:GenerateTagsInDir() abort
   if getcwd() != expand('$HOME')
+    echomsg 'CWD: '. getcwd()
     GenCtags
     GenGTAGS
+  endif
+endfunc
+
+func! s:ConditionallyStartLanuageServer(ft) abort
+  let l:hasStartCommand = has_key(g:LanguageClient_serverCommands, a:ft)
+  if l:hasStartCommand == 1
+    LanguageClientStart
   endif
 endfunc

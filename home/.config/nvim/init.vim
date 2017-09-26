@@ -14,7 +14,7 @@ endif
 " Visual Editor Components {{{
 set laststatus=2
 set ruler
-set number norelativenumber
+set number relativenumber
 set termguicolors guicursor=
 set cursorline
 set sidescrolloff=1 sidescroll=1

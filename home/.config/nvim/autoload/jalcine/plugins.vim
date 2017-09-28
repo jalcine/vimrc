@@ -29,7 +29,6 @@ func! jalcine#plugins#setup() abort " {{{
   if exists('$NVIM_VERBOSE')
     let $NVIM_PYTHON_LOG_FILE=expand('$HOME/.config/nvim/logs/python.log')
   endif
-
   
 endfunc " }}}
 
@@ -297,6 +296,7 @@ func! jalcine#plugins#configure() abort " {{{
   let g:rooter_silent_chdir = 1
   let g:rooter_resolve_links = 1
   let g:rooter_change_directory_for_non_project_files = 'home'
+  let g:rooter_patterns = ['.git/', '*file', 'package.json', 'Gemfile.lock', 'requirements.txt']
   " }}}
   "
   " indentline {{{
@@ -349,7 +349,9 @@ func! s:ConfigureLanguageServer() abort " {{{
         \ }
 
   if exists('$DEBUG')
+    let g:LanguageClient_serverCommands['javascript.jsx'] += ['--trace', '--logfile', l:vimrc_root . '/logs/lsp-javascript.log' ]
     let g:LanguageClient_serverCommands.javascript += ['--trace', '--logfile', l:vimrc_root . '/logs/lsp-javascript.log' ]
+    let g:LanguageClient_serverCommands.jsx += ['--trace', '--logfile', l:vimrc_root . '/logs/lsp-javascript.log' ]
     let g:LanguageClient_serverCommands.python += ['--log-file', l:vimrc_root . '/logs/lsp-python.log' ]
     let g:LanguageClient_serverCommands.go += ['-logfile', l:vimrc_root . '/logs/lsp-go.log' ]
   endif

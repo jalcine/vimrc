@@ -70,6 +70,8 @@ set undolevels=10000
 set undoreload=1000
 
 set backup writebackup
+
+set noswapfile
 " }}}
 "
 " Spacing {{{

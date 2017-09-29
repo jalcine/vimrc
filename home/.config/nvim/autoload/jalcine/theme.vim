@@ -4,8 +4,8 @@ let g:jalcine.theme = {
       \   'airline':     'base16_google',
       \ },
       \ 'dark': {
-      \   'colorscheme': 'base16-onedark',
-      \   'airline':     'base16_3024',
+      \   'colorscheme': 'base16-monokai',
+      \   'airline':     'base16_monokai',
       \ }
       \ }
 
@@ -19,14 +19,13 @@ func! jalcine#theme#go(mode) abort
 endfunc
 
 func! jalcine#theme#setup() abort
-  let g:base16colorspace=256
-  set termguicolors
+  " let g:base16colorspace=256
 
   if filereadable(expand('~/.vimrc_background'))
     source ~/.vimrc_background
-  else
-    call jalcine#theme#load()
   endif
+
+  call jalcine#theme#load()
 endfunc
 
 func! jalcine#theme#load() abort

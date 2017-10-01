@@ -19,7 +19,7 @@ func! jalcine#theme#go(mode) abort
 endfunc
 
 func! jalcine#theme#setup() abort
-  " let g:base16colorspace=256
+  let g:base16colorspace=256
 
   if filereadable(expand('~/.vimrc_background'))
     source ~/.vimrc_background

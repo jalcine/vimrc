@@ -39,11 +39,8 @@ func! jalcine#augroups#setup() abort
 endfunc
 
 func! s:GenerateTagsInDir() abort
-  if getcwd() != expand('$HOME')
-    echomsg 'CWD: '. getcwd()
-    GenCtags
-    GenGTAGS
-  endif
+  GenGTAGS
+  GenCtags
 endfunc
 
 func! s:ConditionallyStartLanuageServer(ft) abort

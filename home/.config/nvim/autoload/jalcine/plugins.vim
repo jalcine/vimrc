@@ -269,10 +269,9 @@ func! jalcine#plugins#configure() abort " {{{
   "
   " rooter {{{
   let g:rooter_use_lcd = 1
-  let g:rooter_silent_chdir = 0
+  let g:rooter_silent_chdir = 1
   let g:rooter_resolve_links = 1
-  let g:rooter_change_directory_for_non_project_files = 'home'
-  let g:rooter_patterns = ['.git/', '*file', 'package.json', 'Gemfile.lock', 'requirements.txt']
+  let g:rooter_change_directory_for_non_project_files = ''
   " }}}
   "
   " indentline {{{
@@ -321,8 +320,6 @@ func! s:ConfigureLanguageServer() abort " {{{
   let g:LanguageClient_serverCommands = {
         \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
         \ 'javascript': [ 'ndenv', 'exec', 'node', l:vimrc_root . '/plugins/javascript-typescript-langserver/lib/language-server-stdio.js' ],
-        \ 'javascript.jsx': [ 'ndenv', 'exec', 'node', l:vimrc_root . '/plugins/javascript-typescript-langserver/lib/language-server-stdio.js' ],
-        \ 'jsx': [ 'ndenv', 'exec', 'node', l:vimrc_root . '/plugins/javascript-typescript-langserver/lib/language-server-stdio.js' ],
         \ 'python': ['pyenv', 'exec', 'pyls'],
         \ 'go': ['goenv', 'exec', 'go-langserver'],
         \ 'php': ['phpenv', 'exec', l:vimrc_root . '/plugins/php-language-server/vendor/bin/php-language-server.php'],
@@ -331,12 +328,20 @@ func! s:ConfigureLanguageServer() abort " {{{
         \ }
 
   if exists('$DEBUG')
-    let g:LanguageClient_serverCommands['javascript.jsx'] += ['--trace', '--logfile', l:vimrc_root . '/logs/lsp-javascript.log' ]
     let g:LanguageClient_serverCommands.javascript += ['--trace', '--logfile', l:vimrc_root . '/logs/lsp-javascript.log' ]
-    let g:LanguageClient_serverCommands.jsx += ['--trace', '--logfile', l:vimrc_root . '/logs/lsp-javascript.log' ]
     let g:LanguageClient_serverCommands.python += ['--log-file', l:vimrc_root . '/logs/lsp-python.log' ]
     let g:LanguageClient_serverCommands.go += ['-logfile', l:vimrc_root . '/logs/lsp-go.log' ]
   endif
+
+  let l:aliases = {
+        \ 'javascript': ['javascript.jsx', 'jsx']
+        \ }
+
+  for l:alias in keys(l:aliases)
+    for subAlias in l:aliases[l:alias]
+      let g:LanguageClient_serverCommands[subAlias] = g:LanguageClient_serverCommands[l:alias]
+    endfor
+  endfor
 endfunc " }}}
 
 func! jalcine#plugins#configure_mappings() abort " {{{

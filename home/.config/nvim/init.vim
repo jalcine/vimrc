@@ -94,6 +94,9 @@ set tags+=tags,.tags,.vimtags
 
 " Import globally built tags.
 set tags+=$HOME/.config/nvim/tags/*
+
+" Disable cscope.
+set nocscopetag
 " }}}
 "
 " {{{ Extra special

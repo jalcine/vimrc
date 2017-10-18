@@ -59,7 +59,8 @@ set listchars+=tab:\|\
 " This makes it easier for me to capture logging output from Vim.
 if exists('$DEBUG')
     set verbose=3
-    set verbosefile=~/.config/nvim/logs/runtime.log
+    let &verbosefile=expand('$HOME/.config/nvim/logs/runtime.log')
+    let $NVIM_PYTHON_LOG_FILE=expand("$HOME/.config/nvim/logs/python.log")
 endif
 " }}}
 "
@@ -83,7 +84,7 @@ set shiftround
 "
 " Searching {{{
 set ignorecase smartcase
-set laststatus=2
+set laststatus=2 cmdheight=2
 set incsearch hlsearch
 " }}}
 "

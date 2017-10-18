@@ -248,3 +248,240 @@ times in msec
 1799.704  000.135  000.135: sourcing /home/okoye/.config/nvim/plugins/vim-airline/autoload/airline/extensions/tabline/buflist.vim
 1824.844  335.658: first screen update
 1824.855  000.011: --- NVIM STARTED ---
+
+
+times in msec
+ clock   self+sourced   self:  sourced script
+ clock   elapsed:              other lines
+
+000.010  000.010: --- NVIM STARTING ---
+000.214  000.204: locale set
+000.835  000.621: inits 1
+000.846  000.012: window checked
+001.895  001.048: parsing arguments
+001.900  000.005: expanding arguments
+001.964  000.064: inits 2
+002.486  000.522: init highlight
+003.879  000.051  000.051: sourcing /home/okoye/.config/nvim/autoload/jalcine.vim
+005.119  000.068  000.068: sourcing /home/okoye/.config/nvim/autoload/jalcine/augroups.vim
+005.627  000.307  000.307: sourcing /home/okoye/.config/nvim/autoload/jalcine/plugins.vim
+005.954  000.040  000.040: sourcing /usr/share/nvim/runtime/ftoff.vim
+010.231  003.876  003.876: sourcing /home/okoye/.config/nvim/autoload/plug.vim
+025.792  000.054  000.054: sourcing /home/okoye/.config/nvim/plugins/vim-markdown/ftdetect/markdown.vim
+026.674  000.038  000.038: sourcing /home/okoye/.config/nvim/plugins/vim-node/ftdetect/node.vim
+028.144  000.123  000.123: sourcing /home/okoye/.config/nvim/plugins/vim-ruby/ftdetect/ruby.vim
+028.608  000.215  000.215: sourcing /home/okoye/.config/nvim/plugins/vim-ruby/ftdetect/ruby_extra.vim
+029.259  000.066  000.066: sourcing /home/okoye/.config/nvim/plugins/vim-jsx/ftdetect/javascript.vim
+053.716  000.053  000.053: sourcing /home/okoye/.config/nvim/plugins/vim-orgmode/ftdetect/org.vim
+054.143  000.087  000.087: sourcing /home/okoye/.config/nvim/plugins/fzf-gitignore/ftdetect/gitignore.vim
+054.615  000.050  000.050: sourcing /home/okoye/.config/nvim/plugins/vim-tmux/ftdetect/tmux.vim
+063.035  008.125  008.125: sourcing /home/okoye/.config/nvim/plugins/vim-polyglot/ftdetect/polyglot.vim
+063.422  000.047  000.047: sourcing /home/okoye/.config/nvim/plugins/ultisnips/ftdetect/snippets.vim
+063.969  000.083  000.083: sourcing /home/okoye/.config/nvim/plugins/vim-polyglot/after/ftdetect/rspec.vim
+064.155  028.789  020.343: sourcing /usr/share/nvim/runtime/filetype.vim
+065.017  000.118  000.118: sourcing /usr/share/nvim/runtime/ftplugin.vim
+065.808  000.076  000.076: sourcing /usr/share/nvim/runtime/indent.vim
+068.426  000.327  000.327: sourcing /usr/share/nvim/runtime/syntax/syncolor.vim
+068.678  001.239  000.912: sourcing /usr/share/nvim/runtime/syntax/synload.vim
+068.719  002.576  001.338: sourcing /usr/share/nvim/runtime/syntax/syntax.vim
+070.101  000.778  000.778: sourcing /home/okoye/.config/nvim/plugins/neomake/autoload/neomake/configure.vim
+070.997  000.381  000.381: sourcing /home/okoye/.config/nvim/plugins/neomake/autoload/neomake/config.vim
+072.384  000.925  000.925: sourcing /home/okoye/.config/nvim/plugins/neomake/autoload/neomake/utils.vim
+073.702  000.112  000.112: sourcing /home/okoye/.config/nvim/autoload/jalcine/mappings.vim
+077.097  000.024  000.024: sourcing /usr/share/nvim/runtime/filetype.vim
+077.662  000.015  000.015: sourcing /usr/share/nvim/runtime/ftplugin.vim
+078.079  000.011  000.011: sourcing /usr/share/nvim/runtime/indent.vim
+078.605  000.226  000.226: sourcing /usr/share/nvim/runtime/syntax/nosyntax.vim
+079.635  000.246  000.246: sourcing /usr/share/nvim/runtime/syntax/syncolor.vim
+079.812  000.814  000.567: sourcing /usr/share/nvim/runtime/syntax/synload.vim
+079.849  001.689  000.649: sourcing /usr/share/nvim/runtime/syntax/syntax.vim
+080.274  000.030  000.030: sourcing /home/okoye/.config/nvim/autoload/jalcine/lang.vim
+080.981  000.128  000.128: sourcing /home/okoye/.config/nvim/autoload/jalcine/lang/python.vim
+312.203  000.162  000.162: sourcing /usr/share/nvim/runtime/autoload/provider/pythonx.vim
+313.952  000.231  000.231: sourcing /usr/share/nvim/runtime/autoload/remote/host.vim
+314.115  002.766  002.373: sourcing /usr/share/nvim/runtime/autoload/provider/python3.vim
+495.215  000.067  000.067: sourcing /usr/share/nvim/runtime/autoload/provider.vim
+632.400  473.789  470.956: sourcing /home/okoye/.config/nvim/plugins/jedi-vim/autoload/jedi.vim
+633.147  000.080  000.080: sourcing /home/okoye/.config/nvim/autoload/jalcine/lang/php.vim
+635.162  000.068  000.068: sourcing /home/okoye/.config/nvim/autoload/jalcine/theme.vim
+638.498  000.251  000.251: sourcing /usr/share/nvim/runtime/syntax/syncolor.vim
+640.478  000.423  000.423: sourcing /usr/share/nvim/runtime/syntax/syncolor.vim
+648.143  010.895  010.221: sourcing /home/okoye/.config/nvim/plugins/base16-vim/colors/base16-classic-dark.vim
+648.166  011.622  000.728: sourcing /home/okoye/.vimrc_background
+649.704  000.262  000.262: sourcing /usr/share/nvim/runtime/syntax/syncolor.vim
+650.402  000.236  000.236: sourcing /usr/share/nvim/runtime/syntax/syncolor.vim
+658.508  010.082  009.585: sourcing /home/okoye/.config/nvim/plugins/base16-vim/colors/base16-classic-dark.vim
+658.557  655.567  119.435: sourcing /home/okoye/.config/nvim/init.vim
+658.564  000.512: sourcing vimrc file(s)
+659.527  000.013  000.013: sourcing /usr/share/nvim/runtime/filetype.vim
+659.909  000.010  000.010: sourcing /usr/share/nvim/runtime/ftplugin.vim
+660.285  000.011  000.011: sourcing /usr/share/nvim/runtime/indent.vim
+662.316  003.201  003.166: sourcing /home/okoye/.config/nvim/plugins/vim-sensible/plugin/sensible.vim
+663.447  000.739  000.739: sourcing /home/okoye/.config/nvim/plugins/vim-endwise/plugin/endwise.vim
+664.821  000.979  000.979: sourcing /home/okoye/.config/nvim/plugins/vim-speeddating/plugin/speeddating.vim
+666.388  001.252  001.252: sourcing /home/okoye/.config/nvim/plugins/vim-abolish/plugin/abolish.vim
+667.388  000.691  000.691: sourcing /home/okoye/.config/nvim/plugins/vim-scriptease/plugin/scriptease.vim
+667.935  000.257  000.257: sourcing /home/okoye/.config/nvim/plugins/vim-rsi/plugin/rsi.vim
+668.525  000.231  000.231: sourcing /home/okoye/.config/nvim/plugins/vim-husk/plugin/husk.vim
+678.990  010.127  010.127: sourcing /home/okoye/.config/nvim/plugins/vim-easymotion/plugin/EasyMotion.vim
+679.727  000.358  000.358: sourcing /home/okoye/.config/nvim/plugins/neomake/plugin/neomake.vim
+681.610  001.557  001.557: sourcing /home/okoye/.config/nvim/plugins/vim-test/plugin/test.vim
+682.938  000.963  000.963: sourcing /home/okoye/.config/nvim/plugins/vim-dotenv/plugin/dotenv.vim
+683.453  000.151  000.151: sourcing /home/okoye/.config/nvim/plugins/direnv.vim/plugin/direnv.vim
+684.118  000.355  000.355: sourcing /home/okoye/.config/nvim/plugins/vim-commentary/plugin/commentary.vim
+684.802  000.324  000.324: sourcing /home/okoye/.config/nvim/plugins/vim-commentary-boxed/plugin/commentary-boxed.vim
+685.391  000.080  000.080: sourcing /home/okoye/.config/nvim/plugins/vim-misc/plugin/xolox/misc.vim
+686.291  000.031  000.031: sourcing /home/okoye/.config/nvim/plugins/vim-misc/autoload/xolox/misc.vim
+690.446  001.133  001.133: sourcing /home/okoye/.config/nvim/plugins/vim-misc/autoload/xolox/misc/os.vim
+690.982  002.007  000.874: sourcing /home/okoye/.config/nvim/plugins/vim-misc/autoload/xolox/misc/path.vim
+691.765  004.790  002.783: sourcing /home/okoye/.config/nvim/plugins/vim-notes/autoload/xolox/notes.vim
+693.377  007.639  002.818: sourcing /home/okoye/.config/nvim/plugins/vim-notes/plugin/notes.vim
+693.906  000.203  000.203: sourcing /home/okoye/.config/nvim/plugins/vim-shell/plugin/shell.vim
+700.990  006.820  006.820: sourcing /home/okoye/.config/nvim/plugins/vim-fugitive/plugin/fugitive.vim
+701.999  000.705  000.705: sourcing /home/okoye/.config/nvim/plugins/vim-rhubarb/plugin/rhubarb.vim
+702.404  000.081  000.081: sourcing /home/okoye/.config/nvim/plugins/vim-fugitive-blame-ext/plugin/fugitive-blame-ext.vim
+702.716  000.043  000.043: sourcing /home/okoye/.config/nvim/plugins/vim-merginal/plugin/merginal.vim
+703.053  000.070  000.070: sourcing /home/okoye/.config/nvim/plugins/gist-vim/plugin/gist.vim
+703.705  000.070  000.070: sourcing /home/okoye/.config/nvim/plugins/ght.vim/plugin/ght.vim
+705.869  001.630  001.630: sourcing /home/okoye/.config/nvim/plugins/vim-bookmarks/plugin/bookmark.vim
+706.724  000.497  000.497: sourcing /home/okoye/.config/nvim/plugins/vim-autoformat/plugin/autoformat.vim
+708.023  001.110  001.110: sourcing /home/okoye/.config/nvim/plugins/vim-autoformat/plugin/defaults.vim
+708.409  000.063  000.063: sourcing /home/okoye/.config/nvim/plugins/vim-autoformat/plugin/utils.vim
+726.625  001.267  001.267: sourcing /home/okoye/.config/nvim/plugins/editorconfig-vim/plugin/editorconfig.vim
+728.676  001.524  001.524: sourcing /home/okoye/.config/nvim/plugins/vim-localvimrc/plugin/localvimrc.vim
+730.179  001.007  001.007: sourcing /home/okoye/.config/nvim/plugins/vim-jekyll/plugin/jekyll.vim
+732.827  002.261  002.261: sourcing /home/okoye/.config/nvim/plugins/gv.vim/plugin/gv.vim
+733.906  000.642  000.642: sourcing /home/okoye/.config/nvim/plugins/vim-signify/plugin/signify.vim
+737.635  003.390  003.390: sourcing /home/okoye/.fzf/plugin/fzf.vim
+739.931  001.896  001.896: sourcing /home/okoye/.config/nvim/plugins/fzf.vim/plugin/fzf.vim
+741.679  000.152  000.152: sourcing /home/okoye/.config/nvim/plugins/fzf-gitignore/plugin/fzf_gitignore.vim
+742.601  000.559  000.559: sourcing /home/okoye/.config/nvim/plugins/fzf-filemru/plugin/fzf-filemru.vim
+743.353  000.481  000.481: sourcing /home/okoye/.config/nvim/plugins/vim-indexed-search/plugin/IndexedSearch.vim
+744.738  000.301  000.301: sourcing /home/okoye/.config/nvim/plugins/vim-airline/autoload/airline.vim
+746.005  000.344  000.344: sourcing /home/okoye/.config/nvim/plugins/vim-airline/autoload/airline/init.vim
+746.992  000.197  000.197: sourcing /home/okoye/.config/nvim/plugins/vim-airline/autoload/airline/parts.vim
+748.019  004.365  003.522: sourcing /home/okoye/.config/nvim/plugins/vim-airline/plugin/airline.vim
+748.333  000.032  000.032: sourcing /home/okoye/.config/nvim/plugins/vim-airline-themes/plugin/airline-themes.vim
+748.685  000.101  000.101: sourcing /home/okoye/.config/nvim/plugins/file-line/plugin/file_line.vim
+749.268  000.152  000.152: sourcing /home/okoye/.config/nvim/plugins/vim-lastplace/plugin/vim-lastplace.vim
+749.597  000.065  000.065: sourcing /home/okoye/.config/nvim/plugins/echodoc.vim/plugin/echodoc.vim
+750.016  000.117  000.117: sourcing /home/okoye/.config/nvim/plugins/investigate.vim/plugin/investigate.vim
+750.507  000.205  000.205: sourcing /home/okoye/.config/nvim/plugins/vim-dispatch/plugin/dispatch.vim
+750.833  000.062  000.062: sourcing /home/okoye/.config/nvim/plugins/vim-dispatch-neovim/plugin/plugin.vim
+751.428  000.336  000.336: sourcing /home/okoye/.config/nvim/plugins/vim-tmux-focus-events/plugin/tmux_focus_events.vim
+751.862  000.109  000.109: sourcing /home/okoye/.config/nvim/plugins/vim-plugin-AnsiEsc/plugin/AnsiEscPlugin.vim
+752.945  000.882  000.882: sourcing /home/okoye/.config/nvim/plugins/vim-plugin-AnsiEsc/plugin/cecutil.vim
+754.720  001.306  001.306: sourcing /home/okoye/.config/nvim/plugins/tagbar/plugin/tagbar.vim
+757.491  000.404  000.404: sourcing /home/okoye/.config/nvim/plugins/gen_tags.vim/autoload/gen_tags.vim
+758.045  001.834  001.430: sourcing /home/okoye/.config/nvim/plugins/gen_tags.vim/autoload/gen_tags/ctags.vim
+759.350  000.304  000.304: sourcing /home/okoye/.config/nvim/plugins/gen_tags.vim/autoload/gen_tags/gtags.vim
+760.391  005.383  003.245: sourcing /home/okoye/.config/nvim/plugins/gen_tags.vim/plugin/gen_tags.vim
+778.379  000.132  000.132: sourcing /home/okoye/.config/nvim/plugins/TagHighlight/autoload/TagHighlight/LoadDataFile.vim
+829.673  055.398  055.266: sourcing /home/okoye/.config/nvim/plugins/TagHighlight/plugin/TagHighlight.vim
+830.227  000.238  000.238: sourcing /home/okoye/.config/nvim/plugins/vim-rooter/plugin/rooter.vim
+831.460  000.942  000.942: sourcing /home/okoye/.config/nvim/plugins/vim-surround/plugin/surround.vim
+834.590  000.877  000.877: sourcing /home/okoye/.config/nvim/plugins/delimitmate/autoload/delimitMate.vim
+838.409  006.402  005.525: sourcing /home/okoye/.config/nvim/plugins/delimitmate/plugin/delimitMate.vim
+839.550  000.535  000.535: sourcing /home/okoye/.config/nvim/plugins/tabular/plugin/Tabular.vim
+840.159  000.224  000.224: sourcing /home/okoye/.config/nvim/plugins/vim-pyenv/plugin/pyenv.vim
+847.594  000.225  000.225: sourcing /usr/share/nvim/runtime/autoload/provider/python.vim
+1102.033  260.218  259.993: sourcing /home/okoye/.config/nvim/plugins/vim-virtualenv/autoload/virtualenv.vim
+1102.204  261.766  001.548: sourcing /home/okoye/.config/nvim/plugins/vim-virtualenv/plugin/virtualenv.vim
+1102.984  000.278  000.278: sourcing /home/okoye/.config/nvim/plugins/nvim-completion-manager/plugin/cm.vim
+1103.442  000.135  000.135: sourcing /home/okoye/.config/nvim/plugins/neco-vim/plugin/necovim.vim
+1104.347  000.020  000.020: sourcing /usr/share/nvim/runtime/filetype.vim
+1105.302  000.021  000.021: sourcing /usr/share/nvim/runtime/ftplugin.vim
+1105.596  001.850  001.809: sourcing /home/okoye/.config/nvim/plugins/jedi-vim/plugin/jedi.vim
+1107.484  000.157  000.157: sourcing /home/okoye/.config/nvim/plugins/ultisnips/autoload/UltiSnips/map_keys.vim
+1107.681  001.754  001.597: sourcing /home/okoye/.config/nvim/plugins/ultisnips/plugin/UltiSnips.vim
+1108.092  000.071  000.071: sourcing /home/okoye/.config/nvim/plugins/vim-snippets/plugin/vimsnippets.vim
+1113.313  004.914  004.914: sourcing /home/okoye/.config/nvim/plugins/vim-tmux-clipboard/plugin/vimtmuxclipboard.vim
+1114.417  000.689  000.689: sourcing /home/okoye/.config/nvim/plugins/vim-vinegar/plugin/vinegar.vim
+1115.110  000.273  000.273: sourcing /home/okoye/.config/nvim/plugins/vim-startify/plugin/startify.vim
+1115.468  000.054  000.054: sourcing /home/okoye/.config/nvim/plugins/goyo.vim/plugin/goyo.vim
+1116.134  000.096  000.096: sourcing /home/okoye/.config/nvim/plugins/limelight.vim/plugin/limelight.vim
+1120.850  004.411  004.411: sourcing /home/okoye/.config/nvim/plugins/vim-devicons/plugin/webdevicons.vim
+1121.597  000.039  000.039: sourcing /usr/share/nvim/runtime/plugin/gui_shim.vim
+1122.184  000.380  000.380: sourcing /usr/share/nvim/runtime/plugin/gzip.vim
+1122.467  000.051  000.051: sourcing /usr/share/nvim/runtime/plugin/health.vim
+1122.764  000.093  000.093: sourcing /usr/share/nvim/runtime/plugin/man.vim
+1123.962  000.877  000.877: sourcing /usr/share/nvim/runtime/plugin/matchit.vim
+1124.486  000.276  000.276: sourcing /usr/share/nvim/runtime/plugin/matchparen.vim
+1125.750  000.971  000.971: sourcing /usr/share/nvim/runtime/plugin/netrwPlugin.vim
+1128.173  000.273  000.273: sourcing /usr/share/nvim/runtime/autoload/remote/define.vim
+1133.705  007.220  006.947: sourcing /home/okoye/.local/share/nvim/rplugin.vim
+1133.730  007.727  000.508: sourcing /usr/share/nvim/runtime/plugin/rplugin.vim
+1134.023  000.056  000.056: sourcing /usr/share/nvim/runtime/plugin/rrhelper.vim
+1134.468  000.194  000.194: sourcing /usr/share/nvim/runtime/plugin/shada.vim
+1134.739  000.056  000.056: sourcing /usr/share/nvim/runtime/plugin/spellfile.vim
+1135.207  000.281  000.281: sourcing /usr/share/nvim/runtime/plugin/tarPlugin.vim
+1135.668  000.175  000.175: sourcing /usr/share/nvim/runtime/plugin/tohtml.vim
+1135.926  000.050  000.050: sourcing /usr/share/nvim/runtime/plugin/tutor.vim
+1136.460  000.310  000.310: sourcing /usr/share/nvim/runtime/plugin/zipPlugin.vim
+1136.480  059.863: loading plugins
+1136.658  000.179: loading packages
+1138.040  000.891  000.891: sourcing /home/okoye/.config/nvim/plugins/indentLine/after/plugin/indentLine.vim
+1140.247  000.712  000.712: sourcing /home/okoye/.config/nvim/plugins/tabular/autoload/tabular.vim
+1144.271  005.916  005.204: sourcing /home/okoye/.config/nvim/plugins/tabular/after/plugin/TabularMaps.vim
+1145.011  000.303  000.303: sourcing /home/okoye/.config/nvim/plugins/ultisnips/after/plugin/UltiSnips_after.vim
+1145.040  001.272: loading after plugins
+1145.063  000.023: inits 3
+1151.452  006.390: reading ShaDa
+1152.519  001.067: clearing screen
+1157.455  002.940  002.940: sourcing /home/okoye/.config/nvim/plugins/neomake/autoload/neomake.vim
+1159.605  000.809  000.809: sourcing /home/okoye/.config/nvim/plugins/neomake/autoload/neomake/compat.vim
+1169.107  003.244  003.244: sourcing /home/okoye/.lvimrc
+1249.579  080.205  080.205: sourcing /home/okoye/.lvimrc
+1257.827  000.653  000.653: sourcing /home/okoye/.config/nvim/plugins/vim-airline/autoload/airline/extensions.vim
+1259.290  000.331  000.331: sourcing /home/okoye/.config/nvim/plugins/vim-airline/autoload/airline/extensions/quickfix.vim
+1260.217  000.099  000.099: sourcing /home/okoye/.config/nvim/plugins/vim-airline/autoload/airline/extensions/netrw.vim
+1261.224  000.171  000.171: sourcing /home/okoye/.config/nvim/plugins/vim-airline/autoload/airline/extensions/hunks.vim
+1262.029  000.113  000.113: sourcing /home/okoye/.config/nvim/plugins/vim-airline/autoload/airline/extensions/tagbar.vim
+1263.297  000.588  000.588: sourcing /home/okoye/.config/nvim/plugins/vim-airline/autoload/airline/extensions/branch.vim
+1264.163  000.071  000.071: sourcing /home/okoye/.config/nvim/plugins/vim-airline/autoload/airline/extensions/virtualenv.vim
+1265.271  000.222  000.222: sourcing /home/okoye/.config/nvim/plugins/vim-airline/autoload/airline/extensions/whitespace.vim
+1266.117  000.090  000.090: sourcing /home/okoye/.config/nvim/plugins/vim-airline/autoload/airline/extensions/neomake.vim
+1268.784  001.127  001.127: sourcing /home/okoye/.config/nvim/plugins/vim-airline/autoload/airline/extensions/po.vim
+1270.169  000.207  000.207: sourcing /home/okoye/.config/nvim/plugins/vim-airline/autoload/airline/extensions/wordcount.vim
+1271.644  000.497  000.497: sourcing /home/okoye/.config/nvim/plugins/vim-airline/autoload/airline/extensions/tabline.vim
+1272.561  000.160  000.160: sourcing /home/okoye/.config/nvim/plugins/vim-airline/autoload/airline/extensions/tabline/autoshow.vim
+1273.924  000.200  000.200: sourcing /home/okoye/.config/nvim/plugins/vim-airline/autoload/airline/extensions/tabline/tabs.vim
+1275.165  000.562  000.562: sourcing /home/okoye/.config/nvim/plugins/vim-airline/autoload/airline/extensions/tabline/buffers.vim
+1276.260  000.406  000.406: sourcing /home/okoye/.config/nvim/plugins/vim-airline/autoload/airline/extensions/tabline/ctrlspace.vim
+1277.349  000.068  000.068: sourcing /home/okoye/.config/nvim/plugins/vim-airline/autoload/airline/extensions/keymap.vim
+1290.042  000.152  000.152: sourcing /home/okoye/.config/nvim/plugins/vim-airline/autoload/airline/section.vim
+1291.494  000.557  000.557: sourcing /home/okoye/.config/nvim/plugins/vim-airline/autoload/airline/highlighter.vim
+1297.997  000.106  000.106: sourcing /home/okoye/.config/nvim/plugins/vim-airline/autoload/airline/themes.vim
+1300.803  004.066  003.959: sourcing /home/okoye/.config/nvim/plugins/vim-airline-themes/autoload/airline/themes/base16.vim
+1319.393  000.171  000.171: sourcing /home/okoye/.config/nvim/plugins/vim-airline/autoload/airline/util.vim
+1326.732  001.284  001.284: sourcing /home/okoye/.config/nvim/plugins/vim-airline/autoload/airline/builder.vim
+1328.469  000.183  000.183: sourcing /home/okoye/.config/nvim/plugins/vim-airline/autoload/airline/extensions/default.vim
+1378.071  126.375: opening buffers
+1382.402  003.235  003.235: sourcing /home/okoye/.config/nvim/plugins/tagbar/autoload/tagbar.vim
+1383.565  000.164  000.164: sourcing /home/okoye/.config/nvim/plugins/tagbar/autoload/tagbar/debug.vim
+1401.847  000.961  000.961: sourcing /home/okoye/.config/nvim/plugins/tagbar/autoload/tagbar/types/ctags.vim
+1402.495  000.078  000.078: sourcing /home/okoye/.config/nvim/plugins/tagbar/autoload/tagbar/prototypes/typeinfo.vim
+1462.296  079.786: BufEnter autocommands
+1462.310  000.015: editing files in windows
+1478.934  000.605  000.605: sourcing /home/okoye/.config/nvim/plugins/vim-bookmarks/autoload/bm.vim
+1483.181  000.232  000.232: sourcing /home/okoye/.config/nvim/plugins/vim-pyenv/autoload/pyenv.vim
+1486.329  000.162  000.162: sourcing /home/okoye/.config/nvim/plugins/vim-easymotion/autoload/vital.vim
+1490.330  000.865  000.865: sourcing /home/okoye/.config/nvim/plugins/vim-pyenv/autoload/vital/_vim_pyenv.vim
+1498.223  012.642  011.615: sourcing /home/okoye/.config/nvim/plugins/vim-pyenv/autoload/pyenv/utils.vim
+1507.998  000.344  000.344: sourcing /home/okoye/.config/nvim/plugins/vim-pyenv/autoload/vital/_vim_pyenv/Process.vim
+1520.051  000.622  000.622: sourcing /home/okoye/.config/nvim/plugins/vim-pyenv/autoload/vital/_vim_pyenv/System/Filepath.vim
+1527.987  043.448  029.840: sourcing /home/okoye/.config/nvim/plugins/vim-pyenv/autoload/pyenv/pyenv.vim
+1536.332  007.446  007.446: sourcing /home/okoye/.config/nvim/plugins/vim-pyenv/autoload/pyenv/python.vim
+7843.907  002.511  002.511: sourcing /home/okoye/.config/nvim/plugins/vim-startify/autoload/startify.vim
+7846.692  000.744  000.744: sourcing /home/okoye/.config/nvim/plugins/vim-startify/autoload/startify/fortune.vim
+7994.236  000.599  000.599: sourcing /home/okoye/.config/nvim/plugins/vim-startify/syntax/startify.vim
+8002.644  000.783  000.783: sourcing /home/okoye/.config/nvim/plugins/vim-shell/autoload/xolox/shell.vim
+8004.045  000.131  000.131: sourcing /home/okoye/.config/nvim/plugins/vim-misc/autoload/xolox/misc/option.vim
+8008.091  000.281  000.281: sourcing /home/okoye/.config/nvim/plugins/TagHighlight/autoload/TagHighlight/ReadTypes.vim
+8009.202  000.183  000.183: sourcing /home/okoye/.config/nvim/plugins/TagHighlight/autoload/TagHighlight/Debug.vim
+8010.252  000.213  000.213: sourcing /home/okoye/.config/nvim/plugins/TagHighlight/autoload/TagHighlight/Option.vim
+8063.136  6543.649: VimEnter autocommands
+8063.144  000.008: before starting main loop
+8512.569  000.229  000.229: sourcing /home/okoye/.config/nvim/plugins/vim-airline/autoload/airline/extensions/tabline/buflist.vim
+8524.364  460.991: first screen update
+8524.373  000.009: --- NVIM STARTED ---

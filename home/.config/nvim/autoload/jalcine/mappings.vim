@@ -62,6 +62,10 @@ func! jalcine#mappings#setup() abort " {{{
   nnoremap <A-l> <C-w>l
   " }}}
   "
+  " Moving in popmenu menu.
+	inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+	inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+  "
   " Rewrite 'vhe' to 'vert help'.
   cnoremap vhe vert help
   "
@@ -119,11 +123,5 @@ func! jalcine#mappings#setup() abort " {{{
         \ ['x', '<ESC>:lclose<CR>'],
         \ ['X', '<ESC>:windo lclose<CR>'],
         \ ], { 'prefix': 'l' })
-  " }}}
-  "
-  " investiage {{{
-  call jalcine#mappings#apply_bulk([
-        \ ['K', "call investigate#Investigate('n')<CR>"],
-        \ ], { 'prefix': 'i' })
   " }}}
 endfunc " }}}

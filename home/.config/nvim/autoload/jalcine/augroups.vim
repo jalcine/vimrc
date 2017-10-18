@@ -8,13 +8,17 @@ func! jalcine#augroups#setup() abort
     au!
     au BufEnter         * :syntax sync maxlines=200
     au BufEnter         * Rooter
-    au BufWritePost     * Neomake
-    au BufReadPost      * Neomake
     au VimEnter           <silent> LocalVimRC!
     au User RooterChDir   call <SID>GenerateTagsInDir()
   augroup END
 
+  augroup vimrc_auto_tmux_reload
+    au!
+    au FileWritePost ~/.tmux* !tmux source-file %:h
+  augroup END
+
   augroup vimrc_tagbar
+    au!
     au BufEnter         * nested :call tagbar#autoopen(0)
     au BufWinEnter      * if &previewwindow | setlocal nonumber | endif
   augroup END
@@ -30,6 +34,9 @@ func! jalcine#augroups#setup() abort
     au FileType *              call <SID>ConditionallyStartLanuageServer("<amatch>")
     au FileType python         call jalcine#lang#python#tweak()
     au FileType php            call jalcine#lang#php#tweak()
+    au FileType css            setl omnifunc=csscomplete#CompleteCSS noci
+    au FileType markdown,mkd   call <SID>EnhanceTextEditing()
+    au FileType text           call <SID>EnhanceTextEditing()
   augroup END
 
   augroup vimrc_goyo
@@ -39,8 +46,8 @@ func! jalcine#augroups#setup() abort
 endfunc
 
 func! s:GenerateTagsInDir() abort
-  GenGTAGS
-  GenCtags
+  " GenGTAGS
+  " GenCtags
 endfunc
 
 func! s:ConditionallyStartLanuageServer(ft) abort
@@ -48,4 +55,35 @@ func! s:ConditionallyStartLanuageServer(ft) abort
   if l:hasStartCommand == 1
     LanguageClientStart
   endif
+endfunc
+
+func! s:EnhanceTextEditing() abort
+  let l:is_in_text = (&ft == 'text')
+  setlocal foldlevel=6
+
+  call textobj#quote#init({
+        \ | 'educate': l:is_in_text
+        \ | })
+  call textobj#sentence#init()
+  call litecorrect#init()
+  call pencil#init({
+        \ | 'wrap': (l:is_in_text) ? 'hard' : 'soft',
+        \ | 'autoformat': 1
+        \ | })
+  call lexical#init()
+
+  nnoremap <buffer> <silent> Q gqap
+  xnoremap <buffer> <silent> Q gq
+  nnoremap <buffer> <silent> <leader>Q vapJgqap
+  nnoremap <buffer> <c-s> [s1z=<c-o>
+  inoremap <buffer> <c-s> <c-g>u<Esc>[s1z=`]A<c-g>u
+  iabbrev <buffer> -- –
+  iabbrev <buffer> --- —
+  iabbrev <buffer> << «
+  iabbrev <buffer> >> »
+  map <silent> <buffer> <leader>qc <Plug>ReplaceWithCurly
+  map <silent> <buffer> <leader>qs <Plug>ReplaceWithStraight
+  noremap <silent> <buffer> <F8> :<C-u>NextWordy<cr>
+  xnoremap <silent> <buffer> <F8> :<C-u>NextWordy<cr>
+  inoremap <silent> <buffer> <F8> <C-o>:NextWordy<cr>
 endfunc

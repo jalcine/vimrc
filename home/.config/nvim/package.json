@@ -1,0 +1,25 @@
+{
+  "name": "jalcine-vimrc",
+  "version": "0.0.1",
+  "description": "Node packages useful for working with Jacky's NeoVim setup.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jalcine/vimrc.git"
+  },
+  "author": "Jacky Alciné <yo@jacky.wtf> (https://jacky.wtf/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jalcine/vimrc/issues"
+  },
+  "homepage": "https://github.com/jalcine/vimrc#readme",
+  "devDependencies": {
+    "jsctags": "git+https://github.com/ramitos/jsctags.git"
+  },
+  "dependencies": {
+    "stylelint": "8.2.0"
+  }
+}

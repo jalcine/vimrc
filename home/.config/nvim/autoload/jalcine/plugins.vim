@@ -6,6 +6,8 @@
 
 scriptencoding utf-8
 
+let s:vimrc_root = fnamemodify($MYVIMRC, ':p:h')
+
 " Options {{{
 let g:jalcine.plugins = {
       \ 'root': expand('$HOME/.config/nvim/plugins'),
@@ -109,6 +111,7 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'powerman/vim-plugin-AnsiEsc'
   Plug 'zhm/TagHighlight'
   Plug 'ludovicchabant/vim-gutentags'
+  Plug 'majutsushi/tagbar'
   Plug 'Yggdroot/indentLine'
   Plug 'airblade/vim-rooter'
   Plug 'tpope/vim-surround'
@@ -125,7 +128,7 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
   Plug 'mxw/vim-jsx', { 'for': 'javascript.jsx' }
   Plug 'moll/vim-node', { 'for': 'javascript' }
-  Plug 'ekalinin/Dockerfile.vim', {'for': 'dockerfile'}
+  Plug 'ekalinin/Dockerfile.vim'
   Plug 'mattly/vim-markdown-enhancements', {'for':'markdown,mkd'}
 
   Plug 'reedes/vim-wordy'
@@ -140,7 +143,7 @@ func! jalcine#plugins#define() abort " {{{
   " {{{ IDE-esque
   Plug 'roxma/nvim-completion-manager'
   Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
-  Plug 'roxma/nvim-cm-tern',  { 'do': 'ndenv exec npm install' }
+  Plug 'roxma/nvim-cm-tern',  { 'do': 'npm install' }
   Plug 'roxma/ncm-github'
   Plug 'Shougo/neco-syntax'
   Plug 'Shougo/neoinclude.vim'
@@ -204,7 +207,7 @@ func! jalcine#plugins#configure() abort " {{{
   if !exists('g:airline_symbols')
     let g:airline_symbols = {}
   endif
-  
+
   let g:airline_symbols.branch = '⎇'
   let g:airline_symbols.readonly = '🔒'
   let g:airline_symbols.linenr = ''
@@ -241,7 +244,7 @@ func! jalcine#plugins#configure() abort " {{{
   " }}}
   "
   " ultisnips {{{
-	let g:UltiSnipsExpandTrigger = "<Plug>(ultisnips_expand)"
+  let g:UltiSnipsExpandTrigger = "<Plug>(ultisnips_expand)"
   let g:UltiSnipsRemoveSelectModeMappings = 0
   " }}}
   "
@@ -335,11 +338,16 @@ func! jalcine#plugins#configure() abort " {{{
   let g:org_aggressive_conceal = 1
   let g:org_indent = 1
   let g:org_todo_keywords = [['TODO(t)', '|', 'DONE(d)'],
-      \ ['REPORT(r)', 'BUG(b)', 'KNOWNCAUSE(k)', '|', 'FIXED(f)'],
-      \ ['CANCELED(c)']]
+        \ ['REPORT(r)', 'BUG(b)', 'KNOWNCAUSE(k)', '|', 'FIXED(f)'],
+        \ ['CANCELED(c)']]
+  " }}}
+  "
+  " ale {{{
+  let g:ale_scss_stylelint_executable = s:vimrc_root . "/node_modules/.bin/stylelint"
   " }}}
 
   call <SID>ConfigureLanguageServer()
+  call <SID>ConfigureTagbar()
 endfunc " }}}
 
 func! jalcine#plugins#configure_mappings() abort " {{{
@@ -422,26 +430,25 @@ func! jalcine#plugins#configure_mappings() abort " {{{
   " Expand a snippet when shown in the list.
   imap <expr> <CR> (pumvisible() ?  "\<c-y>\<Plug>(expand_or_nl)\<Plug>DiscretionaryEnd" : "\<CR>\<Plug>DiscretionaryEnd")
   imap <expr> <Plug>(expand_or_nl) (cm#completed_is_snippet() ? "\<Plug>(ultisnips_expand)" :"\<CR>")
- 
+
   " }}}
 endfunc " }}}
 
 func! s:ConfigureLanguageServer() abort " {{{
-  let l:vimrc_root = fnamemodify($MYVIMRC, ':p:h')
   let g:LanguageClient_serverCommands = {
         \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-        \ 'javascript': [ 'ndenv', 'exec', 'node', l:vimrc_root . '/plugins/javascript-typescript-langserver/lib/language-server-stdio.js' ],
+        \ 'javascript': [ 'ndenv', 'exec', 'node', s:vimrc_root . '/plugins/javascript-typescript-langserver/lib/language-server-stdio.js' ],
         \ 'python': ['pyenv', 'exec', 'pyls'],
         \ 'go': ['goenv', 'exec', 'go-langserver'],
-        \ 'php': ['phpenv', 'exec', l:vimrc_root . '/plugins/php-language-server/vendor/bin/php-language-server.php'],
-        \ 'elixir': ['exenv', 'exec', 'elixir', l:vimrc_root . '/plugins/elixir-ls/apps/language_server/language_server'],
+        \ 'php': ['phpenv', 'exec', s:vimrc_root . '/plugins/php-language-server/vendor/bin/php-language-server.php'],
+        \ 'elixir': ['exenv', 'exec', 'elixir', s:vimrc_root . '/plugins/elixir-ls/apps/language_server/language_server'],
         \ 'ruby': ['rbenv', 'exec', 'language_server']
         \ }
 
   if exists('$DEBUG')
-    let g:LanguageClient_serverCommands.javascript += ['--trace', '--logfile', l:vimrc_root . '/logs/lsp-javascript.log' ]
-    let g:LanguageClient_serverCommands.python += ['--log-file', l:vimrc_root . '/logs/lsp-python.log' ]
-    let g:LanguageClient_serverCommands.go += ['-logfile', l:vimrc_root . '/logs/lsp-go.log' ]
+    let g:LanguageClient_serverCommands.javascript += ['--trace', '--logfile', s:vimrc_root . '/logs/lsp-javascript.log' ]
+    let g:LanguageClient_serverCommands.python += ['--log-file', s:vimrc_root . '/logs/lsp-python.log' ]
+    let g:LanguageClient_serverCommands.go += ['-logfile', s:vimrc_root . '/logs/lsp-go.log' ]
   endif
 
   let l:aliases = {
@@ -453,4 +460,65 @@ func! s:ConfigureLanguageServer() abort " {{{
       let g:LanguageClient_serverCommands[subAlias] = g:LanguageClient_serverCommands[l:alias]
     endfor
   endfor
+endfunc " }}}
+
+func! s:ConfigureTagbar() abort " {{{
+  let g:tagbar_type_elixir = {
+        \ 'ctagstype' : 'elixir',
+        \ 'kinds' : [
+        \ 'f:functions',
+        \ 'functions:functions',
+        \ 'c:callbacks',
+        \ 'd:delegates',
+        \ 'e:exceptions',
+        \ 'i:implementations',
+        \ 'a:macros',
+        \ 'o:operators',
+        \ 'm:modules',
+        \ 'p:protocols',
+        \ 'r:records',
+        \ 't:tests'
+        \ ]
+        \ }
+  let g:tagbar_type_css = {
+        \ 'ctagstype' : 'Css',
+        \ 'kinds'     : [
+        \ 'c:classes',
+        \ 's:selectors',
+        \ 'i:identities'
+        \ ]
+        \ }
+  let g:tagbar_type_ruby = {
+        \ 'kinds'      : ['m:modules',
+        \ 'c:classes',
+        \ 'C:constants',
+        \ 'F:singleton methods',
+        \ 'f:methods',
+        \ 'a:aliases'],
+        \ 'kind2scope' : { 'c' : 'class',
+        \ 'm' : 'class' },
+        \ 'scope2kind' : { 'class' : 'c' },
+        \ 'ctagsbin'   : s:vimrc_root . '/bin/ripper-tags',
+        \ 'ctagsargs'  : ['-f', '-']
+        \ }
+  let g:tagbar_type_javascript = {
+      \ 'ctagsbin'   : s:vimrc_root . '/node_modules/.bin/jsctags',
+      \ 'ctagsargs'  : ['-f', '-']
+\ }
+
+  let g:tagbar_type_ansible = {
+        \ 'ctagstype' : 'ansible',
+        \ 'kinds' : [
+        \ 't:tasks'
+        \ ],
+        \ 'sort' : 0
+        \ }
+  let g:tagbar_type_markdown = {
+        \ 'ctagstype' : 'markdown',
+        \ 'kinds' : [
+        \ 'h:Heading_L1',
+        \ 'i:Heading_L2',
+        \ 'k:Heading_L3'
+        \ ]
+        \ }
 endfunc " }}}

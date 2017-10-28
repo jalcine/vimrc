@@ -1,0 +1,11 @@
+# frozen_string_literal: true
+
+source 'https://rubygems.org'
+
+gem 'awesome_print'
+gem 'fastri'
+gem 'neovim'
+gem 'rcodetools'
+gem 'rubocop'
+gem 'ruby-beautify'
+gem 'ripper-tags'

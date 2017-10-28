@@ -18,9 +18,9 @@ func! jalcine#launch() abort
 
   let l:sectors = [
         \ 'augroups',
-        \ 'plugins',
-        \ 'lang',
         \ 'mappings',
+        \ 'lang',
+        \ 'plugins',
         \ 'theme',
         \ ]
 

@@ -8,7 +8,7 @@ set encoding=utf-8
 scriptencoding utf-8
 
 if v:version < 800
-    echoerr '[jalcine] Please upgrade Vim to Vim8 or use Neovim (recommended).'
+  echoerr "[jalcine] Please upgrade Vim to Vim8 or use Neovim (recommended)."
 endif
 
 " Visual Editor Components {{{

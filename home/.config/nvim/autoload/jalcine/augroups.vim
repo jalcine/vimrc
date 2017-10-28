@@ -7,7 +7,6 @@ func! jalcine#augroups#setup() abort
   augroup vimrc_misc
     au!
     au BufEnter         * :syntax sync maxlines=200
-    au BufEnter         * Rooter
     au VimEnter           <silent> LocalVimRC!
     au User RooterChDir   call <SID>GenerateTagsInDir()
   augroup END
@@ -15,12 +14,6 @@ func! jalcine#augroups#setup() abort
   augroup vimrc_auto_tmux_reload
     au!
     au FileWritePost ~/.tmux* !tmux source-file %:h
-  augroup END
-
-  augroup vimrc_tagbar
-    au!
-    au BufEnter         * nested :call tagbar#autoopen(0)
-    au BufWinEnter      * if &previewwindow | setlocal nonumber | endif
   augroup END
 
   augroup vimrc_term
@@ -46,8 +39,6 @@ func! jalcine#augroups#setup() abort
 endfunc
 
 func! s:GenerateTagsInDir() abort
-  " GenGTAGS
-  " GenCtags
 endfunc
 
 func! s:ConditionallyStartLanuageServer(ft) abort
@@ -62,14 +53,14 @@ func! s:EnhanceTextEditing() abort
   setlocal foldlevel=6
 
   call textobj#quote#init({
-        \ | 'educate': l:is_in_text
-        \ | })
+        \ 'educate': l:is_in_text
+        \ })
   call textobj#sentence#init()
   call litecorrect#init()
   call pencil#init({
-        \ | 'wrap': (l:is_in_text) ? 'hard' : 'soft',
-        \ | 'autoformat': 1
-        \ | })
+        \ 'wrap': (l:is_in_text) ? 'hard' : 'soft',
+        \ 'autoformat': 1
+        \ })
   call lexical#init()
 
   nnoremap <buffer> <silent> Q gqap

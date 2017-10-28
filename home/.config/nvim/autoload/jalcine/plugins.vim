@@ -1,7 +1,7 @@
-
+" File:          autoload/jalcine/plugins.vim
 " Description:   Setup the plugins I'll be using.
 " Author:        Jacky Alcine <yo@jacky.wtf>
-" Last Modified: August 24, 2017
+" Last Modified: 2017-10-18 23:03:46 PDT
 " vim: set fdm=marker fdl=0 :
 
 scriptencoding utf-8
@@ -19,7 +19,6 @@ func! jalcine#plugins#setup() abort " {{{
   " Lift off.
   call jalcine#plugins#define()
   call jalcine#plugins#configure()
-  call jalcine#plugins#configure_mappings()
 
   " Check everything.
   if exists('$NVIM_VERBOSE')
@@ -29,6 +28,9 @@ func! jalcine#plugins#setup() abort " {{{
   " Go into orbit.
   filetype plugin indent on
   syntax on
+
+  " Define mappings.
+  call jalcine#plugins#configure_mappings()
 endfunc " }}}
 
 func! jalcine#plugins#define() abort " {{{
@@ -39,13 +41,14 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'tpope/vim-endwise'
   Plug 'tpope/vim-speeddating'
   Plug 'tpope/vim-abolish'
+  Plug 'jdelkins/vim-correction'
   Plug 'tpope/vim-scriptease'
   Plug 'tpope/vim-rsi'
   Plug 'vim-utils/vim-husk'
   Plug 'Lokaltog/vim-easymotion'
-  Plug 'benekastah/neomake'
   Plug 'janko-m/vim-test'
   Plug 'tpope/vim-dotenv'
+  Plug 'w0rp/ale'
   Plug 'direnv/direnv.vim'
 
   Plug 'tpope/vim-commentary'
@@ -73,6 +76,9 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'gabrielelana/vim-markdown', { 'for': 'markdown' }
   Plug 'parkr/vim-jekyll'
   Plug 'jceb/vim-orgmode'
+  Plug 'mattn/calendar-vim'
+  Plug 'vim-scripts/SyntaxRange'
+  Plug 'chrisbra/NrrwRgn'
   Plug 'junegunn/gv.vim'
   Plug 'mattn/emmet-vim', {'for': 'html,hbs' }
   Plug 'mattn/webapi-vim'
@@ -101,9 +107,8 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'tmux-plugins/vim-tmux-focus-events'
 
   Plug 'powerman/vim-plugin-AnsiEsc'
-  Plug 'majutsushi/tagbar'
-  Plug 'jsfaint/gen_tags.vim'
   Plug 'zhm/TagHighlight'
+  Plug 'ludovicchabant/vim-gutentags'
   Plug 'Yggdroot/indentLine'
   Plug 'airblade/vim-rooter'
   Plug 'tpope/vim-surround'
@@ -136,16 +141,18 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'roxma/nvim-completion-manager'
   Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
   Plug 'roxma/nvim-cm-tern',  { 'do': 'ndenv exec npm install' }
-  Plug 'calebeby/ncm-css', { 'for': 'css' }
   Plug 'roxma/ncm-github'
-  Plug 'Shougo/neco-vim', { 'for': 'vim' }
   Plug 'Shougo/neco-syntax'
+  Plug 'Shougo/neoinclude.vim'
+  Plug 'calebeby/ncm-css', { 'for': 'css' }
+  Plug 'Shougo/neco-vim', { 'for': 'vim' }
   Plug 'davidhalter/jedi-vim', { 'for': 'python' }
   Plug 'fisadev/vim-isort', { 'for': 'python' }
   Plug 'othree/csscomplete.vim', { 'for': 'css' }
+  Plug 'JakeBecker/elixir-ls', { 'for': 'elixir', 
+        \ 'do': 'exenv exec mix do deps.clean --all, deps.get, deps.compile, compile' }
   Plug 'elixir-editors/vim-elixir', {'for': 'elixir' }
   Plug 'roxma/ncm-rct-complete', {'for': 'ruby'}
-  Plug 'Shougo/neoinclude.vim'
   Plug 'rust-lang/rust.vim', {'for': 'rust'}
   Plug 'racer-rust/vim-racer', {'for': 'rust'}
   Plug 'roxma/nvim-cm-racer', {'for': 'rust'}
@@ -167,39 +174,45 @@ func! jalcine#plugins#define() abort " {{{
 endfunc " }}}
 
 func! jalcine#plugins#configure() abort " {{{
+  " endwise
+  let g:endwise_no_mappings = 1
   " airline {{{
   let g:airline_theme = 'base16'
-  if exists('g:airline')
-    let g:airline#extensions#branch#enabled = 1
-    let g:airline#extensions#branch#prefix = '⤴'
-    let g:airline#extensions#hunks#non_zero_only = 1
-    let g:airline#extensions#linecolumn#prefix = '¶'
-    let g:airline#extensions#neomake#enabled = 1
-    let g:airline#extensions#paste#symbol = 'ρ'
-    let g:airline#extensions#readonly#symbol = '⊘'
-    let g:airline#extensions#tabline#enabled = 1
-    let g:airline#extensions#tabline#show_buffers = 1
-    let g:airline#extensions#tabline#show_splits = 1
-    let g:airline#extensions#tabline#show_tabs = 1
-    let g:airline#extensions#whitespace#enabled = 1
-    let g:airline#extensions#whitespace#mixed_indent_algo = 1
-    let g:airline#extensions#whitespace#mixed_indent_format = 'i:[%s]'
-    let g:airline#extensions#whitespace#show_message = 1
-    let g:airline#extensions#whitespace#trailing_format = 's:[%s]'
+  if !exists('g:airline')
+    let g:airline = { 'extensions': {}}
   endif
+  let g:airline#extensions#branch#enabled = 1
+  let g:airline#extensions#branch#prefix = '⤴'
+  let g:airline#extensions#hunks#non_zero_only = 1
+  let g:airline#extensions#linecolumn#prefix = '¶'
+  let g:airline#extensions#ale#enabled = 1
+  let g:airline#extensions#paste#symbol = 'ρ'
+  let g:airline#extensions#readonly#symbol = '⊘'
+  let g:airline#extensions#tabline#enabled = 1
+  let g:airline#extensions#tabline#show_buffers = 1
+  let g:airline#extensions#tabline#show_splits = 1
+  let g:airline#extensions#tabline#show_tabs = 1
+  let g:airline#extensions#whitespace#enabled = 1
+  let g:airline#extensions#whitespace#mixed_indent_algo = 1
+  let g:airline#extensions#whitespace#mixed_indent_format = 'i:[%s]'
+  let g:airline#extensions#whitespace#show_message = 1
+  let g:airline#extensions#whitespace#trailing_format = 's:[%s]'
   let g:airline_detect_iminsert = 1
   let g:airline_detected_modified = 1
   let g:airline_powerline_fonts = 1
-  if exists('g:airline_symbols')
-    let g:airline_symbols.branch = '⎇'
-    let g:airline_symbols.readonly = '🔒'
-    let g:airline_symbols.linenr = ''
-    let g:airline_symbols.maxlinenr = '㏑'
-    let g:airline_symbols.notexists = '∄'
-    let g:airline_symbols.paste = '∥'
-    let g:airline_symbols.spell = 'Ꞩ'
-    let g:airline_symbols.whitespace = 'Ξ'
+
+  if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
   endif
+  
+  let g:airline_symbols.branch = '⎇'
+  let g:airline_symbols.readonly = '🔒'
+  let g:airline_symbols.linenr = ''
+  let g:airline_symbols.maxlinenr = '㏑'
+  let g:airline_symbols.notexists = '∄'
+  let g:airline_symbols.paste = '∥'
+  let g:airline_symbols.spell = 'Ꞩ'
+  let g:airline_symbols.whitespace = 'Ξ'
 
   let g:airline_mode_map = {
         \ '__' : '-',
@@ -211,30 +224,16 @@ func! jalcine#plugins#configure() abort " {{{
         \ }
   " }}}
   "
-  "
   " fzf {{{
   let g:fzf_buffers_jump = 1
   let g:fzf_history_dir = expand('$HOME/.config/nvim/fzf-history')
   let g:fzf_gitignore_map = '<Leader>sgi'
   " }}}
   "
-  " neomake {{{
-  if exists('$NVIM_VERBOSE')
-    let g:neomake_verbose = 3
-    let g:neomake_logfile = expand('$HOME/.config/nvim/logs/neomake.log')
-  endif
-
-  let g:neomake_list_height = 3
-  let g:neomake_open_list = 2
-  let g:neomake_serialize = exists('$NVIM_VERBOSE')
-  let g:neomake_serialize_abort_on_error = g:neomake_serialize
-  call neomake#configure#automake('rnw', 500)
-  " }}}
-  "
-  " tagbar {{{
-  let g:tagbar_autofocus = 0
-  let g:tagbar_autoshowtag = 1
-  let g:tagbar_compact = 1
+  " {{{ ale
+  let g:ale_fix_on_save = 1
+  let g:ale_lint_on_save = 1
+  let g:ale_echo_delay = 2
   " }}}
   "
   " {{{ echodoc
@@ -269,6 +268,9 @@ func! jalcine#plugins#configure() abort " {{{
   let g:signify_realtime = 1
   " }}}
   "
+  " gutentags {{{(
+  " )}}}
+  "
   " jedi {{{
   let g:jedi#popup_on_dot = 0
   let g:jedi#documentation_command = 'K'
@@ -298,8 +300,8 @@ func! jalcine#plugins#configure() abort " {{{
   " indentline {{{
   let g:indentLine_showFirstIndentLevel = 1
   let g:indentLine_setColors = 1
-  let g:indentLine_leadingSpaceEnabled = 0
-  let g:indentLine_fileTypeExclude = ['tagbar', 'help', 'netrw', 'gitcommit', 'startify']
+  let g:indentLine_leadingSpaceEnabled = 1
+  let g:indentLine_fileTypeExclude = ['netrw', 'gitcommit', 'startify']
   let g:indentLine_char = '┊'
   " }}}
   "
@@ -317,15 +319,10 @@ func! jalcine#plugins#configure() abort " {{{
   " }}}
   "
   " misc {{{
-  let g:alchemist#elixir_erlang_src = '/usr/local/share/src'
   let g:localvimrc_persistent = 2
   let g:python_highlight_all = 1
   let g:notes_suffix = '.txt'
   let g:far#source = 'agnvim'
-  let g:gen_tags#ctags_auto_gen = 1
-  let g:gen_tags#gtags_auto_gen = 1
-  let g:gen_tags#blacklist = [expand('$HOME')]
-  let g:gen_tags#ctags_use_cache_dir = expand('$HOME/.config/nvim/tags')
   " }}}
   "
   " {{{ investigate.vim
@@ -345,38 +342,7 @@ func! jalcine#plugins#configure() abort " {{{
   call <SID>ConfigureLanguageServer()
 endfunc " }}}
 
-func! s:ConfigureLanguageServer() abort " {{{
-  let l:vimrc_root = fnamemodify($MYVIMRC, ':p:h')
-  let g:LanguageClient_serverCommands = {
-        \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-        \ 'javascript': [ 'ndenv', 'exec', 'node', l:vimrc_root . '/plugins/javascript-typescript-langserver/lib/language-server-stdio.js' ],
-        \ 'python': ['pyenv', 'exec', 'pyls'],
-        \ 'go': ['goenv', 'exec', 'go-langserver'],
-        \ 'php': ['phpenv', 'exec', l:vimrc_root . '/plugins/php-language-server/vendor/bin/php-language-server.php'],
-        \ 'elixir': ['exenv', 'exec', l:vimrc_root . '/plugins/elixir-ls/apps/language_server'],
-        \ 'ruby': ['rbenv', 'exec', 'language_server']
-        \ }
-
-  if exists('$DEBUG')
-    let g:LanguageClient_serverCommands.javascript += ['--trace', '--logfile', l:vimrc_root . '/logs/lsp-javascript.log' ]
-    let g:LanguageClient_serverCommands.python += ['--log-file', l:vimrc_root . '/logs/lsp-python.log' ]
-    let g:LanguageClient_serverCommands.go += ['-logfile', l:vimrc_root . '/logs/lsp-go.log' ]
-  endif
-
-  let l:aliases = {
-        \ 'javascript': ['javascript.jsx', 'jsx']
-        \ }
-
-  for l:alias in keys(l:aliases)
-    for subAlias in l:aliases[l:alias]
-      let g:LanguageClient_serverCommands[subAlias] = g:LanguageClient_serverCommands[l:alias]
-    endfor
-  endfor
-endfunc " }}}
-
 func! jalcine#plugins#configure_mappings() abort " {{{
-  " Show me a tagbar!
-  nnoremap <silent> <F9> :TagbarToggle<CR>
   " make {{{
   " Binds the command used for running 'Make'.
   call jalcine#mappings#apply_bulk([
@@ -401,19 +367,21 @@ func! jalcine#plugins#configure_mappings() abort " {{{
         \ ], { 'prefix' : 't' })
   " }}}
   " 
-  "
-  "
   " fzf {{{
   " Binds commands for using the fuzzy finder.
   call jalcine#mappings#apply_bulk([
         \ ['f', ':Files<cr>'],
-        \ ['gf', ':GFiles?<cr>'],
+        \ ['fg', ':GFiles?<cr>'],
         \ ['t', ':Tags<cr>'],
         \ ['h', ':History<cr>'],
         \ ['w', ':Windows<cr>'],
         \ ['c', ':Commits<cr>'],
         \ ['b', ':Buffers<cr>'],
         \ ['s', ':Snippets<cr>'],
+        \ ['mi', ':call fzf#vim#maps("i", 1)<cr>'],
+        \ ['mn', ':call fzf#vim#maps("n", 1)<cr>'],
+        \ ['mv', ':call fzf#vim#maps("v", 1)<cr>'],
+        \ ['mv', ':call fzf#vim#maps("v", 1)<cr>'],
         \ ], { 'prefix': 's' })
   " }}}
   "
@@ -449,14 +417,40 @@ func! jalcine#plugins#configure_mappings() abort " {{{
         \ ['K', "call investigate#Investigate('n')<CR>"],
         \ ], { 'prefix': 'i' })
   " }}}
-  " ncm {{{(
-  
-  " Attempt to expand snippet when I hit <Enter>, if any.
-  imap <expr> <CR> (pumvisible() ?  "\<c-y>\<Plug>(expand_or_nl)" : "\<CR>")
-  imap <expr> <Plug>(expand_or_nl) (cm#completed_is_snippet() ? "\<C-u>":"\<CR>")
   "
-  " Trigger expansion for snippet completion in ncm's window.
-	inoremap <silent> <C-u> <c-r>=cm#sources#ultisnips#trigger_or_popup("\<Plug>(ultisnips_expand)")<cr>
-  "
+  " ncm {{{
+  " Expand a snippet when shown in the list.
+  imap <expr> <CR> (pumvisible() ?  "\<c-y>\<Plug>(expand_or_nl)\<Plug>DiscretionaryEnd" : "\<CR>\<Plug>DiscretionaryEnd")
+  imap <expr> <Plug>(expand_or_nl) (cm#completed_is_snippet() ? "\<Plug>(ultisnips_expand)" :"\<CR>")
+ 
   " }}}
+endfunc " }}}
+
+func! s:ConfigureLanguageServer() abort " {{{
+  let l:vimrc_root = fnamemodify($MYVIMRC, ':p:h')
+  let g:LanguageClient_serverCommands = {
+        \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+        \ 'javascript': [ 'ndenv', 'exec', 'node', l:vimrc_root . '/plugins/javascript-typescript-langserver/lib/language-server-stdio.js' ],
+        \ 'python': ['pyenv', 'exec', 'pyls'],
+        \ 'go': ['goenv', 'exec', 'go-langserver'],
+        \ 'php': ['phpenv', 'exec', l:vimrc_root . '/plugins/php-language-server/vendor/bin/php-language-server.php'],
+        \ 'elixir': ['exenv', 'exec', 'elixir', l:vimrc_root . '/plugins/elixir-ls/apps/language_server/language_server'],
+        \ 'ruby': ['rbenv', 'exec', 'language_server']
+        \ }
+
+  if exists('$DEBUG')
+    let g:LanguageClient_serverCommands.javascript += ['--trace', '--logfile', l:vimrc_root . '/logs/lsp-javascript.log' ]
+    let g:LanguageClient_serverCommands.python += ['--log-file', l:vimrc_root . '/logs/lsp-python.log' ]
+    let g:LanguageClient_serverCommands.go += ['-logfile', l:vimrc_root . '/logs/lsp-go.log' ]
+  endif
+
+  let l:aliases = {
+        \ 'javascript': ['javascript.jsx', 'jsx']
+        \ }
+
+  for l:alias in keys(l:aliases)
+    for subAlias in l:aliases[l:alias]
+      let g:LanguageClient_serverCommands[subAlias] = g:LanguageClient_serverCommands[l:alias]
+    endfor
+  endfor
 endfunc " }}}

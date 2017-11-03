@@ -50,8 +50,9 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'Lokaltog/vim-easymotion'
   Plug 'janko-m/vim-test'
   Plug 'tpope/vim-dotenv'
-  Plug 'w0rp/ale'
   Plug 'direnv/direnv.vim'
+  Plug 'w0rp/ale'
+  Plug 'janko-m/vim-test'
 
   Plug 'tpope/vim-commentary'
   Plug 'cbaumhardt/vim-commentary-boxed'
@@ -69,6 +70,7 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'mattn/gist-vim'
   Plug 'nkantar/ght.vim'
   Plug 'junegunn/vim-github-dashboard'
+  Plug 'jaxbot/github-issues.vim'
 
   Plug 'MattesGroeger/vim-bookmarks'
   Plug 'ap/vim-css-color'
@@ -100,7 +102,8 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'bogado/file-line'
   Plug 'farmergreg/vim-lastplace'
   Plug 'Shougo/echodoc.vim'
-  Plug 'keith/investigate.vim'
+  " Plug 'keith/investigate.vim'
+  Plug '~/src/investigate.vim'
 
   Plug 'tpope/vim-dispatch'
   Plug 'radenling/vim-dispatch-neovim'
@@ -152,8 +155,6 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'davidhalter/jedi-vim', { 'for': 'python' }
   Plug 'fisadev/vim-isort', { 'for': 'python' }
   Plug 'othree/csscomplete.vim', { 'for': 'css' }
-  Plug 'JakeBecker/elixir-ls', { 'for': 'elixir', 
-        \ 'do': 'exenv exec mix do deps.clean --all, deps.get, deps.compile, compile' }
   Plug 'elixir-editors/vim-elixir', {'for': 'elixir' }
   Plug 'roxma/ncm-rct-complete', {'for': 'ruby'}
   Plug 'rust-lang/rust.vim', {'for': 'rust'}
@@ -345,6 +346,13 @@ func! jalcine#plugins#configure() abort " {{{
   " ale {{{
   let g:ale_scss_stylelint_executable = s:vimrc_root . "/node_modules/.bin/stylelint"
   " }}}
+  "
+  " investigate {{{
+  let g:investigate_command_for_elixir = '/usr/bin/zeal ^s'
+  " }}}
+  "
+  " {{{ vim-test
+  " }}}
 
   call <SID>ConfigureLanguageServer()
   call <SID>ConfigureTagbar()
@@ -420,12 +428,6 @@ func! jalcine#plugins#configure_mappings() abort " {{{
         \ ], { 'prefix': 'g' })
   " }}}
   "
-  " investiage {{{
-  call jalcine#mappings#apply_bulk([
-        \ ['K', "call investigate#Investigate('n')<CR>"],
-        \ ], { 'prefix': 'i' })
-  " }}}
-  "
   " ncm {{{
   " Expand a snippet when shown in the list.
   imap <expr> <CR> (pumvisible() ?  "\<c-y>\<Plug>(expand_or_nl)\<Plug>DiscretionaryEnd" : "\<CR>\<Plug>DiscretionaryEnd")
@@ -441,11 +443,12 @@ func! s:ConfigureLanguageServer() abort " {{{
         \ 'python': ['pyenv', 'exec', 'pyls'],
         \ 'go': ['goenv', 'exec', 'go-langserver'],
         \ 'php': ['phpenv', 'exec', s:vimrc_root . '/plugins/php-language-server/vendor/bin/php-language-server.php'],
-        \ 'elixir': ['exenv', 'exec', 'elixir', s:vimrc_root . '/plugins/elixir-ls/apps/language_server/language_server'],
-        \ 'ruby': ['rbenv', 'exec', 'language_server']
+        \ 'ruby': [ s:vimrc_root . '/bin/language_server-ruby' ]
         \ }
 
   if exists('$DEBUG')
+    let g:LanguageClient_trace = "verbose"
+    let g:LanguageClient_windowLogMessageLevel = "Log"
     let g:LanguageClient_serverCommands.javascript += ['--trace', '--logfile', s:vimrc_root . '/logs/lsp-javascript.log' ]
     let g:LanguageClient_serverCommands.python += ['--log-file', s:vimrc_root . '/logs/lsp-python.log' ]
     let g:LanguageClient_serverCommands.go += ['-logfile', s:vimrc_root . '/logs/lsp-go.log' ]

@@ -16,9 +16,9 @@ set laststatus=2
 set ruler
 set number relativenumber
 set termguicolors guicursor=
-set cursorline
+set nocursorline nocursorcolumn
 set sidescrolloff=1 sidescroll=1
-set conceallevel=2 concealcursor=nvci
+set conceallevel=2 concealcursor=nvic
 set nowrap
 set signcolumn=yes
 set shortmess+=c
@@ -106,7 +106,7 @@ set modeline modelines=10
 " TODO: Move to commands file.
 func! s:LaunchNoteOfTheDay() abort
     execute ':Note Morning Entries/' . strftime('%Y-%m-%d')
-    Goyo x30
+    Goyo 90x20
 endfunc
 
 " Provides a helper command to write an entry for the day.

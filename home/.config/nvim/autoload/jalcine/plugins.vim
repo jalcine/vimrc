@@ -43,6 +43,7 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'tpope/vim-endwise'
   Plug 'tpope/vim-speeddating'
   Plug 'tpope/vim-abolish'
+  Plug 'tpope/vim-projectionist'
   Plug 'jdelkins/vim-correction'
   Plug 'tpope/vim-scriptease'
   Plug 'tpope/vim-rsi'
@@ -73,21 +74,20 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'jaxbot/github-issues.vim'
 
   Plug 'MattesGroeger/vim-bookmarks'
-  Plug 'ap/vim-css-color'
   Plug 'chiel92/vim-autoformat'
   Plug 'editorconfig/editorconfig-vim'
   Plug 'embear/vim-localvimrc'
-  Plug 'gabrielelana/vim-markdown', { 'for': 'markdown' }
+  Plug 'gabrielelana/vim-markdown'
   Plug 'parkr/vim-jekyll'
   Plug 'jceb/vim-orgmode'
   Plug 'mattn/calendar-vim'
   Plug 'vim-scripts/SyntaxRange'
   Plug 'chrisbra/NrrwRgn'
   Plug 'junegunn/gv.vim'
-  Plug 'mattn/emmet-vim', {'for': 'html,hbs' }
+  Plug 'mattn/emmet-vim'
   Plug 'mattn/webapi-vim'
   Plug 'mhinz/vim-signify'
-  Plug 'moll/vim-node', { 'for': 'javascript' }
+  Plug 'moll/vim-node'
 
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
@@ -123,16 +123,24 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'glts/vim-cottidie'
   Plug 'ryanss/vim-hackernews'
   Plug 'Shougo/context_filetype.vim'
+  Plug 'tweekmonster/startuptime.vim'
+  Plug 'wakatime/vim-wakatime'
 
   Plug 'sheerun/vim-polyglot'
-  Plug 'lambdalisue/vim-pyenv', { 'for': 'python' }
-  Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
-  Plug 'tmhedberg/SimpylFold', { 'for': 'python' }
-  Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
-  Plug 'mxw/vim-jsx', { 'for': 'javascript.jsx' }
-  Plug 'moll/vim-node', { 'for': 'javascript' }
+  Plug 'lambdalisue/vim-pyenv'
+  Plug 'jmcantrell/vim-virtualenv'
+  Plug 'tmhedberg/SimpylFold'
+  Plug 'vim-ruby/vim-ruby'
+  Plug 'mxw/vim-jsx'
+  Plug 'moll/vim-node'
   Plug 'ekalinin/Dockerfile.vim'
-  Plug 'mattly/vim-markdown-enhancements', {'for':'markdown,mkd'}
+  Plug 'mattly/vim-markdown-enhancements'
+  Plug 'tweekmonster/braceless.vim'
+  Plug 'othree/javascript-libraries-syntax.vim'
+  Plug 'othree/yajs.vim'
+  Plug 'othree/jsdoc-syntax.vim'
+  Plug 'heavenshell/vim-jsdoc'
+  Plug 'othree/es.next.syntax.vim'
 
   Plug 'reedes/vim-wordy'
   Plug 'kana/vim-textobj-user'
@@ -150,17 +158,18 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'roxma/ncm-github'
   Plug 'Shougo/neco-syntax'
   Plug 'Shougo/neoinclude.vim'
-  Plug 'calebeby/ncm-css', { 'for': 'css' }
-  Plug 'Shougo/neco-vim', { 'for': 'vim' }
-  Plug 'davidhalter/jedi-vim', { 'for': 'python' }
-  Plug 'fisadev/vim-isort', { 'for': 'python' }
-  Plug 'othree/csscomplete.vim', { 'for': 'css' }
-  Plug 'elixir-editors/vim-elixir', {'for': 'elixir' }
-  Plug 'roxma/ncm-rct-complete', {'for': 'ruby'}
-  Plug 'rust-lang/rust.vim', {'for': 'rust'}
-  Plug 'racer-rust/vim-racer', {'for': 'rust'}
-  Plug 'roxma/nvim-cm-racer', {'for': 'rust'}
+  Plug 'calebeby/ncm-css'
+  Plug 'Shougo/neco-vim'
+  Plug 'davidhalter/jedi-vim'
+  Plug 'fisadev/vim-isort'
+  Plug 'othree/csscomplete.vim'
+  Plug 'elixir-editors/vim-elixir'
+  Plug 'roxma/ncm-rct-complete'
+  Plug 'rust-lang/rust.vim'
+  Plug 'racer-rust/vim-racer'
+  Plug 'roxma/nvim-cm-racer'
   Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }
+  Plug 'fgrsnau/ncm-otherbuf'
   " }}}
 
   Plug 'sirver/ultisnips'
@@ -237,7 +246,8 @@ func! jalcine#plugins#configure() abort " {{{
   " {{{ ale
   let g:ale_fix_on_save = 1
   let g:ale_lint_on_save = 1
-  let g:ale_echo_delay = 2
+  let g:ale_echo_delay = 1
+  let g:ale_lint_on_text_changed = 0
   " }}}
   "
   " {{{ echodoc
@@ -303,9 +313,9 @@ func! jalcine#plugins#configure() abort " {{{
   "
   " indentline {{{
   let g:indentLine_showFirstIndentLevel = 1
-  let g:indentLine_setColors = 1
   let g:indentLine_leadingSpaceEnabled = 1
   let g:indentLine_fileTypeExclude = ['netrw', 'gitcommit', 'startify']
+  let g:indentLine_setConceal = 0
   let g:indentLine_char = '┊'
   " }}}
   "
@@ -345,6 +355,11 @@ func! jalcine#plugins#configure() abort " {{{
   "
   " ale {{{
   let g:ale_scss_stylelint_executable = s:vimrc_root . "/node_modules/.bin/stylelint"
+  let g:ale_fixers = {
+        \ 'css': [
+        \   'stylelint'
+        \ ]
+        \ }
   " }}}
   "
   " investigate {{{
@@ -505,10 +520,9 @@ func! s:ConfigureTagbar() abort " {{{
         \ 'ctagsargs'  : ['-f', '-']
         \ }
   let g:tagbar_type_javascript = {
-      \ 'ctagsbin'   : s:vimrc_root . '/node_modules/.bin/jsctags',
-      \ 'ctagsargs'  : ['-f', '-']
-\ }
-
+        \ 'ctagsbin'   : s:vimrc_root . '/node_modules/.bin/jsctags',
+        \ 'ctagsargs'  : ['-f', '-']
+        \ }
   let g:tagbar_type_ansible = {
         \ 'ctagstype' : 'ansible',
         \ 'kinds' : [

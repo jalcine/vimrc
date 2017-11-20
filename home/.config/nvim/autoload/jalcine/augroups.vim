@@ -30,6 +30,9 @@ func! jalcine#augroups#setup() abort
     au FileType css            setl omnifunc=csscomplete#CompleteCSS noci
     au FileType markdown,mkd   call <SID>EnhanceTextEditing()
     au FileType text           call <SID>EnhanceTextEditing()
+    au FileType yaml           BracelessEnable +indent +fold +highlight
+    au FileType python         BracelessEnable +indent +fold +highlight
+    au FileType man            setlocal conceallevel=0
   augroup END
 
   augroup vimrc_goyo
@@ -51,6 +54,7 @@ endfunc
 func! s:EnhanceTextEditing() abort
   let l:is_in_text = (&ft == 'text')
   setlocal foldlevel=6
+  setlocal conceallevel=2
 
   call textobj#quote#init({
         \ 'educate': l:is_in_text

@@ -14,14 +14,12 @@ function! s:jedi_auto_force_py_version() abort
   call jedi#force_py_version(l:major_version)
 endfunction
 
-func! s:SetupJediAndPyenv() abort
-  if jedi#init_python()
-    augroup vim-pyenv-custom-augroup
-      autocmd! *
-      autocmd User vim-pyenv-activate-post   call <SID>jedi_auto_force_py_version()
-      autocmd User vim-pyenv-deactivate-post call <SID>jedi_auto_force_py_version()
-    augroup END
-  endif
+func! s:SetupJediWithPyenv() abort
+  augroup vim-pyenv-custom-augroup
+    autocmd! *
+    autocmd User vim-pyenv-activate-post   call <SID>jedi_auto_force_py_version()
+    autocmd User vim-pyenv-deactivate-post call <SID>jedi_auto_force_py_version()
+  augroup END
 endfunc
 
 func! s:SetupPythonHighlightOptions() abort
@@ -31,5 +29,5 @@ endfunc
 
 func! jalcine#lang#python#setup() abort
   call <SID>SetupPythonHighlightOptions()
-  " call <SID>SetupJediAndPyenv()
+  call <SID>SetupJediWithPyenv()
 endfunc

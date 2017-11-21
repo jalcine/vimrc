@@ -25,6 +25,9 @@ endfunc
 func! s:SetupPythonHighlightOptions() abort
   let g:python_highlight_all = 1
   let g:python_slow_sync = 1
+  let g:python3_host_prog = systemlist('PYTHON_VERSION=neovim-py3 pyenv which python3')[0]
+  let g:python_host_prog = systemlist('PYTHON_VERSION=neovim-py2 pyenv which python2')[0]
+  echomsg g:python_host_prog
 endfunc
 
 func! jalcine#lang#python#setup() abort

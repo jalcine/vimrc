@@ -282,7 +282,7 @@ func! jalcine#plugins#configure() abort " {{{
   let g:signify_realtime = 1
   " }}}
   "
-  " gutentags {{{(
+  " gutentags {{{
   " )}}}
   "
   " jedi {{{
@@ -332,13 +332,6 @@ func! jalcine#plugins#configure() abort " {{{
   endif
   " }}}
   "
-  " misc {{{
-  let g:localvimrc_persistent = 2
-  let g:python_highlight_all = 1
-  let g:notes_suffix = '.txt'
-  let g:far#source = 'agnvim'
-  " }}}
-  "
   " {{{ investigate.vim
   let g:investigate_use_dash = 1
   let g:investigate_use_dash_for_vim = 1
@@ -369,6 +362,10 @@ func! jalcine#plugins#configure() abort " {{{
   " {{{ vim-test
   " }}}
 
+  let g:localvimrc_persistent = 2
+  let g:python_highlight_all = 1
+  let g:notes_suffix = '.txt'
+  let g:far#source = 'agnvim'
   call <SID>ConfigureLanguageServer()
   call <SID>ConfigureTagbar()
 endfunc " }}}

@@ -23,9 +23,9 @@ func! jalcine#theme#setup() abort
 
   if filereadable(expand('~/.vimrc_background'))
     source ~/.vimrc_background
+  else
+    call jalcine#theme#load()
   endif
-
-  call jalcine#theme#load()
 endfunc
 
 func! jalcine#theme#load() abort

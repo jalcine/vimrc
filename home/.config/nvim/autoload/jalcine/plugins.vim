@@ -97,13 +97,12 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'henrik/vim-indexed-search'
 
   Plug 'chriskempson/base16-vim'
-  Plug 'vim-airline/vim-airline'
-  Plug 'vim-airline/vim-airline-themes'
   Plug 'bogado/file-line'
   Plug 'farmergreg/vim-lastplace'
   Plug 'Shougo/echodoc.vim'
   " Plug 'keith/investigate.vim'
   Plug '~/src/investigate.vim'
+  Plug 'itchyny/lightline.vim'
 
   Plug 'tpope/vim-dispatch'
   Plug 'radenling/vim-dispatch-neovim'
@@ -189,54 +188,6 @@ endfunc " }}}
 func! jalcine#plugins#configure() abort " {{{
   " endwise
   let g:endwise_no_mappings = 1
-  " airline {{{
-  let g:airline_theme = 'base16'
-  if !exists('g:airline')
-    let g:airline = { 'extensions': {}}
-  endif
-  let g:airline#extensions#branch#enabled = 1
-  let g:airline#extensions#branch#prefix = '⤴'
-  let g:airline#extensions#hunks#non_zero_only = 1
-  let g:airline#extensions#linecolumn#prefix = '¶'
-  let g:airline#extensions#ale#enabled = 1
-  let g:airline#extensions#paste#symbol = 'ρ'
-  let g:airline#extensions#readonly#symbol = '⊘'
-  let g:airline#extensions#tabline#enabled = 1
-  let g:airline#extensions#tabline#show_buffers = 1
-  let g:airline#extensions#tabline#show_splits = 1
-  let g:airline#extensions#tabline#show_tabs = 1
-  let g:airline#extensions#whitespace#enabled = 1
-  let g:airline#extensions#whitespace#mixed_indent_algo = 1
-  let g:airline#extensions#whitespace#mixed_indent_format = 'i:[%s]'
-  let g:airline#extensions#whitespace#show_message = 1
-  let g:airline#extensions#whitespace#trailing_format = 's:[%s]'
-  let g:airline_detect_iminsert = 1
-  let g:airline_detected_modified = 1
-  let g:airline_powerline_fonts = 1
-
-  if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-  endif
-
-  let g:airline_symbols.branch = '⎇'
-  let g:airline_symbols.readonly = '🔒'
-  let g:airline_symbols.linenr = ''
-  let g:airline_symbols.maxlinenr = '㏑'
-  let g:airline_symbols.notexists = '∄'
-  let g:airline_symbols.paste = '∥'
-  let g:airline_symbols.spell = 'Ꞩ'
-  let g:airline_symbols.whitespace = 'Ξ'
-
-  let g:airline_mode_map = {
-        \ '__' : '-',
-        \ 'n' : 'N',
-        \ 'i' : 'I',
-        \ 'R' : 'R',
-        \ 'v' : 'V',
-        \ 'V' : 'B'
-        \ }
-  " }}}
-  "
   " fzf {{{
   let g:fzf_buffers_jump = 1
   let g:fzf_history_dir = expand('$HOME/.config/nvim/fzf-history')
@@ -315,7 +266,7 @@ func! jalcine#plugins#configure() abort " {{{
   let g:indentLine_showFirstIndentLevel = 1
   let g:indentLine_leadingSpaceEnabled = 1
   let g:indentLine_fileTypeExclude = ['netrw', 'gitcommit', 'startify']
-  let g:indentLine_setConceal = 0
+  let g:indentLine_setConceal = 1
   let g:indentLine_char = '┊'
   " }}}
   "
@@ -442,7 +393,7 @@ func! jalcine#plugins#configure_mappings() abort " {{{
   "
   " ncm {{{
   " Expand a snippet when shown in the list.
-  imap <expr> <CR> (pumvisible() ?  "\<c-y>\<Plug>(expand_or_nl)\<Plug>DiscretionaryEnd" : "\<CR>\<Plug>DiscretionaryEnd")
+  imap <expr> <CR> (pumvisible() ?  "\<c-y>\<Plug>(expand_or_nl)\<Plug>(DiscretionaryEnd)" : "\<CR>\<Plug>(DiscretionaryEnd)")
   imap <expr> <Plug>(expand_or_nl) (cm#completed_is_snippet() ? "\<Plug>(ultisnips_expand)" :"\<CR>")
 
   " }}}

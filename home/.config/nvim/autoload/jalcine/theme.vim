@@ -1,11 +1,9 @@
 let g:jalcine.theme = {
       \ 'light': {
-      \   'colorscheme': 'base16-classic-light',
-      \   'airline':     'base16',
+      \   'colorscheme': 'base16-gruvbox-light-medium',
       \ },
       \ 'dark': {
-      \   'colorscheme': 'base16-classic-dark',
-      \   'airline':     'base16',
+      \   'colorscheme': 'base16-irblack',
       \ }
       \ }
 
@@ -29,10 +27,5 @@ func! jalcine#theme#setup() abort
 endfunc
 
 func! jalcine#theme#load() abort
-  let g:airline_theme = g:jalcine.theme[&background].airline
   exec 'colorscheme ' .  g:jalcine.theme[&background].colorscheme
-
-  if v:vim_did_enter == 1
-    exec 'AirlineTheme ' . g:airline_theme
-  endif
 endfunc

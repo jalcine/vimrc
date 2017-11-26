@@ -24,6 +24,7 @@ set signcolumn=yes
 set shortmess+=c
 set hidden
 set pumheight=5
+set noshowmode noshowmatch
 "
 " Folding {{{
 set foldenable

@@ -28,4 +28,6 @@ endfunc
 
 func! jalcine#theme#load() abort
   exec 'colorscheme ' .  g:jalcine.theme[&background].colorscheme
+  let g:lightline.colorscheme = '16color'
+  call lightline#colorscheme()
 endfunc

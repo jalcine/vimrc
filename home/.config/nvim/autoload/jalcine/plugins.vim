@@ -103,8 +103,6 @@ func! jalcine#plugins#define() abort " {{{
   " Plug 'keith/investigate.vim'
   Plug '~/src/investigate.vim'
   Plug 'itchyny/lightline.vim'
-  Plug 'mkitt/tabline.vim'
-
   Plug 'tpope/vim-dispatch'
   Plug 'radenling/vim-dispatch-neovim'
 
@@ -169,6 +167,7 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'racer-rust/vim-racer'
   Plug 'roxma/nvim-cm-racer'
   Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }
+  Plug 'JakeBecker/elixir-ls', { 'do' : 'mix do deps.get, deps.compile, compile' }
   Plug 'fgrsnau/ncm-otherbuf'
   " }}}
 
@@ -251,9 +250,9 @@ func! jalcine#plugins#configure() abort " {{{
   " }}}
   "
   " pyenv {{{
-  let g:pyenv#auto_activate = 1
-  let g:pyenv#auto_create_ctags = 1
-  let g:pyenv#auto_assign_ctags = 1
+  let g:pyenv#auto_activate = 0
+  let g:pyenv#auto_create_ctags = 0
+  let g:pyenv#auto_assign_ctags = 0
   " }}}
   "
   " rooter {{{
@@ -293,7 +292,7 @@ func! jalcine#plugins#configure() abort " {{{
   " {{{ orgmode
   let g:org_aggressive_conceal = 1
   let g:org_indent = 1
-  let g:org_todo_keywords = [['TODO(t)', '|', 'DONE(d)'],
+  let g:org_todo_keywords = [['TODO(t)', 'ACTIVE(a)', '|', 'DONE(d)'],
         \ ['REPORT(r)', 'BUG(b)', 'KNOWNCAUSE(k)', '|', 'FIXED(f)'],
         \ ['CANCELED(c)']]
   " }}}
@@ -323,6 +322,57 @@ func! jalcine#plugins#configure() abort " {{{
   let g:far#source = 'agnvim'
   call <SID>ConfigureLanguageServer()
   call <SID>ConfigureTagbar()
+  call jalcine#plugins#configure_status()
+endfunc " }}}
+
+" TODO: Add info for ALE.
+" TODO: Show anyenv data.
+func! jalcine#plugins#configure_status() abort " {{{
+  let g:lightline = {}
+  let g:lightline.active = {
+        \ 'left': [ [ 'mode' ],
+        \           [ 'gitbranch' ],
+        \           [ 'relativepath' ] ],
+        \ 'right': [ [ 'paste', 'fileicon' ],
+        \            [ 'pos', 'modified', 'readonly' ],
+        \            [ ]  ] }
+  let g:lightline.inactive = {
+        \ 'left': [ [ 'filename' ] ],
+        \ 'right': [ [ 'lineinfo' ],
+        \            [ 'percent' ] ] }
+  let g:lightline.tabline = {
+        \ 'left': [ [ 'tabs' ] ],
+        \ 'right': [ [ 'pos', 'close' ] ] }
+  let g:lightline.tab = {
+        \ 'active': [ 'tabnum', 'filename', 'modified' ],
+        \ 'inactive': [ 'tabnum', 'filename', 'modified' ] }
+  let g:lightline.component = {
+        \ 'readonly': '🔒',
+        \ 'pos': ' %l:%c / B:%n W: %{winnr()}',
+        \ 'spell': 'Ꞩ %{&spelllang}',
+        \ 'gitbranch': ' %{fugitive#head()}',
+        \ }
+  let g:lightline.component_function = {
+        \ 'fileicon': 'WebDevIconsGetFileTypeSymbol'
+        \ }
+  let g:lightline.component_visible_condition = {
+        \ 'gitbranch': 'fugitive#head() !== ""',
+        \ }
+	let g:lightline.separator = { 'left': '', 'right': '' }
+	let g:lightline.subseparator =  { 'left': '', 'right': '' }
+  let g:lightline.mode_map = {
+        \ 'n' : 'N',
+        \ 'i' : 'I',
+        \ 'R' : 'R',
+        \ 'v' : 'V',
+        \ 'V' : 'VL',
+        \ "\<C-v>": 'VB',
+        \ 'c' : 'C',
+        \ 's' : 'S',
+        \ 'S' : 'SL',
+        \ "\<C-s>": 'SB',
+        \ 't': 'T',
+        \ }
 endfunc " }}}
 
 func! jalcine#plugins#configure_mappings() abort " {{{

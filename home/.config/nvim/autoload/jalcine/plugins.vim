@@ -152,7 +152,7 @@ func! jalcine#plugins#define() abort " {{{
   " {{{ IDE-esque
   Plug 'roxma/nvim-completion-manager'
   Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
-  Plug 'roxma/nvim-cm-tern',  { 'do': 'npm install' }
+  Plug 'roxma/nvim-cm-tern',  { 'do': 'yarn' }
   Plug 'roxma/ncm-github'
   Plug 'Shougo/neco-syntax'
   Plug 'Shougo/neoinclude.vim'
@@ -168,7 +168,9 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'roxma/nvim-cm-racer'
   Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }
   Plug 'JakeBecker/elixir-ls', { 'do' : 'mix do deps.get, deps.compile, compile' }
+  Plug 'sourcegraph/javascript-typescript-langserver', { 'do': 'yarn && yarn run build' }
   Plug 'fgrsnau/ncm-otherbuf'
+  Plug 'emberwatch/ember-language-server', { 'do': 'yarn && yarn run compile' }
   " }}}
 
   Plug 'sirver/ultisnips'
@@ -456,12 +458,14 @@ endfunc " }}}
 func! s:ConfigureLanguageServer() abort " {{{
   let g:LanguageClient_serverCommands = {
         \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-        \ 'javascript': [ 'ndenv', 'exec', 'node', s:vimrc_root . '/plugins/javascript-typescript-langserver/lib/language-server-stdio.js' ],
+        \ 'javascript': [ 'neovim-language-server-javascript' ],
         \ 'python': ['pyenv', 'exec', 'pyls'],
         \ 'go': ['goenv', 'exec', 'go-langserver'],
-        \ 'php': ['phpenv', 'exec', s:vimrc_root . '/plugins/php-language-server/vendor/bin/php-language-server.php'],
+        \ 'php': ['neovim-language-server-php'],
         \ 'ruby': [ s:vimrc_root . '/bin/language_server-ruby' ],
-        \ 'elixir': [ 'PWD="' . s:vimrc_root . '/plugins/elixir-ls" mix', 'elixir_ls.debugger' ]
+        \ 'elixir': [ 'neovim-language-server-elixir'],
+        \ 'css': ['css-language-server', '--stdio'],
+        \ 'ember': ['neovim-language-server-ember']
         \ }
 
   if exists('$DEBUG')
@@ -473,7 +477,8 @@ func! s:ConfigureLanguageServer() abort " {{{
   endif
 
   let l:aliases = {
-        \ 'javascript': ['javascript.jsx', 'jsx']
+        \ 'javascript': ['javascript.jsx', 'jsx'],
+        \ 'ember': ['javascript.ember']
         \ }
 
   for l:alias in keys(l:aliases)
@@ -481,6 +486,8 @@ func! s:ConfigureLanguageServer() abort " {{{
       let g:LanguageClient_serverCommands[subAlias] = g:LanguageClient_serverCommands[l:alias]
     endfor
   endfor
+
+  set formatexpr=LanguageClient_textDocument_rangeFormatting()
 endfunc " }}}
 
 func! s:ConfigureTagbar() abort " {{{

@@ -460,7 +460,8 @@ func! s:ConfigureLanguageServer() abort " {{{
         \ 'python': ['pyenv', 'exec', 'pyls'],
         \ 'go': ['goenv', 'exec', 'go-langserver'],
         \ 'php': ['phpenv', 'exec', s:vimrc_root . '/plugins/php-language-server/vendor/bin/php-language-server.php'],
-        \ 'ruby': [ s:vimrc_root . '/bin/language_server-ruby' ]
+        \ 'ruby': [ s:vimrc_root . '/bin/language_server-ruby' ],
+        \ 'elixir': [ 'PWD="' . s:vimrc_root . '/plugins/elixir-ls" mix', 'elixir_ls.debugger' ]
         \ }
 
   if exists('$DEBUG')

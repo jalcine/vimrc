@@ -331,6 +331,7 @@ endfunc " }}}
 " TODO: Show anyenv data.
 func! jalcine#plugins#configure_status() abort " {{{
   let g:lightline = {}
+  let g:lightline.colorscheme = 'jellybeans'
   let g:lightline.active = {
         \ 'left': [ [ 'mode' ],
         \           [ 'gitbranch' ],

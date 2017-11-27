@@ -477,7 +477,7 @@ func! s:ConfigureLanguageServer() abort " {{{
   endif
 
   let l:aliases = {
-        \ 'javascript': ['javascript.jsx', 'jsx']
+        \ 'javascript': ['javascript.jsx', 'jsx'],
         \ 'ember': ['javascript.ember']
         \ }
 

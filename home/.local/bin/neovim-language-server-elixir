@@ -1,4 +1,14 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 cd "$HOME/.config/nvim/plugins/elixir-ls" || exit
+readlink_f () {
+  cd "$(dirname "$1")" > /dev/null
+  filename="$(basename "$1")"
+  if [ -h "$filename" ]; then
+    readlink_f "$(readlink "$filename")"
+  else
+    echo "`pwd -P`/$filename"
+  fi
+}
+
 exenv exec mix elixir_ls.debugger

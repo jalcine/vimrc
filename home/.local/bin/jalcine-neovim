@@ -35,5 +35,10 @@ elses
   # shellcheck disable=SC2046,SC2086
   npm install -g $(cat $JS_REQS)
   cpanm Perl::Tidy
+  exenv install $(exenv local)
+  cd ~/.config/nvim/plugins/elixir-ls || exit "'elixir-ls' not installed."
+  mix "do" deps.get, deps.compile, compile
+  cd - || exit "Can't go back."
+
 fi
 # }}}

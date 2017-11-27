@@ -360,8 +360,8 @@ func! jalcine#plugins#configure_status() abort " {{{
   let g:lightline.component_visible_condition = {
         \ 'gitbranch': 'fugitive#head() !== ""',
         \ }
-	let g:lightline.separator = { 'left': '', 'right': '' }
-	let g:lightline.subseparator =  { 'left': '', 'right': '' }
+  let g:lightline.separator = { 'left': '', 'right': '' }
+  let g:lightline.subseparator =  { 'left': '', 'right': '' }
   let g:lightline.mode_map = {
         \ 'n' : 'N',
         \ 'i' : 'I',
@@ -452,6 +452,12 @@ func! jalcine#plugins#configure_mappings() abort " {{{
   imap <expr> <CR> (pumvisible() ?  "\<c-y>\<Plug>(expand_or_nl)\<Plug>DiscretionaryEnd" : "\<CR>\<Plug>DiscretionaryEnd")
   imap <expr> <Plug>(expand_or_nl) (cm#completed_is_snippet() ? "\<Plug>(ultisnips_expand)" :"\<CR>")
 
+  " }}}
+  "
+  " {{{ LanguageClient
+  nnoremap <silent> gK :call LanguageClient_textDocument_hover()<CR>
+  nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+  nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
   " }}}
 endfunc " }}}
 

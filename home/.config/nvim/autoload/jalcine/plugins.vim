@@ -263,8 +263,8 @@ func! jalcine#plugins#configure() abort " {{{
   " }}}
   "
   " indentline {{{
-  let g:indentLine_showFirstIndentLevel = 1
-  let g:indentLine_leadingSpaceEnabled = 1
+  let g:indentLine_showFirstIndentLevel = 0
+  let g:indentLine_leadingSpaceEnabled = 0
   let g:indentLine_fileTypeExclude = ['netrw', 'gitcommit', 'startify']
   let g:indentLine_setConceal = 1
   let g:indentLine_char = '┊'

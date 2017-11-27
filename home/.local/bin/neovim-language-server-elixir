@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+cd "$HOME/.config/nvim/plugins/elixir-ls" || exit
+exenv exec mix elixir_ls.debugger

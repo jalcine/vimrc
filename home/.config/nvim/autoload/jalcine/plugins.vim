@@ -169,6 +169,7 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }
   Plug 'JakeBecker/elixir-ls', { 'do' : 'mix do deps.get, deps.compile, compile' }
   Plug 'fgrsnau/ncm-otherbuf'
+  Plug 'emberwatch/ember-language-server', { 'do': 'yarn && yarn run compile' }
   " }}}
 
   Plug 'sirver/ultisnips'
@@ -456,12 +457,12 @@ endfunc " }}}
 func! s:ConfigureLanguageServer() abort " {{{
   let g:LanguageClient_serverCommands = {
         \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-        \ 'javascript': [ 'ndenv', 'exec', 'node', s:vimrc_root . '/plugins/javascript-typescript-langserver/lib/language-server-stdio.js' ],
+        \ 'javascript': [ 'neovim-language-server-javascript' ],
         \ 'python': ['pyenv', 'exec', 'pyls'],
         \ 'go': ['goenv', 'exec', 'go-langserver'],
-        \ 'php': ['phpenv', 'exec', s:vimrc_root . '/plugins/php-language-server/vendor/bin/php-language-server.php'],
+        \ 'php': ['neovim-language-server-php'],
         \ 'ruby': [ s:vimrc_root . '/bin/language_server-ruby' ],
-        \ 'elixir': [ 'PWD="' . s:vimrc_root . '/plugins/elixir-ls" mix', 'elixir_ls.debugger' ]
+        \ 'elixir': [ 'neovim-language-server-elixir']
         \ }
 
   if exists('$DEBUG')

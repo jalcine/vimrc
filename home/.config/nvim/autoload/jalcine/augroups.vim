@@ -18,7 +18,7 @@ func! jalcine#augroups#setup() abort
 
   augroup vimrc_term
     au!
-    au TermOpen * setlocal conceallevel=0 colorcolumn=0 relativenumber
+    au TermOpen *        setl conceallevel=0 colorcolumn=0 relativenumber
     au BufEnter term://* startinsert
   augroup END
 
@@ -38,6 +38,11 @@ func! jalcine#augroups#setup() abort
   augroup vimrc_goyo
     au User GoyoEnter nested call jalcine#tweaks#goyo#enter()
     au User GoyoLeave nested call jalcine#tweaks#goyo#leave()
+  augroup END
+
+  augroup vimrc_colorscheme_lightline
+    autocmd!
+    autocmd ColorScheme * call jalcine#status#update_colorscheme()
   augroup END
 endfunc
 

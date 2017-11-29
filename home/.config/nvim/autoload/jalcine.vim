@@ -17,11 +17,13 @@ func! jalcine#launch() abort
   call <SID>EnhanceInbuiltSearch()
 
   let l:sectors = [
-        \ 'augroups',
         \ 'mappings',
         \ 'plugins',
         \ 'lang',
         \ 'theme',
+        \ 'language_client',
+        \ 'augroups',
+        \ 'status'
         \ ]
 
   for l:sector in l:sectors

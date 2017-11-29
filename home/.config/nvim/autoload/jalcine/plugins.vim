@@ -63,6 +63,7 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'xolox/vim-shell'
   Plug 'vim-scripts/utl.vim'
   Plug 'bpstahlman/txtfmt'
+  Plug 'junegunn/vim-emoji'
 
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rhubarb'
@@ -171,6 +172,7 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'sourcegraph/javascript-typescript-langserver', { 'do': 'yarn && yarn run build' }
   Plug 'fgrsnau/ncm-otherbuf'
   Plug 'emberwatch/ember-language-server', { 'do': 'yarn && yarn run compile' }
+  Plug 'janko-m/vim-test'
   " }}}
 
   Plug 'sirver/ultisnips'
@@ -317,65 +319,16 @@ func! jalcine#plugins#configure() abort " {{{
   "
   " {{{ vim-test
   " }}}
+  " 
+  " github-dashboard
+  let g:github_dashboard = {
+        \ 'position': 'top',
+        \ 'emoji': 1
+        \ }
 
   let g:localvimrc_persistent = 2
   let g:python_highlight_all = 1
   let g:notes_suffix = '.txt'
-  let g:far#source = 'agnvim'
-  call <SID>ConfigureLanguageServer()
-  call <SID>ConfigureTagbar()
-  call jalcine#plugins#configure_status()
-endfunc " }}}
-
-" TODO: Add info for ALE.
-" TODO: Show anyenv data.
-func! jalcine#plugins#configure_status() abort " {{{
-  let g:lightline = {}
-  let g:lightline.colorscheme = 'jellybeans'
-  let g:lightline.active = {
-        \ 'left': [ [ 'mode' ],
-        \           [ 'gitbranch' ],
-        \           [ 'relativepath' ] ],
-        \ 'right': [ [ 'paste', 'fileicon' ],
-        \            [ 'pos', 'modified', 'readonly' ],
-        \            [ ]  ] }
-  let g:lightline.inactive = {
-        \ 'left': [ [ 'filename' ] ],
-        \ 'right': [ [ 'lineinfo' ],
-        \            [ 'percent' ] ] }
-  let g:lightline.tabline = {
-        \ 'left': [ [ 'tabs' ] ],
-        \ 'right': [ [ 'pos', 'close' ] ] }
-  let g:lightline.tab = {
-        \ 'active': [ 'tabnum', 'filename', 'modified' ],
-        \ 'inactive': [ 'tabnum', 'filename', 'modified' ] }
-  let g:lightline.component = {
-        \ 'readonly': '🔒',
-        \ 'pos': ' %l:%c / B:%n W: %{winnr()}',
-        \ 'spell': 'Ꞩ %{&spelllang}',
-        \ 'gitbranch': ' %{fugitive#head()}',
-        \ }
-  let g:lightline.component_function = {
-        \ 'fileicon': 'WebDevIconsGetFileTypeSymbol'
-        \ }
-  let g:lightline.component_visible_condition = {
-        \ 'gitbranch': 'fugitive#head() !== ""',
-        \ }
-  let g:lightline.separator = { 'left': '', 'right': '' }
-  let g:lightline.subseparator =  { 'left': '', 'right': '' }
-  let g:lightline.mode_map = {
-        \ 'n' : 'N',
-        \ 'i' : 'I',
-        \ 'R' : 'R',
-        \ 'v' : 'V',
-        \ 'V' : 'VL',
-        \ "\<C-v>": 'VB',
-        \ 'c' : 'C',
-        \ 's' : 'S',
-        \ 'S' : 'SL',
-        \ "\<C-s>": 'SB',
-        \ 't': 'T',
-        \ }
 endfunc " }}}
 
 func! jalcine#plugins#configure_mappings() abort " {{{
@@ -460,99 +413,4 @@ func! jalcine#plugins#configure_mappings() abort " {{{
   nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
   nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
   " }}}
-endfunc " }}}
-
-func! s:ConfigureLanguageServer() abort " {{{
-  let g:LanguageClient_serverCommands = {
-        \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-        \ 'javascript': [ 'neovim-language-server-javascript' ],
-        \ 'python': ['pyenv', 'exec', 'pyls'],
-        \ 'go': ['goenv', 'exec', 'go-langserver'],
-        \ 'php': ['neovim-language-server-php'],
-        \ 'ruby': [ s:vimrc_root . '/bin/language_server-ruby' ],
-        \ 'elixir': [ 'neovim-language-server-elixir'],
-        \ 'css': ['css-language-server', '--stdio'],
-        \ 'ember': ['neovim-language-server-ember']
-        \ }
-
-  if exists('$DEBUG')
-    let g:LanguageClient_trace = "verbose"
-    let g:LanguageClient_windowLogMessageLevel = "Log"
-    let g:LanguageClient_serverCommands.javascript += ['--trace', '--logfile', s:vimrc_root . '/logs/lsp-javascript.log' ]
-    let g:LanguageClient_serverCommands.python += ['--log-file', s:vimrc_root . '/logs/lsp-python.log' ]
-    let g:LanguageClient_serverCommands.go += ['-logfile', s:vimrc_root . '/logs/lsp-go.log' ]
-  endif
-
-  let l:aliases = {
-        \ 'javascript': ['javascript.jsx', 'jsx'],
-        \ 'ember': ['javascript.ember']
-        \ }
-
-  for l:alias in keys(l:aliases)
-    for subAlias in l:aliases[l:alias]
-      let g:LanguageClient_serverCommands[subAlias] = g:LanguageClient_serverCommands[l:alias]
-    endfor
-  endfor
-
-  set formatexpr=LanguageClient_textDocument_rangeFormatting()
-endfunc " }}}
-
-func! s:ConfigureTagbar() abort " {{{
-  let g:tagbar_type_elixir = {
-        \ 'ctagstype' : 'elixir',
-        \ 'kinds' : [
-        \ 'f:functions',
-        \ 'functions:functions',
-        \ 'c:callbacks',
-        \ 'd:delegates',
-        \ 'e:exceptions',
-        \ 'i:implementations',
-        \ 'a:macros',
-        \ 'o:operators',
-        \ 'm:modules',
-        \ 'p:protocols',
-        \ 'r:records',
-        \ 't:tests'
-        \ ]
-        \ }
-  let g:tagbar_type_css = {
-        \ 'ctagstype' : 'Css',
-        \ 'kinds'     : [
-        \ 'c:classes',
-        \ 's:selectors',
-        \ 'i:identities'
-        \ ]
-        \ }
-  let g:tagbar_type_ruby = {
-        \ 'kinds'      : ['m:modules',
-        \ 'c:classes',
-        \ 'C:constants',
-        \ 'F:singleton methods',
-        \ 'f:methods',
-        \ 'a:aliases'],
-        \ 'kind2scope' : { 'c' : 'class',
-        \ 'm' : 'class' },
-        \ 'scope2kind' : { 'class' : 'c' },
-        \ 'ctagsbin'   : s:vimrc_root . '/bin/ripper-tags',
-        \ 'ctagsargs'  : ['-f', '-']
-        \ }
-  let g:tagbar_type_javascript = {
-        \ 'ctagsbin'   : s:vimrc_root . '/node_modules/.bin/jsctags',
-        \ 'ctagsargs'  : ['-f', '-']
-        \ }
-  let g:tagbar_type_ansible = {
-        \ 'ctagstype' : 'ansible',
-        \ 'kinds' : [
-        \ 't:tasks'
-        \ ],
-        \ 'sort' : 0
-        \ }
-  let g:tagbar_type_markdown = {
-        \ 'ctagstype' : 'markdown',
-        \ 'kinds' : [
-        \ 'h:Heading_L1',
-        \ 'i:Heading_L2',
-        \ 'k:Heading_L3'
-        \ ]
-        \ }
 endfunc " }}}

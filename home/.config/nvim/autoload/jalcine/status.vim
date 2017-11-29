@@ -15,10 +15,10 @@ func! s:Configure() abort
   let g:lightline.active = {
         \ 'left': [ [ 'mode' ],
         \           [ 'vcs' ],
-        \           [ 'relativepath' ] ],
-        \ 'right': [ [ 'paste', 'fileicon' ],
-        \            [ 'pos', 'modified', 'readonly' ],
-        \            [ 'githubdashboard', 'lint' ]  ] }
+        \           [ 'fileicon', 'modified', 'relativepath' ] ],
+        \ 'right': [ [ 'paste', ],
+        \            [ 'pos', 'readonly' ],
+        \            [ 'lint' ]  ] }
   let g:lightline.inactive = {
         \ 'left': [ [ 'filename' ] ],
         \ 'right': [ [ 'lineinfo' ],
@@ -79,7 +79,7 @@ func! jalcine#status#get(part) abort
   if a:part == 'vcs'
     let l:name = fugitive#head(8)
     if empty(l:name)
-      return
+      return ""
     else
       let l:name = " " . l:name
     endif

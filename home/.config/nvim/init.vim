@@ -25,6 +25,8 @@ set shortmess+=c
 set hidden
 set pumheight=5
 set noshowmode noshowmatch
+set modeline modelines=10
+
 "
 " Folding {{{
 set foldenable
@@ -100,19 +102,3 @@ set tags+=$HOME/.config/nvim/tags/*
 " Disable cscope.
 set nocscopetag
 " }}}
-"
-" {{{ Extra special
-set modeline modelines=10
-
-" TODO: Move to commands file.
-func! s:LaunchNoteOfTheDay() abort
-    execute ':Note Morning Entries/' . strftime('%Y-%m-%d')
-    Goyo 90x20
-endfunc
-
-" Provides a helper command to write an entry for the day.
-command! Today call <SID>LaunchNoteOfTheDay()
-" }}}
-
-" Lift off.
-call jalcine#launch()

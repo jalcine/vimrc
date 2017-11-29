@@ -320,11 +320,16 @@ func! jalcine#plugins#configure() abort " {{{
   " {{{ vim-test
   " }}}
   " 
-  " github-dashboard
+  " github-dashboard {{{
   let g:github_dashboard = {
         \ 'position': 'top',
         \ 'emoji': 1
         \ }
+  " }}}
+  "
+  " merginal {{{
+  let g:merginal_windowSize = 15
+  " }}}
 
   let g:localvimrc_persistent = 2
   let g:python_highlight_all = 1

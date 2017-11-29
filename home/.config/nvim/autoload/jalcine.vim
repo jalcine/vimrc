@@ -23,7 +23,8 @@ func! jalcine#launch() abort
         \ 'theme',
         \ 'language_client',
         \ 'augroups',
-        \ 'status'
+        \ 'status',
+        \ 'journal'
         \ ]
 
   for l:sector in l:sectors

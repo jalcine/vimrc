@@ -15,23 +15,18 @@ let g:jalcine.plugins = {
 " }}}
 
 func! jalcine#plugins#setup() abort " {{{
-  " Shut off everything for a moment.
   filetype off
 
-  " Lift off.
   call jalcine#plugins#define()
   call jalcine#plugins#configure()
 
-  " Check everything.
   if exists('$NVIM_VERBOSE')
     let $NVIM_PYTHON_LOG_FILE=expand('$HOME/.config/nvim/logs/python.log')
   endif
 
-  " Go into orbit.
   filetype plugin indent on
   syntax on
 
-  " Define mappings.
   call jalcine#plugins#configure_mappings()
 endfunc " }}}
 
@@ -404,6 +399,17 @@ func! jalcine#plugins#configure_mappings() abort " {{{
         \ ['sj', '<plug>(signify-next-hunk)'],
         \ ['sk', '<plug>(signify-prev-hunk)'],
         \ ], { 'prefix': 'g' })
+  " }}}
+  "
+  " {{{ Tabularize
+  call jalcine#mappings#apply_bulk([
+        \ ['=', ':Tabularize /='],
+        \ ['/', ':Tabularize //'],
+        \ [':', ':Tabularize /:'],
+        \ [',', ':Tabularize /,'],
+        \ [']', ':Tabularize /]'],
+        \ ['[', ':Tabularize /[']
+        \ ], { 'prefix': 'T'})
   " }}}
   "
   " ncm {{{

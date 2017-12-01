@@ -69,7 +69,6 @@ function! jalcine#status#update_colorscheme()
             \ substitute(substitute(g:colors_name, '-', '_', 'g'), '256.*', '', '')
       call lightline#init()
       call lightline#colorscheme()
-      call lightline#update()
     endif
   catch
   endtry
@@ -77,6 +76,8 @@ endfunction
 
 func! jalcine#status#get(part) abort
   if a:part == 'vcs'
+    if !exists('fugitive#head') | return | endif
+
     let l:name = fugitive#head(8)
     if empty(l:name)
       return ""

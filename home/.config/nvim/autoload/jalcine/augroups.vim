@@ -8,7 +8,6 @@ func! jalcine#augroups#setup() abort
     au!
     au BufEnter         * :syntax sync maxlines=200
     au VimEnter           <silent> call <SID>VimEnter()
-    au User RooterChDir   call <SID>GenerateTagsInDir()
   augroup END
 
   augroup vimrc_auto_tmux_reload
@@ -28,8 +27,8 @@ func! jalcine#augroups#setup() abort
     au FileType python         call jalcine#lang#python#tweak()
     au FileType php            call jalcine#lang#php#tweak()
     au FileType css            setl omnifunc=csscomplete#CompleteCSS noci
-    au FileType markdown,mkd   call jalcine#text_editing#enhance()
-    au FileType text,txtfmt    call jalcine#text_editing#enhance()
+    au FileType markdown,mkd   call jalcine#prose#enhance()
+    au FileType text,txtfmt    call jalcine#prose#enhance()
     au FileType yaml           BracelessEnable +indent +fold +highlight
     au FileType python         BracelessEnable +indent +fold +highlight
     au FileType man            setlocal conceallevel=0
@@ -44,9 +43,4 @@ func! jalcine#augroups#setup() abort
     autocmd!
     autocmd ColorScheme * call jalcine#status#update_colorscheme()
   augroup END
-endfunc
-
-func! s:VimEnter() abort
-  LocalVimRC!
-  call jalcine#plugins#setup()
 endfunc

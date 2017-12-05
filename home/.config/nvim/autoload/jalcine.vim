@@ -15,7 +15,6 @@ func! jalcine#setup() abort
   call <SID>EnhanceInbuiltSearch()
 
   let l:sectors = [
-        \ 'augroups',
         \ 'plugins',
         \ 'mappings',
         \ 'lang',
@@ -23,6 +22,8 @@ func! jalcine#setup() abort
         \ 'language_client',
         \ 'status',
         \ 'journal',
+        \ 'tags',
+        \ 'projections',
         \ ]
 
   for l:sector in l:sectors

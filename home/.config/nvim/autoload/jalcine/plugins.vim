@@ -15,23 +15,18 @@ let g:jalcine.plugins = {
 " }}}
 
 func! jalcine#plugins#setup() abort " {{{
-  " Shut off everything for a moment.
   filetype off
 
-  " Lift off.
   call jalcine#plugins#define()
   call jalcine#plugins#configure()
 
-  " Check everything.
   if exists('$NVIM_VERBOSE')
     let $NVIM_PYTHON_LOG_FILE=expand('$HOME/.config/nvim/logs/python.log')
   endif
 
-  " Go into orbit.
   filetype plugin indent on
   syntax on
 
-  " Define mappings.
   call jalcine#plugins#configure_mappings()
 endfunc " }}}
 
@@ -196,6 +191,20 @@ func! jalcine#plugins#configure() abort " {{{
   let g:fzf_buffers_jump = 1
   let g:fzf_history_dir = expand('$HOME/.config/nvim/fzf-history')
   let g:fzf_gitignore_map = '<Leader>sgi'
+  let g:fzf_colors = { 
+        \ 'fg':      ['fg', 'Normal'],
+        \ 'bg':      ['bg', 'Normal'],
+        \ 'hl':      ['fg', 'Comment'],
+        \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+        \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+        \ 'hl+':     ['fg', 'Statement'],
+        \ 'info':    ['fg', 'PreProc'],
+        \ 'prompt':  ['fg', 'Conditional'],
+        \ 'pointer': ['fg', 'Exception'],
+        \ 'marker':  ['fg', 'Keyword'],
+        \ 'spinner': ['fg', 'Label'],
+        \ 'header': ['fg', 'Comment'] 
+        \ }
   " }}}
   "
   " {{{ ale
@@ -320,11 +329,16 @@ func! jalcine#plugins#configure() abort " {{{
   " {{{ vim-test
   " }}}
   " 
-  " github-dashboard
+  " github-dashboard {{{
   let g:github_dashboard = {
         \ 'position': 'top',
         \ 'emoji': 1
         \ }
+  " }}}
+  "
+  " merginal {{{
+  let g:merginal_windowSize = 15
+  " }}}
 
   let g:localvimrc_persistent = 2
   let g:python_highlight_all = 1
@@ -399,6 +413,17 @@ func! jalcine#plugins#configure_mappings() abort " {{{
         \ ['sj', '<plug>(signify-next-hunk)'],
         \ ['sk', '<plug>(signify-prev-hunk)'],
         \ ], { 'prefix': 'g' })
+  " }}}
+  "
+  " {{{ Tabularize
+  call jalcine#mappings#apply_bulk([
+        \ ['=', ':Tabularize /='],
+        \ ['/', ':Tabularize //'],
+        \ [':', ':Tabularize /:'],
+        \ [',', ':Tabularize /,'],
+        \ [']', ':Tabularize /]'],
+        \ ['[', ':Tabularize /[']
+        \ ], { 'prefix': 'T'})
   " }}}
   "
   " ncm {{{

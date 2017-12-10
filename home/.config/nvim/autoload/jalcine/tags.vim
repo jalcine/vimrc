@@ -5,11 +5,11 @@
 
 let s:vimrc_root = fnamemodify($MYVIMRC, ':p:h')
 
-func! jalcine#tagbar#setup() abort
-  call <SID>Configure()
+func! jalcine#tags#setup() abort
+  call <SID>ConfigureTagbar()
 endfunc
 
-func! s:Configure() abort " {{{
+func! s:ConfigureTagbar() abort " {{{
   let g:tagbar_type_elixir = {
         \ 'ctagstype' : 'elixir',
         \ 'kinds' : [

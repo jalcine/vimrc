@@ -9,6 +9,13 @@ func! jalcine#language_client#setup() abort
   call <SID>Configure()
 endfunc
 
+func! jalcine#language_client#start_for_ft(ft) abort
+  let l:hasStartCommand = has_key(g:LanguageClient_serverCommands, a:ft)
+  if l:hasStartCommand == 1
+    LanguageClientStart
+  endif
+endfunc
+
 func! s:Configure() abort " {{{
   let g:LanguageClient_serverCommands = {
         \ 'rust': ['rustup', 'run', 'nightly', 'rls'],

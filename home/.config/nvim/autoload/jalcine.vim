@@ -3,8 +3,6 @@
 " Description:   Entry point for Neovim itself.
 " Last Modified: August 24, 2017
 
-let g:jalcine = {}
-
 func! s:EnhanceInbuiltSearch() abort
   if executable('ag')
     let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
@@ -13,17 +11,19 @@ func! s:EnhanceInbuiltSearch() abort
   endif
 endfunc
 
-func! jalcine#launch() abort
+func! jalcine#setup() abort
   call <SID>EnhanceInbuiltSearch()
 
   let l:sectors = [
-        \ 'mappings',
         \ 'plugins',
+        \ 'mappings',
         \ 'lang',
         \ 'theme',
         \ 'language_client',
-        \ 'augroups',
-        \ 'status'
+        \ 'status',
+        \ 'journal',
+        \ 'tags',
+        \ 'projections',
         \ ]
 
   for l:sector in l:sectors

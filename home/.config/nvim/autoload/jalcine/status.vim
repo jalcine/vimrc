@@ -11,7 +11,7 @@ endfunc
 
 func! s:Configure() abort
   let g:lightline = {}
-  let g:lightline.colorscheme = 'jellybeans'
+  let g:lightline.colorscheme = 'seoul256'
   let g:lightline.active = {
         \ 'left': [ [ 'mode' ],
         \           [ 'vcs' ],

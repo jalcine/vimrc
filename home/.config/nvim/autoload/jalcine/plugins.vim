@@ -48,7 +48,6 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'tpope/vim-dotenv'
   Plug 'direnv/direnv.vim'
   Plug 'w0rp/ale'
-  Plug 'janko-m/vim-test'
 
   Plug 'tpope/vim-commentary'
   Plug 'cbaumhardt/vim-commentary-boxed'
@@ -147,7 +146,7 @@ func! jalcine#plugins#define() abort " {{{
 
   " {{{ IDE-esque
   Plug 'roxma/nvim-completion-manager'
-  Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': './install.sh' }
   Plug 'roxma/nvim-cm-tern',  { 'do': 'yarn' }
   Plug 'roxma/ncm-github'
   Plug 'Shougo/neco-syntax'
@@ -167,7 +166,7 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'sourcegraph/javascript-typescript-langserver', { 'do': 'yarn && yarn run build' }
   Plug 'fgrsnau/ncm-otherbuf'
   Plug 'emberwatch/ember-language-server', { 'do': 'yarn && yarn run compile' }
-  Plug 'janko-m/vim-test'
+  Plug 'terryma/vim-multiple-cursors'
   " }}}
 
   Plug 'sirver/ultisnips'
@@ -225,11 +224,6 @@ func! jalcine#plugins#configure() abort " {{{
   "
   " test {{{
   let g:test#preserve_screen = 1
-  let g:test#strategy = {
-        \ 'nearest': 'neovim',
-        \ 'file': 'dispatch',
-        \ 'suite': 'neovim',
-        \ }
   " }}}
   "
   " languageclient {{{
@@ -304,6 +298,7 @@ func! jalcine#plugins#configure() abort " {{{
 
   " {{{ orgmode
   let g:org_aggressive_conceal = 1
+  let g:org_todo_keyword_faces = ["bold", "inverse"]
   let g:org_indent = 1
   let g:org_todo_keywords = [['TODO(t)', 'ACTIVE(a)', '|', 'DONE(d)'],
         \ ['REPORT(r)', 'BUG(b)', 'KNOWNCAUSE(k)', '|', 'FIXED(f)'],
@@ -337,7 +332,7 @@ func! jalcine#plugins#configure() abort " {{{
   " }}}
   "
   " merginal {{{
-  let g:merginal_windowSize = 15
+  let g:merginal_windowSize = 35
   " }}}
 
   let g:localvimrc_persistent = 2

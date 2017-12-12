@@ -69,9 +69,6 @@ func! jalcine#mappings#setup() abort " {{{
   " Rewrite 'vhe' to 'vert help'.
   cnoremap vhe vert help
   "
-  " Let me write to sudo whenever possible.
-  cnoremap sw% w !sudo tee %
-  "
   " Show me tags.
   nnoremap <F8> :TagbarToggle<CR>
   "

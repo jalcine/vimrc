@@ -6,7 +6,16 @@
 
 func! jalcine#status#setup() abort
   call <SID>Configure()
+  call <SID>AugroupSetup()
   call lightline#update()
+endfunc
+
+func! s:AugroupSetup() abort
+  augroup jalcine-vim-status
+    au!
+    au User ALELint call lightline#update()
+    au Colorscheme  call lightline#update()
+  augroup END
 endfunc
 
 func! s:Configure() abort

@@ -38,6 +38,7 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'tpope/vim-endwise'
   Plug 'tpope/vim-speeddating'
   Plug 'tpope/vim-abolish'
+  Plug 'tpope/vim-eunuch'
   Plug 'tpope/vim-projectionist'
   Plug 'jdelkins/vim-correction'
   Plug 'tpope/vim-scriptease'
@@ -244,6 +245,11 @@ func! jalcine#plugins#configure() abort " {{{
   let g:signify_update_on_bufenter    = 1
   let g:signify_update_on_focusgained = 1
   let g:signify_realtime = 1
+  let g:signify_sign_add = '∙'
+  let g:signify_sign_delete = '∙'
+  let g:signify_sign_delete_first_line = '∙'
+  let g:signify_sign_change = '∙'
+  let g:signify_sign_changedelete = '∙'
   " }}}
   "
   " gutentags {{{
@@ -279,7 +285,7 @@ func! jalcine#plugins#configure() abort " {{{
   let g:indentLine_showFirstIndentLevel = 0
   let g:indentLine_leadingSpaceEnabled = 0
   let g:indentLine_fileTypeExclude = ['netrw', 'gitcommit', 'startify']
-  let g:indentLine_setConceal = 1
+  let g:indentLine_setConceal = 0
   let g:indentLine_char = '┊'
   " }}}
   "

@@ -322,6 +322,7 @@ func! jalcine#plugins#configure() abort " {{{
   " }}}
   "
   " {{{ vim-test
+  let g:test#strategy = 'dispatch'
   " }}}
   " 
   " github-dashboard {{{

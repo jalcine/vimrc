@@ -430,7 +430,9 @@ func! jalcine#plugins#configure_mappings() abort " {{{
   " ncm {{{
   " Expand a snippet when shown in the list.
   imap <expr> <CR> (pumvisible() ?  "\<c-y>\<Plug>(expand_or_nl)\<Plug>DiscretionaryEnd" : "\<CR>\<Plug>DiscretionaryEnd")
-  imap <expr> <Plug>(expand_or_nl) (cm#completed_is_snippet() ? "\<Plug>(ultisnips_expand)" :"\<CR>")
+  imap <expr> <Plug>(expand_or_nl) (cm#completed_is_snippet() ? "\<Plug>(ultisnips_expand)\<CR>" : "\<CR>")
+	imap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+	imap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
   " }}}
   "

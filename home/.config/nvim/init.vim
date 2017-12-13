@@ -18,7 +18,7 @@ set number relativenumber
 set termguicolors guicursor=
 set nocursorline nocursorcolumn
 set sidescrolloff=1 sidescroll=1
-set conceallevel=2 concealcursor=nvc
+set conceallevel=2 concealcursor=nivc
 set nowrap
 set signcolumn=yes
 set shortmess+=c

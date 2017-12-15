@@ -28,6 +28,7 @@ func! jalcine#plugins#setup() abort " {{{
   syntax on
 
   call jalcine#plugins#configure_mappings()
+  LocalVimRC
 endfunc " }}}
 
 func! jalcine#plugins#define() abort " {{{
@@ -96,7 +97,7 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'bogado/file-line'
   Plug 'farmergreg/vim-lastplace'
   Plug 'Shougo/echodoc.vim'
-  " Plug 'keith/investigate.vim'
+  Plug 'keith/investigate.vim'
   Plug '~/src/investigate.vim'
   Plug 'itchyny/lightline.vim'
   Plug 'tpope/vim-dispatch'
@@ -109,7 +110,6 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'zhm/TagHighlight'
   Plug 'ludovicchabant/vim-gutentags'
   Plug 'majutsushi/tagbar'
-  Plug 'Yggdroot/indentLine'
   Plug 'airblade/vim-rooter'
   Plug 'tpope/vim-surround'
   Plug 'raimondi/delimitmate'
@@ -275,14 +275,6 @@ func! jalcine#plugins#configure() abort " {{{
   let g:rooter_change_directory_for_non_project_files = ''
   " }}}
   "
-  " indentline {{{
-  let g:indentLine_showFirstIndentLevel = 0
-  let g:indentLine_leadingSpaceEnabled = 0
-  let g:indentLine_fileTypeExclude = ['netrw', 'gitcommit', 'startify']
-  let g:indentLine_setConceal = 0
-  let g:indentLine_char = '┊'
-  " }}}
-  "
   " ncm {{{
   let g:cm_multi_threading = 1
   let g:cm_matcher = {
@@ -290,6 +282,7 @@ func! jalcine#plugins#configure() abort " {{{
         \ 'case': 'smartcase'
         \ }
   let g:cm_completekeys = "\<Plug>(cm_completefunc)"
+
   if exists('$NVIM_VERBOSE')
     let $NVIM_NCM_LOG_LEVEL='DEBUG'
     let $NVIM_NCM_MULTI_THREAD=0
@@ -419,12 +412,12 @@ func! jalcine#plugins#configure_mappings() abort " {{{
   "
   " {{{ Tabularize
   call jalcine#mappings#apply_bulk([
-        \ ['=', ':Tabularize /='],
-        \ ['/', ':Tabularize //'],
-        \ [':', ':Tabularize /:'],
-        \ [',', ':Tabularize /,'],
-        \ [']', ':Tabularize /]'],
-        \ ['[', ':Tabularize /[']
+        \ ['=', ':Tabularize /=', 'v'],
+        \ ['/', ':Tabularize //', 'v'],
+        \ [':', ':Tabularize /:', 'v'],
+        \ [',', ':Tabularize /,', 'v'],
+        \ [']', ':Tabularize /]', 'v'],
+        \ ['[', ':Tabularize /[', 'v']
         \ ], { 'prefix': 'T'})
   " }}}
   "

@@ -47,7 +47,6 @@ func! s:Configure() abort
         \ 'icon': '%{jalcine#status#get("icon")}'
         \ }
   let g:lightline.component_visible_condition = {
-        \ 'vcs': 'fugitive#head() !== ""',
         \ 'icon': 'winwidth(0) > 70',
         \ 'relativepath': 'winwidth(0) > 70',
         \ 'filename': 'winwidth(0) < 70',

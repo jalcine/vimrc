@@ -7,7 +7,6 @@ func! jalcine#augroups#setup() abort
   augroup vimrc_misc
     au!
     au BufEnter         * :syntax sync maxlines=200
-    au VimEnter           <silent> call <SID>VimEnter()
   augroup END
 
   augroup vimrc_auto_tmux_reload
@@ -17,8 +16,9 @@ func! jalcine#augroups#setup() abort
 
   augroup vimrc_term
     au!
-    au TermOpen *        setl conceallevel=0 colorcolumn=0 relativenumber
+    au TermOpen *        call jalcine#tweaks#terminal#adapt()
     au BufEnter term://* startinsert
+    au BufLeave term://* stopinsert
   augroup END
 
   augroup vimrc-langsupport

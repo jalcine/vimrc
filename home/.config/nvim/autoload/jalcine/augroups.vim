@@ -32,6 +32,8 @@ func! jalcine#augroups#setup() abort
     au FileType yaml           BracelessEnable +indent +fold +highlight
     au FileType python         BracelessEnable +indent +fold +highlight
     au FileType man            setlocal conceallevel=0
+    au FileType quickfix call jalcine#tweaks#terminal#adapt()
+    au FileType loclist  call jalcine#tweaks#terminal#adapt()
   augroup END
 
   augroup vimrc_goyo

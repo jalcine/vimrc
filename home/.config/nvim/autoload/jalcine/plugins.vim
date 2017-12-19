@@ -18,6 +18,7 @@ func! jalcine#plugins#setup() abort " {{{
   filetype off
 
   call jalcine#plugins#define()
+  LocalVimRC
   call jalcine#plugins#configure()
 
   if exists('$NVIM_VERBOSE')
@@ -28,7 +29,6 @@ func! jalcine#plugins#setup() abort " {{{
   syntax on
 
   call jalcine#plugins#configure_mappings()
-  LocalVimRC
 endfunc " }}}
 
 func! jalcine#plugins#define() abort " {{{
@@ -400,7 +400,7 @@ func! jalcine#plugins#configure_mappings() abort " {{{
         \ ['rm', ':Gremove %<CR>'],
         \ ['rmc', ':Git rm --cached %<CR>'],
         \ ['l', ':Commits<CR>'],
-        \ ['m', ':Merginal<CR>'],
+        \ ['m', ':MerginalToggle<CR>'],
         \ ['st', ':SignifyToggle<CR>'],
         \ ['sh', ':SignifyToggleHighlight<CR>'],
         \ ['sr', ':SignifyRefresh<CR>'],
@@ -419,6 +419,17 @@ func! jalcine#plugins#configure_mappings() abort " {{{
         \ [']', ':Tabularize /]', 'v'],
         \ ['[', ':Tabularize /[', 'v']
         \ ], { 'prefix': 'T'})
+  " }}}
+  "
+  " {{{ ale
+  call jalcine#mappings#apply_bulk([
+        \ ['n', '<Plug>(ale_next_wrap)'],
+        \ ['p', '<Plug>(ale_previous_wrap)'],
+        \ ['f', '<Plug>(ale_first)'],
+        \ ['l', '<Plug>(ale_last)'],
+        \ ['n', '<Plug>(ale_lint)'],
+        \ ['x', '<Plug>(ale_fix)'],
+        \ ], { 'prefix': 'a'})
   " }}}
   "
   " ncm {{{

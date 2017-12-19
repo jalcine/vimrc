@@ -5,7 +5,8 @@
 
 let g:jalcine.mappings.lang = {
       \ 'php': 'ph',
-      \ 'python': 'py'
+      \ 'python': 'py',
+      \ 'javascript': 'js'
       \ }
 
 func! jalcine#lang#setup()

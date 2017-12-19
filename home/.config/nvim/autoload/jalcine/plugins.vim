@@ -246,9 +246,6 @@ func! jalcine#plugins#configure() abort " {{{
   let g:signify_sign_changedelete = '∙'
   " }}}
   "
-  " gutentags {{{
-  " )}}}
-  "
   " jedi {{{
   let g:jedi#popup_on_dot = 0
   let g:jedi#documentation_command = 'K'
@@ -379,7 +376,8 @@ func! jalcine#plugins#configure_mappings() abort " {{{
         \ ['mi', ':call fzf#vim#maps("i", 1)<cr>'],
         \ ['mn', ':call fzf#vim#maps("n", 1)<cr>'],
         \ ['mv', ':call fzf#vim#maps("v", 1)<cr>'],
-        \ ['mv', ':call fzf#vim#maps("v", 1)<cr>'],
+        \ ['mc', ':call fzf#vim#maps("c", 1)<cr>'],
+        \ ['mt', ':call fzf#vim#maps("t", 1)<cr>'],
         \ ], { 'prefix': 's' })
   " }}}
   "
@@ -429,6 +427,7 @@ func! jalcine#plugins#configure_mappings() abort " {{{
         \ ['l', '<Plug>(ale_last)'],
         \ ['n', '<Plug>(ale_lint)'],
         \ ['x', '<Plug>(ale_fix)'],
+        \ ['r', '<Plug>(ale_reset)'],
         \ ], { 'prefix': 'a'})
   " }}}
   "

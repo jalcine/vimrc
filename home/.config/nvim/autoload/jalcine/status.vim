@@ -27,7 +27,7 @@ func! s:Configure() abort
         \           [ 'icon', 'modified', 'relativepath', 'filename'] ],
         \ 'right': [ [ 'paste', ],
         \            [ 'pos', 'readonly' ],
-        \            [ 'lint' ]  ] }
+        \            [ 'ctags', 'lint' ]  ] }
   let g:lightline.inactive = {
         \ 'left': [ [ 'filename' ] ],
         \ 'right': [ [ 'lineinfo' ],
@@ -44,12 +44,12 @@ func! s:Configure() abort
         \ 'spell': ' %{emoji#for("pencil")}%{&spelllang}',
         \ 'lint': '%{jalcine#status#get("lint")}',
         \ 'vcs': '%{jalcine#status#get("vcs")}',
-        \ 'icon': '%{jalcine#status#get("icon")}'
+        \ 'icon': '%{jalcine#status#get("icon")}',
+        \ 'ctags': '%{jalcine#status#get("ctags")}'
         \ }
   let g:lightline.component_visible_condition = {
-        \ 'icon': 'winwidth(0) > 70',
-        \ 'relativepath': 'winwidth(0) > 70',
-        \ 'filename': 'winwidth(0) < 70',
+        \ 'icon': 'winwidth(0) >= 70',
+        \ 'relativepath': 'winwidth(0) >= 70',
         \ }
   let g:lightline.separator = { 'left': '', 'right': '' }
   let g:lightline.subseparator =  { 'left': '', 'right': '' }
@@ -110,6 +110,8 @@ func! jalcine#status#get(part) abort
     else
       return l:status
     endif
+  elseif a:part == 'ctags'
+    return gutentags#statusline('Building tags...')
   endif
 
   return ""

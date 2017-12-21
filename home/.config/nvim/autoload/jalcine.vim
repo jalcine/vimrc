@@ -16,9 +16,9 @@ func! jalcine#setup() abort " {{{
 
   let l:sectors = [
         \ 'augroups',
+        \ 'lang',
         \ 'plugins',
         \ 'mappings',
-        \ 'lang',
         \ 'theme',
         \ 'language_client',
         \ 'status',

@@ -18,6 +18,7 @@ func! jalcine#plugins#setup() abort " {{{
   filetype off
 
   call jalcine#plugins#define()
+  LocalVimRC
   call jalcine#plugins#configure()
 
   if exists('$NVIM_VERBOSE')
@@ -28,7 +29,6 @@ func! jalcine#plugins#setup() abort " {{{
   syntax on
 
   call jalcine#plugins#configure_mappings()
-  LocalVimRC
 endfunc " }}}
 
 func! jalcine#plugins#define() abort " {{{
@@ -246,9 +246,6 @@ func! jalcine#plugins#configure() abort " {{{
   let g:signify_sign_changedelete = '∙'
   " }}}
   "
-  " gutentags {{{
-  " )}}}
-  "
   " jedi {{{
   let g:jedi#popup_on_dot = 0
   let g:jedi#documentation_command = 'K'
@@ -382,7 +379,8 @@ func! jalcine#plugins#configure_mappings() abort " {{{
         \ ['mi', ':call fzf#vim#maps("i", 1)<cr>'],
         \ ['mn', ':call fzf#vim#maps("n", 1)<cr>'],
         \ ['mv', ':call fzf#vim#maps("v", 1)<cr>'],
-        \ ['mv', ':call fzf#vim#maps("v", 1)<cr>'],
+        \ ['mc', ':call fzf#vim#maps("c", 1)<cr>'],
+        \ ['mt', ':call fzf#vim#maps("t", 1)<cr>'],
         \ ], { 'prefix': 's' })
   " }}}
   "
@@ -403,7 +401,7 @@ func! jalcine#plugins#configure_mappings() abort " {{{
         \ ['rm', ':Gremove %<CR>'],
         \ ['rmc', ':Git rm --cached %<CR>'],
         \ ['l', ':Commits<CR>'],
-        \ ['m', ':Merginal<CR>'],
+        \ ['m', ':MerginalToggle<CR>'],
         \ ['st', ':SignifyToggle<CR>'],
         \ ['sh', ':SignifyToggleHighlight<CR>'],
         \ ['sr', ':SignifyRefresh<CR>'],
@@ -422,6 +420,18 @@ func! jalcine#plugins#configure_mappings() abort " {{{
         \ [']', ':Tabularize /]', 'v'],
         \ ['[', ':Tabularize /[', 'v']
         \ ], { 'prefix': 'T'})
+  " }}}
+  "
+  " {{{ ale
+  call jalcine#mappings#apply_bulk([
+        \ ['n', '<Plug>(ale_next_wrap)'],
+        \ ['p', '<Plug>(ale_previous_wrap)'],
+        \ ['f', '<Plug>(ale_first)'],
+        \ ['l', '<Plug>(ale_last)'],
+        \ ['n', '<Plug>(ale_lint)'],
+        \ ['x', '<Plug>(ale_fix)'],
+        \ ['r', '<Plug>(ale_reset)'],
+        \ ], { 'prefix': 'a'})
   " }}}
   "
   " ncm {{{

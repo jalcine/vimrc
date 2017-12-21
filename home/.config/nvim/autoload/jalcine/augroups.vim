@@ -12,6 +12,7 @@ func! jalcine#augroups#setup() abort
   augroup vimrc_auto_tmux_reload
     au!
     au FileWritePost ~/.tmux* !tmux source-file %:h
+    au FileWritePost * call <SID>MaybeGenerateCtags()
   augroup END
 
   augroup vimrc_term
@@ -32,15 +33,31 @@ func! jalcine#augroups#setup() abort
     au FileType yaml           BracelessEnable +indent +fold +highlight
     au FileType python         BracelessEnable +indent +fold +highlight
     au FileType man            setlocal conceallevel=0
+    au FileType quickfix call jalcine#tweaks#terminal#adapt()
+    au FileType loclist  call jalcine#tweaks#terminal#adapt()
   augroup END
 
   augroup vimrc_goyo
+    au!
     au User GoyoEnter nested call jalcine#tweaks#goyo#enter()
     au User GoyoLeave nested call jalcine#tweaks#goyo#leave()
+  augroup END
+
+  augroup vimrc_tags
+    au!
+    au User GutentagsUpdated call <SID>AlertThatTagsAreBuilding()
   augroup END
 
   augroup vimrc_colorscheme_lightline
     autocmd!
     autocmd ColorScheme * call jalcine#status#update_colorscheme()
   augroup END
+endfunc
+
+func! s:MaybeGenerateCtags() abort
+endfunc
+
+func! s:AlertThatTagsAreBuilding() abort
+  " TODO: Need to do some kind of alerting here.
+  call lightline#update()
 endfunc

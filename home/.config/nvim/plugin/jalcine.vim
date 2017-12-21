@@ -3,7 +3,9 @@
 " Description:   Entry point for my setup.
 " Last Modified: November 29, 2017
 
-let g:jalcine = {}
+let g:jalcine = {
+      \ 'mappings': {}
+      \ }
 
 " {{{ Kick it off
 if v:vim_did_enter

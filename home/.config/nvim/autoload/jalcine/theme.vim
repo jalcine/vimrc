@@ -1,6 +1,5 @@
 " File:          autoload/theme.vim
-" Author: yourname
-" Description: 
+" Author:        Jacky Alcine <yo@jacky.wtf>
 " Last Modified: December 11, 2017
 
 let g:jalcine.theme = {

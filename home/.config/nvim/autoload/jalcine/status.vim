@@ -24,7 +24,7 @@ func! s:Configure() abort
   let g:lightline.active = {
         \ 'left': [ [ 'mode' ],
         \           [ 'vcs' ],
-        \           [ 'icon', 'modified', 'relativepath', 'filename'] ],
+        \           [ 'icon', 'modified', 'relativepath'] ],
         \ 'right': [ [ 'paste', ],
         \            [ 'pos', 'readonly' ],
         \            [ 'lint' ]  ] }

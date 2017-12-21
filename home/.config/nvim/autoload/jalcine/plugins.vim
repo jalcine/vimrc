@@ -336,6 +336,9 @@ func! jalcine#plugins#configure() abort " {{{
   " }}}
 
   let g:localvimrc_persistent = 2
+  let g:localvimrc_sandbox = 0
+  let g:localvimrc_persistent = 2
+  let g:localvimrc_whitelist = [expand('$HOME/.lvimrc')]
   let g:python_highlight_all = 1
   let g:notes_suffix = '.txt'
 endfunc " }}}

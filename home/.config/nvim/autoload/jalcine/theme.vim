@@ -1,3 +1,7 @@
+" File:          autoload/theme.vim
+" Author:        Jacky Alcine <yo@jacky.wtf>
+" Last Modified: December 11, 2017
+
 let g:jalcine.theme = {
       \ 'light': {
       \   'colorscheme': 'base16-gruvbox-light-medium',
@@ -28,4 +32,13 @@ endfunc
 
 func! jalcine#theme#load() abort
   exec 'colorscheme ' .  g:jalcine.theme[&background].colorscheme
+  let g:lightline.colorscheme = '16color'
+  call lightline#colorscheme()
 endfunc
+
+if &term =~ '256color'
+    " disable Background Color Erase (BCE) so that color schemes
+    " render properly when inside 256-color tmux and GNU screen.
+    " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
+    set t_ut=
+endif

@@ -22,7 +22,7 @@ func! s:SetupJediWithPyenv() abort
   augroup END
 endfunc
 
-func! s:SetupPythonHighlightOptions() abort
+func! s:SetPythonOptions() abort
   let g:python_highlight_all = 1
   let g:python_slow_sync = 1
   let g:python3_host_prog = systemlist('PYENV_VERSION=neovim-py3 pyenv which python3')[0]
@@ -30,6 +30,6 @@ func! s:SetupPythonHighlightOptions() abort
 endfunc
 
 func! jalcine#lang#python#setup() abort
-  call <SID>SetupPythonHighlightOptions()
+  call <SID>SetPythonOptions()
   call <SID>SetupJediWithPyenv()
 endfunc

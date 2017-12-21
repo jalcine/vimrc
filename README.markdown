@@ -2,7 +2,7 @@
 
 ![My daily view.](./snapshot.png)
 
-This repository contains my setup for **[Neovim][]** and other Vim related
+This repository contains my setup for [Neovim][] and other Vim related
 projects like [Vimperator][] and [IdeaVIM][]. I've decided to move my development
 environment over to Neovim after reading [Greer's post][1] on the matter. This
 comes souped up with close to 80 (or more plugins) to enhance my development

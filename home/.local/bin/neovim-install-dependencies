@@ -4,37 +4,75 @@
 # TODO: Add more option control to this.
 # TODO: Merge update + install scripts.
 
-cd "${HOME}/.config/nvim" || exit
+function run_install ()
+{
+  cd "${HOME}/.config/nvim" || exit
+  mkdir -p "${HOME}/.config/nvim/logs" || exit
+  mkdir -p "${HOME}/.config/nvim/tags" || exit
 
-mkdir "${HOME}/.config/nvim/logs" || exit
-mkdir "${HOME}/.config/nvim/tags" || exit
+  install_javascript
+  install_perl
+  install_ruby
+  install_python
+}
 
-pyenv virtualenv 2.7.12 neovim-py2 -vf
-pyenv virtualenv 3.5.2 neovim-py3 -vf
+function install_python ()
+{
+  pyenv virtualenv 2.7.14 neovim-py2 -vf
+  pyenv virtualenv 3.6.4  neovim-py3 -vf
 
-# Install language dependencies. {{{
-RB_REQS="${HOME}/.config/nvim/Gemfile"
-JS_REQS="${HOME}/.config/nvim/npm.list"
+  pyenv exec pip2 install pipenv
+  pyenv exec pip3 install pipenv
+}
 
-# Handle Python {{{
-pyenv exec pip3 install pip-tools
-pyenv exec pip3 install -r requirements-py3.txt
-pyenv exec pip2 install pip-tools
-pyenv exec pip2 install -r requirements.txt
+function install_ruby ()
+{
+  rbenv exec bundle install --verbose
+}
 
-pyenv local neovim-py3 neovim-py2
-nvim +":call jalcine#plugins#install()" \
-     +":qall"
-# }}}
+function install_javascript ()
+{
+  ndenv exec yarn --verbose
+}
 
-# {{{ Extra language support
-if [ "$JALCINE_NEOVIM_MINIMAL" ]
-then
-  exit
-elses
-  bundle install --gemfile="${RB_REQS}"
-  # shellcheck disable=SC2046,SC2086
-  npm install -g $(cat $JS_REQS)
-  cpanm Perl::Tidy
-fi
-# }}}
+function install_perl ()
+{
+  plenv exec carton install
+}
+
+__ScriptVersion="2017-12-24"
+
+#===  FUNCTION  ================================================================
+#         NAME:  usage
+#  DESCRIPTION:  Display usage information.
+#===============================================================================
+function usage ()
+{
+  echo "Usage :  $0 [options] [--]
+
+    Options:
+    -h|help       Display this message
+    -v|version    Display script version"
+
+}    # ----------  end of function usage  ----------
+
+#-----------------------------------------------------------------------
+#  Handle command line arguments
+#-----------------------------------------------------------------------
+
+while getopts ":hvi" opt
+do
+  case $opt in
+
+  h|help     )  usage; exit 0   ;;
+
+  v|version  )  echo "$0 -- Version $__ScriptVersion"; exit 0   ;;
+
+  i|install  )  run_install; exit 0   ;;
+
+  * )  echo -e "\n  Option does not exist : $OPTARG\n"
+      usage; exit 1   ;;
+
+  esac    # --- end of case ---
+done
+shift $(($OPTIND-1))

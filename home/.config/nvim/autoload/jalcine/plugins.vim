@@ -50,6 +50,7 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'tpope/vim-dotenv'
   Plug 'direnv/direnv.vim'
   Plug 'w0rp/ale'
+  Plug 'wincent/terminus'
 
   Plug 'tpope/vim-commentary'
   Plug 'cbaumhardt/vim-commentary-boxed'
@@ -147,7 +148,7 @@ func! jalcine#plugins#define() abort " {{{
 
   " {{{ IDE-esque
   Plug 'roxma/nvim-completion-manager'
-  Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': './install.sh' }
+  Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'make release' }
   Plug 'roxma/nvim-cm-tern',  { 'do': 'yarn' }
   Plug 'roxma/ncm-github'
   Plug 'Shougo/neco-syntax'

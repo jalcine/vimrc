@@ -332,11 +332,31 @@ func! jalcine#plugins#configure() abort " {{{
   " merginal {{{
   let g:merginal_windowSize = 35
   " }}}
-
+  "
+  " startify {{{
+  function! s:filter_header(lines) abort
+      let longest_line   = max(map(copy(a:lines), 'strwidth(v:val)'))
+      let centered_lines = map(copy(a:lines),
+          \ 'repeat(" ", (&columns / 2) - (longest_line / 2)) . v:val')
+      return centered_lines
+  endfunction
+  let g:startify_custom_header = s:filter_header(startify#fortune#cowsay())
+  let g:startify_list_order = ['commands', 'sessions', 'bookmarks', 'files']
+  let g:startify_files_number = 5
+  let g:startify_change_to_dir = 0
+  let g:startify_fortune_use_unicode = 1
+  let g:startify_session_before_save = [
+        \ 'silent! jalcine#tweaks#terminal#kill_extra_buffers()'
+        \ ]
+  " }}}
+  "
+  " {{ localvimrc
   let g:localvimrc_persistent = 2
   let g:localvimrc_sandbox = 0
   let g:localvimrc_persistent = 2
   let g:localvimrc_whitelist = [expand('$HOME/.lvimrc')]
+  " }}}
+  " 
   let g:python_highlight_all = 1
   let g:notes_suffix = '.txt'
 endfunc " }}}

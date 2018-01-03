@@ -54,6 +54,7 @@ function usage ()
   echo "Usage :  $0 [options] [--]
 
     Options:
+    -i|install    Installs dependencies
     -h|help       Display this message
     -v|version    Display script version"
 

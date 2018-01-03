@@ -16,6 +16,7 @@ mypy = "*"
 pyls-mypy = "*"
 pyls-isort = "*"
 python-language-server = "*"
+neovim = "*"
 
 
 [dev-packages]

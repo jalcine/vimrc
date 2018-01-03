@@ -23,6 +23,9 @@ function install_python ()
 
   pyenv exec pip2 install pipenv
   pyenv exec pip3 install pipenv
+
+  pyenv exec python2 pipenv install --system
+  pyenv exec python3 pipenv install --system
 }
 
 function install_ruby ()

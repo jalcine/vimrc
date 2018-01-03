@@ -332,11 +332,31 @@ func! jalcine#plugins#configure() abort " {{{
   " merginal {{{
   let g:merginal_windowSize = 35
   " }}}
-
+  "
+  " startify {{{
+  function! s:filter_header(lines) abort
+      let longest_line   = max(map(copy(a:lines), 'strwidth(v:val)'))
+      let centered_lines = map(copy(a:lines),
+          \ 'repeat(" ", (&columns / 2) - (longest_line / 2)) . v:val')
+      return centered_lines
+  endfunction
+  let g:startify_custom_header = s:filter_header(startify#fortune#cowsay())
+  let g:startify_list_order = ['commands', 'sessions', 'bookmarks', 'files']
+  let g:startify_files_number = 5
+  let g:startify_change_to_dir = 0
+  let g:startify_fortune_use_unicode = 1
+  let g:startify_session_before_save = [
+        \ 'silent! jalcine#tweaks#terminal#kill_extra_buffers()'
+        \ ]
+  " }}}
+  "
+  " {{ localvimrc
   let g:localvimrc_persistent = 2
   let g:localvimrc_sandbox = 0
   let g:localvimrc_persistent = 2
   let g:localvimrc_whitelist = [expand('$HOME/.lvimrc')]
+  " }}}
+  " 
   let g:python_highlight_all = 1
   let g:notes_suffix = '.txt'
 endfunc " }}}
@@ -437,10 +457,10 @@ func! jalcine#plugins#configure_mappings() abort " {{{
   "
   " ncm {{{
   " Expand a snippet when shown in the list.
-  imap <expr> <CR> (pumvisible() ?  "\<c-y>\<Plug>(expand_or_nl)\<Plug>DiscretionaryEnd" : "\<CR>\<Plug>DiscretionaryEnd")
-  imap <expr> <Plug>(expand_or_nl) (cm#completed_is_snippet() ? "\<Plug>(ultisnips_expand)\<CR>" : "\<CR>")
-	imap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-	imap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+  " imap <expr> <CR> (pumvisible() ?  "\<c-y>\<Plug>(expand_or_nl)\<Plug>DiscretionaryEnd" : "\<CR>\<Plug>DiscretionaryEnd")
+  " imap <expr> <Plug>(expand_or_nl) (cm#completed_is_snippet() ? "\<Plug>(ultisnips_expand)\<CR>" : "\<CR>")
+	" imap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+	" imap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
   " }}}
   "

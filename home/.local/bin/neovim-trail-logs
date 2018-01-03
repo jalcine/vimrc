@@ -4,4 +4,4 @@ echo -e "[neovim-jalcine] Starting trail...";
 
 tail -f \
   $HOME/.config/nvim/logs/* \
-  $TMPDIR/Language{Client,Server}* \
+  /tmp/Language{Client,Server}* \

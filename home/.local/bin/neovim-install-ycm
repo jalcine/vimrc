@@ -1,8 +1,0 @@
-#!/usr/bin/env sh
-# vim: set fdm=marker :
-
-cd "${HOME}/.config/nvim"
-
-${HOME}/.config/nvim/plugins/YouCompleteMe/install.py \
-  --tern-completer \
-  --clang-completer

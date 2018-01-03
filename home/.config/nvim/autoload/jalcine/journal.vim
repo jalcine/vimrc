@@ -13,5 +13,5 @@ endfunc
 
 func! s:LaunchNoteOfTheDay() abort
   execute ':Note Morning Entries/' . strftime('%Y-%m-%d')
-  Goyo 80x
+  Goyo 75%x
 endfunc

@@ -1,0 +1,7 @@
+# vim: set ft=perl :
+
+requires 'perl', '5.16.3';
+
+requires 'Term::ExtendedColor';
+requires 'Data::Dumper';
+requires 'Perl::Critic';

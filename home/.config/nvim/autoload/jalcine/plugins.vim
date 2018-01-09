@@ -18,14 +18,14 @@ func! jalcine#plugins#setup() abort " {{{
   filetype off
 
   call jalcine#plugins#define()
-  LocalVimRC
   call jalcine#plugins#configure()
 
   if exists('$NVIM_VERBOSE')
     let $NVIM_PYTHON_LOG_FILE=expand('$HOME/.config/nvim/logs/python.log')
   endif
 
-  filetype plugin indent on
+  filetype plugin on
+  filetype indent on
   syntax on
 
   call jalcine#plugins#configure_mappings()

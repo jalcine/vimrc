@@ -18,6 +18,7 @@
   "homepage": "https://github.com/jalcine/vimrc#readme",
   "devDependencies": {
     "jsctags": "git+https://github.com/ramitos/jsctags.git",
-    "stylelint": "8.2.0"
+    "stylelint": "8.2.0",
+    "tstags": "git+https://github.com/Perlence/tstags.git"
   }
 }

@@ -23,18 +23,18 @@ func! s:Configure() abort
   let g:lightline.colorscheme = 'seoul256'
   let g:lightline.active = {
         \ 'left': [ [ 'mode' ],
-        \           [ 'vcs' ],
-        \           [ 'icon', 'modified', 'relativepath'] ],
+        \           [ 'vcs', 'modified' ],
+        \           [ 'icon', 'relativepath'] ],
         \ 'right': [ [ 'paste', ],
         \            [ 'pos', 'readonly' ],
-        \            [ 'ctags', 'lint' ]  ] }
+        \            [ 'lineinfo', 'percent' ] ] }
   let g:lightline.inactive = {
-        \ 'left': [ [ 'filename' ] ],
+        \ 'left': [ [ 'filename', 'modified' ] ],
         \ 'right': [ [ 'lineinfo' ],
         \            [ 'percent' ] ] }
   let g:lightline.tabline = {
         \ 'left': [ [ 'tabs' ] ],
-        \ 'right': [ [ 'pos', 'close' ] ] }
+        \ 'right': [ [ 'lint', 'ctags', 'pos', 'close' ] ] }
   let g:lightline.tab = {
         \ 'active': [ 'tabnum', 'filename', 'modified' ],
         \ 'inactive': [ 'tabnum', 'filename', 'modified' ] }
@@ -86,7 +86,7 @@ endfunction
 func! jalcine#status#get(part) abort
   if a:part == 'vcs'
     if !exists('fugitive#head')
-      return emoji#for('copyright')
+      return ''
     endif
 
     let l:name = fugitive#head(8)

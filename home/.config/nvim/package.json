@@ -3,9 +3,6 @@
   "version": "0.0.1",
   "description": "Node packages useful for working with Jacky's NeoVim setup.",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git://github.com/jalcine/vimrc.git"
@@ -17,8 +14,11 @@
   },
   "homepage": "https://github.com/jalcine/vimrc#readme",
   "devDependencies": {
+    "eslint": "4.14.0",
     "jsctags": "git+https://github.com/ramitos/jsctags.git",
     "stylelint": "8.2.0",
-    "tstags": "git+https://github.com/Perlence/tstags.git"
+    "tstags": "git+https://github.com/Perlence/tstags.git",
+    "tslint": "5.8.0",
+    "typescript": "2.6.2"
   }
 }

@@ -7,6 +7,7 @@ func! jalcine#augroups#setup() abort
   augroup vimrc_misc
     au!
     au BufEnter         * :syntax sync maxlines=200
+    au User    Startified setlocal buflisted
   augroup END
 
   augroup vimrc_auto_tmux_reload

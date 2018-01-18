@@ -17,11 +17,15 @@ let g:jalcine.plugins = {
 func! jalcine#plugins#setup() abort " {{{
   filetype off
 
+  call jalcine#plugins#define()
+  LocalVimRC
   call jalcine#plugins#configure()
   call jalcine#plugins#define()
 
+
+  filetype plugin on
+  filetype indent on
   syntax on
-  filetype plugin indent on
 
   call jalcine#plugins#configure_mappings()
 endfunc " }}}

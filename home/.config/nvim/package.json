@@ -17,6 +17,7 @@
     "eslint": "4.14.0",
     "jsctags": "git+https://github.com/ramitos/jsctags.git",
     "stylelint": "8.2.0",
+    "tstags": "git+https://github.com/Perlence/tstags.git",
     "tslint": "5.8.0",
     "typescript": "2.6.2"
   }

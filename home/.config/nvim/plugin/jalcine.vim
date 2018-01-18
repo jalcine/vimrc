@@ -7,10 +7,4 @@ let g:jalcine = {
       \ 'mappings': {}
       \ }
 
-" {{{ Kick it off
-if v:vim_did_enter
-  call jalcine#setup()
-else
-  au VimEnter * call jalcine#setup()
-endif
-" }}}
+call jalcine#setup()

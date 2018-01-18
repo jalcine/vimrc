@@ -72,8 +72,16 @@ func! s:ConfigureTagbar() abort " {{{
 endfunc " }}}
 
 func! s:ConfigureGutentags() abort " {{{
-  let g:gutentags_generate_on_empty_buffer = 1
-  let g:gutentags_cache_dir = s:vimrc_root . "/"
+  let g:gutentags_generate_on_empty_buffer = 0
+  let g:gutentags_ctags_tagfile = '.tags'
+  let g:gutentags_cache_dir = s:vimrc_root . "/tags"
   let g:gutentags_ctags_executable_ruby = g:tagbar_type_ruby['ctagsbin']
   let g:gutentags_ctags_executable_javascript = g:tagbar_type_javascript['ctagsbin']
+  let g:gutentags_file_list_command = {
+        \ 'markers': {
+        \ '.git': 'git ls-files',
+        \ '.hg': 'hg files',
+        \ },
+        \ }
+
 endfunc "}}}

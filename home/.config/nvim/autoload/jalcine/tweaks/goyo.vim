@@ -4,7 +4,6 @@ endfunc
 
 func! jalcine#tweaks#goyo#enter() abort
   Limelight
-  call jalcine#theme#setup()
   silent !tmux set status off
   silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
   set noshowmode
@@ -20,5 +19,4 @@ func! jalcine#tweaks#goyo#leave() abort
   silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
   silent !tmux set status on
   Limelight!
-  call jalcine#theme#setup()
 endfunction

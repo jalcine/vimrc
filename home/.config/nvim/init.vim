@@ -7,10 +7,6 @@
 set encoding=utf-8
 scriptencoding utf-8
 
-if v:version < 800
-  echoerr "[jalcine] Please upgrade Vim to Vim8 or use Neovim (recommended)."
-endif
-
 " Visual Editor Components {{{
 set laststatus=2
 set ruler
@@ -31,7 +27,7 @@ set modeline modelines=10
 " Folding {{{
 set foldenable
 set foldcolumn=2
-set foldlevel=2
+set foldlevel=1
 set foldmethod=syntax
 " }}}
 " }}}
@@ -61,9 +57,9 @@ set listchars+=tab:\|\
 " Debugging help {{{
 " This makes it easier for me to capture logging output from Vim.
 if exists('$DEBUG')
-    set verbose=3
-    let &verbosefile=expand('$HOME/.config/nvim/logs/runtime.log')
-    let $NVIM_PYTHON_LOG_FILE=expand("$HOME/.config/nvim/logs/python.log")
+  set verbose=3
+  let &verbosefile=expand('$HOME/.config/nvim/logs/runtime.log')
+  let $NVIM_PYTHON_LOG_FILE=expand("$HOME/.config/nvim/logs/python.log")
 endif
 " }}}
 "
@@ -74,6 +70,7 @@ set undolevels=10000
 set undoreload=1000
 
 set backup writebackup
+set backupdir=~/.config/nvim/backup
 
 set noswapfile
 " }}}

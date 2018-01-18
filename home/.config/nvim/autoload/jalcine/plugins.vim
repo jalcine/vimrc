@@ -17,16 +17,11 @@ let g:jalcine.plugins = {
 func! jalcine#plugins#setup() abort " {{{
   filetype off
 
-  call jalcine#plugins#define()
-  LocalVimRC
   call jalcine#plugins#configure()
+  call jalcine#plugins#define()
 
-  if exists('$NVIM_VERBOSE')
-    let $NVIM_PYTHON_LOG_FILE=expand('$HOME/.config/nvim/logs/python.log')
-  endif
-
-  filetype plugin indent on
   syntax on
+  filetype plugin indent on
 
   call jalcine#plugins#configure_mappings()
 endfunc " }}}
@@ -270,7 +265,7 @@ func! jalcine#plugins#configure() abort " {{{
   let g:rooter_use_lcd = 1
   let g:rooter_silent_chdir = 1
   let g:rooter_resolve_links = 1
-  let g:rooter_change_directory_for_non_project_files = ''
+  let g:rooter_change_directory_for_non_project_files = 'home'
   " }}}
   "
   " ncm {{{
@@ -334,13 +329,6 @@ func! jalcine#plugins#configure() abort " {{{
   " }}}
   "
   " startify {{{
-  function! s:filter_header(lines) abort
-      let longest_line   = max(map(copy(a:lines), 'strwidth(v:val)'))
-      let centered_lines = map(copy(a:lines),
-          \ 'repeat(" ", (&columns / 2) - (longest_line / 2)) . v:val')
-      return centered_lines
-  endfunction
-  let g:startify_custom_header = s:filter_header(startify#fortune#cowsay())
   let g:startify_list_order = ['commands', 'sessions', 'bookmarks', 'files']
   let g:startify_files_number = 5
   let g:startify_change_to_dir = 0
@@ -351,9 +339,9 @@ func! jalcine#plugins#configure() abort " {{{
   " }}}
   "
   " {{ localvimrc
-  let g:localvimrc_persistent = 2
   let g:localvimrc_sandbox = 0
-  let g:localvimrc_persistent = 2
+  let g:localvimrc_persistent = 1
+  let g:localvimrc_persistent_file = expand('$HOME/.config/nvim/localvimrc_persistent')
   let g:localvimrc_whitelist = [expand('$HOME/.lvimrc')]
   " }}}
   " 
@@ -457,10 +445,10 @@ func! jalcine#plugins#configure_mappings() abort " {{{
   "
   " ncm {{{
   " Expand a snippet when shown in the list.
-  " imap <expr> <CR> (pumvisible() ?  "\<c-y>\<Plug>(expand_or_nl)\<Plug>DiscretionaryEnd" : "\<CR>\<Plug>DiscretionaryEnd")
-  " imap <expr> <Plug>(expand_or_nl) (cm#completed_is_snippet() ? "\<Plug>(ultisnips_expand)\<CR>" : "\<CR>")
-	" imap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-	" imap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+  imap <expr> <CR> (pumvisible() ?  "\<c-y>\<Plug>(expand_or_nl)\<Plug>DiscretionaryEnd" : "\<CR>\<Plug>DiscretionaryEnd")
+  imap <expr> <Plug>(expand_or_nl) (cm#completed_is_snippet() ? "\<Plug>(ultisnips_expand)\<CR>" : "\<CR>")
+	imap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+	imap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
   " }}}
   "

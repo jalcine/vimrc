@@ -10,8 +10,7 @@ func! jalcine#language_client#setup() abort
 endfunc
 
 func! jalcine#language_client#start_for_ft(ft) abort
-  let l:hasStartCommand = has_key(g:LanguageClient_serverCommands, a:ft)
-  if l:hasStartCommand == 1
+  if has_key(g:LanguageClient_serverCommands, a:ft) == 1
     LanguageClientStart
     set formatexpr=LanguageClient_textDocument_rangeFormatting()
   else
@@ -51,5 +50,7 @@ func! s:Configure() abort " {{{
     endfor
   endfor
 
-  set formatexpr=LanguageClient_textDocument_rangeFormatting()
+  if !exists('&formatexpr')
+    set formatexpr=LanguageClient_textDocument_rangeFormatting()
+  endif
 endfunc " }}}

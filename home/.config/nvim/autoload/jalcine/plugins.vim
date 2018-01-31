@@ -17,12 +17,8 @@ let g:jalcine.plugins = {
 func! jalcine#plugins#setup() abort " {{{
   filetype off
 
-  call jalcine#plugins#define()
   call jalcine#plugins#configure()
-
-  if exists('$NVIM_VERBOSE')
-    let $NVIM_PYTHON_LOG_FILE=expand('$HOME/.config/nvim/logs/python.log')
-  endif
+  call jalcine#plugins#define()
 
   filetype plugin on
   filetype indent on
@@ -102,6 +98,8 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'keith/investigate.vim'
   Plug '~/src/investigate.vim'
   Plug 'itchyny/lightline.vim'
+  Plug 'vim-airline/vim-airline' |
+        \ Plug 'vim-airline/vim-airline-themes'
   Plug 'tpope/vim-dispatch'
   Plug 'radenling/vim-dispatch-neovim'
 
@@ -274,7 +272,7 @@ func! jalcine#plugins#configure() abort " {{{
   let g:rooter_use_lcd = 1
   let g:rooter_silent_chdir = 1
   let g:rooter_resolve_links = 1
-  let g:rooter_change_directory_for_non_project_files = ''
+  let g:rooter_change_directory_for_non_project_files = 'home'
   " }}}
   "
   " ncm {{{
@@ -344,7 +342,6 @@ func! jalcine#plugins#configure() abort " {{{
           \ 'repeat(" ", (&columns / 2) - (longest_line / 2)) . v:val')
       return centered_lines
   endfunction
-
   let g:startify_custom_header = s:filter_header(startify#fortune#cowsay())
   let g:startify_list_order = ['commands', 'sessions', 'bookmarks', 'files']
   let g:startify_files_number = 5
@@ -356,14 +353,20 @@ func! jalcine#plugins#configure() abort " {{{
   " }}}
   "
   " {{ localvimrc
-  let g:localvimrc_persistent = 2
   let g:localvimrc_sandbox = 0
-  let g:localvimrc_persistent = 2
+  let g:localvimrc_persistent = 1
+  let g:localvimrc_persistent_file = expand('$HOME/.config/nvim/localvimrc_persistent')
   let g:localvimrc_whitelist = [expand('$HOME/.lvimrc')]
-  " }}}
+  " }}
+  "
+  " {{ airline
+  " TODO: Update.
+  " }}
   " 
   let g:python_highlight_all = 1
   let g:notes_suffix = '.txt'
+  let g:goyo_width = '100'
+  let g:goyo_height = '70%'
 endfunc " }}}
 
 func! jalcine#plugins#configure_mappings() abort " {{{
@@ -462,10 +465,10 @@ func! jalcine#plugins#configure_mappings() abort " {{{
   "
   " ncm {{{
   " Expand a snippet when shown in the list.
-  " imap <expr> <CR> (pumvisible() ?  "\<c-y>\<Plug>(expand_or_nl)\<Plug>DiscretionaryEnd" : "\<CR>\<Plug>DiscretionaryEnd")
-  " imap <expr> <Plug>(expand_or_nl) (cm#completed_is_snippet() ? "\<Plug>(ultisnips_expand)\<CR>" : "\<CR>")
-	" imap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-	" imap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+  imap <expr> <CR> (pumvisible() ?  "\<c-y>\<Plug>(expand_or_nl)\<Plug>DiscretionaryEnd" : "\<CR>\<Plug>DiscretionaryEnd")
+  imap <expr> <Plug>(expand_or_nl) (cm#completed_is_snippet() ? "\<Plug>(ultisnips_expand)\<CR>" : "\<CR>")
+	imap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+	imap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
   " }}}
   "

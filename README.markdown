@@ -13,7 +13,6 @@ reference.
 I'm just going to make this simple little change for the lulz.
 
 ## Plugin Manager
-
 The plugins I use are fetched by [vim-plug][]. This repository contains a setup
 script to ensure that Neovim is ready to roll with all of the expected plugins
 and dependencies intact.
@@ -24,6 +23,9 @@ clone and get these options up and running. From there, you'll need to install
 a few dependencies for this project. Run `neovim-install-dependencies` to get
 that setup. It'll add the Python virtual environments, expected Node packages,
 Ruby gems, Perl packages and a Rust component.
+
+When it comes to _really_ using this setup, I strongly recommend checking
+the source code. Send an issue or email if something doesn't make sense.
 
 ### Support and Contributions
 

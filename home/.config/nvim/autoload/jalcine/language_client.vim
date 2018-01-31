@@ -13,6 +13,9 @@ func! jalcine#language_client#start_for_ft(ft) abort
   let l:hasStartCommand = has_key(g:LanguageClient_serverCommands, a:ft)
   if l:hasStartCommand == 1
     LanguageClientStart
+    set formatexpr=LanguageClient_textDocument_rangeFormatting()
+  else
+    set formatexpr&vim
   endif
 endfunc
 

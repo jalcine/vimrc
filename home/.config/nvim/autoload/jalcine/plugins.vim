@@ -70,6 +70,7 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'nkantar/ght.vim'
   Plug 'junegunn/vim-github-dashboard'
   Plug 'jaxbot/github-issues.vim'
+  Plug 'int3/vim-extradite'
 
   Plug 'MattesGroeger/vim-bookmarks'
   Plug 'chiel92/vim-autoformat'
@@ -226,6 +227,9 @@ func! jalcine#plugins#configure() abort " {{{
   "
   " test {{{
   let g:test#preserve_screen = 1
+  let g:test#strategy = {
+        \ 'nearest': 'neovim'
+        \ }
   " }}}
   "
   " languageclient {{{
@@ -340,6 +344,7 @@ func! jalcine#plugins#configure() abort " {{{
           \ 'repeat(" ", (&columns / 2) - (longest_line / 2)) . v:val')
       return centered_lines
   endfunction
+
   let g:startify_custom_header = s:filter_header(startify#fortune#cowsay())
   let g:startify_list_order = ['commands', 'sessions', 'bookmarks', 'files']
   let g:startify_files_number = 5

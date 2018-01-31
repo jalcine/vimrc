@@ -8,4 +8,5 @@ func! jalcine#tweaks#terminal#kill_extra_buffers() abort
   silent! MerginalClose
   silent! cclose
   silent! lclose
+  silent! bd Merginal:branchList
 endfunc

@@ -97,6 +97,8 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'keith/investigate.vim'
   Plug '~/src/investigate.vim'
   Plug 'itchyny/lightline.vim'
+  Plug 'vim-airline/vim-airline' |
+        \ Plug 'vim-airline/vim-airline-themes'
   Plug 'tpope/vim-dispatch'
   Plug 'radenling/vim-dispatch-neovim'
 
@@ -344,10 +346,16 @@ func! jalcine#plugins#configure() abort " {{{
   let g:localvimrc_persistent = 1
   let g:localvimrc_persistent_file = expand('$HOME/.config/nvim/localvimrc_persistent')
   let g:localvimrc_whitelist = [expand('$HOME/.lvimrc')]
-  " }}}
+  " }}
+  "
+  " {{ airline
+  " TODO: Update.
+  " }}
   " 
   let g:python_highlight_all = 1
   let g:notes_suffix = '.txt'
+  let g:goyo_width = '100'
+  let g:goyo_height = '70%'
 endfunc " }}}
 
 func! jalcine#plugins#configure_mappings() abort " {{{

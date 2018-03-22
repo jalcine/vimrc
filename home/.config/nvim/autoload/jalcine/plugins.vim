@@ -91,11 +91,8 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'henrik/vim-indexed-search'
 
   Plug 'chriskempson/base16-vim'
-  Plug 'bogado/file-line'
-  Plug 'farmergreg/vim-lastplace'
   Plug 'Shougo/echodoc.vim'
   Plug 'keith/investigate.vim'
-  Plug '~/src/investigate.vim'
   Plug 'itchyny/lightline.vim'
   Plug 'vim-airline/vim-airline' |
         \ Plug 'vim-airline/vim-airline-themes'
@@ -103,7 +100,7 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'radenling/vim-dispatch-neovim'
 
   Plug 'tmux-plugins/vim-tmux'
-  Plug 'tmux-plugins/vim-tmux-focus-events'
+        \ | Plug 'tmux-plugins/vim-tmux-focus-events'
 
   Plug 'powerman/vim-plugin-AnsiEsc'
   Plug 'zhm/TagHighlight'
@@ -190,6 +187,7 @@ func! jalcine#plugins#configure() abort " {{{
   let g:fzf_buffers_jump = 1
   let g:fzf_history_dir = expand('$HOME/.config/nvim/fzf-history')
   let g:fzf_gitignore_map = '<Leader>sgi'
+  let g:fzf_layout = { 'down': '~10%' }
   let g:fzf_colors = { 
         \ 'fg':      ['fg', 'Normal'],
         \ 'bg':      ['bg', 'Normal'],
@@ -308,6 +306,10 @@ func! jalcine#plugins#configure() abort " {{{
         \ ],
         \ 'scss': [
         \   'stylelint'
+        \ ],
+        \ 'python': [
+        \   'isort',
+        \   'autopep8'
         \ ]
         \ }
   " }}}
@@ -356,6 +358,7 @@ func! jalcine#plugins#configure() abort " {{{
   let g:notes_suffix = '.txt'
   let g:goyo_width = '100'
   let g:goyo_height = '70%'
+  let g:airline_powerline_fonts = 1
 endfunc " }}}
 
 func! jalcine#plugins#configure_mappings() abort " {{{

@@ -22,6 +22,7 @@ set hidden
 set pumheight=5
 set noshowmode noshowmatch
 set modeline modelines=10
+set lazyredraw
 
 "
 " Folding {{{

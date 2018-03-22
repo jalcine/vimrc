@@ -20,8 +20,7 @@ func! jalcine#plugins#setup() abort " {{{
   call jalcine#plugins#configure()
   call jalcine#plugins#define()
 
-  filetype plugin on
-  filetype indent on
+  filetype plugin indent on
   syntax on
 
   call jalcine#plugins#configure_mappings()
@@ -39,9 +38,6 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'tpope/vim-projectionist'
   Plug 'jdelkins/vim-correction'
   Plug 'tpope/vim-scriptease'
-  Plug 'tpope/vim-rsi'
-  Plug 'vim-utils/vim-husk'
-  Plug 'Lokaltog/vim-easymotion'
   Plug 'janko-m/vim-test'
   Plug 'tpope/vim-dotenv'
   Plug 'direnv/direnv.vim'
@@ -73,7 +69,6 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'editorconfig/editorconfig-vim'
   Plug 'embear/vim-localvimrc'
   Plug 'gabrielelana/vim-markdown'
-  Plug 'parkr/vim-jekyll'
   Plug 'jceb/vim-orgmode'
   Plug 'mattn/calendar-vim'
   Plug 'vim-scripts/SyntaxRange'
@@ -82,7 +77,7 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'mattn/emmet-vim'
   Plug 'mattn/webapi-vim'
   Plug 'mhinz/vim-signify'
-  Plug 'moll/vim-node'
+  Plug 'moll/vim-node', { 'for': 'javascript' }
 
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
@@ -96,15 +91,13 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'farmergreg/vim-lastplace'
   Plug 'Shougo/echodoc.vim'
   Plug 'keith/investigate.vim'
-  Plug '~/src/investigate.vim'
-  Plug 'itchyny/lightline.vim'
   Plug 'vim-airline/vim-airline' |
         \ Plug 'vim-airline/vim-airline-themes'
-  Plug 'tpope/vim-dispatch'
-  Plug 'radenling/vim-dispatch-neovim'
+  Plug 'tpope/vim-dispatch' |
+        \ Plug 'radenling/vim-dispatch-neovim'
 
-  Plug 'tmux-plugins/vim-tmux'
-  Plug 'tmux-plugins/vim-tmux-focus-events'
+  Plug 'tmux-plugins/vim-tmux' |
+        \ Plug 'tmux-plugins/vim-tmux-focus-events'
 
   Plug 'powerman/vim-plugin-AnsiEsc'
   Plug 'zhm/TagHighlight'
@@ -114,27 +107,25 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'tpope/vim-surround'
   Plug 'raimondi/delimitmate'
   Plug 'godlygeek/tabular'
-  Plug 'glts/vim-cottidie'
   Plug 'ryanss/vim-hackernews'
   Plug 'Shougo/context_filetype.vim'
   Plug 'tweekmonster/startuptime.vim'
   Plug 'wakatime/vim-wakatime'
 
   Plug 'sheerun/vim-polyglot'
-  Plug 'lambdalisue/vim-pyenv'
-  Plug 'jmcantrell/vim-virtualenv'
+  Plug 'lambdalisue/vim-pyenv', { 'for': 'python' }
+  Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
   Plug 'tmhedberg/SimpylFold'
-  Plug 'vim-ruby/vim-ruby'
-  Plug 'mxw/vim-jsx'
-  Plug 'moll/vim-node'
+  Plug 'vim-ruby/vim-ruby', { 'for': 'ruby'}
+  Plug 'mxw/vim-jsx', { 'for': 'javascript' }
   Plug 'ekalinin/Dockerfile.vim'
   Plug 'mattly/vim-markdown-enhancements'
   Plug 'tweekmonster/braceless.vim'
-  Plug 'othree/javascript-libraries-syntax.vim'
-  Plug 'othree/yajs.vim'
-  Plug 'othree/jsdoc-syntax.vim'
-  Plug 'heavenshell/vim-jsdoc'
-  Plug 'othree/es.next.syntax.vim'
+  Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
+  Plug 'othree/yajs.vim', { 'for': 'javascript' }
+  Plug 'othree/jsdoc-syntax.vim', { 'for': 'javascript' }
+  Plug 'heavenshell/vim-jsdoc', { 'for': 'javascript' }
+  Plug 'othree/es.next.syntax.vim', { 'for': 'javascript' }
 
   Plug 'reedes/vim-wordy'
   Plug 'kana/vim-textobj-user'
@@ -146,32 +137,32 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'reedes/vim-litecorrect'
 
   " {{{ IDE-esque
+  Plug 'dhruvasagar/vim-table-mode'
   Plug 'roxma/nvim-completion-manager'
+  Plug 'vim-scripts/dbext.vim'
   Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'make release' }
-  Plug 'roxma/nvim-cm-tern',  { 'do': 'yarn' }
   Plug 'roxma/ncm-github'
-  Plug 'Shougo/neco-syntax'
-  Plug 'Shougo/neoinclude.vim'
-  Plug 'calebeby/ncm-css'
-  Plug 'Shougo/neco-vim'
-  Plug 'davidhalter/jedi-vim'
-  Plug 'fisadev/vim-isort'
-  Plug 'othree/csscomplete.vim'
-  Plug 'elixir-editors/vim-elixir'
-  Plug 'roxma/ncm-rct-complete'
-  Plug 'rust-lang/rust.vim'
-  Plug 'racer-rust/vim-racer'
-  Plug 'roxma/nvim-cm-racer'
-  Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }
-  Plug 'JakeBecker/elixir-ls', { 'do' : 'mix do deps.get, deps.compile, compile' }
-  Plug 'sourcegraph/javascript-typescript-langserver', { 'do': 'yarn && yarn run build' }
   Plug 'fgrsnau/ncm-otherbuf'
-  Plug 'emberwatch/ember-language-server', { 'do': 'yarn && yarn run compile' }
+  Plug 'Shougo/neco-syntax'
+  Plug 'Shougo/neco-vim'
   Plug 'terryma/vim-multiple-cursors'
+  Plug 'roxma/nvim-cm-tern',  { 'do': 'yarn', 'for': 'javascript'}
+  Plug 'calebeby/ncm-css', { 'for': 'css' }
+  Plug 'davidhalter/jedi-vim', {'for': 'python'}
+  Plug 'fisadev/vim-isort', {'for': 'python'}
+  Plug 'othree/csscomplete.vim', {'for': 'css'}
+  Plug 'elixir-editors/vim-elixir', {'for': 'elixir'}
+  Plug 'roxma/ncm-rct-complete', {'for': 'ruby'}
+  Plug 'rust-lang/rust.vim', {'for': 'rust'}
+  Plug 'roxma/nvim-cm-racer', {'for': 'rust'}
+  Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh', 'for': 'elixir' }
+  Plug 'JakeBecker/elixir-ls', { 'do' : 'mix do deps.get, deps.compile, compile', 'for': 'elixir' }
+  Plug 'sourcegraph/javascript-typescript-langserver', { 'do': 'yarn && yarn run build', 'for': 'javascript' }
+  Plug 'emberwatch/ember-language-server', { 'do': 'yarn && yarn run compile', 'for': 'javascript' }
   " }}}
 
   Plug 'sirver/ultisnips'
-  Plug 'honza/vim-snippets'
+        \ |  Plug 'honza/vim-snippets'
 
   Plug 'roxma/vim-tmux-clipboard'
 
@@ -312,6 +303,9 @@ func! jalcine#plugins#configure() abort " {{{
         \ ],
         \ 'scss': [
         \   'stylelint'
+        \ ],
+        \ 'javascript': [
+        \   'eslint'
         \ ]
         \ }
   " }}}
@@ -416,6 +410,7 @@ func! jalcine#plugins#configure_mappings() abort " {{{
         \ ['c', ':Git commit<space>'],
         \ ['C', ':Gcommit --branch --verbose %<CR>'],
         \ ['co', ':Git checkout<space>'],
+        \ ['cO', ':Git checkout HEAD -- %<CR>'],
         \ ['f', ':Git fetch<space>'],
         \ ['fa', ':Git fetch --all<CR>'],
         \ ['p', ':Git push<space>'],

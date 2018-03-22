@@ -12,6 +12,9 @@ endfunc
 func! jalcine#language_client#start_for_ft(ft) abort
   if has_key(g:LanguageClient_serverCommands, a:ft) == 1
     LanguageClientStart
+    set formatexpr=LanguageClient_textDocument_rangeFormatting()
+  else
+    set formatexpr&vim
   endif
 endfunc
 

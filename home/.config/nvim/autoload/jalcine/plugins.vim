@@ -66,6 +66,7 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'nkantar/ght.vim'
   Plug 'junegunn/vim-github-dashboard'
   Plug 'jaxbot/github-issues.vim'
+  Plug 'int3/vim-extradite'
 
   Plug 'MattesGroeger/vim-bookmarks'
   Plug 'chiel92/vim-autoformat'
@@ -222,6 +223,9 @@ func! jalcine#plugins#configure() abort " {{{
   "
   " test {{{
   let g:test#preserve_screen = 1
+  let g:test#strategy = {
+        \ 'nearest': 'neovim'
+        \ }
   " }}}
   "
   " languageclient {{{

@@ -26,15 +26,15 @@ func! s:Configure() abort
         \           [ 'vcs', 'modified' ],
         \           [ 'icon', 'relativepath'] ],
         \ 'right': [ [ 'paste', ],
-        \            [ 'pos', 'readonly' ],
+        \            [ 'pos', 'readonly', 'ctags', 'lint' ],
         \            [ 'lineinfo', 'percent' ] ] }
   let g:lightline.inactive = {
         \ 'left': [ [ 'filename', 'modified' ] ],
         \ 'right': [ [ 'lineinfo' ],
         \            [ 'percent' ] ] }
   let g:lightline.tabline = {
-        \ 'left': [ [ 'tabs' ] ],
-        \ 'right': [ [ 'lint', 'ctags', 'pos', 'close' ] ] }
+        \ 'left': [ [ 'pos', 'close' ] ],
+        \ 'right': [ [ 'tabs' ] ] }
   let g:lightline.tab = {
         \ 'active': [ 'tabnum', 'filename', 'modified' ],
         \ 'inactive': [ 'tabnum', 'filename', 'modified' ] }
@@ -85,18 +85,7 @@ endfunction
 
 func! jalcine#status#get(part) abort
   if a:part == 'vcs'
-    if !exists('fugitive#head')
-      return ''
-    endif
-
-    let l:name = fugitive#head(8)
-    if empty(l:name)
-      return ""
-    else
-      let l:name = " " . l:name
-    endif
-
-    return l:name
+    return " " . fugitive#statusline()
   elseif a:part == 'icon'
     if !strlen(&filetype) 
       return ""

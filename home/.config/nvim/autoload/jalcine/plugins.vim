@@ -96,6 +96,7 @@ func! jalcine#plugins#define() abort " {{{
 
   Plug 'tmux-plugins/vim-tmux'
         \ | Plug 'tmux-plugins/vim-tmux-focus-events'
+        \ | Plug 'MikeDacre/tmux-zsh-vim-titles'
 
   Plug 'powerman/vim-plugin-AnsiEsc'
   Plug 'zhm/TagHighlight'

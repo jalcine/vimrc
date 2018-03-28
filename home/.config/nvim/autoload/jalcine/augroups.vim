@@ -42,9 +42,4 @@ func! jalcine#augroups#setup() abort
     au User GoyoEnter nested call jalcine#tweaks#goyo#enter()
     au User GoyoLeave nested call jalcine#tweaks#goyo#leave()
   augroup END
-
-  augroup vimrc_colorscheme_lightline
-    autocmd!
-    autocmd ColorScheme * call jalcine#status#update_colorscheme()
-  augroup END
 endfunc

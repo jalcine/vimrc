@@ -50,7 +50,8 @@ func! s:Configure() abort " {{{
     endfor
   endfor
 
-  if !exists('&formatexpr')
-    set formatexpr=LanguageClient_textDocument_rangeFormatting()
+  if exists('b:ft')
+    call jalcine#language_client#start_for_ft(b:ft)
   endif
+
 endfunc " }}}

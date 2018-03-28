@@ -106,7 +106,7 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'tpope/vim-surround'
   Plug 'raimondi/delimitmate'
   Plug 'godlygeek/tabular'
-  Plug 'ryanss/vim-hackernews'
+  Plug 'dansomething/vim-hackernews'
   Plug 'Shougo/context_filetype.vim'
   Plug 'tweekmonster/startuptime.vim'
   Plug 'wakatime/vim-wakatime'
@@ -139,7 +139,11 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'dhruvasagar/vim-table-mode'
   Plug 'roxma/nvim-completion-manager'
   Plug 'vim-scripts/dbext.vim'
-  Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'make release' }
+  Plug 'autozimu/LanguageClient-neovim',
+        \ {
+        \ 'branch': 'next',
+        \ 'do': 'make release'
+        \ }
   Plug 'roxma/ncm-github'
   Plug 'fgrsnau/ncm-otherbuf'
   Plug 'Shougo/neco-syntax'
@@ -182,7 +186,7 @@ func! jalcine#plugins#configure() abort " {{{
   let g:fzf_history_dir = expand('$HOME/.config/nvim/fzf-history')
   let g:fzf_gitignore_map = '<Leader>sgi'
   let g:fzf_layout = { 'down': '~10%' }
-  let g:fzf_colors = { 
+  let g:fzf_colors = {
         \ 'fg':      ['fg', 'Normal'],
         \ 'bg':      ['bg', 'Normal'],
         \ 'hl':      ['fg', 'Comment'],
@@ -194,7 +198,7 @@ func! jalcine#plugins#configure() abort " {{{
         \ 'pointer': ['fg', 'Exception'],
         \ 'marker':  ['fg', 'Keyword'],
         \ 'spinner': ['fg', 'Label'],
-        \ 'header': ['fg', 'Comment'] 
+        \ 'header': ['fg', 'Comment']
         \ }
   " }}}
   "
@@ -321,7 +325,7 @@ func! jalcine#plugins#configure() abort " {{{
   " {{{ vim-test
   let g:test#strategy = 'dispatch'
   " }}}
-  " 
+  "
   " github-dashboard {{{
   let g:github_dashboard = {
         \ 'position': 'top',
@@ -351,9 +355,34 @@ func! jalcine#plugins#configure() abort " {{{
   " }}
   "
   " {{ airline
-  " TODO: Update.
+  let g:airline_symbols = {}
+  let g:airline_symbols.crypt = '🔒'
+  let g:airline_symbols.linenr = '¶'
+  let g:airline_symbols.maxlinenr = '㏑'
+  let g:airline_symbols.branch = '⎇'
+  let g:airline_symbols.paste = 'Þ'
+  let g:airline_symbols.spell = 'Ꞩ'
+  let g:airline_symbols.notexists = '∄'
+  let g:airline_symbols.whitespace = 'Ξ'
+  let g:airline#extensions#virtualenv#enabled = 1
+  let g:airline#extensions#ale#enabled = 1
+  let g:airline#extensions#neomake#enabled = 1
+  let g:airline_mode_map = {
+        \ '__' : '-',
+        \ 'n'  : 'N',
+        \ 'i'  : 'I',
+        \ 'R'  : 'R',
+        \ 'c'  : 'C',
+        \ 'v'  : 'V',
+        \ 'V'  : 'V',
+        \ '' : 'V',
+        \ 's'  : 'S',
+        \ 'S'  : 'S',
+        \ '' : 'S',
+        \ }
+
   " }}
-  " 
+  "
   let g:python_highlight_all = 1
   let g:notes_suffix = '.txt'
   let g:goyo_width = '100'
@@ -385,7 +414,7 @@ func! jalcine#plugins#configure_mappings() abort " {{{
         \ ['g', ':TestVisit<CR>'],
         \ ], { 'prefix' : 't' })
   " }}}
-  " 
+  "
   " fzf {{{
   " Binds commands for using the fuzzy finder.
   call jalcine#mappings#apply_bulk([
@@ -460,8 +489,8 @@ func! jalcine#plugins#configure_mappings() abort " {{{
   " Expand a snippet when shown in the list.
   imap <expr> <CR> (pumvisible() ?  "\<c-y>\<Plug>(expand_or_nl)\<Plug>DiscretionaryEnd" : "\<CR>\<Plug>DiscretionaryEnd")
   imap <expr> <Plug>(expand_or_nl) (cm#completed_is_snippet() ? "\<Plug>(ultisnips_expand)\<CR>" : "\<CR>")
-	imap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-	imap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+  imap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+  imap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
   " }}}
   "

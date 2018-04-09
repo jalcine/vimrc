@@ -63,6 +63,8 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'junegunn/vim-github-dashboard'
   Plug 'jaxbot/github-issues.vim'
   Plug 'int3/vim-extradite'
+  Plug 'junkblocker/patchreview-vim'
+  Plug 'codegram/vim-codereview'
 
   Plug 'MattesGroeger/vim-bookmarks'
   Plug 'chiel92/vim-autoformat'
@@ -125,6 +127,8 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'othree/jsdoc-syntax.vim', { 'for': 'javascript' }
   Plug 'heavenshell/vim-jsdoc', { 'for': 'javascript' }
   Plug 'othree/es.next.syntax.vim', { 'for': 'javascript' }
+  Plug 'jalcine/cmake.vim'
+  Plug 'cquery-project/cquery', { 'for': 'c,c++', 'do': 'mkdir build && cd build && cmake .. && make' }
 
   Plug 'reedes/vim-wordy'
   Plug 'kana/vim-textobj-user'
@@ -142,7 +146,7 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'autozimu/LanguageClient-neovim',
         \ {
         \ 'branch': 'next',
-        \ 'do': 'make release'
+        \ 'do': 'bash install.sh',
         \ }
   Plug 'roxma/ncm-github'
   Plug 'fgrsnau/ncm-otherbuf'
@@ -162,6 +166,7 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'JakeBecker/elixir-ls', { 'do' : 'mix do deps.get, deps.compile, compile', 'for': 'elixir' }
   Plug 'sourcegraph/javascript-typescript-langserver', { 'do': 'yarn && yarn run build', 'for': 'javascript' }
   Plug 'emberwatch/ember-language-server', { 'do': 'yarn && yarn run compile', 'for': 'javascript' }
+  Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
   " }}}
 
   Plug 'sirver/ultisnips'
@@ -200,13 +205,6 @@ func! jalcine#plugins#configure() abort " {{{
         \ 'spinner': ['fg', 'Label'],
         \ 'header': ['fg', 'Comment']
         \ }
-  " }}}
-  "
-  " {{{ ale
-  let g:ale_fix_on_save = 1
-  let g:ale_lint_on_save = 1
-  let g:ale_echo_delay = 1
-  let g:ale_lint_on_text_changed = 0
   " }}}
   "
   " {{{ echodoc
@@ -301,6 +299,10 @@ func! jalcine#plugins#configure() abort " {{{
   "
   " ale {{{
   let g:ale_scss_stylelint_executable = s:vimrc_root . "/node_modules/.bin/stylelint"
+  let g:ale_fix_on_save = 1
+  let g:ale_lint_on_save = 1
+  let g:ale_echo_delay = 1
+  let g:ale_lint_on_text_changed = 0
   let g:ale_fixers = {
         \ 'css': [
         \   'stylelint'
@@ -313,7 +315,8 @@ func! jalcine#plugins#configure() abort " {{{
         \ ],
         \ 'python': [
         \   'isort',
-        \   'autopep8'
+        \   'autopep8',
+        \   'add_blank_lines_for_python_control_statements'
         \ ]
         \ }
   " }}}

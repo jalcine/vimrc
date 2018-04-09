@@ -24,6 +24,7 @@ func! jalcine#setup() abort " {{{
         \ 'journal',
         \ 'tags',
         \ 'projections',
+        \ 'abbrev',
         \ ]
 
   for l:sector in l:sectors

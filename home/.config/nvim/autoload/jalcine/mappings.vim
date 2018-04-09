@@ -7,7 +7,8 @@
 " options {{{
 let g:jalcine.mappings = {
       \ 'leader':  ',',
-      \ 'localLeader':  '\\'
+      \ 'localLeader':  '\\',
+      \ 'lang': {}
       \ }
 " }}}
 

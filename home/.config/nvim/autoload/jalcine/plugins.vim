@@ -358,6 +358,7 @@ func! jalcine#plugins#configure() abort " {{{
   " }}
   "
   " {{ airline
+  let g:airline_powerline_fonts = 1
   let g:airline_symbols = {}
   let g:airline_symbols.crypt = '🔒'
   let g:airline_symbols.linenr = '¶'
@@ -367,9 +368,10 @@ func! jalcine#plugins#configure() abort " {{{
   let g:airline_symbols.spell = 'Ꞩ'
   let g:airline_symbols.notexists = '∄'
   let g:airline_symbols.whitespace = 'Ξ'
-  let g:airline#extensions#virtualenv#enabled = 1
-  let g:airline#extensions#ale#enabled = 1
-  let g:airline#extensions#neomake#enabled = 1
+  let g:airline#extensions#disable_rtp_load = 1
+  let g:airline_extensions = ['branch', 'tabline', 'ale', 'branch', 'tagbar', 'hunks', 'gutentags', 'cursormode']
+  let g:airline#extensions#quickfix#quickfix_text = 'Q'
+  let g:airline#extensions#quickfix#location_text = 'L'
   let g:airline_mode_map = {
         \ '__' : '-',
         \ 'n'  : 'N',
@@ -390,7 +392,6 @@ func! jalcine#plugins#configure() abort " {{{
   let g:notes_suffix = '.txt'
   let g:goyo_width = '100'
   let g:goyo_height = '70%'
-  let g:airline_powerline_fonts = 1
 endfunc " }}}
 
 func! jalcine#plugins#configure_mappings() abort " {{{

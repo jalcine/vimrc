@@ -10,9 +10,11 @@ func! jalcine#language_client#setup() abort
 endfunc
 
 func! jalcine#language_client#start_for_ft(ft) abort
-  let l:hasStartCommand = has_key(g:LanguageClient_serverCommands, a:ft)
-  if l:hasStartCommand == 1
+  if has_key(g:LanguageClient_serverCommands, a:ft) == 1
     LanguageClientStart
+    set formatexpr=LanguageClient_textDocument_rangeFormatting()
+  else
+    set formatexpr&vim
   endif
 endfunc
 
@@ -26,7 +28,9 @@ func! s:Configure() abort " {{{
         \ 'ruby': [ s:vimrc_root . '/bin/language_server-ruby' ],
         \ 'elixir': [ 'neovim-language-server-elixir'],
         \ 'css': ['css-language-server', '--stdio'],
-        \ 'ember': ['neovim-language-server-ember']
+        \ 'ember': ['neovim-language-server-ember'],
+        \ 'cpp': ['cquery', '--log-file=/tmp/cq.log'],
+        \ 'c': ['cquery', '--log-file=/tmp/cq.log'],
         \ }
 
   if exists('$DEBUG')
@@ -48,5 +52,8 @@ func! s:Configure() abort " {{{
     endfor
   endfor
 
-  set formatexpr=LanguageClient_textDocument_rangeFormatting()
+  if exists('b:ft')
+    call jalcine#language_client#start_for_ft(b:ft)
+  endif
+
 endfunc " }}}

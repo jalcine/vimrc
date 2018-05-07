@@ -17,13 +17,8 @@ let g:jalcine.plugins = {
 func! jalcine#plugins#setup() abort " {{{
   filetype off
 
-  call jalcine#plugins#define()
-  LocalVimRC
   call jalcine#plugins#configure()
-
-  if exists('$NVIM_VERBOSE')
-    let $NVIM_PYTHON_LOG_FILE=expand('$HOME/.config/nvim/logs/python.log')
-  endif
+  call jalcine#plugins#define()
 
   filetype plugin indent on
   syntax on
@@ -43,16 +38,14 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'tpope/vim-projectionist'
   Plug 'jdelkins/vim-correction'
   Plug 'tpope/vim-scriptease'
-  Plug 'tpope/vim-rsi'
-  Plug 'vim-utils/vim-husk'
-  Plug 'Lokaltog/vim-easymotion'
   Plug 'janko-m/vim-test'
   Plug 'tpope/vim-dotenv'
   Plug 'direnv/direnv.vim'
   Plug 'w0rp/ale'
+  Plug 'wincent/terminus'
 
   Plug 'tpope/vim-commentary'
-  Plug 'cbaumhardt/vim-commentary-boxed'
+        \ | Plug 'cbaumhardt/vim-commentary-boxed'
 
   Plug 'xolox/vim-misc'
   Plug 'xolox/vim-notes'
@@ -69,42 +62,42 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'nkantar/ght.vim'
   Plug 'junegunn/vim-github-dashboard'
   Plug 'jaxbot/github-issues.vim'
+  Plug 'int3/vim-extradite'
+  Plug 'junkblocker/patchreview-vim'
+  Plug 'codegram/vim-codereview'
 
   Plug 'MattesGroeger/vim-bookmarks'
   Plug 'chiel92/vim-autoformat'
   Plug 'editorconfig/editorconfig-vim'
   Plug 'embear/vim-localvimrc'
   Plug 'gabrielelana/vim-markdown'
-  Plug 'parkr/vim-jekyll'
   Plug 'jceb/vim-orgmode'
   Plug 'mattn/calendar-vim'
   Plug 'vim-scripts/SyntaxRange'
   Plug 'chrisbra/NrrwRgn'
   Plug 'junegunn/gv.vim'
-  Plug 'mattn/emmet-vim'
   Plug 'mattn/webapi-vim'
   Plug 'mhinz/vim-signify'
-  Plug 'moll/vim-node'
+  Plug 'moll/vim-node', { 'for': 'javascript' }
 
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-  Plug 'junegunn/fzf.vim'
-  Plug 'fszymanski/fzf-gitignore', { 'do' : ':UpdateRemotePlugins' }
-  Plug 'tweekmonster/fzf-filemru'
+        \ | Plug 'junegunn/fzf.vim'
+        \ | Plug 'fszymanski/fzf-gitignore', { 'do' : ':UpdateRemotePlugins' }
+        \ | Plug 'tweekmonster/fzf-filemru'
 
   Plug 'henrik/vim-indexed-search'
 
   Plug 'chriskempson/base16-vim'
-  Plug 'bogado/file-line'
-  Plug 'farmergreg/vim-lastplace'
   Plug 'Shougo/echodoc.vim'
   Plug 'keith/investigate.vim'
-  Plug '~/src/investigate.vim'
-  Plug 'itchyny/lightline.vim'
-  Plug 'tpope/vim-dispatch'
-  Plug 'radenling/vim-dispatch-neovim'
+  Plug 'vim-airline/vim-airline' |
+        \ Plug 'vim-airline/vim-airline-themes'
+  Plug 'tpope/vim-dispatch' |
+        \ Plug 'radenling/vim-dispatch-neovim'
 
   Plug 'tmux-plugins/vim-tmux'
-  Plug 'tmux-plugins/vim-tmux-focus-events'
+        \ | Plug 'tmux-plugins/vim-tmux-focus-events'
+        \ | Plug 'MikeDacre/tmux-zsh-vim-titles'
 
   Plug 'powerman/vim-plugin-AnsiEsc'
   Plug 'zhm/TagHighlight'
@@ -114,27 +107,24 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'tpope/vim-surround'
   Plug 'raimondi/delimitmate'
   Plug 'godlygeek/tabular'
-  Plug 'glts/vim-cottidie'
-  Plug 'ryanss/vim-hackernews'
   Plug 'Shougo/context_filetype.vim'
   Plug 'tweekmonster/startuptime.vim'
   Plug 'wakatime/vim-wakatime'
 
   Plug 'sheerun/vim-polyglot'
-  Plug 'lambdalisue/vim-pyenv'
-  Plug 'jmcantrell/vim-virtualenv'
-  Plug 'tmhedberg/SimpylFold'
-  Plug 'vim-ruby/vim-ruby'
-  Plug 'mxw/vim-jsx'
-  Plug 'moll/vim-node'
+  Plug 'lambdalisue/vim-pyenv', { 'for': 'python' }
+  Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
+  Plug 'vim-ruby/vim-ruby', { 'for': 'ruby'}
+  Plug 'mxw/vim-jsx', { 'for': 'javascript' }
   Plug 'ekalinin/Dockerfile.vim'
-  Plug 'mattly/vim-markdown-enhancements'
   Plug 'tweekmonster/braceless.vim'
-  Plug 'othree/javascript-libraries-syntax.vim'
-  Plug 'othree/yajs.vim'
-  Plug 'othree/jsdoc-syntax.vim'
-  Plug 'heavenshell/vim-jsdoc'
-  Plug 'othree/es.next.syntax.vim'
+  Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
+  Plug 'othree/yajs.vim', { 'for': 'javascript' }
+  Plug 'othree/jsdoc-syntax.vim', { 'for': 'javascript' }
+  Plug 'heavenshell/vim-jsdoc', { 'for': 'javascript' }
+  Plug 'othree/es.next.syntax.vim', { 'for': 'javascript' }
+  Plug 'jalcine/cmake.vim'
+  Plug 'cquery-project/cquery', { 'for': 'c,c++', 'do': 'mkdir -p build && cd build && cmake .. && make' }
 
   Plug 'reedes/vim-wordy'
   Plug 'kana/vim-textobj-user'
@@ -146,32 +136,36 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'reedes/vim-litecorrect'
 
   " {{{ IDE-esque
+  Plug 'dhruvasagar/vim-table-mode'
   Plug 'roxma/nvim-completion-manager'
-  Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': './install.sh' }
-  Plug 'roxma/nvim-cm-tern',  { 'do': 'yarn' }
+  Plug 'vim-scripts/dbext.vim'
+  Plug 'autozimu/LanguageClient-neovim',
+        \ {
+        \ 'branch': 'next',
+        \ 'do': 'bash install.sh',
+        \ }
   Plug 'roxma/ncm-github'
-  Plug 'Shougo/neco-syntax'
-  Plug 'Shougo/neoinclude.vim'
-  Plug 'calebeby/ncm-css'
-  Plug 'Shougo/neco-vim'
-  Plug 'davidhalter/jedi-vim'
-  Plug 'fisadev/vim-isort'
-  Plug 'othree/csscomplete.vim'
-  Plug 'elixir-editors/vim-elixir'
-  Plug 'roxma/ncm-rct-complete'
-  Plug 'rust-lang/rust.vim'
-  Plug 'racer-rust/vim-racer'
-  Plug 'roxma/nvim-cm-racer'
-  Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }
-  Plug 'JakeBecker/elixir-ls', { 'do' : 'mix do deps.get, deps.compile, compile' }
-  Plug 'sourcegraph/javascript-typescript-langserver', { 'do': 'yarn && yarn run build' }
   Plug 'fgrsnau/ncm-otherbuf'
-  Plug 'emberwatch/ember-language-server', { 'do': 'yarn && yarn run compile' }
+  Plug 'Shougo/neco-syntax'
+  Plug 'Shougo/neco-vim'
   Plug 'terryma/vim-multiple-cursors'
+  Plug 'roxma/nvim-cm-tern',  { 'do': 'yarn', 'for': 'javascript'}
+  Plug 'calebeby/ncm-css', { 'for': 'css' }
+  Plug 'davidhalter/jedi-vim', {'for': 'python'}
+  Plug 'fisadev/vim-isort', {'for': 'python'}
+  Plug 'othree/csscomplete.vim', {'for': 'css'}
+  Plug 'elixir-editors/vim-elixir', {'for': 'elixir'}
+  Plug 'roxma/ncm-rct-complete', {'for': 'ruby'}
+  Plug 'rust-lang/rust.vim', {'for': 'rust'}
+  Plug 'roxma/nvim-cm-racer', {'for': 'rust'}
+  Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh', 'for': 'elixir' }
+  Plug 'JakeBecker/elixir-ls', { 'do' : 'mix do deps.get, deps.compile, compile', 'for': 'elixir' }
+  Plug 'sourcegraph/javascript-typescript-langserver', { 'do': 'yarn && yarn run build', 'for': 'javascript' }
+  Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
   " }}}
 
   Plug 'sirver/ultisnips'
-  Plug 'honza/vim-snippets'
+        \ |  Plug 'honza/vim-snippets'
 
   Plug 'roxma/vim-tmux-clipboard'
 
@@ -180,6 +174,7 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'junegunn/goyo.vim'
   Plug 'junegunn/limelight.vim'
   Plug 'ryanoasis/vim-devicons'
+  Plug 'bronson/vim-trailing-whitespace'
 
   call plug#end()
 endfunc " }}}
@@ -191,7 +186,8 @@ func! jalcine#plugins#configure() abort " {{{
   let g:fzf_buffers_jump = 1
   let g:fzf_history_dir = expand('$HOME/.config/nvim/fzf-history')
   let g:fzf_gitignore_map = '<Leader>sgi'
-  let g:fzf_colors = { 
+  let g:fzf_layout = { 'down': '~10%' }
+  let g:fzf_colors = {
         \ 'fg':      ['fg', 'Normal'],
         \ 'bg':      ['bg', 'Normal'],
         \ 'hl':      ['fg', 'Comment'],
@@ -203,15 +199,8 @@ func! jalcine#plugins#configure() abort " {{{
         \ 'pointer': ['fg', 'Exception'],
         \ 'marker':  ['fg', 'Keyword'],
         \ 'spinner': ['fg', 'Label'],
-        \ 'header': ['fg', 'Comment'] 
+        \ 'header': ['fg', 'Comment']
         \ }
-  " }}}
-  "
-  " {{{ ale
-  let g:ale_fix_on_save = 1
-  let g:ale_lint_on_save = 1
-  let g:ale_echo_delay = 1
-  let g:ale_lint_on_text_changed = 0
   " }}}
   "
   " {{{ echodoc
@@ -225,6 +214,9 @@ func! jalcine#plugins#configure() abort " {{{
   "
   " test {{{
   let g:test#preserve_screen = 1
+  let g:test#strategy = {
+        \ 'nearest': 'neovim'
+        \ }
   " }}}
   "
   " languageclient {{{
@@ -269,7 +261,7 @@ func! jalcine#plugins#configure() abort " {{{
   let g:rooter_use_lcd = 1
   let g:rooter_silent_chdir = 1
   let g:rooter_resolve_links = 1
-  let g:rooter_change_directory_for_non_project_files = ''
+  let g:rooter_change_directory_for_non_project_files = 'home'
   " }}}
   "
   " ncm {{{
@@ -307,8 +299,24 @@ func! jalcine#plugins#configure() abort " {{{
         \ 'css': [
         \   'stylelint'
         \ ],
+        \ 'elixir': [
+        \   'mix_format'
+        \ ],
         \ 'scss': [
         \   'stylelint'
+        \ ],
+        \ 'javascript': [
+        \   'eslint',
+        \   'importjs',
+        \   'standard'
+        \ ],
+        \ 'json': [
+        \   'jq'
+        \ ],
+        \ 'python': [
+        \   'isort',
+        \   'autopep8',
+        \   'add_blank_lines_for_python_control_statements'
         \ ]
         \ }
   " }}}
@@ -320,7 +328,7 @@ func! jalcine#plugins#configure() abort " {{{
   " {{{ vim-test
   let g:test#strategy = 'dispatch'
   " }}}
-  " 
+  "
   " github-dashboard {{{
   let g:github_dashboard = {
         \ 'position': 'top',
@@ -331,13 +339,58 @@ func! jalcine#plugins#configure() abort " {{{
   " merginal {{{
   let g:merginal_windowSize = 35
   " }}}
-
-  let g:localvimrc_persistent = 2
+  "
+  " startify {{{
+  let g:startify_list_order = ['commands', 'sessions', 'bookmarks', 'files']
+  let g:startify_files_number = 5
+  let g:startify_change_to_dir = 0
+  let g:startify_fortune_use_unicode = 1
+  let g:startify_session_before_save = [
+        \ 'silent! jalcine#tweaks#terminal#kill_extra_buffers()'
+        \ ]
+  " }}}
+  "
+  " {{ localvimrc
   let g:localvimrc_sandbox = 0
-  let g:localvimrc_persistent = 2
+  let g:localvimrc_persistent = 1
+  let g:localvimrc_persistent_file = expand('$HOME/.config/nvim/localvimrc_persistent')
   let g:localvimrc_whitelist = [expand('$HOME/.lvimrc')]
+  " }}
+  "
+  " {{ airline
+  let g:airline_symbols = {}
+  let g:airline_symbols.crypt = '🔒'
+  let g:airline_symbols.linenr = '¶'
+  let g:airline_symbols.maxlinenr = '㏑'
+  let g:airline_symbols.branch = '⎇'
+  let g:airline_symbols.paste = 'Þ'
+  let g:airline_symbols.spell = 'Ꞩ'
+  let g:airline_symbols.notexists = '∄'
+  let g:airline_symbols.whitespace = 'Ξ'
+  let g:airline#extensions#virtualenv#enabled = 1
+  let g:airline#extensions#ale#enabled = 1
+  let g:airline#extensions#neomake#enabled = 1
+  let g:airline_mode_map = {
+        \ '__' : '-',
+        \ 'n'  : 'N',
+        \ 'i'  : 'I',
+        \ 'R'  : 'R',
+        \ 'c'  : 'C',
+        \ 'v'  : 'V',
+        \ 'V'  : 'V',
+        \ '' : 'V',
+        \ 's'  : 'S',
+        \ 'S'  : 'S',
+        \ '' : 'S',
+        \ }
+
+  " }}
+  "
   let g:python_highlight_all = 1
   let g:notes_suffix = '.txt'
+  let g:goyo_width = '100'
+  let g:goyo_height = '70%'
+  let g:airline_powerline_fonts = 1
 endfunc " }}}
 
 func! jalcine#plugins#configure_mappings() abort " {{{
@@ -364,7 +417,7 @@ func! jalcine#plugins#configure_mappings() abort " {{{
         \ ['g', ':TestVisit<CR>'],
         \ ], { 'prefix' : 't' })
   " }}}
-  " 
+  "
   " fzf {{{
   " Binds commands for using the fuzzy finder.
   call jalcine#mappings#apply_bulk([
@@ -391,9 +444,10 @@ func! jalcine#plugins#configure_mappings() abort " {{{
         \ ['ab', ':Git add %<cr>'],
         \ ['b', ':Gbrowse<CR>'],
         \ ['b', ':Gbrowse<CR>'],
-        \ ['c', ':Git commit<space>'],
+        \ ['c', ':Gcommit<CR>'],
         \ ['C', ':Gcommit --branch --verbose %<CR>'],
         \ ['co', ':Git checkout<space>'],
+        \ ['cO', ':Git checkout HEAD -- %<CR>'],
         \ ['f', ':Git fetch<space>'],
         \ ['fa', ':Git fetch --all<CR>'],
         \ ['p', ':Git push<space>'],
@@ -438,8 +492,8 @@ func! jalcine#plugins#configure_mappings() abort " {{{
   " Expand a snippet when shown in the list.
   imap <expr> <CR> (pumvisible() ?  "\<c-y>\<Plug>(expand_or_nl)\<Plug>DiscretionaryEnd" : "\<CR>\<Plug>DiscretionaryEnd")
   imap <expr> <Plug>(expand_or_nl) (cm#completed_is_snippet() ? "\<Plug>(ultisnips_expand)\<CR>" : "\<CR>")
-	imap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-	imap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+  imap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+  imap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
   " }}}
   "
@@ -448,4 +502,12 @@ func! jalcine#plugins#configure_mappings() abort " {{{
   nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
   nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
   " }}}
+
+  nnoremap <silent> <CR><CR> :call <SID>ReloadPlugins()<CR>
 endfunc " }}}
+
+func! s:ReloadPlugins() abort
+  PlugInstall!
+  PlugUpdate!
+  PlugClean!
+endfunc

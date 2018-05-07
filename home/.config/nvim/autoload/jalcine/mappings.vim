@@ -7,7 +7,8 @@
 " options {{{
 let g:jalcine.mappings = {
       \ 'leader':  ',',
-      \ 'localLeader':  '\\'
+      \ 'localLeader':  '\\',
+      \ 'lang': {}
       \ }
 " }}}
 
@@ -104,11 +105,11 @@ func! jalcine#mappings#setup() abort " {{{
         \ ['e', '<ESC>:cnext<CR>'],
         \ ['f', '<ESC>:cfirst<CR>'],
         \ ['l', '<ESC>:clast<CR>'],
-        \ ['o', '<ESC>:cwindow<CR>'],
+        \ ['o', '<ESC>:Copen<CR>'],
         \ ['p', '<ESC>:cprevious<CR>'],
         \ ['x', '<ESC>:cclose<CR>'],
         \ ['X', '<ESC>:windo cclose<CR>'],
-        \ ], { 'prefix': 'q' })
+        \ ], { 'prefix': 'c' })
   "
   " loclist
   call jalcine#mappings#apply_bulk([

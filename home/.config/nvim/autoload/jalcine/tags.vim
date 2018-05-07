@@ -69,11 +69,37 @@ func! s:ConfigureTagbar() abort " {{{
         \ 'k:Heading_L3'
         \ ]
         \ }
+  let g:tagbar_type_typescript = {                                                  
+    \ 'ctagsbin' : s:vimrc_root . '/node_modules/.bin/tstags',                                                        
+    \ 'ctagsargs' : '-f-',                                                           
+    \ 'kinds': [                                                                     
+      \ 'e:enums:0:1',                                                               
+      \ 'f:function:0:1',                                                            
+      \ 't:typealias:0:1',                                                           
+      \ 'M:Module:0:1',                                                              
+      \ 'I:import:0:1',                                                              
+      \ 'i:interface:0:1',                                                           
+      \ 'C:class:0:1',                                                               
+      \ 'm:method:0:1',                                                              
+      \ 'p:property:0:1',                                                            
+      \ 'v:variable:0:1',                                                            
+      \ 'c:const:0:1',                                                              
+    \ ],                                                                            
+    \ 'sort' : 0                                                                    
+  \ }  
 endfunc " }}}
 
 func! s:ConfigureGutentags() abort " {{{
-  let g:gutentags_generate_on_empty_buffer = 1
-  let g:gutentags_cache_dir = s:vimrc_root . "/"
+  let g:gutentags_generate_on_empty_buffer = 0
+  let g:gutentags_ctags_tagfile = '.tags'
+  let g:gutentags_cache_dir = s:vimrc_root . "/tags"
   let g:gutentags_ctags_executable_ruby = g:tagbar_type_ruby['ctagsbin']
   let g:gutentags_ctags_executable_javascript = g:tagbar_type_javascript['ctagsbin']
+  let g:gutentags_file_list_command = {
+        \ 'markers': {
+        \ '.git': 'git ls-files',
+        \ '.hg': 'hg files',
+        \ },
+        \ }
+
 endfunc "}}}

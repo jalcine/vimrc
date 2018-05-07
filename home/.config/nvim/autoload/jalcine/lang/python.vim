@@ -27,6 +27,7 @@ func! s:SetPythonOptions() abort
   let g:python_slow_sync = 1
   let g:python3_host_prog = systemlist('PYENV_VERSION=neovim-py3 pyenv which python3')[0]
   let g:python_host_prog = systemlist('PYENV_VERSION=neovim-py2 pyenv which python2')[0]
+
 endfunc
 
 func! jalcine#lang#python#setup() abort

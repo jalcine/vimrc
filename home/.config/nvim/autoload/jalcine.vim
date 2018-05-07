@@ -21,10 +21,10 @@ func! jalcine#setup() abort " {{{
         \ 'mappings',
         \ 'theme',
         \ 'language_client',
-        \ 'status',
         \ 'journal',
         \ 'tags',
         \ 'projections',
+        \ 'abbrev',
         \ ]
 
   for l:sector in l:sectors

@@ -45,7 +45,7 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'wincent/terminus'
 
   Plug 'tpope/vim-commentary'
-  Plug 'cbaumhardt/vim-commentary-boxed'
+        \ | Plug 'cbaumhardt/vim-commentary-boxed'
 
   Plug 'xolox/vim-misc'
   Plug 'xolox/vim-notes'
@@ -76,15 +76,14 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'vim-scripts/SyntaxRange'
   Plug 'chrisbra/NrrwRgn'
   Plug 'junegunn/gv.vim'
-  Plug 'mattn/emmet-vim'
   Plug 'mattn/webapi-vim'
   Plug 'mhinz/vim-signify'
   Plug 'moll/vim-node', { 'for': 'javascript' }
 
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-  Plug 'junegunn/fzf.vim'
-  Plug 'fszymanski/fzf-gitignore', { 'do' : ':UpdateRemotePlugins' }
-  Plug 'tweekmonster/fzf-filemru'
+        \ | Plug 'junegunn/fzf.vim'
+        \ | Plug 'fszymanski/fzf-gitignore', { 'do' : ':UpdateRemotePlugins' }
+        \ | Plug 'tweekmonster/fzf-filemru'
 
   Plug 'henrik/vim-indexed-search'
 
@@ -108,7 +107,6 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'tpope/vim-surround'
   Plug 'raimondi/delimitmate'
   Plug 'godlygeek/tabular'
-  Plug 'dansomething/vim-hackernews'
   Plug 'Shougo/context_filetype.vim'
   Plug 'tweekmonster/startuptime.vim'
   Plug 'wakatime/vim-wakatime'
@@ -116,11 +114,9 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'sheerun/vim-polyglot'
   Plug 'lambdalisue/vim-pyenv', { 'for': 'python' }
   Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
-  Plug 'tmhedberg/SimpylFold'
   Plug 'vim-ruby/vim-ruby', { 'for': 'ruby'}
   Plug 'mxw/vim-jsx', { 'for': 'javascript' }
   Plug 'ekalinin/Dockerfile.vim'
-  Plug 'mattly/vim-markdown-enhancements'
   Plug 'tweekmonster/braceless.vim'
   Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
   Plug 'othree/yajs.vim', { 'for': 'javascript' }
@@ -128,7 +124,7 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'heavenshell/vim-jsdoc', { 'for': 'javascript' }
   Plug 'othree/es.next.syntax.vim', { 'for': 'javascript' }
   Plug 'jalcine/cmake.vim'
-  Plug 'cquery-project/cquery', { 'for': 'c,c++', 'do': 'mkdir build && cd build && cmake .. && make' }
+  Plug 'cquery-project/cquery', { 'for': 'c,c++', 'do': 'mkdir -p build && cd build && cmake .. && make' }
 
   Plug 'reedes/vim-wordy'
   Plug 'kana/vim-textobj-user'
@@ -165,7 +161,6 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh', 'for': 'elixir' }
   Plug 'JakeBecker/elixir-ls', { 'do' : 'mix do deps.get, deps.compile, compile', 'for': 'elixir' }
   Plug 'sourcegraph/javascript-typescript-langserver', { 'do': 'yarn && yarn run build', 'for': 'javascript' }
-  Plug 'emberwatch/ember-language-server', { 'do': 'yarn && yarn run compile', 'for': 'javascript' }
   Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
   " }}}
 
@@ -179,6 +174,7 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'junegunn/goyo.vim'
   Plug 'junegunn/limelight.vim'
   Plug 'ryanoasis/vim-devicons'
+  Plug 'bronson/vim-trailing-whitespace'
 
   call plug#end()
 endfunc " }}}
@@ -299,19 +295,23 @@ func! jalcine#plugins#configure() abort " {{{
   "
   " ale {{{
   let g:ale_scss_stylelint_executable = s:vimrc_root . "/node_modules/.bin/stylelint"
-  let g:ale_fix_on_save = 1
-  let g:ale_lint_on_save = 1
-  let g:ale_echo_delay = 1
-  let g:ale_lint_on_text_changed = 0
   let g:ale_fixers = {
         \ 'css': [
         \   'stylelint'
+        \ ],
+        \ 'elixir': [
+        \   'mix_format'
         \ ],
         \ 'scss': [
         \   'stylelint'
         \ ],
         \ 'javascript': [
-        \   'eslint'
+        \   'eslint',
+        \   'importjs',
+        \   'standard'
+        \ ],
+        \ 'json': [
+        \   'jq'
         \ ],
         \ 'python': [
         \   'isort',
@@ -445,7 +445,7 @@ func! jalcine#plugins#configure_mappings() abort " {{{
         \ ['ab', ':Git add %<cr>'],
         \ ['b', ':Gbrowse<CR>'],
         \ ['b', ':Gbrowse<CR>'],
-        \ ['c', ':Git commit<space>'],
+        \ ['c', ':Gcommit<CR>'],
         \ ['C', ':Gcommit --branch --verbose %<CR>'],
         \ ['co', ':Git checkout<space>'],
         \ ['cO', ':Git checkout HEAD -- %<CR>'],
@@ -503,4 +503,12 @@ func! jalcine#plugins#configure_mappings() abort " {{{
   nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
   nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
   " }}}
+
+  nnoremap <silent> <CR><CR> :call <SID>ReloadPlugins()<CR>
 endfunc " }}}
+
+func! s:ReloadPlugins() abort
+  PlugInstall!
+  PlugUpdate!
+  PlugClean!
+endfunc

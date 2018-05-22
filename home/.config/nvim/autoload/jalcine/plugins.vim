@@ -306,9 +306,7 @@ func! jalcine#plugins#configure() abort " {{{
         \   'stylelint'
         \ ],
         \ 'javascript': [
-        \   'eslint',
-        \   'importjs',
-        \   'standard'
+        \   'eslint'
         \ ],
         \ 'json': [
         \   'jq'
@@ -319,6 +317,10 @@ func! jalcine#plugins#configure() abort " {{{
         \   'add_blank_lines_for_python_control_statements'
         \ ]
         \ }
+  let g:ale_fixers['vue'] = g:ale_fixers['javascript']
+  let g:ale_fixers['jsx'] = g:ale_fixers['javascript']
+  let g:ale_fixers['typescript'] = g:ale_fixers['javascript']
+  let g:ale_fixers['css'] = g:ale_fixers['scss']
   " }}}
   "
   " investigate {{{

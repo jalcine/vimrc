@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-
-cd "$HOME/.config/nvim/plugins/ember-language-server" || exit
-ndenv exec node lib/start-server.js

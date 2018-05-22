@@ -1,6 +1,6 @@
 " File:          jalcine/language_client.vim
 " Author:        Jacky Alcine <yo@jacky.wtf>
-" Description:   Tweaks and commands for using LanguageServers. 
+" Description:   Tweaks and commands for using LanguageServers.
 " Last Modified: November 28, 2017
 
 let s:vimrc_root = fnamemodify($MYVIMRC, ':p:h')
@@ -28,7 +28,6 @@ func! s:Configure() abort " {{{
         \ 'ruby': [ s:vimrc_root . '/bin/language_server-ruby' ],
         \ 'elixir': [ 'neovim-language-server-elixir'],
         \ 'css': ['css-language-server', '--stdio'],
-        \ 'ember': ['neovim-language-server-ember'],
         \ 'cpp': ['cquery', '--log-file=/tmp/cq.log'],
         \ 'c': ['cquery', '--log-file=/tmp/cq.log'],
         \ }
@@ -42,8 +41,7 @@ func! s:Configure() abort " {{{
   endif
 
   let l:aliases = {
-        \ 'javascript': ['javascript.jsx', 'jsx'],
-        \ 'ember': ['javascript.ember']
+        \ 'javascript': ['javascript.jsx', 'jsx', 'vue'],
         \ }
 
   for l:alias in keys(l:aliases)

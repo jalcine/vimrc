@@ -12,5 +12,6 @@ if v:vim_did_enter
   call jalcine#setup()
 else
   au VimEnter * call jalcine#setup()
+  doautocmd VimEnter
 endif
 " }}}

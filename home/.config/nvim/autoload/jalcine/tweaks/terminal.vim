@@ -13,7 +13,7 @@ endfunc
 
 func! jalcine#tweaks#terminal#update_colors() abort
   " :h term-dependent-settings
-  if $TERM =~ '^\(rxvt\|screen\|interix\|putty\)\(-.*\)\?$'
+  if &term =~ '^\(rxvt\|interix\|putty\)\(-.*\)\?$'
     set notermguicolors
   elseif $TERM =~ '^\(tmux\|iterm\|vte\|gnome\)\(-.*\)\?$'
     set termguicolors
@@ -25,9 +25,13 @@ func! jalcine#tweaks#terminal#update_colors() abort
     elseif $VTE_VERSION != ''
       set termguicolors
     else
+      echo "woop"
       set notermguicolors
     endif
   endif
+
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endfunc
 
 func! jalcine#tweaks#terminal#init() abort

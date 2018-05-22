@@ -4,15 +4,15 @@
 " Last Modified: August 08, 2017
 " vim: set fdm=marker foldlevel=0 :
 
-set encoding=utf-8
+set encoding=utf-8 fileencoding=utf-8
 scriptencoding utf-8
 
 " Visual Editor Components {{{
 set laststatus=2
 set ruler
-set number relativenumber
+set number numberwidth=6 relativenumber
 set termguicolors guicursor=
-set nocursorline nocursorcolumn
+set cursorline nocursorcolumn
 set sidescrolloff=1 sidescroll=1
 set conceallevel=2 concealcursor=nivc
 set nowrap
@@ -100,3 +100,4 @@ set tags+=$HOME/.config/nvim/tags/*
 " Disable cscope.
 set nocscopetag
 " }}}
+

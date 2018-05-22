@@ -24,22 +24,33 @@ func! jalcine#augroups#setup() abort
 
   augroup vimrc-langsupport
     au!
-    au FileType *              call jalcine#language_client#start_for_ft("<amatch>")
-    au FileType python         call jalcine#lang#python#tweak()
-    au FileType php            call jalcine#lang#php#tweak()
-    au FileType css            setl omnifunc=csscomplete#CompleteCSS noci
-    au FileType markdown,mkd   call jalcine#prose#enhance()
-    au FileType text,txtfmt    call jalcine#prose#enhance()
-    au FileType yaml           BracelessEnable +indent +fold +highlight
-    au FileType python         BracelessEnable +indent +fold +highlight
-    au FileType man            setlocal conceallevel=0
-    au FileType quickfix call jalcine#tweaks#terminal#adapt()
-    au FileType loclist  call jalcine#tweaks#terminal#adapt()
+    au FileType *              nested call jalcine#language_client#start_for_ft("<amatch>")
+    au FileType python         nested call jalcine#lang#python#tweak()
+    au FileType php            nested call jalcine#lang#php#tweak()
+    au FileType css            nested setl omnifunc=csscomplete#CompleteCSS noci
+    au FileType markdown,mkd   nested call jalcine#prose#enhance()
+    au FileType text,txtfmt    nested call jalcine#prose#enhance()
+    au FileType yaml           nested BracelessEnable +indent +fold +highlight
+    au FileType python         nested BracelessEnable +indent +fold +highlight
+    au FileType man            nested setlocal conceallevel=0
+    au FileType quickfix       nested call jalcine#tweaks#terminal#adapt()
+    au FileType loclist        nested call jalcine#tweaks#terminal#adapt()
   augroup END
 
   augroup vimrc_goyo
     au!
     au User GoyoEnter nested call jalcine#tweaks#goyo#enter()
     au User GoyoLeave nested call jalcine#tweaks#goyo#leave()
+  augroup END
+
+  augroup vimrc_init
+    au!
+    au VimEnter * call jalcine#setup()
+    au VimEnter * Startify
+  augroup END
+
+  augroup on_change_colorscheme
+    autocmd!
+    autocmd ColorScheme * call jalcine#theme#customize()
   augroup END
 endfunc

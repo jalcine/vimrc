@@ -509,6 +509,10 @@ func! jalcine#plugins#configure_mappings() abort " {{{
   nnoremap <silent> <CR><CR> :call <SID>ReloadPlugins()<CR>
 endfunc " }}}
 
+func! jalcine#plugins#capture() abort
+  PlugSnapshot! $HOME/.config/nvim/snapshot.vim
+endfunc
+
 func! s:ReloadPlugins() abort
   PlugInstall!
   PlugUpdate!

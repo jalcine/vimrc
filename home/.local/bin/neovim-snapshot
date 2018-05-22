@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
 
 cd "$HOME/.config/nvim" || exit
-nvim +jalcine#plugins#capture
+nvim -s snapshot.vim

@@ -9,9 +9,8 @@ scriptencoding utf-8
 
 " Visual Editor Components {{{
 set laststatus=2
-set ruler
-set number numberwidth=6 relativenumber
-set termguicolors guicursor=
+set ruler number numberwidth=6 relativenumber
+set guicursor=
 set cursorline nocursorcolumn
 set sidescrolloff=1 sidescroll=1
 set conceallevel=2 concealcursor=nivc
@@ -23,6 +22,12 @@ set pumheight=5
 set noshowmode noshowmatch
 set modeline modelines=10
 set lazyredraw
+
+if has("termguicolors")     " set true colors
+  set t_8f=\[[38;2;%lu;%lu;%lum
+  set t_8b=\[[48;2;%lu;%lu;%lum
+  set termguicolors
+endif
 
 "
 " Folding {{{

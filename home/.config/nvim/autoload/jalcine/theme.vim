@@ -4,8 +4,6 @@
 
 func! jalcine#theme#setup() abort
   source ~/.vimrc_background
-  hi Normal guibg=NONE ctermbg=NONE
-  hi LineNr guibg=NONE ctermbg=NONE
 endfunc
 
 function! jalcine#theme#customize() abort

@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
 
 cd "$HOME/.config/nvim" || exit
-nvim -s snapshot.vim
+nvim --silent -S snapshot.vim

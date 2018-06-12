@@ -153,13 +153,14 @@ DISTRIBUTIONS
       File::HomeDir::Windows 1.002
     requirements:
       Carp 0
-      Cwd 3.12
+      Cwd 3
       ExtUtils::MakeMaker 0
       File::Basename 0
       File::Path 2.01
-      File::Spec 3.12
+      File::Spec 3
       File::Temp 0.19
       File::Which 0.05
+      Mac::SystemDirectory 0.04
       POSIX 0
       perl 5.005003
   File-Remove-1.57
@@ -256,6 +257,17 @@ DISTRIBUTIONS
       IPC::Cmd 0
       XSLoader 0.22
       base 0
+  Mac-SystemDirectory-0.10
+    pathname: E/ET/ETHER/Mac-SystemDirectory-0.10.tar.gz
+    provides:
+      Mac::SystemDirectory 0.10
+    requirements:
+      Exporter 0
+      ExtUtils::MakeMaker 0
+      XSLoader 0
+      perl 5.006
+      strict 0
+      warnings 0
   Module-Build-0.4224
     pathname: L/LE/LEONT/Module-Build-0.4224.tar.gz
     provides:

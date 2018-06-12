@@ -22,8 +22,9 @@ set pumheight=5
 set noshowmode noshowmatch
 set modeline modelines=10
 set lazyredraw
+set spelllang=en_us
 
-if has("termguicolors")     " set true colors
+if has("termguicolors") " set true colors
   set t_8f=\[[38;2;%lu;%lu;%lum
   set t_8b=\[[48;2;%lu;%lu;%lum
   set termguicolors
@@ -105,4 +106,3 @@ set tags+=$HOME/.config/nvim/tags/*
 " Disable cscope.
 set nocscopetag
 " }}}
-

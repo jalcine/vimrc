@@ -93,12 +93,6 @@ func! jalcine#mappings#setup() abort " {{{
   cnoremap <silent> <leader>pd <C-R>=strftime("%Y-%m-%d")<CR>
   " }}}
   "
-  " clipboard tweaks {{{
-  noremap YY "+y<CR>
-  noremap <leader>p "+gP<CR>
-  noremap XX "+x<CR>
-  " }}}
-  "
   " {{{ Bulk Mappings
   " quickfix
   call jalcine#mappings#apply_bulk([

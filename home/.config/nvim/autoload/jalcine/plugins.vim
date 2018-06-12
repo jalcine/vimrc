@@ -79,6 +79,7 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'mattn/webapi-vim'
   Plug 'mhinz/vim-signify'
   Plug 'moll/vim-node', { 'for': 'javascript' }
+  Plug 'mattn/emmet-vim'
 
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
         \ | Plug 'junegunn/fzf.vim'

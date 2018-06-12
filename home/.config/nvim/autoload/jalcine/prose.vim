@@ -13,7 +13,7 @@ func! jalcine#prose#enhance() abort
   call textobj#sentence#init()
   call litecorrect#init()
   call pencil#init({
-        \ 'wrap': (l:is_in_text) ? 'hard' : 'soft',
+        \ 'wrap': 'soft',
         \ 'autoformat': 1
         \ })
   call lexical#init()

@@ -29,7 +29,7 @@ func! jalcine#augroups#setup() abort
     au FileType php            nested call jalcine#lang#php#tweak()
     au FileType css            nested setl omnifunc=csscomplete#CompleteCSS noci
     au FileType markdown,mkd   nested call jalcine#prose#enhance()
-    au FileType text,txtfmt    nested call jalcine#prose#enhance()
+    au FileType txtfmt         nested call jalcine#prose#enhance()
     au FileType yaml           nested BracelessEnable +indent +fold +highlight
     au FileType python         nested BracelessEnable +indent +fold +highlight
     au FileType man            nested setlocal conceallevel=0

@@ -11,5 +11,6 @@ readlink_f () {
   fi
 }
 
+exenv exec mix compile
 exenv exec mix elixir_ls.release
 release/language_server.sh

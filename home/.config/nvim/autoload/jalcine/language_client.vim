@@ -26,10 +26,11 @@ func! s:Configure() abort " {{{
         \ 'go': ['goenv', 'exec', 'go-langserver'],
         \ 'php': ['neovim-language-server-php'],
         \ 'ruby': [ s:vimrc_root . '/bin/language_server-ruby' ],
-        \ 'elixir': [ 'neovim-language-server-elixir'],
+        \ 'elixir': [ s:vimrc_root . '/bin/language_server.sh'],
         \ 'css': ['css-language-server', '--stdio'],
         \ 'cpp': ['cquery', '--log-file=/tmp/cq.log'],
         \ 'c': ['cquery', '--log-file=/tmp/cq.log'],
+        \ 'sh': [ s:vimrc_root . '/node_modules/.bin/bash-language-server', 'start']
         \ }
 
   if exists('$DEBUG')

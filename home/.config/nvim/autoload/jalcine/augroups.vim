@@ -45,7 +45,6 @@ func! jalcine#augroups#setup() abort
 
   augroup vimrc_init
     au!
-    au VimEnter * call jalcine#setup()
     au VimEnter * Startify
   augroup END
 

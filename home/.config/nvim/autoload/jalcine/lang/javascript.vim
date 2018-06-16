@@ -14,8 +14,4 @@ func! jalcine#lang#javascript#setup() abort
   let g:javascript_conceal_static         = "•"
   let g:javascript_conceal_super          = "Ω"
   let g:javascript_conceal_arrow_function = "⇒"
-
-  if exists('g:ale_fixers')
-    let g:ale_fixers['javascript'] = ['eslint']
-  endif
 endfunc

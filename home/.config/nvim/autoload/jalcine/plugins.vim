@@ -4,10 +4,9 @@
 " Last Modified: 2017-10-18 23:03:46 PDT
 " vim: set fdm=marker fdl=0 :
 
-scriptencoding utf-8
-
 let s:vimrc_root = fnamemodify($MYVIMRC, ':p:h')
 
+scriptencoding utf-8
 " Options {{{
 let g:jalcine.plugins = {
       \ 'root': expand('$HOME/.config/nvim/plugins'),
@@ -27,6 +26,8 @@ func! jalcine#plugins#setup() abort " {{{
 endfunc " }}}
 
 func! jalcine#plugins#define() abort " {{{
+  let l:vimrc_root = s:vimrc_root
+
   call plug#begin(g:jalcine.plugins.root)
 
   Plug 'tpope/vim-sensible'
@@ -56,6 +57,7 @@ func! jalcine#plugins#define() abort " {{{
 
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rhubarb'
+  Plug 'tommcdo/vim-fubitive'
   Plug 'tommcdo/vim-fugitive-blame-ext'
   Plug 'idanarye/vim-merginal'
   Plug 'mattn/gist-vim'
@@ -125,7 +127,9 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'heavenshell/vim-jsdoc', { 'for': 'javascript' }
   Plug 'othree/es.next.syntax.vim', { 'for': 'javascript' }
   Plug 'jalcine/cmake.vim'
-  Plug 'cquery-project/cquery', { 'for': 'c,c++', 'do': 'mkdir -p build && cd build && cmake .. && make' }
+  Plug 'cquery-project/cquery', { 'for': 'c,c++',
+        \ 'do': 'mkdir -p build && cd build && cmake .. && make' }
+  Plug 'gorodinskiy/vim-coloresque'
 
   Plug 'reedes/vim-wordy'
   Plug 'kana/vim-textobj-user'
@@ -160,7 +164,9 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'rust-lang/rust.vim', {'for': 'rust'}
   Plug 'roxma/nvim-cm-racer', {'for': 'rust'}
   Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh', 'for': 'elixir' }
-  Plug 'JakeBecker/elixir-ls', { 'do' : 'mix do deps.get, deps.compile, compile', 'for': 'elixir' }
+  Plug 'JakeBecker/elixir-ls', {
+        \ 'do' : 'mix do deps.get, deps.compile, compile, elixir_ls.release -o ' . l:vimrc_root . '/bin',
+        \ 'for': 'elixir' }
   Plug 'sourcegraph/javascript-typescript-langserver', { 'do': 'yarn && yarn run build', 'for': 'javascript' }
   Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
   " }}}
@@ -298,16 +304,16 @@ func! jalcine#plugins#configure() abort " {{{
   let g:ale_scss_stylelint_executable = s:vimrc_root . "/node_modules/.bin/stylelint"
   let g:ale_fixers = {
         \ 'css': [
-        \   'stylelint'
+        \   'stylelint',
         \ ],
         \ 'elixir': [
         \   'mix_format'
         \ ],
         \ 'scss': [
-        \   'stylelint'
+        \   'stylelint',
         \ ],
         \ 'javascript': [
-        \   'eslint'
+        \   'eslint',
         \ ],
         \ 'json': [
         \   'jq'
@@ -321,7 +327,7 @@ func! jalcine#plugins#configure() abort " {{{
   let g:ale_fixers['vue'] = g:ale_fixers['javascript']
   let g:ale_fixers['jsx'] = g:ale_fixers['javascript']
   let g:ale_fixers['typescript'] = g:ale_fixers['javascript']
-  let g:ale_fixers['css'] = g:ale_fixers['scss']
+  let g:ale_fixers['sass'] = g:ale_fixers['scss']
   " }}}
   "
   " investigate {{{
@@ -394,7 +400,7 @@ func! jalcine#plugins#configure() abort " {{{
   let g:python_highlight_all = 1
   let g:notes_suffix = '.txt'
   let g:goyo_width = '100'
-  let g:goyo_height = '70%'
+  let g:goyo_height = '75%'
 endfunc " }}}
 
 func! jalcine#plugins#configure_mappings() abort " {{{
@@ -504,14 +510,16 @@ func! jalcine#plugins#configure_mappings() abort " {{{
   " {{{ LanguageClient
   nnoremap <silent> gK :call LanguageClient_textDocument_hover()<CR>
   nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
-  nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
+  nnoremap <silent> gr :call LanguageClient_textDocument_rename()<CR>
   " }}}
 
   nnoremap <silent> <CR><CR> :call <SID>ReloadPlugins()<CR>
+  nnoremap <silent> <C-CR>   :call jalcine#plugins#capture()
 endfunc " }}}
 
 func! jalcine#plugins#capture() abort
-  PlugSnapshot! $HOME/.config/nvim/snapshot.vim
+  silent! PlugSnapshot! $HOME/.config/nvim/snapshot.vim
+  silent! bd!
 endfunc
 
 func! s:ReloadPlugins() abort

@@ -1,6 +1,6 @@
-" File: config/init.vim
-" Author: Jacky Alcine <yo@jacky.wtf>
-" Description: Entry point of all of my configuration.
+" File:          init.vim
+" Author:        Jacky Alcine <yo@jacky.wtf>
+" Description:   Entry point of all of my configuration.
 " Last Modified: August 08, 2017
 " vim: set fdm=marker foldlevel=0 :
 
@@ -23,6 +23,7 @@ set noshowmode noshowmatch
 set modeline modelines=10
 set lazyredraw
 set spelllang=en_us
+set noshowcmd
 
 if has("termguicolors") " set true colors
   set t_8f=\[[38;2;%lu;%lu;%lum

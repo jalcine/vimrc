@@ -27,10 +27,11 @@ func! s:Configure() abort " {{{
         \ 'php': ['neovim-language-server-php'],
         \ 'ruby': [ s:vimrc_root . '/bin/language_server-ruby' ],
         \ 'elixir': [ s:vimrc_root . '/bin/language_server.sh'],
-        \ 'css': ['css-language-server', '--stdio'],
-        \ 'cpp': ['cquery', '--log-file=/tmp/cq.log'],
-        \ 'c': ['cquery', '--log-file=/tmp/cq.log'],
-        \ 'sh': [ s:vimrc_root . '/node_modules/.bin/bash-language-server', 'start']
+        \ 'css': [ 'css-language-server', '--stdio' ],
+        \ 'cpp': [ 'cquery', '--log-file=/tmp/cq.log' ],
+        \ 'c': [ 'cquery', '--log-file=/tmp/cq.log' ],
+        \ 'sh': [ s:vimrc_root . '/node_modules/.bin/bash-language-server', 'start'],
+        \ 'vue': [ s:vimrc_root . '/node_modules/.bin/vls' ]
         \ }
 
   if exists('$DEBUG')

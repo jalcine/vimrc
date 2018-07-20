@@ -35,6 +35,7 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'tpope/vim-endwise'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-eunuch'
+  Plug 'tpope/vim-speeddating'
   Plug 'tpope/vim-projectionist'
   Plug 'tpope/vim-scriptease'
   Plug 'tpope/vim-vinegar'
@@ -103,7 +104,7 @@ func! jalcine#plugins#define() abort " {{{
   " NOTE: Used only with notes.
   Plug 'powerman/vim-plugin-AnsiEsc'
   Plug 'zhm/TagHighlight'
-  Plug 'ludovicchabant/vim-gutentags', { 'on': 'GutentagsUpdate' }
+  Plug 'ludovicchabant/vim-gutentags'
   Plug 'majutsushi/tagbar'
   Plug 'airblade/vim-rooter'
   Plug 'raimondi/delimitmate'

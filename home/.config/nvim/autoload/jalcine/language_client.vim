@@ -12,7 +12,8 @@ endfunc
 func! jalcine#language_client#start_for_ft(ft) abort
   if has_key(g:LanguageClient_serverCommands, a:ft) == 1
     LanguageClientStart
-    set formatexpr=LanguageClient_textDocument_rangeFormatting()
+    setl completefunc=LanguageClient#complete
+    setl formatexpr=LanguageClient_textDocument_rangeFormatting()
   else
     set formatexpr&vim
   endif
@@ -29,7 +30,6 @@ func! s:Configure() abort " {{{
         \ 'elixir': [ s:vimrc_root . '/bin/language_server.sh'],
         \ 'css': [ 'css-language-server', '--stdio' ],
         \ 'cpp': [ 'cquery', '--log-file=/tmp/cq.log' ],
-        \ 'c': [ 'cquery', '--log-file=/tmp/cq.log' ],
         \ 'sh': [ s:vimrc_root . '/node_modules/.bin/bash-language-server', 'start'],
         \ 'vue': [ s:vimrc_root . '/node_modules/.bin/vls' ]
         \ }
@@ -43,7 +43,9 @@ func! s:Configure() abort " {{{
   endif
 
   let l:aliases = {
-        \ 'javascript': ['javascript.jsx', 'jsx', 'vue'],
+        \ 'javascript': ['javascript.jsx', 'jsx', 'vue', 'typescript'],
+        \ 'cpp': ['c'],
+        \ 'css': ['scss']
         \ }
 
   for l:alias in keys(l:aliases)
@@ -55,5 +57,4 @@ func! s:Configure() abort " {{{
   if exists('b:ft')
     call jalcine#language_client#start_for_ft(b:ft)
   endif
-
 endfunc " }}}

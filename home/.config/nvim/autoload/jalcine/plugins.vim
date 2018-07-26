@@ -53,7 +53,6 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'xolox/vim-shell'
   Plug 'vim-scripts/utl.vim'
   Plug 'bpstahlman/txtfmt'
-  Plug 'junegunn/vim-emoji'
 
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rhubarb'
@@ -62,9 +61,6 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'idanarye/vim-merginal'
   Plug 'mattn/gist-vim'
   Plug 'nkantar/ght.vim'
-  " TODO: Add mappings for GHT into :GCommit window.
-  Plug 'junegunn/vim-github-dashboard'
-  Plug 'jaxbot/github-issues.vim'
   Plug 'int3/vim-extradite'
   " TODO: I need to learn how to use these plugins.
   " Plug 'junkblocker/patchreview-vim'
@@ -80,17 +76,13 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'vim-scripts/SyntaxRange'
   Plug 'mattn/webapi-vim'
   Plug 'mhinz/vim-signify'
-  Plug 'mattn/emmet-vim'
 
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
         \ | Plug 'junegunn/fzf.vim'
         \ | Plug 'fszymanski/fzf-gitignore', { 'do' : ':UpdateRemotePlugins' }
         \ | Plug 'tweekmonster/fzf-filemru'
 
-  Plug 'henrik/vim-indexed-search'
-
   Plug 'chriskempson/base16-vim'
-  Plug 'Shougo/echodoc.vim'
   Plug 'keith/investigate.vim'
   Plug 'vim-airline/vim-airline' |
         \ Plug 'vim-airline/vim-airline-themes'
@@ -109,7 +101,6 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'airblade/vim-rooter'
   Plug 'raimondi/delimitmate'
   Plug 'godlygeek/tabular'
-  Plug 'Shougo/context_filetype.vim'
   Plug 'tweekmonster/startuptime.vim'
   Plug 'wakatime/vim-wakatime'
 
@@ -117,19 +108,16 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'lambdalisue/vim-pyenv', { 'for': 'python' }
   Plug 'ekalinin/Dockerfile.vim'
   Plug 'tweekmonster/braceless.vim'
-  Plug 'othree/es.next.syntax.vim', { 'for': 'javascript' }
-  Plug 'jalcine/cmake.vim'
+  Plug 'othree/es.next.syntax.vim'
   Plug 'cquery-project/cquery', { 'for': 'c,c++',
         \ 'do': 'mkdir -p build && cd build && cmake .. && make' }
   Plug 'gorodinskiy/vim-coloresque'
 
-  Plug 'reedes/vim-wordy'
   Plug 'kana/vim-textobj-user'
   Plug 'reedes/vim-pencil'
   Plug 'reedes/vim-textobj-sentence'
   Plug 'reedes/vim-textobj-quote'
   Plug 'reedes/vim-lexical'
-  Plug 'dbmrq/vim-ditto'
   Plug 'reedes/vim-litecorrect'
 
   " {{{ IDE-esque
@@ -165,7 +153,6 @@ func! jalcine#plugins#define() abort " {{{
   Plug 'junegunn/goyo.vim'
   Plug 'junegunn/limelight.vim'
   Plug 'ryanoasis/vim-devicons'
-  Plug 'bronson/vim-trailing-whitespace'
 
   call plug#end()
 endfunc " }}}
@@ -212,7 +199,7 @@ func! jalcine#plugins#configure() abort " {{{
   "
   " languageclient {{{
   let g:LanguageClient_autoStart = 1
-  let g:LanguageClient_selectionUI = 'fzf'
+  " let g:LanguageClient_selectionUI = 'fzf'
   " }}}
   "
   " signify {{{
@@ -285,6 +272,7 @@ func! jalcine#plugins#configure() abort " {{{
   " }}}
   "
   " ale {{{
+  let g:ale_use_global_executables = 0
   let g:ale_scss_stylelint_executable = s:vimrc_root . "/node_modules/.bin/stylelint"
   let g:ale_fixers = {
         \ 'css': [
@@ -299,6 +287,9 @@ func! jalcine#plugins#configure() abort " {{{
         \ 'javascript': [
         \   'eslint',
         \ ],
+        \ 'typescript': [
+        \   'tslint',
+        \ ],
         \ 'json': [
         \   'jq'
         \ ],
@@ -308,9 +299,15 @@ func! jalcine#plugins#configure() abort " {{{
         \   'add_blank_lines_for_python_control_statements'
         \ ]
         \ }
+  let g:ale_linters = {
+        \ 'vue': [
+        \   'vls',
+        \ ],
+        \ 'typescript': [
+        \   'tslint',
+        \ ]
+        \}
   let g:ale_fixers['vue'] = g:ale_fixers['javascript']
-  let g:ale_fixers['jsx'] = g:ale_fixers['javascript']
-  let g:ale_fixers['typescript'] = g:ale_fixers['javascript']
   let g:ale_fixers['sass'] = g:ale_fixers['scss']
   " }}}
   "
@@ -387,6 +384,19 @@ func! jalcine#plugins#configure() abort " {{{
   let g:notes_suffix = '.txt'
   let g:goyo_width = '100'
   let g:goyo_height = '75%'
+
+  " {{{ language-specific
+  let g:javascript_conceal_function       = "ƒ"
+  let g:javascript_conceal_null           = "ø"
+  let g:javascript_conceal_this           = "@"
+  let g:javascript_conceal_return         = "⇚"
+  let g:javascript_conceal_undefined      = "¿"
+  let g:javascript_conceal_NaN            = "ℕ"
+  let g:javascript_conceal_prototype      = "¶"
+  let g:javascript_conceal_static         = "•"
+  let g:javascript_conceal_super          = "Ω"
+  let g:javascript_conceal_arrow_function = "⇒"
+  " }}}
 endfunc " }}}
 
 func! jalcine#plugins#configure_mappings() abort " {{{
@@ -486,7 +496,7 @@ func! jalcine#plugins#configure_mappings() abort " {{{
   "
   " ncm {{{
   " Expand a snippet when shown in the list.
-  imap <expr> <CR> (pumvisible() ?  "\<c-y>\<Plug>(expand_or_nl)\<Plug>DiscretionaryEnd" : "\<CR>\<Plug>DiscretionaryEnd")
+  imap <expr> <CR> (pumvisible() ?  "\<c-y>\<Plug>(expand_or_nl)" : "\<CR>")
   imap <expr> <Plug>(expand_or_nl) (cm#completed_is_snippet() ? "\<Plug>(ultisnips_expand)\<CR>" : "\<CR>")
   imap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
   imap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"

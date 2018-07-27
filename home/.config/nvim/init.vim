@@ -8,6 +8,7 @@ set encoding=utf-8 fileencoding=utf-8
 scriptencoding utf-8
 
 let vimrc_root = fnamemodify($MYVIMRC, ':p:h')
+exec "let $PATH=\"" . vimrc_root . "/node_modules/.bin:\" . $PATH"
 
 set laststatus=2
 set ruler number numberwidth=6 relativenumber
@@ -67,6 +68,9 @@ set tags+=./tags,./.tags,./.vimtags
 set tags+=tags,.tags,.vimtags
 set tags+=$HOME/.config/nvim/tags/*
 set nocscopetag
+
+set completefunc=LanguageClient#complete
+set formatexpr=LanguageClient_textDocument_rangeFormatting_sync()
 
 iabbrev me_email yo@jacky.wtf
 iabbrev me_name Jacky Alciné
@@ -304,6 +308,7 @@ Plug 'tmux-plugins/vim-tmux'
 " NOTE: Used only with notes.
 Plug 'powerman/vim-plugin-AnsiEsc'
 Plug 'zhm/TagHighlight'
+Plug 'Shougo/echodoc.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'majutsushi/tagbar'
 Plug 'airblade/vim-rooter'
@@ -314,6 +319,10 @@ Plug 'wakatime/vim-wakatime'
 Plug 'sheerun/vim-polyglot'
 Plug 'lambdalisue/vim-pyenv', { 'for': 'python' }
 Plug 'ekalinin/Dockerfile.vim'
+Plug 'ncm2/nvim-typescript', { 
+      \ 'do': 'bash ./install.sh'
+      \ }
+Plug 'HerringtonDarkholme/yats.vim'
 Plug 'tweekmonster/braceless.vim'
 Plug 'othree/es.next.syntax.vim'
 Plug 'gorodinskiy/vim-coloresque'
@@ -325,10 +334,16 @@ Plug 'reedes/vim-lexical'
 Plug 'reedes/vim-litecorrect'
 Plug 'vim-scripts/dbext.vim'
 Plug 'ncm2/ncm2'
+Plug 'ncm2/ncm2-html-subscope'
+Plug 'ncm2/ncm2-markdown-subscope'
+Plug 'ncm2/ncm2-match-highlight'
 Plug 'ncm2/ncm2-bufword'
 Plug 'ncm2/ncm2-tern'
 Plug 'ncm2/ncm2-cssomni'
 Plug 'ncm2/ncm2-ultisnips'
+Plug 'ncm2/ncm2-tagprefix'
+Plug 'ncm2/ncm2-github'
+Plug 'ncm2/ncm2-path'
 Plug 'autozimu/LanguageClient-neovim', {
       \ 'branch': 'next',
       \ 'do': 'bash install.sh',
@@ -344,9 +359,6 @@ Plug 'awetzel/elixir.nvim', {
       \ }
 Plug 'JakeBecker/elixir-ls', {
       \ 'do' : 'mix do deps.get, deps.compile, compile, elixir_ls.release -o ' . vimrc_root . '/bin',
-      \ }
-Plug 'sourcegraph/javascript-typescript-langserver', {
-      \ 'do': 'ndenv exec npm install && npm run build',
       \ }
 Plug 'roxma/LanguageServer-php-neovim',  {
       \ 'do': 'phpenv exec composer install && composer run-script parse-stubs'
@@ -366,9 +378,13 @@ call plug#end()
 " }}}
 
 " {{{ Options
+let g:LanguageClient_settingsPath = vimrc_root . '/language_client.json'
+let g:LanguageClient_diagnosticsSignsMax = 0
+let g:LanguageClient_loggingLevel = 'DEBUG'
+let g:LanguageClient_loggingFile = vimrc_root . '/logs/langclient.log'
 let g:LanguageClient_serverCommands = {
       \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-      \ 'javascript': [ 'neovim-language-server-javascript' ],
+      \ 'javascript': [ 'neovim-language-server-javascript'],
       \ 'python': ['pyenv', 'exec', 'pyls'],
       \ 'go': ['goenv', 'exec', 'go-langserver'],
       \ 'php': ['neovim-language-server-php'],
@@ -377,14 +393,29 @@ let g:LanguageClient_serverCommands = {
       \ 'css': [ 'css-language-server', '--stdio' ],
       \ 'cpp': [ 'cquery', '--log-file=/tmp/cq.log' ],
       \ 'sh': [ vimrc_root . '/node_modules/.bin/bash-language-server', 'start'],
-      \ 'vue': [ vimrc_root . '/node_modules/.bin/vls' ]
+      \ 'vue': [ 'vls' ]
       \ }
+
+let g:LanguageClient_serverCommands['typescript'] = g:LanguageClient_serverCommands['javascript']
+let g:LanguageClient_completionPreferTextEdit = 1
 
 if executable('ag')
   let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
   set grepprg=ag\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow
   set grepformat=%f:%l:%c:%m
 endif
+let g:nvim_typescript#type_info_on_hold = 1
+let g:nvim_typescript#vue_support = 1
+
+let g:ale_php_phpcs_executable = 'phpenv exec composer global exec phpcs'
+let g:ale_php_phpcbf_executable = 'phpenv exec composer global exec phpcbf'
+let g:ale_linter_aliases = {'vue': ''}
+let g:ale_vue_vls_use_global = 0
+let g:ale_linters = {'vue': ['vls']}
+let g:ale_fixers = {'vue': ['vls'], 'json': ['jq', 'trim_whitespace', 'remove_trailing_lines']}
+let g:ale_typescript_tslint_use_global = 0
+let g:ale_typescript_tslint_config_path = ''
+let g:ale_typescript_tslint_ignore_empty_files = 1
 
 let g:python_highlight_all = 1
 let g:python_slow_sync = 1
@@ -596,19 +627,20 @@ call <SID>apply_bulk_mappings([
       \ ['g', ':TestVisit<CR>'],
       \ ], { 'prefix' : 't' })
 call <SID>apply_bulk_mappings([
+      \ ['b', ':Buffers<cr>'],
+      \ ['c', ':Commits<cr>'],
       \ ['f', ':Files<cr>'],
       \ ['fg', ':GFiles?<cr>'],
-      \ ['t', ':Tags<cr>'],
       \ ['h', ':History<cr>'],
-      \ ['w', ':Windows<cr>'],
-      \ ['c', ':Commits<cr>'],
-      \ ['b', ':Buffers<cr>'],
-      \ ['s', ':Snippets<cr>'],
+      \ ['l', ':call LanguageClient_contextMenu()<CR>'],
+      \ ['mc', ':call fzf#vim#maps("c", 1)<cr>'],
       \ ['mi', ':call fzf#vim#maps("i", 1)<cr>'],
       \ ['mn', ':call fzf#vim#maps("n", 1)<cr>'],
-      \ ['mv', ':call fzf#vim#maps("v", 1)<cr>'],
-      \ ['mc', ':call fzf#vim#maps("c", 1)<cr>'],
       \ ['mt', ':call fzf#vim#maps("t", 1)<cr>'],
+      \ ['mv', ':call fzf#vim#maps("v", 1)<cr>'],
+      \ ['s', ':Snippets<cr>'],
+      \ ['t', ':Tags<cr>'],
+      \ ['w', ':Windows<cr>'],
       \ ], { 'prefix': 's' })
 call <SID>apply_bulk_mappings([
       \ ['a', ':Git add<space>'],
@@ -676,7 +708,8 @@ call <SID>apply_bulk_mappings([
       \ ], {
       \ 'prefix': 'ph'
       \ })
-
+    let g:ncm2#matcher = 'abbrfuzzy'
+    let g:ncm2#sorter = 'abbrfuzzy'
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <silent> <expr> <CR> ((pumvisible() && empty(v:completed_item)) ?  "\<c-y>\<cr>" : (!empty(v:completed_item) ? ncm2_ultisnips#expand_or("", 'n') : "\<CR>" ))
@@ -684,6 +717,8 @@ smap <c-u> <Plug>(ultisnips_expand)
 inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
 nnoremap <silent> gK :call LanguageClient_textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+nnoremap <silent> gD :call LanguageClient_textDocument_typeDefinition()<CR>
+nnoremap <silent> gI :call LanguageClient_textDocument_implementation()<CR>
 nnoremap <silent> gr :call LanguageClient_textDocument_rename()<CR>
 inoremap <c-c> <ESC>
 tnoremap <Esc> <C-\><C-n>
@@ -735,10 +770,8 @@ augroup END
 augroup vimrc-langsupport
   au!
   au FileType *                    nested call s:langclient_start_for_ft("<amatch>")
-  au FileType python               nested call jalcine#lang#python#tweak()
-  au FileType php                  nested call jalcine#lang#php#tweak()
   au FileType css                  nested setl omnifunc=csscomplete#CompleteCSS noci
-  au FileType markdown,mkd,txtfmt  nested call jalcine#prose#enhance()
+  au FileType markdown,mkd,txtfmt  nested call s:enhance_prose()
   au FileType yaml,python          nested BracelessEnable +indent +fold +highlight
   au FileType man                  nested setlocal conceallevel=0
   au FileType quickfix,loclist     nested call s:adapt_terminal()
@@ -750,16 +783,7 @@ augroup vimrc_goyo
   au User GoyoLeave nested call s:goyo_leave()
 augroup END
 
-augroup vimrc_init
-  au!
-  au VimEnter * Startify
-augroup END
-
 command! Today call <SID>LaunchNoteOfTheDay()
-
-let g:ale_php_phpcs_executable = 'phpenv exec composer global exec phpcs'
-let g:ale_php_phpcbf_executable = 'phpenv exec composer global exec phpcbf'
-
 augroup vim-pyenv-custom-augroup
   autocmd! *
   autocmd User vim-pyenv-activate-post   call <SID>jedi_auto_force_py_version()

@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-cd "$HOME/.config/nvim/plugins" || exit
-ndenv exec node javascript-typescript-langserver/lib/language-server-stdio.js
+cd "$HOME/.config/nvim" || exit
+$(npm bin)/javascript-typescript-stdio

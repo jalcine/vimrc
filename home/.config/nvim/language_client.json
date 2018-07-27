@@ -1,0 +1,45 @@
+{
+  "initializationOptions": {
+    "config": {
+      "vetur": {
+        "colorDecorators": {
+          "enable": true
+        },
+        "completion": {
+          "autoImport": true,
+          "useScaffoldSnippets": true
+        },
+        "grammar": {
+          "customBlocks": {
+            "docs": "md",
+            "i18n": "json"
+          }
+        },
+        "validation": {
+          "style": false,
+          "template": false
+        },
+        "format": {
+          "defaultFormatter": {
+            "html": "none",
+            "css": "none",
+            "postcss": "none",
+            "scss": "none",
+            "less": "none",
+            "stylus": "none",
+            "js": "none",
+            "ts": "none"
+          },
+          "defaultFormatterOptions": {
+            "js-beautify-html": {}
+          },
+          "styleInitialIndent": false,
+          "scriptInitialIndent": false
+        },
+        "trace": {
+          "server": "verbose"
+        }
+      }
+    }
+  }
+}

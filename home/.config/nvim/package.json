@@ -17,11 +17,15 @@
     "bash-language-server": "1.3.1",
     "dockerfile-language-server-nodejs": "0.0.17",
     "eslint": "5.0.0",
+    "javascript-typescript-langserver": "2.9.4",
     "jsctags": "git+https://github.com/ramitos/jsctags.git",
+    "neovim": "4.2.1",
     "stylelint": "9.3.0",
+    "ts-vue-plugin": "0.2.0",
     "tslint": "5.8.0",
     "tstags": "git+https://github.com/Perlence/tstags.git",
     "typescript": "2.6.2",
-    "vue-language-server": "0.0.32"
+    "vue-language-server": "0.0.32",
+    "vue-ts-plugin": "0.1.0"
   }
 }

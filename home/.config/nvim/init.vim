@@ -16,6 +16,7 @@ set guicursor=
 set cursorline nocursorcolumn
 set sidescrolloff=1 sidescroll=1
 set conceallevel=2 concealcursor=nivc
+set foldenable foldminlines=3 foldmethod=syntax
 set nowrap
 set signcolumn=yes
 set shortmess+=c
@@ -70,10 +71,10 @@ set tags+=$HOME/.config/nvim/tags/*
 set nocscopetag
 
 set completefunc=LanguageClient#complete
-set formatexpr=LanguageClient_textDocument_rangeFormatting_sync()
+set formatexpr=LanguageClient_textDocument_rangeFormatting()
 
-iabbrev me_email yo@jacky.wtf
-iabbrev me_name Jacky Alciné
+iabbrev myemail yo@jacky.wtf
+iabbrev myname Jacky Alciné
 iabbrev me_fname Jacky
 iabbrev me_lname Alciné
 iabbrev me_site https://jacky.wtf
@@ -263,6 +264,7 @@ Plug 'janko-m/vim-test'
 Plug 'tpope/vim-dotenv'
 Plug 'direnv/direnv.vim'
 Plug 'w0rp/ale'
+Plug 'RRethy/vim-illuminate'
 Plug 'wincent/terminus'
 Plug 'tpope/vim-commentary'
       \ | Plug 'cbaumhardt/vim-commentary-boxed'
@@ -380,11 +382,12 @@ call plug#end()
 " {{{ Options
 let g:LanguageClient_settingsPath = vimrc_root . '/language_client.json'
 let g:LanguageClient_diagnosticsSignsMax = 0
-let g:LanguageClient_loggingLevel = 'DEBUG'
+let g:LanguageClient_loggingLevel = 'ERROR'
 let g:LanguageClient_loggingFile = vimrc_root . '/logs/langclient.log'
 let g:LanguageClient_serverCommands = {
       \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
       \ 'javascript': [ 'neovim-language-server-javascript'],
+      \ 'typescript': [ 'neovim-language-server-javascript'],
       \ 'python': ['pyenv', 'exec', 'pyls'],
       \ 'go': ['goenv', 'exec', 'go-langserver'],
       \ 'php': ['neovim-language-server-php'],
@@ -395,8 +398,6 @@ let g:LanguageClient_serverCommands = {
       \ 'sh': [ vimrc_root . '/node_modules/.bin/bash-language-server', 'start'],
       \ 'vue': [ 'vls' ]
       \ }
-
-let g:LanguageClient_serverCommands['typescript'] = g:LanguageClient_serverCommands['javascript']
 let g:LanguageClient_completionPreferTextEdit = 1
 
 if executable('ag')
@@ -404,6 +405,7 @@ if executable('ag')
   set grepprg=ag\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow
   set grepformat=%f:%l:%c:%m
 endif
+
 let g:nvim_typescript#type_info_on_hold = 1
 let g:nvim_typescript#vue_support = 1
 
@@ -411,10 +413,9 @@ let g:ale_php_phpcs_executable = 'phpenv exec composer global exec phpcs'
 let g:ale_php_phpcbf_executable = 'phpenv exec composer global exec phpcbf'
 let g:ale_linter_aliases = {'vue': ''}
 let g:ale_vue_vls_use_global = 0
-let g:ale_linters = {'vue': ['vls']}
-let g:ale_fixers = {'vue': ['vls'], 'json': ['jq', 'trim_whitespace', 'remove_trailing_lines']}
+let g:ale_linters = {'vue': ['vls'], 'typescript': ['tslint', 'tsserver']}
+let g:ale_fixers = {'vue': ['vls'], 'json': ['jq', 'trim_whitespace', 'remove_trailing_lines'], 'typescript': ['tslint']}
 let g:ale_typescript_tslint_use_global = 0
-let g:ale_typescript_tslint_config_path = ''
 let g:ale_typescript_tslint_ignore_empty_files = 1
 
 let g:python_highlight_all = 1
@@ -536,6 +537,12 @@ let g:fzf_colors = {
       \ }
 " }}}
 "
+" ncm2 {{{
+let g:ncm2#matcher = 'abbrfuzzy'
+let g:ncm2#sorter = 'abbrfuzzy'
+let g:ncm2#popup_delay = 50
+" }}}
+
 let g:UltiSnipsExpandTrigger = "<Plug>(ultisnips_expand)"
 let g:UltiSnipsRemoveSelectModeMappings = 0
 let g:UltiSnipsJumpForwardTrigger = "<c-j>"
@@ -563,8 +570,8 @@ let g:org_indent = 1
 let g:org_todo_keywords = [['TODO(t)', 'ACTIVE(a)', '|', 'DONE(d)'],
       \ ['REPORT(r)', 'BUG(b)', 'KNOWNCAUSE(k)', '|', 'FIXED(f)'],
       \ ['CANCELED(c)']]
-let g:startify_list_order = ['commands', 'sessions', 'bookmarks', 'files']
-let g:startify_files_number = 5
+let g:startify_list_order = ['commands', 'sessions', 'bookmarks', 'files', 'dir']
+let g:startify_files_number = 20
 let g:startify_change_to_dir = 0
 let g:startify_fortune_use_unicode = 1
 let g:startify_session_before_save = [
@@ -603,13 +610,13 @@ filetype plugin indent on
 syntax on
 " }}}
 
-" {{{ Mappings
 let s:mappings = {
       \ 'leader':  ',',
       \ 'localLeader':  '\\',
       \ }
 exec 'let g:mapleader="' . s:mappings.leader . '"'
 exec 'let g:maplocalleader="' . s:mappings.localLeader. '"'
+
 call <SID>apply_bulk_mappings([
       \ ['m', ':Make<space>'],
       \ ['a', ':Make all<CR>'],
@@ -619,6 +626,7 @@ call <SID>apply_bulk_mappings([
       \ ['tb', ":call('Make',['test',expand('%')])<CR>"],
       \ ['u', ':Make uninstall<CR>'],
       \ ], { 'prefix' : 'm' })
+
 call <SID>apply_bulk_mappings([
       \ ['t', ':TestNearest<CR>'],
       \ ['f', ':TestFile<CR>'],
@@ -626,6 +634,7 @@ call <SID>apply_bulk_mappings([
       \ ['l', ':TestLast<CR>'],
       \ ['g', ':TestVisit<CR>'],
       \ ], { 'prefix' : 't' })
+
 call <SID>apply_bulk_mappings([
       \ ['b', ':Buffers<cr>'],
       \ ['c', ':Commits<cr>'],
@@ -642,6 +651,7 @@ call <SID>apply_bulk_mappings([
       \ ['t', ':Tags<cr>'],
       \ ['w', ':Windows<cr>'],
       \ ], { 'prefix': 's' })
+
 call <SID>apply_bulk_mappings([
       \ ['a', ':Git add<space>'],
       \ ['ab', ':Git add %<cr>'],
@@ -666,6 +676,7 @@ call <SID>apply_bulk_mappings([
       \ ['sj', '<plug>(signify-next-hunk)'],
       \ ['sk', '<plug>(signify-prev-hunk)'],
       \ ], { 'prefix': 'g' })
+
 call <SID>apply_bulk_mappings([
       \ ['=', ':Tabularize /=', 'v'],
       \ ['/', ':Tabularize //', 'v'],
@@ -674,6 +685,7 @@ call <SID>apply_bulk_mappings([
       \ [']', ':Tabularize /]', 'v'],
       \ ['[', ':Tabularize /[', 'v']
       \ ], { 'prefix': 'T'})
+
 call <SID>apply_bulk_mappings([
       \ ['n', '<Plug>(ale_next_wrap)'],
       \ ['p', '<Plug>(ale_previous_wrap)'],
@@ -683,6 +695,7 @@ call <SID>apply_bulk_mappings([
       \ ['x', '<Plug>(ale_fix)'],
       \ ['r', '<Plug>(ale_reset)'],
       \ ], { 'prefix': 'a'})
+
 call <SID>apply_bulk_mappings([
       \ ['e', '<ESC>:cnext<CR>'],
       \ ['f', '<ESC>:cfirst<CR>'],
@@ -692,6 +705,7 @@ call <SID>apply_bulk_mappings([
       \ ['x', '<ESC>:cclose<CR>'],
       \ ['X', '<ESC>:windo cclose<CR>'],
       \ ], { 'prefix': 'c' })
+
 call <SID>apply_bulk_mappings([
       \ ['e', '<ESC>:lnext<CR>'],
       \ ['f', '<ESC>:lfirst<CR>'],
@@ -701,6 +715,7 @@ call <SID>apply_bulk_mappings([
       \ ['x', '<ESC>:lclose<CR>'],
       \ ['X', '<ESC>:windo lclose<CR>'],
       \ ], { 'prefix': 'l' })
+
 call <SID>apply_bulk_mappings([
       \ ['e', 'call s:php_invoke("expandclass")<CR>'],
       \ ['s', 'call s:php_invoke("sortuse")<CR>'],
@@ -708,31 +723,37 @@ call <SID>apply_bulk_mappings([
       \ ], {
       \ 'prefix': 'ph'
       \ })
-    let g:ncm2#matcher = 'abbrfuzzy'
-    let g:ncm2#sorter = 'abbrfuzzy'
+
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <silent> <expr> <CR> ((pumvisible() && empty(v:completed_item)) ?  "\<c-y>\<cr>" : (!empty(v:completed_item) ? ncm2_ultisnips#expand_or("", 'n') : "\<CR>" ))
-smap <c-u> <Plug>(ultisnips_expand)
+snoremap <c-u> <Plug>(ultisnips_expand)
 inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
+
 nnoremap <silent> gK :call LanguageClient_textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
 nnoremap <silent> gD :call LanguageClient_textDocument_typeDefinition()<CR>
 nnoremap <silent> gI :call LanguageClient_textDocument_implementation()<CR>
 nnoremap <silent> gr :call LanguageClient_textDocument_rename()<CR>
+
 inoremap <c-c> <ESC>
+
 tnoremap <Esc> <C-\><C-n>
 tnoremap <A-h> <C-\><C-n><C-w>h
 tnoremap <A-j> <C-\><C-n><C-w>j
 tnoremap <A-k> <C-\><C-n><C-w>k
 tnoremap <A-l> <C-\><C-n><C-w>l
+
 nnoremap <A-h> <C-w>h
 nnoremap <A-j> <C-w>j
 nnoremap <A-k> <C-w>k
 nnoremap <A-l> <C-w>l
+
 cnoremap vhe vert help
+
 nnoremap <F8> :TagbarToggle<CR>
 nnoremap <silent> <leader><space> :Goyo<CR>
+
 inoremap <silent> <leader>pt <C-R>=strftime("%Y-%m-%d")<CR>
 inoremap <silent> <leader>py <C-R>=strftime("%H:%M:%S %Z")<CR>
 cnoremap <silent> <leader>py <C-R>=strftime("%H.%M.%S_%Z")<CR>
@@ -742,12 +763,8 @@ cnoremap <silent> <leader>pt <C-R>=strftime("%Y%m%d%H%M%S")<CR>
 inoremap <silent> <leader>pd <C-R>=strftime("%Y-%m-%d")<CR>
 cnoremap <silent> <leader>pd <C-R>=strftime("%Y-%m-%d")<CR>
 
-" Functions {{{
-" }}}
-
 source ~/.vimrc_background
 call Base16hi("MatchParen", g:base16_gui05, g:base16_gui03, g:base16_cterm05, g:base16_cterm03, "bold,italic", "")
-" AirlineTheme base16_default
 
 augroup vimrc_misc
   au!
@@ -757,7 +774,7 @@ augroup END
 
 augroup vimrc_auto_tmux_reload
   au!
-  au FileWritePost ~/.tmux* !tmux source-file %:h
+  au FileWritePost *tmux* !tmux source-file %:h
 augroup END
 
 augroup vimrc_term
@@ -784,8 +801,14 @@ augroup vimrc_goyo
 augroup END
 
 command! Today call <SID>LaunchNoteOfTheDay()
+
 augroup vim-pyenv-custom-augroup
   autocmd! *
   autocmd User vim-pyenv-activate-post   call <SID>jedi_auto_force_py_version()
   autocmd User vim-pyenv-deactivate-post call <SID>jedi_auto_force_py_version()
+augroup END
+
+augroup vim-ncm2
+  autocmd! *
+  autocmd TextChangedI * silent! call ncm2#auto_trigger()
 augroup END

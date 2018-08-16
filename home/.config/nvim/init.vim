@@ -380,9 +380,12 @@ call plug#end()
 " }}}
 
 " {{{ Options
+" {{{2 Language Client
 let g:LanguageClient_settingsPath = vimrc_root . '/language_client.json'
 let g:LanguageClient_diagnosticsSignsMax = 0
-let g:LanguageClient_loggingLevel = 'ERROR'
+let g:LanguageClient_autoStart = 1
+let g:LanguageClient_selectionUI = 'fzf'
+let g:LanguageClient_loggingLevel = 'WARN' 
 let g:LanguageClient_loggingFile = vimrc_root . '/logs/langclient.log'
 let g:LanguageClient_serverCommands = {
       \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
@@ -396,37 +399,53 @@ let g:LanguageClient_serverCommands = {
       \ 'css': [ 'css-language-server', '--stdio' ],
       \ 'cpp': [ 'cquery', '--log-file=/tmp/cq.log' ],
       \ 'sh': [ vimrc_root . '/node_modules/.bin/bash-language-server', 'start'],
-      \ 'vue': [ 'vls' ]
+      \ 'vue': [ vimrc_root . '/node_modules/.bin/vls' ]
       \ }
 let g:LanguageClient_completionPreferTextEdit = 1
-
+" }}}
+" {{{2 misc
+let g:signify_vcs_list              = [ 'git', 'bzr' ]
+let g:pyenv#auto_activate = 1
+let g:pyenv#auto_create_ctags = 1
+let g:pyenv#auto_assign_ctags = 1
 if executable('ag')
   let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
   set grepprg=ag\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow
   set grepformat=%f:%l:%c:%m
 endif
-
-let g:nvim_typescript#type_info_on_hold = 1
-let g:nvim_typescript#vue_support = 1
-
-let g:ale_php_phpcs_executable = 'phpenv exec composer global exec phpcs'
-let g:ale_php_phpcbf_executable = 'phpenv exec composer global exec phpcbf'
-let g:ale_linter_aliases = {'vue': ''}
-let g:ale_vue_vls_use_global = 0
-let g:ale_linters = {'vue': ['vls'], 'typescript': ['tslint', 'tsserver']}
-let g:ale_fixers = {'vue': ['vls'], 'json': ['jq', 'trim_whitespace', 'remove_trailing_lines'], 'typescript': ['tslint']}
-let g:ale_typescript_tslint_use_global = 0
-let g:ale_typescript_tslint_ignore_empty_files = 1
-
 let g:python_highlight_all = 1
 let g:python_slow_sync = 1
 let g:python3_host_prog = systemlist('PYENV_VERSION=neovim-py3 pyenv which python3')[0]
 let g:python_host_prog = systemlist('PYENV_VERSION=neovim-py2 pyenv which python2')[0]
+let g:endwise_no_mappings = 1
+let g:nvim_typescript#type_info_on_hold = 1
+let g:nvim_typescript#vue_support = 0
+" }}}
+"
+" {{{2 ale
+let g:ale_php_phpcs_executable = 'phpenv exec composer global exec phpcs'
+let g:ale_php_phpcbf_executable = 'phpenv exec composer global exec phpcbf'
+let g:ale_linter_aliases = {'vue': ''}
+let g:ale_vue_vls_use_global = 0
+let g:ale_linters = {'vue': ['vls'], 'typescript': ['tslint', 'tsserver'], 'javascript': ['importj']}
+let g:ale_fixers = {'vue': ['vls'], 'json': ['jq', 'trim_whitespace', 'remove_trailing_lines'], 'typescript': ['tslint']}
+let g:ale_typescript_tslint_use_global = 0
+let g:ale_typescript_tslint_ignore_empty_files = 1
+" 2}}}
+"
+" {{{2 vim-test
 let g:test#custom_transformations = {
     \ 'vagrant': function('<SID>VagrantTransform'),
     \ 'docker': function('<SID>DockerTransform'),
     \ 'docker-compose': function('<SID>DockerComposeTransform')
     \}
+let g:test#preserve_screen = 1
+let g:test#strategy = {
+      \ 'nearest': 'neovim'
+      \ }
+" 2}}}
+"
+" {{{2 tagbar
 let g:tagbar_type_elixir = {
       \ 'ctagstype' : 'elixir',
       \ 'kinds' : [
@@ -502,6 +521,9 @@ let g:tagbar_type_typescript = {
       \ ],
       \ 'sort' : 0
       \ }
+" 2}}}
+"
+" {{{2 gutentags
 let g:gutentags_generate_on_empty_buffer = 0
 let g:gutentags_ctags_tagfile = '.tags'
 let g:gutentags_cache_dir = vimrc_root . "/tags"
@@ -513,10 +535,9 @@ let g:gutentags_file_list_command = {
       \ '.hg': 'hg files',
       \ },
       \ }
-
-" endwise
-let g:endwise_no_mappings = 1
-" fzf {{{
+" 2}}}
+"
+" {{{2 fzf
 let g:fzf_buffers_jump = 1
 let g:fzf_history_dir = expand('$HOME/.config/nvim/fzf-history')
 let g:fzf_gitignore_map = '<Leader>sgi'
@@ -535,34 +556,30 @@ let g:fzf_colors = {
       \ 'spinner': ['fg', 'Label'],
       \ 'header': ['fg', 'Comment']
       \ }
-" }}}
+" 2}}}
 "
-" ncm2 {{{
+" {{{2 ncm2
 let g:ncm2#matcher = 'abbrfuzzy'
 let g:ncm2#sorter = 'abbrfuzzy'
 let g:ncm2#popup_delay = 50
 " }}}
-
+"
+" {{{2 ultisnips
 let g:UltiSnipsExpandTrigger = "<Plug>(ultisnips_expand)"
 let g:UltiSnipsRemoveSelectModeMappings = 0
 let g:UltiSnipsJumpForwardTrigger = "<c-j>"
 let g:UltiSnipsJumpBackwardTrigger  = "<c-k>"
-let g:test#preserve_screen = 1
-let g:test#strategy = {
-      \ 'nearest': 'neovim'
-      \ }
-let g:LanguageClient_autoStart = 1
-let g:LanguageClient_selectionUI = 'fzf'
-let g:signify_vcs_list              = [ 'git', 'bzr' ]
+" 2}}}
+"
+" {{{2 jedi
 let g:jedi#goto_assignments_command = '<leader>jg'
 let g:jedi#goto_definitions_command = '<leader>jd'
 let g:jedi#usages_command = '<leader>jn'
 let g:jedi#rename_command = '<leader>jr'
 let g:jedi#smart_auto_mappings = 0
-let g:pyenv#auto_activate = 1
-let g:pyenv#auto_create_ctags = 1
-let g:pyenv#auto_assign_ctags = 1
+" 2}}}
 let g:rooter_use_lcd = 1
+" {{{2 orgmode
 let g:cm_completekeys = "\<Plug>(cm_completefunc)"
 let g:org_aggressive_conceal = 1
 let g:org_todo_keyword_faces = ["bold", "inverse"]
@@ -570,6 +587,8 @@ let g:org_indent = 1
 let g:org_todo_keywords = [['TODO(t)', 'ACTIVE(a)', '|', 'DONE(d)'],
       \ ['REPORT(r)', 'BUG(b)', 'KNOWNCAUSE(k)', '|', 'FIXED(f)'],
       \ ['CANCELED(c)']]
+" 2}}}
+" {{{2 startify
 let g:startify_list_order = ['commands', 'sessions', 'bookmarks', 'files', 'dir']
 let g:startify_files_number = 20
 let g:startify_change_to_dir = 0
@@ -577,10 +596,16 @@ let g:startify_fortune_use_unicode = 1
 let g:startify_session_before_save = [
       \ 'silent! s:terminal_kill_extra_buffers()'
       \ ]
+" 2}}}
+"
+" {{{2 localvimrc
 let g:localvimrc_sandbox = 0
 let g:localvimrc_persistent = 1
 let g:localvimrc_persistent_file = expand('$HOME/.config/nvim/localvimrc_persistent')
 let g:localvimrc_whitelist = [expand('$HOME/.lvimrc')]
+" 2}}}
+"
+" {{{2 airline
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#disable_rtp_load = 1
 let g:airline_extensions = ['branch', 'tabline', 'ale', 'branch', 'tagbar', 'hunks', 'gutentags', 'cursormode']
@@ -601,6 +626,7 @@ let g:airline_mode_map = {
       \ 'S'  : 'S',
       \ '' : 'S',
       \ }
+" 2}}}
 let g:python_highlight_all = 1
 let g:notes_suffix = '.txt'
 let g:goyo_width = '100'
@@ -768,7 +794,6 @@ call Base16hi("MatchParen", g:base16_gui05, g:base16_gui03, g:base16_cterm05, g:
 
 augroup vimrc_misc
   au!
-  au BufEnter         * :syntax sync maxlines=200
   au User Startified    :call s:adapt_terminal()
 augroup END
 
@@ -790,7 +815,6 @@ augroup vimrc-langsupport
   au FileType css                  nested setl omnifunc=csscomplete#CompleteCSS noci
   au FileType markdown,mkd,txtfmt  nested call s:enhance_prose()
   au FileType yaml,python          nested BracelessEnable +indent +fold +highlight
-  au FileType man                  nested setlocal conceallevel=0
   au FileType quickfix,loclist     nested call s:adapt_terminal()
 augroup END
 
@@ -806,9 +830,4 @@ augroup vim-pyenv-custom-augroup
   autocmd! *
   autocmd User vim-pyenv-activate-post   call <SID>jedi_auto_force_py_version()
   autocmd User vim-pyenv-deactivate-post call <SID>jedi_auto_force_py_version()
-augroup END
-
-augroup vim-ncm2
-  autocmd! *
-  autocmd TextChangedI * silent! call ncm2#auto_trigger()
 augroup END

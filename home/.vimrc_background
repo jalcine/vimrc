@@ -1,3 +1,3 @@
-if !exists('g:colors_name') || g:colors_name != 'base16-bright'
-  colorscheme base16-bright
+if !exists('g:colors_name') || g:colors_name != 'base16-oceanicnext'
+  colorscheme base16-oceanicnext
 endif

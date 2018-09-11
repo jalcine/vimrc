@@ -13,7 +13,7 @@ exec "let $PATH=\"" . vimrc_root . "/node_modules/.bin:\" . $PATH"
 set laststatus=2
 set ruler number numberwidth=6 relativenumber
 set guicursor=
-set cursorline nocursorcolumn
+set cursorline cursorcolumn
 set sidescrolloff=1 sidescroll=1
 set conceallevel=2 concealcursor=nivc
 set foldenable foldminlines=3 foldmethod=syntax
@@ -123,6 +123,7 @@ endfunc
 func! s:adapt_terminal() abort
   setl noruler nocursorcolumn nocursorline norelativenumber nonumber
   setl signcolumn=no foldcolumn=0
+  silent! IndentLinesDisable
 endfunc
 
 func! s:terminal_kill_extra_buffers() abort
@@ -193,10 +194,6 @@ func! s:DockerComposeTransform(cmd) abort
   return 'docker-compose run ' . b:test_docker_compose_service . ' '.shellescape(a:cmd)
 endfunction
 
-func! s:jedi_auto_force_py_version() abort
-  call jedi#force_py_version(pyenv#python#get_internal_major_version())
-endfunction
-
 func! s:goyo_enter() abort
   Limelight
   silent !tmux set status off
@@ -255,6 +252,7 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-surround'
+Plug 'yggdroot/indentline'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-projectionist'
@@ -266,6 +264,8 @@ Plug 'direnv/direnv.vim'
 Plug 'w0rp/ale'
 Plug 'RRethy/vim-illuminate'
 Plug 'wincent/terminus'
+Plug 'idanarye/vim-vebugger'
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'tpope/vim-commentary'
       \ | Plug 'cbaumhardt/vim-commentary-boxed'
 Plug 'xolox/vim-misc'
@@ -327,6 +327,7 @@ Plug 'ncm2/nvim-typescript', {
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'tweekmonster/braceless.vim'
 Plug 'othree/es.next.syntax.vim'
+Plug 'othree/jspc.vim'
 Plug 'gorodinskiy/vim-coloresque'
 Plug 'kana/vim-textobj-user'
 Plug 'reedes/vim-pencil'
@@ -404,7 +405,11 @@ let g:LanguageClient_serverCommands = {
 let g:LanguageClient_completionPreferTextEdit = 1
 " }}}
 " {{{2 misc
-let g:signify_vcs_list              = [ 'git', 'bzr' ]
+let g:indentLine_char = '┊'
+let g:indentLine_showFirstIndentLevel = 0
+let g:indentLine_faster = 0
+let g:indentLine_fileTypeExclude = ['startify', 'help']
+let g:signify_vcs_list = [ 'git', 'bzr' ]
 let g:pyenv#auto_activate = 1
 let g:pyenv#auto_create_ctags = 1
 let g:pyenv#auto_assign_ctags = 1
@@ -414,7 +419,7 @@ if executable('ag')
   set grepformat=%f:%l:%c:%m
 endif
 let g:python_highlight_all = 1
-let g:python_slow_sync = 1
+let g:python_slow_sync = 0
 let g:python3_host_prog = systemlist('PYENV_VERSION=neovim-py3 pyenv which python3')[0]
 let g:python_host_prog = systemlist('PYENV_VERSION=neovim-py2 pyenv which python2')[0]
 let g:endwise_no_mappings = 1
@@ -427,10 +432,30 @@ let g:ale_php_phpcs_executable = 'phpenv exec composer global exec phpcs'
 let g:ale_php_phpcbf_executable = 'phpenv exec composer global exec phpcbf'
 let g:ale_linter_aliases = {'vue': ''}
 let g:ale_vue_vls_use_global = 0
-let g:ale_linters = {'vue': ['vls'], 'typescript': ['tslint', 'tsserver'], 'javascript': ['importj']}
-let g:ale_fixers = {'vue': ['vls'], 'json': ['jq', 'trim_whitespace', 'remove_trailing_lines'], 'typescript': ['tslint']}
 let g:ale_typescript_tslint_use_global = 0
 let g:ale_typescript_tslint_ignore_empty_files = 1
+
+let s:ale_linters = {'vue': ['vls'], 'typescript': ['tslint', 'tsserver'], 'javascript': ['importj']}
+let s:ale_fixers = {
+      \ 'vue': ['vls'], 
+      \ 'json': ['jq', 'trim_whitespace', 'remove_trailing_lines'],
+      \ 'typescript': ['tslint'],
+      \ 'ruby': ['rubocop', 'trim_whitespace', 'remove_trailing_lines'],
+      \ 'python': ['autopep8', 'add_blank_lines_for_python_control_statements', 'isort', 'yapf', 'trim_whitespace', 'remove_trailing_lines']
+      \}
+
+if !exists('g:ale_linters')
+  let g:ale_linters = s:ale_linters
+else
+  extend(g:ale_linters, s:ale_linters)
+endif
+
+if !exists('g:ale_fixers')
+  let g:ale_fixers = s:ale_fixers
+else
+  extend(g:ale_fixers, s:ale_fixers)
+endif
+
 " 2}}}
 "
 " {{{2 vim-test
@@ -577,6 +602,7 @@ let g:jedi#goto_definitions_command = '<leader>jd'
 let g:jedi#usages_command = '<leader>jn'
 let g:jedi#rename_command = '<leader>jr'
 let g:jedi#smart_auto_mappings = 0
+let g:jedi#force_py_version = 'auto'
 " 2}}}
 let g:rooter_use_lcd = 1
 " {{{2 orgmode
@@ -590,7 +616,7 @@ let g:org_todo_keywords = [['TODO(t)', 'ACTIVE(a)', '|', 'DONE(d)'],
 " 2}}}
 " {{{2 startify
 let g:startify_list_order = ['commands', 'sessions', 'bookmarks', 'files', 'dir']
-let g:startify_files_number = 20
+let g:startify_files_number = 5
 let g:startify_change_to_dir = 0
 let g:startify_fortune_use_unicode = 1
 let g:startify_session_before_save = [
@@ -608,7 +634,7 @@ let g:localvimrc_whitelist = [expand('$HOME/.lvimrc')]
 " {{{2 airline
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#disable_rtp_load = 1
-let g:airline_extensions = ['branch', 'tabline', 'ale', 'branch', 'tagbar', 'hunks', 'gutentags', 'cursormode']
+let g:airline_extensions = ['branch', 'tabline', 'ale', 'branch', 'tagbar', 'hunks', 'cursormode']
 let g:airline#extensions#quickfix#quickfix_text = 'Q'
 let g:airline#extensions#quickfix#location_text = 'L'
 let g:airline#extensions#branch#displyed_head_limit = 15
@@ -633,7 +659,7 @@ let g:goyo_width = '100'
 let g:goyo_height = '75%'
 
 filetype plugin indent on
-syntax on
+syntax off
 " }}}
 
 let s:mappings = {
@@ -825,9 +851,3 @@ augroup vimrc_goyo
 augroup END
 
 command! Today call <SID>LaunchNoteOfTheDay()
-
-augroup vim-pyenv-custom-augroup
-  autocmd! *
-  autocmd User vim-pyenv-activate-post   call <SID>jedi_auto_force_py_version()
-  autocmd User vim-pyenv-deactivate-post call <SID>jedi_auto_force_py_version()
-augroup END

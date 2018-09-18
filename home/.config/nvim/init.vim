@@ -15,7 +15,7 @@ set ruler number numberwidth=6 relativenumber
 set guicursor=
 set cursorline cursorcolumn
 set sidescrolloff=1 sidescroll=1
-set conceallevel=2 concealcursor=nivc
+set conceallevel=3 concealcursor=nivc
 set foldenable foldminlines=3 foldmethod=syntax
 set nowrap
 set signcolumn=yes
@@ -281,9 +281,9 @@ Plug 'idanarye/vim-merginal'
 Plug 'mattn/gist-vim'
 Plug 'nkantar/ght.vim'
 Plug 'int3/vim-extradite'
-" TODO: I need to learn how to use these plugins.
-" Plug 'junkblocker/patchreview-vim'
-" Plug 'codegram/vim-codereview'
+Plug 'bfrg/vim-cpp-modern'
+Plug 'junkblocker/patchreview-vim'
+Plug 'codegram/vim-codereview'
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'chiel92/vim-autoformat'
 Plug 'editorconfig/editorconfig-vim'
@@ -440,7 +440,7 @@ let s:ale_fixers = {
       \ 'vue': ['vls'], 
       \ 'json': ['jq', 'trim_whitespace', 'remove_trailing_lines'],
       \ 'typescript': ['tslint'],
-      \ 'ruby': ['rubocop', 'trim_whitespace', 'remove_trailing_lines'],
+      \ 'ruby': ['rubocop', 'trim_whitespace', 'remove_trailing_lines' ],
       \ 'python': ['autopep8', 'add_blank_lines_for_python_control_statements', 'isort', 'yapf', 'trim_whitespace', 'remove_trailing_lines']
       \}
 

@@ -2,6 +2,10 @@
 " Author:        Jacky Alcine <yo@jacky.wtf>
 " Description:   Entry point of all of my configuration.
 " Last Modified: August 08, 2017
+"
+" This is where I tell Neovim to do my bidding. Yes, I have over
+" 100+ plugins. No, Neovim does not run slow.
+"
 " vim: set fdm=marker foldlevel=0 :
 
 set encoding=utf-8 fileencoding=utf-8
@@ -10,13 +14,15 @@ scriptencoding utf-8
 let vimrc_root = fnamemodify($MYVIMRC, ':p:h')
 exec "let $PATH=\"" . vimrc_root . "/node_modules/.bin:\" . $PATH"
 
+" {{{ settings
+
 set laststatus=2
 set ruler number numberwidth=6 relativenumber
 set guicursor=
-set cursorline cursorcolumn
+set nocursorline nocursorcolumn
 set sidescrolloff=1 sidescroll=1
 set conceallevel=3 concealcursor=nivc
-set foldenable foldminlines=3 foldmethod=syntax
+set foldenable foldminlines=10 foldmethod=syntax foldlevel=2
 set nowrap
 set signcolumn=yes
 set shortmess+=c
@@ -73,12 +79,15 @@ set nocscopetag
 set completefunc=LanguageClient#complete
 set formatexpr=LanguageClient_textDocument_rangeFormatting()
 
+" }}}
+
 iabbrev myemail yo@jacky.wtf
 iabbrev myname Jacky Alciné
 iabbrev me_fname Jacky
 iabbrev me_lname Alciné
 iabbrev me_site https://jacky.wtf
 
+" {{{ local funcs
 func! s:enhance_prose() abort
   let l:is_in_text = (&ft == 'text')
   setlocal foldlevel=6
@@ -173,7 +182,6 @@ endfunc
 
 func! s:langclient_start_for_ft(ft) abort
   if has_key(g:LanguageClient_serverCommands, a:ft) == 1
-    LanguageClientStart
     setl completefunc=LanguageClient#complete
     setl formatexpr=LanguageClient_textDocument_rangeFormatting()
   else
@@ -243,7 +251,8 @@ func! s:apply_bulk_mappings(mappings_list, opts) abort " {{{
     endwhile
   endfor
 endfunc " }}}
-
+" }}}
+"
 " Plugins {{{
 filetype off
 call plug#begin(expand('$HOME/.config/nvim/plugins'))
@@ -258,8 +267,11 @@ Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-scriptease'
 Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-rails'
 Plug 'janko-m/vim-test'
 Plug 'tpope/vim-dotenv'
+Plug 'mustache/vim-mustache-handlebars'
+Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 Plug 'direnv/direnv.vim'
 Plug 'w0rp/ale'
 Plug 'RRethy/vim-illuminate'
@@ -312,6 +324,8 @@ Plug 'powerman/vim-plugin-AnsiEsc'
 Plug 'zhm/TagHighlight'
 Plug 'Shougo/echodoc.vim'
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'sakhnik/nvim-gdb'
+Plug 'raghur/vim-ghost'
 Plug 'majutsushi/tagbar'
 Plug 'airblade/vim-rooter'
 Plug 'raimondi/delimitmate'
@@ -321,9 +335,6 @@ Plug 'wakatime/vim-wakatime'
 Plug 'sheerun/vim-polyglot'
 Plug 'lambdalisue/vim-pyenv', { 'for': 'python' }
 Plug 'ekalinin/Dockerfile.vim'
-Plug 'ncm2/nvim-typescript', { 
-      \ 'do': 'bash ./install.sh'
-      \ }
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'tweekmonster/braceless.vim'
 Plug 'othree/es.next.syntax.vim'
@@ -347,6 +358,9 @@ Plug 'ncm2/ncm2-ultisnips'
 Plug 'ncm2/ncm2-tagprefix'
 Plug 'ncm2/ncm2-github'
 Plug 'ncm2/ncm2-path'
+Plug 'ncm2/nvim-typescript', { 
+      \ 'do': 'bash ./install.sh'
+      \ }
 Plug 'autozimu/LanguageClient-neovim', {
       \ 'branch': 'next',
       \ 'do': 'bash install.sh',
@@ -366,12 +380,9 @@ Plug 'JakeBecker/elixir-ls', {
 Plug 'roxma/LanguageServer-php-neovim',  {
       \ 'do': 'phpenv exec composer install && composer run-script parse-stubs'
       \ }
-
 Plug 'sirver/ultisnips'
       \ |  Plug 'honza/vim-snippets'
-
 Plug 'roxma/vim-tmux-clipboard'
-
 Plug 'mhinz/vim-startify'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
@@ -384,9 +395,9 @@ call plug#end()
 " {{{2 Language Client
 let g:LanguageClient_settingsPath = vimrc_root . '/language_client.json'
 let g:LanguageClient_diagnosticsSignsMax = 0
-let g:LanguageClient_autoStart = 1
+let g:LanguageClient_autoStart = 0
 let g:LanguageClient_selectionUI = 'fzf'
-let g:LanguageClient_loggingLevel = 'WARN' 
+let g:LanguageClient_loggingLevel = 'INFO' 
 let g:LanguageClient_loggingFile = vimrc_root . '/logs/langclient.log'
 let g:LanguageClient_serverCommands = {
       \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
@@ -404,42 +415,57 @@ let g:LanguageClient_serverCommands = {
       \ }
 let g:LanguageClient_completionPreferTextEdit = 1
 " }}}
-" {{{2 misc
-let g:indentLine_char = '┊'
-let g:indentLine_showFirstIndentLevel = 0
-let g:indentLine_faster = 0
-let g:indentLine_fileTypeExclude = ['startify', 'help']
-let g:signify_vcs_list = [ 'git', 'bzr' ]
+"
+" {{{2 python
 let g:pyenv#auto_activate = 1
 let g:pyenv#auto_create_ctags = 1
 let g:pyenv#auto_assign_ctags = 1
+let g:python_highlight_all = 1
+let g:python_slow_sync = 0
+let g:python3_host_prog = systemlist('PYENV_VERSION=neovim-py3 pyenv which python3')[0]
+let g:python_host_prog = systemlist('PYENV_VERSION=neovim-py2 pyenv which python2')[0]
+" }}}
+"
+" {{{2 identline
+let g:indentLine_char = '┊'
+let g:indentLine_showFirstIndentLevel = 0
+let g:indentLine_faster = 1
+let g:indentLine_fileTypeExclude = ['startify', 'help', 'json', 'yaml']
+" }}}
+"
+" {{{2 misc
+let g:signify_vcs_list = [ 'git', 'bzr' ]
+
 if executable('ag')
   let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
   set grepprg=ag\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow
   set grepformat=%f:%l:%c:%m
 endif
-let g:python_highlight_all = 1
-let g:python_slow_sync = 0
-let g:python3_host_prog = systemlist('PYENV_VERSION=neovim-py3 pyenv which python3')[0]
-let g:python_host_prog = systemlist('PYENV_VERSION=neovim-py2 pyenv which python2')[0]
+
 let g:endwise_no_mappings = 1
-let g:nvim_typescript#type_info_on_hold = 1
+
+let g:nvim_typescript#type_info_on_hold = 0
 let g:nvim_typescript#vue_support = 0
 " }}}
 "
 " {{{2 ale
 let g:ale_php_phpcs_executable = 'phpenv exec composer global exec phpcs'
 let g:ale_php_phpcbf_executable = 'phpenv exec composer global exec phpcbf'
-let g:ale_linter_aliases = {'vue': ''}
 let g:ale_vue_vls_use_global = 0
 let g:ale_typescript_tslint_use_global = 0
 let g:ale_typescript_tslint_ignore_empty_files = 1
 
-let s:ale_linters = {'vue': ['vls'], 'typescript': ['tslint', 'tsserver'], 'javascript': ['importj']}
+let s:ale_linters = {
+      \ 'vue': ['vls'],
+      \ 'typescript': ['tslint', 'tsserver'],
+      \ 'javascript': ['importj'],
+      \ 'elixir': ['mix', 'dogma', 'dialyxir', 'credo']
+      \ }
 let s:ale_fixers = {
-      \ 'vue': ['vls'], 
+      \ 'vue': ['vls', 'trim_whitespace', 'remove_trailing_lines'], 
       \ 'json': ['jq', 'trim_whitespace', 'remove_trailing_lines'],
-      \ 'typescript': ['tslint'],
+      \ 'elixir': [ 'mix_format', 'trim_whitespace', 'remove_trailing_lines'],
+      \ 'typescript': ['tslint', 'trim_whitespace', 'remove_trailing_lines'],
       \ 'ruby': ['rubocop', 'trim_whitespace', 'remove_trailing_lines' ],
       \ 'python': ['autopep8', 'add_blank_lines_for_python_control_statements', 'isort', 'yapf', 'trim_whitespace', 'remove_trailing_lines']
       \}
@@ -447,13 +473,13 @@ let s:ale_fixers = {
 if !exists('g:ale_linters')
   let g:ale_linters = s:ale_linters
 else
-  extend(g:ale_linters, s:ale_linters)
+  call extend(g:ale_linters, s:ale_linters)
 endif
 
 if !exists('g:ale_fixers')
   let g:ale_fixers = s:ale_fixers
 else
-  extend(g:ale_fixers, s:ale_fixers)
+  call extend(g:ale_fixers, s:ale_fixers)
 endif
 
 " 2}}}
@@ -465,9 +491,7 @@ let g:test#custom_transformations = {
     \ 'docker-compose': function('<SID>DockerComposeTransform')
     \}
 let g:test#preserve_screen = 1
-let g:test#strategy = {
-      \ 'nearest': 'neovim'
-      \ }
+let g:test#strategy = 'dispatch'
 " 2}}}
 "
 " {{{2 tagbar
@@ -619,6 +643,19 @@ let g:startify_list_order = ['commands', 'sessions', 'bookmarks', 'files', 'dir'
 let g:startify_files_number = 5
 let g:startify_change_to_dir = 0
 let g:startify_fortune_use_unicode = 1
+let g:startify_session_delete_buffers = 1
+  function! s:list_commits()
+    let git = 'git -C ~/.homesick/repos/vimrc'
+    let commits = systemlist(git .' log --oneline | head -n10')
+    let git = 'G'. git[1:]
+    return map(commits, '{"line": matchstr(v:val, "\\s\\zs.*"), "cmd": "'. git .' show ". matchstr(v:val, "^\\x\\+") }')
+  endfunction
+let g:startify_lists = [
+      \ { 'header': ['   MRU'],            'type': 'files' },
+      \ { 'header': ['   MRU '. getcwd()], 'type': 'dir' },
+      \ { 'header': ['   Sessions'],       'type': 'sessions' },
+      \ { 'header': ['   Commits'],        'type': function('s:list_commits') },
+      \ ]
 let g:startify_session_before_save = [
       \ 'silent! s:terminal_kill_extra_buffers()'
       \ ]
@@ -662,6 +699,7 @@ filetype plugin indent on
 syntax off
 " }}}
 
+" {{{ Mappings
 let s:mappings = {
       \ 'leader':  ',',
       \ 'localLeader':  '\\',
@@ -719,7 +757,6 @@ call <SID>apply_bulk_mappings([
       \ ['P', ':Git push<CR>'],
       \ ['rm', ':Gremove %<CR>'],
       \ ['rmc', ':Git rm --cached %<CR>'],
-      \ ['l', ':Commits<CR>'],
       \ ['m', ':MerginalToggle<CR>'],
       \ ['st', ':SignifyToggle<CR>'],
       \ ['sh', ':SignifyToggleHighlight<CR>'],
@@ -776,17 +813,23 @@ call <SID>apply_bulk_mappings([
       \ 'prefix': 'ph'
       \ })
 
+call <SID>apply_bulk_mappings([
+      \ ['S', 'LanguageClientStart'],
+      \ ['H', 'call LanguageClient_textDocument_hover()<CR>'],
+      \ ['D', 'call LanguageClient_textDocument_definition()<CR>'],
+      \ ['tD', 'call LanguageClient_textDocument_typeDefintion()<CR>'],
+      \ ['I', 'call LanguageClient_textDocument_implementation()<CR>'],
+      \ ['R', 'call LanguageClient_textDocument_rename()<CR>'],
+      \ ['Z', 'call investigate#Investigate("n")<CR>'],
+      \ ], {
+      \ 'prefix': 'g'
+      \ })
+
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <silent> <expr> <CR> ((pumvisible() && empty(v:completed_item)) ?  "\<c-y>\<cr>" : (!empty(v:completed_item) ? ncm2_ultisnips#expand_or("", 'n') : "\<CR>" ))
+inoremap <silent> <expr> <CR> ((pumvisible() && empty(v:completed_item)) ?  "\<c-y>\<cr>" : (!empty(v:completed_item) ? ncm2_ultisnips#expand_or("", 'n') : "\<c-y>\<CR>" ))
 snoremap <c-u> <Plug>(ultisnips_expand)
-inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
-
-nnoremap <silent> gK :call LanguageClient_textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
-nnoremap <silent> gD :call LanguageClient_textDocument_typeDefinition()<CR>
-nnoremap <silent> gI :call LanguageClient_textDocument_implementation()<CR>
-nnoremap <silent> gr :call LanguageClient_textDocument_rename()<CR>
+inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", "n")
 
 inoremap <c-c> <ESC>
 
@@ -815,9 +858,9 @@ cnoremap <silent> <leader>pt <C-R>=strftime("%Y%m%d%H%M%S")<CR>
 inoremap <silent> <leader>pd <C-R>=strftime("%Y-%m-%d")<CR>
 cnoremap <silent> <leader>pd <C-R>=strftime("%Y-%m-%d")<CR>
 
-source ~/.vimrc_background
-call Base16hi("MatchParen", g:base16_gui05, g:base16_gui03, g:base16_cterm05, g:base16_cterm03, "bold,italic", "")
+" }}}
 
+" {{{ augroups
 augroup vimrc_misc
   au!
   au User Startified    :call s:adapt_terminal()
@@ -850,4 +893,8 @@ augroup vimrc_goyo
   au User GoyoLeave nested call s:goyo_leave()
 augroup END
 
+" }}}
+
 command! Today call <SID>LaunchNoteOfTheDay()
+
+source ~/.vimrc_background

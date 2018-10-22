@@ -44,6 +44,11 @@ install_perl ()
   plenv exec carton install
 }
 
+install_elixir ()
+{
+  # TODO: Install elixir language client server here.
+}
+
 __ScriptVersion="2017-12-24"
 
 #===  FUNCTION  ================================================================

@@ -261,48 +261,47 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-surround'
-Plug 'yggdroot/indentline'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-speeddating'
-Plug 'tpope/vim-projectionist'
-Plug 'tpope/vim-scriptease'
+" Plug 'tpope/vim-projectionist'
+" Plug 'tpope/vim-scriptease'
 Plug 'tpope/vim-vinegar'
-Plug 'tpope/vim-rails'
+" Plug 'tpope/vim-rails'
 Plug 'janko-m/vim-test'
 Plug 'tpope/vim-dotenv'
-Plug 'mustache/vim-mustache-handlebars'
-Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
+" Plug 'mustache/vim-mustache-handlebars'
 Plug 'direnv/direnv.vim'
 Plug 'w0rp/ale'
 Plug 'RRethy/vim-illuminate'
 Plug 'wincent/terminus'
-Plug 'idanarye/vim-vebugger'
+" Plug 'idanarye/vim-vebugger'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'tpope/vim-commentary'
       \ | Plug 'cbaumhardt/vim-commentary-boxed'
 Plug 'xolox/vim-misc'
-Plug 'xolox/vim-notes'
 Plug 'xolox/vim-shell'
-Plug 'vim-scripts/utl.vim'
-Plug 'bpstahlman/txtfmt'
+      \ | Plug 'xolox/vim-notes'
+      \ | Plug 'vim-scripts/utl.vim'
+      \ | Plug 'bpstahlman/txtfmt'
+      \ | Plug 'powerman/vim-plugin-AnsiEsc'
+      \ | Plug 'zhm/TagHighlight'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb'
-Plug 'tommcdo/vim-fubitive'
-Plug 'tommcdo/vim-fugitive-blame-ext'
+      \ | Plug 'tpope/vim-rhubarb'
+      \ | Plug 'tommcdo/vim-fubitive'
+      \ | Plug 'tommcdo/vim-fugitive-blame-ext'
+      \ | Plug 'int3/vim-extradite'
 Plug 'idanarye/vim-merginal'
 Plug 'mattn/gist-vim'
-Plug 'nkantar/ght.vim'
-Plug 'int3/vim-extradite'
 Plug 'bfrg/vim-cpp-modern'
-Plug 'junkblocker/patchreview-vim'
-Plug 'codegram/vim-codereview'
+" Plug 'junkblocker/patchreview-vim'
+" Plug 'codegram/vim-codereview'
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'chiel92/vim-autoformat'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'embear/vim-localvimrc'
 Plug 'gabrielelana/vim-markdown'
 Plug 'jceb/vim-orgmode'
-Plug 'mattn/calendar-vim'
+" Plug 'mattn/calendar-vim'
 Plug 'vim-scripts/SyntaxRange'
 Plug 'mattn/webapi-vim'
 Plug 'mhinz/vim-signify'
@@ -320,51 +319,52 @@ Plug 'tmux-plugins/vim-tmux'
       \ | Plug 'tmux-plugins/vim-tmux-focus-events'
       \ | Plug 'MikeDacre/tmux-zsh-vim-titles'
 " NOTE: Used only with notes.
-Plug 'powerman/vim-plugin-AnsiEsc'
-Plug 'zhm/TagHighlight'
 Plug 'Shougo/echodoc.vim'
 Plug 'ludovicchabant/vim-gutentags'
-Plug 'sakhnik/nvim-gdb'
-Plug 'raghur/vim-ghost'
+" Plug 'sakhnik/nvim-gdb'
+" Plug 'raghur/vim-ghost'
 Plug 'majutsushi/tagbar'
 Plug 'airblade/vim-rooter'
 Plug 'raimondi/delimitmate'
 Plug 'godlygeek/tabular'
-Plug 'tweekmonster/startuptime.vim'
+Plug 'tweekmonster/startuptime.vim', { 'on': 'StartupTime' }
 Plug 'wakatime/vim-wakatime'
 Plug 'sheerun/vim-polyglot'
 Plug 'lambdalisue/vim-pyenv', { 'for': 'python' }
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'tweekmonster/braceless.vim'
-Plug 'othree/es.next.syntax.vim'
-Plug 'othree/jspc.vim'
-Plug 'gorodinskiy/vim-coloresque'
+" Plug 'othree/es.next.syntax.vim'
+" Plug 'othree/jspc.vim'
 Plug 'kana/vim-textobj-user'
-Plug 'reedes/vim-pencil'
-Plug 'reedes/vim-textobj-sentence'
-Plug 'reedes/vim-textobj-quote'
-Plug 'reedes/vim-lexical'
-Plug 'reedes/vim-litecorrect'
+      \ | Plug 'reedes/vim-textobj-sentence'
+      \ | Plug 'reedes/vim-textobj-quote'
+      \ | Plug 'reedes/vim-pencil'
+      \ | Plug 'reedes/vim-lexical'
+      \ | Plug 'reedes/vim-litecorrect'
+
 Plug 'vim-scripts/dbext.vim'
+
 Plug 'ncm2/ncm2'
-Plug 'ncm2/ncm2-html-subscope'
-Plug 'ncm2/ncm2-markdown-subscope'
-Plug 'ncm2/ncm2-match-highlight'
-Plug 'ncm2/ncm2-bufword'
-Plug 'ncm2/ncm2-tern'
-Plug 'ncm2/ncm2-cssomni'
-Plug 'ncm2/ncm2-ultisnips'
-Plug 'ncm2/ncm2-tagprefix'
-Plug 'ncm2/ncm2-github'
-Plug 'ncm2/ncm2-path'
-Plug 'ncm2/nvim-typescript', { 
+      \ | Plug 'ncm2/ncm2-html-subscope'
+      \ | Plug 'ncm2/ncm2-markdown-subscope'
+      \ | Plug 'ncm2/ncm2-match-highlight'
+      \ | Plug 'ncm2/ncm2-bufword'
+      \ | Plug 'ncm2/ncm2-tern'
+      \ | Plug 'ncm2/ncm2-cssomni'
+      \ | Plug 'ncm2/ncm2-ultisnips'
+      \ | Plug 'ncm2/ncm2-tagprefix'
+      \ | Plug 'ncm2/ncm2-github'
+      \ | Plug 'ncm2/ncm2-path'
+      \ | Plug 'ncm2/nvim-typescript', { 
       \ 'do': 'bash ./install.sh'
       \ }
+
 Plug 'autozimu/LanguageClient-neovim', {
       \ 'branch': 'next',
       \ 'do': 'bash install.sh',
       \ }
+
 Plug 'terryma/vim-multiple-cursors'
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'fisadev/vim-isort', {'for': 'python'}
@@ -373,9 +373,6 @@ Plug 'elixir-editors/vim-elixir', {'for': 'elixir'}
 Plug 'awetzel/elixir.nvim', {
       \ 'do': 'yes \| ./install.sh',
       \ 'for': 'elixir'
-      \ }
-Plug 'JakeBecker/elixir-ls', {
-      \ 'do' : 'mix do deps.get, deps.compile, compile, elixir_ls.release -o ' . vimrc_root . '/bin',
       \ }
 Plug 'roxma/LanguageServer-php-neovim',  {
       \ 'do': 'phpenv exec composer install && composer run-script parse-stubs'
@@ -386,7 +383,7 @@ Plug 'roxma/vim-tmux-clipboard'
 Plug 'mhinz/vim-startify'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
-Plug 'ryanoasis/vim-devicons'
+" Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 " }}}
@@ -751,6 +748,7 @@ call <SID>apply_bulk_mappings([
       \ ['C', ':Gcommit --branch --verbose %<CR>'],
       \ ['co', ':Git checkout<space>'],
       \ ['cO', ':Git checkout HEAD -- %<CR>'],
+      \ ['e', ':Extradite'],
       \ ['f', ':Git fetch<space>'],
       \ ['fa', ':Git fetch --all<CR>'],
       \ ['p', ':Git push<space>'],
@@ -883,7 +881,7 @@ augroup vimrc-langsupport
   au FileType *                    nested call s:langclient_start_for_ft("<amatch>")
   au FileType css                  nested setl omnifunc=csscomplete#CompleteCSS noci
   au FileType markdown,mkd,txtfmt  nested call s:enhance_prose()
-  au FileType yaml,python          nested BracelessEnable +indent +fold +highlight
+  au FileType yaml,python          nested BracelessEnable +indent
   au FileType quickfix,loclist     nested call s:adapt_terminal()
 augroup END
 

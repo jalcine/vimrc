@@ -310,7 +310,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
       \ | Plug 'fszymanski/fzf-gitignore', { 'do' : ':UpdateRemotePlugins' }
       \ | Plug 'tweekmonster/fzf-filemru'
 Plug 'chriskempson/base16-vim'
-Plug 'keith/investigate.vim'
+Plug 'KabbAmine/zeavim.vim'
 Plug 'vim-airline/vim-airline' |
       \ Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-dispatch' |
@@ -383,7 +383,7 @@ Plug 'roxma/vim-tmux-clipboard'
 Plug 'mhinz/vim-startify'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
-" Plug 'ryanoasis/vim-devicons'
+Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 " }}}
@@ -818,7 +818,7 @@ call <SID>apply_bulk_mappings([
       \ ['tD', 'call LanguageClient_textDocument_typeDefintion()<CR>'],
       \ ['I', 'call LanguageClient_textDocument_implementation()<CR>'],
       \ ['R', 'call LanguageClient_textDocument_rename()<CR>'],
-      \ ['Z', 'call investigate#Investigate("n")<CR>'],
+      \ ['Z', '<Plug>Zeavim'],
       \ ], {
       \ 'prefix': 'g'
       \ })

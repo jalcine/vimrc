@@ -22,7 +22,7 @@ set guicursor=
 set nocursorline nocursorcolumn
 set sidescrolloff=1 sidescroll=1
 set conceallevel=3 concealcursor=nivc
-set foldenable foldminlines=10 foldmethod=syntax foldlevel=2
+set foldenable foldminlines=5 foldmethod=syntax foldlevel=2
 set nowrap
 set signcolumn=yes
 set shortmess+=c

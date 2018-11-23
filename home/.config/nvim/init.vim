@@ -605,9 +605,9 @@ let g:fzf_colors = {
 " 2}}}
 "
 " {{{2 ncm2
-let g:ncm2#matcher = 'abbrfuzzy'
+let g:ncm2#matcher = 'substrfuzzy'
 let g:ncm2#sorter = 'abbrfuzzy'
-let g:ncm2#popup_delay = 50
+let g:ncm2#popup_delay = 10
 " }}}
 "
 " {{{2 ultisnips

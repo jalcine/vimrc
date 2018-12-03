@@ -8,8 +8,8 @@
 "
 " vim: set fdm=marker foldlevel=0 :
 
-set encoding=utf-8 fileencoding=utf-8
-scriptencoding utf-8
+set encoding=UTF-8 fileencoding=UTF-8
+scriptencoding UTF-8
 
 let vimrc_root = fnamemodify($MYVIMRC, ':p:h')
 exec "let $PATH=\"" . vimrc_root . "/node_modules/.bin:\" . $PATH"
@@ -54,8 +54,7 @@ set regexpengine=1
 
 set undofile
 set undodir=$HOME/.config/nvim/undo
-set undolevels=100
-set undoreload=100
+set undolevels=5000
 
 set backup writebackup
 set backupdir=$HOME/.config/nvim/backup
@@ -75,9 +74,6 @@ set tags+=./tags,./.tags,./.vimtags
 set tags+=tags,.tags,.vimtags
 set tags+=$HOME/.config/nvim/tags/*
 set nocscopetag
-
-set completefunc=LanguageClient#complete
-set formatexpr=LanguageClient_textDocument_rangeFormatting()
 
 " }}}
 
@@ -137,9 +133,9 @@ endfunc
 
 func! s:terminal_kill_extra_buffers() abort
   silent! TagbarClose
-  silent! MerginalClose
   silent! cclose
   silent! lclose
+  silent! MerginalClose
   silent! bd Merginal:branchList
 endfunc
 
@@ -178,15 +174,6 @@ endfunc
 func! s:LaunchNoteOfTheDay() abort
   execute ':Note Morning Entries/' . strftime('%Y-%m-%d')
   Goyo
-endfunc
-
-func! s:langclient_start_for_ft(ft) abort
-  if has_key(g:LanguageClient_serverCommands, a:ft) == 1
-    setl completefunc=LanguageClient#complete
-    setl formatexpr=LanguageClient_textDocument_rangeFormatting()
-  else
-    set formatexpr&vim
-  endif
 endfunc
 
 func! s:VagrantTransform(cmd) abort
@@ -263,18 +250,18 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-speeddating'
-" Plug 'tpope/vim-projectionist'
-" Plug 'tpope/vim-scriptease'
+Plug 'tpope/vim-projectionist'
+Plug 'tpope/vim-scriptease'
 Plug 'tpope/vim-vinegar'
-" Plug 'tpope/vim-rails'
+Plug 'tpope/vim-rails'
 Plug 'janko-m/vim-test'
+Plug 'mustache/vim-mustache-handlebars'
 Plug 'tpope/vim-dotenv'
-" Plug 'mustache/vim-mustache-handlebars'
-Plug 'direnv/direnv.vim'
+      \ | Plug 'direnv/direnv.vim'
+      \ | Plug 'wincent/terminus'
 Plug 'w0rp/ale'
 Plug 'RRethy/vim-illuminate'
-Plug 'wincent/terminus'
-" Plug 'idanarye/vim-vebugger'
+Plug 'idanarye/vim-vebugger'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'tpope/vim-commentary'
       \ | Plug 'cbaumhardt/vim-commentary-boxed'
@@ -293,15 +280,15 @@ Plug 'tpope/vim-fugitive'
 Plug 'idanarye/vim-merginal'
 Plug 'mattn/gist-vim'
 Plug 'bfrg/vim-cpp-modern'
-" Plug 'junkblocker/patchreview-vim'
-" Plug 'codegram/vim-codereview'
+Plug 'junkblocker/patchreview-vim'
+Plug 'codegram/vim-codereview'
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'chiel92/vim-autoformat'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'embear/vim-localvimrc'
 Plug 'gabrielelana/vim-markdown'
 Plug 'jceb/vim-orgmode'
-" Plug 'mattn/calendar-vim'
+Plug 'mattn/calendar-vim'
 Plug 'vim-scripts/SyntaxRange'
 Plug 'mattn/webapi-vim'
 Plug 'mhinz/vim-signify'
@@ -321,8 +308,7 @@ Plug 'tmux-plugins/vim-tmux'
 " NOTE: Used only with notes.
 Plug 'Shougo/echodoc.vim'
 Plug 'ludovicchabant/vim-gutentags'
-" Plug 'sakhnik/nvim-gdb'
-" Plug 'raghur/vim-ghost'
+Plug 'sakhnik/nvim-gdb'
 Plug 'majutsushi/tagbar'
 Plug 'airblade/vim-rooter'
 Plug 'raimondi/delimitmate'
@@ -334,8 +320,8 @@ Plug 'lambdalisue/vim-pyenv', { 'for': 'python' }
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'tweekmonster/braceless.vim'
-" Plug 'othree/es.next.syntax.vim'
-" Plug 'othree/jspc.vim'
+Plug 'othree/es.next.syntax.vim'
+Plug 'othree/jspc.vim'
 Plug 'kana/vim-textobj-user'
       \ | Plug 'reedes/vim-textobj-sentence'
       \ | Plug 'reedes/vim-textobj-quote'
@@ -343,8 +329,8 @@ Plug 'kana/vim-textobj-user'
       \ | Plug 'reedes/vim-lexical'
       \ | Plug 'reedes/vim-litecorrect'
 
+Plug 'mattboehm/vim-unstack'
 Plug 'vim-scripts/dbext.vim'
-
 Plug 'ncm2/ncm2'
       \ | Plug 'ncm2/ncm2-html-subscope'
       \ | Plug 'ncm2/ncm2-markdown-subscope'
@@ -360,20 +346,10 @@ Plug 'ncm2/ncm2'
       \ 'do': 'bash ./install.sh'
       \ }
 
-Plug 'autozimu/LanguageClient-neovim', {
-      \ 'branch': 'next',
-      \ 'do': 'bash install.sh',
-      \ }
-
 Plug 'terryma/vim-multiple-cursors'
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'fisadev/vim-isort', {'for': 'python'}
 Plug 'othree/csscomplete.vim', {'for': 'css'}
-Plug 'elixir-editors/vim-elixir', {'for': 'elixir'}
-Plug 'awetzel/elixir.nvim', {
-      \ 'do': 'yes \| ./install.sh',
-      \ 'for': 'elixir'
-      \ }
 Plug 'roxma/LanguageServer-php-neovim',  {
       \ 'do': 'phpenv exec composer install && composer run-script parse-stubs'
       \ }
@@ -384,33 +360,13 @@ Plug 'mhinz/vim-startify'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'ryanoasis/vim-devicons'
+Plug 'thinca/vim-ref'
 
 call plug#end()
 " }}}
 
 " {{{ Options
 " {{{2 Language Client
-let g:LanguageClient_settingsPath = vimrc_root . '/language_client.json'
-let g:LanguageClient_diagnosticsSignsMax = 0
-let g:LanguageClient_autoStart = 0
-let g:LanguageClient_selectionUI = 'fzf'
-let g:LanguageClient_loggingLevel = 'INFO' 
-let g:LanguageClient_loggingFile = vimrc_root . '/logs/langclient.log'
-let g:LanguageClient_serverCommands = {
-      \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-      \ 'javascript': [ 'neovim-language-server-javascript'],
-      \ 'typescript': [ 'neovim-language-server-javascript'],
-      \ 'python': ['pyenv', 'exec', 'pyls'],
-      \ 'go': ['goenv', 'exec', 'go-langserver'],
-      \ 'php': ['neovim-language-server-php'],
-      \ 'ruby': [ vimrc_root . '/bin/language_server-ruby' ],
-      \ 'elixir': [ vimrc_root . '/bin/language_server.sh'],
-      \ 'css': [ 'css-language-server', '--stdio' ],
-      \ 'cpp': [ 'cquery', '--log-file=/tmp/cq.log' ],
-      \ 'sh': [ vimrc_root . '/node_modules/.bin/bash-language-server', 'start'],
-      \ 'vue': [ vimrc_root . '/node_modules/.bin/vls' ]
-      \ }
-let g:LanguageClient_completionPreferTextEdit = 1
 " }}}
 "
 " {{{2 python
@@ -432,6 +388,8 @@ let g:indentLine_fileTypeExclude = ['startify', 'help', 'json', 'yaml']
 "
 " {{{2 misc
 let g:signify_vcs_list = [ 'git', 'bzr' ]
+let g:signify_realtime = 1
+let g:signify_sign_show_count = 0
 
 if executable('ag')
   let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
@@ -446,11 +404,29 @@ let g:nvim_typescript#vue_support = 0
 " }}}
 "
 " {{{2 ale
+let g:ale_history_enabled = 1
+let g:ale_history_log_output = 1
 let g:ale_php_phpcs_executable = 'phpenv exec composer global exec phpcs'
 let g:ale_php_phpcbf_executable = 'phpenv exec composer global exec phpcbf'
-let g:ale_vue_vls_use_global = 0
+let g:ale_set_ballons = 1
+let g:ale_command_wrapper = 'nice -n5'
+let g:ale_echo_delay = 3
+let g:ale_completion_enabled = 1
 let g:ale_typescript_tslint_use_global = 0
 let g:ale_typescript_tslint_ignore_empty_files = 1
+let g:ale_elixir_elixir_ls_release = vimrc_root . '/plugins/eli'
+let g:ale_php_langserver_executable = 'phpenv exec ' . vimrc_root . '/plugins/LanguageServer-php-neovim/vendor/bin/php-language-server.php'
+let g:ale_echo_msg_error_str = nr2char(0xf421) . ' '
+let g:ale_echo_msg_warning_str = nr2char(0xf420) . ' '
+let g:ale_echo_msg_info_str = nr2char(0xf05a) . ' '
+let g:ale_echo_msg_format = '%severity%  %linter% - %s'
+let g:ale_sign_column_always = 1
+let g:ale_sign_error = g:ale_echo_msg_error_str
+let g:ale_sign_warning = g:ale_echo_msg_warning_str
+let g:ale_statusline_format = [
+      \ g:ale_echo_msg_error_str . ' %d',
+      \ g:ale_echo_msg_warning_str . ' %d',
+      \ nr2char(0xf4a1) . '  ']
 
 let s:ale_linters = {
       \ 'vue': ['vls'],
@@ -458,6 +434,7 @@ let s:ale_linters = {
       \ 'javascript': ['importj'],
       \ 'elixir': ['mix', 'dogma', 'dialyxir', 'credo']
       \ }
+
 let s:ale_fixers = {
       \ 'vue': ['vls', 'trim_whitespace', 'remove_trailing_lines'], 
       \ 'json': ['jq', 'trim_whitespace', 'remove_trailing_lines'],
@@ -587,7 +564,7 @@ let g:gutentags_file_list_command = {
 let g:fzf_buffers_jump = 1
 let g:fzf_history_dir = expand('$HOME/.config/nvim/fzf-history')
 let g:fzf_gitignore_map = '<Leader>sgi'
-let g:fzf_layout = { 'down': '~10%' }
+let g:fzf_layout = { 'down': '~40%' }
 let g:fzf_colors = {
       \ 'fg':      ['fg', 'Normal'],
       \ 'bg':      ['bg', 'Normal'],
@@ -688,7 +665,7 @@ let g:airline_mode_map = {
       \ }
 " 2}}}
 let g:python_highlight_all = 1
-let g:notes_suffix = '.txt'
+let g:notes_suffix = '.md'
 let g:goyo_width = '100'
 let g:goyo_height = '75%'
 
@@ -703,6 +680,8 @@ let s:mappings = {
       \ }
 exec 'let g:mapleader="' . s:mappings.leader . '"'
 exec 'let g:maplocalleader="' . s:mappings.localLeader. '"'
+
+nnoremap <silent> <CR><CR> :source $MYVIMRC<CR>
 
 call <SID>apply_bulk_mappings([
       \ ['m', ':Make<space>'],
@@ -719,7 +698,7 @@ call <SID>apply_bulk_mappings([
       \ ['f', ':TestFile<CR>'],
       \ ['a', ':TestSuite<CR>'],
       \ ['l', ':TestLast<CR>'],
-      \ ['g', ':TestVisit<CR>'],
+      \ ['v', ':TestVisit<CR>'],
       \ ], { 'prefix' : 't' })
 
 call <SID>apply_bulk_mappings([
@@ -728,7 +707,7 @@ call <SID>apply_bulk_mappings([
       \ ['f', ':Files<cr>'],
       \ ['fg', ':GFiles?<cr>'],
       \ ['h', ':History<cr>'],
-      \ ['l', ':call LanguageClient_contextMenu()<CR>'],
+      \ ['H', ':Helptags<cr>'],
       \ ['mc', ':call fzf#vim#maps("c", 1)<cr>'],
       \ ['mi', ':call fzf#vim#maps("i", 1)<cr>'],
       \ ['mn', ':call fzf#vim#maps("n", 1)<cr>'],
@@ -740,28 +719,27 @@ call <SID>apply_bulk_mappings([
       \ ], { 'prefix': 's' })
 
 call <SID>apply_bulk_mappings([
-      \ ['a', ':Git add<space>'],
-      \ ['ab', ':Git add %<cr>'],
-      \ ['b', ':Gbrowse<CR>'],
+      \ ['C', ':Gcommit --branch --verbose %<CR>'],
+      \ ['P', ':Gpush<CR>'],
       \ ['b', ':Gbrowse<CR>'],
       \ ['c', ':Gcommit<CR>'],
-      \ ['C', ':Gcommit --branch --verbose %<CR>'],
-      \ ['co', ':Git checkout<space>'],
       \ ['cO', ':Git checkout HEAD -- %<CR>'],
-      \ ['e', ':Extradite'],
+      \ ['co', ':Git checkout<space>'],
+      \ ['e', ':Extradite<CR>'],
       \ ['f', ':Git fetch<space>'],
       \ ['fa', ':Git fetch --all<CR>'],
-      \ ['p', ':Git push<space>'],
-      \ ['P', ':Git push<CR>'],
-      \ ['rm', ':Gremove %<CR>'],
-      \ ['rmc', ':Git rm --cached %<CR>'],
+      \ ['l', ':Gpull<CR>'],
       \ ['m', ':MerginalToggle<CR>'],
-      \ ['st', ':SignifyToggle<CR>'],
-      \ ['sh', ':SignifyToggleHighlight<CR>'],
-      \ ['sr', ':SignifyRefresh<CR>'],
+      \ ['p', ':Gpush<space>'],
+      \ ['rm', ':Gremove %<CR>'],
+      \ ['rmc', ':Gremove --cached %<CR>'],
+      \ ['S', ':Gstatus<CR>'],
       \ ['sd', ':SignifyDebug<CR>'],
+      \ ['sh', ':SignifyToggleHighlight<CR>'],
       \ ['sj', '<plug>(signify-next-hunk)'],
       \ ['sk', '<plug>(signify-prev-hunk)'],
+      \ ['sr', ':SignifyRefresh<CR>'],
+      \ ['st', ':SignifyToggle<CR>'],
       \ ], { 'prefix': 'g' })
 
 call <SID>apply_bulk_mappings([
@@ -811,23 +789,13 @@ call <SID>apply_bulk_mappings([
       \ 'prefix': 'ph'
       \ })
 
-call <SID>apply_bulk_mappings([
-      \ ['S', 'LanguageClientStart'],
-      \ ['H', 'call LanguageClient_textDocument_hover()<CR>'],
-      \ ['D', 'call LanguageClient_textDocument_definition()<CR>'],
-      \ ['tD', 'call LanguageClient_textDocument_typeDefintion()<CR>'],
-      \ ['I', 'call LanguageClient_textDocument_implementation()<CR>'],
-      \ ['R', 'call LanguageClient_textDocument_rename()<CR>'],
-      \ ['Z', '<Plug>Zeavim'],
-      \ ], {
-      \ 'prefix': 'g'
-      \ })
 
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <silent> <expr> <CR> ((pumvisible() && empty(v:completed_item)) ?  "\<c-y>\<cr>" : (!empty(v:completed_item) ? ncm2_ultisnips#expand_or("", 'n') : "\<c-y>\<CR>" ))
 snoremap <c-u> <Plug>(ultisnips_expand)
 inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", "n")
+nnoremap <silent> <CR><space> call ALEDetail
 
 inoremap <c-c> <ESC>
 
@@ -878,7 +846,6 @@ augroup END
 
 augroup vimrc-langsupport
   au!
-  au FileType *                    nested call s:langclient_start_for_ft("<amatch>")
   au FileType css                  nested setl omnifunc=csscomplete#CompleteCSS noci
   au FileType markdown,mkd,txtfmt  nested call s:enhance_prose()
   au FileType yaml,python          nested BracelessEnable +indent

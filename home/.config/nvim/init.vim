@@ -32,6 +32,7 @@ set noshowmode noshowmatch
 set lazyredraw
 set spelllang=en_us
 set noshowcmd
+set maxfuncdepth=300
 
 if has("termguicolors") " set true colors
   set t_8f=\[[38;2;%lu;%lu;%lum
@@ -261,7 +262,6 @@ Plug 'tpope/vim-dotenv'
       \ | Plug 'wincent/terminus'
 Plug 'w0rp/ale'
 Plug 'RRethy/vim-illuminate'
-Plug 'idanarye/vim-vebugger'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'tpope/vim-commentary'
       \ | Plug 'cbaumhardt/vim-commentary-boxed'
@@ -297,6 +297,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
       \ | Plug 'fszymanski/fzf-gitignore', { 'do' : ':UpdateRemotePlugins' }
       \ | Plug 'tweekmonster/fzf-filemru'
 Plug 'chriskempson/base16-vim'
+Plug 'moll/vim-node'
 Plug 'KabbAmine/zeavim.vim'
 Plug 'vim-airline/vim-airline' |
       \ Plug 'vim-airline/vim-airline-themes'
@@ -305,10 +306,8 @@ Plug 'tpope/vim-dispatch' |
 Plug 'tmux-plugins/vim-tmux'
       \ | Plug 'tmux-plugins/vim-tmux-focus-events'
       \ | Plug 'MikeDacre/tmux-zsh-vim-titles'
-" NOTE: Used only with notes.
 Plug 'Shougo/echodoc.vim'
 Plug 'ludovicchabant/vim-gutentags'
-Plug 'sakhnik/nvim-gdb'
 Plug 'majutsushi/tagbar'
 Plug 'airblade/vim-rooter'
 Plug 'raimondi/delimitmate'
@@ -361,6 +360,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'thinca/vim-ref'
+Plug 'fcpg/vim-orbital'
 
 call plug#end()
 " }}}
@@ -409,6 +409,8 @@ let g:ale_history_log_output = 1
 let g:ale_php_phpcs_executable = 'phpenv exec composer global exec phpcs'
 let g:ale_php_phpcbf_executable = 'phpenv exec composer global exec phpcbf'
 let g:ale_set_ballons = 1
+let g:ale_cursor_detail = 1
+let g:ale_close_preview_on_insert = 1
 let g:ale_command_wrapper = 'nice -n5'
 let g:ale_echo_delay = 3
 let g:ale_completion_enabled = 1
@@ -436,6 +438,7 @@ let s:ale_linters = {
       \ }
 
 let s:ale_fixers = {
+      \ 'cpp': ['clang-format', 'uncrustify'],
       \ 'vue': ['vls', 'trim_whitespace', 'remove_trailing_lines'], 
       \ 'json': ['jq', 'trim_whitespace', 'remove_trailing_lines'],
       \ 'elixir': [ 'mix_format', 'trim_whitespace', 'remove_trailing_lines'],
@@ -644,11 +647,14 @@ let g:localvimrc_whitelist = [expand('$HOME/.lvimrc')]
 "
 " {{{2 airline
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#quickfix#quickfix_text = 'qfx'
+let g:airline#extensions#quickfix#location_text = 'loc'
 let g:airline#extensions#disable_rtp_load = 1
 let g:airline_extensions = ['branch', 'tabline', 'ale', 'branch', 'tagbar', 'hunks', 'cursormode']
 let g:airline#extensions#quickfix#quickfix_text = 'Q'
 let g:airline#extensions#quickfix#location_text = 'L'
 let g:airline#extensions#branch#displyed_head_limit = 15
+let g:airline#extensions#gutentags#enabled = 1
 let g:airline#extensions#branch#format = 2
 let g:airline_mode_map = {
       \ '__' : '-',
@@ -668,9 +674,6 @@ let g:python_highlight_all = 1
 let g:notes_suffix = '.md'
 let g:goyo_width = '100'
 let g:goyo_height = '75%'
-
-filetype plugin indent on
-syntax off
 " }}}
 
 " {{{ Mappings
@@ -862,4 +865,8 @@ augroup END
 
 command! Today call <SID>LaunchNoteOfTheDay()
 
-source ~/.vimrc_background
+" source ~/.vimrc_background
+colorscheme orbital
+
+filetype plugin indent on
+syntax on

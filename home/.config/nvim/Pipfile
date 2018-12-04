@@ -1,12 +1,9 @@
 [[source]]
-
 url = "https://pypi.python.org/simple"
 verify_ssl = true
 name = "pypi"
 
-
 [packages]
-
 "autopep8" = "*"
 "flake8" = "*"
 isort = "*"
@@ -17,7 +14,7 @@ pyls-mypy = "*"
 pyls-isort = "*"
 python-language-server = "*"
 neovim = "*"
-
+cmakelint = "*"
+vim-vint = "*"
 
 [dev-packages]
-

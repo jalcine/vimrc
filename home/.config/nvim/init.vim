@@ -372,29 +372,13 @@ let g:pyenv#auto_create_ctags = 1
 let g:pyenv#auto_assign_ctags = 1
 let g:python_highlight_all = 1
 let g:python_slow_sync = 0
-let g:python_host_prog = systemlist('pyenv which python')[0]
-let g:python3_host_prog = systemlist('pyenv which python')[0]
 " }}}
 "
-" {{{2 LanguageClient
-let g:LanguageClient_settingsPath = '~/.config/nvim/language_client.json'
-let g:LanguageClient_serverCommands = {
-      \ 'cpp': ['cquery', '--log-file=~/.config/nvim/log/cq.log'],
-      \ 'c': ['cquery', '--log-file=~/.config/nvim/log/cq.log'],
-      \ }
-" 2}}}
-"
-" {{{2 identline
-let g:indentLine_char = '┊'
-let g:indentLine_showFirstIndentLevel = 0
-let g:indentLine_faster = 1
-let g:indentLine_fileTypeExclude = ['startify', 'help', 'json', 'yaml']
-" }}}
-"
-" {{{2 misc
+" {{{2 signify
 let g:signify_vcs_list = [ 'git', 'bzr' ]
 let g:signify_realtime = 1
 let g:signify_sign_show_count = 0
+" 2}}}
 
 if executable('ag')
   let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'

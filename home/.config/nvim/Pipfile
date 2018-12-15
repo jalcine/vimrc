@@ -17,6 +17,5 @@ cmakelint = "*"
 cpplint = "*"
 vim-vint = "*"
 neovim = "*"
-psutil = "*"
 
 [dev-packages]

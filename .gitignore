@@ -85,3 +85,4 @@ typings/
 home/.config/nvim/local/lib/perl5
 home/.config/nvim/local/cache
 home/.config/nvim/local/bin
+bin

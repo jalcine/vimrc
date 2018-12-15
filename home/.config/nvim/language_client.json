@@ -1,5 +1,6 @@
 {
   "initializationOptions": {
+    "cacheDirectory": "~/.config/nvim/tmp",
     "config": {
       "vetur": {
         "colorDecorators": {

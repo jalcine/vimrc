@@ -32,7 +32,7 @@ set noshowmode noshowmatch
 set lazyredraw
 set spelllang=en_us
 set noshowcmd
-set maxfuncdepth=300
+set maxfuncdepth=4096
 
 if has("termguicolors") " set true colors
   set t_8f=\[[38;2;%lu;%lu;%lum
@@ -290,6 +290,7 @@ Plug 'gabrielelana/vim-markdown'
 Plug 'jceb/vim-orgmode'
 Plug 'mattn/calendar-vim'
 Plug 'vim-scripts/SyntaxRange'
+Plug 'arakashic/chromatica.nvim'
 Plug 'mattn/webapi-vim'
 Plug 'mhinz/vim-signify'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -341,7 +342,7 @@ Plug 'ncm2/ncm2'
       \ | Plug 'ncm2/ncm2-tagprefix'
       \ | Plug 'ncm2/ncm2-github'
       \ | Plug 'ncm2/ncm2-path'
-      \ | Plug 'ncm2/nvim-typescript', { 
+      \ | Plug 'ncm2/nvim-typescript', {
       \ 'do': 'bash ./install.sh'
       \ }
 
@@ -360,24 +361,28 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'thinca/vim-ref'
-Plug 'fcpg/vim-orbital'
 
 call plug#end()
 " }}}
 
 " {{{ Options
-" {{{2 Language Client
-" }}}
-"
 " {{{2 python
 let g:pyenv#auto_activate = 1
 let g:pyenv#auto_create_ctags = 1
 let g:pyenv#auto_assign_ctags = 1
 let g:python_highlight_all = 1
 let g:python_slow_sync = 0
-let g:python3_host_prog = systemlist('PYENV_VERSION=neovim-py3 pyenv which python3')[0]
-let g:python_host_prog = systemlist('PYENV_VERSION=neovim-py2 pyenv which python2')[0]
+let g:python_host_prog = systemlist('pyenv which python')[0]
+let g:python3_host_prog = systemlist('pyenv which python')[0]
 " }}}
+"
+" {{{2 LanguageClient
+let g:LanguageClient_settingsPath = '~/.config/nvim/language_client.json'
+let g:LanguageClient_serverCommands = {
+      \ 'cpp': ['cquery', '--log-file=~/.config/nvim/log/cq.log'],
+      \ 'c': ['cquery', '--log-file=~/.config/nvim/log/cq.log'],
+      \ }
+" 2}}}
 "
 " {{{2 identline
 let g:indentLine_char = '┊'
@@ -404,24 +409,29 @@ let g:nvim_typescript#vue_support = 0
 " }}}
 "
 " {{{2 ale
+let g:ale_command_wrapper = 'nice -n6'
+let g:ale_completion_enabled = 1
+let g:ale_c_gcc_options = '-std=c++17 -Wall -Werror'
+let g:ale_c_clang_options = '-std=c++17 -Wall -Werror'
+let g:ale_c_parse_compile_commands = 1
+let g:ale_c_parse_makefile = 0
+let g:ale_c_build_dir = 'build'
+let g:ale_cpp_gcc_options = '-std=c++17 -Wall -Werror'
+let g:ale_cpp_clang_options = '-std=c++17 -Wall -Werror'
+let g:ale_cpp_parse_compile_commands = 1
+let g:ale_cpp_parse_makefile = 0
+let g:ale_cpp_build_dir = 'build'
+let g:ale_echo_delay = 1
+let g:ale_echo_msg_error_str = nr2char(0xf421) . ' '
+let g:ale_echo_msg_format = '%severity%  %linter% - %s'
+let g:ale_echo_msg_info_str = nr2char(0xf05a) . ' '
+let g:ale_echo_msg_warning_str = nr2char(0xf420) . ' '
 let g:ale_history_enabled = 1
 let g:ale_history_log_output = 1
-let g:ale_php_phpcs_executable = 'phpenv exec composer global exec phpcs'
-let g:ale_php_phpcbf_executable = 'phpenv exec composer global exec phpcbf'
-let g:ale_set_ballons = 1
-let g:ale_cursor_detail = 1
-let g:ale_close_preview_on_insert = 1
-let g:ale_command_wrapper = 'nice -n5'
-let g:ale_echo_delay = 3
-let g:ale_completion_enabled = 1
-let g:ale_typescript_tslint_use_global = 0
-let g:ale_typescript_tslint_ignore_empty_files = 1
-let g:ale_elixir_elixir_ls_release = vimrc_root . '/plugins/eli'
 let g:ale_php_langserver_executable = 'phpenv exec ' . vimrc_root . '/plugins/LanguageServer-php-neovim/vendor/bin/php-language-server.php'
-let g:ale_echo_msg_error_str = nr2char(0xf421) . ' '
-let g:ale_echo_msg_warning_str = nr2char(0xf420) . ' '
-let g:ale_echo_msg_info_str = nr2char(0xf05a) . ' '
-let g:ale_echo_msg_format = '%severity%  %linter% - %s'
+let g:ale_php_phpcbf_executable = 'phpenv exec composer exec phpcbf'
+let g:ale_php_phpcs_executable = 'phpenv exec composer exec phpcs'
+let g:ale_set_ballons = 1
 let g:ale_sign_column_always = 1
 let g:ale_sign_error = g:ale_echo_msg_error_str
 let g:ale_sign_warning = g:ale_echo_msg_warning_str
@@ -429,17 +439,21 @@ let g:ale_statusline_format = [
       \ g:ale_echo_msg_error_str . ' %d',
       \ g:ale_echo_msg_warning_str . ' %d',
       \ nr2char(0xf4a1) . '  ']
+let g:ale_typescript_tslint_ignore_empty_files = 1
+let g:ale_typescript_tslint_use_global = 0
 
 let s:ale_linters = {
       \ 'vue': ['vls'],
       \ 'typescript': ['tslint', 'tsserver'],
       \ 'javascript': ['importj'],
-      \ 'elixir': ['mix', 'dogma', 'dialyxir', 'credo']
+      \ 'elixir': ['mix', 'dogma', 'dialyxir', 'credo'],
+      \ 'cpp': ['ccls', 'clang', 'clangcheck', 'clangd', 'clangtidy', 'clazy', 'cppcheck', 'cpplint', 'cquery', 'flawfinder', 'gcc', 'ccls', 'clang', 'clangcheck', 'clangd', 'clangtidy', 'clazy', 'cppcheck', 'cpplint', 'cquery', 'flawfinder', 'gcc'],
+      \ 'json': ['jq']
       \ }
 
 let s:ale_fixers = {
-      \ 'cpp': ['clang-format', 'uncrustify'],
-      \ 'vue': ['vls', 'trim_whitespace', 'remove_trailing_lines'], 
+      \ 'cpp': ['clang-format', 'uncrustify', 'remove_trailing_lines', 'trim_whitespace'],
+      \ 'vue': ['vls', 'trim_whitespace', 'remove_trailing_lines'],
       \ 'json': ['jq', 'trim_whitespace', 'remove_trailing_lines'],
       \ 'elixir': [ 'mix_format', 'trim_whitespace', 'remove_trailing_lines'],
       \ 'typescript': ['tslint', 'trim_whitespace', 'remove_trailing_lines'],
@@ -463,10 +477,10 @@ endif
 "
 " {{{2 vim-test
 let g:test#custom_transformations = {
-    \ 'vagrant': function('<SID>VagrantTransform'),
-    \ 'docker': function('<SID>DockerTransform'),
-    \ 'docker-compose': function('<SID>DockerComposeTransform')
-    \}
+      \ 'vagrant': function('<SID>VagrantTransform'),
+      \ 'docker': function('<SID>DockerTransform'),
+      \ 'docker-compose': function('<SID>DockerComposeTransform')
+      \}
 let g:test#preserve_screen = 1
 let g:test#strategy = 'dispatch'
 " 2}}}
@@ -621,12 +635,12 @@ let g:startify_files_number = 5
 let g:startify_change_to_dir = 0
 let g:startify_fortune_use_unicode = 1
 let g:startify_session_delete_buffers = 1
-  function! s:list_commits()
-    let git = 'git -C ~/.homesick/repos/vimrc'
-    let commits = systemlist(git .' log --oneline | head -n10')
-    let git = 'G'. git[1:]
-    return map(commits, '{"line": matchstr(v:val, "\\s\\zs.*"), "cmd": "'. git .' show ". matchstr(v:val, "^\\x\\+") }')
-  endfunction
+function! s:list_commits()
+  let git = 'git -C ~/.homesick/repos/vimrc'
+  let commits = systemlist(git .' log --oneline | head -n10')
+  let git = 'G'. git[1:]
+  return map(commits, '{"line": matchstr(v:val, "\\s\\zs.*"), "cmd": "'. git .' show ". matchstr(v:val, "^\\x\\+") }')
+endfunction
 let g:startify_lists = [
       \ { 'header': ['   MRU'],            'type': 'files' },
       \ { 'header': ['   MRU '. getcwd()], 'type': 'dir' },
@@ -643,6 +657,12 @@ let g:localvimrc_sandbox = 0
 let g:localvimrc_persistent = 1
 let g:localvimrc_persistent_file = expand('$HOME/.config/nvim/localvimrc_persistent')
 let g:localvimrc_whitelist = [expand('$HOME/.lvimrc')]
+" 2}}}
+"
+" {{{2
+let g:zv_file_types = {
+      \ '.jsx' : 'javascript,html',
+      \ }
 " 2}}}
 "
 " {{{2 airline
@@ -792,6 +812,15 @@ call <SID>apply_bulk_mappings([
       \ 'prefix': 'ph'
       \ })
 
+call <SID>apply_bulk_mappings([
+      \ ['h', ':call LanguageClient#textDocument_hover()<CR>'],
+      \ ['d', ':call LanguageClient#textDocument_definition()<CR>'],
+      \ ['f', ':call LanguageClient#textDocument_references()<CR>'],
+      \ ['s', ':call LanguageClient#textDocument_documentSymbol()<CR>'],
+      \ ['r', ':call LanguageClient#textDocument_rename()<CR>'],
+      \ ], {
+      \ 'prefix': 'x'
+      \ })
 
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
@@ -865,8 +894,7 @@ augroup END
 
 command! Today call <SID>LaunchNoteOfTheDay()
 
-" source ~/.vimrc_background
-colorscheme orbital
+source ~/.vimrc_background
 
 filetype plugin indent on
 syntax on

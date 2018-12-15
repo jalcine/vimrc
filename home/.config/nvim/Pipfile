@@ -13,8 +13,10 @@ mypy = "*"
 pyls-mypy = "*"
 pyls-isort = "*"
 python-language-server = "*"
-neovim = "*"
 cmakelint = "*"
+cpplint = "*"
 vim-vint = "*"
+neovim = "*"
+psutil = "*"
 
 [dev-packages]

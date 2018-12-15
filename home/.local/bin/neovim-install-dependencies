@@ -31,22 +31,20 @@ install_python ()
 
 install_ruby ()
 {
+  anyenv install rbenv
   rbenv exec bundle install
 }
 
 install_javascript ()
 {
+  anyenv install ndenv
   ndenv exec npm install
 }
 
 install_perl ()
 {
+  anyenv install plenv
   plenv exec carton install
-}
-
-install_elixir ()
-{
-  # TODO: Install elixir language client server here.
 }
 
 __ScriptVersion="2017-12-24"

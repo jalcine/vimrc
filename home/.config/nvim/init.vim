@@ -33,8 +33,10 @@ set lazyredraw
 set spelllang=en_us
 set noshowcmd
 set maxfuncdepth=4096
+set inccommand=nosplit
+set redrawtime=100
 
-if has("termguicolors") " set true colors
+if has('termguicolors') " set true colors
   set t_8f=\[[38;2;%lu;%lu;%lum
   set t_8b=\[[48;2;%lu;%lu;%lum
   set termguicolors
@@ -86,7 +88,7 @@ iabbrev me_site https://jacky.wtf
 
 " {{{ local funcs
 func! s:enhance_prose() abort
-  let l:is_in_text = (&ft == 'text')
+  let l:is_in_text = (&filetype ==# 'text')
   setlocal foldlevel=6
   setlocal conceallevel=2
 
@@ -139,31 +141,6 @@ func! s:terminal_kill_extra_buffers() abort
   silent! MerginalClose
   silent! bd Merginal:branchList
 endfunc
-
-func! s:terminal_update_colors() abort
-  " :h term-dependent-settings
-  if &term =~ '^\(rxvt\|interix\|putty\)\(-.*\)\?$'
-    set notermguicolors
-  elseif $TERM =~ '^\(tmux\|iterm\|vte\|gnome\)\(-.*\)\?$'
-    set termguicolors
-  elseif $TERM =~ '^\(xterm\)\(-.*\)\?$'
-    if $XTERM_VERSION != ''
-      set termguicolors
-    elseif $KONSOLE_PROFILE_NAME != ''
-      set termguicolors
-    elseif $VTE_VERSION != ''
-      set termguicolors
-    else
-      echo "woop"
-      set notermguicolors
-    endif
-  endif
-
-  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-endfunc
-
-
 
 func! s:php_invoke(cmd) abort
   if     a:cmd ==# 'sortuse' | call PhpInsertUse()
@@ -254,14 +231,11 @@ Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-scriptease'
 Plug 'tpope/vim-vinegar'
-Plug 'tpope/vim-rails'
 Plug 'janko-m/vim-test'
-Plug 'mustache/vim-mustache-handlebars'
 Plug 'tpope/vim-dotenv'
       \ | Plug 'direnv/direnv.vim'
       \ | Plug 'wincent/terminus'
 Plug 'w0rp/ale'
-Plug 'RRethy/vim-illuminate'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'tpope/vim-commentary'
       \ | Plug 'cbaumhardt/vim-commentary-boxed'
@@ -282,7 +256,6 @@ Plug 'mattn/gist-vim'
 Plug 'bfrg/vim-cpp-modern'
 Plug 'junkblocker/patchreview-vim'
 Plug 'codegram/vim-codereview'
-Plug 'MattesGroeger/vim-bookmarks'
 Plug 'chiel92/vim-autoformat'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'embear/vim-localvimrc'
@@ -293,6 +266,7 @@ Plug 'vim-scripts/SyntaxRange'
 Plug 'arakashic/chromatica.nvim'
 Plug 'mattn/webapi-vim'
 Plug 'mhinz/vim-signify'
+Plug 'lilydjwg/colorizer'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
       \ | Plug 'junegunn/fzf.vim'
       \ | Plug 'fszymanski/fzf-gitignore', { 'do' : ':UpdateRemotePlugins' }
@@ -314,7 +288,6 @@ Plug 'airblade/vim-rooter'
 Plug 'raimondi/delimitmate'
 Plug 'godlygeek/tabular'
 Plug 'tweekmonster/startuptime.vim', { 'on': 'StartupTime' }
-Plug 'wakatime/vim-wakatime'
 Plug 'sheerun/vim-polyglot'
 Plug 'lambdalisue/vim-pyenv', { 'for': 'python' }
 Plug 'ekalinin/Dockerfile.vim'
@@ -329,11 +302,11 @@ Plug 'kana/vim-textobj-user'
       \ | Plug 'reedes/vim-lexical'
       \ | Plug 'reedes/vim-litecorrect'
 
-Plug 'mattboehm/vim-unstack'
+" Plug 'mattboehm/vim-unstack'
 Plug 'vim-scripts/dbext.vim'
 Plug 'ncm2/ncm2'
-      \ | Plug 'ncm2/ncm2-html-subscope'
-      \ | Plug 'ncm2/ncm2-markdown-subscope'
+      " \ | Plug 'ncm2/ncm2-html-subscope'
+      " \ | Plug 'ncm2/ncm2-markdown-subscope'
       \ | Plug 'ncm2/ncm2-match-highlight'
       \ | Plug 'ncm2/ncm2-bufword'
       \ | Plug 'ncm2/ncm2-tern'
@@ -350,9 +323,6 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'fisadev/vim-isort', {'for': 'python'}
 Plug 'othree/csscomplete.vim', {'for': 'css'}
-Plug 'roxma/LanguageServer-php-neovim',  {
-      \ 'do': 'phpenv exec composer install && composer run-script parse-stubs'
-      \ }
 Plug 'sirver/ultisnips'
       \ |  Plug 'honza/vim-snippets'
 Plug 'roxma/vim-tmux-clipboard'
@@ -550,7 +520,7 @@ let g:tagbar_type_typescript = {
 " {{{2 gutentags
 let g:gutentags_generate_on_empty_buffer = 0
 let g:gutentags_ctags_tagfile = '.tags'
-let g:gutentags_cache_dir = vimrc_root . "/tags"
+let g:gutentags_cache_dir = vimrc_root . '/tags'
 let g:gutentags_ctags_executable_ruby = g:tagbar_type_ruby['ctagsbin']
 let g:gutentags_ctags_executable_javascript = g:tagbar_type_javascript['ctagsbin']
 let g:gutentags_file_list_command = {
@@ -589,10 +559,10 @@ let g:ncm2#popup_delay = 10
 " }}}
 "
 " {{{2 ultisnips
-let g:UltiSnipsExpandTrigger = "<Plug>(ultisnips_expand)"
+let g:UltiSnipsExpandTrigger = '<Plug>(ultisnips_expand)'
 let g:UltiSnipsRemoveSelectModeMappings = 0
-let g:UltiSnipsJumpForwardTrigger = "<c-j>"
-let g:UltiSnipsJumpBackwardTrigger  = "<c-k>"
+let g:UltiSnipsJumpForwardTrigger = '<c-j>'
+let g:UltiSnipsJumpBackwardTrigger  = '<c-k>'
 " 2}}}
 "
 " {{{2 jedi
@@ -607,7 +577,7 @@ let g:rooter_use_lcd = 1
 " {{{2 orgmode
 let g:cm_completekeys = "\<Plug>(cm_completefunc)"
 let g:org_aggressive_conceal = 1
-let g:org_todo_keyword_faces = ["bold", "inverse"]
+let g:org_todo_keyword_faces = ['bold', 'inverse']
 let g:org_indent = 1
 let g:org_todo_keywords = [['TODO(t)', 'ACTIVE(a)', '|', 'DONE(d)'],
       \ ['REPORT(r)', 'BUG(b)', 'KNOWNCAUSE(k)', '|', 'FIXED(f)'],
@@ -619,16 +589,20 @@ let g:startify_files_number = 5
 let g:startify_change_to_dir = 0
 let g:startify_fortune_use_unicode = 1
 let g:startify_session_delete_buffers = 1
+let g:startify_session_autoload = 1
+let g:startify_session_persistence = 1
+
 function! s:list_commits()
   let git = 'git -C ~/.homesick/repos/vimrc'
   let commits = systemlist(git .' log --oneline | head -n10')
   let git = 'G'. git[1:]
   return map(commits, '{"line": matchstr(v:val, "\\s\\zs.*"), "cmd": "'. git .' show ". matchstr(v:val, "^\\x\\+") }')
 endfunction
+
 let g:startify_lists = [
+      \ { 'header': ['   Sessions'],       'type': 'sessions' },
       \ { 'header': ['   MRU'],            'type': 'files' },
       \ { 'header': ['   MRU '. getcwd()], 'type': 'dir' },
-      \ { 'header': ['   Sessions'],       'type': 'sessions' },
       \ { 'header': ['   Commits'],        'type': function('s:list_commits') },
       \ ]
 let g:startify_session_before_save = [
@@ -651,15 +625,34 @@ let g:zv_file_types = {
 "
 " {{{2 airline
 let g:airline_powerline_fonts = 1
-let g:airline#extensions#quickfix#quickfix_text = 'qfx'
-let g:airline#extensions#quickfix#location_text = 'loc'
-let g:airline#extensions#disable_rtp_load = 1
+let g:airline_skip_empty_sections = 1
 let g:airline_extensions = ['branch', 'tabline', 'ale', 'branch', 'tagbar', 'hunks', 'cursormode']
-let g:airline#extensions#quickfix#quickfix_text = 'Q'
-let g:airline#extensions#quickfix#location_text = 'L'
+let g:airline_highlighting_cache = 1
+let g:airline_theme = 'angr'
+let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#branch#displyed_head_limit = 15
-let g:airline#extensions#gutentags#enabled = 1
 let g:airline#extensions#branch#format = 2
+let g:airline#extensions#disable_rtp_load = 1
+let g:airline#extensions#gutentags#enabled = 1
+let g:airline#extensions#quickfix#location_text = 'L'
+let g:airline#extensions#quickfix#location_text = 'loc'
+let g:airline#extensions#quickfix#quickfix_text = 'Q'
+let g:airline#extensions#quickfix#quickfix_text = 'qfx'
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+
+let g:airline_symbols.space = "\ua0"
+let g:airline_symbols.crypt = '🔒'
+let g:airline_symbols.linenr = '☰'
+let g:airline_symbols.maxlinenr = '㏑'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.spell = 'Ꞩ'
+let g:airline_symbols.notexists = 'Ɇ'
+let g:airline_symbols.whitespace = 'Ξ'
 let g:airline_mode_map = {
       \ '__' : '-',
       \ 'n'  : 'N',
@@ -805,13 +798,6 @@ call <SID>apply_bulk_mappings([
       \ ], {
       \ 'prefix': 'x'
       \ })
-
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <silent> <expr> <CR> ((pumvisible() && empty(v:completed_item)) ?  "\<c-y>\<cr>" : (!empty(v:completed_item) ? ncm2_ultisnips#expand_or("", 'n') : "\<c-y>\<CR>" ))
-snoremap <c-u> <Plug>(ultisnips_expand)
-inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", "n")
-nnoremap <silent> <CR><space> call ALEDetail
 
 inoremap <c-c> <ESC>
 

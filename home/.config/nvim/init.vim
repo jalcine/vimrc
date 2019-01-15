@@ -18,7 +18,6 @@ exec "let $PATH=\"" . vimrc_root . "/node_modules/.bin:\" . $PATH"
 
 set laststatus=2
 set ruler number numberwidth=6 relativenumber
-set guicursor=
 set nocursorline nocursorcolumn
 set sidescrolloff=1 sidescroll=1
 set conceallevel=3 concealcursor=nivc
@@ -34,7 +33,7 @@ set spelllang=en_us
 set noshowcmd
 set maxfuncdepth=4096
 set inccommand=nosplit
-set redrawtime=100
+set redrawtime=10
 
 if has('termguicolors') " set true colors
   set t_8f=\[[38;2;%lu;%lu;%lum
@@ -112,20 +111,6 @@ func! s:enhance_prose() abort
   iabbrev <buffer> --- —
   iabbrev <buffer> << «
   iabbrev <buffer> >> »
-  map <silent> <buffer> <leader>qc <Plug>ReplaceWithCurly
-  map <silent> <buffer> <leader>qs <Plug>ReplaceWithStraight
-  nmap <silent> <buffer> <F8> :<C-u>NextWordy<cr>
-  xmap <silent> <buffer> <F8> :<C-u>NextWordy<cr>
-  imap <silent> <buffer> <F8> <C-o>:NextWordy<cr>
-  nmap <leader>di <Plug>ToggleDitto      " Turn Ditto on and off
-  vmap <leader>d <Plug>Ditto         " Call Ditto on visual selection
-  nmap <leader>d <Plug>Ditto         " Call Ditto on operator movement
-  nmap =d <Plug>DittoNext                " Jump to the next word
-  nmap -d <Plug>DittoPrev                " Jump to the previous word
-  nmap +d <Plug>DittoGood                " Ignore the word under the cursor
-  nmap _d <Plug>DittoBad                 " Stop ignoring the word under the cursor
-  nmap ]d <Plug>DittoMore                " Show the next matches
-  nmap [d <Plug>DittoLess                " Show the previous matches
 endfunc
 
 func! s:adapt_terminal() abort
@@ -151,7 +136,6 @@ endfunc
 
 func! s:LaunchNoteOfTheDay() abort
   execute ':Note Morning Entries/' . strftime('%Y-%m-%d')
-  Goyo
 endfunc
 
 func! s:VagrantTransform(cmd) abort
@@ -248,11 +232,12 @@ Plug 'xolox/vim-shell'
       \ | Plug 'zhm/TagHighlight'
 Plug 'tpope/vim-fugitive'
       \ | Plug 'tpope/vim-rhubarb'
+      \ | Plug 'int3/vim-extradite'
       \ | Plug 'tommcdo/vim-fubitive'
       \ | Plug 'tommcdo/vim-fugitive-blame-ext'
-      \ | Plug 'int3/vim-extradite'
 Plug 'idanarye/vim-merginal'
-Plug 'mattn/gist-vim'
+Plug 'mattn/webapi-vim'
+      \ | Plug 'mattn/gist-vim', { 'on': 'Gist' }
 Plug 'bfrg/vim-cpp-modern'
 Plug 'junkblocker/patchreview-vim'
 Plug 'codegram/vim-codereview'
@@ -263,15 +248,14 @@ Plug 'gabrielelana/vim-markdown'
 Plug 'jceb/vim-orgmode'
 Plug 'mattn/calendar-vim'
 Plug 'vim-scripts/SyntaxRange'
-Plug 'arakashic/chromatica.nvim'
-Plug 'mattn/webapi-vim'
+Plug 'arakashic/chromatica.nvim',
+      \ {'for': ['cpp', 'c'] }
 Plug 'mhinz/vim-signify'
-Plug 'lilydjwg/colorizer'
+Plug 'lilydjwg/colorizer', {'for': ['css', 'scss']}
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
       \ | Plug 'junegunn/fzf.vim'
       \ | Plug 'fszymanski/fzf-gitignore', { 'do' : ':UpdateRemotePlugins' }
       \ | Plug 'tweekmonster/fzf-filemru'
-Plug 'chriskempson/base16-vim'
 Plug 'moll/vim-node'
 Plug 'KabbAmine/zeavim.vim'
 Plug 'vim-airline/vim-airline' |
@@ -291,46 +275,42 @@ Plug 'tweekmonster/startuptime.vim', { 'on': 'StartupTime' }
 Plug 'sheerun/vim-polyglot'
 Plug 'lambdalisue/vim-pyenv', { 'for': 'python' }
 Plug 'ekalinin/Dockerfile.vim'
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'tweekmonster/braceless.vim'
-Plug 'othree/es.next.syntax.vim'
 Plug 'othree/jspc.vim'
+Plug 'sirver/ultisnips'
+      \ |  Plug 'honza/vim-snippets'
 Plug 'kana/vim-textobj-user'
       \ | Plug 'reedes/vim-textobj-sentence'
       \ | Plug 'reedes/vim-textobj-quote'
       \ | Plug 'reedes/vim-pencil'
       \ | Plug 'reedes/vim-lexical'
       \ | Plug 'reedes/vim-litecorrect'
-
-" Plug 'mattboehm/vim-unstack'
 Plug 'vim-scripts/dbext.vim'
 Plug 'ncm2/ncm2'
-      " \ | Plug 'ncm2/ncm2-html-subscope'
-      " \ | Plug 'ncm2/ncm2-markdown-subscope'
       \ | Plug 'ncm2/ncm2-match-highlight'
       \ | Plug 'ncm2/ncm2-bufword'
-      \ | Plug 'ncm2/ncm2-tern'
-      \ | Plug 'ncm2/ncm2-cssomni'
-      \ | Plug 'ncm2/ncm2-ultisnips'
       \ | Plug 'ncm2/ncm2-tagprefix'
-      \ | Plug 'ncm2/ncm2-github'
       \ | Plug 'ncm2/ncm2-path'
+      \ | Plug 'ncm2/ncm2-ultisnips'
+      \ | Plug 'ncm2/ncm2-tern', {
+      \ 'for': 'javascript'
+      \ }
+      \ | Plug 'ncm2/ncm2-cssomni', {
+      \ 'for': 'css'
+      \ }
       \ | Plug 'ncm2/nvim-typescript', {
       \ 'do': 'bash ./install.sh'
       \ }
-
 Plug 'terryma/vim-multiple-cursors'
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'fisadev/vim-isort', {'for': 'python'}
-Plug 'othree/csscomplete.vim', {'for': 'css'}
-Plug 'sirver/ultisnips'
-      \ |  Plug 'honza/vim-snippets'
 Plug 'roxma/vim-tmux-clipboard'
 Plug 'mhinz/vim-startify'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
-Plug 'ryanoasis/vim-devicons'
 Plug 'thinca/vim-ref'
+Plug 'ryanoasis/vim-devicons'
+Plug 'chriskempson/base16-vim'
+Plug 'mattesgroeger/vim-bookmarks'
 
 call plug#end()
 " }}}
@@ -342,6 +322,11 @@ let g:pyenv#auto_create_ctags = 1
 let g:pyenv#auto_assign_ctags = 1
 let g:python_highlight_all = 1
 let g:python_slow_sync = 0
+" }}}
+"
+" {{{2 vim-bookmarks
+let g:bookmark_sign = '♥'
+let g:bookmark_highlight_lines = 1
 " }}}
 "
 " {{{2 signify
@@ -356,15 +341,13 @@ if executable('ag')
   set grepformat=%f:%l:%c:%m
 endif
 
-let g:endwise_no_mappings = 1
-
 let g:nvim_typescript#type_info_on_hold = 0
 let g:nvim_typescript#vue_support = 0
 " }}}
 "
 " {{{2 ale
-let g:ale_command_wrapper = 'nice -n6'
-let g:ale_completion_enabled = 1
+let g:ale_command_wrapper = 'nice -n4'
+let g:ale_completion_enabled = 0
 let g:ale_c_gcc_options = '-std=c++17 -Wall -Werror'
 let g:ale_c_clang_options = '-std=c++17 -Wall -Werror'
 let g:ale_c_parse_compile_commands = 1
@@ -558,6 +541,12 @@ let g:ncm2#sorter = 'abbrfuzzy'
 let g:ncm2#popup_delay = 10
 " }}}
 "
+" {{{ Terminus
+let g:TerminusInsertCursorShape = 2
+let g:TerminusNormalCursorShape = 1
+let g:TerminusReplaceCursorShape = 0 
+" }}}
+"
 " {{{2 ultisnips
 let g:UltiSnipsExpandTrigger = '<Plug>(ultisnips_expand)'
 let g:UltiSnipsRemoveSelectModeMappings = 0
@@ -575,7 +564,6 @@ let g:jedi#force_py_version = 'auto'
 " 2}}}
 let g:rooter_use_lcd = 1
 " {{{2 orgmode
-let g:cm_completekeys = "\<Plug>(cm_completefunc)"
 let g:org_aggressive_conceal = 1
 let g:org_todo_keyword_faces = ['bold', 'inverse']
 let g:org_indent = 1
@@ -617,22 +605,15 @@ let g:localvimrc_persistent_file = expand('$HOME/.config/nvim/localvimrc_persist
 let g:localvimrc_whitelist = [expand('$HOME/.lvimrc')]
 " 2}}}
 "
-" {{{2
-let g:zv_file_types = {
-      \ '.jsx' : 'javascript,html',
-      \ }
-" 2}}}
-"
 " {{{2 airline
 let g:airline_powerline_fonts = 1
 let g:airline_skip_empty_sections = 1
 let g:airline_extensions = ['branch', 'tabline', 'ale', 'branch', 'tagbar', 'hunks', 'cursormode']
 let g:airline_highlighting_cache = 1
-let g:airline_theme = 'angr'
 let g:airline#extensions#ale#enabled = 1
-let g:airline#extensions#branch#displyed_head_limit = 15
+let g:airline#extensions#branch#displyed_head_limit = 30
 let g:airline#extensions#branch#format = 2
-let g:airline#extensions#disable_rtp_load = 1
+let g:airline#extensions#disable_rtp_load = 0
 let g:airline#extensions#gutentags#enabled = 1
 let g:airline#extensions#quickfix#location_text = 'L'
 let g:airline#extensions#quickfix#location_text = 'loc'
@@ -743,15 +724,6 @@ call <SID>apply_bulk_mappings([
       \ ], { 'prefix': 'g' })
 
 call <SID>apply_bulk_mappings([
-      \ ['=', ':Tabularize /=', 'v'],
-      \ ['/', ':Tabularize //', 'v'],
-      \ [':', ':Tabularize /:', 'v'],
-      \ [',', ':Tabularize /,', 'v'],
-      \ [']', ':Tabularize /]', 'v'],
-      \ ['[', ':Tabularize /[', 'v']
-      \ ], { 'prefix': 'T'})
-
-call <SID>apply_bulk_mappings([
       \ ['n', '<Plug>(ale_next_wrap)'],
       \ ['p', '<Plug>(ale_previous_wrap)'],
       \ ['f', '<Plug>(ale_first)'],
@@ -781,24 +753,6 @@ call <SID>apply_bulk_mappings([
       \ ['X', '<ESC>:windo lclose<CR>'],
       \ ], { 'prefix': 'l' })
 
-call <SID>apply_bulk_mappings([
-      \ ['e', 'call s:php_invoke("expandclass")<CR>'],
-      \ ['s', 'call s:php_invoke("sortuse")<CR>'],
-      \ ['u', 'call s:php_invoke("insertuse")<CR>'],
-      \ ], {
-      \ 'prefix': 'ph'
-      \ })
-
-call <SID>apply_bulk_mappings([
-      \ ['h', ':call LanguageClient#textDocument_hover()<CR>'],
-      \ ['d', ':call LanguageClient#textDocument_definition()<CR>'],
-      \ ['f', ':call LanguageClient#textDocument_references()<CR>'],
-      \ ['s', ':call LanguageClient#textDocument_documentSymbol()<CR>'],
-      \ ['r', ':call LanguageClient#textDocument_rename()<CR>'],
-      \ ], {
-      \ 'prefix': 'x'
-      \ })
-
 inoremap <c-c> <ESC>
 
 tnoremap <Esc> <C-\><C-n>
@@ -825,40 +779,6 @@ inoremap <silent> <leader>pt <C-R>=strftime("%Y-%m-%d %H:%M:%S %Z")<CR>
 cnoremap <silent> <leader>pt <C-R>=strftime("%Y%m%d%H%M%S")<CR>
 inoremap <silent> <leader>pd <C-R>=strftime("%Y-%m-%d")<CR>
 cnoremap <silent> <leader>pd <C-R>=strftime("%Y-%m-%d")<CR>
-
-" }}}
-
-" {{{ augroups
-augroup vimrc_misc
-  au!
-  au User Startified    :call s:adapt_terminal()
-augroup END
-
-augroup vimrc_auto_tmux_reload
-  au!
-  au FileWritePost *tmux* !tmux source-file %:h
-augroup END
-
-augroup vimrc_term
-  au!
-  au TermOpen *        call s:adapt_terminal()
-  au BufEnter term://* startinsert
-  au BufLeave term://* stopinsert
-augroup END
-
-augroup vimrc-langsupport
-  au!
-  au FileType css                  nested setl omnifunc=csscomplete#CompleteCSS noci
-  au FileType markdown,mkd,txtfmt  nested call s:enhance_prose()
-  au FileType yaml,python          nested BracelessEnable +indent
-  au FileType quickfix,loclist     nested call s:adapt_terminal()
-augroup END
-
-augroup vimrc_goyo
-  au!
-  au User GoyoEnter nested call s:goyo_enter()
-  au User GoyoLeave nested call s:goyo_leave()
-augroup END
 
 " }}}
 

@@ -4,4 +4,3 @@
 " Last Modified: 2018-01-03
 
 set guifont=Fira\ Code:h9
-set guifont=mononoki\ Nerd\ Font\ Mono:h9

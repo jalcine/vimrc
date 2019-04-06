@@ -29,7 +29,8 @@ set laststatus=2
 "
 " Allow myself to count what line I'm on; optimized for scanning and jumping
 " over multiple lines quickly.
-set number numberwidth=6 relativenumber
+set number numberwidth=3
+set relativenumber
 set sidescrolloff=1 sidescroll=1
 set conceallevel=3 concealcursor=nivc
 
@@ -48,7 +49,6 @@ set noshowmode noshowmatch
 set lazyredraw
 set spelllang=en_us
 set inccommand=nosplit
-set redrawtime=10
 set maxmempattern=8196
 
 set completeopt=menu,menuone,preview,noselect,noinsert
@@ -161,7 +161,6 @@ Plug 'tpope/vim-dotenv'
       \ | Plug 'direnv/direnv.vim'
       \ | Plug 'wincent/terminus'
 Plug 'w0rp/ale'
-Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'tpope/vim-commentary'
       \ | Plug 'cbaumhardt/vim-commentary-boxed'
 Plug 'tpope/vim-fugitive'
@@ -198,6 +197,18 @@ Plug 'mattesgroeger/vim-bookmarks'
 Plug 'sodapopcan/vim-twiggy'
 Plug 'junegunn/gv.vim'
 Plug 'vrybas/vim-flayouts'
+Plug 'ekalinin/dockerfile.vim'
+
+Plug 'ncm2/ncm2'
+      \ | Plug 'ncm2/ncm2-bufword'
+      \ | Plug 'ncm2/ncm2-path'
+      \ | Plug 'ncm2/ncm2-tmux'
+      \ | Plug 'ncm2/ncm2-cssomni'
+      \ | Plug 'ncm2/ncm2-racer'
+      \ | Plug 'ncm2/ncm2-vim' | Plug 'Shougo/neco-vim'
+      \ | Plug 'pbogut/ncm2-alchemist' | Plug 'slashmili/alchemist.vim'
+      \ | Plug 'ncm2/ncm2-ultisnips'
+      \ | Plug 'roxma/nvim-yarp'
 
 call plug#end()
 " }}}
@@ -226,7 +237,7 @@ endif
 " {{{2 ale
 let g:ale_command_wrapper = 'nice -n4'
 let g:ale_set_ballons = 1
-let g:ale_completion_enabled = 1
+let g:ale_completion_enabled = 0
 let g:ale_fix_on_save = 1
 let g:ale_completion_delay = 1
 let g:ale_completion_max_suggestions = 10
@@ -238,6 +249,10 @@ let g:ale_fixers = {
       \ 'scss': ['stylelint'],
       \ 'html': ['stylelint', 'tidy'],
       \ 'rust': ['rustfmt'],
+      \ 'elixir': ['mix_format'],
+      \ }
+let g:ale_linters  = {
+      \ 'elixir': 'all'
       \ }
 " 2}}}
 "
@@ -313,6 +328,11 @@ let g:startify_session_before_save = [
       \ ]
 " 2}}}
 "
+let g:UltiSnipsExpandTrigger = "<Plug>(ultisnips_expand)"
+let g:UltiSnipsJumpForwardTrigger = "<c-j>"
+let g:UltiSnipsJumpBackwardTrigger  = "<c-k>"
+let g:UltiSnipsRemoveSelectModeMappings = 0
+"
 " {{{2
 let g:test#strategy = 'neovim'
 let g:test#neovim#term_position = "topleft"
@@ -331,14 +351,12 @@ let g:airline_skip_empty_sections = 1
 let g:airline_extensions = ['branch', 'tabline', 'ale', 'branch', 'hunks', 'cursormode']
 let g:airline_highlighting_cache = 1
 let g:airline#extensions#ale#enabled = 1
-let g:airline#extensions#branch#displyed_head_limit = 30
+let g:airline#extensions#branch#displyed_head_limit = 100
 let g:airline#extensions#branch#format = 2
-let g:airline#extensions#disable_rtp_load = 0
+let g:airline#extensions#disable_rtp_load = 1
 let g:airline#extensions#gutentags#enabled = 1
 let g:airline#extensions#quickfix#location_text = 'L'
-let g:airline#extensions#quickfix#location_text = 'loc'
 let g:airline#extensions#quickfix#quickfix_text = 'Q'
-let g:airline#extensions#quickfix#quickfix_text = 'qfx'
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 
 if !exists('g:airline_symbols')
@@ -378,8 +396,6 @@ let s:mappings = {
 exec 'let g:mapleader="' . s:mappings.leader . '"'
 exec 'let g:maplocalleader="' . s:mappings.localLeader. '"'
 
-nnoremap <silent> <CR><CR> :source $MYVIMRC<CR>
-
 call <SID>apply_bulk_mappings([
       \ ['m', ':Make<space>'],
       \ ['a', ':Make all<CR>'],
@@ -418,6 +434,7 @@ call <SID>apply_bulk_mappings([
 call <SID>apply_bulk_mappings([
       \ ['C', ':Gcommit --branch --verbose %<CR>'],
       \ ['P', ':Gpush<CR>'],
+      \ ['S', ':Glc<CR>'],
       \ ['b', ':Gbrowse<CR>'],
       \ ['c', ':Gcommit<CR>'],
       \ ['cO', ':Git checkout HEAD -- %<CR>'],
@@ -426,16 +443,19 @@ call <SID>apply_bulk_mappings([
       \ ['f', ':Git fetch<space>'],
       \ ['fa', ':Git fetch --all<CR>'],
       \ ['l', ':Gpull<CR>'],
+      \ ['mr', ':GlpullRequestSummaryTab'],
       \ ['p', ':Gpush<space>'],
+      \ ['rc', ':GlresolveConflictTab'],
       \ ['rm', ':Gremove %<CR>'],
       \ ['rmc', ':Gremove --cached %<CR>'],
-      \ ['S', ':Gstatus<CR>'],
       \ ['sd', ':SignifyDebug<CR>'],
       \ ['sh', ':SignifyToggleHighlight<CR>'],
       \ ['sj', '<plug>(signify-next-hunk)'],
       \ ['sk', '<plug>(signify-prev-hunk)'],
       \ ['sr', ':SignifyRefresh<CR>'],
       \ ['st', ':SignifyToggle<CR>'],
+      \ ['t', ':Twiggy<CR>'],
+      \ ['x', ':Glabort<CR>'],
       \ ], { 'prefix': 'g' })
 
 call <SID>apply_bulk_mappings([
@@ -469,6 +489,7 @@ call <SID>apply_bulk_mappings([
       \ ], { 'prefix': 'l' })
 
 inoremap <c-c> <ESC>
+" inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
 
 tnoremap <Esc> <C-\><C-n>
 tnoremap <A-h> <C-\><C-n><C-w>h
@@ -502,6 +523,18 @@ syntax on
 autocmd FileType gitcommit set bufhidden=delete
 autocmd FileType fugitive setl winheight=40
 autocmd TermOpen * setl nonumber signcolumn=no foldcolumn=0
+autocmd BufEnter * call ncm2#enable_for_buffer()
+autocmd User Ncm2PopupOpen set completeopt=noinsert,menuone,noselect
+autocmd User Ncm2PopupClose set completeopt=menuone
+
+function! Multiple_cursors_before()
+  call ncm2#lock('vim-multiple-cursors')
+endfunction
+
+function! Multiple_cursors_after()
+  call ncm2#unlock('vim-multiple-cursors')
+endfunction
+
 
 command! DisconnectClients
       \  if exists('b:nvr')

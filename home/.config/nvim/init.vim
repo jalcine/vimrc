@@ -224,7 +224,9 @@ let g:signify_vcs_list = [ 'git', 'hg', 'bzr' ]
 let g:signify_realtime = 1
 let g:signify_sign_show_count = 0
 let g:signify_line_highlight = 0
-
+" 2}}}
+" {{{2 twiggy
+let g:twiggy_enable_remote_delete = 1
 " 2}}}
 
 if executable('ag')

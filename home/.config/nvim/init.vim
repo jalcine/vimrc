@@ -29,8 +29,7 @@ set laststatus=2
 "
 " Allow myself to count what line I'm on; optimized for scanning and jumping
 " over multiple lines quickly.
-set number numberwidth=3
-set relativenumber
+set number numberwidth=3 relativenumber
 set sidescrolloff=1 sidescroll=1
 set conceallevel=3 concealcursor=nivc
 
@@ -45,7 +44,7 @@ set linebreak
 set shortmess+=c
 set hidden
 set pumheight=5
-set noshowmode noshowmatch
+set showmode showmatch
 set lazyredraw
 set spelllang=en_us
 set inccommand=nosplit
@@ -157,6 +156,7 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-scriptease'
 Plug 'janko-m/vim-test'
+Plug 'wsdjeg/vim-fetch'
 Plug 'tpope/vim-dotenv'
       \ | Plug 'direnv/direnv.vim'
       \ | Plug 'wincent/terminus'
@@ -186,6 +186,7 @@ Plug 'vim-airline/vim-airline' |
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'airblade/vim-rooter'
 Plug 'sheerun/vim-polyglot'
+Plug 'joonty/vdebug'
 Plug 'sirver/ultisnips'
       \ |  Plug 'honza/vim-snippets'
 Plug 'vim-scripts/dbext.vim'
@@ -236,6 +237,7 @@ if executable('ag')
 endif
 " }}}
 "
+let g:autoformat_remove_trailing_spaces = 0
 " {{{2 ale
 let g:ale_command_wrapper = 'nice -n4'
 let g:ale_set_ballons = 1
@@ -267,10 +269,20 @@ let g:test#custom_transformations = {
 let g:test#preserve_screen = 1
 " 2}}}
 "
+" {{{2 Zeavim
+let g:zv_file_types = {
+      \ 'eelixir': 'html,elixir',
+      \ 'elixir': 'elixir,erlang',
+      \ 'sass': 'scss,css',
+      \ 'typescript': 'typescript,javascript,html'
+      \ }
+let g:zv_get_docset_by = ['ft', 'file', 'ext']
+" }}}
 "
 " {{{2 gutentags
 let g:gutentags_generate_on_empty_buffer = 0
 let g:gutentags_ctags_tagfile = '.tags'
+let g:gutentags_ctags_auto_set_tags = 1
 let g:gutentags_cache_dir = vimrc_root . '/tags'
 let g:gutentags_file_list_command = {
       \ 'markers': {
@@ -330,14 +342,13 @@ let g:startify_session_before_save = [
       \ ]
 " 2}}}
 "
-let g:UltiSnipsExpandTrigger = "<Plug>(ultisnips_expand)"
 let g:UltiSnipsJumpForwardTrigger = "<c-j>"
 let g:UltiSnipsJumpBackwardTrigger  = "<c-k>"
 let g:UltiSnipsRemoveSelectModeMappings = 0
 "
 " {{{2
 let g:test#strategy = 'neovim'
-let g:test#neovim#term_position = "topleft"
+let g:test#neovim#term_position = "leftabove"
 " }}}
 "
 " {{{2 localvimrc
@@ -491,7 +502,9 @@ call <SID>apply_bulk_mappings([
       \ ], { 'prefix': 'l' })
 
 inoremap <c-c> <ESC>
-" inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
 
 tnoremap <Esc> <C-\><C-n>
 tnoremap <A-h> <C-\><C-n><C-w>h
@@ -517,17 +530,30 @@ cnoremap <silent> <leader>pd <C-R>=strftime("%Y-%m-%d")<CR>
 
 " }}}
 
-source ~/.vimrc_background
+
+if $TERM !~# "konsole.*"
+  " As a work around for the following bugs in kde4's konsole:
+  "   use the output of 16.colorscheme.rb and don't set base16colorspace.
+  "   base-shell script will not be called
+  " https://github.com/chriskempson/base16-shell/issues/31
+  " https://bugs.kde.org/show_bug.cgi?id=344181
+  let base16colorspace=256
+endif
+if filereadable(expand("~/.vimrc_background"))
+  source ~/.vimrc_background
+endif
 
 filetype plugin indent on
 syntax on
 
 autocmd FileType gitcommit set bufhidden=delete
-autocmd FileType fugitive setl winheight=40
-autocmd TermOpen * setl nonumber signcolumn=no foldcolumn=0
+autocmd TermOpen * setl nonumber signcolumn=no foldcolumn=0 bufhidden=delete
+autocmd BufWrite * :Autoformat
 autocmd BufEnter * call ncm2#enable_for_buffer()
+autocmd TextChangedI * call ncm2#auto_trigger()
 autocmd User Ncm2PopupOpen set completeopt=noinsert,menuone,noselect
 autocmd User Ncm2PopupClose set completeopt=menuone
+autocmd BufNewFile,BufRead * inoremap <silent> <buffer> <expr> <cr> ncm2_ultisnips#expand_or("\<CR>", 'n')
 
 function! Multiple_cursors_before()
   call ncm2#lock('vim-multiple-cursors')
@@ -536,7 +562,6 @@ endfunction
 function! Multiple_cursors_after()
   call ncm2#unlock('vim-multiple-cursors')
 endfunction
-
 
 command! DisconnectClients
       \  if exists('b:nvr')

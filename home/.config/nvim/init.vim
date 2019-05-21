@@ -153,6 +153,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-scriptease'
 Plug 'janko-m/vim-test'
@@ -199,17 +200,30 @@ Plug 'sodapopcan/vim-twiggy'
 Plug 'junegunn/gv.vim'
 Plug 'vrybas/vim-flayouts'
 Plug 'ekalinin/dockerfile.vim'
+Plug 'meain/vim-package-info', { 'do': 'npm install' }
 
 Plug 'ncm2/ncm2'
+      \ | Plug 'roxma/nvim-yarp'
       \ | Plug 'ncm2/ncm2-bufword'
       \ | Plug 'ncm2/ncm2-path'
       \ | Plug 'ncm2/ncm2-tmux'
       \ | Plug 'ncm2/ncm2-cssomni'
+      \ | Plug 'ncm2/ncm2-syntax' | Plug 'Shougo/neco-syntax'
+      \ | Plug 'ncm2/ncm2-tagprefix'
       \ | Plug 'ncm2/ncm2-racer'
       \ | Plug 'ncm2/ncm2-vim' | Plug 'Shougo/neco-vim'
       \ | Plug 'pbogut/ncm2-alchemist' | Plug 'slashmili/alchemist.vim'
       \ | Plug 'ncm2/ncm2-ultisnips'
-      \ | Plug 'roxma/nvim-yarp'
+      \ | Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
+      \ | Plug 'JakeBecker/elixir-ls', {'do': 'mix deps.get && mix compile && mix elixir_ls.release -o ' . vimrc_root . '/bin'}
+      \ | Plug 'autozimu/LanguageClient-neovim', {
+      \ 'branch': 'next',
+      \ 'do': 'bash install.sh',
+      \ }
+
+
+Plug 'severin-lemaignan/vim-minimap'
+Plug 'brooth/far.vim'
 
 call plug#end()
 " }}}
@@ -217,48 +231,51 @@ call plug#end()
 " {{{ Options
 " {{{2 vim-bookmarks
 let g:bookmark_sign = '♥'
-let g:bookmark_highlight_lines = 1
+let g:bookmark_highlight_lines = 0
 " }}}
 "
 " {{{2 signify
 let g:signify_vcs_list = [ 'git', 'hg', 'bzr' ]
 let g:signify_realtime = 1
-let g:signify_sign_show_count = 0
+let g:signify_sign_show_count = 1
 let g:signify_line_highlight = 0
 " 2}}}
 " {{{2 twiggy
 let g:twiggy_enable_remote_delete = 1
 " 2}}}
 
-if executable('ag')
+if executable('ripgrep')
   let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
   set grepprg=ag\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow
   set grepformat=%f:%l:%c:%m
 endif
 " }}}
 "
-let g:autoformat_remove_trailing_spaces = 0
+let g:autoformat_remove_trailing_spaces = 1
 " {{{2 ale
 let g:ale_command_wrapper = 'nice -n4'
 let g:ale_set_ballons = 1
 let g:ale_completion_enabled = 0
+let g:ale_use_global_executables = 0
 let g:ale_fix_on_save = 1
-let g:ale_completion_delay = 1
-let g:ale_completion_max_suggestions = 10
 let g:ale_fixers = {
       \ '*' : ['remove_trailing_lines', 'trim_whitespace'],
-      \ 'javascript': ['eslint'],
-      \ 'typescript': ['eslint'],
-      \ 'vue': ['prettier'],
+      \ 'javascript': ['eslint', 'prettier'],
+      \ 'typescript': ['tslint', 'eslint', 'prettier'],
+      \ 'vue': ['prettier', 'eslint'],
       \ 'scss': ['stylelint'],
-      \ 'html': ['stylelint', 'tidy'],
+      \ 'html': ['stylelint', 'prettier', 'tidy'],
       \ 'rust': ['rustfmt'],
       \ 'elixir': ['mix_format'],
       \ }
-let g:ale_linters  = {
-      \ 'elixir': 'all'
-      \ }
 " 2}}}
+"
+" {{{2 minimap
+let g:minimap_show='<leader>Ms'
+let g:minimap_update='<leader>Mu'
+let g:minimap_close='<leader>Mc'
+let g:minimap_toggle='<leader>Mt'
+" }}}
 "
 " {{{2 vim-test
 let g:test#custom_transformations = {
@@ -331,11 +348,11 @@ endfunction
 
 let g:startify_lists = [
       \ { 'header': ['   Sessions'],       'type': 'sessions' },
-      \ { 'header': ['   MRU'],            'type': 'files' },
-      \ { 'header': ['   MRU '. getcwd()], 'type': 'dir' },
-      \ { 'header': ['   Vim Config Edits'],        'type': function('s:list_commits') },
       \ { 'header': ['   Bookmarks'],      'type': 'bookmarks' },
       \ { 'header': ['   Commands'],       'type': 'commands' },
+      \ { 'header': ['   MRU '. getcwd()], 'type': 'dir' },
+      \ { 'header': ['   MRU'],            'type': 'files' },
+      \ { 'header': ['   Vim Config Edits'],        'type': function('s:list_commits') },
       \ ]
 let g:startify_session_before_save = [
       \ 'silent! s:terminal_kill_extra_buffers()'
@@ -345,6 +362,9 @@ let g:startify_session_before_save = [
 let g:UltiSnipsJumpForwardTrigger = "<c-j>"
 let g:UltiSnipsJumpBackwardTrigger  = "<c-k>"
 let g:UltiSnipsRemoveSelectModeMappings = 0
+
+let g:ncm2_look_enabled = 1
+let g:float_preview#docked = 1
 "
 " {{{2
 let g:test#strategy = 'neovim'
@@ -357,6 +377,13 @@ let g:localvimrc_persistent = 1
 let g:localvimrc_persistent_file = expand('$HOME/.config/nvim/localvimrc_persistent')
 let g:localvimrc_whitelist = [expand('$HOME/.lvimrc')]
 " 2}}}
+"
+" {{{2
+let g:far#source = "agnvim"
+let g:far#collapse_result = 1
+let g:far#auto_write_replaced_buffers = 1
+let g:far#auto_delete_replaced_buffers = 1
+" }}}
 "
 " {{{2 airline
 let g:airline_powerline_fonts = 1
@@ -400,6 +427,21 @@ let g:airline_mode_map = {
       \ }
 " 2}}}
 " }}}
+"
+" {{{2 langserver
+let g:LanguageClient_serverCommands = {
+      \ 'typescript': ['asdf', 'exec', 'javascript-typescript-stdio'],
+      \ 'javascript': ['asdf', 'exec', 'javascript-typescript-stdio'],
+      \ 'python': ['asdf', 'exec', 'pyls'],
+      \ 'rust': ['asdf', 'exec', 'rls'],
+      \ 'elixir': [vimrc_root . '/bin/language_server.sh']
+      \ }
+let g:LanguageClient_rootMarkers = {
+      \ 'javascript': ['package.json'],
+      \ 'elixir': ['mix.exs'],
+      \ 'rust': ['Cargo.toml']
+      \ }
+"}}}
 
 " {{{ Mappings
 let s:mappings = {
@@ -409,15 +451,7 @@ let s:mappings = {
 exec 'let g:mapleader="' . s:mappings.leader . '"'
 exec 'let g:maplocalleader="' . s:mappings.localLeader. '"'
 
-call <SID>apply_bulk_mappings([
-      \ ['m', ':Make<space>'],
-      \ ['a', ':Make all<CR>'],
-      \ ['c', ':Make clean<CR>'],
-      \ ['i', ':Make install<CR>'],
-      \ ['t', ':Make test<CR>'],
-      \ ['tb', ":call('Make',['test',expand('%')])<CR>"],
-      \ ['u', ':Make uninstall<CR>'],
-      \ ], { 'prefix' : 'm' })
+nnoremap <silent> <F9> :Dispatch<CR>
 
 call <SID>apply_bulk_mappings([
       \ ['t', ':TestNearest<CR>'],
@@ -426,6 +460,13 @@ call <SID>apply_bulk_mappings([
       \ ['l', ':TestLast<CR>'],
       \ ['v', ':TestVisit<CR>'],
       \ ], { 'prefix' : 't' })
+
+call <SID>apply_bulk_mappings([
+      \ ['i', ':Make install<CR>'],
+      \ ['b', ':Make build<CR>'],
+      \ ['c', ':Make clean<CR>'],
+      \ ], { 'prefix' : 'm' })
+
 
 call <SID>apply_bulk_mappings([
       \ ['b', ':Buffers<cr>'],
@@ -482,6 +523,16 @@ call <SID>apply_bulk_mappings([
       \ ], { 'prefix': 'a'})
 
 call <SID>apply_bulk_mappings([
+      \ ['c', ':call LanguageClient_contextMenu()<CR>'],
+      \ ['d', ':call LanguageClient#textDocument_definition()<CR>'],
+      \ ['D', ':call LanguageClient#textDocument_typeDefinition()<CR>'],
+      \ ['i', ':call LanguageClient#textDocument_implementation()<CR>'],
+      \ ['r', ':call LanguageClient#textDocument_rename()<CR>'],
+      \ ['f', ':call LanguageClient#textDocument_references()<CR>'],
+      \ ['a', ':call LanguageClient#textDocument_codeAction()<CR>'],
+      \ ], { 'prefix': 'lc'})
+
+call <SID>apply_bulk_mappings([
       \ ['e', '<ESC>:cnext<CR>'],
       \ ['f', '<ESC>:cfirst<CR>'],
       \ ['l', '<ESC>:clast<CR>'],
@@ -504,7 +555,6 @@ call <SID>apply_bulk_mappings([
 inoremap <c-c> <ESC>
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
 
 tnoremap <Esc> <C-\><C-n>
 tnoremap <A-h> <C-\><C-n><C-w>h
@@ -531,7 +581,7 @@ cnoremap <silent> <leader>pd <C-R>=strftime("%Y-%m-%d")<CR>
 " }}}
 
 
-if $TERM !~# "konsole.*"
+if !exists('$KONSOLE_VERSION')
   " As a work around for the following bugs in kde4's konsole:
   "   use the output of 16.colorscheme.rb and don't set base16colorspace.
   "   base-shell script will not be called
@@ -539,6 +589,7 @@ if $TERM !~# "konsole.*"
   " https://bugs.kde.org/show_bug.cgi?id=344181
   let base16colorspace=256
 endif
+
 if filereadable(expand("~/.vimrc_background"))
   source ~/.vimrc_background
 endif
@@ -548,7 +599,6 @@ syntax on
 
 autocmd FileType gitcommit set bufhidden=delete
 autocmd TermOpen * setl nonumber signcolumn=no foldcolumn=0 bufhidden=delete
-autocmd BufWrite * :Autoformat
 autocmd BufEnter * call ncm2#enable_for_buffer()
 autocmd TextChangedI * call ncm2#auto_trigger()
 autocmd User Ncm2PopupOpen set completeopt=noinsert,menuone,noselect
@@ -569,3 +619,11 @@ command! DisconnectClients
         \|     silent! call rpcnotify(client, 'Exit', 1)
         \|   endfor
         \| endif
+
+command! -bang -nargs=* Ag
+      \ call fzf#vim#ag(<q-args>,
+      \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+      \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+      \                 <bang>0)
+command! -bang -nargs=? -complete=dir Files
+      \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)

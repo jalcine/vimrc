@@ -1,4 +1,4 @@
-" File:          init.vim
+﻿" File:          init.vim
 " Author:        Jacky Alcine <yo@jacky.wtf>
 " Description:   Entry point of all of my configuration.
 " Last Modified: August 08, 2017
@@ -6,86 +6,14 @@
 " This is where I tell Neovim to do my bidding. Yes, I have over
 " 100+ plugins. No, Neovim does not run slow.
 "
-" vim: set fdm=marker foldlevel=0 :
+" vim: set fdm=syntax foldlevel=0 :
 
 set encoding=UTF-8 fileencoding=UTF-8
+set hidden
 scriptencoding UTF-8
 
 let vimrc_root = fnamemodify($MYVIMRC, ':p:h')
 exec "let $PATH=\"" . vimrc_root . "/node_modules/.bin:\" . $PATH"
-
-" {{{ settings
-" These are core options for Neovim. A lot of these help me use Neovim in a
-" semi-intuitive fashion for me.
-"
-if has('termguicolors') " {{{2 Improve terminal colors
-  set t_8f=\[[38;2;%lu;%lu;%lum
-  set t_8b=\[[48;2;%lu;%lu;%lum
-  set termguicolors
-endif " 2}}}
-
-" Always show a statusline.
-set laststatus=2
-"
-" Allow myself to count what line I'm on; optimized for scanning and jumping
-" over multiple lines quickly.
-set number numberwidth=3 relativenumber
-set sidescrolloff=1 sidescroll=1
-set conceallevel=3 concealcursor=nivc
-
-" Fold options {{{2
-set foldenable
-set foldminlines=10
-set foldmethod=syntax
-set foldlevel=3
-" 2}}}
-set wrap wrapmargin=2
-set linebreak
-set shortmess+=c
-set hidden
-set pumheight=5
-set showmode showmatch
-set lazyredraw
-set spelllang=en_us
-set inccommand=nosplit
-set maxmempattern=8196
-
-set completeopt=menu,menuone,preview,noselect,noinsert
-
-set fillchars+=diff:⣿
-set fillchars+=vert:│
-set fillchars+=fold:-
-set showbreak=↪
-set listchars+=eol:¬
-set listchars+=extends:❯
-set listchars+=precedes:❮
-set listchars+=trail:⋅
-set listchars+=nbsp:⋅
-set listchars+=tab:\|\
-
-set regexpengine=1
-
-set undofile
-set backup writebackup
-set undodir=$HOME/.config/nvim/undo
-set backupdir=$HOME/.config/nvim/backup
-set noswapfile
-
-set tabstop=2 softtabstop=2
-set shiftwidth=2 textwidth=80
-set smarttab expandtab
-set shiftround
-
-set ignorecase smartcase
-set laststatus=2 cmdheight=2
-set incsearch hlsearch
-
-set tags+=./tags,./.tags,./.vimtags
-set tags+=tags,.tags,.vimtags
-set tags+=$HOME/.config/nvim/tags/*
-set nocscopetag
-set showfulltag showmatch
-" }}}
 
 iabbrev myemail yo@jacky.wtf
 iabbrev myname Jacky Alciné
@@ -146,7 +74,7 @@ endfunc " }}}
 "
 " Plugins {{{
 filetype off
-call plug#begin(expand('$HOME/.config/nvim/plugins'))
+call plug#begin(expand('$HOME/.config/nvim/plugged'))
 
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
@@ -158,6 +86,7 @@ Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-scriptease'
 Plug 'janko-m/vim-test'
 Plug 'wsdjeg/vim-fetch'
+Plug 'mattn/webapi-vim'
 Plug 'tpope/vim-dotenv'
       \ | Plug 'direnv/direnv.vim'
       \ | Plug 'wincent/terminus'
@@ -169,9 +98,8 @@ Plug 'tpope/vim-fugitive'
       \ | Plug 'int3/vim-extradite'
       \ | Plug 'tommcdo/vim-fubitive'
       \ | Plug 'tommcdo/vim-fugitive-blame-ext'
-Plug 'bfrg/vim-cpp-modern', { 'for': 'c++,c' }
 Plug 'junkblocker/patchreview-vim'
-Plug 'codegram/vim-codereview'
+      \ | Plug 'codegram/vim-codereview'
 Plug 'chiel92/vim-autoformat'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'embear/vim-localvimrc'
@@ -186,57 +114,124 @@ Plug 'vim-airline/vim-airline' |
       \ Plug 'vim-airline/vim-airline-themes'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'airblade/vim-rooter'
+Plug 'mhinz/vim-startify'
 Plug 'sheerun/vim-polyglot'
 Plug 'joonty/vdebug'
 Plug 'sirver/ultisnips'
       \ |  Plug 'honza/vim-snippets'
 Plug 'vim-scripts/dbext.vim'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'mhinz/vim-startify'
 Plug 'ryanoasis/vim-devicons'
 Plug 'chriskempson/base16-vim'
 Plug 'mattesgroeger/vim-bookmarks'
 Plug 'sodapopcan/vim-twiggy'
 Plug 'junegunn/gv.vim'
+Plug 'rhysd/git-messenger.vim'
 Plug 'vrybas/vim-flayouts'
-Plug 'ekalinin/dockerfile.vim'
 Plug 'meain/vim-package-info', { 'do': 'npm install' }
+Plug 'brooth/far.vim'
 
 Plug 'ncm2/ncm2'
       \ | Plug 'roxma/nvim-yarp'
       \ | Plug 'ncm2/ncm2-bufword'
       \ | Plug 'ncm2/ncm2-path'
       \ | Plug 'ncm2/ncm2-tmux'
-      \ | Plug 'ncm2/ncm2-cssomni'
+      \ | Plug 'ncm2/ncm2-cssomni', {'for': 'css,scss'}
       \ | Plug 'ncm2/ncm2-syntax' | Plug 'Shougo/neco-syntax'
       \ | Plug 'ncm2/ncm2-tagprefix'
-      \ | Plug 'ncm2/ncm2-racer'
       \ | Plug 'ncm2/ncm2-vim' | Plug 'Shougo/neco-vim'
-      \ | Plug 'pbogut/ncm2-alchemist' | Plug 'slashmili/alchemist.vim'
+      \ | Plug 'pbogut/ncm2-alchemist', {'for': 'elixir,eex'} | Plug 'slashmili/alchemist.vim,' {'for': 'elixir,eex'}
       \ | Plug 'ncm2/ncm2-ultisnips'
+      \ | Plug 'ncm2/ncm2-racer', { 'do': 'cargo +nightly install racer && rustup component add rls rust-analysis rust-src' }
       \ | Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
       \ | Plug 'JakeBecker/elixir-ls', {'do': 'mix deps.get && mix compile && mix elixir_ls.release -o ' . vimrc_root . '/bin'}
-      \ | Plug 'autozimu/LanguageClient-neovim', {
-      \ 'branch': 'next',
-      \ 'do': 'bash install.sh',
-      \ }
-
-
-Plug 'severin-lemaignan/vim-minimap'
-Plug 'brooth/far.vim'
+      \ | Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
+      \ | Plug 'bfrg/vim-cpp-modern', { 'for': 'c++,c' }
+      \ | Plug 'ekalinin/dockerfile.vim', {'for': 'dockerfile'}
+      \ | Plug 'ap/vim-css-color', {'for': 'css,scss'}
 
 call plug#end()
 " }}}
 
+" {{{ settings
+" These are core options for Neovim. A lot of these help me use Neovim in a
+" semi-intuitive fashion for me.
+"
+if has('termguicolors') " {{{2 Improve terminal colors
+  set t_8f=\[[38;2;%lu;%lu;%lum
+  set t_8b=\[[48;2;%lu;%lu;%lum
+  set termguicolors
+endif " 2}}}
+
+" Always show a statusline.
+set laststatus=2
+"
+" Allow myself to count what line I'm on; optimized for scanning and jumping
+" over multiple lines quickly.
+set number numberwidth=3
+set relativenumber
+set sidescrolloff=1 sidescroll=1
+set conceallevel=3 concealcursor=nivc
+
+" Fold options {{{2
+set foldenable foldmethod=syntax
+set foldlevel=3 foldcolumn=2 foldminlines=5
+" 2}}}
+set wrap wrapmargin=2
+set linebreak
+set pumheight=5
+set showmode showmatch
+set lazyredraw
+set spelllang=en_us
+set inccommand=nosplit
+set maxmempattern=8196
+
+set completeopt=menu,menuone,preview,noselect,noinsert
+
+set fillchars+=diff:⣿
+set fillchars+=vert:│
+set fillchars+=fold:-
+set showbreak=↪
+set listchars+=eol:¬
+set listchars+=extends:❯
+set listchars+=precedes:❮
+set listchars+=trail:⋅
+set listchars+=nbsp:⋅
+set listchars+=tab:\|\
+
+set regexpengine=1
+
+set undofile
+set backup writebackup
+set undodir=$HOME/.config/nvim/undo
+set backupdir=$HOME/.config/nvim/backup
+set noswapfile
+
+set tabstop=2 softtabstop=2
+set shiftwidth=2 textwidth=80
+set smarttab expandtab
+set shiftround
+
+set ignorecase smartcase
+set laststatus=2 cmdheight=2
+set incsearch hlsearch
+
+set tags+=./tags,./.tags,./.vimtags
+set tags+=tags,.tags,.vimtags
+set tags+=$HOME/.config/nvim/tags/*
+set showfulltag noshowmatch
+" }}}
+
+
 " {{{ Options
 " {{{2 vim-bookmarks
 let g:bookmark_sign = '♥'
-let g:bookmark_highlight_lines = 0
+let g:bookmark_highlight_lines = 1
 " }}}
 "
 " {{{2 signify
 let g:signify_vcs_list = [ 'git', 'hg', 'bzr' ]
-let g:signify_realtime = 1
+let g:signify_realtime = 0
 let g:signify_sign_show_count = 1
 let g:signify_line_highlight = 0
 " 2}}}
@@ -245,38 +240,42 @@ let g:twiggy_enable_remote_delete = 1
 " 2}}}
 
 if executable('ripgrep')
-  let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
-  set grepprg=ag\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow
+  let $FZF_DEFAULT_COMMAND = 'ag --silent --hidden'
+  set grepprg=ag\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow\ --vimgrep
   set grepformat=%f:%l:%c:%m
 endif
+" }}}
+" {{{2
 " }}}
 "
 let g:autoformat_remove_trailing_spaces = 1
 " {{{2 ale
-let g:ale_command_wrapper = 'nice -n4'
+let g:ale_command_wrapper = 'nice -n5'
 let g:ale_set_ballons = 1
+let g:ale_rust_cargo_use_clippy = executable('cargo-clippy')
+let g:ale_rust_cargo_check_tests = 1
+let g:ale_virtualtext_cursor = 1
 let g:ale_completion_enabled = 0
 let g:ale_use_global_executables = 0
 let g:ale_fix_on_save = 1
 let g:ale_fixers = {
       \ '*' : ['remove_trailing_lines', 'trim_whitespace'],
-      \ 'javascript': ['eslint', 'prettier'],
-      \ 'typescript': ['tslint', 'eslint', 'prettier'],
-      \ 'vue': ['prettier', 'eslint'],
+      \ 'javascript': ['eslint'],
+      \ 'typescript': ['eslint'],
+      \ 'vue': ['eslint'],
       \ 'scss': ['stylelint'],
       \ 'html': ['stylelint', 'prettier', 'tidy'],
       \ 'rust': ['rustfmt'],
       \ 'elixir': ['mix_format'],
       \ }
+let g:ale_linters = {
+      \ 'rust': ['rustc', 'clippy', 'cargo'],
+      \ }
 " 2}}}
 "
-" {{{2 minimap
-let g:minimap_show='<leader>Ms'
-let g:minimap_update='<leader>Mu'
-let g:minimap_close='<leader>Mc'
-let g:minimap_toggle='<leader>Mt'
-" }}}
-"
+let g:racer_experimental_completer = 0
+let g:racer_insert_paren = 1
+
 " {{{2 vim-test
 let g:test#custom_transformations = {
       \ 'vagrant': function('<SID>VagrantTransform'),
@@ -288,7 +287,7 @@ let g:test#preserve_screen = 1
 "
 " {{{2 Zeavim
 let g:zv_file_types = {
-      \ 'eelixir': 'html,elixir',
+      \ 'eelixir': 'html,elixir,erlang',
       \ 'elixir': 'elixir,erlang',
       \ 'sass': 'scss,css',
       \ 'typescript': 'typescript,javascript,html'
@@ -330,35 +329,7 @@ let g:fzf_colors = {
 " 2}}}
 "
 let g:rooter_use_lcd = 1
-" {{{2 startify
-let g:startify_list_order = ['commands', 'sessions', 'bookmarks', 'files', 'dir']
-let g:startify_files_number = 15
-let g:startify_change_to_dir = 0
-let g:startify_fortune_use_unicode = 1
-let g:startify_session_delete_buffers = 1
-let g:startify_session_autoload = 1
-let g:startify_session_persistence = 1
 
-function! s:list_commits()
-  let git = 'git -C ~/.homesick/repos/vimrc'
-  let commits = systemlist(git .' log --oneline | head -n10')
-  let git = 'G'. git[1:]
-  return map(commits, '{"line": matchstr(v:val, "\\s\\zs.*"), "cmd": "'. git .' show ". matchstr(v:val, "^\\x\\+") }')
-endfunction
-
-let g:startify_lists = [
-      \ { 'header': ['   Sessions'],       'type': 'sessions' },
-      \ { 'header': ['   Bookmarks'],      'type': 'bookmarks' },
-      \ { 'header': ['   Commands'],       'type': 'commands' },
-      \ { 'header': ['   MRU '. getcwd()], 'type': 'dir' },
-      \ { 'header': ['   MRU'],            'type': 'files' },
-      \ { 'header': ['   Vim Config Edits'],        'type': function('s:list_commits') },
-      \ ]
-let g:startify_session_before_save = [
-      \ 'silent! s:terminal_kill_extra_buffers()'
-      \ ]
-" 2}}}
-"
 let g:UltiSnipsJumpForwardTrigger = "<c-j>"
 let g:UltiSnipsJumpBackwardTrigger  = "<c-k>"
 let g:UltiSnipsRemoveSelectModeMappings = 0
@@ -372,14 +343,13 @@ let g:test#neovim#term_position = "leftabove"
 " }}}
 "
 " {{{2 localvimrc
-let g:localvimrc_sandbox = 0
+let g:localvimrc_sandbox = 1
 let g:localvimrc_persistent = 1
 let g:localvimrc_persistent_file = expand('$HOME/.config/nvim/localvimrc_persistent')
 let g:localvimrc_whitelist = [expand('$HOME/.lvimrc')]
 " 2}}}
 "
 " {{{2
-let g:far#source = "agnvim"
 let g:far#collapse_result = 1
 let g:far#auto_write_replaced_buffers = 1
 let g:far#auto_delete_replaced_buffers = 1
@@ -429,15 +399,18 @@ let g:airline_mode_map = {
 " }}}
 "
 " {{{2 langserver
+let g:LanguageClient_loggingLevel = 'ERROR'
 let g:LanguageClient_serverCommands = {
-      \ 'typescript': ['asdf', 'exec', 'javascript-typescript-stdio'],
-      \ 'javascript': ['asdf', 'exec', 'javascript-typescript-stdio'],
-      \ 'python': ['asdf', 'exec', 'pyls'],
-      \ 'rust': ['asdf', 'exec', 'rls'],
+      \ 'javascript': ['javascript-typescript-stdio'],
+      \ 'javascript.jsx': ['javascript-typescript-stdio'],
+      \ 'typescript': ['javascript-typescript-stdio'],
+      \ 'python': ['pyls'],
+      \ 'rust': ['rls'],
       \ 'elixir': [vimrc_root . '/bin/language_server.sh']
       \ }
 let g:LanguageClient_rootMarkers = {
       \ 'javascript': ['package.json'],
+      \ 'typescript': ['tslint.json'],
       \ 'elixir': ['mix.exs'],
       \ 'rust': ['Cargo.toml']
       \ }
@@ -465,6 +438,7 @@ call <SID>apply_bulk_mappings([
       \ ['i', ':Make install<CR>'],
       \ ['b', ':Make build<CR>'],
       \ ['c', ':Make clean<CR>'],
+      \ ['<space>', ':Make!<space>'],
       \ ], { 'prefix' : 'm' })
 
 
@@ -472,7 +446,8 @@ call <SID>apply_bulk_mappings([
       \ ['b', ':Buffers<cr>'],
       \ ['c', ':Commits<cr>'],
       \ ['f', ':Files<cr>'],
-      \ ['fg', ':GFiles?<cr>'],
+      \ ['fg?', ':GFiles?<cr>'],
+      \ ['fg', ':GFiles<cr>'],
       \ ['h', ':History<cr>'],
       \ ['H', ':Helptags<cr>'],
       \ ['mc', ':call fzf#vim#maps("c", 1)<cr>'],
@@ -482,7 +457,7 @@ call <SID>apply_bulk_mappings([
       \ ['mv', ':call fzf#vim#maps("v", 1)<cr>'],
       \ ['s', ':Snippets<cr>'],
       \ ['t', ':Tags<cr>'],
-      \ ['w', ':Windows<cr>'],
+      \ ['w', ':Windows<cr>']
       \ ], { 'prefix': 's' })
 
 call <SID>apply_bulk_mappings([
@@ -491,14 +466,19 @@ call <SID>apply_bulk_mappings([
       \ ['S', ':Glc<CR>'],
       \ ['b', ':Gbrowse<CR>'],
       \ ['c', ':Gcommit<CR>'],
+      \ ['C', ':Glc<CR>'],
       \ ['cO', ':Git checkout HEAD -- %<CR>'],
       \ ['co', ':Git checkout<space>'],
       \ ['e', ':Extradite<CR>'],
       \ ['f', ':Git fetch<space>'],
       \ ['fa', ':Git fetch --all<CR>'],
+      \ ['d', ':Git diff --cached<CR>'],
+      \ ['d!', ':Git diff<CR>'],
       \ ['l', ':Gpull<CR>'],
       \ ['mr', ':GlpullRequestSummaryTab'],
       \ ['p', ':Gpush<space>'],
+      \ ['r', ':Gpush dokku HEAD:master --no-verify'],
+      \ ['R', ':Gpush dokku HEAD:master --no-verify --force-with-lease'],
       \ ['rc', ':GlresolveConflictTab'],
       \ ['rm', ':Gremove %<CR>'],
       \ ['rmc', ':Gremove --cached %<CR>'],
@@ -510,6 +490,7 @@ call <SID>apply_bulk_mappings([
       \ ['st', ':SignifyToggle<CR>'],
       \ ['t', ':Twiggy<CR>'],
       \ ['x', ':Glabort<CR>'],
+      \ ['w', ':Glwrite<CR>'],
       \ ], { 'prefix': 'g' })
 
 call <SID>apply_bulk_mappings([
@@ -524,13 +505,33 @@ call <SID>apply_bulk_mappings([
 
 call <SID>apply_bulk_mappings([
       \ ['c', ':call LanguageClient_contextMenu()<CR>'],
-      \ ['d', ':call LanguageClient#textDocument_definition()<CR>'],
       \ ['D', ':call LanguageClient#textDocument_typeDefinition()<CR>'],
       \ ['i', ':call LanguageClient#textDocument_implementation()<CR>'],
-      \ ['r', ':call LanguageClient#textDocument_rename()<CR>'],
       \ ['f', ':call LanguageClient#textDocument_references()<CR>'],
       \ ['a', ':call LanguageClient#textDocument_codeAction()<CR>'],
       \ ], { 'prefix': 'lc'})
+
+function! s:LC_maps() abort
+  if has_key(g:LanguageClient_serverCommands, &filetype)
+    nnoremap <buffer> <silent> K :call LanguageClient#textDocument_hover()<cr>
+    nnoremap <buffer> <silent> gd :call LanguageClient#textDocument_definition()<CR>
+    nnoremap <buffer> <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+    nnoremap <buffer> <silent> <Space><Space> :call <SID>LC_restart()<CR>
+  endif
+endfunction
+
+function! s:LC_restart() abort
+  :call LanguageClient#exit()
+  :call LanguageClient#startServer()
+endfunction
+
+autocmd FileType * call s:LC_maps()
+
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+nnoremap <silent> ;; @:
+
 
 call <SID>apply_bulk_mappings([
       \ ['e', '<ESC>:cnext<CR>'],
@@ -594,7 +595,7 @@ if filereadable(expand("~/.vimrc_background"))
   source ~/.vimrc_background
 endif
 
-filetype plugin indent on
+" filetype plugin indent on
 syntax on
 
 autocmd FileType gitcommit set bufhidden=delete
@@ -625,5 +626,6 @@ command! -bang -nargs=* Ag
       \                 <bang>0 ? fzf#vim#with_preview('up:60%')
       \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
       \                 <bang>0)
+
 command! -bang -nargs=? -complete=dir Files
       \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)

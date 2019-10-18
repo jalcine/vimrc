@@ -104,7 +104,7 @@ Plug 'chiel92/vim-autoformat'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'embear/vim-localvimrc'
 Plug 'vim-scripts/SyntaxRange'
-Plug 'arakashic/chromatica.nvim', {'for': ['cpp', 'c'] }
+Plug 'arakashic/chromatica.nvim', {'for': 'cpp,c' }
 Plug 'mhinz/vim-signify'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
       \ | Plug 'junegunn/fzf.vim'
@@ -140,15 +140,15 @@ Plug 'ncm2/ncm2'
       \ | Plug 'ncm2/ncm2-syntax' | Plug 'Shougo/neco-syntax'
       \ | Plug 'ncm2/ncm2-tagprefix'
       \ | Plug 'ncm2/ncm2-vim' | Plug 'Shougo/neco-vim'
-      \ | Plug 'pbogut/ncm2-alchemist', {'for': 'elixir,eex'} | Plug 'slashmili/alchemist.vim,' {'for': 'elixir,eex'}
+      \ | Plug 'pbogut/ncm2-alchemist', {'for': 'elixir,eex'} | Plug 'slashmili/alchemist.vim', {'for': 'elixir,eex'}
       \ | Plug 'ncm2/ncm2-ultisnips'
       \ | Plug 'ncm2/ncm2-racer', { 'do': 'cargo +nightly install racer && rustup component add rls rust-analysis rust-src' }
       \ | Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
       \ | Plug 'JakeBecker/elixir-ls', {'do': 'mix deps.get && mix compile && mix elixir_ls.release -o ' . vimrc_root . '/bin'}
       \ | Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
       \ | Plug 'bfrg/vim-cpp-modern', { 'for': 'c++,c' }
-      \ | Plug 'ekalinin/dockerfile.vim', {'for': 'dockerfile'}
-      \ | Plug 'ap/vim-css-color', {'for': 'css,scss'}
+      \ | Plug 'ekalinin/dockerfile.vim'
+      \ | Plug 'ap/vim-css-color'
 
 call plug#end()
 " }}}

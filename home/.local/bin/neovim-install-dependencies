@@ -1,11 +1,12 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 # vim: set fdm=marker :
 # TODO: Import shared framework for my shell scripts from `dotfiles`.
 # TODO: Add more option control to this.
 # TODO: Merge update + install scripts.
 
-function run_install ()
+run_install ()
 {
+  echo "[install] Running..."
   cd "${HOME}/.config/nvim" || exit
   mkdir -p "${HOME}/.config/nvim/logs" || exit
   mkdir -p "${HOME}/.config/nvim/tags" || exit
@@ -16,7 +17,7 @@ function run_install ()
   install_python
 }
 
-function install_python ()
+install_python ()
 {
   pyenv virtualenv 2.7.14 neovim-py2 -vf
   pyenv virtualenv 3.6.4  neovim-py3 -vf
@@ -24,22 +25,25 @@ function install_python ()
   pyenv exec pip2 install pipenv
   pyenv exec pip3 install pipenv
 
-  pyenv exec python2 pipenv install --system
-  pyenv exec python3 pipenv install --system
+  PYENV_VERSION=neovim-py2 pyenv exec pipenv install
+  PYENV_VERSION=neovim-py3 pyenv exec pipenv install
 }
 
-function install_ruby ()
+install_ruby ()
 {
-  rbenv exec bundle install --verbose
+  anyenv install rbenv
+  rbenv exec bundle install
 }
 
-function install_javascript ()
+install_javascript ()
 {
-  ndenv exec yarn --verbose
+  anyenv install ndenv
+  ndenv exec npm install
 }
 
-function install_perl ()
+install_perl ()
 {
+  anyenv install plenv
   plenv exec carton install
 }
 
@@ -49,7 +53,7 @@ __ScriptVersion="2017-12-24"
 #         NAME:  usage
 #  DESCRIPTION:  Display usage information.
 #===============================================================================
-function usage ()
+usage ()
 {
   echo "Usage :  $0 [options] [--]
 
@@ -74,9 +78,9 @@ do
 
   i|install  )  run_install; exit 0   ;;
 
-  * )  echo -e "\n  Option does not exist : $OPTARG\n"
+  * )  printf "\n  Option does not exist : %s\n", "$OPTARG"
       usage; exit 1   ;;
 
   esac    # --- end of case ---
 done
-shift $(($OPTIND-1))
+shift $((OPTIND-1))

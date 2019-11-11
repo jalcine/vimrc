@@ -116,6 +116,7 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'airblade/vim-rooter'
 Plug 'mhinz/vim-startify'
 Plug 'sheerun/vim-polyglot'
+Plug 'leafgarland/typescript-vim'
 Plug 'joonty/vdebug'
 Plug 'sirver/ultisnips'
       \ |  Plug 'honza/vim-snippets'
@@ -148,7 +149,6 @@ Plug 'ncm2/ncm2'
       \ | Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
       \ | Plug 'bfrg/vim-cpp-modern', { 'for': 'c++,c' }
       \ | Plug 'ekalinin/dockerfile.vim'
-      \ | Plug 'ap/vim-css-color'
 
 call plug#end()
 " }}}
@@ -250,28 +250,39 @@ endif
 "
 let g:autoformat_remove_trailing_spaces = 1
 " {{{2 ale
-let g:ale_command_wrapper = 'nice -n5'
-let g:ale_set_ballons = 1
+let g:ale_command_wrapper = 'nice -n8'
+let g:ale_set_ballons = 0
 let g:ale_rust_cargo_use_clippy = executable('cargo-clippy')
 let g:ale_rust_cargo_check_tests = 1
 let g:ale_virtualtext_cursor = 1
 let g:ale_completion_enabled = 0
 let g:ale_use_global_executables = 0
-let g:ale_fix_on_save = 1
+let g:ale_fix_on_save = 0
+let g:ale_fixers_ignore = {
+      \ 'typescript': ['tslint']
+      \ }
 let g:ale_fixers = {
       \ '*' : ['remove_trailing_lines', 'trim_whitespace'],
-      \ 'javascript': ['eslint'],
-      \ 'typescript': ['eslint'],
-      \ 'vue': ['eslint'],
-      \ 'scss': ['stylelint'],
+      \ 'javascript': ['eslint', 'prettier'],
+      \ 'typescript': ['eslint', 'prettier'],
+      \ 'vue': ['eslint', 'prettier'],
+      \ 'scss': ['stylelint', 'prettier'],
       \ 'html': ['stylelint', 'prettier', 'tidy'],
       \ 'rust': ['rustfmt'],
       \ 'elixir': ['mix_format'],
       \ }
+let g:ale_linters_ignore = {
+      \ 'typescript': ['tslint']
+      \ }
 let g:ale_linters = {
       \ 'rust': ['rustc', 'clippy', 'cargo'],
+      \ 'typescript': ['eslint', 'prettier'],
+      \ 'javascript':  ['eslint', 'prettier']
       \ }
 " 2}}}
+"
+let g:polyglot_disabled = ['jsx', 'typescript']
+let g:vim_jsx_pretty_template_tags = []
 "
 let g:racer_experimental_completer = 0
 let g:racer_insert_paren = 1

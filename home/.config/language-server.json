@@ -1,0 +1,16 @@
+{
+  "initializationOptions": {
+    "config": {
+      "css": {},
+      "html": {
+        "suggest": {}
+      },
+      "javascript": {
+        "format": {}
+      },
+      "typescript": {
+        "format": {}
+      }
+    }
+  }
+}

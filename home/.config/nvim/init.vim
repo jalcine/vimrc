@@ -28,8 +28,7 @@ func! s:terminal_kill_extra_buffers() abort
 endfunc
 
 func! s:VagrantTransform(cmd) abort
-  let l:vagrant_project = get(matchlist(join(readfile('Vagrantfile'), '\n'), '\vconfig\.vm.synced_folder ["''].+[''"], ["''](.+)[''"]'), 1)
-  return 'vagrant ssh --command '.shellescape('cd ' . l:vagrant_project . '; '.a:cmd)
+  let l:vagrant_project = get(matchlist(join(readfile('Vagrantfile'), '\n'), '\vconfig\.vm.synced_folder ["''].+[''"], ["''](.+)[''"]'), 1) return 'vagrant ssh --command '.shellescape('cd ' . l:vagrant_project . '; '.a:cmd)
 endfunction
 
 func! s:DockerTransform(cmd) abort
@@ -78,6 +77,7 @@ call plug#begin(expand('$HOME/.config/nvim/plugged'))
 
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-eunuch'
@@ -92,35 +92,30 @@ Plug 'tpope/vim-dotenv'
       \ | Plug 'direnv/direnv.vim'
       \ | Plug 'wincent/terminus'
 Plug 'w0rp/ale'
-Plug 'tpope/vim-commentary'
-      \ | Plug 'cbaumhardt/vim-commentary-boxed'
+Plug 'tpope/vim-commentary' | Plug 'cbaumhardt/vim-commentary-boxed'
 Plug 'tpope/vim-fugitive'
       \ | Plug 'tpope/vim-rhubarb'
       \ | Plug 'int3/vim-extradite'
       \ | Plug 'tommcdo/vim-fubitive'
       \ | Plug 'tommcdo/vim-fugitive-blame-ext'
-Plug 'junkblocker/patchreview-vim'
-      \ | Plug 'codegram/vim-codereview'
+Plug 'junkblocker/patchreview-vim' | Plug 'codegram/vim-codereview'
 Plug 'chiel92/vim-autoformat'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'embear/vim-localvimrc'
 Plug 'vim-scripts/SyntaxRange'
-Plug 'arakashic/chromatica.nvim', {'for': 'cpp,c' }
 Plug 'mhinz/vim-signify'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
       \ | Plug 'junegunn/fzf.vim'
       \ | Plug 'fszymanski/fzf-gitignore', { 'do' : ':UpdateRemotePlugins' }
 Plug 'KabbAmine/zeavim.vim'
-Plug 'vim-airline/vim-airline' |
-      \ Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'airblade/vim-rooter'
 Plug 'mhinz/vim-startify'
 Plug 'sheerun/vim-polyglot'
 Plug 'leafgarland/typescript-vim'
 Plug 'joonty/vdebug'
-Plug 'sirver/ultisnips'
-      \ |  Plug 'honza/vim-snippets'
+Plug 'sirver/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'vim-scripts/dbext.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'ryanoasis/vim-devicons'
@@ -132,6 +127,9 @@ Plug 'rhysd/git-messenger.vim'
 Plug 'vrybas/vim-flayouts'
 Plug 'meain/vim-package-info', { 'do': 'npm install' }
 Plug 'brooth/far.vim'
+Plug 'Shougo/echodoc.vim'
+Plug 'jiangmiao/auto-pairs'
+Plug 'heavenshell/vim-jsdoc'
 
 Plug 'ncm2/ncm2'
       \ | Plug 'roxma/nvim-yarp'
@@ -148,7 +146,7 @@ Plug 'ncm2/ncm2'
       \ | Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
       \ | Plug 'JakeBecker/elixir-ls', {'do': 'mix deps.get && mix compile && mix elixir_ls.release -o ' . vimrc_root . '/bin'}
       \ | Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
-      \ | Plug 'bfrg/vim-cpp-modern', { 'for': 'c++,c' }
+      \ | Plug 'bfrg/vim-cpp-modern', { 'for': 'c++,c' } | Plug 'arakashic/chromatica.nvim', {'for': 'cpp,c' }
       \ | Plug 'ekalinin/dockerfile.vim'
 
 call plug#end()
@@ -175,17 +173,16 @@ set sidescrolloff=1 sidescroll=1
 set conceallevel=3 concealcursor=nivc
 
 " Fold options {{{2
-set foldenable foldmethod=syntax
-set foldlevel=3 foldcolumn=2 foldminlines=5
-" 2}}}
+set nofoldenable
+" set foldmethod=syntax foldlevel=2 foldcolumn=2 foldminlines=10
+"2}}}
 set wrap wrapmargin=2
 set linebreak
 set pumheight=5
 set showmode showmatch
-set lazyredraw
+set lazyredraw redrawtime=3000
 set spelllang=en_us
 set inccommand=nosplit
-set maxmempattern=8196
 
 set completeopt=menu,menuone,preview,noselect,noinsert
 
@@ -225,6 +222,26 @@ set showfulltag noshowmatch
 
 
 " {{{ Options
+"
+" {{{2 fzf
+let $FZF_DEFAULT_OPTS .= ' --border --margin=0,2'
+
+function! FloatingFZF()
+  let width = float2nr(&columns * 0.9)
+  let height = float2nr(&lines * 0.6)
+  let opts = { 'relative': 'editor',
+              \ 'row': (&lines - height) / 2,
+              \ 'col': (&columns - width) / 2,
+              \ 'width': width,
+              \ 'height': height }
+
+  let win = nvim_open_win(nvim_create_buf(v:false, v:true), v:true, opts)
+  call setwinvar(win, '&winhighlight', 'NormalFloat:Normal')
+endfunction
+
+let g:fzf_layout = { 'window': 'call FloatingFZF()' }
+
+" }}}
 " {{{2 vim-bookmarks
 let g:bookmark_sign = '♥'
 let g:bookmark_highlight_lines = 1
@@ -233,11 +250,13 @@ let g:bookmark_highlight_lines = 1
 " {{{2 signify
 let g:signify_vcs_list = [ 'git', 'hg', 'bzr' ]
 let g:signify_realtime = 0
-let g:signify_sign_show_count = 1
+let g:signify_sign_show_count = 0
 let g:signify_line_highlight = 0
 " 2}}}
 " {{{2 twiggy
 let g:twiggy_enable_remote_delete = 1
+let g:echodoc#enable_at_startup = 0
+let g:echodoc#type = 'signature'
 " 2}}}
 " {{{2
 let g:git_messenger_always_into_popup = v:true
@@ -252,6 +271,7 @@ endif
 " {{{2
 " }}}
 "
+" let g:polyglot_disabled = ['typescript']
 let g:autoformat_remove_trailing_spaces = 1
 " {{{2 ale
 let g:ale_command_wrapper = 'nice -n8'
@@ -274,6 +294,7 @@ let g:ale_fixers = {
       \ 'html': ['stylelint', 'prettier', 'tidy'],
       \ 'rust': ['rustfmt'],
       \ 'elixir': ['mix_format'],
+      \ 'json': ['jq']
       \ }
 let g:ale_linters_ignore = {
       \ 'typescript': ['tslint']
@@ -281,7 +302,8 @@ let g:ale_linters_ignore = {
 let g:ale_linters = {
       \ 'rust': ['rustc', 'clippy', 'cargo'],
       \ 'typescript': ['eslint', 'prettier'],
-      \ 'javascript':  ['eslint', 'prettier']
+      \ 'javascript':  ['eslint', 'prettier'],
+      \ 'json': ['jq']
       \ }
 " 2}}}
 "
@@ -345,6 +367,9 @@ let g:fzf_colors = {
 " 2}}}
 "
 let g:rooter_use_lcd = 1
+let g:rooter_silent_chdir = 1
+let g:rooter_resolve_links = 1
+let g:rooter_patterns = ['.git', 'package-lock.json', '.projections.json']
 
 let g:UltiSnipsJumpForwardTrigger = "<c-j>"
 let g:UltiSnipsJumpBackwardTrigger  = "<c-k>"
@@ -415,18 +440,22 @@ let g:airline_mode_map = {
 " }}}
 "
 " {{{2 langserver
-let g:LanguageClient_loggingLevel = 'ERROR'
+let g:LanguageClient_loggingLevel = 'INFO'
+let g:LanguageClient_loadSettings = 0
+let g:LanguageClient_trace = "messages"
+let g:LanguageClient_windowLogMessageLevel = "ERROR"
+let g:LanguageClient_waitOutputTimeout = 1
+let g:LanguageClient_completionPreferTextEdit = 1
 let g:LanguageClient_serverCommands = {
       \ 'javascript': ['javascript-typescript-stdio'],
-      \ 'javascript.jsx': ['javascript-typescript-stdio'],
       \ 'typescript': ['javascript-typescript-stdio'],
       \ 'python': ['pyls'],
       \ 'rust': ['rls'],
       \ 'elixir': [vimrc_root . '/bin/language_server.sh']
       \ }
 let g:LanguageClient_rootMarkers = {
-      \ 'javascript': ['package.json'],
-      \ 'typescript': ['tslint.json'],
+      \ 'javascript': ['package.json', 'jsconfig.json'],
+      \ 'typescript': ['tsconfig.json', 'tslint.json'],
       \ 'elixir': ['mix.exs'],
       \ 'rust': ['Cargo.toml']
       \ }
@@ -548,7 +577,6 @@ nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 nnoremap <silent> ;; @:
 
-
 call <SID>apply_bulk_mappings([
       \ ['e', '<ESC>:cnext<CR>'],
       \ ['f', '<ESC>:cfirst<CR>'],
@@ -595,6 +623,12 @@ cnoremap <silent> <leader>pt <C-R>=strftime("%Y%m%d%H%M%S")<CR>
 inoremap <silent> <leader>pd <C-R>=strftime("%Y-%m-%d")<CR>
 cnoremap <silent> <leader>pd <C-R>=strftime("%Y-%m-%d")<CR>
 
+nnoremap <Space><Space> call s:launch_omniselect()<CR>
+
+function! s:launch_omniselect()
+  call fzf#complete()
+endfunction
+
 " }}}
 
 
@@ -631,17 +665,20 @@ function! Multiple_cursors_after()
 endfunction
 
 command! DisconnectClients
-      \  if exists('b:nvr')
-      \|   for client in b:nvr
-        \|     silent! call rpcnotify(client, 'Exit', 1)
-        \|   endfor
-        \| endif
+    \  if exists('b:nvr')
+    \|   for client in b:nvr
+    \|     silent! call rpcnotify(client, 'Exit', 1)
+    \|   endfor
+    \| endif
 
 command! -bang -nargs=* Ag
-      \ call fzf#vim#ag(<q-args>,
-      \                 <bang>0 ? fzf#vim#with_preview('up:60%')
-      \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
-      \                 <bang>0)
+    \ call fzf#vim#ag(<q-args>,
+    \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+    \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+    \                 <bang>0)
 
 command! -bang -nargs=? -complete=dir Files
-      \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
+
+command! -bang -complete=dir -nargs=* LS
+    \ call fzf#run(fzf#wrap('ls', {'source': 'ls', 'dir': <q-args>}, <bang>0))

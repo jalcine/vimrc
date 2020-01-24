@@ -87,6 +87,7 @@ Plug 'tpope/vim-scriptease'
 Plug 'janko-m/vim-test'
 Plug 'wsdjeg/vim-fetch'
 Plug 'mattn/webapi-vim'
+Plug 'puremourning/vimspector'
 Plug 'tpope/vim-dotenv'
       \ | Plug 'direnv/direnv.vim'
       \ | Plug 'wincent/terminus'
@@ -238,6 +239,9 @@ let g:signify_line_highlight = 0
 " {{{2 twiggy
 let g:twiggy_enable_remote_delete = 1
 " 2}}}
+" {{{2
+let g:git_messenger_always_into_popup = v:true
+" }}}
 
 if executable('ripgrep')
   let $FZF_DEFAULT_COMMAND = 'ag --silent --hidden'
@@ -304,6 +308,7 @@ let g:zv_file_types = {
       \ 'typescript': 'typescript,javascript,html'
       \ }
 let g:zv_get_docset_by = ['ft', 'file', 'ext']
+let g:vimspector_enable_mappings = 'HUMAN'
 " }}}
 "
 " {{{2 gutentags

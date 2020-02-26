@@ -301,8 +301,7 @@ let g:ale_linters = {
       \ 'rust': ['rustc', 'clippy', 'cargo'],
       \ 'typescript': ['eslint', 'prettier'],
       \ 'javascript':  ['eslint', 'prettier'],
-      \ 'json': ['jq']
-      \ 'javascript':  ['eslint', 'prettier'],
+      \ 'json': ['jq'],
       \ 'elixir': ['credo', 'mix']
       \ }
 " 2}}}
@@ -453,7 +452,6 @@ let g:LanguageClient_loggingLevel = 'DEBUG'
 let g:LanguageClient_loggingFile = expand('$HOME/.config/nvim/language-client.log')
 let g:LanguageClient_trace = "verbose"
 let g:LanguageClient_settingsPath = expand('$HOME/.config/nvim/language_client.json')
->>>>>>> bump changes.
 let g:LanguageClient_serverCommands = {
       \ 'javascript': ['javascript-typescript-stdio'],
       \ 'typescript': ['javascript-typescript-stdio'],

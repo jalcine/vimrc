@@ -40,6 +40,10 @@
         "trace": {
           "server": "verbose"
         }
+      },
+      "elixirLS": {
+        "dialyzerWarnOpts": true,
+        "dialyzerEnabled": true
       }
     }
   }

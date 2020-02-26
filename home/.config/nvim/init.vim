@@ -92,7 +92,7 @@ Plug 'tpope/vim-dotenv'
       \ | Plug 'direnv/direnv.vim'
       \ | Plug 'wincent/terminus'
 Plug 'w0rp/ale'
-Plug 'tpope/vim-commentary' | Plug 'cbaumhardt/vim-commentary-boxed'
+Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
       \ | Plug 'tpope/vim-rhubarb'
       \ | Plug 'int3/vim-extradite'
@@ -103,7 +103,9 @@ Plug 'chiel92/vim-autoformat'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'embear/vim-localvimrc'
 Plug 'vim-scripts/SyntaxRange'
+Plug 'arakashic/chromatica.nvim'
 Plug 'mhinz/vim-signify'
+Plug 'Yggdroot/indentLine'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
       \ | Plug 'junegunn/fzf.vim'
       \ | Plug 'fszymanski/fzf-gitignore', { 'do' : ':UpdateRemotePlugins' }
@@ -130,23 +132,24 @@ Plug 'brooth/far.vim'
 Plug 'Shougo/echodoc.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'heavenshell/vim-jsdoc'
+Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --enable-python --force-enable-node --force-enable-chrome --force-enable-php'}
+Plug 'justinmk/vim-dirvish'
 
 Plug 'ncm2/ncm2'
       \ | Plug 'roxma/nvim-yarp'
       \ | Plug 'ncm2/ncm2-bufword'
       \ | Plug 'ncm2/ncm2-path'
       \ | Plug 'ncm2/ncm2-tmux'
-      \ | Plug 'ncm2/ncm2-cssomni', {'for': 'css,scss'}
+      \ | Plug 'ncm2/ncm2-cssomni'
       \ | Plug 'ncm2/ncm2-syntax' | Plug 'Shougo/neco-syntax'
       \ | Plug 'ncm2/ncm2-tagprefix'
       \ | Plug 'ncm2/ncm2-vim' | Plug 'Shougo/neco-vim'
-      \ | Plug 'pbogut/ncm2-alchemist', {'for': 'elixir,eex'} | Plug 'slashmili/alchemist.vim', {'for': 'elixir,eex'}
       \ | Plug 'ncm2/ncm2-ultisnips'
       \ | Plug 'ncm2/ncm2-racer', { 'do': 'cargo +nightly install racer && rustup component add rls rust-analysis rust-src' }
       \ | Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
-      \ | Plug 'JakeBecker/elixir-ls', {'do': 'mix deps.get && mix compile && mix elixir_ls.release -o ' . vimrc_root . '/bin'}
+      \ | Plug 'JakeBecker/elixir-ls', {'do': 'mix clean && mix deps.get && mix compile && mix elixir_ls.release -o ' . vimrc_root . '/bin'}
       \ | Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
-      \ | Plug 'bfrg/vim-cpp-modern', { 'for': 'c++,c' } | Plug 'arakashic/chromatica.nvim', {'for': 'cpp,c' }
+      \ | Plug 'bfrg/vim-cpp-modern'
       \ | Plug 'ekalinin/dockerfile.vim'
 
 call plug#end()
@@ -249,8 +252,8 @@ let g:bookmark_highlight_lines = 1
 "
 " {{{2 signify
 let g:signify_vcs_list = [ 'git', 'hg', 'bzr' ]
-let g:signify_realtime = 0
-let g:signify_sign_show_count = 0
+let g:signify_realtime = 1
+let g:signify_sign_show_count = 1
 let g:signify_line_highlight = 0
 " 2}}}
 " {{{2 twiggy
@@ -261,6 +264,7 @@ let g:echodoc#type = 'signature'
 " {{{2
 let g:git_messenger_always_into_popup = v:true
 " }}}
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 
 if executable('ripgrep')
   let $FZF_DEFAULT_COMMAND = 'ag --silent --hidden'
@@ -270,8 +274,6 @@ endif
 " }}}
 " {{{2
 " }}}
-"
-" let g:polyglot_disabled = ['typescript']
 let g:autoformat_remove_trailing_spaces = 1
 " {{{2 ale
 let g:ale_command_wrapper = 'nice -n8'
@@ -281,10 +283,9 @@ let g:ale_rust_cargo_check_tests = 1
 let g:ale_virtualtext_cursor = 1
 let g:ale_completion_enabled = 0
 let g:ale_use_global_executables = 0
-let g:ale_fix_on_save = 0
-let g:ale_fixers_ignore = {
-      \ 'typescript': ['tslint']
-      \ }
+let g:ale_fix_on_save = 1
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_text_changed = 'normal'
 let g:ale_fixers = {
       \ '*' : ['remove_trailing_lines', 'trim_whitespace'],
       \ 'javascript': ['eslint', 'prettier'],
@@ -296,20 +297,20 @@ let g:ale_fixers = {
       \ 'elixir': ['mix_format'],
       \ 'json': ['jq']
       \ }
-let g:ale_linters_ignore = {
-      \ 'typescript': ['tslint']
-      \ }
 let g:ale_linters = {
       \ 'rust': ['rustc', 'clippy', 'cargo'],
       \ 'typescript': ['eslint', 'prettier'],
       \ 'javascript':  ['eslint', 'prettier'],
       \ 'json': ['jq']
+      \ 'javascript':  ['eslint', 'prettier'],
+      \ 'elixir': ['credo', 'mix']
       \ }
 " 2}}}
 "
 let g:polyglot_disabled = ['jsx', 'typescript']
 let g:vim_jsx_pretty_template_tags = []
 "
+let g:vimspector_enable_mappings = 'HUMAN'
 let g:racer_experimental_completer = 0
 let g:racer_insert_paren = 1
 
@@ -369,7 +370,12 @@ let g:fzf_colors = {
 let g:rooter_use_lcd = 1
 let g:rooter_silent_chdir = 1
 let g:rooter_resolve_links = 1
-let g:rooter_patterns = ['.git', 'package-lock.json', '.projections.json']
+let g:rooter_patterns = [
+      \ 'mix.lock',
+      \ 'package-lock.json',
+      \ '.git/',
+      \ '*file',
+      \ ]
 
 let g:UltiSnipsJumpForwardTrigger = "<c-j>"
 let g:UltiSnipsJumpBackwardTrigger  = "<c-k>"
@@ -440,18 +446,20 @@ let g:airline_mode_map = {
 " }}}
 "
 " {{{2 langserver
-let g:LanguageClient_loggingLevel = 'INFO'
-let g:LanguageClient_loadSettings = 0
-let g:LanguageClient_trace = "messages"
-let g:LanguageClient_windowLogMessageLevel = "ERROR"
-let g:LanguageClient_waitOutputTimeout = 1
+let g:LanguageClient_waitOutputTimeout = 0
 let g:LanguageClient_completionPreferTextEdit = 1
+let g:LanguageClient_windowLogMessageLevel = 'Log'
+let g:LanguageClient_loggingLevel = 'DEBUG'
+let g:LanguageClient_loggingFile = expand('$HOME/.config/nvim/language-client.log')
+let g:LanguageClient_trace = "verbose"
+let g:LanguageClient_settingsPath = expand('$HOME/.config/nvim/language_client.json')
+>>>>>>> bump changes.
 let g:LanguageClient_serverCommands = {
       \ 'javascript': ['javascript-typescript-stdio'],
       \ 'typescript': ['javascript-typescript-stdio'],
       \ 'python': ['pyls'],
       \ 'rust': ['rls'],
-      \ 'elixir': [vimrc_root . '/bin/language_server.sh']
+      \ 'elixir': ['bash', vimrc_root . '/bin/language_server.sh']
       \ }
 let g:LanguageClient_rootMarkers = {
       \ 'javascript': ['package.json', 'jsconfig.json'],
@@ -566,8 +574,8 @@ function! s:LC_maps() abort
 endfunction
 
 function! s:LC_restart() abort
-  :call LanguageClient#exit()
-  :call LanguageClient#startServer()
+  :echo LanguageClient#exit()
+  :echo LanguageClient#startServer()
 endfunction
 
 autocmd FileType * call s:LC_maps()
@@ -648,13 +656,14 @@ endif
 " filetype plugin indent on
 syntax on
 
+autocmd BufEnter * call ncm2#enable_for_buffer()
+autocmd BufNewFile,BufRead * inoremap <silent> <buffer> <expr> <cr> ncm2_ultisnips#expand_or("\<CR>", 'n')
 autocmd FileType gitcommit set bufhidden=delete
 autocmd TermOpen * setl nonumber signcolumn=no foldcolumn=0 bufhidden=delete
-autocmd BufEnter * call ncm2#enable_for_buffer()
 autocmd TextChangedI * call ncm2#auto_trigger()
-autocmd User Ncm2PopupOpen set completeopt=noinsert,menuone,noselect
 autocmd User Ncm2PopupClose set completeopt=menuone
-autocmd BufNewFile,BufRead * inoremap <silent> <buffer> <expr> <cr> ncm2_ultisnips#expand_or("\<CR>", 'n')
+autocmd User Ncm2PopupOpen set completeopt=noinsert,menuone,noselect
+autocmd User LanguageClientStopped :echo LanguageClient#startServer()
 
 function! Multiple_cursors_before()
   call ncm2#lock('vim-multiple-cursors')
@@ -665,11 +674,11 @@ function! Multiple_cursors_after()
 endfunction
 
 command! DisconnectClients
-    \  if exists('b:nvr')
-    \|   for client in b:nvr
-    \|     silent! call rpcnotify(client, 'Exit', 1)
-    \|   endfor
-    \| endif
+     \  if exists('b:nvr')
+     \|   for client in b:nvr
+     \|     silent! call rpcnotify(client, 'Exit', 1)
+     \|   endfor
+     \| endif
 
 command! -bang -nargs=* Ag
     \ call fzf#vim#ag(<q-args>,
@@ -678,7 +687,8 @@ command! -bang -nargs=* Ag
     \                 <bang>0)
 
 command! -bang -nargs=? -complete=dir Files
-    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
+      \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
-command! -bang -complete=dir -nargs=* LS
-    \ call fzf#run(fzf#wrap('ls', {'source': 'ls', 'dir': <q-args>}, <bang>0))
+sign define vimspectorBP text=🔴 texthl=Normal
+sign define vimspectorBPDisabled text=🔵 texthl=Normal
+sign define vimspectorPC text=🔶 texthl=SpellBad

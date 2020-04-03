@@ -657,7 +657,7 @@ syntax on
 autocmd BufEnter * call ncm2#enable_for_buffer()
 autocmd BufNewFile,BufRead * inoremap <silent> <buffer> <expr> <cr> ncm2_ultisnips#expand_or("\<CR>", 'n')
 autocmd FileType gitcommit set bufhidden=delete
-autocmd TermOpen * setl nonumber signcolumn=no foldcolumn=0 bufhidden=delete
+autocmd TermOpen * setl nonumber noruler norelativenumber signcolumn=no foldcolumn=0 bufhidden=delete
 autocmd TextChangedI * call ncm2#auto_trigger()
 autocmd User Ncm2PopupClose set completeopt=menuone
 autocmd User Ncm2PopupOpen set completeopt=noinsert,menuone,noselect

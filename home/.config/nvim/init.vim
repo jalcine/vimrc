@@ -87,7 +87,6 @@ Plug 'tpope/vim-scriptease'
 Plug 'janko-m/vim-test'
 Plug 'wsdjeg/vim-fetch'
 Plug 'mattn/webapi-vim'
-Plug 'puremourning/vimspector'
 Plug 'tpope/vim-dotenv'
       \ | Plug 'direnv/direnv.vim'
       \ | Plug 'wincent/terminus'
@@ -98,12 +97,12 @@ Plug 'tpope/vim-fugitive'
       \ | Plug 'int3/vim-extradite'
       \ | Plug 'tommcdo/vim-fubitive'
       \ | Plug 'tommcdo/vim-fugitive-blame-ext'
-Plug 'junkblocker/patchreview-vim' | Plug 'codegram/vim-codereview'
+" Plug 'junkblocker/patchreview-vim' | Plug 'codegram/vim-codereview'
 Plug 'chiel92/vim-autoformat'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'embear/vim-localvimrc'
 Plug 'vim-scripts/SyntaxRange'
-Plug 'arakashic/chromatica.nvim'
+" Plug 'arakashic/chromatica.nvim'
 Plug 'mhinz/vim-signify'
 Plug 'Yggdroot/indentLine'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -111,14 +110,13 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
       \ | Plug 'fszymanski/fzf-gitignore', { 'do' : ':UpdateRemotePlugins' }
 Plug 'KabbAmine/zeavim.vim'
 Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
-Plug 'ludovicchabant/vim-gutentags'
+" Plug 'ludovicchabant/vim-gutentags'
 Plug 'airblade/vim-rooter'
 Plug 'mhinz/vim-startify'
 Plug 'sheerun/vim-polyglot'
-Plug 'leafgarland/typescript-vim'
-Plug 'joonty/vdebug'
+" Plug 'leafgarland/typescript-vim'
 Plug 'sirver/ultisnips' | Plug 'honza/vim-snippets'
-Plug 'vim-scripts/dbext.vim'
+" Plug 'vim-scripts/dbext.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'ryanoasis/vim-devicons'
 Plug 'chriskempson/base16-vim'
@@ -130,10 +128,9 @@ Plug 'vrybas/vim-flayouts'
 Plug 'meain/vim-package-info', { 'do': 'npm install' }
 Plug 'brooth/far.vim'
 Plug 'Shougo/echodoc.vim'
-Plug 'jiangmiao/auto-pairs'
-Plug 'heavenshell/vim-jsdoc'
+" Plug 'jiangmiao/auto-pairs'
+" Plug 'heavenshell/vim-jsdoc'
 Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --enable-python --force-enable-node --force-enable-chrome --force-enable-php'}
-Plug 'justinmk/vim-dirvish'
 
 Plug 'ncm2/ncm2'
       \ | Plug 'roxma/nvim-yarp'
@@ -146,11 +143,11 @@ Plug 'ncm2/ncm2'
       \ | Plug 'ncm2/ncm2-vim' | Plug 'Shougo/neco-vim'
       \ | Plug 'ncm2/ncm2-ultisnips'
       \ | Plug 'ncm2/ncm2-racer', { 'do': 'cargo +nightly install racer && rustup component add rls rust-analysis rust-src' }
-      \ | Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
       \ | Plug 'JakeBecker/elixir-ls', {'do': 'mix clean && mix deps.get && mix compile && mix elixir_ls.release -o ' . vimrc_root . '/bin'}
       \ | Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
-      \ | Plug 'bfrg/vim-cpp-modern'
       \ | Plug 'ekalinin/dockerfile.vim'
+      " \ | Plug 'bfrg/vim-cpp-modern'
+      " \ | Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
 
 call plug#end()
 " }}}
@@ -403,6 +400,7 @@ let g:far#auto_delete_replaced_buffers = 1
 "
 " {{{2 airline
 let g:airline_powerline_fonts = 1
+let g:airline#theme = 'base16'
 let g:airline_skip_empty_sections = 1
 let g:airline_extensions = ['branch', 'tabline', 'ale', 'branch', 'hunks', 'cursormode']
 let g:airline_highlighting_cache = 1
@@ -651,7 +649,7 @@ if filereadable(expand("~/.vimrc_background"))
   source ~/.vimrc_background
 endif
 
-" filetype plugin indent on
+filetype plugin indent on
 syntax on
 
 autocmd BufEnter * call ncm2#enable_for_buffer()
@@ -662,14 +660,6 @@ autocmd TextChangedI * call ncm2#auto_trigger()
 autocmd User Ncm2PopupClose set completeopt=menuone
 autocmd User Ncm2PopupOpen set completeopt=noinsert,menuone,noselect
 autocmd User LanguageClientStopped :echo LanguageClient#startServer()
-
-function! Multiple_cursors_before()
-  call ncm2#lock('vim-multiple-cursors')
-endfunction
-
-function! Multiple_cursors_after()
-  call ncm2#unlock('vim-multiple-cursors')
-endfunction
 
 command! DisconnectClients
      \  if exists('b:nvr')

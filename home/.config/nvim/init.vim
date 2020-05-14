@@ -28,7 +28,8 @@ func! s:terminal_kill_extra_buffers() abort
 endfunc
 
 func! s:VagrantTransform(cmd) abort
-  let l:vagrant_project = get(matchlist(join(readfile('Vagrantfile'), '\n'), '\vconfig\.vm.synced_folder ["''].+[''"], ["''](.+)[''"]'), 1) return 'vagrant ssh --command '.shellescape('cd ' . l:vagrant_project . '; '.a:cmd)
+  let l:vagrant_project = get(matchlist(join(readfile('Vagrantfile'), '\n'), '\vconfig\.vm.synced_folder ["''].+[''"], ["''](.+)[''"]'), 1)
+  return 'vagrant ssh --command '.shellescape('cd ' . l:vagrant_project . '; '.a:cmd)
 endfunction
 
 func! s:DockerTransform(cmd) abort
@@ -97,7 +98,7 @@ Plug 'tpope/vim-fugitive'
       \ | Plug 'int3/vim-extradite'
       \ | Plug 'tommcdo/vim-fubitive'
       \ | Plug 'tommcdo/vim-fugitive-blame-ext'
-" Plug 'junkblocker/patchreview-vim' | Plug 'codegram/vim-codereview'
+Plug 'junkblocker/patchreview-vim' | Plug 'codegram/vim-codereview'
 Plug 'chiel92/vim-autoformat'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'embear/vim-localvimrc'
@@ -114,9 +115,8 @@ Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-rooter'
 Plug 'mhinz/vim-startify'
 Plug 'sheerun/vim-polyglot'
-" Plug 'leafgarland/typescript-vim'
 Plug 'sirver/ultisnips' | Plug 'honza/vim-snippets'
-" Plug 'vim-scripts/dbext.vim'
+Plug 'vim-scripts/dbext.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'ryanoasis/vim-devicons'
 Plug 'chriskempson/base16-vim'
@@ -129,8 +129,9 @@ Plug 'meain/vim-package-info', { 'do': 'npm install' }
 Plug 'brooth/far.vim'
 Plug 'Shougo/echodoc.vim'
 " Plug 'jiangmiao/auto-pairs'
-" Plug 'heavenshell/vim-jsdoc'
+Plug 'heavenshell/vim-jsdoc'
 Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --enable-python --force-enable-node --force-enable-chrome --force-enable-php'}
+Plug 'mattn/emmet-vim'
 
 Plug 'ncm2/ncm2'
       \ | Plug 'roxma/nvim-yarp'
@@ -167,14 +168,14 @@ set laststatus=2
 "
 " Allow myself to count what line I'm on; optimized for scanning and jumping
 " over multiple lines quickly.
-set number numberwidth=3
+set number numberwidth=5
 set relativenumber
 set sidescrolloff=1 sidescroll=1
 set conceallevel=3 concealcursor=nivc
 
 " Fold options {{{2
-set nofoldenable
-" set foldmethod=syntax foldlevel=2 foldcolumn=2 foldminlines=10
+" set nofoldenable
+set foldmethod=syntax foldlevel=2 foldcolumn=2 foldminlines=5
 "2}}}
 set wrap wrapmargin=2
 set linebreak
@@ -274,10 +275,10 @@ endif
 let g:autoformat_remove_trailing_spaces = 1
 " {{{2 ale
 let g:ale_command_wrapper = 'nice -n8'
-let g:ale_set_ballons = 0
+let g:ale_set_ballons = 1
 let g:ale_rust_cargo_use_clippy = executable('cargo-clippy')
 let g:ale_rust_cargo_check_tests = 1
-let g:ale_virtualtext_cursor = 1
+let g:ale_virtualtext_cursor = 0
 let g:ale_completion_enabled = 0
 let g:ale_use_global_executables = 0
 let g:ale_fix_on_save = 1
@@ -303,7 +304,6 @@ let g:ale_linters = {
       \ }
 " 2}}}
 "
-let g:polyglot_disabled = ['jsx', 'typescript']
 let g:vim_jsx_pretty_template_tags = []
 "
 let g:vimspector_enable_mappings = 'HUMAN'
@@ -316,7 +316,6 @@ let g:test#custom_transformations = {
       \ 'docker': function('<SID>DockerTransform'),
       \ 'docker-compose': function('<SID>DockerComposeTransform')
       \}
-let g:test#preserve_screen = 1
 " 2}}}
 "
 " {{{2 Zeavim
@@ -402,7 +401,7 @@ let g:far#auto_delete_replaced_buffers = 1
 let g:airline_powerline_fonts = 1
 let g:airline#theme = 'base16'
 let g:airline_skip_empty_sections = 1
-let g:airline_extensions = ['branch', 'tabline', 'ale', 'branch', 'hunks', 'cursormode']
+let g:airline_extensions = ['branch', 'tabline', 'ale', 'branch', 'hunks']
 let g:airline_highlighting_cache = 1
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#branch#displyed_head_limit = 100
@@ -455,7 +454,8 @@ let g:LanguageClient_serverCommands = {
       \ 'typescript': ['javascript-typescript-stdio'],
       \ 'python': ['pyls'],
       \ 'rust': ['rls'],
-      \ 'elixir': ['bash', vimrc_root . '/bin/language_server.sh']
+      \ 'elixir': ['bash', vimrc_root . '/bin/language_server.sh'],
+      \ 'vim': ['vim-language-server', '--stdio']
       \ }
 let g:LanguageClient_rootMarkers = {
       \ 'javascript': ['package.json', 'jsconfig.json'],

@@ -133,6 +133,9 @@ Plug 'https://github.com/vim-airline/vim-airline'
 " https://github.com/junegunn/fzf#using-the-finder
 Plug 'https://github.com/junegunn/fzf', { 'do': { -> fzf#install() } }
 
+" This provides some helpers for fzf in Vim.
+Plug 'https://github.com/junegunn/fzf.vim'
+
 " A tool for visualizing the undo branching.
 Plug 'https://github.com/mbbill/undotree'
 
@@ -523,11 +526,8 @@ if has('nvim') && !exists('g:fzf_layout')
 end
 
 " Tell the fuzzy finder to leverage ripgrep
-if executable('rg')
-  let $FZF_DEFAULT_COMMAND = 'rg --silent --hidden'
-  set grepprg=rg\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow\ --vimgrep
-  set grepformat=%f:%l:%c:%m
-endif
+set grepprg=rg\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow\ --vimgrep
+set grepformat=%f:%l:%c:%m
 
 filetype plugin indent on
 syntax on

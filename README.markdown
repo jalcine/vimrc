@@ -1,4 +1,4 @@
-# Neovim Configuration
+# NeoVim Configuration
 
 I've been using Vim for a while and I don't see myself stopping. This repository
 represents the history of changes around the configuration, styling and scripts
@@ -6,7 +6,7 @@ I use to keep my Vim setup moving nicely. On 2020-05-16, I decided to scrap it
 all and start clean.
 
 Some key points I chose to make was to investigate which options are _already_
-set to sensible values in Neovim.
+set to sensible values in NeoVim.
 
 ## Objectives
 
@@ -38,7 +38,10 @@ set to sensible values in Neovim.
 - **Language intelligence**: It's 2020 - auto completion is definitely something
    I can't function without; especially when I'm interfacing with foreign
    libraries or code bases I'm unfamiliar with. Thankfully, the efforts of the
-   Language Server movement makes this less of a problem for Neovim.
+   Language Server movement makes this less of a problem for NeoVim.
+
+![Me viewing this file.](./snapshots/markdown.png)
+![Doing auto-completion of code in `indieweb-elixir`.](./snapshots/autocomplete.png)
 
 [1]: https://atom.io/
 [2]: https://code.visualstudio.com/

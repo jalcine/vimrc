@@ -41,7 +41,8 @@ set to sensible values in NeoVim.
    Language Server movement makes this less of a problem for NeoVim.
 
 ![Me viewing this file.](./snapshots/markdown.png)
-![Doing auto-completion of code in `indieweb-elixir`.](./snapshots/autocomplete.png)
+
+![Doing auto-completion of code in "indieweb-elixir"](./snapshots/autocomplete.png)
 
 [1]: https://atom.io/
 [2]: https://code.visualstudio.com/

@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-
-cd "$HOME/.config/nvim" || exit
-$(npm bin)/javascript-typescript-stdio

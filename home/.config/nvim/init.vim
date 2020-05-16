@@ -1,45 +1,279 @@
 ﻿" File:          init.vim
 " Author:        Jacky Alcine <yo@jacky.wtf>
-" Description:   Entry point of all of my configuration.
-" Last Modified: August 08, 2017
+" Description:   An annotated setup for my editing experience with Vim.
+" Last Modified: 2020-05-16 03:48:13 PDT
 "
-" This is where I tell Neovim to do my bidding. Yes, I have over
-" 100+ plugins. No, Neovim does not run slow.
+" This file is what Neovim uses to prepare an environment for me to begin work
+" on whatever (code, configuration files, you name it). There's some
+" expectation of understanding around some core Vim concepts. I'm happy to
+" expand on them over e-mail or by opening an issue on the tracker at
+" <https://git.jacky.wtf/me/vimrc>.
+
+" {{{ adjustments
+" These options are relatively straightforward. I recommend doing a `:help`
+" with each option to learn more about them.
 "
-" vim: set fdm=syntax foldlevel=0 :
+" Avoid repeating information about the current mode in the status line. I can
+" already see that.
+set noshowmode
 
-set encoding=UTF-8 fileencoding=UTF-8
-set hidden
-scriptencoding UTF-8
+if has('termguicolors') " {{{2 Improve terminal colors
+  set t_8f=\[[38;2;%lu;%lu;%lum
+  set t_8b=\[[48;2;%lu;%lu;%lum
+  set termguicolors
+endif " 2}}}
 
-let vimrc_root = fnamemodify($MYVIMRC, ':p:h')
-exec "let $PATH=\"" . vimrc_root . "/node_modules/.bin:\" . $PATH"
+set expandtab
+set shiftround
+set shiftwidth=2  " Adjusts the width of an auto identation to be 2 spaces.
+set softtabstop=2 " This converts <TAB> inserts into (2) spaces
+set tabstop=2     " Each <TAB> is represented as 2 spaces.
 
+" Hide markers used to accentuate text until I decide to select or edit it.
+set conceallevel=3 concealcursor=nc
+
+" Correct my English spelling.
+set spell spelllang=en_us
+
+" Show the matching pair of a bracket, parenthesis or the like.
+set showmatch
+
+" Incrementally show matches for a search in a preview window.
+set inccommand="split"
+
+" Always show the sign column.
+set signcolumn=yes
+
+" Set the pop up menu to be at least 30 x 10
+set pumheight=10 pumwidth=30
+
+" Set the Insert mode completion menu to show even if there's only one match.
+" It won't automatically select the option for me. Preview information about
+" said match.
+set completeopt=menu,menuone,noselect,preview
+
+" Wait a tenth of a second to do recovery saving.
+set updatetime=100
+" }}}
+
+" {{{ abbreviations
+" There's things I tend to type that I shouldn't have to explicit type out. Like
+" my name.
 iabbrev myemail yo@jacky.wtf
 iabbrev myname Jacky Alciné
 iabbrev me_fname Jacky
 iabbrev me_lname Alciné
 iabbrev me_site https://jacky.wtf
+" }}}
 
-" {{{ local funcs
-func! s:terminal_kill_extra_buffers() abort
-  silent! cclose
-  silent! lclose
-endfunc
+" {{{ state management of files
+" Here's some stuff I use to make sure I can get some time traveling in the
+" files I interact. I haven't found something this advanced in other file
+" editors - definitely one of Vim's top features [undo branching].
+"
+" Read https://vim.fandom.com/wiki/Using_undo_branches for more information.
+"
+" Enable undo files. It writes to a sane location by default.
+set undofile
 
-func! s:VagrantTransform(cmd) abort
-  let l:vagrant_project = get(matchlist(join(readfile('Vagrantfile'), '\n'), '\vconfig\.vm.synced_folder ["''].+[''"], ["''](.+)[''"]'), 1)
-  return 'vagrant ssh --command '.shellescape('cd ' . l:vagrant_project . '; '.a:cmd)
+" Allow backups to be written and do it before we actually save files.
+set backup writebackup
+
+" Disable the use of swapfiles - it's not necessary (IMO) when we have undo
+" _and_ backups after.
+set noswapfile
+
+" Show me the line I'm on, while having the numbers above and below it be
+" numbered in ascending and descending order (relatively counted). Also
+" highlight the line I'm on.
+set number numberwidth=5 relativenumber cursorline
+" }}}
+
+" {{{ plugins
+" I lean on using vim-plug[1]; it's Git-backed, snapshot-friendly and allows for
+" lazy loading of plugins. Below, I explicitly state how the plugins come from
+" GitHub. I do this as to avoid implicit assumption that GitHub is the source of
+" truth when it comes to all things code (it's not despite what their marketing
+" team wants you to believe).
+"
+" [1]: https://github.com/junegunn/vim-plug
+"
+" Call the plug-in manager; already pre-installed.
+call plug#begin('~/.config/nvim/plugged')
+
+" Icons for ... everything!
+Plug 'https://github.com/ryanoasis/vim-devicons'
+
+" Provides a suite of color schemes based on the base16 palette. I use that
+" system on all of my machines.
+Plug 'https://github.com/chriskempson/base16-vim'
+
+" A purely cosmetic but life saver for visualizing how formatting is laid out in
+" a file.
+Plug 'https://github.com/Yggdroot/indentLine'
+
+" Provides a 'splash' screen that can be tweaked to show useful things like the
+" last files I've open, launch sessions for projects and more.
+Plug 'https://github.com/mhinz/vim-startify'
+
+" Provides a method for realigning text for equidistant spacing.
+Plug 'https://github.com/junegunn/vim-easy-align'
+
+" This is a contentious thing to set. I didn't want a heavy plug-in but I also
+" don't want to do a lot of configuration. The status-line is the heartbeat of
+" what you determine your editor to be in. It's important for it to show the
+" right information at the right time.
+Plug 'https://github.com/vim-airline/vim-airline'
+      \ | Plug 'https://github.com/vim-airline/vim-airline-themes' " Provides themes for the aforementioned plug-in.
+" 2}}}
+
+" A super-fast and powerful fuzzy finder for any kind of resource. The
+" extensibility of this plug-in makes it a critical part of my setup.
+" Information on how to use the finder is mentioned in its README:
+" https://github.com/junegunn/fzf#using-the-finder
+Plug 'https://github.com/junegunn/fzf', { 'do': { -> fzf#install() } }
+
+" A tool for visualizing the undo branching.
+Plug 'https://github.com/mbbill/undotree'
+
+" Powerful yet abstract tool for defining a project's structure and tasks for
+" it. I can write a whole post about how projections can provide a lean and
+" effective means for defining projects in different editors.
+Plug 'https://github.com/tpope/vim-projectionist'
+
+" This allows for the repeating of commands using Vim's default approach for
+" it. This extends the power of things like vim-easy-align.
+Plug 'https://github.com/tpope/vim-repeat'
+
+" To be honest, I recommend just going to the project page and reading it
+" directly. This plug-in provides simple yet powerful bindings for using Git in
+" vim and is the backbone for other Git-centric plugins.
+Plug 'https://github.com/tpope/vim-fugitive'
+      \ | Plug 'https://github.com/tpope/vim-rhubarb' " Adds extended support for GitHub into the commands.
+
+" Now, with projectionist set up, leveraging the ease of use of FZF will make
+" discovery of projects, files and the like _so_ much easier especially on
+" foreign but commonly structured code bases.
+Plug 'https://github.com/c-brenn/fuzzy-projectionist.vim'
+
+" Vim has a 'compiler' system - this extends it with your environment; running
+" it in the way that makes sense (tmux, internal terminal, etc).
+Plug 'https://github.com/tpope/vim-dispatch'
+
+" Linting, fixing and light language client support are all important features
+" of someone working across multiple languages. ALE does a great job of being a
+" useful tool for handling all three.
+Plug 'https://github.com/dense-analysis/ale'
+
+" In order to handle languages as I discover them (I occasionally tinker with
+" different languages outside of my wheel house to keep the blades sharp),
+" having automatic support them is key. This plug-in covers enough to get me
+" where I need to go with highlighting, file-type detection and formatting.
+Plug 'https://github.com/sheerun/vim-polyglot'
+
+" EditorConfig support for Vim to keep things nice across editors. You should
+" have this for your particular editor and set it up for your project!
+Plug 'https://github.com/editorconfig/editorconfig-vim'
+
+" This automatically changes the working directory of the current buffer I'm in
+" to be that of the (estimated) project's root directory. Very helpful for
+" triggering things like project setup and making file search easier.
+Plug 'https://github.com/airblade/vim-rooter'
+
+" A super handy side panel for handling common Git operations.
+Plug 'https://github.com/sodapopcan/vim-twiggy'
+
+" Something I don't do often but see value in is being able to view and see
+" package information for projects. This works primarily for Node projects,
+" however.
+Plug 'https://github.com/meain/vim-package-info', { 'do': 'npm install' }
+
+" Provides a way to load configuration into Vim on a per-directory basis. This
+" helps out a lot when wanting to inject secrets for testing, adjusting
+" configuration and the like.
+Plug 'https://github.com/embear/vim-localvimrc'
+
+" I love HTML. I hate typing it out. Emmet is something you should have to
+" make the act of typing out HTML a lot more easier.
+Plug 'https://github.com/mattn/emmet-vim'
+
+" This provides a pop-up menu for giving Git commit information about the
+" current line of code as well as potentially showing a diff at its insertion.
+" Super useful for me!
+Plug 'https://github.com/rhysd/git-messenger.vim'
+
+" Provides a no-frills, distraction mode for neovim. Very useful when I do
+" screencasts, pair or need to demonstrate code. It's also useful when keeping
+" Vim in a 'low power' mode.
+Plug 'https://github.com/junegunn/goyo.vim'
+
+" Provides instantaneous feedback about the VCS state of the current file.
+Plug 'https://github.com/mhinz/vim-signify'
+
+" Provides an abstraction over common testing frameworks for code.
+Plug 'https://github.com/janko/vim-test'
+
+" Provides mappings and logic for commenting out code regardless of the
+" language.
+Plug 'https://github.com/tpope/vim-commentary'
+
+" Extensibility to `netrw`, the file explorer built into Vim.
+Plug 'https://github.com/tpope/vim-vinegar'
+
+" Language Server engine. The documentation of the project does it way more justice.
+Plug 'https://github.com/neoclide/coc.nvim', {'branch': 'release'}
+
+" Loads environment file information from disk.
+Plug 'https://github.com/tpope/vim-dotenv'
+      \ | Plug 'https://github.com/direnv/direnv.vim'
+
+" Enhancements for vim depending on the terminal it's in.
+Plug 'https://github.com/wincent/terminus'
+
+" A tool for handling convenient layouts with Fugitive support.
+Plug 'https://github.com/vrybas/vim-flayouts'
+
+" Provides a mode modern patching interface.
+Plug 'https://github.com/junkblocker/patchreview-vim'
+
+" Provides a means of handling code reviews from GitHub in Vim.
+Plug 'https://github.com/codegram/vim-codereview'
+
+call plug#end()
+" }}}
+
+" Source in the generated file for the base16 theme.
+if filereadable(expand('~/.vimrc_background')  )
+  source ~/.vimrc_background
+end
+
+" {{{ mappings
+" I won't provide _detailed_ explainers for each commands as the definiton of
+" them are a bit self explanatory. It does assume you understand how commands
+" work in Vim. Check `:help user-commands` for a bit more information.
+let s:mappings = {
+      \ 'leader':  ',',
+      \ 'localLeader':  '\\',
+      \ }
+exec 'let g:mapleader="' . s:mappings.leader . '"'
+exec 'let g:maplocalleader="' . s:mappings.localLeader. '"'
+
+" {{{ mapping block for using <TAB> to nagivate the pop-up menu
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+" }}}
 
-func! s:DockerTransform(cmd) abort
-  return 'docker run ' . g:test_docker_container . ' '.shellescape(a:cmd)
-endfunction
-
-func! s:DockerComposeTransform(cmd) abort
-  return 'docker-compose run ' . b:test_docker_compose_service . ' '.shellescape(a:cmd)
-endfunction
-
+" A function to define mappings in bulk. I came across this approach to help
+" keep the definition of the mapping memorable as well as making it easy to
+" read in the configuration.
 func! s:apply_bulk_mappings(mappings_list, opts) abort " {{{
   for l:a_mapping in a:mappings_list
     let l:command = l:a_mapping[0]
@@ -70,427 +304,28 @@ func! s:apply_bulk_mappings(mappings_list, opts) abort " {{{
     endwhile
   endfor
 endfunc " }}}
-" }}}
-"
-" Plugins {{{
-filetype off
-call plug#begin(expand('$HOME/.config/nvim/plugged'))
 
-Plug 'tpope/vim-sensible'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-projectionist'
-Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-eunuch'
-Plug 'tpope/vim-dispatch'
-Plug 'tpope/vim-vinegar'
-Plug 'tpope/vim-scriptease'
-Plug 'janko-m/vim-test'
-Plug 'wsdjeg/vim-fetch'
-Plug 'mattn/webapi-vim'
-Plug 'tpope/vim-dotenv'
-      \ | Plug 'direnv/direnv.vim'
-      \ | Plug 'wincent/terminus'
-Plug 'w0rp/ale'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fugitive'
-      \ | Plug 'tpope/vim-rhubarb'
-      \ | Plug 'int3/vim-extradite'
-      \ | Plug 'tommcdo/vim-fubitive'
-      \ | Plug 'tommcdo/vim-fugitive-blame-ext'
-Plug 'junkblocker/patchreview-vim' | Plug 'codegram/vim-codereview'
-Plug 'chiel92/vim-autoformat'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'embear/vim-localvimrc'
-Plug 'vim-scripts/SyntaxRange'
-" Plug 'arakashic/chromatica.nvim'
-Plug 'mhinz/vim-signify'
-Plug 'Yggdroot/indentLine'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-      \ | Plug 'junegunn/fzf.vim'
-      \ | Plug 'fszymanski/fzf-gitignore', { 'do' : ':UpdateRemotePlugins' }
-Plug 'KabbAmine/zeavim.vim'
-Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
-" Plug 'ludovicchabant/vim-gutentags'
-Plug 'airblade/vim-rooter'
-Plug 'mhinz/vim-startify'
-Plug 'sheerun/vim-polyglot'
-Plug 'sirver/ultisnips' | Plug 'honza/vim-snippets'
-Plug 'vim-scripts/dbext.vim'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'ryanoasis/vim-devicons'
-Plug 'chriskempson/base16-vim'
-Plug 'mattesgroeger/vim-bookmarks'
-Plug 'sodapopcan/vim-twiggy'
-Plug 'junegunn/gv.vim'
-Plug 'rhysd/git-messenger.vim'
-Plug 'vrybas/vim-flayouts'
-Plug 'meain/vim-package-info', { 'do': 'npm install' }
-Plug 'brooth/far.vim'
-Plug 'Shougo/echodoc.vim'
-" Plug 'jiangmiao/auto-pairs'
-Plug 'heavenshell/vim-jsdoc'
-Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --enable-python --force-enable-node --force-enable-chrome --force-enable-php'}
-Plug 'mattn/emmet-vim'
+vnoremap <Enter> <Plug>(EasyAlign)
+nnoremap ga <Plug>(EasyAlign)
 
-Plug 'ncm2/ncm2'
-      \ | Plug 'roxma/nvim-yarp'
-      \ | Plug 'ncm2/ncm2-bufword'
-      \ | Plug 'ncm2/ncm2-path'
-      \ | Plug 'ncm2/ncm2-tmux'
-      \ | Plug 'ncm2/ncm2-cssomni'
-      \ | Plug 'ncm2/ncm2-syntax' | Plug 'Shougo/neco-syntax'
-      \ | Plug 'ncm2/ncm2-tagprefix'
-      \ | Plug 'ncm2/ncm2-vim' | Plug 'Shougo/neco-vim'
-      \ | Plug 'ncm2/ncm2-ultisnips'
-      \ | Plug 'ncm2/ncm2-racer', { 'do': 'cargo +nightly install racer && rustup component add rls rust-analysis rust-src' }
-      \ | Plug 'JakeBecker/elixir-ls', {'do': 'mix clean && mix deps.get && mix compile && mix elixir_ls.release -o ' . vimrc_root . '/bin'}
-      \ | Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
-      \ | Plug 'ekalinin/dockerfile.vim'
-      " \ | Plug 'bfrg/vim-cpp-modern'
-      " \ | Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
-
-call plug#end()
-" }}}
-
-" {{{ settings
-" These are core options for Neovim. A lot of these help me use Neovim in a
-" semi-intuitive fashion for me.
-"
-if has('termguicolors') " {{{2 Improve terminal colors
-  set t_8f=\[[38;2;%lu;%lu;%lum
-  set t_8b=\[[48;2;%lu;%lu;%lum
-  set termguicolors
-endif " 2}}}
-
-" Always show a statusline.
-set laststatus=2
-"
-" Allow myself to count what line I'm on; optimized for scanning and jumping
-" over multiple lines quickly.
-set number numberwidth=5
-set relativenumber
-set sidescrolloff=1 sidescroll=1
-set conceallevel=3 concealcursor=nivc
-
-" Fold options {{{2
-" set nofoldenable
-set foldmethod=syntax foldlevel=2 foldcolumn=2 foldminlines=5
-"2}}}
-set wrap wrapmargin=2
-set linebreak
-set pumheight=5
-set showmode showmatch
-set lazyredraw redrawtime=3000
-set spelllang=en_us
-set inccommand=nosplit
-
-set completeopt=menu,menuone,preview,noselect,noinsert
-
-set fillchars+=diff:⣿
-set fillchars+=vert:│
-set fillchars+=fold:-
-set showbreak=↪
-set listchars+=eol:¬
-set listchars+=extends:❯
-set listchars+=precedes:❮
-set listchars+=trail:⋅
-set listchars+=nbsp:⋅
-set listchars+=tab:\|\
-
-set regexpengine=1
-
-set undofile
-set backup writebackup
-set undodir=$HOME/.config/nvim/undo
-set backupdir=$HOME/.config/nvim/backup
-set noswapfile
-
-set tabstop=2 softtabstop=2
-set shiftwidth=2 textwidth=80
-set smarttab expandtab
-set shiftround
-
-set ignorecase smartcase
-set laststatus=2 cmdheight=2
-set incsearch hlsearch
-
-set tags+=./tags,./.tags,./.vimtags
-set tags+=tags,.tags,.vimtags
-set tags+=$HOME/.config/nvim/tags/*
-set showfulltag noshowmatch
-" }}}
-
-
-" {{{ Options
-"
-" {{{2 fzf
-let $FZF_DEFAULT_OPTS .= ' --border --margin=0,2'
-
-function! FloatingFZF()
-  let width = float2nr(&columns * 0.9)
-  let height = float2nr(&lines * 0.6)
-  let opts = { 'relative': 'editor',
-              \ 'row': (&lines - height) / 2,
-              \ 'col': (&columns - width) / 2,
-              \ 'width': width,
-              \ 'height': height }
-
-  let win = nvim_open_win(nvim_create_buf(v:false, v:true), v:true, opts)
-  call setwinvar(win, '&winhighlight', 'NormalFloat:Normal')
-endfunction
-
-let g:fzf_layout = { 'window': 'call FloatingFZF()' }
-
-" }}}
-" {{{2 vim-bookmarks
-let g:bookmark_sign = '♥'
-let g:bookmark_highlight_lines = 1
-" }}}
-"
-" {{{2 signify
-let g:signify_vcs_list = [ 'git', 'hg', 'bzr' ]
-let g:signify_realtime = 1
-let g:signify_sign_show_count = 1
-let g:signify_line_highlight = 0
-" 2}}}
-" {{{2 twiggy
-let g:twiggy_enable_remote_delete = 1
-let g:echodoc#enable_at_startup = 0
-let g:echodoc#type = 'signature'
-" 2}}}
-" {{{2
-let g:git_messenger_always_into_popup = v:true
-" }}}
-let g:indentLine_char_list = ['|', '¦', '┆', '┊']
-
-if executable('ripgrep')
-  let $FZF_DEFAULT_COMMAND = 'ag --silent --hidden'
-  set grepprg=ag\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow\ --vimgrep
-  set grepformat=%f:%l:%c:%m
-endif
-" }}}
-" {{{2
-" }}}
-let g:autoformat_remove_trailing_spaces = 1
-" {{{2 ale
-let g:ale_command_wrapper = 'nice -n8'
-let g:ale_set_ballons = 1
-let g:ale_rust_cargo_use_clippy = executable('cargo-clippy')
-let g:ale_rust_cargo_check_tests = 1
-let g:ale_virtualtext_cursor = 0
-let g:ale_completion_enabled = 0
-let g:ale_use_global_executables = 0
-let g:ale_fix_on_save = 1
-let g:ale_lint_on_save = 1
-let g:ale_lint_on_text_changed = 'normal'
-let g:ale_fixers = {
-      \ '*' : ['remove_trailing_lines', 'trim_whitespace'],
-      \ 'javascript': ['eslint', 'prettier'],
-      \ 'typescript': ['eslint', 'prettier'],
-      \ 'vue': ['eslint', 'prettier'],
-      \ 'scss': ['stylelint', 'prettier'],
-      \ 'html': ['stylelint', 'prettier', 'tidy'],
-      \ 'rust': ['rustfmt'],
-      \ 'elixir': ['mix_format'],
-      \ 'json': ['jq']
-      \ }
-let g:ale_linters = {
-      \ 'rust': ['rustc', 'clippy', 'cargo'],
-      \ 'typescript': ['eslint', 'prettier'],
-      \ 'javascript':  ['eslint', 'prettier'],
-      \ 'json': ['jq'],
-      \ 'elixir': ['credo', 'mix', 'dialyxir']
-      \ }
-" 2}}}
-"
-let g:vim_jsx_pretty_template_tags = []
-"
-let g:vimspector_enable_mappings = 'HUMAN'
-let g:racer_experimental_completer = 0
-let g:racer_insert_paren = 1
-
-" {{{2 vim-test
-let g:test#custom_transformations = {
-      \ 'vagrant': function('<SID>VagrantTransform'),
-      \ 'docker': function('<SID>DockerTransform'),
-      \ 'docker-compose': function('<SID>DockerComposeTransform')
-      \}
-" 2}}}
-"
-" {{{2 Zeavim
-let g:zv_file_types = {
-      \ 'eelixir': 'html,elixir,erlang',
-      \ 'elixir': 'elixir,erlang',
-      \ 'sass': 'scss,css',
-      \ 'typescript': 'typescript,javascript,html'
-      \ }
-let g:zv_get_docset_by = ['ft', 'file', 'ext']
-let g:vimspector_enable_mappings = 'HUMAN'
-" }}}
-"
-" {{{2 gutentags
-let g:gutentags_generate_on_empty_buffer = 0
-let g:gutentags_ctags_tagfile = '.tags'
-let g:gutentags_ctags_auto_set_tags = 1
-let g:gutentags_cache_dir = vimrc_root . '/tags'
-let g:gutentags_file_list_command = {
-      \ 'markers': {
-      \ '.git': 'git ls-files',
-      \ '.hg': 'hg files',
-      \ },
-      \ }
-" 2}}}
-"
-" {{{2 fzf
-let g:fzf_buffers_jump = 1
-let g:fzf_history_dir = expand('$HOME/.config/nvim/fzf-history')
-let g:fzf_gitignore_map = '<Leader>sgi'
-let g:fzf_colors = {
-      \ 'fg':      ['fg', 'Normal'],
-      \ 'bg':      ['bg', 'Normal'],
-      \ 'hl':      ['fg', 'Comment'],
-      \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-      \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-      \ 'hl+':     ['fg', 'Statement'],
-      \ 'info':    ['fg', 'PreProc'],
-      \ 'prompt':  ['fg', 'Conditional'],
-      \ 'pointer': ['fg', 'Exception'],
-      \ 'marker':  ['fg', 'Keyword'],
-      \ 'spinner': ['fg', 'Label'],
-      \ 'header': ['fg', 'Comment']
-      \ }
-" 2}}}
-"
-let g:rooter_use_lcd = 1
-let g:rooter_silent_chdir = 1
-let g:rooter_resolve_links = 1
-let g:rooter_patterns = [
-      \ 'mix.lock',
-      \ 'package-lock.json',
-      \ '.git/',
-      \ '*file',
-      \ ]
-
-let g:UltiSnipsJumpForwardTrigger = "<c-j>"
-let g:UltiSnipsJumpBackwardTrigger  = "<c-k>"
-let g:UltiSnipsRemoveSelectModeMappings = 0
-
-let g:ncm2_look_enabled = 1
-let g:float_preview#docked = 1
-"
-" {{{2
-let g:test#strategy = 'neovim'
-let g:test#neovim#term_position = "leftabove"
-" }}}
-"
-" {{{2 localvimrc
-let g:localvimrc_sandbox = 1
-let g:localvimrc_persistent = 1
-let g:localvimrc_persistent_file = expand('$HOME/.config/nvim/localvimrc_persistent')
-let g:localvimrc_whitelist = [expand('$HOME/.lvimrc')]
-" 2}}}
-"
-" {{{2
-let g:far#collapse_result = 1
-let g:far#auto_write_replaced_buffers = 1
-let g:far#auto_delete_replaced_buffers = 1
-" }}}
-"
-" {{{2 airline
-let g:airline_powerline_fonts = 1
-let g:airline#theme = 'base16'
-let g:airline_skip_empty_sections = 1
-let g:airline_extensions = ['branch', 'tabline', 'ale', 'branch', 'hunks']
-let g:airline_highlighting_cache = 1
-let g:airline#extensions#ale#enabled = 1
-let g:airline#extensions#branch#displyed_head_limit = 100
-let g:airline#extensions#branch#format = 2
-let g:airline#extensions#disable_rtp_load = 1
-let g:airline#extensions#gutentags#enabled = 1
-let g:airline#extensions#quickfix#location_text = 'L'
-let g:airline#extensions#quickfix#quickfix_text = 'Q'
-let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
-
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-
-let g:airline_symbols.space = "\ua0"
-let g:airline_symbols.crypt = '🔒'
-let g:airline_symbols.linenr = '☰'
-let g:airline_symbols.maxlinenr = '㏑'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.spell = 'Ꞩ'
-let g:airline_symbols.notexists = 'Ɇ'
-let g:airline_symbols.whitespace = 'Ξ'
-let g:airline_mode_map = {
-      \ '__' : '-',
-      \ 'n'  : 'N',
-      \ 'i'  : 'I',
-      \ 'R'  : 'R',
-      \ 'c'  : 'C',
-      \ 'v'  : 'V',
-      \ 'V'  : 'V',
-      \ '' : 'V',
-      \ 's'  : 'S',
-      \ 'S'  : 'S',
-      \ '' : 'S',
-      \ }
-" 2}}}
-" }}}
-"
-" {{{2 langserver
-let g:LanguageClient_waitOutputTimeout = 0
-let g:LanguageClient_completionPreferTextEdit = 1
-let g:LanguageClient_windowLogMessageLevel = 'Log'
-let g:LanguageClient_loggingLevel = 'DEBUG'
-let g:LanguageClient_loggingFile = expand('$HOME/.config/nvim/language-client.log')
-let g:LanguageClient_trace = "verbose"
-let g:LanguageClient_settingsPath = expand('$HOME/.config/nvim/language_client.json')
-let g:LanguageClient_serverCommands = {
-      \ 'javascript': ['javascript-typescript-stdio'],
-      \ 'typescript': ['javascript-typescript-stdio'],
-      \ 'python': ['pyls'],
-      \ 'rust': ['rls'],
-      \ 'elixir': ['bash', vimrc_root . '/bin/language_server.sh'],
-      \ 'vim': ['vim-language-server', '--stdio']
-      \ }
-let g:LanguageClient_rootMarkers = {
-      \ 'javascript': ['package.json', 'jsconfig.json'],
-      \ 'typescript': ['tsconfig.json', 'tslint.json'],
-      \ 'elixir': ['mix.exs'],
-      \ 'rust': ['Cargo.toml']
-      \ }
-"}}}
-
-" {{{ Mappings
-let s:mappings = {
-      \ 'leader':  ',',
-      \ 'localLeader':  '\\',
-      \ }
-exec 'let g:mapleader="' . s:mappings.leader . '"'
-exec 'let g:maplocalleader="' . s:mappings.localLeader. '"'
-
-nnoremap <silent> <F9> :Dispatch<CR>
-
+" Bulk mappings for interacting with Git.
 call <SID>apply_bulk_mappings([
-      \ ['t', ':TestNearest<CR>'],
-      \ ['f', ':TestFile<CR>'],
-      \ ['a', ':TestSuite<CR>'],
-      \ ['l', ':TestLast<CR>'],
-      \ ['v', ':TestVisit<CR>'],
-      \ ], { 'prefix' : 't' })
+      \ ['C', ':Gcommit --branch --verbose %<CR>'],
+      \ ['P', ':Gpush<CR>'],
+      \ ['b', ':Gbrowse<CR>'],
+      \ ['c', ':Gcommit<CR>'],
+      \ ['rm', ':Gremove %<CR>'],
+      \ ['rmc', ':Gremove --cached %<CR>'],
+      \ ['t', ':Twiggy<CR>'],
+      \ ['x', ':Glabort<CR>'],
+      \ ['m', ':GitMessenger<CR>'],
+      \ ['rc', ':GlresolveConflictTab'],
+      \ ['mr', ':GlpullRequestSummaryTab']
+      \ ], { 'prefix': 'g' })
+" }}}
 
-call <SID>apply_bulk_mappings([
-      \ ['i', ':Make install<CR>'],
-      \ ['b', ':Make build<CR>'],
-      \ ['c', ':Make clean<CR>'],
-      \ ['<space>', ':Make!<space>'],
-      \ ], { 'prefix' : 'm' })
 
-
+" Bulk mappings for interacting with the fuzzy finder.
 call <SID>apply_bulk_mappings([
       \ ['b', ':Buffers<cr>'],
       \ ['c', ':Commits<cr>'],
@@ -509,39 +344,7 @@ call <SID>apply_bulk_mappings([
       \ ['w', ':Windows<cr>']
       \ ], { 'prefix': 's' })
 
-call <SID>apply_bulk_mappings([
-      \ ['C', ':Gcommit --branch --verbose %<CR>'],
-      \ ['P', ':Gpush<CR>'],
-      \ ['S', ':Glc<CR>'],
-      \ ['b', ':Gbrowse<CR>'],
-      \ ['c', ':Gcommit<CR>'],
-      \ ['C', ':Glc<CR>'],
-      \ ['cO', ':Git checkout HEAD -- %<CR>'],
-      \ ['co', ':Git checkout<space>'],
-      \ ['e', ':Extradite<CR>'],
-      \ ['f', ':Git fetch<space>'],
-      \ ['fa', ':Git fetch --all<CR>'],
-      \ ['d', ':Git diff --cached<CR>'],
-      \ ['d!', ':Git diff<CR>'],
-      \ ['l', ':Gpull<CR>'],
-      \ ['mr', ':GlpullRequestSummaryTab'],
-      \ ['p', ':Gpush<space>'],
-      \ ['r', ':Gpush dokku HEAD:master --no-verify'],
-      \ ['R', ':Gpush dokku HEAD:master --no-verify --force-with-lease'],
-      \ ['rc', ':GlresolveConflictTab'],
-      \ ['rm', ':Gremove %<CR>'],
-      \ ['rmc', ':Gremove --cached %<CR>'],
-      \ ['sd', ':SignifyDebug<CR>'],
-      \ ['sh', ':SignifyToggleHighlight<CR>'],
-      \ ['sj', '<plug>(signify-next-hunk)'],
-      \ ['sk', '<plug>(signify-prev-hunk)'],
-      \ ['sr', ':SignifyRefresh<CR>'],
-      \ ['st', ':SignifyToggle<CR>'],
-      \ ['t', ':Twiggy<CR>'],
-      \ ['x', ':Glabort<CR>'],
-      \ ['w', ':Glwrite<CR>'],
-      \ ], { 'prefix': 'g' })
-
+" Bulk mappings for using the linter system.
 call <SID>apply_bulk_mappings([
       \ ['n', '<Plug>(ale_next_wrap)'],
       \ ['p', '<Plug>(ale_previous_wrap)'],
@@ -552,125 +355,179 @@ call <SID>apply_bulk_mappings([
       \ ['r', '<Plug>(ale_reset)'],
       \ ], { 'prefix': 'a'})
 
+" Bulk mappings for handling tests.
 call <SID>apply_bulk_mappings([
-      \ ['c', ':call LanguageClient_contextMenu()<CR>'],
-      \ ['D', ':call LanguageClient#textDocument_typeDefinition()<CR>'],
-      \ ['i', ':call LanguageClient#textDocument_implementation()<CR>'],
-      \ ['f', ':call LanguageClient#textDocument_references()<CR>'],
-      \ ['a', ':call LanguageClient#textDocument_codeAction()<CR>'],
-      \ ], { 'prefix': 'lc'})
+      \ ['t', ':TestNearest<CR>'],
+      \ ['f', ':TestFile<CR>'],
+      \ ['a', ':TestSuite<CR>'],
+      \ ['l', ':TestLast<CR>'],
+      \ ['v', ':TestVisit<CR>'],
+      \ ], { 'prefix' : 't' })
 
-function! s:LC_maps() abort
-  if has_key(g:LanguageClient_serverCommands, &filetype)
-    nnoremap <buffer> <silent> K :call LanguageClient#textDocument_hover()<cr>
-    nnoremap <buffer> <silent> gd :call LanguageClient#textDocument_definition()<CR>
-    nnoremap <buffer> <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
-    nnoremap <buffer> <silent> <Space><Space> :call <SID>LC_restart()<CR>
+" Bulk mappings for running compiler commands.
+call <SID>apply_bulk_mappings([
+      \ ['i', ':Make install<CR>'],
+      \ ['b', ':Make build<CR>'],
+      \ ['c', ':Make clean<CR>'],
+      \ ['<space>', ':Make!<space>'],
+      \ ], { 'prefix' : 'm' })
+
+" {{{ mappings for coc.nvim
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" position. Coc only does snippet and additional edit on confirm.
+" <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
+if exists('*complete_info')
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+else
+  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
+
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
   endif
 endfunction
 
-function! s:LC_restart() abort
-  :echo LanguageClient#exit()
-  :echo LanguageClient#startServer()
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-autocmd FileType * call s:LC_maps()
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
 
-nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
-nnoremap <silent> ;; @:
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
 
-call <SID>apply_bulk_mappings([
-      \ ['e', '<ESC>:cnext<CR>'],
-      \ ['f', '<ESC>:cfirst<CR>'],
-      \ ['l', '<ESC>:clast<CR>'],
-      \ ['o', '<ESC>:Copen<CR>'],
-      \ ['p', '<ESC>:cprevious<CR>'],
-      \ ['x', '<ESC>:cclose<CR>'],
-      \ ['X', '<ESC>:windo cclose<CR>'],
-      \ ], { 'prefix': 'c' })
+" Formatting selected code.
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
 
-call <SID>apply_bulk_mappings([
-      \ ['e', '<ESC>:lnext<CR>'],
-      \ ['f', '<ESC>:lfirst<CR>'],
-      \ ['l', '<ESC>:llast<CR>'],
-      \ ['o', '<ESC>:lwindow<CR>'],
-      \ ['p', '<ESC>:lprevious<CR>'],
-      \ ['x', '<ESC>:lclose<CR>'],
-      \ ['X', '<ESC>:windo lclose<CR>'],
-      \ ], { 'prefix': 'l' })
+augroup coc_nvim
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder.
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
 
-inoremap <c-c> <ESC>
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" Applying codeAction to the selected region.
+" Example: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
 
-tnoremap <Esc> <C-\><C-n>
-tnoremap <A-h> <C-\><C-n><C-w>h
-tnoremap <A-j> <C-\><C-n><C-w>j
-tnoremap <A-k> <C-\><C-n><C-w>k
-tnoremap <A-l> <C-\><C-n><C-w>l
+" Remap keys for applying codeAction to the current line.
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
 
-nnoremap <A-h> <C-w>h
-nnoremap <A-j> <C-w>j
-nnoremap <A-k> <C-w>k
-nnoremap <A-l> <C-w>l
+" Map function and class text objects
+" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
+xmap if <Plug>(coc-funcobj-i)
+omap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap af <Plug>(coc-funcobj-a)
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
 
-cnoremap vhe vert help
+" Use CTRL-S for selections ranges.
+" Requires 'textDocument/selectionRange' support of LS, ex: coc-tsserver
+nmap <silent> <C-s> <Plug>(coc-range-select)
+xmap <silent> <C-s> <Plug>(coc-range-select)
 
-inoremap <silent> <leader>pt <C-R>=strftime("%Y-%m-%d")<CR>
-inoremap <silent> <leader>py <C-R>=strftime("%H:%M:%S %Z")<CR>
-cnoremap <silent> <leader>py <C-R>=strftime("%H.%M.%S_%Z")<CR>
-cnoremap <silent> <leader>pY <C-R>=strftime("%H.%M.%S")<CR>
-inoremap <silent> <leader>pt <C-R>=strftime("%Y-%m-%d %H:%M:%S %Z")<CR>
-cnoremap <silent> <leader>pt <C-R>=strftime("%Y%m%d%H%M%S")<CR>
-inoremap <silent> <leader>pd <C-R>=strftime("%Y-%m-%d")<CR>
-cnoremap <silent> <leader>pd <C-R>=strftime("%Y-%m-%d")<CR>
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocAction('format')
 
-nnoremap <Space><Space> call s:launch_omniselect()<CR>
+" Add `:Fold` command to fold current buffer.
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
-function! s:launch_omniselect()
-  call fzf#complete()
-endfunction
+" Add `:OR` command for organize imports of the current buffer.
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
+" Add (Neo)Vim's native statusline support.
+" NOTE: Please see `:h coc-status` for integrations with external plugins that
+" provide custom statusline: lightline.vim, vim-airline.
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+" Mappings using CoCList:
+" Show all diagnostics.
+nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions.
+nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+" Show commands.
+nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document.
+nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols.
+nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+" Resume latest coc list.
+nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
+" Use <C-l> for trigger snippet expand.
+inoremap <C-l> <Plug>(coc-snippets-expand)
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+inoremap <C-j> <Plug>(coc-snippets-expand-jump)
+" }}}
+
+" {{{ plugin options
+" These are tweaks to the plug-ins I use. If they don't have documentation
+" (please document your code!) then I try to add a bit around it below.
+let g:twiggy_enable_remote_delete = 1
+let g:ale_fix_on_save = 1
+let g:airline_power_fonts = 1
+let g:airline#theme = 'base16'
+let g:airline_skip_empty_sections = 1
+let g:airline_highlighting_cache = 1
+let g:airline_focuslost_inactive = 1
+let g:coc_snippet_next = '<tab>'
+let g:coc_snippet_prev = '<c-k>'
 " }}}
 
 
-if !exists('$KONSOLE_VERSION')
-  " As a work around for the following bugs in kde4's konsole:
-  "   use the output of 16.colorscheme.rb and don't set base16colorspace.
-  "   base-shell script will not be called
-  " https://github.com/chriskempson/base16-shell/issues/31
-  " https://bugs.kde.org/show_bug.cgi?id=344181
-  let base16colorspace=256
-endif
+" Optimize how the fuzzy finder looks at the bottom of the screen.
+if has('nvim') && !exists('g:fzf_layout')
+  autocmd! FileType fzf
+  autocmd  FileType fzf set laststatus=0 noshowmode noruler
+        \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+end
 
-if filereadable(expand("~/.vimrc_background"))
-  source ~/.vimrc_background
+" Tell the fuzzy finder to leverage ripgrep
+if executable('rg')
+  let $FZF_DEFAULT_COMMAND = 'rg --silent --hidden'
+  set grepprg=rg\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow\ --vimgrep
+  set grepformat=%f:%l:%c:%m
 endif
 
 filetype plugin indent on
 syntax on
-
-autocmd BufEnter * call ncm2#enable_for_buffer()
-autocmd BufNewFile,BufRead * inoremap <silent> <buffer> <expr> <cr> ncm2_ultisnips#expand_or("\<CR>", 'n')
-autocmd FileType gitcommit set bufhidden=delete
-autocmd TermOpen * setl nonumber noruler norelativenumber signcolumn=no foldcolumn=0 bufhidden=delete
-autocmd TextChangedI * call ncm2#auto_trigger()
-autocmd User Ncm2PopupClose set completeopt=menuone
-autocmd User Ncm2PopupOpen set completeopt=noinsert,menuone,noselect
-autocmd User LanguageClientStopped :echo LanguageClient#startServer()
-
-command! DisconnectClients
-     \  if exists('b:nvr')
-     \|   for client in b:nvr
-     \|     silent! call rpcnotify(client, 'Exit', 1)
-     \|   endfor
-     \| endif
-
-command! -bang -nargs=? -complete=dir Files
-      \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
-
-sign define vimspectorBP text=🔴 texthl=Normal
-sign define vimspectorBPDisabled text=🔵 texthl=Normal
-sign define vimspectorPC text=🔶 texthl=SpellBad

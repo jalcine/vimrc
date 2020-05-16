@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-echo -e "[neovim-jalcine] Starting trail...";
-
-tail -f \
-  $HOME/.config/nvim/logs/* \
-  /tmp/Language{Client,Server}* \

@@ -300,7 +300,7 @@ let g:ale_linters = {
       \ 'typescript': ['eslint', 'prettier'],
       \ 'javascript':  ['eslint', 'prettier'],
       \ 'json': ['jq'],
-      \ 'elixir': ['credo', 'mix']
+      \ 'elixir': ['credo', 'mix', 'dialyxir']
       \ }
 " 2}}}
 "

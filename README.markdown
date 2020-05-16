@@ -1,43 +1,44 @@
-# NeoVim Configuration
+# Neovim Configuration
 
-![My daily view.](./snapshot.png)
+I've been using Vim for a while and I don't see myself stopping. This repository
+represents the history of changes around the configuration, styling and scripts
+I use to keep my Vim setup moving nicely. On 2020-05-16, I decided to scrap it
+all and start clean.
 
-This repository contains the configuration and any other things that I use with [NeoVim][]. I try to use the
-latest stable on most machines (work, virtual machines) but on my [personal laptop][1], I end up using the
-development release (info below). The configuration is tweaked about bi-monthly with the following concerns in mind:
+Some key points I chose to make was to investigate which options are _already_
+set to sensible values in Neovim.
 
-* *Relevancy*: Plug-ins used should be up-to-date and work together out of the box (or loose coupling)
-* *Intuitive*: Using the editor should be more than using your system's plain text editor but a bit less than an IDE.
-* *Adaptive*: Load things when you need them and only then.
+## Objectives
 
-I keep a list of the plugins I use in the [snapshot file][2] for reproducible installs across machines.
+- **Intuitive configuration**: I've been heavy into tweaking but now I'm more into
+  having implicit behaviors be the norm. This means I'll be leaning into
+  meta-plugins that help define project behaviors so I can keep common behaviors
+  (building, testing, running, evaluating) across the languages I use.
 
-## Neovim Build Information
+- **Document usage**: I didn't do a good job documenting _why_ and _when_ I
+   added things to my setup (or why I've avoided using things). Since I use Vim
+   in a IDE-y fashion but not precisely as it is, there's always something I'd
+   like to do with it while understanding _why_ it might be not be possible
+   (you'd want a sharp useful blade that's good at one thing versus a swiss army
+   knife that has random dull tools).
 
-This is the information visible when I run `:version` in Neovim.
-```
-:version
-NVIM v0.5.0-dev
-Build type: RelWithDebInfo
-Lua 5.1
-Compilation: /usr/bin/cc -g -O2 -fdebug-prefix-map=/build/neovim-0vMcDA/neovim-0.5.0+ubuntu1+git201910172025-0785f8e-00e710e=
-. -fstack-protector-strong -Wformat -Werror=format-security -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=1 -O2 -g -DMIN_LOG_LEVEL=3 -O
-g -g -Wall -Wextra -pedantic -Wno-unused-parameter -Wstrict-prototypes -std=gnu99 -Wshadow -Wconversion -Wmissing-prototypes
--Wimplicit-fallthrough -Wvla -fstack-protector-strong -fdiagnostics-color=auto -DINCLUDE_GENERATED_DECLARATIONS -D_GNU_SOURCE
- -DNVIM_MSGPACK_HAS_FLOAT32 -DNVIM_UNIBI_HAS_VAR_FROM -I/build/neovim-0vMcDA/neovim-0.5.0+ubuntu1+git201910172025-0785f8e-00e
-710e/build/config -I/build/neovim-0vMcDA/neovim-0.5.0+ubuntu1+git201910172025-0785f8e-00e710e/src -I/build/neovim-0vMcDA/neov
-im-0.5.0+ubuntu1+git201910172025-0785f8e-00e710e/.deps/usr/include -I/usr/include -I/build/neovim-0vMcDA/neovim-0.5.0+ubuntu1
-+git201910172025-0785f8e-00e710e/build/src/nvim/auto -I/build/neovim-0vMcDA/neovim-0.5.0+ubuntu1+git201910172025-0785f8e-00e7
-10e/build/include
-Compiled by buildd@lgw01-amd64-024
+- **Detect and resolve dependencies**: One thing I do miss when I use tools like
+   [GitHub's Atom][1] or [Microsoft's Visual Studio Code][2] was the ability for
+   me to quickly fetch and obtain resources relating to the text I was working
+   on. Having hooks for this kind of support is definitely important to me as I
+   work on more languages that have embedded documentation like Rust and Elixir.
 
-Features: +acl +iconv +tui
-See ":help feature-compile"
+- **Deep (D)VCS support**: Regardless of the type of version control I use, I
+   want the editor to allow for me to view history of changes, commit changes,
+   resolve differences and more DVCS changes of that nature. I'm very
+   comfortable with the command line and with core concepts of Git as well as
+   some knowledge of how Bazaar works so having abstractions for either of these
+   but specialized tools within them is helpful.
 
-   system vimrc file: "$VIM/sysinit.vim"
-  fall-back for $VIM: "/usr/share/nvim"
+- **Language intelligence**: It's 2020 - auto completion is definitely something
+   I can't function without; especially when I'm interfacing with foreign
+   libraries or code bases I'm unfamiliar with. Thankfully, the efforts of the
+   Language Server movement makes this less of a problem for Neovim.
 
-```
-[neovim]: http://neovim.io/
-[1]: https://jacky.wtf/gear/#laptop
-[2]: ./home/.config/nvim/snapshot.vim
+[1]: https://atom.io/
+[2]: https://code.visualstudio.com/

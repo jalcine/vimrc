@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-
-cd "$HOME/.config/nvim" || exit
-phpenv exec plugins/php-language-server/vendor/bin/php-language-server.php

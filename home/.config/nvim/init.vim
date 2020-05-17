@@ -84,7 +84,7 @@ set backup writebackup
 
 " Disable the use of swapfiles - it's not necessary (IMO) when we have undo
 " _and_ backups after.
-set noswapfile
+set noswapfile updatecount=0
 
 " Show me the line I'm on, while having the numbers above and below it be
 " numbered in ascending and descending order (relatively counted). Also

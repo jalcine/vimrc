@@ -8,7 +8,7 @@
 " expectation of understanding around some core Vim concepts. I'm happy to
 " expand on them over e-mail or by opening an issue on the tracker at
 " <https://git.jacky.wtf/me/vimrc>.
-
+"
 " {{{ adjustments
 " These options are relatively straightforward. I recommend doing a `:help`
 " with each option to learn more about them.
@@ -106,7 +106,8 @@ set grepformat=%f:%l:%c:%m
 "
 " [1]: https://github.com/junegunn/vim-plug
 "
-" Call the plug-in manager; already pre-installed.
+" Call the plug-in manager; already pre-installed (as in, the file for this
+" plug-in file should already be at $HOME/.config/nvim/autoload/plug.vim
 call plug#begin(expand('~/.config/nvim/plugged'))
 
 " Icons for ... everything!
@@ -121,10 +122,14 @@ Plug 'https://github.com/chriskempson/base16-vim'
 Plug 'https://github.com/Yggdroot/indentLine'
 
 " Provides a 'splash' screen that can be tweaked to show useful things like the
-" last files I've open, launch sessions for projects and more.
+" last files I've open, launch sessions for projects and more. It also has
+" some session management wrappers so I can switch between project themes
+" pretty quickly.
 Plug 'https://github.com/mhinz/vim-startify'
 
-" Provides a method for realigning text for equidistant spacing.
+" Provides a method for realigning text for equidistant spacing. This is how I
+" re-align the spaces for the mapping below but also for Markdown tables and
+" in CSV files.
 Plug 'https://github.com/junegunn/vim-easy-align'
 
 " This is a contentious thing to set. I didn't want a heavy plug-in but I also
@@ -141,10 +146,13 @@ Plug 'https://github.com/vim-airline/vim-airline'
 " https://github.com/junegunn/fzf#using-the-finder
 Plug 'https://github.com/junegunn/fzf', { 'do': { -> fzf#install() } }
 
-" This provides some helpers for fzf in Vim.
+" This provides some helpers for fzf in Vim for things like the command
+" history, buffers, windows, help tags - the list goes on.
 Plug 'https://github.com/junegunn/fzf.vim'
 
-" A tool for visualizing the undo branching.
+" A tool for visualizing the undo branching. Something I use as I work on text
+" to help me know when and where I should probably commit a change. It happens
+" live soon it's helpful that way.
 Plug 'https://github.com/mbbill/undotree'
 
 " Powerful yet abstract tool for defining a project's structure and tasks for
@@ -358,8 +366,8 @@ call <SID>generate_prefixed_mappings([
       \ ['f',       ':call <Plug>(coc-format-selected)<CR>'],
       \ ['a',       ':call <Plug>(coc-codeaction-selected)<CR>'],
       \ ['ac',      ':call <Plug>(coc-codeaction)<CR>'],
-      \ ['f',       ':call <Plug>(coc-fix-current)<CR>'],
-      \ ['f',       ':call CocAction("format")<CR>'],
+      \ ['x',       ':call <Plug>(coc-fix-current)<CR>'],
+      \ ['F',       ':call CocAction("format")<CR>'],
       \ ['i',       ':call CocAction("runCommand", "editor.action.organizeImport")<CR>'],
       \ ['<space>', ':<C-u>CocListResume<cr>']
       \ ], { 'prefix': 'C' })
@@ -397,7 +405,6 @@ call <SID>generate_prefixed_mappings([
       \ ['mn',  ':call fzf#vim#maps("n", 1)<cr>'],
       \ ['mt',  ':call fzf#vim#maps("t", 1)<cr>'],
       \ ['mv',  ':call fzf#vim#maps("v", 1)<cr>'],
-      \ ['s',   ':Snippets<cr>'],
       \ ['t',   ':Tags<cr>'],
       \ ['w',   ':Windows<cr>']
       \ ], { 'prefix': 's' })
@@ -522,10 +529,53 @@ omap ac <Plug>(coc-classobj-a)
 " (please document your code!) then I try to add a bit around it below.
 let g:twiggy_enable_remote_delete = 1
 let g:airline#theme = 'base16'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+
+let g:airline_left_alt_sep = ''
+let g:airline_left_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.crypt = '🔒'
+let g:airline_symbols.linenr = '☰'
+let g:airline_symbols.maxlinenr = ''
+let g:airline_symbols.notexists = 'Ɇ'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.spell = 'Ꞩ'
+let g:airline_symbols.whitespace = 'Ξ'
+let g:airline_mode_map = {
+      \ '__'     : '-',
+      \ 'c'      : 'C',
+      \ 'i'      : 'I',
+      \ 'ic'     : 'I',
+      \ 'ix'     : 'I',
+      \ 'n'      : 'N',
+      \ 'multi'  : 'M',
+      \ 'ni'     : 'N',
+      \ 'no'     : 'N',
+      \ 'R'      : 'R',
+      \ 'Rv'     : 'R',
+      \ 's'      : 'S',
+      \ 'S'      : 'S',
+      \ ''     : 'S',
+      \ 't'      : 'T',
+      \ 'v'      : 'V',
+      \ 'V'      : 'V',
+      \ ''     : 'V',
+      \ }
+let g:airline#extensions#cursormode#enabled = 1
+let g:airline#extensions#branch#format = 1
+let airline#extensions#coc#error_symbol = ''
+let airline#extensions#coc#warning_symbol = ''
 let g:ale_fix_on_save = 1
 let g:ale_lint_on_save = 1
-let g:airline_power_fonts = 0
-let g:airline_exclude_preview = 0
+let g:airline_power_fonts = 1
+let g:airline_exclude_preview = 1
 let g:airline_skip_empty_sections = 1
 let g:airline_highlighting_cache = 1
 let g:airline_focuslost_inactive = 1

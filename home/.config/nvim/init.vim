@@ -41,11 +41,12 @@ set showmatch
 " Incrementally show matches for a search in a preview window.
 set inccommand="split"
 
-" Always show the sign column.
-set signcolumn=yes
+" Always show the sign column. This prevents a janky experience when signs
+" _are_ inserted. We'd also want it to show with at most 3 signs in one line.
+set signcolumn=yes:2
 
 " Set the pop up menu to be at least 30 x 10
-set pumheight=10 pumwidth=30
+set pumheight=6 pumwidth=30
 
 " Set the Insert mode completion menu to show even if there's only one match.
 " It won't automatically select the option for me. Preview information about
@@ -89,7 +90,7 @@ set noswapfile updatecount=0
 " Show me the line I'm on, while having the numbers above and below it be
 " numbered in ascending and descending order (relatively counted). Also
 " highlight the line I'm on.
-set number numberwidth=5 relativenumber cursorline
+set number numberwidth=2 relativenumber cursorline
 
 " Tell the fuzzy finder to leverage ripgrep
 set grepprg=rg\ --nogroup\ --column\ --smart-case\ --nocolor\ --follow\ --vimgrep
@@ -522,11 +523,13 @@ omap ac <Plug>(coc-classobj-a)
 let g:twiggy_enable_remote_delete = 1
 let g:airline#theme = 'base16'
 let g:ale_fix_on_save = 1
+let g:ale_lint_on_save = 1
 let g:airline_power_fonts = 0
 let g:airline_exclude_preview = 0
 let g:airline_skip_empty_sections = 1
 let g:airline_highlighting_cache = 1
 let g:airline_focuslost_inactive = 1
+let g:airline_disable_lsp = 1
 let g:coc_snippet_next = '<tab>'
 let g:coc_snippet_prev = '<c-k>'
 let g:test#strategy = {

@@ -1,0 +1,15 @@
+{
+  "elixir.trace.server": "verbose",
+  "elixir.pathToElixirLS": "~/src/elixir-ls/release/language_server.sh",
+  "cSpell.userWords": [
+    "Alcine"
+  ],
+  "codeLens.enable": true,
+  "suggest.autoTrigger": "always",
+  "suggest.timeout": 500,
+  "suggest.snippetIndicator": "",
+  "elixirLS.suggestSpecs": true,
+  "elixirLS.fetchDeps": true,
+  "elixirLS.dialyzerEnabled": true,
+  "elixirLS.dialyzerFormat": "dialyxir_long"
+}

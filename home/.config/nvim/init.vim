@@ -80,8 +80,8 @@ iabbrev me_site https://jacky.wtf
 " Enable undo files. It writes to a sane location by default.
 set undofile
 
-" Allow backups to be written and do it before we actually save files.
-set backup writebackup
+" Don't bother with writing backups.
+set nobackup nowritebackup
 
 " Disable the use of swapfiles - it's not necessary (IMO) when we have undo
 " _and_ backups after.
@@ -140,15 +140,14 @@ Plug 'https://github.com/vim-airline/vim-airline'
       \ | Plug 'https://github.com/vim-airline/vim-airline-themes' " Provides themes for the aforementioned plug-in.
 " 2}}}
 
-" A super-fast and powerful fuzzy finder for any kind of resource. The
-" extensibility of this plug-in makes it a critical part of my setup.
-" Information on how to use the finder is mentioned in its README:
-" https://github.com/junegunn/fzf#using-the-finder
-Plug 'https://github.com/junegunn/fzf', { 'do': { -> fzf#install() } }
+" A fuzzy finder written in Rust. Opting to use this over `fzf` since I'm more
+" comfortable with debugging Rust and that'll give me an edge when tweaking
+" and contributing. More info at https://github.com/lotabout/skim#usage.
+Plug 'https://github.com/lotabout/skim', { 'dir': '~/.skim', 'do': './install' }
 
-" This provides some helpers for fzf in Vim for things like the command
+" This provides some helpers for skim in Vim for things like the command
 " history, buffers, windows, help tags - the list goes on.
-Plug 'https://github.com/junegunn/fzf.vim'
+Plug 'https://github.com/lotabout/skim.vim'
 
 " A tool for visualizing the undo branching. Something I use as I work on text
 " to help me know when and where I should probably commit a change. It happens
@@ -244,6 +243,14 @@ Plug 'https://github.com/tpope/vim-commentary'
 Plug 'https://github.com/tpope/vim-vinegar'
 
 " Language Server engine. The documentation of the project does it way more justice.
+" But in short, this plug-in builds wrappers for the more mature language
+" enhancements found in Visual Studio Code for neovim. It's a bit sad to know
+" that these changes aren't implemented in a pure LanguageServer approach;
+" that we homogenized them around a pseudo-open editor. But the power of
+" F/LOSS will always find a way to make things work for the masses.
+"
+" The extensions for this plug-in are managed at
+" $XDG_CONFIG_HOME/coc/extensions.package.json
 Plug 'https://github.com/neoclide/coc.nvim', {'branch': 'release'}
 
 " Loads environment file information from disk.
@@ -253,7 +260,9 @@ Plug 'https://github.com/tpope/vim-dotenv'
 " Enhancements for vim depending on the terminal it's in.
 Plug 'https://github.com/wincent/terminus'
 
-" A tool for handling convenient layouts with Fugitive support.
+" A tool for handling convenient layouts with Fugitive support. It adds
+" powerful flows for situations like conflict resolution, writing out commits
+" and checking out code before doing a review.
 Plug 'https://github.com/vrybas/vim-flayouts'
 
 " Provides a mode modern patching interface. This is way more intuitive since
@@ -265,6 +274,10 @@ Plug 'https://github.com/junkblocker/patchreview-vim'
 " plugin provides an interface for working with merge requests on GitHub that
 " prevents browser tab fatigue.
 Plug 'https://github.com/codegram/vim-codereview'
+
+" Provides a binding to open up the documentation tool Zeal for the code in
+" reference. I use this in tandem to the language server documentation.
+Plug 'KabbAmine/zeavim.vim'
 
 call plug#end()
 " }}}
@@ -359,16 +372,17 @@ call <SID>generate_prefixed_mappings([
       \ ['e',       ':<C-u>CocList extensions<cr>'],
       \ ['c',       ':<C-u>CocList commands<cr>'],
       \ ['o',       ':<C-u>CocList outline<cr>'],
-      \ ['S',       ':<C-u>CocList -I symbols<cr>'],
       \ ['j',       ':<C-u>CocNext<cr>'],
+      \ ['i',       ':call CocAction("runCommand", "editor.action.organizeImport")<CR>'],
       \ ['k',       ':<C-u>CocPreview<cr>'],
-      \ ['R',       ':call <Plug>(coc-rename)<CR>'],
       \ ['f',       ':call <Plug>(coc-format-selected)<CR>'],
       \ ['a',       ':call <Plug>(coc-codeaction-selected)<CR>'],
       \ ['ac',      ':call <Plug>(coc-codeaction)<CR>'],
       \ ['x',       ':call <Plug>(coc-fix-current)<CR>'],
+      \ ['S',       ':<C-u>CocList -I symbols<cr>'],
+      \ ['A',       ':call <Plug>(coc-codelens-action)<CR>'],
+      \ ['R',       ':call <Plug>(coc-rename)<CR>'],
       \ ['F',       ':call CocAction("format")<CR>'],
-      \ ['i',       ':call CocAction("runCommand", "editor.action.organizeImport")<CR>'],
       \ ['<space>', ':<C-u>CocListResume<cr>']
       \ ], { 'prefix': 'C' })
 
@@ -582,11 +596,7 @@ let g:airline_focuslost_inactive = 1
 let g:airline_disable_lsp = 1
 let g:coc_snippet_next = '<tab>'
 let g:coc_snippet_prev = '<c-k>'
-let g:test#strategy = {
-      \ 'nearest': 'neovim',
-      \ 'file': 'dispatch',
-      \ 'suite': 'dispatch'
-      \ }
+let g:test#strategy = 'neovim'
 " }}}
 
 
